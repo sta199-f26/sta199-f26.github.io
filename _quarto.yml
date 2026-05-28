@@ -1,0 +1,112 @@
+project:
+  type: website
+
+website:
+  page-navigation: true
+  title: "STA 199"
+  description: "Homepage for STA 199 - Introduction to Data Science at Duke University, Fall 2026."
+  site-url: "https://sta199-f26.github.io/"
+
+  repo-url: https://github.com/sta199-f26/sta199-f26.github.io/
+  repo-actions: [edit, issue]
+
+  open-graph: true
+
+  sidebar:
+    background: "#005871"
+    logo: "img/logo.png"
+    pinned: true
+    align: center
+    tools:
+      - icon: github
+        href: https://github.com/sta199-f26
+        text: "GitHub organization"
+      - icon: code-square
+        href: https://cmgr.oit.duke.edu/containers
+        text: "RStudio containers"
+      - icon: life-preserver
+        text: Support
+        menu:
+          - icon: person-raised-hand
+            text: Office hours
+            href: https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing
+          - icon: people-fill
+            text: Help from humans (Ed Discussion)
+            href: https://edstem.org/
+          - icon: robot
+            text: Help from AI (Chatbot)
+            href: https://canvas.duke.edu/
+      - icon: file-check-fill
+        text: "Canvas"
+        menu:
+          - icon: megaphone-fill
+            text: Announcements
+            url: https://canvas.duke.edu/
+          - icon: file-arrow-up-fill
+            text: Gradescope
+            url: https://canvas.duke.edu/
+          - icon: alphabet-uppercase
+            text: Gradebook
+            url: https://canvas.duke.edu/
+
+    style: docked
+    search: true
+    collapse-level: 1
+    contents:
+      - section: "Course information"
+        contents:
+          - href: course-overview.qmd
+            text: Overview
+          - href: course-syllabus.qmd
+            text: Syllabus
+          - href: course-support.qmd
+            text: Support
+          - href: course-team.qmd
+            text: Team
+          - href: index.qmd
+            text: Schedule
+          - href: course-links.qmd
+            text: Useful links
+          - href: course-faq.qmd
+            text: FAQ
+      - section: "Computing"
+        contents:
+          - href: computing-access.qmd
+            text: Access
+          - href: computing-code-alongs.qmd
+            text: Code alongs
+          - href: computing-cheatsheets.qmd
+            text: Cheatsheets
+          - href: computing-troubleshooting.qmd
+            text: Troubleshooting
+      - section: "Project"
+      - lab.qmd
+      - hw.qmd
+      - ae.qmd
+      - exam-review.qmd
+            
+  page-footer:
+    background: "#005871"
+    left: "&copy; Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox"
+    right: 'This page is built with [{{< fa heart >}}]{style="color: #FFBE98;"} and [Quarto](https://quarto.org/).'
+    
+format: 
+  html:
+    mainfont: Atkinson Hyperlegible
+    highlight-style: a11y-light
+    linkcolor: "#005871"
+    lightbox: true
+
+theme:
+  light: [cosmo, style/sta199.scss]
+  dark: [cosmo, style/sta199.scss, style/dark.scss]
+
+toc: true
+code-copy: hover
+code-link: true
+code-overflow: wrap
+
+execute:
+  freeze: auto
+
+editor: source
