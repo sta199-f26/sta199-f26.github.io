@@ -48,6 +48,8 @@ Push changes to the repo to trigger the GitHub Action that publishes the website
     
     -   Add project dates into "Important Dates"
     
+    --  Added **AI tools for lab:** 
+    
     
 -   course-team.qmd: 
 
