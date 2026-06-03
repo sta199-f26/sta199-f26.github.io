@@ -36,9 +36,11 @@ Push changes to the repo to trigger the GitHub Action that publishes the website
 
     -   include example citing AI (maybe under academic honesty)
     
-    -   check important dates (like take-home)
+    -   check important dates (like take-home) [check in short and long versions]
     
     -   Ed discussion link under "Getting help"
+    
+    -   Under labs it states that they will work within project teams after lab
     
     -   Check "Lectures" section to see if example calculation looks okay
 
