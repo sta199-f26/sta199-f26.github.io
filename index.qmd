@@ -38,7 +38,7 @@ d |>
     ) #added the other & statements so that deadlines don't have "To be posted" language
     #prepare = if_else(date > prepare_cutoff_date, "*To be posted*", prepare) #added the other & statements so that deadlines don't have "To be posted" language
   ) |>
-  select(-dow, -admin_notes, -number, -session) |> #moved this down so i can use session value in above mutate prepare line
+  select(-dow, -admin_notes, -number, -session, -more_notes) |> #moved this down so i can use session value in above mutate prepare line
   relocate(due, .after = materials) |>
   gt() |>
   fmt_date(date, date_style = 31) |>
