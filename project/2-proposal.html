@@ -560,8 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#introduction-and-data" id="toc-introduction-and-data" class="nav-link" data-scroll-target="#introduction-and-data">Introduction and data</a></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research question</a></li>
-  <li><a href="#glimpse-of-data" id="toc-glimpse-of-data" class="nav-link" data-scroll-target="#glimpse-of-data">Glimpse of data</a></li>
-  <li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link" data-scroll-target="#data-dictionary">Data dictionary</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#quarto.yml-file" id="toc-quarto.yml-file" class="nav-link" data-scroll-target="#quarto.yml-file"><code>_quarto.yml</code> file</a></li>
   </ul></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
@@ -625,8 +624,8 @@ Important
 <h1>Goals</h1>
 <p>The goals of this milestone are as follows:</p>
 <ul>
-<li><p>Discuss topics you’re interested in investigating and find data sets on those topics.</p></li>
-<li><p>Identify two data sets you’re interested in potentially using for the project.</p></li>
+<li><p>Discuss topics you’re interested in investigating and find datasets on those topics.</p></li>
+<li><p>Identify two datasets you’re interested in potentially using for the project.</p></li>
 <li><p>Get these datasets into R.</p></li>
 <li><p>Write up reasons and justifications for why you want to work with these datasets.</p></li>
 <li><p>Review your team contract.</p></li>
@@ -641,7 +640,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You must use one of the data sets in the proposal for the final project, unless instructed otherwise when given feedback.</p>
+<p>You must use one of the datasets in the proposal for the final project, unless instructed otherwise when given feedback.</p>
 </div>
 </div>
 </section>
@@ -649,7 +648,7 @@ Important
 <h1>Finding a dataset</h1>
 <section id="criteria-for-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="criteria-for-datasets">Criteria for datasets</h2>
-<p>The data sets should meet the following criteria:</p>
+<p>The datasets should meet the following criteria:</p>
 <ul>
 <li><p>At least 200 observations.</p></li>
 <li><p>At least 8 columns.</p></li>
@@ -661,7 +660,7 @@ Important
 <li><p>You may not use data that has previously been used in any course materials, or any derivation of data that has been used in course materials.</p></li>
 <li><p>You can curate one of your datasets via web scraping.</p></li>
 </ul>
-<p><strong>Please ask a member of the teaching team if you’re unsure whether your data set meets the criteria.</strong></p>
+<p><strong>Please ask a member of the teaching team if you’re unsure whether your dataset meets the criteria.</strong></p>
 <p>If you have your hearts set on a dataset that has fewer observations or variables than what’s suggested here, that might still be ok; use these numbers as guidance for a successful proposal, not as minimum requirements.</p>
 </section>
 <section id="resources-for-datasets" class="level2">
@@ -708,10 +707,10 @@ Important
 </section>
 <section id="components" class="level1">
 <h1>Components</h1>
-<p>For each data set, include the following:</p>
+<p>For each dataset, include the following:</p>
 <section id="introduction-and-data" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-and-data">Introduction and data</h2>
-<p>For each data set:</p>
+<p>For each dataset:</p>
 <ul>
 <li><p>Identify the source of the data.</p></li>
 <li><p>State when and how it was originally collected (by the original data curator, not necessarily how you found the data).</p></li>
@@ -727,25 +726,23 @@ Important
 <li><p>Is the question original?</p></li>
 <li><p>Can the question be answered?</p></li>
 </ul>
-<p>For each data set, include the following:</p>
+<p>For each dataset, include the following:</p>
 <ul>
-<li><p>A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)</p></li>
+<li><p>A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per dataset is required.)</p></li>
 <li><p>Statement on why this question is important.</p></li>
 <li><p>A description of the research topic along with a concise statement of your hypotheses on this topic.</p></li>
 <li><p>Identify the types of variables in your research question. Categorical? Numerical?</p></li>
 </ul>
 </section>
-<section id="glimpse-of-data" class="level2">
-<h2 class="anchored" data-anchor-id="glimpse-of-data">Glimpse of data</h2>
-<p>For each data set:</p>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>For each dataset:</p>
 <ul>
 <li>Place the file containing your data in the <code>data</code> folder of the project repo.</li>
-<li>Use the <code>glimpse()</code> function to provide a glimpse of the data set.</li>
+<li>Use the <code>glimpse()</code> function to provide a glimpse of the dataset.</li>
+<li>State the number of observations and variables in the dataset.</li>
+<li>Describe the variables that are most relevant to your proposed analysis (include at least 6 relevant variables).</li>
 </ul>
-</section>
-<section id="data-dictionary" class="level2">
-<h2 class="anchored" data-anchor-id="data-dictionary">Data dictionary</h2>
-<p>For each data set, add a data dictionary to the <code>README.md</code> file in the <code>data</code> folder describing each variable.</p>
 </section>
 <section id="quarto.yml-file" class="level2">
 <h2 class="anchored" data-anchor-id="quarto.yml-file"><code>_quarto.yml</code> file</h2>
@@ -814,16 +811,16 @@ Important
 <td>2 (1 pt for each dataset)</td>
 </tr>
 <tr class="odd">
-<td>Glimpse of data</td>
+<td>Data</td>
 <td>2 (1 pt for each dataset)</td>
 </tr>
 <tr class="even">
-<td>Data dictionary</td>
-<td>2 (1 pt for each dataset)</td>
+<td>Update <code>_quarto.yml</code></td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <td>Workflow and formatting</td>
-<td>2</td>
+<td>3</td>
 </tr>
 </tbody>
 </table>
@@ -840,6 +837,7 @@ Important
 <li>informative commit messages</li>
 <li>commits from each team member</li>
 <li>project website builds successfully</li>
+<li>no extraneous files in project repo</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
