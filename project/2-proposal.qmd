@@ -18,9 +18,9 @@ For project milestones, there is nothing to submit to Gradescope. Instead, your 
 
 The goals of this milestone are as follows:
 
--   Discuss topics you're interested in investigating and find data sets on those topics.
+-   Discuss topics you're interested in investigating and find datasets on those topics.
 
--   Identify two data sets you're interested in potentially using for the project.
+-   Identify two datasets you're interested in potentially using for the project.
 
 -   Get these datasets into R.
 
@@ -29,14 +29,14 @@ The goals of this milestone are as follows:
 -   Review your team contract.
 
 ::: callout-important
-You must use one of the data sets in the proposal for the final project, unless instructed otherwise when given feedback.
+You must use one of the datasets in the proposal for the final project, unless instructed otherwise when given feedback.
 :::
 
 # Finding a dataset
 
 ## Criteria for datasets
 
-The data sets should meet the following criteria:
+The datasets should meet the following criteria:
 
 -   At least 200 observations.
 
@@ -51,7 +51,7 @@ The data sets should meet the following criteria:
 
 -   You can curate one of your datasets via web scraping.
 
-**Please ask a member of the teaching team if you're unsure whether your data set meets the criteria.**
+**Please ask a member of the teaching team if you're unsure whether your dataset meets the criteria.**
 
 If you have your hearts set on a dataset that has fewer observations or variables than what's suggested here, that might still be ok; use these numbers as guidance for a successful proposal, not as minimum requirements.
 
@@ -98,11 +98,11 @@ You shouldn't feel constrained to datasets that are already in a tidy format, yo
 
 # Components
 
-For each data set, include the following:
+For each dataset, include the following:
 
 ## Introduction and data
 
-For each data set:
+For each dataset:
 
 -   Identify the source of the data.
 
@@ -123,10 +123,10 @@ When writing a research question, please think about the following:
 
 -   Can the question be answered?
 
-For each data set, include the following:
+For each dataset, include the following:
 
 -   A well formulated research question.
-    (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+    (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per dataset is required.)
 
 -   Statement on why this question is important.
 
@@ -136,16 +136,14 @@ For each data set, include the following:
     Categorical?
     Numerical?
 
-## Glimpse of data
+## Data
 
-For each data set:
+For each dataset:
 
 -   Place the file containing your data in the `data` folder of the project repo.
--   Use the `glimpse()` function to provide a glimpse of the data set.
-
-## Data dictionary
-
-For each data set, add a data dictionary to the `README.md` file in the `data` folder describing each variable.
+-   Use the `glimpse()` function to provide a glimpse of the dataset.
+-   State the number of observations and variables in the dataset. 
+-   Describe the variables that are most relevant to your proposed analysis (include at least 6 relevant variables).
 
 ## `_quarto.yml` file
 
@@ -198,9 +196,9 @@ format:
 |-------------------------|---------------------------|
 | Introduction and data   | 2 (1 pt for each dataset) |
 | Research question       | 2 (1 pt for each dataset) |
-| Glimpse of data         | 2 (1 pt for each dataset) |
-| Data dictionary         | 2 (1 pt for each dataset) |
-| Workflow and formatting | 2                         |
+| Data                    | 2 (1 pt for each dataset) |
+| Update `_quarto.yml`    | 1                         |
+| Workflow and formatting | 3                         |
 
 Each of the first four components will be graded as follows:
 
@@ -220,6 +218,7 @@ Additionally, the workflow component will be graded based on:
 -   informative commit messages
 -   commits from each team member
 -   project website builds successfully
+-   no extraneous files in project repo
 
 ::: callout-important
 Each team member must contribute, with commits, to the project proposal in order to be eligible for full credit for workflow and formatting.

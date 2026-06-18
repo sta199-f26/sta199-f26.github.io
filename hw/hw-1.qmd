@@ -3,7 +3,7 @@ title: HW 1
 subtitle: Exploring Midwest and NC Counties
 description: "Due: Wed, Sep 9, 11:59 pm"
 categories: HW
-draft: false
+draft: true
 ---
 
 # Introduction
@@ -12,7 +12,7 @@ This is a two-part homework assignment:
 
 - **Part 1 -- 🤖 Feedback from AI:** Not graded, for practice, you get immediate feedback with AI, based on rubrics designed by the course instructor. Complete in `hw-1-part-1.qmd`, no submission required.
 
-- **Part 2 -- 🧑🏽‍🏫 Feedback from Humans:** A subset of these questions will be graded by the course instructional team, you get feedback in about a week. Complete in `hw-1-part-2.qmd`, submit on Gradescope.
+- **Part 2 -- 🧑🏽‍🏫 Feedback from Humans:** Graded, you get feedback from the course instructional team in about a week. Complete in `hw-1-part-2.qmd`, submit on Gradescope. A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. The remaining questions will be graded for completion, meaning you will receive full credit for making a reasonable attempt to answer all parts of the question.
 
 To get started, follow the instructions below.
 
@@ -141,6 +141,10 @@ How do variabilities of county sizes compare across states?
 
 Which state has the single largest county? Identify the name of this county. You can use the data viewer to identify it interactively, you do not have to write code.
 
+::: callout-tip
+In addition to answering the specific prompts above, make sure your response answers the initial question, "Do some states have counties that tend to be geographically larger than others?"
+:::
+
 ::: render-commit-push
 Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.
 
@@ -171,6 +175,10 @@ The resulting data frame is assigned back to `midwest`, overwriting the existing
 midwest <- midwest |>
   mutate(metro = if_else(inmetro == 1, "Yes", "No"))
 ```
+:::
+
+::: callout-tip
+In addition to answering the specific prompts above, make sure your response answers the initial question, "Do some states have a higher percentage of their counties located in a metropolitan area??"
 :::
 
 ::: render-commit-push
@@ -359,8 +367,8 @@ We will be checking these to make sure you have been practicing how to commit an
 
 -   Questions 1-5 are not graded, but you should complete them to get practice.
 
--   A subset of Questions 6-10 are graded, and you will receive feedback on Gradescope from the course instructional team in about a week.
-    -   Questions will be graded for accuracy and completeness.
+-   Questions 6-10 are graded, and you will receive feedback on Gradescope from the course instructional team in about a week.
+    -   Questions will be graded for completeness and/or accuracy.
     -   Partial credit will be given where appropriate.
     -   There are also workflow points for:
         - committing at least three times as you work through your homework,
