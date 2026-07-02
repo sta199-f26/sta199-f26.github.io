@@ -558,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a>
   <ul class="collapse">
-  <li><a href="#introduction-and-data" id="toc-introduction-and-data" class="nav-link" data-scroll-target="#introduction-and-data">Introduction and data</a></li>
+  <li><a href="#introduction-of-data" id="toc-introduction-of-data" class="nav-link" data-scroll-target="#introduction-of-data">Introduction of data</a></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research question</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#quarto.yml-file" id="toc-quarto.yml-file" class="nav-link" data-scroll-target="#quarto.yml-file"><code>_quarto.yml</code> file</a></li>
@@ -708,13 +708,12 @@ Important
 <section id="components" class="level1">
 <h1>Components</h1>
 <p>For each dataset, include the following:</p>
-<section id="introduction-and-data" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-and-data">Introduction and data</h2>
+<section id="introduction-of-data" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-of-data">Introduction of data</h2>
 <p>For each dataset:</p>
 <ul>
 <li><p>Identify the source of the data.</p></li>
 <li><p>State when and how it was originally collected (by the original data curator, not necessarily how you found the data).</p></li>
-<li><p>Write a brief description of the observations.</p></li>
 <li><p>Address ethical concerns about the data, if any.</p></li>
 </ul>
 </section>
@@ -740,6 +739,7 @@ Important
 <ul>
 <li>Place the file containing your data in the <code>data</code> folder of the project repo.</li>
 <li>Use the <code>glimpse()</code> function to provide a glimpse of the dataset.</li>
+<li>Write a brief description of the observations.</li>
 <li>State the number of observations and variables in the dataset.</li>
 <li>Describe the variables that are most relevant to your proposed analysis (include at least 6 relevant variables).</li>
 </ul>
@@ -782,7 +782,7 @@ Important
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">right</span><span class="kw">:</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> github</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">        # Replace with link to GitHub repo</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> </span><span class="st">"https://github.com/sta199-f25/"</span><span class="at"> </span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> </span><span class="st">"https://github.com/sta199-f26/"</span><span class="at"> </span></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
@@ -803,7 +803,7 @@ Important
 </thead>
 <tbody>
 <tr class="odd">
-<td>Introduction and data</td>
+<td>Introduction</td>
 <td>2 (1 pt for each dataset)</td>
 </tr>
 <tr class="even">
@@ -815,12 +815,8 @@ Important
 <td>2 (1 pt for each dataset)</td>
 </tr>
 <tr class="even">
-<td>Update <code>_quarto.yml</code></td>
-<td>1</td>
-</tr>
-<tr class="odd">
 <td>Workflow and formatting</td>
-<td>3</td>
+<td>4</td>
 </tr>
 </tbody>
 </table>
@@ -832,6 +828,7 @@ Important
 </ul>
 <p>Additionally, the workflow component will be graded based on:</p>
 <ul>
+<li>update <code>_quarto.yml</code></li>
 <li>organization</li>
 <li>code style</li>
 <li>informative commit messages</li>
