@@ -584,8 +584,10 @@ window.Quarto = {
   <li>
 <a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
-<li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+<li>
+<a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a>
+  <ul class="collapse">
+<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
   <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
@@ -593,16 +595,17 @@ window.Quarto = {
   </ul>
 </li>
   <li>
-<a href="#questions-6-9-exploring-nc-counties" id="toc-questions-6-9-exploring-nc-counties" class="nav-link" data-scroll-target="#questions-6-9-exploring-nc-counties">Questions 6-9 – Exploring NC Counties</a>
+<a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a>
   <ul class="collapse">
-<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+<li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
   <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
   <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
   </ul>
 </li>
   <li><a href="#question-10-reflection" id="toc-question-10-reflection" class="nav-link" data-scroll-target="#question-10-reflection">Question 10 – Reflection</a></li>
+  </ul>
+</li>
   <li>
 <a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
   <ul class="collapse">
@@ -692,10 +695,10 @@ window.Quarto = {
 <li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
 </ul></section></section></section><section id="questions" class="level1"><h1>Questions</h1>
 <section id="part-1" class="level2"><h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
-<p>We will use the <code>midwest</code> data frame for this homework. It is part of the <strong>ggplot2</strong> R package, so the <code>midwest</code> data set is automatically loaded when you load the tidyverse package.</p>
+<p>We will use the <code>midwest</code> data frame for this part of the homework. It is part of the <strong>ggplot2</strong> R package, so the <code>midwest</code> data set is automatically loaded when you load the tidyverse package.</p>
 <p>The data contains demographic characteristics of counties in the Midwest region of the United States.</p>
 <p>Because the data set is part of the <strong>ggplot2</strong> package, you can read documentation for the data set, including variable definitions by typing <code><a href="https://ggplot2.tidyverse.org/reference/midwest.html">?midwest</a></code> in the Console or searching for <code>midwest</code> in the Help pane.</p>
-</section><section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
 <p>Visualize the distribution of population density of counties using a histogram with <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> with four separate binwidths: a binwidth of 100, a binwidth of 1,000, a binwidth of 10,000, and a binwidth of 100,000. For example, you can create the first plot with:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">midwest</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">popdensity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -712,7 +715,7 @@ window.Quarto = {
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+</section><section id="question-2" class="level3"><h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
 <p>Visualize the distribution of population density of counties again, this time using a boxplot with <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of population density of counties and comment on any potential outliers, making sure to identify at least one county that is a clear outlier by name in your narrative and commenting on whether it makes sense to you that this county is an outlier. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -731,13 +734,13 @@ Important
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 2”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+</section><section id="question-3" class="level3"><h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
 <p>Create a scatterplot of the percentage below poverty (<code>percbelowpoverty</code> on the y-axis) versus percentage of people with a college degree (<code>percollege</code> on the x-axis), where the color <u><strong>and</strong></u> shape of points are determined by <code>state</code>. Make sure to set informative titles, axis, and legend labels for your plot. First, describe the overall relationship between percentage of people with a college degree and percentage below poverty in Midwestern states, making sure to identify at least one county that is a clear outlier by name in your narrative. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them. Then, comment on whether you can identify how this relationship varies across states.</p>
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+</section><section id="question-4" class="level3"><h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
 <p><em>Do some states have counties that tend to be geographically larger than others?</em></p>
 <p>To explore this question, create side-by-side boxplots of area (<code>area</code>) of a county based on state (<code>state</code>).</p>
 <p>How do typical county area sizes compare across states?</p>
@@ -760,7 +763,7 @@ Tip
 <p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>Once again, make sure to commit and push all changed files so that your Git pane is empty afterwards.</p>
 </div>
-</section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+</section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
 <p><em>Do some states have a higher percentage of their counties located in a metropolitan area?</em></p>
 <p>Create a segmented bar plot with one bar per state and the bar filled with colors according to the value of <code>metro</code> – one color indicating <code>Yes</code> and the other color indicating <code>No</code> for whether a county is considered to be a metro area. The y-axis of the segmented barplot should range from 0 to 1, indicating proportions. Compare the percentage of counties in metro areas across the states based on this plot. Make sure to supplement your narrative with rough estimates of these percentages.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -790,15 +793,14 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do some states have a higher percentage of their counties located in a metropolitan area??”</p>
+<p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do some states have a higher percentage of their counties located in a metropolitan area?”</p>
 </div>
 </div>
 <div class="render-commit-push">
 <p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re following along with the version control instructions.</p>
 </div>
-</section></section><section id="questions-6-9-exploring-nc-counties" class="level1"><h1>Questions 6-9 – Exploring NC Counties</h1>
-<section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
+</section></section><section id="part-2" class="level2"><h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
 <p>For the remaining questions on the homework, you will continue use data on counties in North Carolina that you used in Lab 1.</p>
 <p>As a reminder, the dataset contains information on North Carolina counties retrieved from the 2020 Census as well as from <a href="https://dashboard.myfuturenc.org/county-data-and-resources/">myFutureNC Dashboard</a> maintained by Carolina Demography at the University of North Carolina at Chapel Hill.</p>
 <p>This dataset is stored in a file called <code>nc-county.csv</code> in the <code>data</code> folder of your project/repository.</p>
@@ -853,7 +855,7 @@ Tip
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nc-county.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<section id="question-6" class="level3"><h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
 <ol type="a">
 <li><p>Make a bar plot of the number of counties by <code>county_type</code>. What type of county is most common in North Carolina? What type of county is least common?</p></li>
 <li><p>What type of county is Durham County? Answer this question with a single pipeline where you <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> for Durham County and then <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> the <code>county</code> and <code>county_type</code> variables.</p></li>
@@ -861,7 +863,7 @@ Tip
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+</section><section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
 <ol type="a">
 <li><p>Make a boxplot of median household income (<code>median_hh_income</code>) by <code>county_type</code>. In 2-3 sentences, compare the distributions of median household income across the four county types touching on shape, center, spread, and any potential outliers.</p></li>
 <li>
@@ -889,7 +891,7 @@ Hint
 <div class="render-commit-push">
 <p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
-</section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+</section><section id="question-8" class="level3"><h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
 <ol type="a">
 <li><p>Make a boxplot of the proportion of 25-44-year-olds with a master’s, professional, or doctoral degree (<code>p_edu_mapl</code>) by <code>county_type</code>. How do the median proportions compare across the four county types?</p></li>
 <li>
@@ -912,7 +914,7 @@ Hint
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
-</section><section id="question-9" class="level2"><h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+</section><section id="question-9" class="level3"><h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
 <p>Recreate the following visualization that compares the distribution of home ownership (<code>p_home_ownership</code>) by <code>county_type</code>. Then, highlight one feature of home ownership that this plot reveals in 1-2 sentences.</p>
 <p><a href="images/hw-1/plot-to-recreate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hw-1/plot-to-recreate.png" class="img-fluid"></a></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -928,7 +930,7 @@ Hints
 <ul>
 <li><p>x-axis: You can modify the x-axis labels to be percentages in a <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code> layer. The <strong>scales</strong> package offers a handy function for formatting percentages, <code><a href="https://scales.r-lib.org/reference/label_percent.html">label_percent()</a></code>. You can use this in the <code>labels</code> argument of <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code>.</p></li>
 <li><p>Color palette: The <code><a href="http://jrnold.github.io/ggthemes/reference/colorblind.html">scale_color_colorblind()</a></code> and <code><a href="http://jrnold.github.io/ggthemes/reference/colorblind.html">scale_fill_colorblind()</a></code> functions from the <strong>ggthemes</strong> package provide a color palette that is friendly for individuals with color vision deficiencies.</p></li>
-<li><p>Transparancy: You should adjust the transparency of the filled density curves. You don’t have to worry about the exact transparency value, but you should try a few to get close.</p></li>
+<li><p>Transparency: You should adjust the transparency of the filled density curves. You don’t have to worry about the exact transparency value, but you should try a few to get close.</p></li>
 <li><p>Theme: This plot uses a non-default theme. See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme options documentation</a> for options.</p></li>
 <li><p>Legend: You should move the legend to the top of the plot. You can do this in a <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> layer. See <a href="https://ggplot2.tidyverse.org/reference/theme.html">theme documentation</a> to identify the argument you need to change to move the legend.</p></li>
 <li><p>Aspect ratio: You can adjust the aspect ratio by setting the <code>fig-asp</code> option in the code cell. A smaller (closer to 0) value makes the plot shorter and wider, while a larger (closer to 1) value makes the plot square-ish.</p></li>
@@ -939,7 +941,7 @@ Hints
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section></section><section id="question-10-reflection" class="level1"><h1>Question 10 – Reflection</h1>
+</section></section><section id="question-10-reflection" class="level2"><h2 class="anchored" data-anchor-id="question-10-reflection">Question 10 – Reflection</h2>
 <p>You used an AI-powered feedback tool to receive immediate feedback on your answers based on a rubric designed by the course instructor.</p>
 <p>Write a short reflection (100-200 words, 5-10 sentences) addressing the following prompts:</p>
 <ul>
@@ -951,7 +953,7 @@ Hints
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
+</section></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
