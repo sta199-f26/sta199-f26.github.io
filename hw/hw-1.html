@@ -567,7 +567,15 @@ window.Quarto = {
 <li>
 <a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-<li>
+<li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a>
+  <ul class="collapse">
+<li><a href="#feedback-from-ai-instructions" id="toc-feedback-from-ai-instructions" class="nav-link" data-scroll-target="#feedback-from-ai-instructions">🤖 Feedback from AI Instructions</a></li>
+  </ul>
+</li>
+  <li>
 <a href="#guidelines" id="toc-guidelines" class="nav-link" data-scroll-target="#guidelines">Guidelines</a>
   <ul class="collapse">
 <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
@@ -577,10 +585,6 @@ window.Quarto = {
 </li>
   </ul>
 </li>
-  <li>
-<a href="#part-1-feedback-from-ai" id="toc-part-1-feedback-from-ai" class="nav-link" data-scroll-target="#part-1-feedback-from-ai">Part 1 – Feedback from AI</a>
-  <ul class="collapse">
-<li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li>
@@ -593,25 +597,18 @@ window.Quarto = {
   <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
   </ul>
 </li>
-  </ul>
-</li>
   <li>
-<a href="#part-2-feedback-from-humans" id="toc-part-2-feedback-from-humans" class="nav-link" data-scroll-target="#part-2-feedback-from-humans">Part 2 – Feedback from Humans</a>
-  <ul class="collapse">
-<li><a href="#question-6-reflection" id="toc-question-6-reflection" class="nav-link" data-scroll-target="#question-6-reflection">Question 6 – Reflection</a></li>
-  <li>
-<a href="#questions-7-10-exploring-nc-counties" id="toc-questions-7-10-exploring-nc-counties" class="nav-link" data-scroll-target="#questions-7-10-exploring-nc-counties">Questions 7-10 – Exploring NC Counties</a>
+<a href="#questions-6-9-exploring-nc-counties" id="toc-questions-6-9-exploring-nc-counties" class="nav-link" data-scroll-target="#questions-6-9-exploring-nc-counties">Questions 6-9 – Exploring NC Counties</a>
   <ul class="collapse">
 <li><a href="#packages-1" id="toc-packages-1" class="nav-link" data-scroll-target="#packages-1">Packages</a></li>
   <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1">Data</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
   <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
   <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
-  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
   </ul>
 </li>
-  </ul>
-</li>
+  <li><a href="#question-10-reflection" id="toc-question-10-reflection" class="nav-link" data-scroll-target="#question-10-reflection">Question 10 – Reflection</a></li>
   <li>
 <a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
   <ul class="collapse">
@@ -647,11 +644,14 @@ window.Quarto = {
 
 
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
-<p>This is a two-part homework assignment:</p>
+<section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <ul>
-<li><p><strong>Part 1 – 🤖 Feedback from AI:</strong> Not graded, for practice, you get immediate feedback with AI, based on rubrics designed by the course instructor. Complete in <code>hw-1-part-1.qmd</code>, no submission required.</p></li>
-<li><p><strong>Part 2 – 🧑🏽‍🏫 Feedback from Humans:</strong> Graded, you get feedback from the course instructional team in about a week. Complete in <code>hw-1-part-2.qmd</code>, submit on Gradescope. A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. The remaining questions will be graded for completion, meaning you will receive full credit for making a reasonable attempt to answer all parts of the question.</p></li>
-</ul>
+<li>Continue to get familiar with the workflow using R, RStudio, Git, and GitHub</li>
+<li>Gain practice writing a reproducible report using Quarto</li>
+<li>Practice version control using Git and GitHub</li>
+<li>Be able to create and interpret data visualizations using <code>ggplot2</code>
+</li>
+</ul></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p>To get started, follow the instructions below.</p>
 <ul>
 <li>Go to <a href="https://cmgr.oit.duke.edu/containers" class="uri">https://cmgr.oit.duke.edu/containers</a> and login with your Duke NetID and Password.</li>
@@ -662,7 +662,17 @@ window.Quarto = {
 <li>Copy and paste the URL of your assignment repo into the dialog box <em>Repository URL</em>. Again, please make sure to have <em>SSH</em> highlighted under <em>Clone</em> when you copy the address.</li>
 <li>Click <em>Create Project</em>, and the files from your GitHub repo will be displayed in the <em>Files</em> pane in RStudio.</li>
 </ul>
-<section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
+<p>Open the <code>hw-1.qmd</code> template Quarto file and update the author field to add your name (first and last). Render the document. Examine the rendered document and make sure your name is updated in the document. Commit and push your changes with a meaningful commit message and push to GitHub.</p>
+</section><section id="grading" class="level2"><h2 class="anchored" data-anchor-id="grading">Grading</h2>
+<p>You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.</p>
+<p>Submit your final version of <code>hw-1.pdf</code> to Gradescope.</p>
+<p>A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.</p>
+<p>There are also workflow points for: - committing at least three times as you work through your homework, - having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and - overall organization.</p>
+<section id="feedback-from-ai-instructions" class="level3"><h3 class="anchored" data-anchor-id="feedback-from-ai-instructions">🤖 Feedback from AI Instructions</h3>
+<p>Write your answer to each question in the appropriate section of the <code>hw-1.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (1) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
+<p>The video below demonstrates how to use the AI feedback tool.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section></section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
 <p>The guidelines should feel familiar, as they are the same ones from the lab! They are included below as a reminder.</p>
 <section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
 <p>Code should follow the <a href="https://style.tidyverse.org/">tidyverse style</a>. Particularly,</p>
@@ -683,23 +693,17 @@ window.Quarto = {
 <ul>
 <li>You should have at least 3 commits with meaningful commit messages by the end of the assignment.</li>
 <li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
-</ul></section></section></section><section id="part-1-feedback-from-ai" class="level1"><h1>Part 1 – Feedback from AI</h1>
-<p>Your answers to the questions in this part should go in the file <code>hw-1-part-1.qmd</code>.</p>
-<section id="instructions" class="level2"><h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
-<p>Write your answer to each question in the appropriate section of the <code>hw-1-part-1.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (1) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
-<p>The video below demonstrates how to use the AI feedback tool.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+</ul></section></section></section><section id="packages" class="level1"><h1>Packages</h1>
 <p>In this part you will work with the <strong>tidyverse</strong> package, which is a collection of packages for doing data analysis in a “tidy” way.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
+</section><section id="data" class="level1"><h1>Data</h1>
 <p>We will use the <code>midwest</code> data frame for this homework. It is part of the <strong>ggplot2</strong> R package, so the <code>midwest</code> data set is automatically loaded when you load the tidyverse package.</p>
 <p>The data contains demographic characteristics of counties in the Midwest region of the United States.</p>
 <p>Because the data set is part of the <strong>ggplot2</strong> package, you can read documentation for the data set, including variable definitions by typing <code><a href="https://ggplot2.tidyverse.org/reference/midwest.html">?midwest</a></code> in the Console or searching for <code>midwest</code> in the Help pane.</p>
-</section><section id="questions" class="level2"><h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+</section><section id="questions" class="level1"><h1>Questions</h1>
+<section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <p>Visualize the distribution of population density of counties using a histogram with <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> with four separate binwidths: a binwidth of 100, a binwidth of 1,000, a binwidth of 10,000, and a binwidth of 100,000. For example, you can create the first plot with:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">midwest</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">popdensity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -716,7 +720,7 @@ window.Quarto = {
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-2" class="level3"><h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
 <p>Visualize the distribution of population density of counties again, this time using a boxplot with <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of population density of counties and comment on any potential outliers, making sure to identify at least one county that is a clear outlier by name in your narrative and commenting on whether it makes sense to you that this county is an outlier. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -735,13 +739,13 @@ Important
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 2”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-3" class="level3"><h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+</section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <p>Create a scatterplot of the percentage below poverty (<code>percbelowpoverty</code> on the y-axis) versus percentage of people with a college degree (<code>percollege</code> on the x-axis), where the color <u><strong>and</strong></u> shape of points are determined by <code>state</code>. Make sure to set informative titles, axis, and legend labels for your plot. First, describe the overall relationship between percentage of people with a college degree and percentage below poverty in Midwestern states, making sure to identify at least one county that is a clear outlier by name in your narrative. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them. Then, comment on whether you can identify how this relationship varies across states.</p>
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-4" class="level3"><h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
 <p><em>Do some states have counties that tend to be geographically larger than others?</em></p>
 <p>To explore this question, create side-by-side boxplots of area (<code>area</code>) of a county based on state (<code>state</code>).</p>
 <p>How do typical county area sizes compare across states?</p>
@@ -764,7 +768,7 @@ Tip
 <p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>Once again, make sure to commit and push all changed files so that your Git pane is empty afterwards.</p>
 </div>
-</section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+</section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
 <p><em>Do some states have a higher percentage of their counties located in a metropolitan area?</em></p>
 <p>Create a segmented bar plot with one bar per state and the bar filled with colors according to the value of <code>metro</code> – one color indicating <code>Yes</code> and the other color indicating <code>No</code> for whether a county is considered to be a metro area. The y-axis of the segmented barplot should range from 0 to 1, indicating proportions. Compare the percentage of counties in metro areas across the states based on this plot. Make sure to supplement your narrative with rough estimates of these percentages.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -801,30 +805,15 @@ Tip
 <p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re following along with the version control instructions.</p>
 </div>
-</section></section></section><section id="part-2-feedback-from-humans" class="level1"><h1>Part 2 – Feedback from Humans</h1>
-<p>Your answers to the questions in this part should go in the file <code>hw-1-part-2.qmd</code>.</p>
-<section id="question-6-reflection" class="level2"><h2 class="anchored" data-anchor-id="question-6-reflection">Question 6 – Reflection</h2>
-<p>In the first part of this homework assignment, you were given a set of data analysis questions. You used an AI-powered feedback tool to receive immediate feedback on your answers based on a rubric designed by the course instructor.</p>
-<p>Write a short reflection (100-200 words, 5-10 sentences) addressing the following prompts:</p>
-<ul>
-<li><p>Use of the tool: Describe how you interacted with the AI tool. What type of feedback did it provide on your code, your interpretation of results, or your written explanation? How did you respond to this feedback (e.g., revising code, clarifying your narrative)?</p></li>
-<li><p>Quality of feedback: Evaluate the usefulness and clarity of the AI tool’s feedback. Did it help you identify errors, gaps in reasoning, or ways to improve communication of your results? Did the feedback align with your expectations of instructor-style feedback?</p></li>
-<li><p>Critical reflection: What are the limitations of using AI-generated feedback in place of instructor feedback? How might it support your learning, and in what ways might it fall short?</p></li>
-</ul>
-<p>Your reflection should demonstrate critical thinking, not just description. Where possible, connect your observations to course concepts such as reproducibility, clarity in communication, or the iterative nature of data analysis.</p>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 6”.</p>
-<p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
-</div>
-</section><section id="questions-7-10-exploring-nc-counties" class="level2"><h2 class="anchored" data-anchor-id="questions-7-10-exploring-nc-counties">Questions 7-10 – Exploring NC Counties</h2>
-<section id="packages-1" class="level3"><h3 class="anchored" data-anchor-id="packages-1">Packages</h3>
+</section></section><section id="questions-6-9-exploring-nc-counties" class="level1"><h1>Questions 6-9 – Exploring NC Counties</h1>
+<section id="packages-1" class="level2"><h2 class="anchored" data-anchor-id="packages-1">Packages</h2>
 <p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization, <strong>scales</strong> for better axis labels, and <strong>ggthemes</strong> for additional color palettes.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jrnold.github.io/ggthemes/">ggthemes</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="data-1" class="level3"><h3 class="anchored" data-anchor-id="data-1">Data</h3>
+</section><section id="data-1" class="level2"><h2 class="anchored" data-anchor-id="data-1">Data</h2>
 <p>For the remaining questions on the homework, you will continue use data on counties in North Carolina that you used in Lab 1.</p>
 <p>As a reminder, the dataset contains information on North Carolina counties retrieved from the 2020 Census as well as from <a href="https://dashboard.myfuturenc.org/county-data-and-resources/">myFutureNC Dashboard</a> maintained by Carolina Demography at the University of North Carolina at Chapel Hill.</p>
 <p>This dataset is stored in a file called <code>nc-county.csv</code> in the <code>data</code> folder of your project/repository.</p>
@@ -879,16 +868,15 @@ Tip
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nc-county.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+</section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
 <ol type="a">
 <li><p>Make a bar plot of the number of counties by <code>county_type</code>. What type of county is most common in North Carolina? What type of county is least common?</p></li>
 <li><p>What type of county is Durham County? Answer this question with a single pipeline where you <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> for Durham County and then <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> the <code>county</code> and <code>county_type</code> variables.</p></li>
 </ol>
 <div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 7”.</p>
-<p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
+<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-8" class="level3"><h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+</section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
 <ol type="a">
 <li><p>Make a boxplot of median household income (<code>median_hh_income</code>) by <code>county_type</code>. In 2-3 sentences, compare the distributions of median household income across the four county types touching on shape, center, spread, and any potential outliers.</p></li>
 <li>
@@ -916,7 +904,7 @@ Hint
 <div class="render-commit-push">
 <p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
-</section><section id="question-9" class="level3"><h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+</section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
 <ol type="a">
 <li><p>Make a boxplot of the proportion of 25-44-year-olds with a master’s, professional, or doctoral degree (<code>p_edu_mapl</code>) by <code>county_type</code>. How do the median proportions compare across the four county types?</p></li>
 <li>
@@ -939,7 +927,7 @@ Hint
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
-</section><section id="question-10" class="level3"><h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
+</section><section id="question-9" class="level2"><h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
 <p>Recreate the following visualization that compares the distribution of home ownership (<code>p_home_ownership</code>) by <code>county_type</code>. Then, highlight one feature of home ownership that this plot reveals in 1-2 sentences.</p>
 <p><a href="images/hw-1/plot-to-recreate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hw-1/plot-to-recreate.png" class="img-fluid"></a></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -966,7 +954,19 @@ Hints
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section></section></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
+</section></section><section id="question-10-reflection" class="level1"><h1>Question 10 – Reflection</h1>
+<p>You used an AI-powered feedback tool to receive immediate feedback on your answers based on a rubric designed by the course instructor.</p>
+<p>Write a short reflection (100-200 words, 5-10 sentences) addressing the following prompts:</p>
+<ul>
+<li><p>Use of the tool: Describe how you interacted with the AI tool. What type of feedback did it provide on your code, your interpretation of results, or your written explanation? How did you respond to this feedback (e.g., revising code, clarifying your narrative)?</p></li>
+<li><p>Quality of feedback: Evaluate the usefulness and clarity of the AI tool’s feedback. Did it help you identify errors, gaps in reasoning, or ways to improve communication of your results? Did the feedback align with your expectations of instructor-style feedback?</p></li>
+<li><p>Critical reflection: What are the limitations of using AI-generated feedback in place of instructor feedback? How might it support your learning, and in what ways might it fall short?</p></li>
+</ul>
+<p>Your reflection should demonstrate critical thinking, not just description. Where possible, connect your observations to course concepts such as reproducibility, clarity in communication, or the iterative nature of data analysis.</p>
+<div class="render-commit-push">
+<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
+</div>
+</section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1009,23 +1009,10 @@ Checklist
 </div>
 </div>
 </section><section id="grading-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="grading-and-feedback">Grading and feedback</h2>
-<ul>
-<li><p>Questions 1-5 are not graded, but you should complete them to get practice.</p></li>
-<li>
-<p>Questions 6-10 are graded, and you will receive feedback on Gradescope from the course instructional team in about a week.</p>
-<ul>
-<li>Questions will be graded for completeness and/or accuracy.</li>
-<li>Partial credit will be given where appropriate.</li>
-<li>There are also workflow points for:
-<ul>
-<li>committing at least three times as you work through your homework,</li>
-<li>having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and</li>
-<li>overall organization.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>You can get immediate feedback on all of the questions with AI.</p>
+<p>Submit your final version of <code>hw-1.pdf</code> to Gradescope.</p>
+<p>A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.</p>
+<p>There are also workflow points for: - committing at least three times as you work through your homework, - having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and - overall organization.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
