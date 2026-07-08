@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Due: Wed, Sep 9, 11:59 pm">
-<title>HW 1 – STA 199</title>
+<meta name="description" content="Due: Sun, Sep 21, 11:59 pm">
+<title>HW 2 – STA 199</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,12 +132,12 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<meta property="og:title" content="HW 1 – STA 199">
-<meta property="og:description" content="Due: Wed, Sep 9, 11:59 pm">
-<meta property="og:image" content="https://sta199-f26.github.io/hw/images/hw-1/plot-to-recreate.png">
+<meta property="og:title" content="HW 2 – STA 199">
+<meta property="og:description" content="Due: Sun, Sep 21, 11:59 pm">
+<meta property="og:image" content="https://sta199-f26.github.io/hw/hw-2_files/figure-html/popdensity-boxplot-1.png">
 <meta property="og:site_name" content="STA 199">
-<meta property="og:image:height" content="900">
-<meta property="og:image:width" content="2100">
+<meta property="og:image:height" content="576">
+<meta property="og:image:width" content="960">
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -308,7 +308,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">HW 1</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">HW 2</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -567,42 +567,46 @@ window.Quarto = {
 <li>
 <a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-<li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
-  <li><a href="#feedback-from-ai" id="toc-feedback-from-ai" class="nav-link" data-scroll-target="#feedback-from-ai">🤖 Feedback from AI</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li>
-<a href="#guidelines" id="toc-guidelines" class="nav-link" data-scroll-target="#guidelines">Guidelines</a>
-  <ul class="collapse">
 <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">Plots</a></li>
   <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
   </ul>
 </li>
-  </ul>
-</li>
+  <li>
+<a href="#part-1-feedback-from-ai" id="toc-part-1-feedback-from-ai" class="nav-link" data-scroll-target="#part-1-feedback-from-ai">Part 1 – Feedback from AI</a>
+  <ul class="collapse">
+<li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li>
 <a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
-<li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
   <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
   </ul>
 </li>
+  </ul>
+</li>
   <li>
-<a href="#questions-6-9-exploring-nc-counties" id="toc-questions-6-9-exploring-nc-counties" class="nav-link" data-scroll-target="#questions-6-9-exploring-nc-counties">Questions 6-9 – Exploring NC Counties</a>
+<a href="#part-2-feedback-from-humans" id="toc-part-2-feedback-from-humans" class="nav-link" data-scroll-target="#part-2-feedback-from-humans">Part 2 – Feedback from Humans</a>
   <ul class="collapse">
-<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+<li><a href="#packages-1" id="toc-packages-1" class="nav-link" data-scroll-target="#packages-1">Packages</a></li>
+  <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1">Data</a></li>
+  <li>
+<a href="#questions-1" id="toc-questions-1" class="nav-link" data-scroll-target="#questions-1">Questions</a>
+  <ul class="collapse">
+<li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
   <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
   <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
   </ul>
 </li>
-  <li><a href="#question-10-reflection" id="toc-question-10-reflection" class="nav-link" data-scroll-target="#question-10-reflection">Question 10 – Reflection</a></li>
+  </ul>
+</li>
   <li>
 <a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
   <ul class="collapse">
@@ -610,12 +614,12 @@ window.Quarto = {
   <li><a href="#grading-and-feedback" id="toc-grading-and-feedback" class="nav-link" data-scroll-target="#grading-and-feedback">Grading and feedback</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">HW 1</h1>
-<p class="subtitle lead">Exploring Midwest and NC Counties</p>
+<h1 class="title">HW 2</h1>
+<p class="subtitle lead">Deeper dive into Midwest and NC Counties</p>
   <div class="quarto-categories">
     <div class="quarto-category">HW</div>
   </div>
@@ -623,7 +627,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    Due: Wed, Sep 9, 11:59 pm
+    Due: Sun, Sep 21, 11:59 pm
   </div>
 </div>
 
@@ -638,40 +642,26 @@ window.Quarto = {
 
 
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
-<section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>This is a two-part homework assignment:</p>
 <ul>
-<li>Continue to get familiar with the workflow using R, RStudio, Git, and GitHub</li>
-<li>Gain practice writing a reproducible report using Quarto</li>
-<li>Practice version control using Git and GitHub</li>
-<li>Be able to create and interpret data visualizations using <code>ggplot2</code>
-</li>
-</ul></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
-<p>To get started, follow the instructions below.</p>
-<ul>
+<li><p><strong>Part 1 – 🤖 Feedback from AI:</strong> Not graded, for practice, you get immediate feedback with AI, based on rubrics designed by the course instructor. Complete in <code>hw-2-part-1.qmd</code>, no submission required.</p></li>
+<li><p><strong>Part 2 – 🧑🏽‍🏫 Feedback from Humans:</strong> Graded, you get feedback from the course instructional team within a week. Complete in <code>hw-2-part-2.qmd</code>, submit on Gradescope.</p></li>
+</ul>
+<p>By now you should be familiar with how to get started with a homework assignment by cloning the GitHub repo for the assignment.</p>
+<details><summary>
+Click to expand if you need a refresher on how to get started with a homework assignment.
+</summary><ul>
 <li>Go to <a href="https://cmgr.oit.duke.edu/containers" class="uri">https://cmgr.oit.duke.edu/containers</a> and login with your Duke NetID and Password.</li>
 <li>Click <code>STA199</code> under My reservations to log into your container. You should now see the RStudio environment.</li>
-<li>Go to the course organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> organization on GitHub. Click on the repo with the prefix <strong>hw-1</strong>. It contains the starter documents you need to complete the homework.</li>
+<li>Go to the course organization at <a href="https://github.com/sta199-f25">github.com/sta199-f25</a> organization on GitHub. Click on the repo with the prefix <strong>hw-2</strong>. It contains the starter documents you need to complete the homework.</li>
 <li>Click on the green <strong>CODE</strong> button, select <strong>Use SSH</strong>. Click on the clipboard icon to copy the repo URL.</li>
 <li>In RStudio, go to <em>File</em> ➛ <em>New Project</em> ➛<em>Version Control</em> ➛ <em>Git</em>.</li>
 <li>Copy and paste the URL of your assignment repo into the dialog box <em>Repository URL</em>. Again, please make sure to have <em>SSH</em> highlighted under <em>Clone</em> when you copy the address.</li>
 <li>Click <em>Create Project</em>, and the files from your GitHub repo will be displayed in the <em>Files</em> pane in RStudio.</li>
-</ul>
-<p>Open the <code>hw-1.qmd</code> template Quarto file and update the author field to add your name (first and last). Render the document. Examine the rendered document and make sure your name is updated in the document. Commit and push your changes with a meaningful commit message and push to GitHub.</p>
-</section><section id="feedback-from-ai" class="level2"><h2 class="anchored" data-anchor-id="feedback-from-ai">🤖 Feedback from AI</h2>
-<p>You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.</p>
-<p>To get feedback from AI, write your answer to each question in the appropriate section of the <code>hw-1.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (1) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
-<p>The video below demonstrates how to use the AI feedback tool.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization, <strong>scales</strong> for better axis labels, and <strong>ggthemes</strong> for additional color palettes.</p>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jrnold.github.io/ggthemes/">ggthemes</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
-<p>The guidelines should feel familiar, as they are the same ones from the lab! They are included below as a reminder.</p>
-<section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
+</ul></details><p>By now you should also be familiar with guidelines for formatting your code and plots as well as your Git and Gradescope workflow.</p>
+<details><summary>
+Click to expand if you need a refresher on assignment guidelines.
+</summary><section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
 <p>Code should follow the <a href="https://style.tidyverse.org/">tidyverse style</a>. Particularly,</p>
 <ul>
 <li>there should be spaces before and line breaks after each <code>+</code> when building a <code>ggplot</code>,</li>
@@ -690,59 +680,149 @@ window.Quarto = {
 <ul>
 <li>You should have at least 3 commits with meaningful commit messages by the end of the assignment.</li>
 <li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
-</ul></section></section></section><section id="questions" class="level1"><h1>Questions</h1>
-<section id="part-1" class="level2"><h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
-<p>We will use the <code>midwest</code> data frame for this homework. It is part of the <strong>ggplot2</strong> R package, so the <code>midwest</code> data set is automatically loaded when you load the tidyverse package.</p>
-<p>The data contains demographic characteristics of counties in the Midwest region of the United States.</p>
-<p>Because the data set is part of the <strong>ggplot2</strong> package, you can read documentation for the data set, including variable definitions by typing <code><a href="https://ggplot2.tidyverse.org/reference/midwest.html">?midwest</a></code> in the Console or searching for <code>midwest</code> in the Help pane.</p>
-</section><section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p>Visualize the distribution of population density of counties using a histogram with <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> with four separate binwidths: a binwidth of 100, a binwidth of 1,000, a binwidth of 10,000, and a binwidth of 100,000. For example, you can create the first plot with:</p>
+</ul></section></details></section><section id="part-1-feedback-from-ai" class="level1"><h1>Part 1 – Feedback from AI</h1>
+<p>Your answers to the questions in this part should go in the file <code>hw-2-part-1.qmd</code>.</p>
+<section id="instructions" class="level2"><h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>Write your answer to each question in the appropriate section of the <code>hw-2-part-1.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (2) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
+<details><summary>
+Click to expand if you want to review the video that demonstrates how to use the AI feedback tool.
+</summary><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details></section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>In this part you will work with the <strong>tidyverse</strong> package, which is a collection of packages for doing data analysis in a “tidy” way.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">midwest</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">popdensity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="st">"Population density"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Count"</span>,</span>
-<span>    title <span class="op">=</span> <span class="st">"Population density of Midwestern counties"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"Binwidth = 100"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You will need to make four different histograms. Make sure to set informative titles and axis labels for each of your plots. Then, comment on which binwidth is most appropriate for these data and why.</p>
+</section><section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>We will use the <code>midwest</code> data frame once again for this homework. The data contains demographic characteristics of counties in the Midwest region of the United States. Because the data set is part of the <strong>ggplot2</strong> package, you can read documentation for the data set, including variable definitions by typing <code><a href="https://ggplot2.tidyverse.org/reference/midwest.html">?midwest</a></code> in the Console or searching for <code>midwest</code> in the Help pane.</p>
+</section><section id="questions" class="level2"><h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>Calculate the number of counties in each state and display your results in descending order of number of counties.</p>
+<p>Which state has the highest number of counties, and how many?</p>
+<p>Which state has the lowest number, and how many?</p>
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p>Visualize the distribution of population density of counties again, this time using a boxplot with <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of population density of counties and comment on any potential outliers, making sure to identify at least one county that is a clear outlier by name in your narrative and commenting on whether it makes sense to you that this county is an outlier. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+</section><section id="question-2" class="level3"><h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>While two counties in a given state can’t have the same name, some county names might be shared across states. A classmate says</p>
+<blockquote class="blockquote">
+<p>“Look at that, there is a county called <code>___</code> in each state in this dataset!”</p>
+</blockquote>
+<p>In a single pipeline, discover all counties that could fill in the blanks. Your response should be a data frame with only the county names that could fill in the blank and the number of times they appear in the data, and narrative stating the county names that could fill in this blank.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In describing a distribution, make sure to mention shape, center, spread, and any unusual observations.</p>
+<p>You will want to use the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function in your answer, which requires a logical condition to describe what you want to filter for. For example, <code>filter(x &gt; 2)</code> means filter for values of <code>x</code> greater than 2, and <code>filter(y &lt;= 3)</code> means filter for values of y less than or equal to 3.</p>
+<p>The table below is a summary of logical operators and how to articulate them in R.</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>operator</th>
+<th>definition</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>less than</td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>less than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>greater than</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td><code>==</code></td>
+<td>exactly equal to</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>not equal to</td>
+</tr>
+<tr class="odd">
+<td><code>x &amp; y</code></td>
+<td>
+<code>x</code> AND <code>y</code>
+</td>
+</tr>
+<tr class="even">
+<td>
+<code>x</code>&nbsp;|&nbsp;<code>y</code>
+</td>
+<td>
+<code>x</code> OR <code>y</code>
+</td>
+</tr>
+<tr class="odd">
+<td><code>is.na(x)</code></td>
+<td>test if <code>x</code> is <code>NA</code>
+</td>
+</tr>
+<tr class="even">
+<td><code>!is.na(x)</code></td>
+<td>test if <code>x</code> is not <code>NA</code>
+</td>
+</tr>
+<tr class="odd">
+<td><code>x %in% y</code></td>
+<td>test if <code>x</code> is in <code>y</code>
+</td>
+</tr>
+<tr class="even">
+<td><code>!(x %in% y)</code></td>
+<td>test if <code>x</code> is not in <code>y</code>
+</td>
+</tr>
+<tr class="odd">
+<td><code>!x</code></td>
+<td>not <code>x</code>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 2”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
-<p>Create a scatterplot of the percentage below poverty (<code>percbelowpoverty</code> on the y-axis) versus percentage of people with a college degree (<code>percollege</code> on the x-axis), where the color <u><strong>and</strong></u> shape of points are determined by <code>state</code>. Make sure to set informative titles, axis, and legend labels for your plot. First, describe the overall relationship between percentage of people with a college degree and percentage below poverty in Midwestern states, making sure to identify at least one county that is a clear outlier by name in your narrative. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them. Then, comment on whether you can identify how this relationship varies across states.</p>
+</section><section id="question-3" class="level3"><h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>Return to the following box plot of population densities where you were asked to identify at least one outlier.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="hw-2_files/figure-html/popdensity-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="hw-2_files/figure-html/popdensity-boxplot-1.png" class="img-fluid figure-img" width="480"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this question, we want you to revisit this box plot and identify the counties described in each section.</p>
+<ol type="a">
+<li><p>The counties with a population density higher than 25,000. Your code must use the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function.</p></li>
+<li><p>The county with the highest population density. Your code must use the <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> function.</p></li>
+</ol>
+<p>Answer using a single data wrangling pipeline for each part. Your response should be a data frame with five columns: county name, state name, population density, total population, and area, in this order. If your response has multiple rows, the data frame should be arranged in descending order of population density.</p>
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p><em>Do some states have counties that tend to be geographically larger than others?</em></p>
-<p>To explore this question, create side-by-side boxplots of area (<code>area</code>) of a county based on state (<code>state</code>).</p>
-<p>How do typical county area sizes compare across states?</p>
-<p>How do variabilities of county sizes compare across states?</p>
-<p>Which state has the single largest county? Identify the name of this county. You can use the data viewer to identify it interactively, you do not have to write code.</p>
+</section><section id="question-4" class="level3"><h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p>In HW 1 you were also asked to describe the distribution of population densities. The following is one acceptable description that touches on the shape, center, and spread of this distribution. Calculate the values that should go into the blanks.</p>
+<blockquote class="blockquote">
+<p>The distribution of population density of counties is unimodal and extremely right-skewed. A typical Midwestern county has population density of <code>____</code> people per unit area. The middle 50% of the counties have population densities between <code>____</code> to <code>____</code> people per unit area.</p>
+</blockquote>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -753,33 +833,24 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do some states have counties that tend to be geographically larger than others?”</p>
+<p>Think about which measures of center and spread are appropriate for skewed distributions.</p>
 </div>
 </div>
 <div class="render-commit-push">
 <p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>Once again, make sure to commit and push all changed files so that your Git pane is empty afterwards.</p>
 </div>
-</section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
-<p><em>Do some states have a higher percentage of their counties located in a metropolitan area?</em></p>
-<p>Create a segmented bar plot with one bar per state and the bar filled with colors according to the value of <code>metro</code> – one color indicating <code>Yes</code> and the other color indicating <code>No</code> for whether a county is considered to be a metro area. The y-axis of the segmented barplot should range from 0 to 1, indicating proportions. Compare the percentage of counties in metro areas across the states based on this plot. Make sure to supplement your narrative with rough estimates of these percentages.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hint
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For this question, you should begin with the data wrangling pipeline below. We will learn more about data wrangling in the coming weeks, so this is a mini-preview. This pipeline creates a new variable called <code>metro</code> based on the value of the existing variable called <code>inmetro</code>. If the value of <code>inmetro</code> is equal to 1 (<code>inmetro == 1</code>), it sets the value of <code>metro</code> to <code>"Yes"</code>, and if not, it sets the value of <code>metro</code> to <code>"No"</code>. The resulting data frame is assigned back to <code>midwest</code>, overwriting the existing <code>midwest</code> data frame with a version that includes the new <code>metro</code> variable.</p>
+</section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>Another visualization from HW 1 was the following, which showed the proportion of urban (located in metropolitan area) counties in each state.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midwest</span> <span class="op">&lt;-</span> <span class="va">midwest</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>metro <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">inmetro</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="hw-2_files/figure-html/metro-barplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="hw-2_files/figure-html/metro-barplot-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
 </div>
 </div>
 </div>
+<p>Calculate these proportions in a single data pipeline.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -790,19 +861,27 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do some states have a higher percentage of their counties located in a metropolitan area??”</p>
+<p>Remember, you’ll first need to create a new variable called <code>metro</code> which takes on the value <code>Yes</code> if the value of <code>inmetro</code> is 1, and <code>No</code> otherwise. You can refer to <a href="../hw/hw-1.html#question-5">HW 1</a> if you need a refresher on how to do this.</p>
 </div>
 </div>
 <div class="render-commit-push">
 <p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re following along with the version control instructions.</p>
 </div>
-</section></section><section id="questions-6-9-exploring-nc-counties" class="level1"><h1>Questions 6-9 – Exploring NC Counties</h1>
-<section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>For the remaining questions on the homework, you will continue use data on counties in North Carolina that you used in Lab 1.</p>
+</section></section></section><section id="part-2-feedback-from-humans" class="level1"><h1>Part 2 – Feedback from Humans</h1>
+<p>Your answers to the questions in this part should go in the file <code>hw-2-part-2.qmd</code>.</p>
+<section id="packages-1" class="level2"><h2 class="anchored" data-anchor-id="packages-1">Packages</h2>
+<p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization, <strong>scales</strong> for better axis labels, and <strong>ggbeeswarm</strong> for additional geoms.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/eclarke/ggbeeswarm">ggbeeswarm</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="data-1" class="level2"><h2 class="anchored" data-anchor-id="data-1">Data</h2>
+<p>For the remaining questions on the homework, you will continue use data on counties in North Carolina that you used in HW 1.</p>
 <p>As a reminder, the dataset contains information on North Carolina counties retrieved from the 2020 Census as well as from <a href="https://dashboard.myfuturenc.org/county-data-and-resources/">myFutureNC Dashboard</a> maintained by Carolina Demography at the University of North Carolina at Chapel Hill.</p>
 <p>This dataset is stored in a file called <code>nc-county.csv</code> in the <code>data</code> folder of your project/repository.</p>
-<p>The variables in the dataset and their descriptions are as follows:</p>
+<p>The variables in the dataset and their descriptions are the same as in HW 1:</p>
 <ul>
 <li>
 <code>county</code>: Name of county.</li>
@@ -849,109 +928,123 @@ Tip
 <li>
 <code>p_edu_chronic_absent_rate</code>: Chronic absenteeism rate.</li>
 </ul>
-<p>Just like in lab, you can read this file into R with the following code:</p>
+<p>You can read this file into R with the following code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nc-county.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nc-county.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+</section><section id="questions-1" class="level2"><h2 class="anchored" data-anchor-id="questions-1">Questions</h2>
+<section id="question-6" class="level3"><h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
 <ol type="a">
-<li><p>Make a bar plot of the number of counties by <code>county_type</code>. What type of county is most common in North Carolina? What type of county is least common?</p></li>
-<li><p>What type of county is Durham County? Answer this question with a single pipeline where you <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> for Durham County and then <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> the <code>county</code> and <code>county_type</code> variables.</p></li>
+<li><p>Report the number of rows and columns in <code>nc_county</code>.</p></li>
+<li>
+<p>Create a new variable called <code>p_edu_he</code> (short for “percentage of population with higher education”) that is the sum of the percentages of</p>
+<ul>
+<li>25-44-year-olds with some college or an associate degree (<code>p_edu_scnd</code>),</li>
+<li>non-degree credentials (<code>p_edu_ndc</code>),</li>
+<li>an associate degree (<code>p_edu_assoc</code>),</li>
+<li>a bachelor’s degree (<code>p_edu_ba</code>), and</li>
+<li>a master’s, professional, or doctoral degree (<code>p_edu_mapl</code>).</li>
+</ul>
+<p>and store this variable in the <code>nc_county</code> data frame.</p>
+<p>Then, report the number of rows and columns in <code>nc_county</code> after adding this variable.</p>
+</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you don’t create the new variable <code>p_edu_he</code> in part (b), you will not be able to answer the remaining parts of this question or any of the remaining questions on the homework.</p>
+<p>Therefore, here is a quick check to make sure you created the variable correctly – after creating the variable, run the following code:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">p_edu_he</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should see the following output:</p>
+<pre><code># A tibble: 3 × 1
+  p_edu_he
+     &lt;dbl&gt;
+1    0.615
+2    0.525
+3    0.525</code></pre>
+<p>If you do not see this output, please revisit part (b) of this question and make sure you created the variable correctly. Ask for help on Ed or in office hours if you need assistance.</p>
+</div>
+</div>
+<ol start="3" type="a">
+<li>
+<p>In a single pipeline, calculate the</p>
+<ul>
+<li>minimum,</li>
+<li>first quartile (25th percentile),</li>
+<li>median (50th percentile),</li>
+<li>mean,</li>
+<li>third quartile (75th percentile), and</li>
+<li>maximum</li>
+</ul>
+<p>of <code>p_edu_he</code>.</p>
+</li>
+<li><p>In a single pipeline, calculate the same statistics as in the previous part, but for each <code>county_type</code>.</p></li>
 </ol>
 <div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
+<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 6”.</p>
+<p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
-<ol type="a">
-<li><p>Make a boxplot of median household income (<code>median_hh_income</code>) by <code>county_type</code>. In 2-3 sentences, compare the distributions of median household income across the four county types touching on shape, center, spread, and any potential outliers.</p></li>
-<li>
-<p>In a single pipeline, identify all rural non-metro counties that appear as outliers in the boxplot you created in part (a). Your result should be a data frame with columns <code>county</code>, <code>county_type</code>, and <code>median_hh_income</code>. (Hint: Use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> with two conditions connected by the <code>&amp;</code> operator.)</p>
-<p>Then, fill in the blanks in the following sentence:</p>
-<blockquote class="blockquote">
-<p>There are <code>_____</code> rural non-metro counties that appear as outliers with median household incomes above $<code>_____</code>. The county with the highest median household income among these outliers is <code>_____</code> County, with a median household income of $<code>_____</code>.</p>
-</blockquote>
+</section><section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<p>Using the variable you created in Question 6, re-create the following plot that shows the distribution of <code>p_edu_he</code> by <code>county_type</code>.</p>
+<p><a href="images/hw-2/plot-to-recreate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/hw-2/plot-to-recreate.png" class="img-fluid"></a></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Hint
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You will need to use two conditions connected by the <code>&amp;</code> operator in your <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> call to filter for counties with rural non-metro type <em>and</em> (<code>&amp;</code>) with median household income beyond a certain threshold.</p>
+<ul>
+<li><p>x-axis: You learned how to format the x-axis as percentages in class and had a hint about it in your previous homework assignment. You can use the same approach here.</p></li>
+<li><p>Points: The points are drawn with the <code><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_beeswarm.html">geom_beeswarm()</a></code> function from the <strong>ggbeeswarm</strong> package.</p></li>
+<li><p>Outliers: The outliers in the box plots are drawn as <em>open circles</em>. You can specify this with the <code>outlier.shape</code> argument in <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. You can also adjust the size of the outliers with the <code>outlier.size</code> argument. The ggplot2 <a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#point">aesthetic specifications documentation</a> has a list of shape names you can use for help.</p></li>
+<li><p>Color palette: The colors for the box plots are manually specified in a <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual()</a></code> layer. You do not need to worry about the exact colors, but you should try to get close, e.g., use blue-ish colors for Rural counties, red-ish for Suburban, and brown-ish for Urban. You can use HEX codes for colors or look up named colors in R in the <a href="https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf">R colors cheatsheet</a></p></li>
+<li><p>Transparancy: You should adjust the transparency of the box plots. You don’t have to worry about the exact transparency value, but you should try to get close.</p></li>
+<li><p>Theme: This plot uses a non-default theme. See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme options documentation</a> for options.</p></li>
+<li><p>Aspect ratio and width: You can adjust the aspect ratio and width of your plot in your <em>rendered document</em> by setting <code>fig-asp</code> and <code>fig-width</code> options in the code cell.</p></li>
+</ul>
 </div>
 </div>
-</li>
-<li><p>Figure out where the counties you identified in part (b) are located in North Carolina, e.g., on the coast, on the northwest, etc. Include in your answer where you found this information with links to your references, e.g., Wikipedia, Google Maps, etc.</p></li>
-</ol>
 <div class="render-commit-push">
-<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 7”.</p>
+<p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
-<ol type="a">
-<li><p>Make a boxplot of the proportion of 25-44-year-olds with a master’s, professional, or doctoral degree (<code>p_edu_mapl</code>) by <code>county_type</code>. How do the median proportions compare across the four county types?</p></li>
-<li>
-<p>In a single pipeline, identify <em>all</em> counties that appear as outliers in the boxplot you created in part (a). Your result should be a data frame with columns <code>county</code>, <code>county_type</code>, and <code>p_edu_mapl</code>, where rows are ordered by <code>county_type</code> and then in descending order of <code>p_edu_mapl</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</section><section id="question-8" class="level3"><h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+<p>In a single pipeline, identify the outliers in the plot in the previous question, and return a data frame with the county name, county type, percentage with higher education. This data frame should be arranged in ascending order of county type and descending order of percentage with higher education.</p>
+<div class="render-commit-push">
+<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 8”.</p>
+<p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-<div class="callout-title-container flex-fill">
-Hint
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You will need to use three conditions connected by the <code>|</code> operator in your <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> call, one for each county type.</p>
-</div>
-</div>
-</li>
-</ol>
+</section><section id="question-9" class="level3"><h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+<p>Create a scatter plot with percentage of 25-44 year olds with higher education (<code>p_edu_he</code>) on the x-axis and median household income (<code>median_hh_income</code>) on the y-axis. Describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, identify the counties that correspond to these observations, and make sure to include the code you used to identify them as part of your answer. Your code should output the county name, percentage with higher education, and median household income for each unusual observation.</p>
+<p>Requirements for the plot (in addition to the requirements in the overall assignment guidelines:</p>
+<ul>
+<li>The x-axis should be formatted as percentages, e.g., 30%, not 0.3.</li>
+<li>The y-axis should be formatted as dollar amounts, e.g., $40,000, not 4e+04.</li>
+</ul>
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
-</section><section id="question-9" class="level2"><h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
-<p>Recreate the following visualization that compares the distribution of home ownership (<code>p_home_ownership</code>) by <code>county_type</code>. Then, highlight one feature of home ownership that this plot reveals in 1-2 sentences.</p>
-<p><a href="images/hw-1/plot-to-recreate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hw-1/plot-to-recreate.png" class="img-fluid"></a></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hints
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>x-axis: You can modify the x-axis labels to be percentages in a <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code> layer. The <strong>scales</strong> package offers a handy function for formatting percentages, <code><a href="https://scales.r-lib.org/reference/label_percent.html">label_percent()</a></code>. You can use this in the <code>labels</code> argument of <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code>.</p></li>
-<li><p>Color palette: The <code><a href="http://jrnold.github.io/ggthemes/reference/colorblind.html">scale_color_colorblind()</a></code> and <code><a href="http://jrnold.github.io/ggthemes/reference/colorblind.html">scale_fill_colorblind()</a></code> functions from the <strong>ggthemes</strong> package provide a color palette that is friendly for individuals with color vision deficiencies.</p></li>
-<li><p>Transparancy: You should adjust the transparency of the filled density curves. You don’t have to worry about the exact transparency value, but you should try a few to get close.</p></li>
-<li><p>Theme: This plot uses a non-default theme. See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme options documentation</a> for options.</p></li>
-<li><p>Legend: You should move the legend to the top of the plot. You can do this in a <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> layer. See <a href="https://ggplot2.tidyverse.org/reference/theme.html">theme documentation</a> to identify the argument you need to change to move the legend.</p></li>
-<li><p>Aspect ratio: You can adjust the aspect ratio by setting the <code>fig-asp</code> option in the code cell. A smaller (closer to 0) value makes the plot shorter and wider, while a larger (closer to 1) value makes the plot square-ish.</p></li>
-<li><p>Width: You can also adjust the width of the plot by setting the <code>fig-width</code> option in the code cell. A larger value makes the plot wider.</p></li>
-</ul>
-</div>
-</div>
+</section><section id="question-10" class="level3"><h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
+<p>Come up with a question that you could answer with the <code>nc_county</code> data frame and the new <code>p_edu_he</code> variable you created in Question 6 and state it explicitly. Then, answer your question with an appropriate data visualization and/or data transformation pipeline and a brief description of your findings.</p>
 <div class="render-commit-push">
 <p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section></section><section id="question-10-reflection" class="level1"><h1>Question 10 – Reflection</h1>
-<p>You used an AI-powered feedback tool to receive immediate feedback on your answers based on a rubric designed by the course instructor.</p>
-<p>Write a short reflection (100-200 words, 5-10 sentences) addressing the following prompts:</p>
-<ul>
-<li><p>Use of the tool: Describe how you interacted with the AI tool. What type of feedback did it provide on your code, your interpretation of results, or your written explanation? How did you respond to this feedback (e.g., revising code, clarifying your narrative)?</p></li>
-<li><p>Quality of feedback: Evaluate the usefulness and clarity of the AI tool’s feedback. Did it help you identify errors, gaps in reasoning, or ways to improve communication of your results? Did the feedback align with your expectations of instructor-style feedback?</p></li>
-<li><p>Critical reflection: What are the limitations of using AI-generated feedback in place of instructor feedback? How might it support your learning, and in what ways might it fall short?</p></li>
-</ul>
-<p>Your reflection should demonstrate critical thinking, not just description. Where possible, connect your observations to course concepts such as reproducibility, clarity in communication, or the iterative nature of data analysis.</p>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
-</div>
-</section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
+</section></section></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -994,10 +1087,23 @@ Checklist
 </div>
 </div>
 </section><section id="grading-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="grading-and-feedback">Grading and feedback</h2>
-<p>You can get immediate feedback on all of the questions with AI.</p>
-<p>Submit your final version of <code>hw-1.pdf</code> to Gradescope.</p>
-<p>A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.</p>
-<p>There are also workflow points for: - committing at least three times as you work through your homework, - having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and - overall organization.</p>
+<ul>
+<li><p>Questions 1-5 are not graded, but you should complete them to get practice.</p></li>
+<li>
+<p>Questions 6-10 are graded, and you will receive feedback on Gradescope from the course instructional team within a week.</p>
+<ul>
+<li>Questions will be graded for accuracy and completeness.</li>
+<li>Partial credit will be given where appropriate.</li>
+<li>There are also workflow points for:
+<ul>
+<li>committing at least three times as you work through your lab,</li>
+<li>having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and</li>
+<li>overall organization.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1419,7 +1525,7 @@ Checklist
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

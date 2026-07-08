@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Due: Wed, Sep 9, 11:59 pm">
-<title>HW 1 – STA 199</title>
+<meta name="description" content="Due: Sun, Nov 2, 11:59 pm">
+<title>HW 4 – STA 199</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,10 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-dark-2c4906772cdd9b42faa51dfd79664a49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-10179677ff77558cc9d0d45a9dea0abb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -132,12 +129,9 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<meta property="og:title" content="HW 1 – STA 199">
-<meta property="og:description" content="Due: Wed, Sep 9, 11:59 pm">
-<meta property="og:image" content="https://sta199-f26.github.io/hw/images/hw-1/plot-to-recreate.png">
+<meta property="og:title" content="HW 4 – STA 199">
+<meta property="og:description" content="Due: Sun, Nov 2, 11:59 pm">
 <meta property="og:site_name" content="STA 199">
-<meta property="og:image:height" content="900">
-<meta property="og:image:width" content="2100">
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -308,7 +302,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">HW 1</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">HW 4</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -567,42 +561,49 @@ window.Quarto = {
 <li>
 <a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-<li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
-  <li><a href="#feedback-from-ai" id="toc-feedback-from-ai" class="nav-link" data-scroll-target="#feedback-from-ai">🤖 Feedback from AI</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li>
-<a href="#guidelines" id="toc-guidelines" class="nav-link" data-scroll-target="#guidelines">Guidelines</a>
-  <ul class="collapse">
 <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">Plots</a></li>
   <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
   </ul>
 </li>
-  </ul>
-</li>
+  <li>
+<a href="#part-1-feedback-from-ai" id="toc-part-1-feedback-from-ai" class="nav-link" data-scroll-target="#part-1-feedback-from-ai">Part 1 – Feedback from AI</a>
+  <ul class="collapse">
+<li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#context" id="toc-context" class="nav-link" data-scroll-target="#context">Context</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li>
 <a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
-<li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
   <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
   </ul>
 </li>
+  </ul>
+</li>
   <li>
-<a href="#questions-6-9-exploring-nc-counties" id="toc-questions-6-9-exploring-nc-counties" class="nav-link" data-scroll-target="#questions-6-9-exploring-nc-counties">Questions 6-9 – Exploring NC Counties</a>
+<a href="#part-2-feedback-from-humans" id="toc-part-2-feedback-from-humans" class="nav-link" data-scroll-target="#part-2-feedback-from-humans">Part 2 – Feedback from Humans</a>
   <ul class="collapse">
-<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+<li><a href="#packages-1" id="toc-packages-1" class="nav-link" data-scroll-target="#packages-1">Packages</a></li>
   <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li>
+<a href="#questions-7-10" id="toc-questions-7-10" class="nav-link" data-scroll-target="#questions-7-10">Questions 7-10</a>
+  <ul class="collapse">
+<li><a href="#context-1" id="toc-context-1" class="nav-link" data-scroll-target="#context-1">Context</a></li>
+  <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1">Data</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
   <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
   <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
   </ul>
 </li>
-  <li><a href="#question-10-reflection" id="toc-question-10-reflection" class="nav-link" data-scroll-target="#question-10-reflection">Question 10 – Reflection</a></li>
+  </ul>
+</li>
   <li>
 <a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
   <ul class="collapse">
@@ -610,12 +611,12 @@ window.Quarto = {
   <li><a href="#grading-and-feedback" id="toc-grading-and-feedback" class="nav-link" data-scroll-target="#grading-and-feedback">Grading and feedback</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">HW 1</h1>
-<p class="subtitle lead">Exploring Midwest and NC Counties</p>
+<h1 class="title">HW 4</h1>
+<p class="subtitle lead">Wages up, parasites down</p>
   <div class="quarto-categories">
     <div class="quarto-category">HW</div>
   </div>
@@ -623,7 +624,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    Due: Wed, Sep 9, 11:59 pm
+    Due: Sun, Nov 2, 11:59 pm
   </div>
 </div>
 
@@ -638,40 +639,41 @@ window.Quarto = {
 
 
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
-<section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>This is a two-part homework assignment:</p>
 <ul>
-<li>Continue to get familiar with the workflow using R, RStudio, Git, and GitHub</li>
-<li>Gain practice writing a reproducible report using Quarto</li>
-<li>Practice version control using Git and GitHub</li>
-<li>Be able to create and interpret data visualizations using <code>ggplot2</code>
+<li>
+<p><strong>Part 1 – 🤖 Feedback from AI:</strong> Not graded, for practice, you get immediate feedback with AI, based on rubrics designed by the course instructor. Complete in <code>hw-4-part-1.qmd</code>, no submission required.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Heads up!">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Heads up!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While Part 1 is not graded, it is a prerequisite for Part 2 – Question 6 in Part 2 asks you to summarize your experience in Part 1. Additionally, the skills you practice in Part 1 will be useful for future assignments that are graded. Finally, there are workflow points assigned to Part 1 – you must make at least three commits in Part 1 and make updates to both your qmd and pdf files in order to earn these points.</p>
+</div>
+</div>
 </li>
-</ul></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
-<p>To get started, follow the instructions below.</p>
-<ul>
+<li><p><strong>Part 2 – 🧑🏽‍🏫 Feedback from Humans:</strong> Graded, you get feedback from the course instructional team within a week. Complete in <code>hw-4-part-2.qmd</code>, submit on Gradescope.</p></li>
+</ul>
+<p>By now you should be familiar with how to get started with a homework assignment by cloning the GitHub repo for the assignment.</p>
+<details><summary>
+Click to expand if you need a refresher on how to get started with a homework assignment.
+</summary><ul>
 <li>Go to <a href="https://cmgr.oit.duke.edu/containers" class="uri">https://cmgr.oit.duke.edu/containers</a> and login with your Duke NetID and Password.</li>
 <li>Click <code>STA199</code> under My reservations to log into your container. You should now see the RStudio environment.</li>
-<li>Go to the course organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> organization on GitHub. Click on the repo with the prefix <strong>hw-1</strong>. It contains the starter documents you need to complete the homework.</li>
+<li>Go to the course organization at <a href="https://github.com/sta199-f25">github.com/sta199-f25</a> organization on GitHub. Click on the repo with the prefix <strong>hw-4</strong>. It contains the starter documents you need to complete the homework.</li>
 <li>Click on the green <strong>CODE</strong> button, select <strong>Use SSH</strong>. Click on the clipboard icon to copy the repo URL.</li>
 <li>In RStudio, go to <em>File</em> ➛ <em>New Project</em> ➛<em>Version Control</em> ➛ <em>Git</em>.</li>
 <li>Copy and paste the URL of your assignment repo into the dialog box <em>Repository URL</em>. Again, please make sure to have <em>SSH</em> highlighted under <em>Clone</em> when you copy the address.</li>
 <li>Click <em>Create Project</em>, and the files from your GitHub repo will be displayed in the <em>Files</em> pane in RStudio.</li>
-</ul>
-<p>Open the <code>hw-1.qmd</code> template Quarto file and update the author field to add your name (first and last). Render the document. Examine the rendered document and make sure your name is updated in the document. Commit and push your changes with a meaningful commit message and push to GitHub.</p>
-</section><section id="feedback-from-ai" class="level2"><h2 class="anchored" data-anchor-id="feedback-from-ai">🤖 Feedback from AI</h2>
-<p>You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.</p>
-<p>To get feedback from AI, write your answer to each question in the appropriate section of the <code>hw-1.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (1) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
-<p>The video below demonstrates how to use the AI feedback tool.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization, <strong>scales</strong> for better axis labels, and <strong>ggthemes</strong> for additional color palettes.</p>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jrnold.github.io/ggthemes/">ggthemes</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
-<p>The guidelines should feel familiar, as they are the same ones from the lab! They are included below as a reminder.</p>
-<section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
+</ul></details><p>By now you should also be familiar with guidelines for formatting your code and plots as well as your Git and Gradescope workflow.</p>
+<details><summary>
+Click to expand if you need a refresher on assignment guidelines.
+</summary><section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
 <p>Code should follow the <a href="https://style.tidyverse.org/">tidyverse style</a>. Particularly,</p>
 <ul>
 <li>there should be spaces before and line breaks after each <code>+</code> when building a <code>ggplot</code>,</li>
@@ -690,268 +692,215 @@ window.Quarto = {
 <ul>
 <li>You should have at least 3 commits with meaningful commit messages by the end of the assignment.</li>
 <li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
-</ul></section></section></section><section id="questions" class="level1"><h1>Questions</h1>
-<section id="part-1" class="level2"><h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
-<p>We will use the <code>midwest</code> data frame for this homework. It is part of the <strong>ggplot2</strong> R package, so the <code>midwest</code> data set is automatically loaded when you load the tidyverse package.</p>
-<p>The data contains demographic characteristics of counties in the Midwest region of the United States.</p>
-<p>Because the data set is part of the <strong>ggplot2</strong> package, you can read documentation for the data set, including variable definitions by typing <code><a href="https://ggplot2.tidyverse.org/reference/midwest.html">?midwest</a></code> in the Console or searching for <code>midwest</code> in the Help pane.</p>
-</section><section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p>Visualize the distribution of population density of counties using a histogram with <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> with four separate binwidths: a binwidth of 100, a binwidth of 1,000, a binwidth of 10,000, and a binwidth of 100,000. For example, you can create the first plot with:</p>
+</ul></section></details></section><section id="part-1-feedback-from-ai" class="level1"><h1>Part 1 – Feedback from AI</h1>
+<p>Your answers to the questions in this part should go in the file <code>hw-4-part-1.qmd</code>.</p>
+<section id="instructions" class="level2"><h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>Write your answer to each question in the appropriate section of the <code>hw-4-part-1.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (4) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
+<details><summary>
+Click to expand if you want to review the video that demonstrates how to use the AI feedback tool.
+</summary><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details><div class="callout callout-style-default callout-note no-icon callout-titled" title="Catch the AI making a mistake?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Catch the AI making a mistake?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Submit a bug report with evidence of the mistake as well as your rationale for why it is a mistake to earn the opportunity for <strong>extra credit</strong>.</p>
+<p>Your bug report must include screenshots of the relevant parts of your Quarto document as well as the “incorrect” feedback you received. Your bug report should be printed and turned in to Dr.&nbsp;Çetinkaya-Rundel in person by the beginning of class (11:45 am) on the Tuesday following the assignment due date. Electronic submissions will not be accepted. Your bug report, including screenshots, should fit on no more than two pages.</p>
+<p>If your bug report is confirmed (i.e., I agree that AI indeed made a mistake), you will receive 1 extra point that will be added to your total points for the assignment.</p>
+</div>
+</div>
+</section><section id="context" class="level2"><h2 class="anchored" data-anchor-id="context">Context</h2>
+<p>Parasites can cause infectious disease – but not all animals are affected by the same parasites. Some parasites are present in a multitude of species and others are confined to a single host. It is hypothesized that closely related hosts are more likely to share the same parasites. More specifically, it is thought that closely related hosts will live in similar environments and have similar genetic makeup that coincides with optimal conditions for the same parasite to flourish.</p>
+<p>In this part of the homwework, you will explore how much evolutionary history predicts parasite similarity.</p>
+</section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>In this part you will work with the <strong>tidyverse</strong> package, which is a collection of packages for doing data analysis in a “tidy” way.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">midwest</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">popdensity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="st">"Population density"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Count"</span>,</span>
-<span>    title <span class="op">=</span> <span class="st">"Population density of Midwestern counties"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"Binwidth = 100"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You will need to make four different histograms. Make sure to set informative titles and axis labels for each of your plots. Then, comment on which binwidth is most appropriate for these data and why.</p>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”.</p>
-<p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
-</div>
-</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p>Visualize the distribution of population density of counties again, this time using a boxplot with <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of population density of counties and comment on any potential outliers, making sure to identify at least one county that is a clear outlier by name in your narrative and commenting on whether it makes sense to you that this county is an outlier. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In describing a distribution, make sure to mention shape, center, spread, and any unusual observations.</p>
-</div>
-</div>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 2”.</p>
-<p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
-</div>
-</section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
-<p>Create a scatterplot of the percentage below poverty (<code>percbelowpoverty</code> on the y-axis) versus percentage of people with a college degree (<code>percollege</code> on the x-axis), where the color <u><strong>and</strong></u> shape of points are determined by <code>state</code>. Make sure to set informative titles, axis, and legend labels for your plot. First, describe the overall relationship between percentage of people with a college degree and percentage below poverty in Midwestern states, making sure to identify at least one county that is a clear outlier by name in your narrative. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them. Then, comment on whether you can identify how this relationship varies across states.</p>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.</p>
-<p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
-</div>
-</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p><em>Do some states have counties that tend to be geographically larger than others?</em></p>
-<p>To explore this question, create side-by-side boxplots of area (<code>area</code>) of a county based on state (<code>state</code>).</p>
-<p>How do typical county area sizes compare across states?</p>
-<p>How do variabilities of county sizes compare across states?</p>
-<p>Which state has the single largest county? Identify the name of this county. You can use the data viewer to identify it interactively, you do not have to write code.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do some states have counties that tend to be geographically larger than others?”</p>
-</div>
-</div>
-<div class="render-commit-push">
-<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
-<p>Once again, make sure to commit and push all changed files so that your Git pane is empty afterwards.</p>
-</div>
-</section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
-<p><em>Do some states have a higher percentage of their counties located in a metropolitan area?</em></p>
-<p>Create a segmented bar plot with one bar per state and the bar filled with colors according to the value of <code>metro</code> – one color indicating <code>Yes</code> and the other color indicating <code>No</code> for whether a county is considered to be a metro area. The y-axis of the segmented barplot should range from 0 to 1, indicating proportions. Compare the percentage of counties in metro areas across the states based on this plot. Make sure to supplement your narrative with rough estimates of these percentages.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hint
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For this question, you should begin with the data wrangling pipeline below. We will learn more about data wrangling in the coming weeks, so this is a mini-preview. This pipeline creates a new variable called <code>metro</code> based on the value of the existing variable called <code>inmetro</code>. If the value of <code>inmetro</code> is equal to 1 (<code>inmetro == 1</code>), it sets the value of <code>metro</code> to <code>"Yes"</code>, and if not, it sets the value of <code>metro</code> to <code>"No"</code>. The resulting data frame is assigned back to <code>midwest</code>, overwriting the existing <code>midwest</code> data frame with a version that includes the new <code>metro</code> variable.</p>
-<div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midwest</span> <span class="op">&lt;-</span> <span class="va">midwest</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>metro <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">inmetro</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do some states have a higher percentage of their counties located in a metropolitan area??”</p>
-</div>
-</div>
-<div class="render-commit-push">
-<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
-<p>And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re following along with the version control instructions.</p>
-</div>
-</section></section><section id="questions-6-9-exploring-nc-counties" class="level1"><h1>Questions 6-9 – Exploring NC Counties</h1>
-<section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>For the remaining questions on the homework, you will continue use data on counties in North Carolina that you used in Lab 1.</p>
-<p>As a reminder, the dataset contains information on North Carolina counties retrieved from the 2020 Census as well as from <a href="https://dashboard.myfuturenc.org/county-data-and-resources/">myFutureNC Dashboard</a> maintained by Carolina Demography at the University of North Carolina at Chapel Hill.</p>
-<p>This dataset is stored in a file called <code>nc-county.csv</code> in the <code>data</code> folder of your project/repository.</p>
-<p>The variables in the dataset and their descriptions are as follows:</p>
+</section><section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The dataset comes from an Ecology Letters paper by Cooper at al.&nbsp;(2012) entitled “Phylogenetic host specificity and understanding parasite sharing in primates” located <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2012.01858.x">here</a>. The goal of the paper was to identify the ability of evolutionary history and ecological traits to characterize parasite host specificity.</p>
+<p>Each row of the data contains two species, <code>species1</code> and <code>species2</code>.</p>
+<p>Subsequent columns describe metrics that compare the species:</p>
 <ul>
-<li>
-<code>county</code>: Name of county.</li>
-<li>
-<code>land_area_m2</code>: Land area of county in meters-squared, based on the 2020 census.</li>
-<li>
-<code>land_area_mi2</code>: Land area of county in miles-squared, based on the 2020 census.</li>
-<li>
-<code>pop_2020</code>: Population of county, based on the 2020 Census.</li>
-<li>
-<code>pop_dens_2020</code>: Population density calculated as population (<code>pop_2020</code>) divided by land area in miles-squared (people per mile-squared).</li>
-<li>
-<code>county_type</code>: Peer county type classification based on population characteristics, socioeconomic status, and geographic features used for grouping counties with similar demographic, social, and economic characteristics, allowing them to be compared and benchmarked against one another.</li>
-<li>
-<code>median_hh_income</code>: Median household income.</li>
-<li>
-<code>p_foreign_born</code>: Percentage of population that is foreign-born.</li>
-<li>
-<code>p_child_poverty</code>: Percentage of children living in poverty.</li>
-<li>
-<code>p_single_parent_hh</code>: Percentage of households with children that are single-parent households.</li>
-<li>
-<code>p_broadband</code>: Percentage of households with broadband internet access.</li>
-<li>
-<code>p_home_ownership</code>: Percentage of homes that are owner-occupied.</li>
-<li>
-<code>p_family_sustaining_wage</code>: Percentage of adults that earn a family-sustaining wage – typically a wage that covers essential costs like housing, food, childcare, transportation, and healthcare for a family’s basic needs within a specific geographic area</li>
-<li>
-<code>p_edu_lths</code>: Percentage of 25-44-year-olds with less than a high school diploma.</li>
-<li>
-<code>p_edu_hsged</code>: Percentage of 25-44-year-olds with a high school diploma or equivalent.</li>
-<li>
-<code>p_edu_scnd</code>: Percentage of 25-44-year-olds with some college or an associate degree.</li>
-<li>
-<code>p_edu_ndc</code>: Percentage of 25-44-year-olds with non-degree credentials – certifications, licenses, or other credentials that demonstrate specific skills or knowledge but do not confer a formal academic degree.</li>
-<li>
-<code>p_edu_assoc</code>: Percentage of 25-44-year-olds with an associate degree.</li>
-<li>
-<code>p_edu_ba</code>: Percentage of 25-44-year-olds with a bachelor’s degree.</li>
-<li>
-<code>p_edu_mapl</code>: Percentage of 25-44-year-olds with a master’s, professional, or doctoral degree.</li>
-<li>
-<code>p_edu_hs_grad_rate</code>: High school graduation rate.</li>
-<li>
-<code>p_edu_chronic_absent_rate</code>: Chronic absenteeism rate.</li>
+<li><p><code>divergence_time</code>: how many (millions) of years ago the two species diverged. i.e.&nbsp;how many million years ago they were the same species.</p></li>
+<li><p><code>distance</code>: geodesic distance between species geographic range centroids (in kilometers)</p></li>
+<li><p><code>BMdiff</code>: difference in body mass between the two species (in grams)</p></li>
+<li><p><code>precdiff</code>: difference in mean annual precipitation across the two species geographic ranges (mm)</p></li>
+<li><p><code>parsim</code>: a measure of parasite similarity (proportion of parasites shared between species, ranges between 0 to 1.)</p></li>
 </ul>
-<p>Just like in lab, you can read this file into R with the following code:</p>
+<p>The data are available in <code>parasites.csv</code> in your <code>data</code> folder.</p>
+</section><section id="questions" class="level2"><h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<div class="render-commit-push">
+<p>Do not forget to render, commit, and push regularly, after each substantial change to your document (e.g., after answering each question). Use succinct and informative commit messages. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Heads up!">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Heads up!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take a note of Question 6 in Part 2 which asks you to summarize your experience in Part 1. You may want to keep track of your experience as you work through Part 1 so that you can write a good summary later.</p>
+</div>
+</div>
+<section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>Let’s start by reading in the <code>parasites</code> data and examining the relationship between <code>divergence_time</code> and <code>parsim</code>.</p>
+<ol type="a">
+<li><p>Load the data and save the data frame as <code>parasites</code>.</p></li>
+<li><p>Based on the goals of the analysis, what is the outcome variable?</p></li>
+<li><p>Visualize the relationship between the two variables, making sure to place the outcome and predictor variables on the appropriate axes.</p></li>
+<li><p>Use the visualization to describe the relationship between the two variables.</p></li>
+</ol></section><section id="question-2" class="level3"><h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>Next, model this relationship.</p>
+<ol type="a">
+<li><p>Fit the model and write the estimated regression equation.</p></li>
+<li><p>Interpret the slope and the intercept in the context of the data.</p></li>
+<li><p>Recreate the visualization from the previous question, this time adding a regression line to the visualization.</p></li>
+<li><p>What do you notice about the prediction (regression) line that may be strange, particularly for very large divergence times?</p></li>
+</ol></section><section id="question-3" class="level3"><h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>Since <code>parsim</code> takes values between 0 and 1, but predicted values from a linear regression model can range between (−∞,+∞), we will transform <code>parsim</code> using a logit transformation. This transformation is commonly used for proportion data because it maps values between (0,1) to values between (−∞,+∞).</p>
+<ol type="a">
+<li>
+<p>Using mutate, create a new variable in the <code>parasites</code> data frame called <code>transformed_parsim</code> that is calculated as <code>log(parsim/(1-parsim))</code>. Add this variable to your data frame.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code><a href="https://rdrr.io/r/base/Log.html">log()</a></code> in R represents the <strong>nautral log</strong>.</p>
+</div>
+</div>
+</li>
+<li><p>Then, visualize the relationship between <code>divergence_time</code> and <code>transformed_parsim</code>. Add a regression line to your visualization.</p></li>
+<li><p>Write a 1-2 sentence description of what you observe in the visualization.</p></li>
+</ol></section><section id="question-4" class="level3"><h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p><em>Which variable is the strongest individual predictor of parasite similarity between species?</em></p>
+<p>To answer this question, begin by fitting a linear regression model to each pair of variables. Do not report the model outputs in a tidy format but save each one as <code>dt_model</code>, <code>dist_model</code>, <code>BM_model</code>, and <code>prec_model</code>, respectively.</p>
+<ul>
+<li><p><code>divergence_time</code> and <code>transformed_parsim</code></p></li>
+<li><p><code>distance</code> and <code>transformed_parsim</code></p></li>
+<li><p><code>BMdiff</code> and <code>transformed_parsim</code></p></li>
+<li><p><code>precdiff</code> and <code>transformed_parsim</code></p></li>
+</ul>
+<ol type="a">
+<li><p>Report the slopes for each of these models. Use proper notation.</p></li>
+<li><p>To answer our question of interest, would it be useful to compare the slopes in each model to choose the variable that is the strongest predictor of parasite similarity? Why or why not?</p></li>
+</ol></section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>Now, what if we calculated <span class="math inline">\(R^2\)</span> to help answer our question? To compare the explanatory power of each individual predictor, we will look at <span class="math inline">\(R^2\)</span> between the models. <span class="math inline">\(R^2\)</span> is a measure of how much of the variability in the response variable is explained by the model.</p>
+<p>As you may have guessed from the name <span class="math inline">\(R^2\)</span> can be calculated by squaring the correlation when we have a simple linear regression model. The correlation r takes values -1 to 1, therefore, <span class="math inline">\(R^2\)</span> takes values 0 to 1. Intuitively, if r=1 or −1, then <span class="math inline">\(R^2\)</span>=1, indicating the model is a perfect fit for the data. If r≈0 then <span class="math inline">\(R^2\)</span>≈0, indicating the model is a very bad fit for the data.</p>
+<p>You can calculate <span class="math inline">\(R^2\)</span> using the glance function. For example, you can calculate <span class="math inline">\(R^2\)</span> for <code>dt_model</code> using the code <code>glance(dt_model)$r.squared</code>.</p>
+<ol type="a">
+<li><p>Calculate and report <span class="math inline">\(R^2\)</span> for each model fit in the previous exercise.</p></li>
+<li><p>To answer our question of interest, would it be useful to compare the <span class="math inline">\(R^2\)</span> in each model to choose the variable that is the strongest predictor of parasite similarity? Why or why not? And if so, which variable is the strongest individual predictor of parasite similarity between species?</p></li>
+</ol>
+<div class="render-commit-push">
+<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message. And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re practicing good version control habits.</p>
+</div>
+</section></section></section><section id="part-2-feedback-from-humans" class="level1"><h1>Part 2 – Feedback from Humans</h1>
+<p>Your answers to the questions in this part should go in the file <code>hw-4-part-2.qmd</code>.</p>
+<section id="packages-1" class="level2"><h2 class="anchored" data-anchor-id="packages-1">Packages</h2>
+<p>You will use the <strong>tidyverse</strong> and <strong>tidymodels</strong> packages for data wrangling and visualization,</p>
+<p>You may choose to load other packages as needed, particularly for improving your plots. If you do so, add the functions to load these packages in the code cell labeled <code>load-packages</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nc-county.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
-<ol type="a">
-<li><p>Make a bar plot of the number of counties by <code>county_type</code>. What type of county is most common in North Carolina? What type of county is least common?</p></li>
-<li><p>What type of county is Durham County? Answer this question with a single pipeline where you <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> for Durham County and then <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> the <code>county</code> and <code>county_type</code> variables.</p></li>
-</ol>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
-</div>
-</section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
-<ol type="a">
-<li><p>Make a boxplot of median household income (<code>median_hh_income</code>) by <code>county_type</code>. In 2-3 sentences, compare the distributions of median household income across the four county types touching on shape, center, spread, and any potential outliers.</p></li>
-<li>
-<p>In a single pipeline, identify all rural non-metro counties that appear as outliers in the boxplot you created in part (a). Your result should be a data frame with columns <code>county</code>, <code>county_type</code>, and <code>median_hh_income</code>. (Hint: Use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> with two conditions connected by the <code>&amp;</code> operator.)</p>
-<p>Then, fill in the blanks in the following sentence:</p>
+<p>Write a summary of your experience in Part 1 of this homework assignment. This summary should contain at least one sentence for each question you completed describing what you did and what you learned from it. Additionally, you should include 1-3 sentences about how you iterated on your answers with help from the AI feedback tool, giving specific examples of changes you made based on the feedback you received.</p>
+</section><section id="questions-7-10" class="level2"><h2 class="anchored" data-anchor-id="questions-7-10">Questions 7-10</h2>
+<section id="context-1" class="level3"><h3 class="anchored" data-anchor-id="context-1">Context</h3>
+<p>Should the minimum wage be increased? I’m sure many of you have an opinion about this. When debating this policy issue, one thing we need to understand is how changes in the minimum wage affect employment. When the minimum wage is raised, does it create jobs? Does it put people out of work? Does it have no affect at all? An ECON 101 model of the labor market implies that minimum wage increases could put people out of work because they make it more expensive for firms to employ workers, and we tend to do less of something if it becomes more expensive (demand curves slope down). That’s a theoretical argument anyway, but this is ultimately an empirical question – one that has a long history in applied economics.</p>
+<p>Indeed, the <a href="https://www.nobelprize.org/prizes/economic-sciences/2021/summary/">2021 Nobel Prize in Economic Sciences</a> was shared by economist David Card, in part for a famous paper he wrote with Alan Krueger that initiated the modern empirical literature on the minimum wage:</p>
 <blockquote class="blockquote">
-<p>There are <code>_____</code> rural non-metro counties that appear as outliers with median household incomes above $<code>_____</code>. The county with the highest median household income among these outliers is <code>_____</code> County, with a median household income of $<code>_____</code>.</p>
+<p>Card, David and Alan Krueger (1994): “Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania,” <em>American Economic Review</em>, Vol. 84, No.&nbsp;4., pp.&nbsp;772-793.</p>
 </blockquote>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>On April 1, 1992, New Jersey’s minimum wage rose from $4.25 to $5.05 per hour. Pennsylvania’s did not. In order to assess the impact of this change, Card and Krueger collected data from fast-food restaurants along the PA/NJ border, both <code>before</code> the policy change went into affect (February 1992) and <code>after</code> (November/December 1992). They figured that restaurants close to the border were probably indistinguishable in terms of their features, practices, clientele, work force, etc, and so if there were any noticeable differences in employment after the wage hike, they must be due to the wage hike itself and not some other confounding factor. This is what we call a <strong>natural experiment</strong>. The data in Card and Krueger are purely observational, but the main idea is that the arbitrary placement of otherwise similar restaurants on either side of the PA/NJ border acts <em>as if</em> a controlled, randomized experiment were performed, and so we can use these data to draw <em>causal</em> conclusions about the impact of minimum wage policy on employment. As you can imagine, a massive literature has emerged where statisticians and economists argue about when this is appropriate and how it should be done, but nevertheless, researchers nowadays love to sniff around like truffle pigs for cute natural experiments hidden in otherwise messy observational data sets.</p>
+</section><section id="data-1" class="level3"><h3 class="anchored" data-anchor-id="data-1">Data</h3>
+<p>For this part of your homework, you will play around with the original Card and Krueger data:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">card_krueger</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/card-krueger.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">card_krueger</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Hint
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You will need to use two conditions connected by the <code>&amp;</code> operator in your <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> call to filter for counties with rural non-metro type <em>and</em> (<code>&amp;</code>) with median household income beyond a certain threshold.</p>
-</div>
-</div>
-</li>
-<li><p>Figure out where the counties you identified in part (b) are located in North Carolina, e.g., on the coast, on the northwest, etc. Include in your answer where you found this information with links to your references, e.g., Wikipedia, Google Maps, etc.</p></li>
-</ol>
-<div class="render-commit-push">
-<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
-</div>
-</section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
-<ol type="a">
-<li><p>Make a boxplot of the proportion of 25-44-year-olds with a master’s, professional, or doctoral degree (<code>p_edu_mapl</code>) by <code>county_type</code>. How do the median proportions compare across the four county types?</p></li>
+<p>There are five columns:</p>
+<ul>
 <li>
-<p>In a single pipeline, identify <em>all</em> counties that appear as outliers in the boxplot you created in part (a). Your result should be a data frame with columns <code>county</code>, <code>county_type</code>, and <code>p_edu_mapl</code>, where rows are ordered by <code>county_type</code> and then in descending order of <code>p_edu_mapl</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hint
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You will need to use three conditions connected by the <code>|</code> operator in your <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> call, one for each county type.</p>
-</div>
-</div>
-</li>
+<code>id</code>: a unique identifier for each restaurant;</li>
+<li>
+<code>state</code>: which state is the restaurant in?</li>
+<li>
+<code>time</code>: measurements collected <code>before</code> or <code>after</code> the NJ minimum wage increase?</li>
+<li>
+<code>wage</code>: the starting wage in US dollars;</li>
+<li>
+<code>fte</code>: full-time-equivalent employment, calculated as the number of full-time workers (including managers) plus 0.5 times the number of part-time workers.</li>
+</ul>
+<p>The full dataset is available on David Card’s <a href="https://davidcard.berkeley.edu/data_sets.html">website</a>, and it contains more information than this if you want to keep playing.</p>
+</section><section id="background" class="level3"><h3 class="anchored" data-anchor-id="background">Background</h3>
+<p>Acquire some domain knowledge! As we know, it’s never a good idea to blunder into a data analysis without <em>some</em> subject-matter expertise, so here is some suggested reading:</p>
+<ul>
+<li>The original Card and Krueger paper is <a href="https://davidcard.berkeley.edu/papers/njmin-aer.pdf">here</a>. Their bottom line was “[w]e find no indication that the rise in the minimum wage reduced employment,” which runs counter to the usual ECON 101 story. People have been arguing about this ever since;</li>
+<li>
+<a href="https://www.nber.org/papers/w28388">This</a> recent survey article attempts to summarize the state of the literature on (dis?)employment effects of the minimum wage;</li>
+<li>The award citation for Card’s Nobel has useful summaries: <a href="https://www.nobelprize.org/prizes/economic-sciences/2021/popular-information/">popular</a>, <a href="https://www.nobelprize.org/uploads/2021/10/advanced-economicsciencesprize2021.pdf">advanced</a>.</li>
+</ul>
+<p>We are not grading this, and we’ll never know if you did it or not, but you should definitely go exploring if this area interests you. Furthermore, while you may not do the reading we are suggesting here, you should definitely do a little outside reading in the domain relevant to your final project.</p>
+</section><section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<ol type="a">
+<li><p>Relevel the <code>state</code> and <code>time</code> variables so that <code>"PA"</code> and <code>"before"</code> are the baselines, respectively.</p></li>
+<li><p>How many restaurants were sampled in each state?</p></li>
+<li><p>Compute the median wage and the median employment in each state before and after the policy change.</p></li>
+<li><p>Create a faceted density plot displaying <code>wage</code> according to both <code>state</code> and <code>time</code>. We want two panels stacked vertically, one for each time period (before and after the policy change). Within each panel, we want two densities, one for each state. Comment on any patterns you notice.</p></li>
+<li><p>Create a faceted density plot displaying <code>fte</code> according to both <code>state</code> and <code>time</code> (similar to part d). Comment on any patterns you notice.</p></li>
+</ol></section><section id="question-8" class="level3"><h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+<ol type="a">
+<li><p>Use <code>pivot_wider</code> to create a new data frame <code>card_krueger_wide</code> that has <strong>six</strong> columns: <code>id</code>, <code>state</code>, <code>wage_before</code>, <code>wage_after</code>, <code>fte_before</code>, and <code>fte_after</code>.</p></li>
+<li><p>Modify <code>card_krueger_wide</code> by discarding any rows that have a missing value in any of the four columns <code>wage_before</code>, <code>wage_after</code>, <code>fte_before</code>, and <code>fte_after</code>.</p></li>
+<li><p>Add a new variable <code>emp_diff</code> to <code>card_krueger_wide</code> which measures the change in <code>fte</code> after the new law took effect (<code>fte_after</code> - <code>fte_before</code>)</p></li>
+<li><p>Add a new variable <code>gap</code> to <code>card_krueger_wide</code> which is constructed in the following way:</p></li>
 </ol>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
-</div>
-</section><section id="question-9" class="level2"><h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
-<p>Recreate the following visualization that compares the distribution of home ownership (<code>p_home_ownership</code>) by <code>county_type</code>. Then, highlight one feature of home ownership that this plot reveals in 1-2 sentences.</p>
-<p><a href="images/hw-1/plot-to-recreate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hw-1/plot-to-recreate.png" class="img-fluid"></a></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hints
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <ul>
-<li><p>x-axis: You can modify the x-axis labels to be percentages in a <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code> layer. The <strong>scales</strong> package offers a handy function for formatting percentages, <code><a href="https://scales.r-lib.org/reference/label_percent.html">label_percent()</a></code>. You can use this in the <code>labels</code> argument of <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code>.</p></li>
-<li><p>Color palette: The <code><a href="http://jrnold.github.io/ggthemes/reference/colorblind.html">scale_color_colorblind()</a></code> and <code><a href="http://jrnold.github.io/ggthemes/reference/colorblind.html">scale_fill_colorblind()</a></code> functions from the <strong>ggthemes</strong> package provide a color palette that is friendly for individuals with color vision deficiencies.</p></li>
-<li><p>Transparancy: You should adjust the transparency of the filled density curves. You don’t have to worry about the exact transparency value, but you should try a few to get close.</p></li>
-<li><p>Theme: This plot uses a non-default theme. See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme options documentation</a> for options.</p></li>
-<li><p>Legend: You should move the legend to the top of the plot. You can do this in a <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> layer. See <a href="https://ggplot2.tidyverse.org/reference/theme.html">theme documentation</a> to identify the argument you need to change to move the legend.</p></li>
-<li><p>Aspect ratio: You can adjust the aspect ratio by setting the <code>fig-asp</code> option in the code cell. A smaller (closer to 0) value makes the plot shorter and wider, while a larger (closer to 1) value makes the plot square-ish.</p></li>
-<li><p>Width: You can also adjust the width of the plot by setting the <code>fig-width</code> option in the code cell. A larger value makes the plot wider.</p></li>
+<li>
+<code>gap</code> equals zero for stores in Pennsylvania;</li>
+<li>
+<code>gap</code> equals zero for stores in New Jersey whose starting wage before the policy change was already higher than the new minimum;</li>
+<li>
+<code>gap</code> equals <span class="math inline">\((5.05 - \text{wage}_{\text{before}})/\text{wage}_{\text{before}}\)</span> for all other stores in New Jersey.</li>
 </ul>
-</div>
-</div>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
-</div>
-</section></section><section id="question-10-reflection" class="level1"><h1>Question 10 – Reflection</h1>
-<p>You used an AI-powered feedback tool to receive immediate feedback on your answers based on a rubric designed by the course instructor.</p>
-<p>Write a short reflection (100-200 words, 5-10 sentences) addressing the following prompts:</p>
-<ul>
-<li><p>Use of the tool: Describe how you interacted with the AI tool. What type of feedback did it provide on your code, your interpretation of results, or your written explanation? How did you respond to this feedback (e.g., revising code, clarifying your narrative)?</p></li>
-<li><p>Quality of feedback: Evaluate the usefulness and clarity of the AI tool’s feedback. Did it help you identify errors, gaps in reasoning, or ways to improve communication of your results? Did the feedback align with your expectations of instructor-style feedback?</p></li>
-<li><p>Critical reflection: What are the limitations of using AI-generated feedback in place of instructor feedback? How might it support your learning, and in what ways might it fall short?</p></li>
-</ul>
-<p>Your reflection should demonstrate critical thinking, not just description. Where possible, connect your observations to course concepts such as reproducibility, clarity in communication, or the iterative nature of data analysis.</p>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
-</div>
-</section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
+<p>Card and Krueger introduced <code>gap</code> as an alternative measure of the impact of the minimum wage at each store. In their words:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\text{GAP}_i\)</span> is the proportional increase in wages at store <span class="math inline">\(i\)</span> necessary to meet the new minimum rate. Variation in GAP, reflects both the New Jersey-Pennsylvania contrast and differences within New Jersey based on reported starting wages in wave 1. Indeed, the value of GAP, is a strong predictor of the actual proportional wage change between waves 1 and 2 (<span class="math inline">\(R^2=0.75\)</span>), and conditional on GAP, there is no difference in wage behavior between stores in New Jersey and Pennsylvania</p>
+</blockquote>
+</section><section id="question-9" class="level3"><h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+<ol type="a">
+<li><p>Create side-by-side boxplots of <code>emp_diff</code> for each state.</p></li>
+<li><p>Fit a linear model that predicts <code>emp_diff</code> from <code>state</code> and save the model object. Then, provide the tidy summary output.</p></li>
+<li><p>Write the estimated least squares regression line below using proper notation.</p></li>
+<li><p>Interpret the intercept in the context of the data and the research question. Is the intercept meaningful in this context? Why or why not?</p></li>
+<li><p>Interpret the slope in the context of the data and the research question.</p></li>
+</ol></section><section id="question-10" class="level3"><h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
+<ol type="a">
+<li><p>Create a scatter plot of <code>gap</code> versus <code>emp_diff</code>.</p></li>
+<li><p>Fit a linear model that predicts <code>emp_diff</code> from <code>gap</code> and save the model object. Then, provide the tidy summary output.</p></li>
+<li><p>Write the estimated least squares regression line below using proper notation.</p></li>
+<li><p>Interpret the intercept in the context of the data and the research question. Is the intercept meaningful in this context? Why or why not?</p></li>
+<li><p>Interpret the slope in the context of the data and the research question.</p></li>
+<li><p>Card and Krueger tried to argue that, even though their data were observational, they had nevertheless identified a clean <em>natural experiment</em> that permitted them to ascribe a <em>causal</em> interpretation to the results of their regression analysis. Do you agree? Do you see any potential dangers with this approach? Write a paragraph or two discussing. Note that we are only grading this on a good faith completion effort, but again, if this area interests you, take the opportunity to do some of the reading under Background, and then try to write something interesting.</p></li>
+</ol></section></section></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -994,10 +943,23 @@ Checklist
 </div>
 </div>
 </section><section id="grading-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="grading-and-feedback">Grading and feedback</h2>
-<p>You can get immediate feedback on all of the questions with AI.</p>
-<p>Submit your final version of <code>hw-1.pdf</code> to Gradescope.</p>
-<p>A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.</p>
-<p>There are also workflow points for: - committing at least three times as you work through your homework, - having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and - overall organization.</p>
+<ul>
+<li><p>Questions 1-5 are not graded, but you should complete them to get practice.</p></li>
+<li>
+<p>Questions 6-10 are graded, and you will receive feedback on Gradescope from the course instructional team within a week.</p>
+<ul>
+<li>Questions will be graded for accuracy and completeness.</li>
+<li>Partial credit will be given where appropriate.</li>
+<li>There are also workflow points for:
+<ul>
+<li>committing at least three times as you work through your homework,</li>
+<li>having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and</li>
+<li>overall organization.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1419,43 +1381,12 @@ Checklist
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
+</footer>
 
 
 </body></html>
