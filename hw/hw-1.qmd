@@ -10,55 +10,47 @@ draft: true
 
 ## Learning objectives
 
--   Continue to get familiar with the workflow using R, RStudio, Git, and GitHub
--   Gain practice writing a reproducible report using Quarto
--   Practice version control using Git and GitHub
--   Be able to create and interpret data visualizations using `ggplot2`
+- Continue to get familiar with the workflow using R, RStudio, Git, and GitHub
+- Gain practice writing a reproducible report using Quarto
+- Practice version control using Git and GitHub
+- Be able to create and interpret data visualizations using `ggplot2`
 
 ## Getting Started
 
 To get started, follow the instructions below.
 
--   Go to <https://cmgr.oit.duke.edu/containers> and login with your Duke NetID and Password.
--   Click `STA199` under My reservations to log into your container. You should now see the RStudio environment.
--   Go to the course organization at [github.com/sta199-f26](https://github.com/sta199-f26) organization on GitHub.
-    Click on the repo with the prefix **hw-1**.
-    It contains the starter documents you need to complete the homework.
--   Click on the green **CODE** button, select **Use SSH**.
-    Click on the clipboard icon to copy the repo URL.
--   In RStudio, go to *File* ➛ *New Project* ➛*Version Control* ➛ *Git*.
--   Copy and paste the URL of your assignment repo into the dialog box *Repository URL*. Again, please make sure to have *SSH* highlighted under *Clone* when you copy the address.
--   Click *Create Project*, and the files from your GitHub repo will be displayed in the *Files* pane in RStudio.
+- Go to <https://cmgr.oit.duke.edu/containers> and login with your Duke NetID and Password.
+- Click `STA199` under My reservations to log into your container. You should now see the RStudio environment.
+- Go to the course organization at [github.com/sta199-f26](https://github.com/sta199-f26) organization on GitHub. Click on the repo with the prefix **hw-1**. It contains the starter documents you need to complete the homework.
+- Click on the green **CODE** button, select **Use SSH**. Click on the clipboard icon to copy the repo URL.
+- In RStudio, go to *File* ➛ *New Project* ➛*Version Control* ➛ *Git*.
+- Copy and paste the URL of your assignment repo into the dialog box *Repository URL*. Again, please make sure to have *SSH* highlighted under *Clone* when you copy the address.
+- Click *Create Project*, and the files from your GitHub repo will be displayed in the *Files* pane in RStudio.
 
 Open the `hw-1.qmd` template Quarto file and update the author field to add your name (first and last). Render the document. Examine the rendered document and make sure your name is updated in the document. Commit and push your changes with a meaningful commit message and push to GitHub.
 
-## Grading
+
+## 🤖 Feedback from AI
 
 You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.
 
-Submit your final version of `hw-1.pdf` to Gradescope.
-
-A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.
-
-There are also workflow points for:
-        - committing at least three times as you work through your homework,
-        - having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
-        - overall organization.
-        
-        
-### 🤖 Feedback from AI Instructions
-
-Write your answer to each question in the appropriate section of the `hw-1.qmd` file.
-Then, highlight your answer to a question, click on _Addins > AIFEEDR > Get feedback_.
-In the app that opens, select the appropriate homework number (1) and question number.
-Then click on _Get Feedback_.
-Please be patient, feedback generation can take a few seconds. 
-Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. 
-You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.
+To get feedback from AI, write your answer to each question in the appropriate section of the `hw-1.qmd` file. Then, highlight your answer to a question, click on *Addins \> AIFEEDR \> Get feedback*. In the app that opens, select the appropriate homework number (1) and question number. Then click on *Get Feedback*. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.
 
 The video below demonstrates how to use the AI feedback tool.
 
-{{< video https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby title="aifeedr">}}        
+{{< video https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby title="aifeedr">}}
+
+## Packages
+
+You will use the **tidyverse** package for data wrangling and visualization, **scales** for better axis labels, and **ggthemes** for additional color palettes.
+
+```{r}
+#| eval: true
+#| message: false
+library(tidyverse)
+library(scales)
+library(ggthemes)
+```
 
 ## Guidelines
 
@@ -66,32 +58,20 @@ The guidelines should feel familiar, as they are the same ones from the lab! The
 
 {{< include _guidelines.qmd >}}
 
+# Questions
 
-# Packages
+## Part 1
 
-In this part you will work with the **tidyverse** package, which is a collection of packages for doing data analysis in a "tidy" way.
-
-```{r}
-#| eval: true
-#| message: false
-library(tidyverse)
-```
-
-# Data
-
-We will use the `midwest` data frame for this homework.
-It is part of the **ggplot2** R package, so the `midwest` data set is automatically loaded when you load the tidyverse package.
+We will use the `midwest` data frame for this homework. It is part of the **ggplot2** R package, so the `midwest` data set is automatically loaded when you load the tidyverse package.
 
 The data contains demographic characteristics of counties in the Midwest region of the United States.
 
 Because the data set is part of the **ggplot2** package, you can read documentation for the data set, including variable definitions by typing `?midwest` in the Console or searching for `midwest` in the Help pane.
 
-# Questions
 
 ## Question 1
 
-Visualize the distribution of population density of counties using a histogram with `geom_histogram()` with four separate binwidths: a binwidth of 100, a binwidth of 1,000, a binwidth of 10,000, and a binwidth of 100,000.
-For example, you can create the first plot with:
+Visualize the distribution of population density of counties using a histogram with `geom_histogram()` with four separate binwidths: a binwidth of 100, a binwidth of 1,000, a binwidth of 10,000, and a binwidth of 100,000. For example, you can create the first plot with:
 
 ```{r}
 ggplot(midwest, aes(x = popdensity)) +
@@ -104,9 +84,7 @@ ggplot(midwest, aes(x = popdensity)) +
   )
 ```
 
-You will need to make four different histograms.
-Make sure to set informative titles and axis labels for each of your plots.
-Then, comment on which binwidth is most appropriate for these data and why.
+You will need to make four different histograms. Make sure to set informative titles and axis labels for each of your plots. Then, comment on which binwidth is most appropriate for these data and why.
 
 ::: render-commit-push
 Render, commit, and push your changes to GitHub with the commit message "Added answer for Question 1".
@@ -116,10 +94,7 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 
 ## Question 2
 
-Visualize the distribution of population density of counties again, this time using a boxplot with `geom_boxplot()`.
-Make sure to set informative titles and axis labels for your plot.
-Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of population density of counties and comment on any potential outliers, making sure to identify at least one county that is a clear outlier by name in your narrative and commenting on whether it makes sense to you that this county is an outlier.
-You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.
+Visualize the distribution of population density of counties again, this time using a boxplot with `geom_boxplot()`. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of population density of counties and comment on any potential outliers, making sure to identify at least one county that is a clear outlier by name in your narrative and commenting on whether it makes sense to you that this county is an outlier. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.
 
 ::: callout-important
 In describing a distribution, make sure to mention shape, center, spread, and any unusual observations.
@@ -133,11 +108,7 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 
 ## Question 3
 
-Create a scatterplot of the percentage below poverty (`percbelowpoverty` on the y-axis) versus percentage of people with a college degree (`percollege` on the x-axis), where the color [**and**]{.underline} shape of points are determined by `state`.
-Make sure to set informative titles, axis, and legend labels for your plot.
-First, describe the overall relationship between percentage of people with a college degree and percentage below poverty in Midwestern states, making sure to identify at least one county that is a clear outlier by name in your narrative.
-You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.
-Then, comment on whether you can identify how this relationship varies across states.
+Create a scatterplot of the percentage below poverty (`percbelowpoverty` on the y-axis) versus percentage of people with a college degree (`percollege` on the x-axis), where the color [**and**]{.underline} shape of points are determined by `state`. Make sure to set informative titles, axis, and legend labels for your plot. First, describe the overall relationship between percentage of people with a college degree and percentage below poverty in Midwestern states, making sure to identify at least one county that is a clear outlier by name in your narrative. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them. Then, comment on whether you can identify how this relationship varies across states.
 
 ::: render-commit-push
 Render, commit, and push your changes to GitHub with the commit message "Added answer for Question 3".
@@ -171,19 +142,12 @@ Once again, make sure to commit and push all changed files so that your Git pane
 
 *Do some states have a higher percentage of their counties located in a metropolitan area?*
 
-Create a segmented bar plot with one bar per state and the bar filled with colors according to the value of `metro` – one color indicating `Yes` and the other color indicating `No` for whether a county is considered to be a metro area.
-The y-axis of the segmented barplot should range from 0 to 1, indicating proportions.
-Compare the percentage of counties in metro areas across the states based on this plot.
-Make sure to supplement your narrative with rough estimates of these percentages.
+Create a segmented bar plot with one bar per state and the bar filled with colors according to the value of `metro` – one color indicating `Yes` and the other color indicating `No` for whether a county is considered to be a metro area. The y-axis of the segmented barplot should range from 0 to 1, indicating proportions. Compare the percentage of counties in metro areas across the states based on this plot. Make sure to supplement your narrative with rough estimates of these percentages.
 
 ::: callout-tip
 ### Hint
 
-For this question, you should begin with the data wrangling pipeline below.
-We will learn more about data wrangling in the coming weeks, so this is a mini-preview.
-This pipeline creates a new variable called `metro` based on the value of the existing variable called `inmetro`.
-If the value of `inmetro` is equal to 1 (`inmetro == 1`), it sets the value of `metro` to `"Yes"`, and if not, it sets the value of `metro` to `"No"`.
-The resulting data frame is assigned back to `midwest`, overwriting the existing `midwest` data frame with a version that includes the new `metro` variable.
+For this question, you should begin with the data wrangling pipeline below. We will learn more about data wrangling in the coming weeks, so this is a mini-preview. This pipeline creates a new variable called `metro` based on the value of the existing variable called `inmetro`. If the value of `inmetro` is equal to 1 (`inmetro == 1`), it sets the value of `metro` to `"Yes"`, and if not, it sets the value of `metro` to `"No"`. The resulting data frame is assigned back to `midwest`, overwriting the existing `midwest` data frame with a version that includes the new `metro` variable.
 
 ```{r}
 #| label: hint
@@ -200,24 +164,12 @@ In addition to answering the specific prompts above, make sure your response ans
 ::: render-commit-push
 Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.
 
-And once again, make sure to commit and push all changed files so that your Git pane is empty afterward.
-We keep repeating this because it's important and because we see students forget to do this.
-So take a moment to make sure you're following along with the version control instructions.
+And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it's important and because we see students forget to do this. So take a moment to make sure you're following along with the version control instructions.
 :::
 
 # Questions 6-9 -- Exploring NC Counties
 
-## Packages
 
-You will use the **tidyverse** package for data wrangling and visualization, **scales** for better axis labels, and **ggthemes** for additional color palettes.
-
-```{r}
-#| eval: true
-#| message: false
-library(tidyverse)
-library(scales)
-library(ggthemes)
-```
 
 ## Data
 
@@ -229,28 +181,28 @@ This dataset is stored in a file called `nc-county.csv` in the `data` folder of 
 
 The variables in the dataset and their descriptions are as follows:
 
--   `county`: Name of county.
--   `land_area_m2`: Land area of county in meters-squared, based on the 2020 census.
--   `land_area_mi2`: Land area of county in miles-squared, based on the 2020 census.
--   `pop_2020`: Population of county, based on the 2020 Census.
--   `pop_dens_2020`: Population density calculated as population (`pop_2020`) divided by land area in miles-squared (people per mile-squared).
--   `county_type`: Peer county type classification based on population characteristics, socioeconomic status, and geographic features used for grouping counties with similar demographic, social, and economic characteristics, allowing them to be compared and benchmarked against one another.
--   `median_hh_income`: Median household income.
--   `p_foreign_born`: Percentage of population that is foreign-born.
--   `p_child_poverty`: Percentage of children living in poverty.
--   `p_single_parent_hh`: Percentage of households with children that are single-parent households.
--   `p_broadband`: Percentage of households with broadband internet access.
--   `p_home_ownership`: Percentage of homes that are owner-occupied.
--   `p_family_sustaining_wage`: Percentage of adults that earn a family-sustaining wage -- typically a wage that covers essential costs like housing, food, childcare, transportation, and healthcare for a family's basic needs within a specific geographic area
--   `p_edu_lths`: Percentage of 25-44-year-olds with less than a high school diploma.
--   `p_edu_hsged`: Percentage of 25-44-year-olds with a high school diploma or equivalent.
--   `p_edu_scnd`: Percentage of 25-44-year-olds with some college or an associate degree.
--   `p_edu_ndc`: Percentage of 25-44-year-olds with non-degree credentials -- certifications, licenses, or other credentials that demonstrate specific skills or knowledge but do not confer a formal academic degree.
--   `p_edu_assoc`: Percentage of 25-44-year-olds with an associate degree.
--   `p_edu_ba`: Percentage of 25-44-year-olds with a bachelor's degree.
--   `p_edu_mapl`: Percentage of 25-44-year-olds with a master's, professional, or doctoral degree.
--   `p_edu_hs_grad_rate`: High school graduation rate.
--   `p_edu_chronic_absent_rate`: Chronic absenteeism rate.
+- `county`: Name of county.
+- `land_area_m2`: Land area of county in meters-squared, based on the 2020 census.
+- `land_area_mi2`: Land area of county in miles-squared, based on the 2020 census.
+- `pop_2020`: Population of county, based on the 2020 Census.
+- `pop_dens_2020`: Population density calculated as population (`pop_2020`) divided by land area in miles-squared (people per mile-squared).
+- `county_type`: Peer county type classification based on population characteristics, socioeconomic status, and geographic features used for grouping counties with similar demographic, social, and economic characteristics, allowing them to be compared and benchmarked against one another.
+- `median_hh_income`: Median household income.
+- `p_foreign_born`: Percentage of population that is foreign-born.
+- `p_child_poverty`: Percentage of children living in poverty.
+- `p_single_parent_hh`: Percentage of households with children that are single-parent households.
+- `p_broadband`: Percentage of households with broadband internet access.
+- `p_home_ownership`: Percentage of homes that are owner-occupied.
+- `p_family_sustaining_wage`: Percentage of adults that earn a family-sustaining wage -- typically a wage that covers essential costs like housing, food, childcare, transportation, and healthcare for a family's basic needs within a specific geographic area
+- `p_edu_lths`: Percentage of 25-44-year-olds with less than a high school diploma.
+- `p_edu_hsged`: Percentage of 25-44-year-olds with a high school diploma or equivalent.
+- `p_edu_scnd`: Percentage of 25-44-year-olds with some college or an associate degree.
+- `p_edu_ndc`: Percentage of 25-44-year-olds with non-degree credentials -- certifications, licenses, or other credentials that demonstrate specific skills or knowledge but do not confer a formal academic degree.
+- `p_edu_assoc`: Percentage of 25-44-year-olds with an associate degree.
+- `p_edu_ba`: Percentage of 25-44-year-olds with a bachelor's degree.
+- `p_edu_mapl`: Percentage of 25-44-year-olds with a master's, professional, or doctoral degree.
+- `p_edu_hs_grad_rate`: High school graduation rate.
+- `p_edu_chronic_absent_rate`: Chronic absenteeism rate.
 
 Just like in lab, you can read this file into R with the following code:
 
@@ -266,32 +218,31 @@ nc_county <- read_csv(here::here("data/nc-county.csv"))
 
 ## Question 6
 
-a. Make a bar plot of the number of counties by `county_type`. What type of county is most common in North Carolina? What type of county is least common?
+a.  Make a bar plot of the number of counties by `county_type`. What type of county is most common in North Carolina? What type of county is least common?
 
-b. What type of county is Durham County? Answer this question with a single pipeline where you `filter()` for Durham County and then `select()` the `county` and `county_type` variables.
+b.  What type of county is Durham County? Answer this question with a single pipeline where you `filter()` for Durham County and then `select()` the `county` and `county_type` variables.
 
 ::: render-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message.
-Make sure to commit and push all changed files so that your Git pane is empty afterward.
+Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
 ## Question 7
 
-a. Make a boxplot of median household income (`median_hh_income`) by `county_type`. In 2-3 sentences, compare the distributions of median household income across the four county types touching on shape, center, spread, and any potential outliers.
+a.  Make a boxplot of median household income (`median_hh_income`) by `county_type`. In 2-3 sentences, compare the distributions of median household income across the four county types touching on shape, center, spread, and any potential outliers.
 
-b. In a single pipeline, identify all rural non-metro counties that appear as outliers in the boxplot you created in part (a). Your result should be a data frame with columns `county`, `county_type`, and `median_hh_income`.  (Hint: Use `filter()` with two conditions connected by the `&` operator.)
+b.  In a single pipeline, identify all rural non-metro counties that appear as outliers in the boxplot you created in part (a). Your result should be a data frame with columns `county`, `county_type`, and `median_hh_income`. (Hint: Use `filter()` with two conditions connected by the `&` operator.)
 
-   Then, fill in the blanks in the following sentence:
+    Then, fill in the blanks in the following sentence:
 
-   > There are `_____` rural non-metro counties that appear as outliers with median household incomes above $`_____`. The county with the highest median household income among these outliers is `_____` County, with a median household income of $`_____`.
+    > There are `_____` rural non-metro counties that appear as outliers with median household incomes above \$`_____`. The county with the highest median household income among these outliers is `_____` County, with a median household income of \$`_____`.
 
-   ::: callout-tip
-   ## Hint
+    ::: callout-tip
+    ## Hint
 
-   You will need to use two conditions connected by the `&` operator in your `filter()` call to filter for counties with rural non-metro type _and_ (`&`) with median household income beyond a certain threshold.
-   :::
+    You will need to use two conditions connected by the `&` operator in your `filter()` call to filter for counties with rural non-metro type *and* (`&`) with median household income beyond a certain threshold.
+    :::
 
-c. Figure out where the counties you identified in part (b) are located in North Carolina, e.g., on the coast, on the northwest, etc. Include in your answer where you found this information with links to your references, e.g., Wikipedia, Google Maps, etc.
+c.  Figure out where the counties you identified in part (b) are located in North Carolina, e.g., on the coast, on the northwest, etc. Include in your answer where you found this information with links to your references, e.g., Wikipedia, Google Maps, etc.
 
 ::: render-commit-push
 Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.
@@ -299,15 +250,15 @@ Now is another good time to render, commit, and push your changes to GitHub with
 
 ## Question 8
 
-a. Make a boxplot of the proportion of 25-44-year-olds with a master's, professional, or doctoral degree (`p_edu_mapl`) by `county_type`. How do the median proportions compare across the four county types?
+a.  Make a boxplot of the proportion of 25-44-year-olds with a master's, professional, or doctoral degree (`p_edu_mapl`) by `county_type`. How do the median proportions compare across the four county types?
 
-b. In a single pipeline, identify _all_ counties that appear as outliers in the boxplot you created in part (a). Your result should be a data frame with columns `county`, `county_type`, and `p_edu_mapl`, where rows are ordered by `county_type` and then in descending order of `p_edu_mapl`.
+b.  In a single pipeline, identify *all* counties that appear as outliers in the boxplot you created in part (a). Your result should be a data frame with columns `county`, `county_type`, and `p_edu_mapl`, where rows are ordered by `county_type` and then in descending order of `p_edu_mapl`.
 
-   ::: callout-tip
-   ## Hint
+    ::: callout-tip
+    ## Hint
 
-   You will need to use three conditions connected by the `|` operator in your `filter()` call, one for each county type.
-   :::
+    You will need to use three conditions connected by the `|` operator in your `filter()` call, one for each county type.
+    :::
 
 ::: render-commit-push
 Render, commit, and push your changes to GitHub with an informative and concise commit message.
@@ -338,8 +289,7 @@ Recreate the following visualization that compares the distribution of home owne
 :::
 
 ::: render-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message.
-Make sure to commit and push all changed files so that your Git pane is empty afterward.
+Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
 # Question 10 -- Reflection
@@ -357,22 +307,20 @@ Write a short reflection (100-200 words, 5-10 sentences) addressing the followin
 Your reflection should demonstrate critical thinking, not just description. Where possible, connect your observations to course concepts such as reproducibility, clarity in communication, or the iterative nature of data analysis.
 
 ::: render-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message.
-Make sure to commit and push all changed files so that your Git pane is empty afterward.
+Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
 # Wrap-up
 
 ::: callout-warning
-Before you wrap up the assignment, make sure that you render, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub and your Git pane is empty.
-We will be checking these to make sure you have been practicing how to commit and push changes.
+Before you wrap up the assignment, make sure that you render, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub and your Git pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.
 :::
 
 ## Submission
 
 {{< include _submission.qmd >}}
 
-## Grading and feedback 
+## Grading and feedback
 
 You can get immediate feedback on all of the questions with AI.
 
@@ -380,8 +328,7 @@ Submit your final version of `hw-1.pdf` to Gradescope.
 
 A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.
 
-There are also workflow points for:
-        - committing at least three times as you work through your homework,
-        - having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
-        - overall organization.
-        
+There are also workflow points for: 
+- committing at least three times as you work through your homework,
+- having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
+- overall organization.
