@@ -8,11 +8,16 @@ draft: true
 
 # Introduction
 
-This is a two-part homework assignment:
+## Learning objectives
 
-- **Part 1 -- 🤖 Feedback from AI:** Not graded, for practice, you get immediate feedback with AI, based on rubrics designed by the course instructor. Complete in `hw-2-part-1.qmd`, no submission required.
-
-- **Part 2 -- 🧑🏽‍🏫 Feedback from Humans:** Graded, you get feedback from the course instructional team within a week. Complete in `hw-2-part-2.qmd`, submit on Gradescope.
+- Create and transform data using `dplyr`
+- Build on your mastery of data visualizations using `ggplot2`
+- Continue to gain practice with
+  - the data science workflow using R, RStudio, Git, and GitHub,
+  - writing a reproducible report using Quarto, and
+  - version control using Git and GitHub
+  
+## Getting Started
 
 By now you should be familiar with how to get started with a homework assignment by cloning the GitHub repo for the assignment.
 
@@ -21,7 +26,7 @@ By now you should be familiar with how to get started with a homework assignment
 
 -   Go to <https://cmgr.oit.duke.edu/containers> and login with your Duke NetID and Password.
 -   Click `STA199` under My reservations to log into your container. You should now see the RStudio environment.
--   Go to the course organization at [github.com/sta199-f25](https://github.com/sta199-f25) organization on GitHub.
+-   Go to the course organization at [github.com/sta199-f26](https://github.com/sta199-f26) organization on GitHub.
     Click on the repo with the prefix **hw-2**.
     It contains the starter documents you need to complete the homework.
 -   Click on the green **CODE** button, select **Use SSH**.
@@ -31,6 +36,8 @@ By now you should be familiar with how to get started with a homework assignment
 -   Click *Create Project*, and the files from your GitHub repo will be displayed in the *Files* pane in RStudio.
 </details>
 
+## Guidelines
+
 By now you should also be familiar with guidelines for formatting your code and plots as well as your Git and Gradescope workflow.
 
 <details>
@@ -39,19 +46,11 @@ By now you should also be familiar with guidelines for formatting your code and 
 </details>
 
 
-# Part 1 -- Feedback from AI
+## 🤖 Feedback from AI
 
-Your answers to the questions in this part should go in the file `hw-2-part-1.qmd`.
+You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.
 
-## Instructions
-
-Write your answer to each question in the appropriate section of the `hw-2-part-1.qmd` file.
-Then, highlight your answer to a question, click on _Addins > AIFEEDR > Get feedback_.
-In the app that opens, select the appropriate homework number (2) and question number.
-Then click on _Get Feedback_.
-Please be patient, feedback generation can take a few seconds. 
-Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. 
-You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.
+To get feedback from AI, write your answer to each question in the appropriate section of the `hw-2.qmd` file. Then, highlight your answer to a question, click on *Addins \> AIFEEDR \> Get feedback*. In the app that opens, select the appropriate homework number (2) and question number. Then click on *Get Feedback*. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.
 
 <details>
 <summary>Click to expand if you want to review the video that demonstrates how to use the AI feedback tool.</summary>
@@ -60,21 +59,23 @@ You will then need to click the red X on the top left corner of the Viewer pane 
 
 ## Packages
 
-In this part you will work with the **tidyverse** package, which is a collection of packages for doing data analysis in a "tidy" way.
+You will use the **tidyverse** package for data wrangling and visualization, **scales** for better axis labels, and **ggbeeswarm** for additional geoms.
 
 ```{r}
-#| eval: true
+#| eval: false
 #| message: false
 library(tidyverse)
+library(scales)
+library(ggbeeswarm)
 ```
 
-## Data
+# Questions
+
+## Part 1 
 
 We will use the `midwest` data frame once again for this homework.
 The data contains demographic characteristics of counties in the Midwest region of the United States.
 Because the data set is part of the **ggplot2** package, you can read documentation for the data set, including variable definitions by typing `?midwest` in the Console or searching for `midwest` in the Help pane.
-
-## Questions
 
 ### Question 1
 
@@ -215,25 +216,9 @@ We keep repeating this because it's important and because we see students forget
 So take a moment to make sure you're following along with the version control instructions.
 :::
 
-# Part 2 -- Feedback from Humans
+## Part 2 
 
-Your answers to the questions in this part should go in the file `hw-2-part-2.qmd`.
-
-## Packages
-
-You will use the **tidyverse** package for data wrangling and visualization, **scales** for better axis labels, and **ggbeeswarm** for additional geoms.
-
-```{r}
-#| eval: false
-#| message: false
-library(tidyverse)
-library(scales)
-library(ggbeeswarm)
-```
-
-## Data
-
-For the remaining questions on the homework, you will continue use data on counties in North Carolina that you used in HW 1.
+For the remaining questions on the homework, you will again use data on counties in North Carolina that you used in HW 1.
 
 As a reminder, the dataset contains information on North Carolina counties retrieved from the 2020 Census as well as from [myFutureNC Dashboard](https://dashboard.myfuturenc.org/county-data-and-resources/) maintained by Carolina Demography at the University of North Carolina at Chapel Hill.
 
@@ -269,8 +254,6 @@ You can read this file into R with the following code:
 ```{r}
 nc_county <- read_csv("data/nc-county.csv")
 ```
-
-## Questions
 
 ### Question 6
 
@@ -350,7 +333,7 @@ Using the variable you created in Question 6, re-create the following plot that 
 
 - Color palette: The colors for the box plots are manually specified in a `scale_color_manual()` layer. You do not need to worry about the exact colors, but you should try to get close, e.g., use blue-ish colors for Rural counties, red-ish for Suburban, and brown-ish for Urban. You can use HEX codes for colors or look up named colors in R in the [R colors cheatsheet](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf)
 
-- Transparancy: You should adjust the transparency of the box plots. You don't have to worry about the exact transparency value, but you should try to get close.
+- Transparency: You should adjust the transparency of the box plots. You don't have to worry about the exact transparency value, but you should try to get close.
 
 - Theme: This plot uses a non-default theme. See [theme options documentation](https://ggplot2.tidyverse.org/reference/ggtheme.html) for options.
 
@@ -389,7 +372,7 @@ Render, commit, and push your changes to GitHub with an informative and concise 
 ### Question 10
 
 Come up with a question that you could answer with the `nc_county` data frame and the new `p_edu_he` variable you created in Question 6 and state it explicitly.
-Then, answer your question with an appropriate data visualization and/or data transformation pipeline and a brief description of your findings.
+Then, answer your question with an appropriate data visualization and/or data transformation pipeline and a brief description of your findings. Do not submit a visualization or data transformation that is identical to one already used in this homework.
 
 ::: render-commit-push
 Render, commit, and push your changes to GitHub with an informative and concise commit message.
@@ -409,12 +392,13 @@ We will be checking these to make sure you have been practicing how to commit an
 
 ## Grading and feedback
 
--   Questions 1-5 are not graded, but you should complete them to get practice.
+You can get immediate feedback on all of the questions with AI.
 
--   Questions 6-10 are graded, and you will receive feedback on Gradescope from the course instructional team within a week.
-    -   Questions will be graded for accuracy and completeness.
-    -   Partial credit will be given where appropriate.
-    -   There are also workflow points for:
-        - committing at least three times as you work through your lab,
-        - having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
-        - overall organization.
+Submit your final version of `hw-2.pdf` to Gradescope. Be sure to select the pages associated with each question.
+
+A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.
+
+There are also workflow points for: 
+- committing at least three times as you work through your homework,
+- having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
+- overall organization.
