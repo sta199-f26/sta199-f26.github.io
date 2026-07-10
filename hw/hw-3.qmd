@@ -1,7 +1,7 @@
 ---
 title: HW 3
 subtitle: Inflation everywhere
-description: "Due: Sun, Sep 28, 11:59 pm"
+description: "Due: Wed, Sep 28, 11:59 pm"
 categories: HW
 filters:
   - ../remove-fmt-skip.lua
@@ -10,11 +10,17 @@ draft: true
 
 # Introduction
 
-This is a two-part homework assignment:
+## Learning objectives
 
-- **Part 1 -- 🤖 Feedback from AI:** Not graded, for practice, you get immediate feedback with AI, based on rubrics designed by the course instructor. Complete in `hw-3-part-1.qmd`, no submission required.
+- Be able to pivot/reshape data using `tidyr`
+- Continue developing your data wrangling skills using `dplyr`
+- Build on your mastery of data visualizations using `ggplot2`
+- Continue to gain experience with
+  - the data science workflow using R, RStudio, Git, and GitHub,
+  - writing a reproducible report using Quarto, and
+  - version control using Git and GitHub
 
-- **Part 2 -- 🧑🏽‍🏫 Feedback from Humans:** Graded, you get feedback from the course instructional team within a week. Complete in `hw-3-part-2.qmd`, submit on Gradescope.
+## Getting Started
 
 By now you should be familiar with how to get started with a homework assignment by cloning the GitHub repo for the assignment.
 
@@ -23,7 +29,7 @@ By now you should be familiar with how to get started with a homework assignment
 
 -   Go to <https://cmgr.oit.duke.edu/containers> and login with your Duke NetID and Password.
 -   Click `STA199` under My reservations to log into your container. You should now see the RStudio environment.
--   Go to the course organization at [github.com/sta199-f25](https://github.com/sta199-f25) organization on GitHub.
+-   Go to the course organization at [github.com/sta199-f26](https://github.com/sta199-f26) organization on GitHub.
     Click on the repo with the prefix **hw-3**.
     It contains the starter documents you need to complete the homework.
 -   Click on the green **CODE** button, select **Use SSH**.
@@ -33,6 +39,8 @@ By now you should be familiar with how to get started with a homework assignment
 -   Click *Create Project*, and the files from your GitHub repo will be displayed in the *Files* pane in RStudio.
 </details>
 
+## Guidelines
+
 By now you should also be familiar with guidelines for formatting your code and plots as well as your Git and Gradescope workflow.
 
 <details>
@@ -40,54 +48,27 @@ By now you should also be familiar with guidelines for formatting your code and 
 {{< include _guidelines.qmd >}}
 </details>
 
+## 🤖 Feedback from AI
 
-# Part 1 -- Feedback from AI
-
-Your answers to the questions in this part should go in the file `hw-3-part-1.qmd`.
-
-## Instructions
-
-Write your answer to each question in the appropriate section of the `hw-3-part-1.qmd` file.
-Then, highlight your answer to a question, click on _Addins > AIFEEDR > Get feedback_.
-In the app that opens, select the appropriate homework number (3) and question number.
-Then click on _Get Feedback_.
-Please be patient, feedback generation can take a few seconds. 
-Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. 
-You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.
+By now you are also familiar with how to get feedback from AI.
 
 <details>
-<summary>Click to expand if you want to review the video that demonstrates how to use the AI feedback tool.</summary>
-{{< video https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby title="aifeedr">}}
+<summary>Click to expand if you need a refresher on getting feedback from AI.</summary>
+{{< include _AIfeedback.qmd >}}
 </details>
-
-::: {.callout-note title="Catch the AI making a mistake?" icon=false}
-Submit a bug report with evidence of the mistake as well as your rationale for why it is a mistake to earn the opportunity for **extra credit**.
-
-Your bug report must include screenshots of the relevant parts of your Quarto document as well as the "incorrect" feedback you received.
-Your bug report should be printed and turned in to Dr. Çetinkaya-Rundel in person by the beginning of class (11:45 am) on the Tuesday following the assignment due date, e.g. for HW 3 due on Sun, Sep 28, your bug report is due by the beginning of class on Tue, Sep 30.
-Electronic submissions will not be accepted.
-Your bug report, including screenshots, should fit on no more than two pages.
-
-If your bug report is confirmed (i.e., I agree that AI indeed made a mistake), you will receive 1 extra point that will be added to your total points for the assignment.
-:::
 
 ## Packages
 
-In this part you will work with the **tidyverse** package, which is a collection of packages for doing data analysis in a "tidy" way.
+You will use the **tidyverse** package for data wrangling and visualization,
+
+You may choose to load other packages as needed, particularly for improving your plots.
+If you do so, add the functions to load these packages in the code cell labeled `load-packages`.
 
 ```{r}
 library(tidyverse)
 ```
 
-## Data
-
-For this part of the analysis you will work with inflation data from various countries in the world over 30 years.
-
-```{r}
-country_inflation <- read_csv("data/country-inflation.csv")
-```
-
-## Questions
+# Questions
 
 ::: render-commit-push
 Do not forget to render, commit, and push regularly, after each substantial change to your document (e.g., after answering each question).
@@ -95,12 +76,20 @@ Use succinct and informative commit messages.
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
+## Part 1 
+
+For this part of the analysis you will work with inflation data from various countries in the world over 30 years.
+
+```{r}
+country_inflation <- read_csv("data/country-inflation.csv")
+```
+
 ### Question 1
 
 Get to know the data.
 
-a.  `glimpse()` at the `country_inflation` data frame and answer the following questions based on the output. 
-    - How many rows does `country_inflation` have and what does each row represent? 
+a.  `glimpse()` at the `country_inflation` data frame and answer the following questions based on the output.
+    - How many rows does `country_inflation` have and what does each row represent?
     - How many columns does `country_inflation` have and what does each column represent?
 
 b.  Display the names of the countries included in the dataset. How many distinct countries are there?
@@ -150,7 +139,7 @@ Requirements:
 -   The resulting data frame must be saved as something other than `country_inflation` so you (1) can refer to this data frame later in your analysis and (2) do not overwrite `country_inflation`. Use a short but informative name.
 
 ::: callout-warning
-The last question in Part 1 as well as some questions in Part 2 require the use of the pivoted data frame from Question 4.
+You'll need the pivoted data frame from this question again in Question 6, so make sure to give it an informative name and hold onto it.
 :::
 
 ### Question 5
@@ -170,59 +159,18 @@ b.  What is the lowest inflation rate observed between 1993 and 2023?
 c.  Putting (a) and (b) together: What are the highest and the lowest inflation rates observed between 1993 and 2023?
     The output of the pipeline should be a data frame with two rows and three columns.
 
-::: {.callout-important title="STOP: You must do this before proceeding to Part 2"}
-At the end of your Part 1 Quarto file you'll see a code cell like the following:
-
-```{r}
-#| echo: fenced
-#| eval: false
-write_csv(_____, file = "data/country-inflation-pivoted.csv")
-```
-
-This will allow you to save the pivoted data frame from Question 4 as a CSV (comma-separated-values) file called `country-inflation-pivoted.csv` in your `data` folder so that you can read it and use it Part 2.
-
-You need to modify the code cell by doing the following two things:
-
-1. **fill in the blank** with the name of the pivoted data frame from Question 4 and 
-2. **change the value of the code cell option*** `eval` from `false` to `true` so that the code cell will run and save the CSV file when you render your Quarto document.
-
-:::
-
 ::: render-commit-push
 Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.
-And once again, make sure to commit and push all changed files **including the newly created dataset** so that your Git pane is empty afterward.
+And once again, make sure to commit and push all changed files so that your Git pane is empty afterward.
 We keep repeating this because it's important and because we see students forget to do this.
 So take a moment to make sure you're practicing good version control habits.
 :::
 
-# Part 2 -- Feedback from Humans
-
-Your answers to the questions in this part should go in the file `hw-3-part-2.qmd`.
-
-## Packages
-
-You will use the **tidyverse** package for data wrangling and visualization, 
-
-You may choose to load other packages as needed, particularly for improving your plots. 
-If you do so, add the functions to load these packages in the code cell labeled `load-packages`.
-
-```{r}
-library(tidyverse)
-```
-
-## Question 6
+### Question 6
 
 **More on inflation around the world.**
 
-For this question you will use the pivoted version of the `country_inflation` dataset that you created in Question 4 of Part 1.
-Load this dataset from the CSV file you created at the end of Part 1.
-To do so, you can use the following code, which is already in your `hw-3-part-2.qmd` file.
-However, you'll need to set `eval` to `true` in the code cell options so that this code runs when you render your Quarto document.
-And, before you can do that, you must have completed Question 4 of Part 1 and saved the pivoted data frame as a CSV file in your `data` folder as described in the previous section.
-
-```{r}
-country_inflation_pivoted <- read_csv("data/country-inflation-pivoted.csv")
-```
+For this question you will use the pivoted version of the `country_inflation` dataset that you created in Question 4.
 
 a\.
 Create a vector called `countries_of_interest` which contains the names of up to five countries you want to visualize the inflation rates for over the years.
@@ -276,7 +224,7 @@ Use succinct and informative commit messages.
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
-## Questions 7-9
+## Part 2 
 
 **Inflation in the US.**
 
@@ -379,7 +327,7 @@ a\.
 Read in the two datasets, `sales-taxes-25.csv` and `us-regions.csv`, which are both in your `data` folder.
 Then, join the two datasets using the appropriate type of join to be able to calculate the average sales tax rate by region, not overwriting either data frame that goes into the join.
 
-b\. 
+b\.
 Apply the three approaches we discussed in class to address the issue that DC has an `NA` value for `region` in the joined dataset, and then calculate the average average sales tax of states in each region.
 
 c\.
@@ -402,12 +350,13 @@ We will be checking these to make sure you have been practicing how to commit an
 
 ## Grading and feedback
 
--   Questions 1-5 are not graded, but you should complete them to get practice.
+You can get immediate feedback on all of the questions with AI.
 
--   Questions 6-10 are graded, and you will receive feedback on Gradescope from the course instructional team within a week.
-    -   Questions will be graded for accuracy and completeness.
-    -   Partial credit will be given where appropriate.
-    -   There are also workflow points for:
-        - committing at least three times as you work through your lab,
-        - having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
-        - overall organization.
+Submit your final version of `hw-3.pdf` to Gradescope. Be sure to select the pages associated with each question.
+
+A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.
+
+There are also workflow points for:
+- committing at least three times as you work through your homework,
+- having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
+- overall organization.
