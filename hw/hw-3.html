@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Due: Sun, Sep 28, 11:59 pm">
+<meta name="description" content="Due: Wed, Sep 28, 11:59 pm">
 <title>HW 3 – STA 199</title>
 <style>
 code{white-space: pre-wrap;}
@@ -130,7 +130,7 @@ window.Quarto = {
 };
 </script>
 <meta property="og:title" content="HW 3 – STA 199">
-<meta property="og:description" content="Due: Sun, Sep 28, 11:59 pm">
+<meta property="og:description" content="Due: Wed, Sep 28, 11:59 pm">
 <meta property="og:site_name" content="STA 199">
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -561,36 +561,36 @@ window.Quarto = {
 <li>
 <a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
+<li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#guidelines" id="toc-guidelines" class="nav-link" data-scroll-target="#guidelines">Guidelines</a>
+  <ul class="collapse">
 <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">Plots</a></li>
   <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
   </ul>
 </li>
-  <li>
-<a href="#part-1-feedback-from-ai" id="toc-part-1-feedback-from-ai" class="nav-link" data-scroll-target="#part-1-feedback-from-ai">Part 1 – Feedback from AI</a>
-  <ul class="collapse">
-<li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#feedback-from-ai" id="toc-feedback-from-ai" class="nav-link" data-scroll-target="#feedback-from-ai">🤖 Feedback from AI</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul>
+</li>
   <li>
 <a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
+  <ul class="collapse">
+<li>
+<a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a>
   <ul class="collapse">
 <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
   <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
-  </ul>
-</li>
-  </ul>
-</li>
-  <li>
-<a href="#part-2-feedback-from-humans" id="toc-part-2-feedback-from-humans" class="nav-link" data-scroll-target="#part-2-feedback-from-humans">Part 2 – Feedback from Humans</a>
-  <ul class="collapse">
-<li><a href="#packages-1" id="toc-packages-1" class="nav-link" data-scroll-target="#packages-1">Packages</a></li>
   <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  </ul>
+</li>
   <li>
-<a href="#questions-7-9" id="toc-questions-7-9" class="nav-link" data-scroll-target="#questions-7-9">Questions 7-9</a>
+<a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a>
   <ul class="collapse">
 <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
   <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
@@ -620,7 +620,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    Due: Sun, Sep 28, 11:59 pm
+    Due: Wed, Sep 28, 11:59 pm
   </div>
 </div>
 
@@ -635,23 +635,35 @@ window.Quarto = {
 
 
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
-<p>This is a two-part homework assignment:</p>
+<section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <ul>
-<li><p><strong>Part 1 – 🤖 Feedback from AI:</strong> Not graded, for practice, you get immediate feedback with AI, based on rubrics designed by the course instructor. Complete in <code>hw-3-part-1.qmd</code>, no submission required.</p></li>
-<li><p><strong>Part 2 – 🧑🏽‍🏫 Feedback from Humans:</strong> Graded, you get feedback from the course instructional team within a week. Complete in <code>hw-3-part-2.qmd</code>, submit on Gradescope.</p></li>
+<li>Be able to pivot/reshape data using <code>tidyr</code>
+</li>
+<li>Continue developing your data wrangling skills using <code>dplyr</code>
+</li>
+<li>Build on your mastery of data visualizations using <code>ggplot2</code>
+</li>
+<li>Continue to gain experience with
+<ul>
+<li>the data science workflow using R, RStudio, Git, and GitHub,</li>
+<li>writing a reproducible report using Quarto, and</li>
+<li>version control using Git and GitHub</li>
 </ul>
+</li>
+</ul></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p>By now you should be familiar with how to get started with a homework assignment by cloning the GitHub repo for the assignment.</p>
 <details><summary>
 Click to expand if you need a refresher on how to get started with a homework assignment.
 </summary><ul>
 <li>Go to <a href="https://cmgr.oit.duke.edu/containers" class="uri">https://cmgr.oit.duke.edu/containers</a> and login with your Duke NetID and Password.</li>
 <li>Click <code>STA199</code> under My reservations to log into your container. You should now see the RStudio environment.</li>
-<li>Go to the course organization at <a href="https://github.com/sta199-f25">github.com/sta199-f25</a> organization on GitHub. Click on the repo with the prefix <strong>hw-3</strong>. It contains the starter documents you need to complete the homework.</li>
+<li>Go to the course organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> organization on GitHub. Click on the repo with the prefix <strong>hw-3</strong>. It contains the starter documents you need to complete the homework.</li>
 <li>Click on the green <strong>CODE</strong> button, select <strong>Use SSH</strong>. Click on the clipboard icon to copy the repo URL.</li>
 <li>In RStudio, go to <em>File</em> ➛ <em>New Project</em> ➛<em>Version Control</em> ➛ <em>Git</em>.</li>
 <li>Copy and paste the URL of your assignment repo into the dialog box <em>Repository URL</em>. Again, please make sure to have <em>SSH</em> highlighted under <em>Clone</em> when you copy the address.</li>
 <li>Click <em>Create Project</em>, and the files from your GitHub repo will be displayed in the <em>Files</em> pane in RStudio.</li>
-</ul></details><p>By now you should also be familiar with guidelines for formatting your code and plots as well as your Git and Gradescope workflow.</p>
+</ul></details></section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
+<p>By now you should also be familiar with guidelines for formatting your code and plots as well as your Git and Gradescope workflow.</p>
 <details><summary>
 Click to expand if you need a refresher on assignment guidelines.
 </summary><section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
@@ -673,41 +685,28 @@ Click to expand if you need a refresher on assignment guidelines.
 <ul>
 <li>You should have at least 3 commits with meaningful commit messages by the end of the assignment.</li>
 <li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
-</ul></section></details></section><section id="part-1-feedback-from-ai" class="level1"><h1>Part 1 – Feedback from AI</h1>
-<p>Your answers to the questions in this part should go in the file <code>hw-3-part-1.qmd</code>.</p>
-<section id="instructions" class="level2"><h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
-<p>Write your answer to each question in the appropriate section of the <code>hw-3-part-1.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (3) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
+</ul></section></details></section></section><section id="feedback-from-ai" class="level2"><h2 class="anchored" data-anchor-id="feedback-from-ai">🤖 Feedback from AI</h2>
+<p>By now you are also familiar with how to get feedback from AI.</p>
 <details><summary>
-Click to expand if you want to review the video that demonstrates how to use the AI feedback tool.
-</summary><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</details><div class="callout callout-style-default callout-note no-icon callout-titled" title="Catch the AI making a mistake?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Catch the AI making a mistake?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Submit a bug report with evidence of the mistake as well as your rationale for why it is a mistake to earn the opportunity for <strong>extra credit</strong>.</p>
-<p>Your bug report must include screenshots of the relevant parts of your Quarto document as well as the “incorrect” feedback you received. Your bug report should be printed and turned in to Dr.&nbsp;Çetinkaya-Rundel in person by the beginning of class (11:45 am) on the Tuesday following the assignment due date, e.g.&nbsp;for HW 3 due on Sun, Sep 28, your bug report is due by the beginning of class on Tue, Sep 30. Electronic submissions will not be accepted. Your bug report, including screenshots, should fit on no more than two pages.</p>
-<p>If your bug report is confirmed (i.e., I agree that AI indeed made a mistake), you will receive 1 extra point that will be added to your total points for the assignment.</p>
-</div>
-</div>
-</section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>In this part you will work with the <strong>tidyverse</strong> package, which is a collection of packages for doing data analysis in a “tidy” way.</p>
+Click to expand if you need a refresher on getting feedback from AI.
+</summary><p>You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.</p>
+<p>To get feedback from AI, write your answer to each question in the appropriate section of the <code>hw-1.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (1) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
+<p>The video below demonstrates how to use the AI feedback tool.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details></section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization,</p>
+<p>You may choose to load other packages as needed, particularly for improving your plots. If you do so, add the functions to load these packages in the code cell labeled <code>load-packages</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
+</section><section id="questions" class="level1"><h1>Questions</h1>
+<div class="render-commit-push">
+<p>Do not forget to render, commit, and push regularly, after each substantial change to your document (e.g., after answering each question). Use succinct and informative commit messages. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
+</div>
+<section id="part-1" class="level2"><h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
 <p>For this part of the analysis you will work with inflation data from various countries in the world over 30 years.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country_inflation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/country-inflation.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="questions" class="level2"><h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<div class="render-commit-push">
-<p>Do not forget to render, commit, and push regularly, after each substantial change to your document (e.g., after answering each question). Use succinct and informative commit messages. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
 <section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
 <p>Get to know the data.</p>
@@ -793,7 +792,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The last question in Part 1 as well as some questions in Part 2 require the use of the pivoted data frame from Question 4.</p>
+<p>You’ll need the pivoted data frame from this question again in Question 6, so make sure to give it an informative name and hold onto it.</p>
 </div>
 </div>
 </section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
@@ -804,57 +803,19 @@ Warning
 <li><p>What is the lowest inflation rate observed between 1993 and 2023? The output of the pipeline should be a data frame with one row and three columns. In addition to code and output, your response should include a single sentence stating the country and year.</p></li>
 <li><p>Putting (a) and (b) together: What are the highest and the lowest inflation rates observed between 1993 and 2023? The output of the pipeline should be a data frame with two rows and three columns.</p></li>
 </ol>
-<div class="callout callout-style-default callout-important callout-titled" title="STOP: You must do this before proceeding to Part 2">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-STOP: You must do this before proceeding to Part 2
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>At the end of your Part 1 Quarto file you’ll see a code cell like the following:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(_____, <span class="at">file =</span> <span class="st">"data/country-inflation-pivoted.csv"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This will allow you to save the pivoted data frame from Question 4 as a CSV (comma-separated-values) file called <code>country-inflation-pivoted.csv</code> in your <code>data</code> folder so that you can read it and use it Part 2.</p>
-<p>You need to modify the code cell by doing the following two things:</p>
-<ol type="1">
-<li>
-<strong>fill in the blank</strong> with the name of the pivoted data frame from Question 4 and</li>
-<li>
-<strong>change the value of the code cell option</strong>* <code>eval</code> from <code>false</code> to <code>true</code> so that the code cell will run and save the CSV file when you render your Quarto document.</li>
-</ol>
-</div>
-</div>
 <div class="render-commit-push">
-<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message. And once again, make sure to commit and push all changed files <strong>including the newly created dataset</strong> so that your Git pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re practicing good version control habits.</p>
+<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message. And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re practicing good version control habits.</p>
 </div>
-</section></section></section><section id="part-2-feedback-from-humans" class="level1"><h1>Part 2 – Feedback from Humans</h1>
-<p>Your answers to the questions in this part should go in the file <code>hw-3-part-2.qmd</code>.</p>
-<section id="packages-1" class="level2"><h2 class="anchored" data-anchor-id="packages-1">Packages</h2>
-<p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization,</p>
-<p>You may choose to load other packages as needed, particularly for improving your plots. If you do so, add the functions to load these packages in the code cell labeled <code>load-packages</code>.</p>
-<div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+</section><section id="question-6" class="level3"><h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
 <p><strong>More on inflation around the world.</strong></p>
-<p>For this question you will use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4 of Part 1. Load this dataset from the CSV file you created at the end of Part 1. To do so, you can use the following code, which is already in your <code>hw-3-part-2.qmd</code> file. However, you’ll need to set <code>eval</code> to <code>true</code> in the code cell options so that this code runs when you render your Quarto document. And, before you can do that, you must have completed Question 4 of Part 1 and saved the pivoted data frame as a CSV file in your <code>data</code> folder as described in the previous section.</p>
-<div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country_inflation_pivoted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/country-inflation-pivoted.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>For this question you will use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4.</p>
 <p>a. Create a vector called <code>countries_of_interest</code> which contains the names of up to five countries you want to visualize the inflation rates for over the years. For example, if these countries are Türkiye and United States, you can express this as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If they are Türkiye, United States, and Chile, you can express this as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span>, <span class="st">"Chile"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span>, <span class="st">"Chile"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So on and so forth… Then, in 1-2 sentences, state why you chose these countries.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -896,7 +857,7 @@ Tip
 <div class="render-commit-push">
 <p>Do not forget to render, commit, and push regularly, after each substantial change to your document (e.g., after answering each question). Use succinct and informative commit messages. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
-</section><section id="questions-7-9" class="level2"><h2 class="anchored" data-anchor-id="questions-7-9">Questions 7-9</h2>
+</section></section><section id="part-2" class="level2"><h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
 <p><strong>Inflation in the US.</strong></p>
 <p>The OECD defines inflation as follows:</p>
 <blockquote class="blockquote">
@@ -914,7 +875,7 @@ Tip
 </ul>
 <p>Let’s load both of these files.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_inflation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/us-inflation.csv"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_inflation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/us-inflation.csv"</span><span class="op">)</span></span>
 <span><span class="va">cpi_expenditures</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/cpi-expenditures.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
@@ -955,7 +916,7 @@ Tip
 <li>If your legend has labels that are too long, you can try moving the legend to the bottom and stack the labels vertically. <em>Hint:</em> The <code>legend.position</code> and <code>legend.direction</code> arguments of the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> functions will be useful.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">...</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
 <span>    legend.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
@@ -1024,23 +985,10 @@ Checklist
 </div>
 </div>
 </section><section id="grading-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="grading-and-feedback">Grading and feedback</h2>
-<ul>
-<li><p>Questions 1-5 are not graded, but you should complete them to get practice.</p></li>
-<li>
-<p>Questions 6-10 are graded, and you will receive feedback on Gradescope from the course instructional team within a week.</p>
-<ul>
-<li>Questions will be graded for accuracy and completeness.</li>
-<li>Partial credit will be given where appropriate.</li>
-<li>There are also workflow points for:
-<ul>
-<li>committing at least three times as you work through your lab,</li>
-<li>having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and</li>
-<li>overall organization.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>You can get immediate feedback on all of the questions with AI.</p>
+<p>Submit your final version of <code>hw-3.pdf</code> to Gradescope. Be sure to select the pages associated with each question.</p>
+<p>A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.</p>
+<p>There are also workflow points for: - committing at least three times as you work through your homework, - having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and - overall organization.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
