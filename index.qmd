@@ -96,7 +96,7 @@ d |>
     ),
     locations = cells_body(
       columns = everything(),
-      rows = week != dplyr::lag(week) & dplyr::row_number() != 1
+      rows = is.na(lag(week)) | week != lag(week)
     )
   ) |>
   fmt_markdown(
