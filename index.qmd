@@ -96,7 +96,8 @@ d |>
     ),
     locations = cells_body(
       columns = everything(),
-      rows = is.na(lag(week)) | week != lag(week)
+      rows = !is.na(week) 
+      # puts black line above rows where certain keywords are detected in certain columns
     )
   ) |>
   fmt_markdown(
