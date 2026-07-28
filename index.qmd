@@ -87,7 +87,7 @@ d |>
       columns = c(date, topic, prepare, materials)
     )
   ) |>
-  tab_style(
+  tab_style( # add lines between weeks of the semester
     style = cell_borders(
       sides = "top",
       color = "black",
@@ -96,7 +96,7 @@ d |>
     ),
     locations = cells_body(
       columns = everything(),
-      rows = !is.na(week) & dplyr::row_number() != 1
+      rows = week != dplyr::lag(week) & dplyr::row_number() != 1
     )
   ) |>
   fmt_markdown(
