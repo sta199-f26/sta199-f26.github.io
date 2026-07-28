@@ -102,14 +102,14 @@ d |>
   fmt_markdown(
     columns = c(topic, prepare, materials, due)
   ) |>
-  tab_options(table.width = pct(100)) |>
+  tab_options(table.width = pct(90)) |>
   cols_width(
     week ~ pct(2),
-    date ~ pct(10),
-    prepare ~ pct(25),
-    topic ~ pct(27),
-    materials ~ pct(18),
-    due ~ pct(18)
+    date ~ pct(9),
+    prepare ~ pct(30),
+    topic ~ pct(25),
+    materials ~ pct(12),
+    due ~ pct(12)
   ) |>
   cols_label_with(fn = function(x) {
     janitor::make_clean_names(x, case = "title") |>
