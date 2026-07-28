@@ -96,7 +96,7 @@ d |>
     ),
     locations = cells_body(
       columns = everything(),
-      rows = str_detect(topic, "[Ll]ab|Project milestone|Final$")
+      rows = !is.na(week) & dplyr::row_number() != 1
     )
   ) |>
   fmt_markdown(
