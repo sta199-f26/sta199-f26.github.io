@@ -44,10 +44,38 @@ d |>
     ),
     #added the other & statements so that deadlines don't have "To be posted" language
     #readings = if_else(date > prepare_cutoff_date, "*To be posted*", readings) #added the other & statements so that deadlines don't have "To be posted" language
+    # Materials column: one materials icon per lecture (file-lines) and lab
+    # (file-code). Gray outline icon while unposted; filled + linked once a
+    # URL is added to the sheet.
+    materials = case_when(
+      # In-class exams get no materials icon (review sessions keep theirs).
+      str_detect(topic, "Exam.*In-class") ~ NA_character_,
+      session == "Lec" & !is.na(materials) ~ paste0(
+        '<a href="',
+        materials,
+        '" title="Lecture slides" aria-label="Lecture slides">',
+        '<i class="fa-solid fa-file-lines materials-icon" aria-hidden="true"></i></a>'
+      ),
+      session == "Lec" ~ paste0(
+        '<i class="fa-regular fa-file-lines materials-icon-empty" ',
+        'title="Slides to be posted" aria-hidden="true"></i>'
+      ),
+      session == "Lab" & !is.na(materials) ~ paste0(
+        '<a href="',
+        materials,
+        '" title="Lab materials" aria-label="Lab materials">',
+        '<i class="fa-solid fa-file-code materials-icon" aria-hidden="true"></i></a>'
+      ),
+      session == "Lab" ~ paste0(
+        '<i class="fa-regular fa-file-code materials-icon-empty" ',
+        'title="Lab materials to be posted" aria-hidden="true"></i>'
+      ),
+      TRUE ~ materials
+    ),
   ) |>
-  select(week, date, topic, readings, videos, materials, due) |> #moved this down so i can use session value in above mutate readings line
+  select(week, date, materials, topic, readings, videos, due) |> #moved this down so i can use session value in above mutate readings line
   # changed this to columns want to keep (instead of which to remove)
-  relocate(due, .after = materials) |>
+  relocate(due, .after = videos) |>
   gt() |>
   fmt_date(date, date_style = 31) |>
   sub_missing(
@@ -56,7 +84,7 @@ d |>
   ) |>
   cols_align(
     align = "center",
-    columns = c(week)
+    columns = c(week, materials)
   ) |>
   cols_align(
     align = "right",
@@ -64,7 +92,7 @@ d |>
   ) |>
   cols_align(
     align = "left",
-    columns = c(topic, readings, videos, materials, due)
+    columns = c(topic, readings, videos, due)
   ) |>
   tab_style(
     style = cell_text(
@@ -82,7 +110,7 @@ d |>
       style = "solid"
     ),
     locations = cells_body(
-      columns = c(date, topic, readings, videos, materials)
+      columns = c(date, readings, videos, topic)
     )
   ) |>
   tab_style(
@@ -106,11 +134,11 @@ d |>
   cols_width(
     week ~ pct(2),
     date ~ pct(9),
-    readings ~ pct(12),
-    videos ~ pct(25),
     topic ~ pct(25),
-    materials ~ pct(12),
-    due ~ pct(15)
+    materials ~ pct(4),
+    readings ~ pct(12),
+    videos ~ pct(20),
+    due ~ pct(20)
   ) |>
   cols_label_with(fn = function(x) {
     janitor::make_clean_names(x, case = "title") |>
@@ -118,6 +146,7 @@ d |>
       stringr::str_replace_all("^|$", "**") |>
       md()
   }) |>
+  cols_label(materials = "") |>
   tab_options(table.font.size = 13) |>
   opt_row_striping()
 ```

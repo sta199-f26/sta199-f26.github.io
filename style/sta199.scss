@@ -93,3 +93,20 @@ div.sourceCode pre.sourceCode {
 details summary {
   margin-bottom: 0.5em;
 }
+
+/* Schedule "Materials" column icons (see index.qmd).
+   One slide-deck icon per lecture: gray outline while unposted,
+   filled brand color + link once slides are posted. */
+.materials-icon-empty {
+  color: #c6c6c6;
+  font-size: 1.2em;
+}
+
+.materials-icon {
+  color: #133955;
+  font-size: 1.2em;
+}
+
+a:hover .materials-icon {
+  color: #5C97CB;
+}
