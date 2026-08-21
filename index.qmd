@@ -72,6 +72,74 @@ d |>
       ),
       TRUE ~ materials
     ),
+    # Prefix each reading entry with a FontAwesome book icon: green for r4ds,
+    # blue for ims. Cells can hold several <br>-separated entries of mixed
+    # sources, so prepend per entry rather than once per cell.
+    readings = map_chr(readings, function(cell) {
+      if (is.na(cell)) {
+        return(cell)
+      }
+      str_split_1(cell, "<br>") |>
+        map_chr(function(entry) {
+          entry <- str_trim(entry)
+          # don't decorate empty entries or the "To be posted" placeholder
+          if (entry == "" || str_detect(entry, "To be posted")) {
+            return(entry)
+          }
+          icon <- case_when(
+            str_detect(
+              entry,
+              "\\[r4ds"
+            ) ~ '<i class="fa-solid fa-book reading-icon-r4ds" aria-hidden="true"></i>',
+            str_detect(
+              entry,
+              "\\[ims"
+            ) ~ '<i class="fa-solid fa-book reading-icon-ims" aria-hidden="true"></i>',
+            TRUE ~ '<i class="fa-solid fa-file reading-icon-other" aria-hidden="true"></i>'
+          )
+          str_c(icon, entry)
+        }) |>
+        str_c(collapse = "<br>")
+    }),
+    # Prefix each video entry with a FontAwesome icon: screwdriver-wrench
+    # (yellow) for "Meet the toolkit", laptop-code for "Code along", else
+    # chalkboard-user. Also strip the "... :: " label from the link text.
+    videos = map_chr(videos, function(cell) {
+      if (is.na(cell)) {
+        return(cell)
+      }
+      str_split_1(cell, "<br>") |>
+        map_chr(function(entry) {
+          entry <- str_trim(entry)
+          # don't decorate empty entries or the "To be posted" placeholder
+          if (entry == "" || str_detect(entry, "To be posted")) {
+            return(entry)
+          }
+          is_toolkit <- str_detect(
+            entry,
+            regex("Meet the toolkit :: ", ignore_case = TRUE)
+          )
+          is_codealong <- str_detect(
+            entry,
+            regex("Code along :: ", ignore_case = TRUE)
+          )
+          icon <- case_when(
+            is_toolkit ~ '<i class="fa-solid fa-screwdriver-wrench video-icon-toolkit" aria-hidden="true"></i>',
+            is_codealong ~ '<i class="fa-solid fa-laptop-code video-icon-codealong" aria-hidden="true"></i>',
+            TRUE ~ '<i class="fa-solid fa-chalkboard-user video-icon-lecture" aria-hidden="true"></i>'
+          )
+          entry <- str_remove(
+            entry,
+            regex("Meet the toolkit :: ", ignore_case = TRUE)
+          )
+          entry <- str_remove(
+            entry,
+            regex("Code along :: ", ignore_case = TRUE)
+          )
+          str_c(icon, entry)
+        }) |>
+        str_c(collapse = "<br>")
+    }),
   ) |>
   select(week, date, materials, topic, readings, videos, due) |> #moved this down so i can use session value in above mutate readings line
   # changed this to columns want to keep (instead of which to remove)
@@ -99,8 +167,17 @@ d |>
       color = "#b4b4b4"
     ),
     locations = cells_body(
-      columns = c(readings, videos, materials),
-      rows = readings == "*To be posted*"
+      columns = readings,
+      rows = str_detect(readings, "To be posted")
+    )
+  ) |>
+  tab_style(
+    style = cell_text(
+      color = "#b4b4b4"
+    ),
+    locations = cells_body(
+      columns = videos,
+      rows = str_detect(videos, "To be posted")
     )
   ) |>
   tab_style(
@@ -136,9 +213,9 @@ d |>
     date ~ pct(9),
     topic ~ pct(25),
     materials ~ pct(4),
-    readings ~ pct(12),
+    readings ~ pct(15),
     videos ~ pct(20),
-    due ~ pct(20)
+    due ~ pct(15)
   ) |>
   cols_label_with(fn = function(x) {
     janitor::make_clean_names(x, case = "title") |>
