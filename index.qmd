@@ -30,6 +30,18 @@ d |>
   filter(!is.na(session)) |>
   mutate(
     date = as.Date(as.Date(map_chr(date, as.character))), #modified this as date is a list of dttm variables
+    # Anchor on each week-start row so the page can auto-scroll to the
+    # current week on load (see the <script> at the bottom of this file).
+    week = if_else(
+      is.na(week),
+      NA_character_,
+      paste0(
+        '<span id="week-',
+        date,
+        '" class="week-anchor"></span>',
+        week
+      )
+    ),
     readings = if_else(
       date > prepare_cutoff_date &
         (!(session == "-" & is.na(topic) & is.na(readings))),
@@ -205,7 +217,7 @@ d |>
     )
   ) |>
   fmt_markdown(
-    columns = c(topic, readings, videos, materials, due)
+    columns = c(week, topic, readings, videos, materials, due)
   ) |>
   tab_options(table.width = pct(98), table.align = 'left') |>
   cols_width(
@@ -226,4 +238,34 @@ d |>
   cols_label(materials = "") |>
   tab_options(table.font.size = 13) |>
   opt_row_striping()
+```
+
+```{=html}
+<script>
+// Scroll to the current week on load: find the latest week-start anchor
+// (id="week-YYYY-MM-DD") whose date is on or before today, then jump to it.
+// Skipped when the URL already targets a specific anchor (#...).
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.location.hash) return;
+
+  var anchors = Array.prototype.slice.call(
+    document.querySelectorAll(".week-anchor")
+  );
+  if (!anchors.length) return;
+
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  var target = null;
+  anchors.forEach(function (a) {
+    var parts = a.id.replace("week-", "").split("-");
+    var d = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+    if (d <= today) target = a;
+  });
+
+  if (target) {
+    target.scrollIntoView({ block: "start" });
+  }
+});
+</script>
 ```
