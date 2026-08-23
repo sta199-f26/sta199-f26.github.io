@@ -26,8 +26,8 @@ prepare_cutoff_date <- as.Date("2026-09-07")
 ```{r}
 #| echo: false
 #| column: screen-right
-d |>
-  filter(!is.na(session)) |>
+d_prepared <- d |>
+  filter(session != "None") |>
   mutate(
     date = as.Date(as.Date(map_chr(date, as.character))), #modified this as date is a list of dttm variables
     # Anchor on each week-start row so the page can auto-scroll to the
@@ -44,13 +44,13 @@ d |>
     ),
     readings = if_else(
       date > prepare_cutoff_date &
-        (!(session == "-" & is.na(topic) & is.na(readings))),
+        (session %in% c("Lec", "Lab")),
       "_To be posted_",
       readings
     ),
     videos = if_else(
       date > prepare_cutoff_date &
-        (!(session == "-" & is.na(topic) & is.na(videos))),
+        (session %in% c("Lec", "Lab")),
       "_To be posted_",
       videos
     ),
@@ -152,7 +152,20 @@ d |>
         }) |>
         str_c(collapse = "<br>")
     }),
-  ) |>
+  )
+
+# Row background colors keyed off the session type (labs vs. lectures),
+# replacing the previous zebra striping. Captured before select() drops the
+# session column so we can address rows by position in the gt table.
+lab_rows <- which(d_prepared$session == "Lab")
+lec_rows <- which(d_prepared$session == "Lec")
+exam_rows <- which(d_prepared$session == "Exam")
+holiday_rows <- which(d_prepared$session == "Holiday")
+due_rows <- which(d_prepared$session == "Due")
+review_rows <- which(d_prepared$session == "Review")
+
+
+d_prepared |>
   select(week, date, materials, topic, readings, videos, due) |> #moved this down so i can use session value in above mutate readings line
   # changed this to columns want to keep (instead of which to remove)
   relocate(due, .after = videos) |>
@@ -237,7 +250,27 @@ d |>
   }) |>
   cols_label(materials = "") |>
   tab_options(table.font.size = 13) |>
-  opt_row_striping()
+  # Color rows by session type instead of zebra striping.
+  tab_style(
+    style = cell_fill(color = "#ffffff"), # white for lectures
+    locations = cells_body(rows = lec_rows)
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#13395520"), # light blue for labs
+    locations = cells_body(rows = lab_rows)
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#83807B20"), # light gray for holidays
+    locations = cells_body(rows = holiday_rows)
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#B9839140"), # light pink for exams
+    locations = cells_body(rows = exam_rows)
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#B9839110"), # lighter pink for review
+    locations = cells_body(rows = review_rows)
+  )
 ```
 
 ```{=html}

@@ -6,6 +6,15 @@ $font-family: "Atkinson Hyperlegible", sans-serif;
 
 /*-- scss:rules --*/
 
+/* Schedule table row colors are set per session type (lab vs. lecture) via
+   gt cell fills. Quarto adds Bootstrap's .table-striped class, whose
+   zebra-stripe overlay would tint over those fills, so neutralize it. */
+.gt_table.table-striped > tbody > tr > * {
+  box-shadow: none !important;
+  --bs-table-accent-bg: transparent;
+  --bs-table-bg-type: transparent;
+}
+
 .render-commit-push {
   padding: 0.5em 0.5em 0em 3em;
   margin-top: 5px;
