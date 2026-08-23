@@ -455,14 +455,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-visualization-and-transformation" id="toc-data-visualization-and-transformation" class="nav-link active" data-scroll-target="#data-visualization-and-transformation">Data visualization and transformation</a>
-  <ul class="collapse">
-  <li><a href="#un-votes" id="toc-un-votes" class="nav-link" data-scroll-target="#un-votes">UN Votes</a></li>
-  <li><a href="#first-look-at-palmer-penguins" id="toc-first-look-at-palmer-penguins" class="nav-link" data-scroll-target="#first-look-at-palmer-penguins">First look at Palmer Penguins</a></li>
-  <li><a href="#flights-and-pipes" id="toc-flights-and-pipes" class="nav-link" data-scroll-target="#flights-and-pipes">Flights and pipes</a></li>
-  <li><a href="#starwars-characters" id="toc-starwars-characters" class="nav-link" data-scroll-target="#starwars-characters">Starwars characters</a></li>
-  <li><a href="#diving-deeper-with-palmer-penguins" id="toc-diving-deeper-with-palmer-penguins" class="nav-link" data-scroll-target="#diving-deeper-with-palmer-penguins">Diving deeper with Palmer Penguins</a></li>
-  </ul></li>
+  <li><a href="#set-up-your-code-alongs-repository" id="toc-set-up-your-code-alongs-repository" class="nav-link active" data-scroll-target="#set-up-your-code-alongs-repository">Set up your code alongs repository</a></li>
+  <li><a href="#clone-the-repository" id="toc-clone-the-repository" class="nav-link" data-scroll-target="#clone-the-repository">Clone the repository</a></li>
+  <li><a href="#work-through-a-code-along" id="toc-work-through-a-code-along" class="nav-link" data-scroll-target="#work-through-a-code-along">Work through a code along</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/computing-code-alongs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -489,37 +484,67 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The following videos feature “code alongs” as an additional resource for getting coding practice.</p>
-<p>The files you can use to follow along with the videos can be found at <a href="https://github.com/sta199/code-alongs" class="uri">https://github.com/sta199/code-alongs</a>.</p>
-<section id="data-visualization-and-transformation" class="level2">
-<h2 class="anchored" data-anchor-id="data-visualization-and-transformation">Data visualization and transformation</h2>
-<section id="un-votes" class="level3">
-<h3 class="anchored" data-anchor-id="un-votes">UN Votes</h3>
-<p>First look at R and Positron.</p>
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/22sIAA/" title="Code Along :: My First Data Visualization UN Votes" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen=""></iframe>
+<p>The code along videos linked from the course schedule page serve as an additional resource for getting coding practice.</p>
+<p>The files you can use to follow along with the videos come from the template repository at <a href="https://github.com/sta199/code-alongs" class="uri">https://github.com/sta199/code-alongs</a>.</p>
+<section id="set-up-your-code-alongs-repository" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-your-code-alongs-repository">Set up your code alongs repository</h2>
+<p>You only need to do this once, at the start of the semester. After that, you’ll use the same repository for all of the code alongs.</p>
+<ul>
+<li><p>Go to <a href="https://github.com/sta199/code-alongs" class="uri">https://github.com/sta199/code-alongs</a> and click on the green <strong>Use this template</strong> button, then select <strong>Create a new repository</strong>.</p></li>
+<li><p>Under <em>Owner</em>, select the <strong>sta199-f26</strong> organization.</p></li>
+<li><p>Name your repository <code>code-alongs-yourname</code>, replacing <code>yourname</code> with your own name.</p></li>
+<li><p>Keep the repository <strong>private</strong>.</p></li>
+<li><p>Click <strong>Create repository</strong>.</p></li>
+</ul>
 </section>
-<section id="first-look-at-palmer-penguins" class="level3">
-<h3 class="anchored" data-anchor-id="first-look-at-palmer-penguins">First look at Palmer Penguins</h3>
-<p>First look at data science with the tidyverse.</p>
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/82sIAA/" title="Code Along :: First Look at Palmer Penguins" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen=""></iframe>
+<section id="clone-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="clone-the-repository">Clone the repository</h2>
+<ul>
+<li><p>On your new repository’s page, click on the green <strong>CODE</strong> button and copy the <strong>HTTPS</strong> URL.</p></li>
+<li><p>In Positron, go to <em>New</em> ➛ <em>New Folder From Git…</em> and paste the URL into the dialog box labeled <em>Git repository URL</em>.</p></li>
+<li><p>Click <em>OK</em>. Positron will clone the repo and open it as a new workspace.</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you need a refresher on cloning a repository, see the <a href="./lab/lab-0.html#clone-your-first-repository">Clone your first repository</a> section of Lab 0.</p>
+</div>
+</div>
 </section>
-<section id="flights-and-pipes" class="level3">
-<h3 class="anchored" data-anchor-id="flights-and-pipes">Flights and pipes</h3>
-<p>Data transformation</p>
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/8WsIAA/" title="Code Along :: Flights and Pipes" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen=""></iframe>
-</section>
-<section id="starwars-characters" class="level3">
-<h3 class="anchored" data-anchor-id="starwars-characters">Starwars characters</h3>
-<p>Data visualization</p>
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/92sIAA/" title="Code Along :: Star Wars Characters" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen=""></iframe>
-</section>
-<section id="diving-deeper-with-palmer-penguins" class="level3">
-<h3 class="anchored" data-anchor-id="diving-deeper-with-palmer-penguins">Diving deeper with Palmer Penguins</h3>
-<p>Data visualization and transformation</p>
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/72sIAA/" title="Code Along :: Diving Deeper with Palmer Penguins" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen=""></iframe>
+<section id="work-through-a-code-along" class="level2">
+<h2 class="anchored" data-anchor-id="work-through-a-code-along">Work through a code along</h2>
+<ul>
+<li><p>Open the <code>.qmd</code> file that corresponds to the video you’re watching.</p></li>
+<li><p>Write your code in the document as you follow along with the video, rendering as you go to check your work.</p></li>
+<li><p>When you’re done, commit and push your work:</p>
+<ul>
+<li>Go to the <em>Source Control</em> pane and stage the files you changed.</li>
+<li>Write a brief, informative commit message.</li>
+<li>Click <em>Sync</em> to push your commits to GitHub.</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is the same workflow you’ll use for your labs, homework, and project, so the code alongs are a good low-stakes place to practice it. Committing and pushing also means your work is backed up on GitHub and available to you from any device.</p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

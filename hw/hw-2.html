@@ -600,11 +600,11 @@ Click to expand if you need a refresher on how to get started with a homework as
 </summary><ul>
 <li>Go to <a href="https://cmgr.oit.duke.edu/containers" class="uri">https://cmgr.oit.duke.edu/containers</a> and login with your Duke NetID and Password.</li>
 <li>Click <code>STA199</code> under My reservations to log into your container. You should now see the Positron environment.</li>
-<li>Go to the course organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> organization on GitHub. Click on the repo with the prefix <strong>hw-2</strong>. It contains the starter documents you need to complete the homework.</li>
-<li>Click on the green <strong>CODE</strong> button, select <strong>Use SSH</strong>. Click on the clipboard icon to copy the repo URL.</li>
-<li>In Positron, go to <em>File</em> ➛ <em>New Folder from Git…</em>
+<li>Go to the course organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> organization on GitHub. Click on the repo with the prefix for this assignment (e.g., <strong>hw-1</strong>, <strong>hw-2</strong>). It contains the starter documents you need to complete the homework.</li>
+<li>Click on the green <strong>CODE</strong> button, select <strong>HTTPS</strong> under <strong>Clone</strong>. Click on the clipboard icon to copy the repo URL.</li>
+<li>In Positron, go to <em>New</em> ➛ <em>New Folder From Git…</em>
 </li>
-<li>Copy and paste the URL of your assignment repo into the dialog box <em>Git Repository URL</em>. Again, please make sure to have <em>SSH</em> highlighted under <em>Clone</em> when you copy the address.</li>
+<li>Copy and paste the URL of your assignment repo into the dialog box <em>Git Repository URL</em>. Again, please make sure to have <em>HTTPS</em> highlighted under <em>Clone</em> when you copy the address.</li>
 <li>Click <em>OK</em>, and the files from your GitHub repo will be displayed in the <em>Explorer</em> view in Positron.</li>
 </ul></details></section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
 <p>By now you should also be familiar with guidelines for formatting your code and plots as well as your Git and Gradescope workflow.</p>
@@ -630,11 +630,13 @@ Click to expand if you need a refresher on assignment guidelines.
 <li>You should have at least 3 commits with meaningful commit messages by the end of the assignment.</li>
 <li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
 </ul></section></details></section></section><section id="feedback-from-ai" class="level2"><h2 class="anchored" data-anchor-id="feedback-from-ai">🤖 Feedback from AI</h2>
-<p>You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.</p>
-<p>To get feedback from AI, write your answer to each question in the appropriate section of the <code>hw-2.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number (2) and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
+<p>By now you are also familiar with how to get feedback from AI.</p>
 <details><summary>
-Click to expand if you want to review the video that demonstrates how to use the AI feedback tool.
-</summary><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+Click to expand if you need a refresher on getting feedback from AI.
+</summary><p>You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.</p>
+<p>To get feedback from AI, write your answer to each question in the appropriate section of your homework <code>.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
+<p>The video below demonstrates how to use the AI feedback tool.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </details></section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization, <strong>scales</strong> for better axis labels, and <strong>ggbeeswarm</strong> for additional geoms.</p>
 <div class="cell">
@@ -902,8 +904,8 @@ Warning
 <p>If you don’t create the new variable <code>p_edu_he</code> in part (b), you will not be able to answer the remaining parts of this question or any of the remaining questions on the homework.</p>
 <p>Therefore, here is a quick check to make sure you created the variable correctly – after creating the variable, run the following code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">p_edu_he</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">p_edu_he</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You should see the following output:</p>
