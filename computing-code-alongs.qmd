@@ -2,48 +2,51 @@
 title: "Code alongs"
 ---
 
-The following videos feature "code alongs" as an additional resource for getting coding practice.
+The code along videos linked from the course schedule page serve as an additional resource for getting coding practice.
 
-The files you can use to follow along with the videos can be found at <https://github.com/sta199/code-alongs>.
+The files you can use to follow along with the videos come from the template repository at <https://github.com/sta199/code-alongs>.
 
-## Data visualization and transformation
+## Set up your code alongs repository
 
-### UN Votes
+You only need to do this once, at the start of the semester.
+After that, you'll use the same repository for all of the code alongs.
 
-First look at R and Positron.
+-   Go to <https://github.com/sta199/code-alongs> and click on the green **Use this template** button, then select **Create a new repository**.
 
-```{=html}
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/22sIAA/" title="Code Along :: My First Data Visualization UN Votes" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen></iframe>
-```
+-   Under *Owner*, select the **sta199-f26** organization.
 
-### First look at Palmer Penguins
+-   Name your repository `code-alongs-yourname`, replacing `yourname` with your own name.
 
-First look at data science with the tidyverse.
+-   Keep the repository **private**.
 
-```{=html}
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/82sIAA/" title="Code Along :: First Look at Palmer Penguins" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen></iframe>
-```
+-   Click **Create repository**.
 
-### Flights and pipes
+## Clone the repository
 
-Data transformation
+-   On your new repository's page, click on the green **CODE** button and copy the **HTTPS** URL.
 
-```{=html}
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/8WsIAA/" title="Code Along :: Flights and Pipes" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen></iframe>
-```
+-   In Positron, go to *New* ➛ *New Folder From Git...* and paste the URL into the dialog box labeled *Git repository URL*.
 
-### Starwars characters
+-   Click *OK*.
+    Positron will clone the repo and open it as a new workspace.
 
-Data visualization
+::: callout-tip
+If you need a refresher on cloning a repository, see the [Clone your first repository](/lab/lab-0.html#clone-your-first-repository) section of Lab 0.
+:::
 
-```{=html}
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/92sIAA/" title="Code Along :: Star Wars Characters" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen></iframe>
-```
+## Work through a code along
 
-### Diving deeper with Palmer Penguins
+-   Open the `.qmd` file that corresponds to the video you're watching.
 
-Data visualization and transformation
+-   Write your code in the document as you follow along with the video, rendering as you go to check your work.
 
-```{=html}
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/72sIAA/" title="Code Along :: Diving Deeper with Palmer Penguins" frameborder="0" scrolling="0" allow="autoplay *; encrypted-media *; fullscreen *; picture-in-picture *;" allowfullscreen></iframe>
-```
+-   When you're done, commit and push your work:
+
+    -   Go to the *Source Control* pane and stage the files you changed.
+    -   Write a brief, informative commit message.
+    -   Click *Sync* to push your commits to GitHub.
+
+::: callout-note
+This is the same workflow you'll use for your labs, homework, and project, so the code alongs are a good low-stakes place to practice it.
+Committing and pushing also means your work is backed up on GitHub and available to you from any device.
+:::
