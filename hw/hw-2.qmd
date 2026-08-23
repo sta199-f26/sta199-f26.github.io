@@ -24,16 +24,7 @@ By now you should be familiar with how to get started with a homework assignment
 <details>
 <summary>Click to expand if you need a refresher on how to get started with a homework assignment.</summary>
 
--   Go to <https://cmgr.oit.duke.edu/containers> and login with your Duke NetID and Password.
--   Click `STA199` under My reservations to log into your container. You should now see the Positron environment.
--   Go to the course organization at [github.com/sta199-f26](https://github.com/sta199-f26) organization on GitHub.
-    Click on the repo with the prefix **hw-2**.
-    It contains the starter documents you need to complete the homework.
--   Click on the green **CODE** button, select **Use SSH**.
-    Click on the clipboard icon to copy the repo URL.
--   In Positron, go to *File* ➛ *New Folder from Git...*
--   Copy and paste the URL of your assignment repo into the dialog box *Git Repository URL*. Again, please make sure to have *SSH* highlighted under *Clone* when you copy the address.
--   Click *OK*, and the files from your GitHub repo will be displayed in the *Explorer* view in Positron.
+{{< include _getting-started.qmd >}}
 </details>
 
 ## Guidelines
@@ -48,13 +39,11 @@ By now you should also be familiar with guidelines for formatting your code and 
 
 ## 🤖 Feedback from AI
 
-You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.
-
-To get feedback from AI, write your answer to each question in the appropriate section of the `hw-2.qmd` file. Then, highlight your answer to a question, click on *Addins \> AIFEEDR \> Get feedback*. In the app that opens, select the appropriate homework number (2) and question number. Then click on *Get Feedback*. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.
+By now you are also familiar with how to get feedback from AI.
 
 <details>
-<summary>Click to expand if you want to review the video that demonstrates how to use the AI feedback tool.</summary>
-{{< video https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby title="aifeedr">}}
+<summary>Click to expand if you need a refresher on getting feedback from AI.</summary>
+{{< include _ai-feedback.qmd >}}
 </details>
 
 ## Packages
@@ -279,8 +268,8 @@ Therefore, here is a quick check to make sure you created the variable correctly
 
 ```{r}
 #| eval: false
-nc_county |> 
-  select(p_edu_he) |> 
+nc_county |>
+  select(p_edu_he) |>
   slice_head(n = 3)
 ```
 

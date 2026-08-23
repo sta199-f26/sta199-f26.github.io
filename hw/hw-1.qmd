@@ -21,13 +21,7 @@ draft: true
 
 To get started, follow the instructions below.
 
-- Go to <https://cmgr.oit.duke.edu/containers> and login with your Duke NetID and Password.
-- Click `STA199` under My reservations to log into your container. You should now see the Positron environment.
-- Go to the course organization at [github.com/sta199-f26](https://github.com/sta199-f26) organization on GitHub. Click on the repo with the prefix **hw-1**. It contains the starter documents you need to complete the homework.
-- Click on the green **CODE** button, select **Use SSH**. Click on the clipboard icon to copy the repo URL.
-- In Positron, go to *File* ➛ *New Folder from Git...*
-- Copy and paste the URL of your assignment repo into the dialog box *Git Repository URL*. Again, please make sure to have *SSH* highlighted under *Clone* when you copy the address.
-- Click *OK*, and the files from your GitHub repo will be displayed in the *Explorer* view in Positron
+{{< include _getting-started.qmd >}}
 
 Open the `hw-1.qmd` template Quarto file and update the author field with your first and last name. Click `Preview` to render the document, then check the resulting PDF to confirm that your name appears correctly. Once confirmed, commit your changes with a meaningful commit message, then select `Sync Changes` to push your updates to GitHub.
 
@@ -39,13 +33,7 @@ The guidelines should feel familiar, as they are the same ones from the lab! The
 
 ## 🤖 Feedback from AI
 
-You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.
-
-To get feedback from AI, write your answer to each question in the appropriate section of the `hw-1.qmd` file. Then, highlight your answer to a question, click on *Addins \> AIFEEDR \> Get feedback*. In the app that opens, select the appropriate homework number (1) and question number. Then click on *Get Feedback*. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.
-
-The video below demonstrates how to use the AI feedback tool.
-
-{{< video https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby title="aifeedr">}}
+{{< include _ai-feedback.qmd >}}
 
 ## Packages
 
