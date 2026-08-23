@@ -12,7 +12,7 @@ draft: true
 Your written report must be completed in the `index.qmd` file and must be reproducible.
 All team members should contribute to the GitHub repository, with regular meaningful commits.
 
-Before you finalize your write up, make sure the printing of code chunks is off with the option `echo: false` in the YAML.
+Before you finalize your write up, make sure the printing of code cells is off with the option `echo: false` in the YAML.
 
 The mandatory components of the report are below.
 You are free to add additional sections as necessary.
@@ -81,14 +81,12 @@ The main body of the written report (not including the appendix) is no longer th
 
 ### Code style + smell
 
-This is an assessment of the overall presentation and formatting of the written report.
+This is an assessment of the quality and readability of the code in your source documents.
 
-**Grading criteria:** The report neatly written and organized with clear section headers and appropriately sized figures with informative labels.
-Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted.
-All citations and links are properly formatted.
-If there is an appendix, it is reasonably organized and easy for the reader to find relevant information.
-All code, warnings, and messages are suppressed.
-The main body of the written report (not including the appendix) is no longer than 10 pages.
+**Grading criteria:** Code follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation.
+Lines of code are kept to a reasonable length, and long pipelines and `ggplot` calls are broken across multiple lines.
+Code is not repetitive, and there is no unused or dead code left in the document.
+Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout.
 
 ## Grading
 
