@@ -100,7 +100,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-97cf096e527eea545a932ed0b3893372.css">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5fc1509d3aad92b9e8182397f59f9cc5.css">
 <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -271,7 +271,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>What you hope to get out of this course</li>
 </ul>
 </div>
-<div id="timer_230f5400cb36bae78b4e1e15b22bc2a0b603117e" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
+<div id="timer_9cedf754323a05c6c52d002dd673e006c243880b" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
@@ -283,12 +283,14 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li class="fragment"><p><strong>Data science</strong> is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.</p></li>
 <li class="fragment"><p>We’re going to learn to do this in a modern and <code>tidy</code> way – more on that later!</p></li>
 <li class="fragment"><p>This is a course on introduction to data science, with an emphasis on <strong>statistical thinking</strong>.</p></li>
-</ul></section><section id="lets-do-some-data-science" class="slide level2 smaller"><h2>Let’s do some data science!</h2>
+</ul></section></section><section><section id="hello-country-music" class="title-slide slide level1 center"><h1>Hello, country music! 🎸</h1>
+
+</section><section id="lets-do-some-data-science" class="slide level2 smaller"><h2>Let’s do some data science!</h2>
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>Yesterday we collected some data from you!</p></li>
-<li><p>Today we’re going to explore that data together, following the data science cycle.</p></li>
+<li><p>Today we’re going to explore some data together, following the data science cycle.</p></li>
+<li><p>Our question: <strong>Are the stereotypes about country music actually true?</strong></p></li>
 </ul>
 </div><div class="column">
 <div class="quarto-figure quarto-figure-center">
@@ -296,34 +298,27 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </figure>
 </div>
 </div></div>
-<div class="fragment">
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Warning</strong></p>
-</div>
-<div class="callout-content">
-<p>The data is anonymized and randomized and contains only a subset of the data collected. The rows have been shuffled for each column independently, meaning that no row belongs to a single student in the course. Additionally, any identifying information has been removed. Please do not try to de-anonymize or re-identify any individuals in the dataset.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section id="beginning-the-data-science-cycle" class="slide level2 smaller"><h2>Beginning the data science cycle</h2>
+</section><section id="participate" class="slide level2"><h2>Participate 💻📱</h2>
 <div class="columns">
-<div class="column fragment" style="width:50%;">
-<p>You took a survey:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="images/01/canvas-survey.png" class="quarto-figure quarto-figure-center" data-fig-width="200" alt="Screenshot of Getting to know you survey on Canvas."></p>
-</figure>
+<div class="column">
+<p><img data-src="images/wooclap-qr.png"></p>
+</div><div class="column">
+<p>Scan the QR code or go to <a href="https://app.wooclap.com/OQPLQEK">app.wooclap.com/OQPLQEK</a>.</p>
+<p>Log in with your Duke NetID.</p>
+</div></div>
+</section><section id="are-the-stereotypes-about-country-music-actually-true" class="slide level2"><h2>Are the stereotypes about country music actually true?</h2>
+<div class="demo">
+<p>“Is it REALLY all about beer and trucks and girls and blue jeans? Are all the lyrics REALLY the same?”</p>
+<p>— <a href="https://www.youtube.com/watch?v=48ZxNFGJTo8">Grady Smith</a>, country music critic</p>
 </div>
-</div><div class="column fragment" style="width:25%;">
-<p>Canvas stored your data in a CSV (comma-separated values) file:</p>
-<p><i class="fa-solid fa-file-csv fa-8x" title="CSV file icon" aria-label="file-csv"></i></p>
-</div><div class="column fragment" style="width:25%;">
-<p>We want to explore the data that is in that file!</p>
+</section><section id="where-the-data-comes-from" class="slide level2 smaller"><h2>Where the data comes from</h2>
+<div class="columns">
+<div class="column fragment">
+<p><i class="fa-solid fa-music fa-4x" title="Music note icon" aria-label="music"></i></p>
+<p>Grady Smith kept a spreadsheet of every country song that reached the Top 30 of Billboard’s Country Airplay chart.</p>
+</div><div class="column fragment">
+<p><i class="fa-solid fa-file-csv fa-4x" title="CSV file icon" aria-label="file-csv"></i></p>
+<p>Someone tidied it up and put it in a CSV (comma-separated values) file.</p>
 </div></div>
 </section><section id="import" class="slide level2"><h2>Import</h2>
 
@@ -336,448 +331,13 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <span id="cb1-4"><a></a><span class="fu">library</span>(taylor) <span class="co"># for a surprise!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="import-the-data" class="slide level2"><h2>Import the data</h2>
-<p>Import the data called <code>survey-anonymized.csv</code> in the folder called <code>data</code> using the <code>read_csv()</code> function:</p>
+<p>Import the data called <code>country-lyrics.csv</code> in the folder called <code>data</code> using the <code>read_csv()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>survey <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/survey-anonymized.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>country <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/country-lyrics.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="take-a-peek-at-the-data" class="slide level2 smaller"><h2>Take a peek at the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>survey</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 230 × 5
-   stats_experience       programming_experience programming_languages
-   &lt;chr&gt;                  &lt;chr&gt;                  &lt;chr&gt;                
- 1 Yes, I have taken a h… A little — I’ve writt… "Java, Python, Yaml,…
- 2 No, I have not taken … None                    &lt;NA&gt;                
- 3 Yes, I have taken a h… A little — I’ve writt…  &lt;NA&gt;                
- 4 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                
- 5 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                
- 6 No, I have not taken … A little — I’ve writt…  &lt;NA&gt;                
- 7 Yes, I have taken a h… None                   "Python and java"    
- 8 No, I have not taken … None                    &lt;NA&gt;                
- 9 Yes, I have taken a h… None                   "Python- a little bi…
-10 Yes, I have taken a h… None                    &lt;NA&gt;                
-# ℹ 220 more rows
-# ℹ 2 more variables: learn_best &lt;chr&gt;, data_interests &lt;chr&gt;</code></pre>
-</div>
-</div>
-</section><section id="participate" class="slide level2"><h2>Participate 💻📱</h2>
-<div class="columns">
-<div class="column">
-<p><img data-src="images/wooclap-qr.png"></p>
-</div><div class="column">
-<p>Scan the QR code or go to <a href="https://app.wooclap.com/sta199">app.wooclap.com/sta199</a>.</p>
-<p>Log in with your Duke NetID.</p>
-</div></div>
-</section><section id="take-a-peek-participate" class="slide level2 xsmall"><h2>Take a peek + Participate 💻📱</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 230 × 5
-   stats_experience       programming_experience programming_languages
-   &lt;chr&gt;                  &lt;chr&gt;                  &lt;chr&gt;                
- 1 Yes, I have taken a h… A little — I’ve writt… "Java, Python, Yaml,…
- 2 No, I have not taken … None                    &lt;NA&gt;                
- 3 Yes, I have taken a h… A little — I’ve writt…  &lt;NA&gt;                
- 4 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                
- 5 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                
- 6 No, I have not taken … A little — I’ve writt…  &lt;NA&gt;                
- 7 Yes, I have taken a h… None                   "Python and java"    
- 8 No, I have not taken … None                    &lt;NA&gt;                
- 9 Yes, I have taken a h… None                   "Python- a little bi…
-10 Yes, I have taken a h… None                    &lt;NA&gt;                
-# ℹ 220 more rows
-# ℹ 2 more variables: learn_best &lt;chr&gt;, data_interests &lt;chr&gt;</code></pre>
-</div>
-</div>
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
-</figure>
-</div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://app.wooclap.com/sta199">app.wooclap.com/sta199</a>. Log in with your Duke NetID.</p>
-</div>
-</div></div>
-</section><section id="statistics-experience" class="slide level2"><h2>Statistics experience</h2>
-<p>We asked you the following multiple-choice question where you could only pick one option:</p>
-<div class="demo">
-<p>Have you taken any statistics courses before?</p>
-<ul>
-<li>Yes, I have taken another college course on statistics</li>
-<li>Yes, I have taken a high school statistics course</li>
-<li>No, I have not taken any statistics courses</li>
-</ul>
-</div>
-</section><section id="visualize" class="slide level2"><h2>Visualize</h2>
-<p>One way to make sense of data collected via a question like this is to visualize it.</p>
-
-<img data-src="images/01/data-science-cycle-visualize.png" class="quarto-figure quarto-figure-center r-stretch" alt="Data science cycle: Import, tidy, transform, visualize, model, communicate. Visualize is highlighted."></section><section id="visualize-1" class="slide level2"><h2>Visualize</h2>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">count</span>(stats_experience) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> stats_experience, <span class="at">x =</span> prop)) <span class="sc">+</span></span>
-<span id="cb6-5"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a></a>  <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="fu">label_wrap</span>(<span class="dv">20</span>)) <span class="sc">+</span></span>
-<span id="cb6-7"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb6-8"><a></a>    <span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>),</span>
-<span id="cb6-9"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>)</span>
-<span id="cb6-10"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-11"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-12"><a></a>    <span class="at">title =</span> <span class="st">"Prior statistics experience among STA 199 students"</span>,</span>
-<span id="cb6-13"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-14"><a></a>    <span class="at">x =</span> <span class="st">"Count"</span></span>
-<span id="cb6-15"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-16"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-17"><a></a>    <span class="at">caption =</span> <span class="st">"Data are self-reported, collected from STA 199 students on August 25, 2025."</span></span>
-<span id="cb6-18"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<img data-src="01-hello-world_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section><section id="programming-experience" class="slide level2 smaller"><h2>Programming experience</h2>
-<p>We also asked you the following multiple-choice question where you could only pick one option:</p>
-<div class="demo">
-<p>How much experience do you have with programming?</p>
-<ul>
-<li>None</li>
-<li>A little — I’ve written a few lines or done small exercises</li>
-<li>Some — I’ve worked on a few projects or used it occasionally</li>
-<li>A lot — I use programming regularly and feel confident writing code</li>
-</ul>
-</div>
-</section><section id="visualize-2" class="slide level2"><h2>Visualize</h2>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">count</span>(programming_experience) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb7-5"><a></a>    <span class="at">y =</span> <span class="fu">fct_reorder</span>(programming_experience, prop),</span>
-<span id="cb7-6"><a></a>    <span class="at">x =</span> prop,</span>
-<span id="cb7-7"><a></a>    <span class="at">fill =</span> prop</span>
-<span id="cb7-8"><a></a>  )) <span class="sc">+</span></span>
-<span id="cb7-9"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb7-10"><a></a>  <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="fu">label_wrap</span>(<span class="dv">25</span>)) <span class="sc">+</span></span>
-<span id="cb7-11"><a></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb7-12"><a></a>    <span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>),</span>
-<span id="cb7-13"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>)</span>
-<span id="cb7-14"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb7-15"><a></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"E"</span>) <span class="sc">+</span></span>
-<span id="cb7-16"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-17"><a></a>    <span class="at">title =</span> <span class="st">"Prior programming experience among STA 199 students"</span>,</span>
-<span id="cb7-18"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb7-19"><a></a>    <span class="at">x =</span> <span class="st">"Count"</span></span>
-<span id="cb7-20"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb7-21"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-22"><a></a>    <span class="at">caption =</span> <span class="st">"Data are self-reported, collected from STA 199 students on August 25, 2025."</span></span>
-<span id="cb7-23"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb7-24"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<img data-src="01-hello-world_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section><section id="learn-best" class="slide level2 xsmall"><h2>Learn best</h2>
-<p>We also asked you the following multiple-choice question where you could as many options as you liked:</p>
-<div class="demo">
-<p>What types of data interest you?</p>
-<ul>
-<li>Crime</li>
-<li>Economics</li>
-<li>Education</li>
-<li>Entertainment (e.g., books, movies, music)</li>
-<li>Environment/Climate</li>
-<li>Health (e.g., social determinants of health, medical)</li>
-<li>Politics</li>
-<li>Sports</li>
-<li>Other</li>
-<li>No preference</li>
-</ul>
-</div>
-</section><section id="peek-at-the-data" class="slide level2 smaller"><h2>Peek at the data</h2>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">select</span>(data_interests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 230 × 1
-   data_interests                                                     
-   &lt;chr&gt;                                                              
- 1 "Economics,Politics"                                               
- 2 "Health (e.g.\\, social determinants of health\\, medical),Politic…
- 3 "Crime,Economics,Education,Environment/Climate,Politics,No prefere…
- 4 "Crime,Education,Politics,Sports"                                  
- 5 "Crime,Education,Entertainment (e.g.\\, books\\, movies\\, music),…
- 6 "Crime,Entertainment (e.g.\\, books\\, movies\\, music),Health (e.…
- 7 "Health (e.g.\\, social determinants of health\\, medical)"        
- 8 "Education,Entertainment (e.g.\\, books\\, movies\\, music),Health…
- 9 "Economics,Entertainment (e.g.\\, books\\, movies\\, music),Enviro…
-10 "Economics,Environment/Climate,Sports"                             
-# ℹ 220 more rows</code></pre>
-</div>
-</div>
-</section><section id="tidy-transform" class="slide level2"><h2>Tidy + Transform</h2>
-<p>Before we can visualize this variable, we need to tidy and transform it.</p>
-
-<img data-src="images/01/data-science-cycle-tidy-transform.png" class="quarto-figure quarto-figure-center r-stretch" alt="Data science cycle: Import, tidy, transform, visualize, model, communicate. Tidy and transform are highlighted."></section><section id="tidy-transform-1" class="slide level2 smaller"><h2>Tidy + Transform</h2>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a></a>  <span class="co"># remove text in parentheses</span></span>
-<span id="cb10-3"><a></a>  <span class="fu">mutate</span>(<span class="at">data_interests =</span> <span class="fu">str_remove_all</span>(data_interests, <span class="st">"</span><span class="sc">\\</span><span class="st">s*</span><span class="sc">\\</span><span class="st">(.*?</span><span class="sc">\\</span><span class="st">)"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a></a>  <span class="co"># separate into multiple rows for each interest, using comma as delimiter</span></span>
-<span id="cb10-5"><a></a>  <span class="fu">separate_longer_delim</span>(data_interests, <span class="at">delim =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-6"><a></a>  <span class="fu">count</span>(data_interests, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 11 × 3
-   data_interests          n    prop
-   &lt;chr&gt;               &lt;int&gt;   &lt;dbl&gt;
- 1 Health                142 0.169  
- 2 Sports                111 0.132  
- 3 Politics              110 0.131  
- 4 Entertainment         107 0.128  
- 5 Crime                  97 0.116  
- 6 Economics              93 0.111  
- 7 Education              86 0.103  
- 8 Environment/Climate    76 0.0906 
- 9 Other                  12 0.0143 
-10 No preference           3 0.00358
-11 &lt;NA&gt;                    2 0.00238</code></pre>
-</div>
-</div>
-</section><section id="visualize-3" class="slide level2"><h2>Visualize</h2>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">mutate</span>(<span class="at">data_interests =</span> <span class="fu">str_remove_all</span>(data_interests, <span class="st">"</span><span class="sc">\\</span><span class="st">s*</span><span class="sc">\\</span><span class="st">(.*?</span><span class="sc">\\</span><span class="st">)"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">separate_longer_delim</span>(data_interests, <span class="at">delim =</span> <span class="st">","</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">count</span>(data_interests, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(data_interests)) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(data_interests, prop), <span class="at">x =</span> prop, <span class="at">fill =</span> prop)) <span class="sc">+</span></span>
-<span id="cb12-8"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb12-9"><a></a>  <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="fu">label_wrap</span>(<span class="dv">20</span>)) <span class="sc">+</span></span>
-<span id="cb12-10"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb12-11"><a></a>  <span class="fu">scale_fill_taylor_c</span>(<span class="at">album =</span> <span class="st">"Speak Now"</span>) <span class="sc">+</span></span>
-<span id="cb12-12"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-13"><a></a>    <span class="at">title =</span> <span class="st">"Data interests among STA 199 students"</span>,</span>
-<span id="cb12-14"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb12-15"><a></a>    <span class="at">x =</span> <span class="st">"Count"</span>,</span>
-<span id="cb12-16"><a></a>    <span class="at">caption =</span> <span class="st">"Data are self-reported, collected from STA 199 students on August 25, 2025."</span></span>
-<span id="cb12-17"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb12-18"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<img data-src="01-hello-world_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section><section id="learn-best-1" class="slide level2"><h2>Learn best</h2>
-<p>We also asked you the following open-ended question:</p>
-<div class="demo">
-<p>How do you learn best?</p>
-</div>
-</section><section id="tidy-transform-summarize" class="slide level2 smaller"><h2>Tidy + Transform + Summarize</h2>
-<p>We can use text mining techniques, like <em>tokenizing</em> to words to explore this open-ended question:</p>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">select</span>(learn_best) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">unnest_tokens</span>(word, learn_best) <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-6"><a></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
-   word          n
-   &lt;chr&gt;     &lt;int&gt;
- 1 learn        89
- 2 practice     66
- 3 visual       28
- 4 step         27
- 5 learning     26
- 6 hands        24
- 7 class        22
- 8 questions    21
- 9 examples     19
-10 lecture      17
-11 lectures     17
-12 learner      16</code></pre>
-</div>
-</div>
-</section><section id="tidy-transform-summarize-1" class="slide level2 smaller"><h2>Tidy + Transform + Summarize</h2>
-<p>We can also tokenize to <em>bigrams</em> (pairs of words):</p>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a></a>  <span class="fu">select</span>(learn_best) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(bigrams, learn_best, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a></a>  <span class="fu">count</span>(bigrams, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20 × 2
-   bigrams               n
-   &lt;chr&gt;             &lt;int&gt;
- 1 i learn              73
- 2 learn best           68
- 3 practice problems    28
- 4 hands on             24
- 5 best by              21
- 6 best through         19
- 7 i also               16
- 8 i am                 16
- 9 and then             15
-10 in class             14
-11 when i               14
-12 by step              13
-13 i can                13
-14 step by              13
-15 &lt;NA&gt;                 13
-16 problems and         12
-17 a lot                11
-18 a visual             11
-19 on my                11
-20 visual learner       11</code></pre>
-</div>
-</div>
-</section><section id="programming-language-comfort" class="slide level2 smaller"><h2>Programming language comfort</h2>
-<p>We also asked you the following open-ended question:</p>
-<div class="demo">
-<p>If you’ve programmed before, which languages have you used, and how comfortable do you feel with each? If you haven’t programmed before, please leave this question blank.</p>
-</div>
-</section><section id="take-a-peek-participate-1" class="slide level2 smaller"><h2>Take a peek + Participate 💻📱</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<p>And the answers are non-trivial to tidy up, e.g.,</p>
-<pre><code>- Python - I've used it very little.
-- I have not programmed before.&nbsp;
-- Java - very comfortable. Python - pretty comfortable. C/C++ - not super comfortable, haven't used since high school.</code></pre>
-</div><div class="column" style="width:40%;">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
-</figure>
-</div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://app.wooclap.com/sta199">app.wooclap.com/sta199</a>. Log in with your Duke NetID.</p>
-</div>
-</div></div>
-</section><section id="can-ai-help" class="slide level2 smaller"><h2>Can AI help?</h2>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>()</span>
-<span id="cb18-4"><a></a></span>
-<span id="cb18-5"><a></a>prompts <span class="ot">&lt;-</span> survey <span class="sc">|&gt;</span></span>
-<span id="cb18-6"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(programming_languages)) <span class="sc">|&gt;</span></span>
-<span id="cb18-7"><a></a>  <span class="fu">pull</span>(programming_languages) <span class="sc">|&gt;</span></span>
-<span id="cb18-8"><a></a>  <span class="fu">list</span>()</span>
-<span id="cb18-9"><a></a></span>
-<span id="cb18-10"><a></a>type_language <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb18-11"><a></a>  <span class="at">language =</span> <span class="fu">type_string</span>(),</span>
-<span id="cb18-12"><a></a>  <span class="at">experience =</span> <span class="fu">type_string</span>()</span>
-<span id="cb18-13"><a></a>)</span>
-<span id="cb18-14"><a></a></span>
-<span id="cb18-15"><a></a>language_experience <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
-<span id="cb18-16"><a></a>  chat,</span>
-<span id="cb18-17"><a></a>  prompts,</span>
-<span id="cb18-18"><a></a>  <span class="at">type =</span> type_language</span>
-<span id="cb18-19"><a></a>)</span>
-<span id="cb18-20"><a></a>language_experience</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<pre><code>language
-1 Python, Java, R, C/C++, JavaScript, HTML/CSS, SQL, C#, VBA, MATLAB, Rust, Assembly, Swift, Stata, Bash, Typescript, Web3 Suite (HTML, CSS, JS), Nextflow, SAS, PsycoPy, Mathematica, React, Vue, Yaml, CourseKata, Flutter, Scratch
-
-experience
-1 Most students report a range of programming experience, from never having programmed before to being very comfortable in languages such as Python, Java, and R. Many took introductory courses (e.g., CS101, AP CS A) and are comfortable with basic programming constructs. Proficiency is generally highest in Python and Java, though some only have a little experience with languages like R, C/C++, and JavaScript. Quite a few have only used programming languages for specific classes or research projects and may not feel confident after a long break. Some students have experience with more niche or specialized tools such as MATLAB, SAS, and web technologies (HTML, CSS, JavaScript/JS frameworks). Many express a need for a refresher if not used recently. In summary, while a core group is comfortable with at least one language, especially Python or Java, many others have only basic to moderate experience and express the desire to gain more proficiency.</code></pre>
-</section><section id="can-it-be-trusted-100" class="slide level2 xsmall"><h2>Can it be trusted 100%?</h2>
-<p><strong>Mathematica</strong> is a software system used for mathematics.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(programming_languages, <span class="st">"Mathematica"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a></a>  <span class="fu">select</span>(programming_languages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  programming_languages                                           
-  &lt;chr&gt;                                                           
-1 Most familiar to least: Java, Mathematica, Python, Matlab, React</code></pre>
-</div>
-</div>
-<div class="fragment">
-<p><strong>Nextflow</strong> extends the Unix pipes model with a DSL.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(programming_languages, <span class="st">"Nextflow"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a></a>  <span class="fu">select</span>(programming_languages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 0 × 1
-# ℹ 1 variable: programming_languages &lt;chr&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><strong>PsycoPy</strong> is a desktop application for in-lab studies.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>survey <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(programming_languages, <span class="st">"PsycoPy"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a></a>  <span class="fu">select</span>(programming_languages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 0 × 1
-# ℹ 1 variable: programming_languages &lt;chr&gt;</code></pre>
-</div>
-</div>
-<!-- ===========================================================================
-     ALTERNATIVE VERSION OF THE DATA SCIENCE CYCLE DEMO
-     Uses TidyTuesday country music lyrics instead of the student survey.
-     Runs the same arc as the survey section above (import -> peek ->
-     categorical bar chart -> multi-value tidying -> text mining -> AI), so
-     keep ONE of the two sections and delete the other.
-     Data object is called `country` (not `survey`) so both can coexist.
-     Source: https://github.com/rfordatascience/tidytuesday/tree/main/data/2026/2026-08-25
-     =========================================================================== -->
-</div>
-</section></section><section><section id="hello-country-music" class="title-slide slide level1 center"><h1>Hello, country music! 🎸</h1>
-
-</section><section id="lets-do-some-data-science-1" class="slide level2 smaller"><h2>Let’s do some data science!</h2>
-<div class="columns">
-<div class="column">
-<ul>
-<li><p>Today we’re going to explore some data together, following the data science cycle.</p></li>
-<li><p>Our question: <strong>are the stereotypes about country music actually true?</strong></p></li>
-</ul>
-</div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="images/01/data-science-cycle.png" class="quarto-figure quarto-figure-center" alt="Data science cycle: Import, tidy, transform, visualize, model, communicate."></p>
-</figure>
-</div>
-</div></div>
-<div class="fragment">
-<div class="demo">
-<p>“Is it REALLY all about beer and trucks and girls and blue jeans? Are all the lyrics REALLY the same?”</p>
-<p>— <a href="https://www.youtube.com/watch?v=48ZxNFGJTo8">Grady Smith</a>, country music critic</p>
-</div>
-</div>
-</section><section id="where-the-data-comes-from" class="slide level2 smaller"><h2>Where the data comes from</h2>
-<div class="columns">
-<div class="column fragment">
-<p>Grady Smith kept a spreadsheet of <strong>every country song that reached the Top 30 of Billboard’s Country Airplay chart</strong>:</p>
-<p><i class="fa-solid fa-music fa-6x" title="Music note icon" aria-label="music"></i></p>
-</div><div class="column fragment">
-<p>Someone tidied it up and put it in a CSV (comma-separated values) file:</p>
-<p><i class="fa-solid fa-file-csv fa-6x" title="CSV file icon" aria-label="file-csv"></i></p>
-</div><div class="column fragment">
-<p>We want to explore the data that is in that file!</p>
-<p><i class="fa-solid fa-magnifying-glass-chart fa-6x" title="Chart magnifying glass icon" aria-label="magnifying-glass-chart"></i></p>
-</div></div>
-</section><section id="import-1" class="slide level2"><h2>Import</h2>
-
-<img data-src="images/01/data-science-cycle-import.png" class="quarto-figure quarto-figure-center r-stretch" alt="Data science cycle: Import, tidy, transform, visualize, model, communicate. Import is highlighted."></section><section id="load-some-packages-1" class="slide level2"><h2>Load some packages</h2>
-<p>More on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling and visualization</span></span>
-<span id="cb26-2"><a></a><span class="fu">library</span>(scales) <span class="co"># for better axis labels</span></span>
-<span id="cb26-3"><a></a><span class="fu">library</span>(tidytext) <span class="co"># for handling text data</span></span>
-<span id="cb26-4"><a></a><span class="fu">library</span>(taylor) <span class="co"># for a surprise!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="import-the-data-1" class="slide level2"><h2>Import the data</h2>
-<p>Import the data called <code>country-lyrics.csv</code> in the folder called <code>data</code> using the <code>read_csv()</code> function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>country <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/country-lyrics.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="take-a-peek-at-the-data-1" class="slide level2 smaller"><h2>Take a peek at the data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 484 × 8
    song     artist featuring entered_top_30_in lyrics writers producer
@@ -796,88 +356,50 @@ experience
 # ℹ 1 more variable: rough_order &lt;dbl&gt;</code></pre>
 </div>
 </div>
-</section><section id="participate-1" class="slide level2"><h2>Participate 💻📱</h2>
-<div class="columns">
-<div class="column">
-<p><img data-src="images/wooclap-qr.png"></p>
-</div><div class="column">
-<p>Scan the QR code or go to <a href="https://app.wooclap.com/sta199">app.wooclap.com/sta199</a>.</p>
-<p>Log in with your Duke NetID.</p>
-</div></div>
-</section><section id="take-a-peek-participate-2" class="slide level2 xsmall"><h2>Take a peek + Participate 💻📱</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 484 × 8
-   song     artist featuring entered_top_30_in lyrics writers producer
-   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   
- 1 Wake Up… Craig… &lt;NA&gt;                   2013 My fr… Josh O… Craig M…
- 2 Young L… Kip M… &lt;NA&gt;                   2013 Your … Kip Mo… Brett J…
- 3 Beat of… Brett… &lt;NA&gt;                   2013 Well … Brett … Brett E…
- 4 The Hea… Danie… &lt;NA&gt;                   2013 She h… Brett … Brett J…
- 5 Everyth… Thomp… &lt;NA&gt;                   2013 My mo… Keifer… RIch Re…
- 6 Goodnig… Randy… &lt;NA&gt;                   2013 Girl … Rob Ha… Derek G…
- 7 Cold Be… Josh … &lt;NA&gt;                   2013 I hea… Brent … Mark Wr…
- 8 19 You … Dan +… &lt;NA&gt;                   2013 It wa… Dan Sm… Dan Smy…
- 9 Helluva… Frank… &lt;NA&gt;                   2013 Satur… Rodney… Marshal…
-10 Chillin… Cole … &lt;NA&gt;                   2013 I got… Cole S… Jody St…
-# ℹ 474 more rows
-# ℹ 1 more variable: rough_order &lt;dbl&gt;</code></pre>
-</div>
-</div>
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
-</figure>
-</div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://app.wooclap.com/sta199">app.wooclap.com/sta199</a>. Log in with your Duke NetID.</p>
-</div>
-</div></div>
 </section><section id="when-did-these-songs-chart" class="slide level2"><h2>When did these songs chart?</h2>
 <p>Every song in this dataset broke into the Top 30 in some year. One way to make sense of a variable like this is to visualize it.</p>
 
-<img data-src="images/01/data-science-cycle-visualize.png" class="quarto-figure quarto-figure-center r-stretch" alt="Data science cycle: Import, tidy, transform, visualize, model, communicate. Visualize is highlighted."></section><section id="visualize-4" class="slide level2"><h2>Visualize</h2>
+<img data-src="images/01/data-science-cycle-visualize.png" class="quarto-figure quarto-figure-center r-stretch" alt="Data science cycle: Import, tidy, transform, visualize, model, communicate. Visualize is highlighted."></section><section id="visualize" class="slide level2"><h2>Visualize</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a></a>  <span class="fu">count</span>(entered_top_30_in) <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb31-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(entered_top_30_in), <span class="at">y =</span> prop)) <span class="sc">+</span></span>
-<span id="cb31-5"><a></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> brand<span class="sc">$</span>all_aboard) <span class="sc">+</span></span>
-<span id="cb31-6"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb31-7"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb31-8"><a></a>    <span class="at">title =</span> <span class="st">"When did these songs break into the Top 30?"</span>,</span>
-<span id="cb31-9"><a></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb31-10"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb31-11"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
-<span id="cb31-12"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb31-13"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">count</span>(entered_top_30_in) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> entered_top_30_in, <span class="at">y =</span> prop, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb5-7"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-8"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2013</span>, <span class="dv">2019</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-9"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-10"><a></a>    <span class="at">title =</span> <span class="st">"When did these songs break into the Top 30?"</span>,</span>
+<span id="cb5-11"><a></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-12"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-13"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
+<span id="cb5-14"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb5-15"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <img data-src="01-hello-world_files/figure-revealjs/cl-year-1.png" width="960" class="r-stretch"></section><section id="who-is-on-country-radio" class="slide level2 smaller"><h2>Who is on country radio?</h2>
 <p>There are 484 songs in the data, but only 121 different artists. Let’s look at the 15 with the most Top 30 hits.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a></a>  <span class="fu">count</span>(artist, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb32-3"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb32-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(artist, n), <span class="at">x =</span> n, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
-<span id="cb32-5"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb32-6"><a></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> brand<span class="sc">$</span>neptune_green, <span class="at">high =</span> brand<span class="sc">$</span>poseidon) <span class="sc">+</span></span>
-<span id="cb32-7"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb32-8"><a></a>    <span class="at">title =</span> <span class="st">"Who had the most Top 30 country hits?"</span>,</span>
-<span id="cb32-9"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb32-10"><a></a>    <span class="at">x =</span> <span class="st">"Number of songs"</span>,</span>
-<span id="cb32-11"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
-<span id="cb32-12"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb32-13"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">count</span>(artist, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(artist, n), <span class="at">x =</span> n, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-7"><a></a>    <span class="at">title =</span> <span class="st">"Who had the most Top 30 country hits?"</span>,</span>
+<span id="cb6-8"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-9"><a></a>    <span class="at">x =</span> <span class="st">"Number of songs"</span>,</span>
+<span id="cb6-10"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
+<span id="cb6-11"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb6-12"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <img data-src="01-hello-world_files/figure-revealjs/cl-artist-1.png" width="960" class="r-stretch"></section><section id="who-writes-country-songs" class="slide level2 smaller"><h2>Who <em>writes</em> country songs?</h2>
 <p>Songs are usually written by more than one person, so the <code>writers</code> variable holds a whole list in a single cell:</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a></a>  <span class="fu">select</span>(song, writers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">select</span>(song, writers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 484 × 2
    song                                     writers                   
@@ -895,15 +417,15 @@ experience
 # ℹ 474 more rows</code></pre>
 </div>
 </div>
-</section><section id="tidy-transform-2" class="slide level2"><h2>Tidy + Transform</h2>
+</section><section id="tidy-transform" class="slide level2"><h2>Tidy + Transform</h2>
 <p>Before we can visualize this variable, we need to tidy and transform it.</p>
 
-<img data-src="images/01/data-science-cycle-tidy-transform.png" class="quarto-figure quarto-figure-center r-stretch" alt="Data science cycle: Import, tidy, transform, visualize, model, communicate. Tidy and transform are highlighted."></section><section id="tidy-transform-3" class="slide level2 smaller"><h2>Tidy + Transform</h2>
+<img data-src="images/01/data-science-cycle-tidy-transform.png" class="quarto-figure quarto-figure-center r-stretch" alt="Data science cycle: Import, tidy, transform, visualize, model, communicate. Tidy and transform are highlighted."></section><section id="tidy-transform-1" class="slide level2 smaller"><h2>Tidy + Transform</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a></a>  <span class="co"># separate into multiple rows for each writer, using comma as delimiter</span></span>
-<span id="cb35-3"><a></a>  <span class="fu">separate_longer_delim</span>(writers, <span class="at">delim =</span> <span class="st">", "</span>) <span class="sc">|&gt;</span></span>
-<span id="cb35-4"><a></a>  <span class="fu">count</span>(writers, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a></a>  <span class="co"># separate into multiple rows for each writer, using comma as delimiter</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">separate_longer_delim</span>(writers, <span class="at">delim =</span> <span class="st">", "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">count</span>(writers, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 517 × 2
    writers             n
@@ -921,22 +443,22 @@ experience
 # ℹ 507 more rows</code></pre>
 </div>
 </div>
-</section><section id="visualize-5" class="slide level2 smaller"><h2>Visualize</h2>
+</section><section id="visualize-1" class="slide level2 smaller"><h2>Visualize</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a></a>  <span class="fu">separate_longer_delim</span>(writers, <span class="at">delim =</span> <span class="st">", "</span>) <span class="sc">|&gt;</span></span>
-<span id="cb37-3"><a></a>  <span class="fu">count</span>(writers, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb37-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb37-5"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(writers, n), <span class="at">x =</span> n, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
-<span id="cb37-6"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb37-7"><a></a>  <span class="fu">scale_fill_taylor_c</span>(<span class="at">album =</span> <span class="st">"Speak Now"</span>) <span class="sc">+</span></span>
-<span id="cb37-8"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb37-9"><a></a>    <span class="at">title =</span> <span class="st">"Is country radio run by a small circle of hitmakers?"</span>,</span>
-<span id="cb37-10"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb37-11"><a></a>    <span class="at">x =</span> <span class="st">"Number of songs written"</span>,</span>
-<span id="cb37-12"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
-<span id="cb37-13"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb37-14"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">separate_longer_delim</span>(writers, <span class="at">delim =</span> <span class="st">", "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">count</span>(writers, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(writers, n), <span class="at">x =</span> n, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
+<span id="cb11-6"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a></a>  <span class="fu">scale_fill_taylor_c</span>(<span class="at">album =</span> <span class="st">"Speak Now"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-9"><a></a>    <span class="at">title =</span> <span class="st">"Is country radio run by a small circle of hitmakers?"</span>,</span>
+<span id="cb11-10"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-11"><a></a>    <span class="at">x =</span> <span class="st">"Number of songs written"</span>,</span>
+<span id="cb11-12"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
+<span id="cb11-13"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb11-14"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <img data-src="01-hello-world_files/figure-revealjs/cl-writers-plot-1.png" width="960" class="r-stretch"></section><section id="what-do-country-songs-sing-about" class="slide level2"><h2>What do country songs sing about?</h2>
@@ -945,15 +467,15 @@ experience
 <p>“My friends call me up ’cause they know I’m down / Take me out to paint the town and help me get over it…”</p>
 </div>
 <p>We can use text mining techniques, like <em>tokenizing</em> to words, to explore it.</p>
-</section><section id="tidy-transform-summarize-2" class="slide level2 smaller"><h2>Tidy + Transform + Summarize</h2>
+</section><section id="tidy-transform-summarize" class="slide level2 smaller"><h2>Tidy + Transform + Summarize</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb38-3"><a></a>  <span class="fu">unnest_tokens</span>(word, lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb38-4"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb38-5"><a></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb38-6"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb38-7"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">unnest_tokens</span>(word, lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 2
    word        n
@@ -978,12 +500,12 @@ experience
 </section><section id="tokenize-to-bigrams" class="slide level2 smaller"><h2>Tokenize to bigrams</h2>
 <p>We can also tokenize to <em>bigrams</em> (pairs of words):</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a></a>  <span class="fu">unnest_tokens</span>(bigram, lyrics, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb40-4"><a></a>  <span class="fu">count</span>(bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb40-5"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">8</span>) <span class="sc">|&gt;</span></span>
-<span id="cb40-6"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">unnest_tokens</span>(bigram, lyrics, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">count</span>(bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">8</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 2
   bigram       n
@@ -1004,15 +526,15 @@ experience
 </section><section id="drop-the-stop-words" class="slide level2 smaller"><h2>Drop the stop words</h2>
 <p>Let’s split each bigram in two and throw away the pairs built from common words:</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb42-3"><a></a>  <span class="fu">unnest_tokens</span>(bigram, lyrics, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb42-4"><a></a>  <span class="fu">separate_wider_delim</span>(bigram, <span class="at">delim =</span> <span class="st">" "</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"word1"</span>, <span class="st">"word2"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb42-5"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(word1 <span class="sc">==</span> word)) <span class="sc">|&gt;</span></span>
-<span id="cb42-6"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(word2 <span class="sc">==</span> word)) <span class="sc">|&gt;</span></span>
-<span id="cb42-7"><a></a>  <span class="fu">count</span>(word1, word2, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb42-8"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
-<span id="cb42-9"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a></a>  <span class="fu">unnest_tokens</span>(bigram, lyrics, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">separate_wider_delim</span>(bigram, <span class="at">delim =</span> <span class="st">" "</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"word1"</span>, <span class="st">"word2"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(word1 <span class="sc">==</span> word)) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(word2 <span class="sc">==</span> word)) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a></a>  <span class="fu">count</span>(word1, word2, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-9"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 3
    word1      word2       n
@@ -1039,54 +561,74 @@ experience
 20 yeah       baby       25</code></pre>
 </div>
 </div>
-</section><section id="can-ai-help-1" class="slide level2 smaller"><h2>Can AI help?</h2>
+</section><section id="can-ai-help" class="slide level2 smaller"><h2>Can AI help?</h2>
 <p>We could also ask a large language model to read every song and tell us what it’s about:</p>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb44-2"><a></a></span>
-<span id="cb44-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>()</span>
-<span id="cb44-4"><a></a></span>
-<span id="cb44-5"><a></a>prompts <span class="ot">&lt;-</span> country <span class="sc">|&gt;</span></span>
-<span id="cb44-6"><a></a>  <span class="fu">pull</span>(lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb44-7"><a></a>  <span class="fu">as.list</span>()</span>
-<span id="cb44-8"><a></a></span>
-<span id="cb44-9"><a></a>type_song <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb44-10"><a></a>  <span class="at">theme =</span> <span class="fu">type_string</span>(),</span>
-<span id="cb44-11"><a></a>  <span class="at">mentions_alcohol =</span> <span class="fu">type_boolean</span>()</span>
-<span id="cb44-12"><a></a>)</span>
-<span id="cb44-13"><a></a></span>
-<span id="cb44-14"><a></a>song_themes <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
-<span id="cb44-15"><a></a>  chat,</span>
-<span id="cb44-16"><a></a>  prompts,</span>
-<span id="cb44-17"><a></a>  <span class="at">type =</span> type_song</span>
-<span id="cb44-18"><a></a>)</span>
-<span id="cb44-19"><a></a>song_themes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell" data-freeze="true">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(ellmer)</span>
+<span id="cb18-2"><a></a></span>
+<span id="cb18-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>Using model = "gpt-4.1".</code></pre>
 </div>
-<!-- mtk: run the chunk above with your own API key and paste the real output
-     into a plain code block here, the way the survey version of this slide
-     does. Left unevaluated so the deck renders without an API key. -->
-</section><section id="can-it-be-trusted-100-1" class="slide level2 smaller"><h2>Can it be trusted 100%?</h2>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>prompts <span class="ot">&lt;-</span> country <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">pull</span>(lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a></a>  <span class="fu">as.list</span>()</span>
+<span id="cb20-4"><a></a></span>
+<span id="cb20-5"><a></a>type_song <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
+<span id="cb20-6"><a></a>  <span class="at">theme =</span> <span class="fu">type_string</span>(),</span>
+<span id="cb20-7"><a></a>  <span class="at">mentions_alcohol =</span> <span class="fu">type_boolean</span>()</span>
+<span id="cb20-8"><a></a>)</span>
+<span id="cb20-9"><a></a></span>
+<span id="cb20-10"><a></a>song_themes <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
+<span id="cb20-11"><a></a>  chat,</span>
+<span id="cb20-12"><a></a>  prompts,</span>
+<span id="cb20-13"><a></a>  <span class="at">type =</span> type_song</span>
+<span id="cb20-14"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>Warning: 473 requests did not complete.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: 11 requests errored.</code></pre>
+</div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>song_themes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 484 × 3
+   theme mentions_alcohol .error    
+   &lt;chr&gt; &lt;lgl&gt;            &lt;list&gt;    
+ 1 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+ 2 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+ 3 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+ 4 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+ 5 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+ 6 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+ 7 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+ 8 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+ 9 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+10 &lt;NA&gt;  NA               &lt;ht2__401&gt;
+# ℹ 474 more rows</code></pre>
+</div>
+</div>
+</section><section id="can-it-be-trusted-100" class="slide level2 smaller"><h2>Can it be trusted 100%?</h2>
 <p>Ask an AI (or a person!) what country songs are about and you’ll hear: <strong>beer, trucks, dirt roads, blue jeans, tractors</strong>.</p>
 <div class="fragment">
 <p>But we have the lyrics, so we can just <em>check</em>:</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb45-2"><a></a>  <span class="fu">mutate</span>(<span class="at">lyrics_lower =</span> <span class="fu">str_to_lower</span>(lyrics)) <span class="sc">|&gt;</span></span>
-<span id="cb45-3"><a></a>  <span class="fu">summarize</span>(</span>
-<span id="cb45-4"><a></a>    <span class="at">truck =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"truck"</span>)),</span>
-<span id="cb45-5"><a></a>    <span class="at">whiskey =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"whiskey"</span>)),</span>
-<span id="cb45-6"><a></a>    <span class="at">beer =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"beer"</span>)),</span>
-<span id="cb45-7"><a></a>    <span class="st">`</span><span class="at">dirt road</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"dirt road"</span>)),</span>
-<span id="cb45-8"><a></a>    <span class="st">`</span><span class="at">blue jeans</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"blue jeans"</span>)),</span>
-<span id="cb45-9"><a></a>    <span class="at">tractor =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"tractor"</span>))</span>
-<span id="cb45-10"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb45-11"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb45-12"><a></a>    <span class="fu">everything</span>(),</span>
-<span id="cb45-13"><a></a>    <span class="at">names_to =</span> <span class="st">"stereotype"</span>,</span>
-<span id="cb45-14"><a></a>    <span class="at">values_to =</span> <span class="st">"prop"</span></span>
-<span id="cb45-15"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb45-16"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a></a>  <span class="fu">mutate</span>(<span class="at">lyrics_lower =</span> <span class="fu">str_to_lower</span>(lyrics)) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a></a>  <span class="fu">summarize</span>(</span>
+<span id="cb25-4"><a></a>    <span class="at">truck =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"truck"</span>)),</span>
+<span id="cb25-5"><a></a>    <span class="at">whiskey =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"whiskey"</span>)),</span>
+<span id="cb25-6"><a></a>    <span class="at">beer =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"beer"</span>)),</span>
+<span id="cb25-7"><a></a>    <span class="st">`</span><span class="at">dirt road</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"dirt road"</span>)),</span>
+<span id="cb25-8"><a></a>    <span class="st">`</span><span class="at">blue jeans</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"blue jeans"</span>)),</span>
+<span id="cb25-9"><a></a>    <span class="at">tractor =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"tractor"</span>))</span>
+<span id="cb25-10"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb25-11"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb25-12"><a></a>    <span class="fu">everything</span>(),</span>
+<span id="cb25-13"><a></a>    <span class="at">names_to =</span> <span class="st">"stereotype"</span>,</span>
+<span id="cb25-14"><a></a>    <span class="at">values_to =</span> <span class="st">"prop"</span></span>
+<span id="cb25-15"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb25-16"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   stereotype   prop
@@ -1127,13 +669,13 @@ experience
 <p><a href="https://sta199-f26.github.io/" class="uri">https://sta199-f26.github.io</a></p>
 <ul>
 <li>All course materials</li>
-<li>Links to Canvas, GitHub, RStudio containers, etc.</li>
+<li>Links to Canvas, GitHub, Positron containers, etc.</li>
 </ul></section><section id="course-toolkit" class="slide level2"><h2>Course toolkit</h2>
 <p>All linked from the course website:</p>
 <ul>
 <li>GitHub organization: <a href="https://github.com/sta199-f26">github.com/sta199-f26</a>
 </li>
-<li>RStudio containers: <a href="https://cmgr.oit.duke.edu/containers">cmgr.oit.duke.edu/containers</a>
+<li>Positron containers: <a href="https://cmgr.oit.duke.edu/containers">cmgr.oit.duke.edu/containers</a>
 </li>
 <li>Communication: Ed Discussion</li>
 <li>Assignment submission and feedback: Gradescope</li>
@@ -1277,15 +819,8 @@ experience
 </tbody>
 </table>
 <p>See course syllabus for how the final letter grade will be determined.</p>
-</section><section id="participate-2" class="slide level2"><h2>Participate 💻📱</h2>
-<div class="columns">
-<div class="column">
-<p><img data-src="images/wooclap-qr.png"></p>
-</div><div class="column">
-<p>Scan the QR code or go to <a href="https://app.wooclap.com/sta199">app.wooclap.com/sta199</a>.</p>
-<p>Log in with your Duke NetID.</p>
-</div></div>
-<p>Course overview + policies</p>
+</section></section><section><section id="course-overview-policies" class="title-slide slide level1 center"><h1>Course overview + policies</h1>
+
 </section><section id="tips-for-success" class="slide level2"><h2>Tips for success</h2>
 <ul>
 <li>Prepare: Watch videos and read before class</li>
@@ -1301,7 +836,6 @@ experience
 <li>Ask and answer questions on the discussion forum</li>
 </ul>
 </li>
-<li>Help from AI: Use the course chatbot (in Canvas!)</li>
 <li>Reserve email for questions on personal matters and/or grades</li>
 <li>Read the course support page</li>
 </ul></section><section id="announcements" class="slide level2"><h2>Announcements</h2>
@@ -1324,28 +858,22 @@ experience
 <ul>
 <li>We have policies!</li>
 <li>Read about them on the <a href="https://sta199-f25.github.io/course-syllabus.html">course syllabus</a> and refer back to them when you need it</li>
-</ul></section><section id="participate-3" class="slide level2 smaller"><h2>Participate 💻📱</h2>
+</ul></section><section id="participate-1" class="slide level2 smaller"><h2>Participate 💻📱</h2>
 <div class="columns">
 <div class="column">
 <p><img data-src="images/wooclap-qr.png"></p>
 </div><div class="column">
-<p>Scan the QR code or go to <a href="https://app.wooclap.com/sta199">app.wooclap.com/sta199</a>.</p>
+<p>Scan the QR code or go to <a href="https://app.wooclap.com/OQPLQEK">app.wooclap.com/OQPLQEK</a>.</p>
 <p>Log in with your Duke NetID.</p>
 </div></div>
 </section><section id="use-of-ai-tools" class="slide level2 smaller"><h2>Use of AI tools</h2>
 <ul>
-<li>
-<p><i class="fa-solid fa-check" aria-label="check"></i> <strong>AI tools for code:</strong></p>
-<ul>
-<li>Check your work after you’ve done it yourself, to polish and improve, not to do it for you from scratch.</li>
-<li>Be careful/critical! Working code <code>!=</code> correct/good code.</li>
-<li>
-<strong>Must explicitly cite</strong>, with at a minimum AI tool you’re using (e.g., ChatGPT) and your prompt. More guidance to be provided with assignments.</li>
-</ul>
-</li>
-<li><p><i class="fa-solid fa-ban" aria-label="ban"></i> <strong>AI tools for narrative:</strong> Absolutely not!</p></li>
-<li><p><i class="fa-solid fa-check" aria-label="check"></i> <strong>AI tools for learning:</strong> Sure, but be careful/critical!</p></li>
-</ul></section><section id="academic-integrity" class="slide level2"><h2>Academic integrity</h2>
+<li><p>AI tools are not a replacement for understanding the material, but they can help you learn it.</p></li>
+<li><p>Reading code and writing code are skills that take time and practice to develop - both are essential.</p></li>
+<li><p>The nature of these tools is changing rapidly - autocomplete vs chatbots vs agentic tools</p></li>
+</ul></section><section id="centaurs-vs.-reverse-centaurs" class="slide level2"><h2>Centaurs vs.&nbsp;reverse centaurs</h2>
+
+<img data-src="images/01/centaurs.png" alt="A centaur (horse body, human head) and a reverse centaur (horse head, human body)." class="r-stretch quarto-figure-center"><p class="caption">Image source: Hill Cantons, for more details see Cory Doctorow’s commentary <a href="https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/">Reverse Centaurs in Locus Magazine</a>.</p></section><section id="academic-integrity" class="slide level2"><h2>Academic integrity</h2>
 <blockquote>
 <p>To uphold the Duke Community Standard:</p>
 <ul>
