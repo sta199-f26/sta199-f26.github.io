@@ -170,15 +170,15 @@ library(taylor) # for a surprise!
 Import the data called `country-lyrics.csv` in the folder called `data` using the `read_csv()` function:
 
 ```{r}
-#| label: cl-read-shown
-#| eval: false
-country <- read_csv("data/country-lyrics.csv")
-```
-
-```{r}
 #| label: cl-read-real
 #| include: false
 country <- read_csv(here::here("slides", "data/country-lyrics.csv"))
+```
+
+```{r}
+#| label: cl-read-show
+#| eval: false
+country <- read_csv("data/country-lyrics.csv")
 ```
 
 ```{r}
