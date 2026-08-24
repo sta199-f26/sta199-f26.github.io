@@ -104,8 +104,14 @@ details summary {
 }
 
 /* Schedule "Materials" column icons (see index.qmd).
-   One slide-deck icon per lecture: gray outline while unposted,
-   filled brand color + link once slides are posted. */
+   One icon per linked document (slides, notes): gray outline while
+   unposted, filled brand color + link once the material is posted. */
+.materials-links {
+  display: inline-flex;
+  gap: 0.4em;
+  justify-content: center;
+}
+
 .materials-icon-empty {
   color: #c6c6c6;
   font-size: 1.2em;

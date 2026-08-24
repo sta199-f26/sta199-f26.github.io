@@ -56,27 +56,59 @@ d_prepared <- d |>
     ),
     #added the other & statements so that deadlines don't have "To be posted" language
     #readings = if_else(date > prepare_cutoff_date, "*To be posted*", readings) #added the other & statements so that deadlines don't have "To be posted" language
-    # Materials column: one materials icon per lecture (file-lines) and lab
-    # (file-code). Gray outline icon while unposted; filled + linked once a
-    # URL is added to the sheet.
+    # Materials column: one icon per linked document in the sheet's materials
+    # cell, which holds <br>-separated markdown links (e.g. "[slides 01](...)
+    # <br> [notes 01](...)"). "slides" links get a slide-deck icon, "notes"
+    # links a document icon. Gray outline icons while unposted; filled +
+    # linked once URLs are added to the sheet.
     materials = case_when(
       # In-class exams get no materials icon (review sessions keep theirs).
       str_detect(topic, "Exam.*In-class") ~ NA_character_,
-      session == "Lec" & !is.na(materials) ~ paste0(
-        '<a href="',
-        materials,
-        '" title="Lecture slides" aria-label="Lecture slides">',
-        '<i class="fa-solid fa-file-lines materials-icon" aria-hidden="true"></i></a>'
-      ),
+      !is.na(materials) ~ map_chr(materials, function(cell) {
+        if (is.na(cell)) {
+          return(cell)
+        }
+        icons <- str_split_1(cell, "<br>") |>
+          map_chr(function(entry) {
+            entry <- str_trim(entry)
+            label <- str_match(entry, "\\[([^]]*)\\]")[, 2]
+            url <- str_match(entry, "\\(([^)]*)\\)")[, 2]
+            # anything that isn't a markdown link passes through unchanged
+            if (entry == "" || is.na(url)) {
+              return(entry)
+            }
+            icon <- case_when(
+              str_detect(label, regex("slides", ignore_case = TRUE)) ~
+                "fa-file-powerpoint",
+              str_detect(label, regex("notes", ignore_case = TRUE)) ~
+                "fa-file-lines",
+              TRUE ~ "fa-file-code"
+            )
+            title <- if_else(is.na(label), "Materials", str_to_sentence(label))
+            paste0(
+              '<a href="',
+              url,
+              '" title="',
+              title,
+              '" aria-label="',
+              title,
+              '">',
+              '<i class="fa-solid ',
+              icon,
+              ' materials-icon" aria-hidden="true"></i></a>'
+            )
+          }) |>
+          keep(~ .x != "") |>
+          str_c(collapse = "")
+        paste0('<span class="materials-links">', icons, '</span>')
+      }),
       session == "Lec" ~ paste0(
+        '<span class="materials-links">',
+        '<i class="fa-regular fa-file-powerpoint materials-icon-empty" ',
+        'title="Slides to be posted" aria-hidden="true"></i>',
         '<i class="fa-regular fa-file-lines materials-icon-empty" ',
-        'title="Slides to be posted" aria-hidden="true"></i>'
-      ),
-      session == "Lab" & !is.na(materials) ~ paste0(
-        '<a href="',
-        materials,
-        '" title="Lab materials" aria-label="Lab materials">',
-        '<i class="fa-solid fa-file-code materials-icon" aria-hidden="true"></i></a>'
+        'title="Notes to be posted" aria-hidden="true"></i>',
+        '</span>'
       ),
       session == "Lab" ~ paste0(
         '<i class="fa-regular fa-file-code materials-icon-empty" ',
@@ -236,8 +268,8 @@ d_prepared |>
   cols_width(
     week ~ pct(2),
     date ~ pct(9),
-    topic ~ pct(25),
-    materials ~ pct(4),
+    topic ~ pct(24),
+    materials ~ pct(5),
     readings ~ pct(15),
     videos ~ pct(20),
     due ~ pct(15)
