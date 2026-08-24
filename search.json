@@ -196,6 +196,902 @@
     ]
   },
   {
+    "objectID": "slides/01-hello-world-slides.html#meet-the-prof",
+    "href": "slides/01-hello-world-slides.html#meet-the-prof",
+    "title": "Hello, World!",
+    "section": "Meet the prof",
+    "text": "Meet the prof\n\n\nDr. Mine Çetinkaya-Rundel\nProfessor of the Practice\nDirector of First-Year Experience in Trinity College of Arts & Sciences\nAssociate Director of Undergraduate Studies, Statistical Science\nOffice: Old Chem 211C\n\nOffice hours:\n\n3:30-5 pm on Wednesdays at my office\nAlways available after class\nAlso available by appointment"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#meet-the-course-team",
+    "href": "slides/01-hello-world-slides.html#meet-the-course-team",
+    "title": "Hello, World!",
+    "section": "Meet the course team",
+    "text": "Meet the course team\n\n\n\nMary Knox (Course coordinator)\nJosh Lim (PhD) (Head TA)\nHelen Chen (PhD)\nCael Elmore (PhD)\nRobbie Hao (MS)\nCarl Emerson (MS)\nJuan Pablo Lopez Escamilla (MS)\nKenna Roberts (MS)\nYasmine Abdel-Rahman (UG)\n\n\n\nTally Coulter (UG)\nOliver Gao (UG)\nHellen Han (UG)\nHyunjin Lee (UG)\nAnric Ngan (UG)\nChelsea Nguyen (UG)\nMax Niu (UG)\nSophie Schwartz (UG)\nAllison Yang (UG)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#meet-each-other",
+    "href": "slides/01-hello-world-slides.html#meet-each-other",
+    "title": "Hello, World!",
+    "section": "Meet each other!",
+    "text": "Meet each other!\n\nPlease share with at least two classmates…\n\nYour name\nYour year\nWhere you’re from\nWhat you did this past summer\nWhat you hope to get out of this course\n\n\n\n  \n    −\n    +\n \n 04:00"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#meet-data-science",
+    "href": "slides/01-hello-world-slides.html#meet-data-science",
+    "title": "Hello, World!",
+    "section": "Meet data science",
+    "text": "Meet data science\n\nData science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nWe’re going to learn to do this in a modern and tidy way – more on that later!\nThis is a course on introduction to data science, with an emphasis on statistical thinking."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#lets-do-some-data-science",
+    "href": "slides/01-hello-world-slides.html#lets-do-some-data-science",
+    "title": "Hello, World!",
+    "section": "Let’s do some data science!",
+    "text": "Let’s do some data science!\n\n\n\nYesterday we collected some data from you!\nToday we’re going to explore that data together, following the data science cycle.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nThe data is anonymized and randomized and contains only a subset of the data collected. The rows have been shuffled for each column independently, meaning that no row belongs to a single student in the course. Additionally, any identifying information has been removed. Please do not try to de-anonymize or re-identify any individuals in the dataset."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#beginning-the-data-science-cycle",
+    "href": "slides/01-hello-world-slides.html#beginning-the-data-science-cycle",
+    "title": "Hello, World!",
+    "section": "Beginning the data science cycle",
+    "text": "Beginning the data science cycle\n\n\nYou took a survey:\n\n\n\n\n\nCanvas stored your data in a CSV (comma-separated values) file:\n\n\nWe want to explore the data that is in that file!"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#import",
+    "href": "slides/01-hello-world-slides.html#import",
+    "title": "Hello, World!",
+    "section": "Import",
+    "text": "Import"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#load-some-packages",
+    "href": "slides/01-hello-world-slides.html#load-some-packages",
+    "title": "Hello, World!",
+    "section": "Load some packages",
+    "text": "Load some packages\nMore on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:\n\nlibrary(tidyverse) # for data wrangling and visualization\nlibrary(scales) # for better axis labels\nlibrary(tidytext) # for handling text data\nlibrary(taylor) # for a surprise!"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#import-the-data",
+    "href": "slides/01-hello-world-slides.html#import-the-data",
+    "title": "Hello, World!",
+    "section": "Import the data",
+    "text": "Import the data\nImport the data called survey-anonymized.csv in the folder called data using the read_csv() function:\n\nsurvey &lt;- read_csv(\"data/survey-anonymized.csv\")"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#take-a-peek-at-the-data",
+    "href": "slides/01-hello-world-slides.html#take-a-peek-at-the-data",
+    "title": "Hello, World!",
+    "section": "Take a peek at the data",
+    "text": "Take a peek at the data\n\nsurvey\n\n# A tibble: 230 × 5\n   stats_experience       programming_experience programming_languages\n   &lt;chr&gt;                  &lt;chr&gt;                  &lt;chr&gt;                \n 1 Yes, I have taken a h… A little — I’ve writt… \"Java, Python, Yaml,…\n 2 No, I have not taken … None                    &lt;NA&gt;                \n 3 Yes, I have taken a h… A little — I’ve writt…  &lt;NA&gt;                \n 4 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 5 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 6 No, I have not taken … A little — I’ve writt…  &lt;NA&gt;                \n 7 Yes, I have taken a h… None                   \"Python and java\"    \n 8 No, I have not taken … None                    &lt;NA&gt;                \n 9 Yes, I have taken a h… None                   \"Python- a little bi…\n10 Yes, I have taken a h… None                    &lt;NA&gt;                \n# ℹ 220 more rows\n# ℹ 2 more variables: learn_best &lt;chr&gt;, data_interests &lt;chr&gt;"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#participate",
+    "href": "slides/01-hello-world-slides.html#participate",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199.\nLog in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#take-a-peek-participate",
+    "href": "slides/01-hello-world-slides.html#take-a-peek-participate",
+    "title": "Hello, World!",
+    "section": "Take a peek + Participate 💻📱",
+    "text": "Take a peek + Participate 💻📱\n\n\n\n\n# A tibble: 230 × 5\n   stats_experience       programming_experience programming_languages\n   &lt;chr&gt;                  &lt;chr&gt;                  &lt;chr&gt;                \n 1 Yes, I have taken a h… A little — I’ve writt… \"Java, Python, Yaml,…\n 2 No, I have not taken … None                    &lt;NA&gt;                \n 3 Yes, I have taken a h… A little — I’ve writt…  &lt;NA&gt;                \n 4 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 5 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 6 No, I have not taken … A little — I’ve writt…  &lt;NA&gt;                \n 7 Yes, I have taken a h… None                   \"Python and java\"    \n 8 No, I have not taken … None                    &lt;NA&gt;                \n 9 Yes, I have taken a h… None                   \"Python- a little bi…\n10 Yes, I have taken a h… None                    &lt;NA&gt;                \n# ℹ 220 more rows\n# ℹ 2 more variables: learn_best &lt;chr&gt;, data_interests &lt;chr&gt;\n\n\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199. Log in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#statistics-experience",
+    "href": "slides/01-hello-world-slides.html#statistics-experience",
+    "title": "Hello, World!",
+    "section": "Statistics experience",
+    "text": "Statistics experience\nWe asked you the following multiple-choice question where you could only pick one option:\n\nHave you taken any statistics courses before?\n\nYes, I have taken another college course on statistics\nYes, I have taken a high school statistics course\nNo, I have not taken any statistics courses"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#visualize",
+    "href": "slides/01-hello-world-slides.html#visualize",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\nOne way to make sense of data collected via a question like this is to visualize it."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#visualize-1",
+    "href": "slides/01-hello-world-slides.html#visualize-1",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodesurvey |&gt;\n  count(stats_experience) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(y = stats_experience, x = prop)) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(20)) +\n  scale_x_continuous(\n    labels = percent_format(accuracy = 1),\n    breaks = c(0, 0.25, 0.5)\n  ) +\n  labs(\n    title = \"Prior statistics experience among STA 199 students\",\n    y = NULL,\n    x = \"Count\"\n  ) +\n  labs(\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  )"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#programming-experience",
+    "href": "slides/01-hello-world-slides.html#programming-experience",
+    "title": "Hello, World!",
+    "section": "Programming experience",
+    "text": "Programming experience\nWe also asked you the following multiple-choice question where you could only pick one option:\n\nHow much experience do you have with programming?\n\nNone\nA little — I’ve written a few lines or done small exercises\nSome — I’ve worked on a few projects or used it occasionally\nA lot — I use programming regularly and feel confident writing code"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#visualize-2",
+    "href": "slides/01-hello-world-slides.html#visualize-2",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodesurvey |&gt;\n  count(programming_experience) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(\n    y = fct_reorder(programming_experience, prop),\n    x = prop,\n    fill = prop\n  )) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(25)) +\n  scale_x_continuous(\n    labels = percent_format(accuracy = 1),\n    breaks = c(0, 0.1, 0.2, 0.3, 0.4)\n  ) +\n  scale_fill_viridis_c(option = \"E\") +\n  labs(\n    title = \"Prior programming experience among STA 199 students\",\n    y = NULL,\n    x = \"Count\"\n  ) +\n  labs(\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#learn-best",
+    "href": "slides/01-hello-world-slides.html#learn-best",
+    "title": "Hello, World!",
+    "section": "Learn best",
+    "text": "Learn best\nWe also asked you the following multiple-choice question where you could as many options as you liked:\n\nWhat types of data interest you?\n\nCrime\nEconomics\nEducation\nEntertainment (e.g., books, movies, music)\nEnvironment/Climate\nHealth (e.g., social determinants of health, medical)\nPolitics\nSports\nOther\nNo preference"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#peek-at-the-data",
+    "href": "slides/01-hello-world-slides.html#peek-at-the-data",
+    "title": "Hello, World!",
+    "section": "Peek at the data",
+    "text": "Peek at the data\n\nCodesurvey |&gt;\n  select(data_interests)\n\n# A tibble: 230 × 1\n   data_interests                                                     \n   &lt;chr&gt;                                                              \n 1 \"Economics,Politics\"                                               \n 2 \"Health (e.g.\\\\, social determinants of health\\\\, medical),Politic…\n 3 \"Crime,Economics,Education,Environment/Climate,Politics,No prefere…\n 4 \"Crime,Education,Politics,Sports\"                                  \n 5 \"Crime,Education,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),…\n 6 \"Crime,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Health (e.…\n 7 \"Health (e.g.\\\\, social determinants of health\\\\, medical)\"        \n 8 \"Education,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Health…\n 9 \"Economics,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Enviro…\n10 \"Economics,Environment/Climate,Sports\"                             \n# ℹ 220 more rows"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform",
+    "href": "slides/01-hello-world-slides.html#tidy-transform",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform",
+    "text": "Tidy + Transform\nBefore we can visualize this variable, we need to tidy and transform it."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform-1",
+    "href": "slides/01-hello-world-slides.html#tidy-transform-1",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform",
+    "text": "Tidy + Transform\n\nCodesurvey |&gt;\n  # remove text in parentheses\n  mutate(data_interests = str_remove_all(data_interests, \"\\\\s*\\\\(.*?\\\\)\")) |&gt;\n  # separate into multiple rows for each interest, using comma as delimiter\n  separate_longer_delim(data_interests, delim = \",\") |&gt;\n  count(data_interests, sort = TRUE) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 11 × 3\n   data_interests          n    prop\n   &lt;chr&gt;               &lt;int&gt;   &lt;dbl&gt;\n 1 Health                142 0.169  \n 2 Sports                111 0.132  \n 3 Politics              110 0.131  \n 4 Entertainment         107 0.128  \n 5 Crime                  97 0.116  \n 6 Economics              93 0.111  \n 7 Education              86 0.103  \n 8 Environment/Climate    76 0.0906 \n 9 Other                  12 0.0143 \n10 No preference           3 0.00358\n11 &lt;NA&gt;                    2 0.00238"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#visualize-3",
+    "href": "slides/01-hello-world-slides.html#visualize-3",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodesurvey |&gt;\n  mutate(data_interests = str_remove_all(data_interests, \"\\\\s*\\\\(.*?\\\\)\")) |&gt;\n  separate_longer_delim(data_interests, delim = \",\") |&gt;\n  count(data_interests, sort = TRUE) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  filter(!is.na(data_interests)) |&gt;\n  ggplot(aes(y = fct_reorder(data_interests, prop), x = prop, fill = prop)) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(20)) +\n  scale_x_continuous(labels = percent_format(accuracy = 1)) +\n  scale_fill_taylor_c(album = \"Speak Now\") +\n  labs(\n    title = \"Data interests among STA 199 students\",\n    y = NULL,\n    x = \"Count\",\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#learn-best-1",
+    "href": "slides/01-hello-world-slides.html#learn-best-1",
+    "title": "Hello, World!",
+    "section": "Learn best",
+    "text": "Learn best\nWe also asked you the following open-ended question:\n\nHow do you learn best?"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform-summarize",
+    "href": "slides/01-hello-world-slides.html#tidy-transform-summarize",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform + Summarize",
+    "text": "Tidy + Transform + Summarize\nWe can use text mining techniques, like tokenizing to words to explore this open-ended question:\n\nCodesurvey |&gt;\n  select(learn_best) |&gt;\n  unnest_tokens(word, learn_best) |&gt;\n  anti_join(stop_words, by = \"word\") |&gt;\n  count(word, sort = TRUE) |&gt;\n  filter(n &gt; 15) |&gt;\n  print(n = Inf)\n\n# A tibble: 12 × 2\n   word          n\n   &lt;chr&gt;     &lt;int&gt;\n 1 learn        89\n 2 practice     66\n 3 visual       28\n 4 step         27\n 5 learning     26\n 6 hands        24\n 7 class        22\n 8 questions    21\n 9 examples     19\n10 lecture      17\n11 lectures     17\n12 learner      16"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform-summarize-1",
+    "href": "slides/01-hello-world-slides.html#tidy-transform-summarize-1",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform + Summarize",
+    "text": "Tidy + Transform + Summarize\nWe can also tokenize to bigrams (pairs of words):\n\nCodesurvey |&gt;\n  select(learn_best) |&gt;\n  tidytext::unnest_tokens(bigrams, learn_best, token = \"ngrams\", n = 2) |&gt;\n  count(bigrams, sort = TRUE) |&gt;\n  filter(n &gt; 10) |&gt;\n  print(n = Inf)\n\n# A tibble: 20 × 2\n   bigrams               n\n   &lt;chr&gt;             &lt;int&gt;\n 1 i learn              73\n 2 learn best           68\n 3 practice problems    28\n 4 hands on             24\n 5 best by              21\n 6 best through         19\n 7 i also               16\n 8 i am                 16\n 9 and then             15\n10 in class             14\n11 when i               14\n12 by step              13\n13 i can                13\n14 step by              13\n15 &lt;NA&gt;                 13\n16 problems and         12\n17 a lot                11\n18 a visual             11\n19 on my                11\n20 visual learner       11"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#programming-language-comfort",
+    "href": "slides/01-hello-world-slides.html#programming-language-comfort",
+    "title": "Hello, World!",
+    "section": "Programming language comfort",
+    "text": "Programming language comfort\nWe also asked you the following open-ended question:\n\nIf you’ve programmed before, which languages have you used, and how comfortable do you feel with each? If you haven’t programmed before, please leave this question blank."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#take-a-peek-participate-1",
+    "href": "slides/01-hello-world-slides.html#take-a-peek-participate-1",
+    "title": "Hello, World!",
+    "section": "Take a peek + Participate 💻📱",
+    "text": "Take a peek + Participate 💻📱\n\n\nAnd the answers are non-trivial to tidy up, e.g.,\n- Python - I've used it very little.\n- I have not programmed before. \n- Java - very comfortable. Python - pretty comfortable. C/C++ - not super comfortable, haven't used since high school.\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199. Log in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#can-ai-help",
+    "href": "slides/01-hello-world-slides.html#can-ai-help",
+    "title": "Hello, World!",
+    "section": "Can AI help?",
+    "text": "Can AI help?\n\nCodelibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nprompts &lt;- survey |&gt;\n  filter(!is.na(programming_languages)) |&gt;\n  pull(programming_languages) |&gt;\n  list()\n\ntype_language &lt;- type_object(\n  language = type_string(),\n  experience = type_string()\n)\n\nlanguage_experience &lt;- parallel_chat_structured(\n  chat,\n  prompts,\n  type = type_language\n)\nlanguage_experience\n\n\nlanguage\n1 Python, Java, R, C/C++, JavaScript, HTML/CSS, SQL, C#, VBA, MATLAB, Rust, Assembly, Swift, Stata, Bash, Typescript, Web3 Suite (HTML, CSS, JS), Nextflow, SAS, PsycoPy, Mathematica, React, Vue, Yaml, CourseKata, Flutter, Scratch\n\nexperience\n1 Most students report a range of programming experience, from never having programmed before to being very comfortable in languages such as Python, Java, and R. Many took introductory courses (e.g., CS101, AP CS A) and are comfortable with basic programming constructs. Proficiency is generally highest in Python and Java, though some only have a little experience with languages like R, C/C++, and JavaScript. Quite a few have only used programming languages for specific classes or research projects and may not feel confident after a long break. Some students have experience with more niche or specialized tools such as MATLAB, SAS, and web technologies (HTML, CSS, JavaScript/JS frameworks). Many express a need for a refresher if not used recently. In summary, while a core group is comfortable with at least one language, especially Python or Java, many others have only basic to moderate experience and express the desire to gain more proficiency."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#can-it-be-trusted-100",
+    "href": "slides/01-hello-world-slides.html#can-it-be-trusted-100",
+    "title": "Hello, World!",
+    "section": "Can it be trusted 100%?",
+    "text": "Can it be trusted 100%?\nMathematica is a software system used for mathematics.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"Mathematica\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 1 × 1\n  programming_languages                                           \n  &lt;chr&gt;                                                           \n1 Most familiar to least: Java, Mathematica, Python, Matlab, React\n\n\n\nNextflow extends the Unix pipes model with a DSL.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"Nextflow\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 0 × 1\n# ℹ 1 variable: programming_languages &lt;chr&gt;\n\n\n\n\nPsycoPy is a desktop application for in-lab studies.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"PsycoPy\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 0 × 1\n# ℹ 1 variable: programming_languages &lt;chr&gt;"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#lets-do-some-data-science-1",
+    "href": "slides/01-hello-world-slides.html#lets-do-some-data-science-1",
+    "title": "Hello, World!",
+    "section": "Let’s do some data science!",
+    "text": "Let’s do some data science!\n\n\n\nToday we’re going to explore some data together, following the data science cycle.\nOur question: are the stereotypes about country music actually true?\n\n\n\n\n\n\n\n\n\n“Is it REALLY all about beer and trucks and girls and blue jeans? Are all the lyrics REALLY the same?”\n— Grady Smith, country music critic"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#where-the-data-comes-from",
+    "href": "slides/01-hello-world-slides.html#where-the-data-comes-from",
+    "title": "Hello, World!",
+    "section": "Where the data comes from",
+    "text": "Where the data comes from\n\n\nGrady Smith kept a spreadsheet of every country song that reached the Top 30 of Billboard’s Country Airplay chart:\n\n\nSomeone tidied it up and put it in a CSV (comma-separated values) file:\n\n\nWe want to explore the data that is in that file!"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#import-1",
+    "href": "slides/01-hello-world-slides.html#import-1",
+    "title": "Hello, World!",
+    "section": "Import",
+    "text": "Import"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#load-some-packages-1",
+    "href": "slides/01-hello-world-slides.html#load-some-packages-1",
+    "title": "Hello, World!",
+    "section": "Load some packages",
+    "text": "Load some packages\nMore on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:\n\nlibrary(tidyverse) # for data wrangling and visualization\nlibrary(scales) # for better axis labels\nlibrary(tidytext) # for handling text data\nlibrary(taylor) # for a surprise!"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#import-the-data-1",
+    "href": "slides/01-hello-world-slides.html#import-the-data-1",
+    "title": "Hello, World!",
+    "section": "Import the data",
+    "text": "Import the data\nImport the data called country-lyrics.csv in the folder called data using the read_csv() function:\n\ncountry &lt;- read_csv(\"data/country-lyrics.csv\")"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#take-a-peek-at-the-data-1",
+    "href": "slides/01-hello-world-slides.html#take-a-peek-at-the-data-1",
+    "title": "Hello, World!",
+    "section": "Take a peek at the data",
+    "text": "Take a peek at the data\n\ncountry\n\n# A tibble: 484 × 8\n   song     artist featuring entered_top_30_in lyrics writers producer\n   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   \n 1 Wake Up… Craig… &lt;NA&gt;                   2013 My fr… Josh O… Craig M…\n 2 Young L… Kip M… &lt;NA&gt;                   2013 Your … Kip Mo… Brett J…\n 3 Beat of… Brett… &lt;NA&gt;                   2013 Well … Brett … Brett E…\n 4 The Hea… Danie… &lt;NA&gt;                   2013 She h… Brett … Brett J…\n 5 Everyth… Thomp… &lt;NA&gt;                   2013 My mo… Keifer… RIch Re…\n 6 Goodnig… Randy… &lt;NA&gt;                   2013 Girl … Rob Ha… Derek G…\n 7 Cold Be… Josh … &lt;NA&gt;                   2013 I hea… Brent … Mark Wr…\n 8 19 You … Dan +… &lt;NA&gt;                   2013 It wa… Dan Sm… Dan Smy…\n 9 Helluva… Frank… &lt;NA&gt;                   2013 Satur… Rodney… Marshal…\n10 Chillin… Cole … &lt;NA&gt;                   2013 I got… Cole S… Jody St…\n# ℹ 474 more rows\n# ℹ 1 more variable: rough_order &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#participate-1",
+    "href": "slides/01-hello-world-slides.html#participate-1",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199.\nLog in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#take-a-peek-participate-2",
+    "href": "slides/01-hello-world-slides.html#take-a-peek-participate-2",
+    "title": "Hello, World!",
+    "section": "Take a peek + Participate 💻📱",
+    "text": "Take a peek + Participate 💻📱\n\n\n\n\n# A tibble: 484 × 8\n   song     artist featuring entered_top_30_in lyrics writers producer\n   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   \n 1 Wake Up… Craig… &lt;NA&gt;                   2013 My fr… Josh O… Craig M…\n 2 Young L… Kip M… &lt;NA&gt;                   2013 Your … Kip Mo… Brett J…\n 3 Beat of… Brett… &lt;NA&gt;                   2013 Well … Brett … Brett E…\n 4 The Hea… Danie… &lt;NA&gt;                   2013 She h… Brett … Brett J…\n 5 Everyth… Thomp… &lt;NA&gt;                   2013 My mo… Keifer… RIch Re…\n 6 Goodnig… Randy… &lt;NA&gt;                   2013 Girl … Rob Ha… Derek G…\n 7 Cold Be… Josh … &lt;NA&gt;                   2013 I hea… Brent … Mark Wr…\n 8 19 You … Dan +… &lt;NA&gt;                   2013 It wa… Dan Sm… Dan Smy…\n 9 Helluva… Frank… &lt;NA&gt;                   2013 Satur… Rodney… Marshal…\n10 Chillin… Cole … &lt;NA&gt;                   2013 I got… Cole S… Jody St…\n# ℹ 474 more rows\n# ℹ 1 more variable: rough_order &lt;dbl&gt;\n\n\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199. Log in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#when-did-these-songs-chart",
+    "href": "slides/01-hello-world-slides.html#when-did-these-songs-chart",
+    "title": "Hello, World!",
+    "section": "When did these songs chart?",
+    "text": "When did these songs chart?\nEvery song in this dataset broke into the Top 30 in some year. One way to make sense of a variable like this is to visualize it."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#visualize-4",
+    "href": "slides/01-hello-world-slides.html#visualize-4",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodecountry |&gt;\n  count(entered_top_30_in) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(x = factor(entered_top_30_in), y = prop)) +\n  geom_col(fill = brand$all_aboard) +\n  scale_y_continuous(labels = percent_format(accuracy = 1)) +\n  labs(\n    title = \"When did these songs break into the Top 30?\",\n    x = NULL,\n    y = NULL,\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#who-is-on-country-radio",
+    "href": "slides/01-hello-world-slides.html#who-is-on-country-radio",
+    "title": "Hello, World!",
+    "section": "Who is on country radio?",
+    "text": "Who is on country radio?\nThere are 484 songs in the data, but only 121 different artists. Let’s look at the 15 with the most Top 30 hits.\n\nCodecountry |&gt;\n  count(artist, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  ggplot(aes(y = fct_reorder(artist, n), x = n, fill = n)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_gradient(low = brand$neptune_green, high = brand$poseidon) +\n  labs(\n    title = \"Who had the most Top 30 country hits?\",\n    y = NULL,\n    x = \"Number of songs\",\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#who-writes-country-songs",
+    "href": "slides/01-hello-world-slides.html#who-writes-country-songs",
+    "title": "Hello, World!",
+    "section": "Who writes country songs?",
+    "text": "Who writes country songs?\nSongs are usually written by more than one person, so the writers variable holds a whole list in a single cell:\n\nCodecountry |&gt;\n  select(song, writers)\n\n# A tibble: 484 × 2\n   song                                     writers                   \n   &lt;chr&gt;                                    &lt;chr&gt;                     \n 1 Wake Up Lovin You                        Josh Osborne, Matthew Ram…\n 2 Young Love                               Kip Moore, Dan Couch, Wes…\n 3 Beat of the Music                        Brett Eldredge, Ross Copp…\n 4 The Heart of Dixie                       Brett James, Caitlyn Smit…\n 5 Everything I Shouldn't Be Thinking About Keifer Thompson, Shawna T…\n 6 Goodnight Kiss                           Rob Hatch, Jason Sellers,…\n 7 Cold Beer With Your Name On It           Brent Anderson, Clint Dan…\n 8 19 You + Me                              Dan Smyers, Shay Mooney, …\n 9 Helluva Life                             Rodney Clawson, Chris Tom…\n10 Chillin' It                              Cole Swindell, Shane Minor\n# ℹ 474 more rows"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform-2",
+    "href": "slides/01-hello-world-slides.html#tidy-transform-2",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform",
+    "text": "Tidy + Transform\nBefore we can visualize this variable, we need to tidy and transform it."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform-3",
+    "href": "slides/01-hello-world-slides.html#tidy-transform-3",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform",
+    "text": "Tidy + Transform\n\nCodecountry |&gt;\n  # separate into multiple rows for each writer, using comma as delimiter\n  separate_longer_delim(writers, delim = \", \") |&gt;\n  count(writers, sort = TRUE)\n\n# A tibble: 517 × 2\n   writers             n\n   &lt;chr&gt;           &lt;int&gt;\n 1 Ashley Gorley      44\n 2 Shane McAnally     36\n 3 Ross Copperman     32\n 4 Josh Osborne       29\n 5 Rhett Akins        23\n 6 Hillary Lindsey    18\n 7 Jesse Frasure      18\n 8 Jon Nite           17\n 9 Zach Crowell       16\n10 Luke Laird         14\n# ℹ 507 more rows"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#visualize-5",
+    "href": "slides/01-hello-world-slides.html#visualize-5",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodecountry |&gt;\n  separate_longer_delim(writers, delim = \", \") |&gt;\n  count(writers, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  ggplot(aes(y = fct_reorder(writers, n), x = n, fill = n)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_taylor_c(album = \"Speak Now\") +\n  labs(\n    title = \"Is country radio run by a small circle of hitmakers?\",\n    y = NULL,\n    x = \"Number of songs written\",\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#what-do-country-songs-sing-about",
+    "href": "slides/01-hello-world-slides.html#what-do-country-songs-sing-about",
+    "title": "Hello, World!",
+    "section": "What do country songs sing about?",
+    "text": "What do country songs sing about?\nThe lyrics variable contains the entire text of each song:\n\n“My friends call me up ’cause they know I’m down / Take me out to paint the town and help me get over it…”\n\nWe can use text mining techniques, like tokenizing to words, to explore it."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform-summarize-2",
+    "href": "slides/01-hello-world-slides.html#tidy-transform-summarize-2",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform + Summarize",
+    "text": "Tidy + Transform + Summarize\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(word, lyrics) |&gt;\n  anti_join(stop_words, by = \"word\") |&gt;\n  count(word, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  print(n = Inf)\n\n# A tibble: 15 × 2\n   word        n\n   &lt;chr&gt;   &lt;int&gt;\n 1 yeah      996\n 2 girl      781\n 3 baby      749\n 4 love      743\n 5 wanna     632\n 6 gonna     611\n 7 time      502\n 8 night     454\n 9 tonight   332\n10 heart     293\n11 home      272\n12 kiss      263\n13 world     261\n14 gotta     256\n15 eyes      240"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tokenize-to-bigrams",
+    "href": "slides/01-hello-world-slides.html#tokenize-to-bigrams",
+    "title": "Hello, World!",
+    "section": "Tokenize to bigrams",
+    "text": "Tokenize to bigrams\nWe can also tokenize to bigrams (pairs of words):\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(bigram, lyrics, token = \"ngrams\", n = 2) |&gt;\n  count(bigram, sort = TRUE) |&gt;\n  slice_head(n = 8) |&gt;\n  print(n = Inf)\n\n# A tibble: 8 × 2\n  bigram       n\n  &lt;chr&gt;    &lt;int&gt;\n1 in the     692\n2 a little   513\n3 on the     413\n4 and i      381\n5 i know     282\n6 i don't    276\n7 i can      254\n8 in a       249\n\n\n\nHmm. Not very informative – these are all common words!"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#drop-the-stop-words",
+    "href": "slides/01-hello-world-slides.html#drop-the-stop-words",
+    "title": "Hello, World!",
+    "section": "Drop the stop words",
+    "text": "Drop the stop words\nLet’s split each bigram in two and throw away the pairs built from common words:\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(bigram, lyrics, token = \"ngrams\", n = 2) |&gt;\n  separate_wider_delim(bigram, delim = \" \", names = c(\"word1\", \"word2\")) |&gt;\n  anti_join(stop_words, by = join_by(word1 == word)) |&gt;\n  anti_join(stop_words, by = join_by(word2 == word)) |&gt;\n  count(word1, word2, sort = TRUE) |&gt;\n  slice_head(n = 20) |&gt;\n  print(n = Inf)\n\n# A tibble: 20 × 3\n   word1      word2       n\n   &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt;\n 1 yeah       yeah       93\n 2 boo        boo        81\n 3 ooh        ooh        81\n 4 friday     night      71\n 5 hey        hey        45\n 6 tonight    tonight    44\n 7 home       home       36\n 8 yeah       boy        33\n 9 saturday   night      32\n10 somebody's gotta      32\n11 cold       beer       31\n12 dance      floor      31\n13 gonna      love       31\n14 country    song       30\n15 la         la         28\n16 wanna      kiss       28\n17 whoa       whoa       28\n18 da         da         27\n19 honky      tonk       26\n20 yeah       baby       25"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#can-ai-help-1",
+    "href": "slides/01-hello-world-slides.html#can-ai-help-1",
+    "title": "Hello, World!",
+    "section": "Can AI help?",
+    "text": "Can AI help?\nWe could also ask a large language model to read every song and tell us what it’s about:\n\nCodelibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nprompts &lt;- country |&gt;\n  pull(lyrics) |&gt;\n  as.list()\n\ntype_song &lt;- type_object(\n  theme = type_string(),\n  mentions_alcohol = type_boolean()\n)\n\nsong_themes &lt;- parallel_chat_structured(\n  chat,\n  prompts,\n  type = type_song\n)\nsong_themes"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#can-it-be-trusted-100-1",
+    "href": "slides/01-hello-world-slides.html#can-it-be-trusted-100-1",
+    "title": "Hello, World!",
+    "section": "Can it be trusted 100%?",
+    "text": "Can it be trusted 100%?\nAsk an AI (or a person!) what country songs are about and you’ll hear: beer, trucks, dirt roads, blue jeans, tractors.\n\nBut we have the lyrics, so we can just check:\n\nCodecountry |&gt;\n  mutate(lyrics_lower = str_to_lower(lyrics)) |&gt;\n  summarize(\n    truck = mean(str_detect(lyrics_lower, \"truck\")),\n    whiskey = mean(str_detect(lyrics_lower, \"whiskey\")),\n    beer = mean(str_detect(lyrics_lower, \"beer\")),\n    `dirt road` = mean(str_detect(lyrics_lower, \"dirt road\")),\n    `blue jeans` = mean(str_detect(lyrics_lower, \"blue jeans\")),\n    tractor = mean(str_detect(lyrics_lower, \"tractor\"))\n  ) |&gt;\n  pivot_longer(\n    everything(),\n    names_to = \"stereotype\",\n    values_to = \"prop\"\n  ) |&gt;\n  arrange(desc(prop))\n\n# A tibble: 6 × 2\n  stereotype   prop\n  &lt;chr&gt;       &lt;dbl&gt;\n1 truck      0.120 \n2 whiskey    0.116 \n3 beer       0.0868\n4 dirt road  0.0227\n5 blue jeans 0.0227\n6 tractor    0.0103"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#communicate",
+    "href": "slides/01-hello-world-slides.html#communicate",
+    "title": "Hello, World!",
+    "section": "Communicate",
+    "text": "Communicate\n\nOnly about 12% of these songs mention a truck, and 1% mention a tractor.\nThe words that actually dominate are girl, baby, love, and night.\nThe stereotype is memorable, not frequent – and that difference is only visible once you look at the data.\n\n\n\n\n\n\n\n\nTip\n\n\nThis is what we mean by statistical thinking: a claim that “feels true” is a hypothesis, not a finding."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#homepage",
+    "href": "slides/01-hello-world-slides.html#homepage",
+    "title": "Hello, World!",
+    "section": "Homepage",
+    "text": "Homepage\nhttps://sta199-f26.github.io\n\nAll course materials\nLinks to Canvas, GitHub, RStudio containers, etc."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#course-toolkit",
+    "href": "slides/01-hello-world-slides.html#course-toolkit",
+    "title": "Hello, World!",
+    "section": "Course toolkit",
+    "text": "Course toolkit\nAll linked from the course website:\n\nGitHub organization: github.com/sta199-f26\n\nRStudio containers: cmgr.oit.duke.edu/containers\n\nCommunication: Ed Discussion\nAssignment submission and feedback: Gradescope"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#activities",
+    "href": "slides/01-hello-world-slides.html#activities",
+    "title": "Hello, World!",
+    "section": "Activities",
+    "text": "Activities\n\nIntroduce new content and prepare for lectures by watching the videos and completing the readings\nAttend and actively participate in lectures (and answer questions for participation credit) and labs, office hours, team meetings\nPractice applying statistical concepts and computing with application exercises during lecture\nPut together what you’ve learned to analyze real-world data\n\nLab assignments\nHomework assignments\nExams\nTerm project completed in teams"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#attendance-and-participation",
+    "href": "slides/01-hello-world-slides.html#attendance-and-participation",
+    "title": "Hello, World!",
+    "section": "Attendance and participation",
+    "text": "Attendance and participation\n\nDaily in lecture\nTracked for credit, but not based on correctness, only participation (and often they will be questions designed to make you think that might not have a single right answer!)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#application-exercises",
+    "href": "slides/01-hello-world-slides.html#application-exercises",
+    "title": "Hello, World!",
+    "section": "Application exercises",
+    "text": "Application exercises\n\nDaily-ish in lecture\nNot graded, but tracked for feedback on workflow"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#labs",
+    "href": "slides/01-hello-world-slides.html#labs",
+    "title": "Hello, World!",
+    "section": "Labs",
+    "text": "Labs\n\nHands-on practice with data analysis\nA sigle exercise per lab, graded based on being there and in something reasonable + correctness\nCompleted in-person, in lab, in teams\nTeams randomized each week until project teams assigned\nDeveloped collaboratively, but turned in individually by the end of the lab session\n8 throughout semester, two lowest scores dropped\nNo late work accepted"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#homework",
+    "href": "slides/01-hello-world-slides.html#homework",
+    "title": "Hello, World!",
+    "section": "Homework",
+    "text": "Homework\n\nHands-on practice with data analysis\nSome questions for practice with instant feedback by AI\n1-2 randomly sampled questions to be graded by humans for correctness\nCan consult with course team and peers, but completed and turned in individually by the end of the week\n7 throughout semester, lowest score dropped\nUp to 3 days late (-5% per day), no late work accepted after that\nOne-time late penalty waiver: Can be used on any homework assignment, no questions asked, must be requested from Dr. Knox before the deadline"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#exams",
+    "href": "slides/01-hello-world-slides.html#exams",
+    "title": "Hello, World!",
+    "section": "Exams",
+    "text": "Exams\n\nTwo exams + final\n\nAll exams comprised of two parts:\n\nMultiple choice questions\nShort answer questions, on homework specifics (read: difficult/impossible to answer correctly without having done the homework)\n\n\nOne sheet of notes for each exam, no larger than 8 1/2 x 11, both sides, must be prepared by you\nNo extensions or make-ups\n\n\n\n\n\n\n\nCaution\n\n\nExam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#project",
+    "href": "slides/01-hello-world-slides.html#project",
+    "title": "Hello, World!",
+    "section": "Project",
+    "text": "Project\n\nDataset of your choice, method of your choice\nTeamwork\nSeven milestones, interim deadlines throughout semester\nFinal milestone: Presentation in lab and write-up\nMust be in lab, in-person to present\nPeer review between teams for content, peer evaluation within teams for contribution\nSome lab sessions allocated to project progress\n\n\n\n\n\n\n\nCaution\n\n\nProject presentation date cannot be changed. You must complete the project to pass this class."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#teams",
+    "href": "slides/01-hello-world-slides.html#teams",
+    "title": "Hello, World!",
+    "section": "Teams",
+    "text": "Teams\n\nRandomized at first for weekly labs\nThen selected by you or assigned by me if you don’t express a preference for project and remaining labs\n\nExpectations and roles\n\nEveryone is expected to contribute equal effort\n\nEveryone is expected to understand all code turned in\nIndividual contribution evaluated by peer evaluation, commits, etc.\n\n\nFor the project: Peer evaluation during teamwork and after completion"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#grading",
+    "href": "slides/01-hello-world-slides.html#grading",
+    "title": "Hello, World!",
+    "section": "Grading",
+    "text": "Grading\n\n\nCategory\nPercentage\n\n\n\nLectures (attendance + participation)\n5%\n\n\nHW\n5%\n\n\nLabs\n10%\n\n\nProject\n15%\n\n\nExam 1\n20%\n\n\nExam 2\n20%\n\n\nFinal\n25%\n\n\n\nSee course syllabus for how the final letter grade will be determined."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#participate-2",
+    "href": "slides/01-hello-world-slides.html#participate-2",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199.\nLog in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tasks-due-wednesday",
+    "href": "slides/01-hello-world-slides.html#tasks-due-wednesday",
+    "title": "Hello, World!",
+    "section": "Tasks due Wednesday",
+    "text": "Tasks due Wednesday\n\nComplete the getting to know you survey, then accept your GitHub organization invitation\nRead the syllabus\nComplete readings and videos for Wednesday"
+  },
+  {
+    "objectID": "slides/01-hello-world.html",
+    "href": "slides/01-hello-world.html",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Dr. Mine Çetinkaya-Rundel\nProfessor of the Practice\nDirector of First-Year Experience in Trinity College of Arts & Sciences\nAssociate Director of Undergraduate Studies, Statistical Science\nOffice: Old Chem 211C\n\nOffice hours:\n\n3:30-5 pm on Wednesdays at my office\nAlways available after class\nAlso available by appointment\n\n\n\n\n\n\n\nMary Knox (Course coordinator)\nJosh Lim (PhD) (Head TA)\nHelen Chen (PhD)\nCael Elmore (PhD)\nRobbie Hao (MS)\nCarl Emerson (MS)\nJuan Pablo Lopez Escamilla (MS)\nKenna Roberts (MS)\nYasmine Abdel-Rahman (UG)\n\n\n\nTally Coulter (UG)\nOliver Gao (UG)\nHellen Han (UG)\nHyunjin Lee (UG)\nAnric Ngan (UG)\nChelsea Nguyen (UG)\nMax Niu (UG)\nSophie Schwartz (UG)\nAllison Yang (UG)\n\n\n\n\n\nPlease share with at least two classmates…\n\nYour name\nYour year\nWhere you’re from\nWhat you did this past summer\nWhat you hope to get out of this course\n\n\n\n\n\nData science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nWe’re going to learn to do this in a modern and tidy way – more on that later!\nThis is a course on introduction to data science, with an emphasis on statistical thinking.\n\n\n\n\n\n\nYesterday we collected some data from you!\nToday we’re going to explore that data together, following the data science cycle.\n\n\n\n\n\n\n\n\n. . .\n\n\n\n\n\n\nWarning\n\n\n\nThe data is anonymized and randomized and contains only a subset of the data collected. The rows have been shuffled for each column independently, meaning that no row belongs to a single student in the course. Additionally, any identifying information has been removed. Please do not try to de-anonymize or re-identify any individuals in the dataset.\n\n\n\n\n\nYou took a survey:\n\n\n\n\n\n\nCanvas stored your data in a CSV (comma-separated values) file:\n\n\n\nWe want to explore the data that is in that file!\n\n\n\n\n\n\n\n\nMore on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:\n\nlibrary(tidyverse) # for data wrangling and visualization\nlibrary(scales) # for better axis labels\nlibrary(tidytext) # for handling text data\nlibrary(taylor) # for a surprise!\n\n\nImport the data called survey-anonymized.csv in the folder called data using the read_csv() function:\n\nsurvey &lt;- read_csv(\"data/survey-anonymized.csv\")\n\n\n\nsurvey\n\n# A tibble: 230 × 5\n   stats_experience       programming_experience programming_languages\n   &lt;chr&gt;                  &lt;chr&gt;                  &lt;chr&gt;                \n 1 Yes, I have taken a h… A little — I’ve writt… \"Java, Python, Yaml,…\n 2 No, I have not taken … None                    &lt;NA&gt;                \n 3 Yes, I have taken a h… A little — I’ve writt…  &lt;NA&gt;                \n 4 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 5 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 6 No, I have not taken … A little — I’ve writt…  &lt;NA&gt;                \n 7 Yes, I have taken a h… None                   \"Python and java\"    \n 8 No, I have not taken … None                    &lt;NA&gt;                \n 9 Yes, I have taken a h… None                   \"Python- a little bi…\n10 Yes, I have taken a h… None                    &lt;NA&gt;                \n# ℹ 220 more rows\n# ℹ 2 more variables: learn_best &lt;chr&gt;, data_interests &lt;chr&gt;\n\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199.\nLog in with your Duke NetID.\n\n\n\n\n\n\n\n# A tibble: 230 × 5\n   stats_experience       programming_experience programming_languages\n   &lt;chr&gt;                  &lt;chr&gt;                  &lt;chr&gt;                \n 1 Yes, I have taken a h… A little — I’ve writt… \"Java, Python, Yaml,…\n 2 No, I have not taken … None                    &lt;NA&gt;                \n 3 Yes, I have taken a h… A little — I’ve writt…  &lt;NA&gt;                \n 4 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 5 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 6 No, I have not taken … A little — I’ve writt…  &lt;NA&gt;                \n 7 Yes, I have taken a h… None                   \"Python and java\"    \n 8 No, I have not taken … None                    &lt;NA&gt;                \n 9 Yes, I have taken a h… None                   \"Python- a little bi…\n10 Yes, I have taken a h… None                    &lt;NA&gt;                \n# ℹ 220 more rows\n# ℹ 2 more variables: learn_best &lt;chr&gt;, data_interests &lt;chr&gt;\n\n\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199. Log in with your Duke NetID.\n\n\n\n\nWe asked you the following multiple-choice question where you could only pick one option:\n\nHave you taken any statistics courses before?\n\nYes, I have taken another college course on statistics\nYes, I have taken a high school statistics course\nNo, I have not taken any statistics courses\n\n\n\nOne way to make sense of data collected via a question like this is to visualize it.\n\n\n\n\n\n\nCodesurvey |&gt;\n  count(stats_experience) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(y = stats_experience, x = prop)) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(20)) +\n  scale_x_continuous(\n    labels = percent_format(accuracy = 1),\n    breaks = c(0, 0.25, 0.5)\n  ) +\n  labs(\n    title = \"Prior statistics experience among STA 199 students\",\n    y = NULL,\n    x = \"Count\"\n  ) +\n  labs(\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  )\n\n\n\n\n\n\n\n\nWe also asked you the following multiple-choice question where you could only pick one option:\n\nHow much experience do you have with programming?\n\nNone\nA little — I’ve written a few lines or done small exercises\nSome — I’ve worked on a few projects or used it occasionally\nA lot — I use programming regularly and feel confident writing code\n\n\n\n\nCodesurvey |&gt;\n  count(programming_experience) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(\n    y = fct_reorder(programming_experience, prop),\n    x = prop,\n    fill = prop\n  )) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(25)) +\n  scale_x_continuous(\n    labels = percent_format(accuracy = 1),\n    breaks = c(0, 0.1, 0.2, 0.3, 0.4)\n  ) +\n  scale_fill_viridis_c(option = \"E\") +\n  labs(\n    title = \"Prior programming experience among STA 199 students\",\n    y = NULL,\n    x = \"Count\"\n  ) +\n  labs(\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  ) +\n  theme_minimal(base_size = 16)\n\n\n\n\n\n\n\n\nWe also asked you the following multiple-choice question where you could as many options as you liked:\n\nWhat types of data interest you?\n\nCrime\nEconomics\nEducation\nEntertainment (e.g., books, movies, music)\nEnvironment/Climate\nHealth (e.g., social determinants of health, medical)\nPolitics\nSports\nOther\nNo preference\n\n\n\n\nCodesurvey |&gt;\n  select(data_interests)\n\n# A tibble: 230 × 1\n   data_interests                                                     \n   &lt;chr&gt;                                                              \n 1 \"Economics,Politics\"                                               \n 2 \"Health (e.g.\\\\, social determinants of health\\\\, medical),Politic…\n 3 \"Crime,Economics,Education,Environment/Climate,Politics,No prefere…\n 4 \"Crime,Education,Politics,Sports\"                                  \n 5 \"Crime,Education,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),…\n 6 \"Crime,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Health (e.…\n 7 \"Health (e.g.\\\\, social determinants of health\\\\, medical)\"        \n 8 \"Education,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Health…\n 9 \"Economics,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Enviro…\n10 \"Economics,Environment/Climate,Sports\"                             \n# ℹ 220 more rows\n\n\n\nBefore we can visualize this variable, we need to tidy and transform it.\n\n\n\n\n\n\nCodesurvey |&gt;\n  # remove text in parentheses\n  mutate(data_interests = str_remove_all(data_interests, \"\\\\s*\\\\(.*?\\\\)\")) |&gt;\n  # separate into multiple rows for each interest, using comma as delimiter\n  separate_longer_delim(data_interests, delim = \",\") |&gt;\n  count(data_interests, sort = TRUE) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 11 × 3\n   data_interests          n    prop\n   &lt;chr&gt;               &lt;int&gt;   &lt;dbl&gt;\n 1 Health                142 0.169  \n 2 Sports                111 0.132  \n 3 Politics              110 0.131  \n 4 Entertainment         107 0.128  \n 5 Crime                  97 0.116  \n 6 Economics              93 0.111  \n 7 Education              86 0.103  \n 8 Environment/Climate    76 0.0906 \n 9 Other                  12 0.0143 \n10 No preference           3 0.00358\n11 &lt;NA&gt;                    2 0.00238\n\n\n\n\nCodesurvey |&gt;\n  mutate(data_interests = str_remove_all(data_interests, \"\\\\s*\\\\(.*?\\\\)\")) |&gt;\n  separate_longer_delim(data_interests, delim = \",\") |&gt;\n  count(data_interests, sort = TRUE) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  filter(!is.na(data_interests)) |&gt;\n  ggplot(aes(y = fct_reorder(data_interests, prop), x = prop, fill = prop)) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(20)) +\n  scale_x_continuous(labels = percent_format(accuracy = 1)) +\n  scale_fill_taylor_c(album = \"Speak Now\") +\n  labs(\n    title = \"Data interests among STA 199 students\",\n    y = NULL,\n    x = \"Count\",\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  ) +\n  theme_minimal(base_size = 16)\n\n\n\n\n\n\n\n\nWe also asked you the following open-ended question:\n\nHow do you learn best?\n\n\nWe can use text mining techniques, like tokenizing to words to explore this open-ended question:\n\nCodesurvey |&gt;\n  select(learn_best) |&gt;\n  unnest_tokens(word, learn_best) |&gt;\n  anti_join(stop_words, by = \"word\") |&gt;\n  count(word, sort = TRUE) |&gt;\n  filter(n &gt; 15) |&gt;\n  print(n = Inf)\n\n# A tibble: 12 × 2\n   word          n\n   &lt;chr&gt;     &lt;int&gt;\n 1 learn        89\n 2 practice     66\n 3 visual       28\n 4 step         27\n 5 learning     26\n 6 hands        24\n 7 class        22\n 8 questions    21\n 9 examples     19\n10 lecture      17\n11 lectures     17\n12 learner      16\n\n\n\nWe can also tokenize to bigrams (pairs of words):\n\nCodesurvey |&gt;\n  select(learn_best) |&gt;\n  tidytext::unnest_tokens(bigrams, learn_best, token = \"ngrams\", n = 2) |&gt;\n  count(bigrams, sort = TRUE) |&gt;\n  filter(n &gt; 10) |&gt;\n  print(n = Inf)\n\n# A tibble: 20 × 2\n   bigrams               n\n   &lt;chr&gt;             &lt;int&gt;\n 1 i learn              73\n 2 learn best           68\n 3 practice problems    28\n 4 hands on             24\n 5 best by              21\n 6 best through         19\n 7 i also               16\n 8 i am                 16\n 9 and then             15\n10 in class             14\n11 when i               14\n12 by step              13\n13 i can                13\n14 step by              13\n15 &lt;NA&gt;                 13\n16 problems and         12\n17 a lot                11\n18 a visual             11\n19 on my                11\n20 visual learner       11\n\n\n\nWe also asked you the following open-ended question:\n\nIf you’ve programmed before, which languages have you used, and how comfortable do you feel with each? If you haven’t programmed before, please leave this question blank.\n\n\n\n\nAnd the answers are non-trivial to tidy up, e.g.,\n- Python - I've used it very little.\n- I have not programmed before. \n- Java - very comfortable. Python - pretty comfortable. C/C++ - not super comfortable, haven't used since high school.\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199. Log in with your Duke NetID.\n\n\n\n\n\nCodelibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nprompts &lt;- survey |&gt;\n  filter(!is.na(programming_languages)) |&gt;\n  pull(programming_languages) |&gt;\n  list()\n\ntype_language &lt;- type_object(\n  language = type_string(),\n  experience = type_string()\n)\n\nlanguage_experience &lt;- parallel_chat_structured(\n  chat,\n  prompts,\n  type = type_language\n)\nlanguage_experience\n\n\nlanguage\n1 Python, Java, R, C/C++, JavaScript, HTML/CSS, SQL, C#, VBA, MATLAB, Rust, Assembly, Swift, Stata, Bash, Typescript, Web3 Suite (HTML, CSS, JS), Nextflow, SAS, PsycoPy, Mathematica, React, Vue, Yaml, CourseKata, Flutter, Scratch\n\nexperience\n1 Most students report a range of programming experience, from never having programmed before to being very comfortable in languages such as Python, Java, and R. Many took introductory courses (e.g., CS101, AP CS A) and are comfortable with basic programming constructs. Proficiency is generally highest in Python and Java, though some only have a little experience with languages like R, C/C++, and JavaScript. Quite a few have only used programming languages for specific classes or research projects and may not feel confident after a long break. Some students have experience with more niche or specialized tools such as MATLAB, SAS, and web technologies (HTML, CSS, JavaScript/JS frameworks). Many express a need for a refresher if not used recently. In summary, while a core group is comfortable with at least one language, especially Python or Java, many others have only basic to moderate experience and express the desire to gain more proficiency.\n\nMathematica is a software system used for mathematics.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"Mathematica\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 1 × 1\n  programming_languages                                           \n  &lt;chr&gt;                                                           \n1 Most familiar to least: Java, Mathematica, Python, Matlab, React\n\n\n. . .\nNextflow extends the Unix pipes model with a DSL.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"Nextflow\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 0 × 1\n# ℹ 1 variable: programming_languages &lt;chr&gt;\n\n\n. . .\nPsycoPy is a desktop application for in-lab studies.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"PsycoPy\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 0 × 1\n# ℹ 1 variable: programming_languages &lt;chr&gt;"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#meet-the-prof",
+    "href": "slides/01-hello-world.html#meet-the-prof",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Dr. Mine Çetinkaya-Rundel\nProfessor of the Practice\nDirector of First-Year Experience in Trinity College of Arts & Sciences\nAssociate Director of Undergraduate Studies, Statistical Science\nOffice: Old Chem 211C\n\nOffice hours:\n\n3:30-5 pm on Wednesdays at my office\nAlways available after class\nAlso available by appointment"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#meet-the-course-team",
+    "href": "slides/01-hello-world.html#meet-the-course-team",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Mary Knox (Course coordinator)\nJosh Lim (PhD) (Head TA)\nHelen Chen (PhD)\nCael Elmore (PhD)\nRobbie Hao (MS)\nCarl Emerson (MS)\nJuan Pablo Lopez Escamilla (MS)\nKenna Roberts (MS)\nYasmine Abdel-Rahman (UG)\n\n\n\nTally Coulter (UG)\nOliver Gao (UG)\nHellen Han (UG)\nHyunjin Lee (UG)\nAnric Ngan (UG)\nChelsea Nguyen (UG)\nMax Niu (UG)\nSophie Schwartz (UG)\nAllison Yang (UG)"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#meet-each-other",
+    "href": "slides/01-hello-world.html#meet-each-other",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Please share with at least two classmates…\n\nYour name\nYour year\nWhere you’re from\nWhat you did this past summer\nWhat you hope to get out of this course"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#meet-data-science",
+    "href": "slides/01-hello-world.html#meet-data-science",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nWe’re going to learn to do this in a modern and tidy way – more on that later!\nThis is a course on introduction to data science, with an emphasis on statistical thinking."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#lets-do-some-data-science",
+    "href": "slides/01-hello-world.html#lets-do-some-data-science",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Yesterday we collected some data from you!\nToday we’re going to explore that data together, following the data science cycle.\n\n\n\n\n\n\n\n\n. . .\n\n\n\n\n\n\nWarning\n\n\n\nThe data is anonymized and randomized and contains only a subset of the data collected. The rows have been shuffled for each column independently, meaning that no row belongs to a single student in the course. Additionally, any identifying information has been removed. Please do not try to de-anonymize or re-identify any individuals in the dataset."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#beginning-the-data-science-cycle",
+    "href": "slides/01-hello-world.html#beginning-the-data-science-cycle",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "You took a survey:\n\n\n\n\n\n\nCanvas stored your data in a CSV (comma-separated values) file:\n\n\n\nWe want to explore the data that is in that file!"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#load-some-packages",
+    "href": "slides/01-hello-world.html#load-some-packages",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "More on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:\n\nlibrary(tidyverse) # for data wrangling and visualization\nlibrary(scales) # for better axis labels\nlibrary(tidytext) # for handling text data\nlibrary(taylor) # for a surprise!"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#import-the-data",
+    "href": "slides/01-hello-world.html#import-the-data",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Import the data called survey-anonymized.csv in the folder called data using the read_csv() function:\n\nsurvey &lt;- read_csv(\"data/survey-anonymized.csv\")"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#take-a-peek-at-the-data",
+    "href": "slides/01-hello-world.html#take-a-peek-at-the-data",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "survey\n\n# A tibble: 230 × 5\n   stats_experience       programming_experience programming_languages\n   &lt;chr&gt;                  &lt;chr&gt;                  &lt;chr&gt;                \n 1 Yes, I have taken a h… A little — I’ve writt… \"Java, Python, Yaml,…\n 2 No, I have not taken … None                    &lt;NA&gt;                \n 3 Yes, I have taken a h… A little — I’ve writt…  &lt;NA&gt;                \n 4 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 5 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 6 No, I have not taken … A little — I’ve writt…  &lt;NA&gt;                \n 7 Yes, I have taken a h… None                   \"Python and java\"    \n 8 No, I have not taken … None                    &lt;NA&gt;                \n 9 Yes, I have taken a h… None                   \"Python- a little bi…\n10 Yes, I have taken a h… None                    &lt;NA&gt;                \n# ℹ 220 more rows\n# ℹ 2 more variables: learn_best &lt;chr&gt;, data_interests &lt;chr&gt;"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#participate",
+    "href": "slides/01-hello-world.html#participate",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Scan the QR code or go to app.wooclap.com/sta199.\nLog in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#take-a-peek-participate",
+    "href": "slides/01-hello-world.html#take-a-peek-participate",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "# A tibble: 230 × 5\n   stats_experience       programming_experience programming_languages\n   &lt;chr&gt;                  &lt;chr&gt;                  &lt;chr&gt;                \n 1 Yes, I have taken a h… A little — I’ve writt… \"Java, Python, Yaml,…\n 2 No, I have not taken … None                    &lt;NA&gt;                \n 3 Yes, I have taken a h… A little — I’ve writt…  &lt;NA&gt;                \n 4 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 5 No, I have not taken … Some — I’ve worked on…  &lt;NA&gt;                \n 6 No, I have not taken … A little — I’ve writt…  &lt;NA&gt;                \n 7 Yes, I have taken a h… None                   \"Python and java\"    \n 8 No, I have not taken … None                    &lt;NA&gt;                \n 9 Yes, I have taken a h… None                   \"Python- a little bi…\n10 Yes, I have taken a h… None                    &lt;NA&gt;                \n# ℹ 220 more rows\n# ℹ 2 more variables: learn_best &lt;chr&gt;, data_interests &lt;chr&gt;\n\n\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199. Log in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#statistics-experience",
+    "href": "slides/01-hello-world.html#statistics-experience",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "We asked you the following multiple-choice question where you could only pick one option:\n\nHave you taken any statistics courses before?\n\nYes, I have taken another college course on statistics\nYes, I have taken a high school statistics course\nNo, I have not taken any statistics courses"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#visualize",
+    "href": "slides/01-hello-world.html#visualize",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "One way to make sense of data collected via a question like this is to visualize it."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#visualize-1",
+    "href": "slides/01-hello-world.html#visualize-1",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Codesurvey |&gt;\n  count(stats_experience) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(y = stats_experience, x = prop)) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(20)) +\n  scale_x_continuous(\n    labels = percent_format(accuracy = 1),\n    breaks = c(0, 0.25, 0.5)\n  ) +\n  labs(\n    title = \"Prior statistics experience among STA 199 students\",\n    y = NULL,\n    x = \"Count\"\n  ) +\n  labs(\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  )"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#programming-experience",
+    "href": "slides/01-hello-world.html#programming-experience",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "We also asked you the following multiple-choice question where you could only pick one option:\n\nHow much experience do you have with programming?\n\nNone\nA little — I’ve written a few lines or done small exercises\nSome — I’ve worked on a few projects or used it occasionally\nA lot — I use programming regularly and feel confident writing code"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#visualize-2",
+    "href": "slides/01-hello-world.html#visualize-2",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Codesurvey |&gt;\n  count(programming_experience) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(\n    y = fct_reorder(programming_experience, prop),\n    x = prop,\n    fill = prop\n  )) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(25)) +\n  scale_x_continuous(\n    labels = percent_format(accuracy = 1),\n    breaks = c(0, 0.1, 0.2, 0.3, 0.4)\n  ) +\n  scale_fill_viridis_c(option = \"E\") +\n  labs(\n    title = \"Prior programming experience among STA 199 students\",\n    y = NULL,\n    x = \"Count\"\n  ) +\n  labs(\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#learn-best",
+    "href": "slides/01-hello-world.html#learn-best",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "We also asked you the following multiple-choice question where you could as many options as you liked:\n\nWhat types of data interest you?\n\nCrime\nEconomics\nEducation\nEntertainment (e.g., books, movies, music)\nEnvironment/Climate\nHealth (e.g., social determinants of health, medical)\nPolitics\nSports\nOther\nNo preference"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#peek-at-the-data",
+    "href": "slides/01-hello-world.html#peek-at-the-data",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Codesurvey |&gt;\n  select(data_interests)\n\n# A tibble: 230 × 1\n   data_interests                                                     \n   &lt;chr&gt;                                                              \n 1 \"Economics,Politics\"                                               \n 2 \"Health (e.g.\\\\, social determinants of health\\\\, medical),Politic…\n 3 \"Crime,Economics,Education,Environment/Climate,Politics,No prefere…\n 4 \"Crime,Education,Politics,Sports\"                                  \n 5 \"Crime,Education,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),…\n 6 \"Crime,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Health (e.…\n 7 \"Health (e.g.\\\\, social determinants of health\\\\, medical)\"        \n 8 \"Education,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Health…\n 9 \"Economics,Entertainment (e.g.\\\\, books\\\\, movies\\\\, music),Enviro…\n10 \"Economics,Environment/Climate,Sports\"                             \n# ℹ 220 more rows"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tidy-transform",
+    "href": "slides/01-hello-world.html#tidy-transform",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Before we can visualize this variable, we need to tidy and transform it."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tidy-transform-1",
+    "href": "slides/01-hello-world.html#tidy-transform-1",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Codesurvey |&gt;\n  # remove text in parentheses\n  mutate(data_interests = str_remove_all(data_interests, \"\\\\s*\\\\(.*?\\\\)\")) |&gt;\n  # separate into multiple rows for each interest, using comma as delimiter\n  separate_longer_delim(data_interests, delim = \",\") |&gt;\n  count(data_interests, sort = TRUE) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 11 × 3\n   data_interests          n    prop\n   &lt;chr&gt;               &lt;int&gt;   &lt;dbl&gt;\n 1 Health                142 0.169  \n 2 Sports                111 0.132  \n 3 Politics              110 0.131  \n 4 Entertainment         107 0.128  \n 5 Crime                  97 0.116  \n 6 Economics              93 0.111  \n 7 Education              86 0.103  \n 8 Environment/Climate    76 0.0906 \n 9 Other                  12 0.0143 \n10 No preference           3 0.00358\n11 &lt;NA&gt;                    2 0.00238"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#visualize-3",
+    "href": "slides/01-hello-world.html#visualize-3",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Codesurvey |&gt;\n  mutate(data_interests = str_remove_all(data_interests, \"\\\\s*\\\\(.*?\\\\)\")) |&gt;\n  separate_longer_delim(data_interests, delim = \",\") |&gt;\n  count(data_interests, sort = TRUE) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  filter(!is.na(data_interests)) |&gt;\n  ggplot(aes(y = fct_reorder(data_interests, prop), x = prop, fill = prop)) +\n  geom_col(show.legend = FALSE) +\n  scale_y_discrete(labels = label_wrap(20)) +\n  scale_x_continuous(labels = percent_format(accuracy = 1)) +\n  scale_fill_taylor_c(album = \"Speak Now\") +\n  labs(\n    title = \"Data interests among STA 199 students\",\n    y = NULL,\n    x = \"Count\",\n    caption = \"Data are self-reported, collected from STA 199 students on August 25, 2025.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#learn-best-1",
+    "href": "slides/01-hello-world.html#learn-best-1",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "We also asked you the following open-ended question:\n\nHow do you learn best?"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tidy-transform-summarize",
+    "href": "slides/01-hello-world.html#tidy-transform-summarize",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "We can use text mining techniques, like tokenizing to words to explore this open-ended question:\n\nCodesurvey |&gt;\n  select(learn_best) |&gt;\n  unnest_tokens(word, learn_best) |&gt;\n  anti_join(stop_words, by = \"word\") |&gt;\n  count(word, sort = TRUE) |&gt;\n  filter(n &gt; 15) |&gt;\n  print(n = Inf)\n\n# A tibble: 12 × 2\n   word          n\n   &lt;chr&gt;     &lt;int&gt;\n 1 learn        89\n 2 practice     66\n 3 visual       28\n 4 step         27\n 5 learning     26\n 6 hands        24\n 7 class        22\n 8 questions    21\n 9 examples     19\n10 lecture      17\n11 lectures     17\n12 learner      16"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tidy-transform-summarize-1",
+    "href": "slides/01-hello-world.html#tidy-transform-summarize-1",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "We can also tokenize to bigrams (pairs of words):\n\nCodesurvey |&gt;\n  select(learn_best) |&gt;\n  tidytext::unnest_tokens(bigrams, learn_best, token = \"ngrams\", n = 2) |&gt;\n  count(bigrams, sort = TRUE) |&gt;\n  filter(n &gt; 10) |&gt;\n  print(n = Inf)\n\n# A tibble: 20 × 2\n   bigrams               n\n   &lt;chr&gt;             &lt;int&gt;\n 1 i learn              73\n 2 learn best           68\n 3 practice problems    28\n 4 hands on             24\n 5 best by              21\n 6 best through         19\n 7 i also               16\n 8 i am                 16\n 9 and then             15\n10 in class             14\n11 when i               14\n12 by step              13\n13 i can                13\n14 step by              13\n15 &lt;NA&gt;                 13\n16 problems and         12\n17 a lot                11\n18 a visual             11\n19 on my                11\n20 visual learner       11"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#programming-language-comfort",
+    "href": "slides/01-hello-world.html#programming-language-comfort",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "We also asked you the following open-ended question:\n\nIf you’ve programmed before, which languages have you used, and how comfortable do you feel with each? If you haven’t programmed before, please leave this question blank."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#take-a-peek-participate-1",
+    "href": "slides/01-hello-world.html#take-a-peek-participate-1",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "And the answers are non-trivial to tidy up, e.g.,\n- Python - I've used it very little.\n- I have not programmed before. \n- Java - very comfortable. Python - pretty comfortable. C/C++ - not super comfortable, haven't used since high school.\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199. Log in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#can-ai-help",
+    "href": "slides/01-hello-world.html#can-ai-help",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Codelibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nprompts &lt;- survey |&gt;\n  filter(!is.na(programming_languages)) |&gt;\n  pull(programming_languages) |&gt;\n  list()\n\ntype_language &lt;- type_object(\n  language = type_string(),\n  experience = type_string()\n)\n\nlanguage_experience &lt;- parallel_chat_structured(\n  chat,\n  prompts,\n  type = type_language\n)\nlanguage_experience\n\n\nlanguage\n1 Python, Java, R, C/C++, JavaScript, HTML/CSS, SQL, C#, VBA, MATLAB, Rust, Assembly, Swift, Stata, Bash, Typescript, Web3 Suite (HTML, CSS, JS), Nextflow, SAS, PsycoPy, Mathematica, React, Vue, Yaml, CourseKata, Flutter, Scratch\n\nexperience\n1 Most students report a range of programming experience, from never having programmed before to being very comfortable in languages such as Python, Java, and R. Many took introductory courses (e.g., CS101, AP CS A) and are comfortable with basic programming constructs. Proficiency is generally highest in Python and Java, though some only have a little experience with languages like R, C/C++, and JavaScript. Quite a few have only used programming languages for specific classes or research projects and may not feel confident after a long break. Some students have experience with more niche or specialized tools such as MATLAB, SAS, and web technologies (HTML, CSS, JavaScript/JS frameworks). Many express a need for a refresher if not used recently. In summary, while a core group is comfortable with at least one language, especially Python or Java, many others have only basic to moderate experience and express the desire to gain more proficiency."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#can-it-be-trusted-100",
+    "href": "slides/01-hello-world.html#can-it-be-trusted-100",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Mathematica is a software system used for mathematics.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"Mathematica\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 1 × 1\n  programming_languages                                           \n  &lt;chr&gt;                                                           \n1 Most familiar to least: Java, Mathematica, Python, Matlab, React\n\n\n. . .\nNextflow extends the Unix pipes model with a DSL.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"Nextflow\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 0 × 1\n# ℹ 1 variable: programming_languages &lt;chr&gt;\n\n\n. . .\nPsycoPy is a desktop application for in-lab studies.\n\nsurvey |&gt;\n  filter(str_detect(programming_languages, \"PsycoPy\")) |&gt;\n  select(programming_languages)\n\n# A tibble: 0 × 1\n# ℹ 1 variable: programming_languages &lt;chr&gt;"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#lets-do-some-data-science-1",
+    "href": "slides/01-hello-world.html#lets-do-some-data-science-1",
+    "title": "Hello, World!",
+    "section": "Let’s do some data science!",
+    "text": "Let’s do some data science!\n\n\n\nToday we’re going to explore some data together, following the data science cycle.\nOur question: are the stereotypes about country music actually true?\n\n\n\n\n\n\n\n\n. . .\n\n“Is it REALLY all about beer and trucks and girls and blue jeans? Are all the lyrics REALLY the same?”\n— Grady Smith, country music critic"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#where-the-data-comes-from",
+    "href": "slides/01-hello-world.html#where-the-data-comes-from",
+    "title": "Hello, World!",
+    "section": "Where the data comes from",
+    "text": "Where the data comes from\n\n\nGrady Smith kept a spreadsheet of every country song that reached the Top 30 of Billboard’s Country Airplay chart:\n\n\n\nSomeone tidied it up and put it in a CSV (comma-separated values) file:\n\n\n\nWe want to explore the data that is in that file!"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#import-1",
+    "href": "slides/01-hello-world.html#import-1",
+    "title": "Hello, World!",
+    "section": "Import",
+    "text": "Import"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#load-some-packages-1",
+    "href": "slides/01-hello-world.html#load-some-packages-1",
+    "title": "Hello, World!",
+    "section": "Load some packages",
+    "text": "Load some packages\nMore on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:\n\nlibrary(tidyverse) # for data wrangling and visualization\nlibrary(scales) # for better axis labels\nlibrary(tidytext) # for handling text data\nlibrary(taylor) # for a surprise!"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#import-the-data-1",
+    "href": "slides/01-hello-world.html#import-the-data-1",
+    "title": "Hello, World!",
+    "section": "Import the data",
+    "text": "Import the data\nImport the data called country-lyrics.csv in the folder called data using the read_csv() function:\n\ncountry &lt;- read_csv(\"data/country-lyrics.csv\")"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#take-a-peek-at-the-data-1",
+    "href": "slides/01-hello-world.html#take-a-peek-at-the-data-1",
+    "title": "Hello, World!",
+    "section": "Take a peek at the data",
+    "text": "Take a peek at the data\n\ncountry\n\n# A tibble: 484 × 8\n   song     artist featuring entered_top_30_in lyrics writers producer\n   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   \n 1 Wake Up… Craig… &lt;NA&gt;                   2013 My fr… Josh O… Craig M…\n 2 Young L… Kip M… &lt;NA&gt;                   2013 Your … Kip Mo… Brett J…\n 3 Beat of… Brett… &lt;NA&gt;                   2013 Well … Brett … Brett E…\n 4 The Hea… Danie… &lt;NA&gt;                   2013 She h… Brett … Brett J…\n 5 Everyth… Thomp… &lt;NA&gt;                   2013 My mo… Keifer… RIch Re…\n 6 Goodnig… Randy… &lt;NA&gt;                   2013 Girl … Rob Ha… Derek G…\n 7 Cold Be… Josh … &lt;NA&gt;                   2013 I hea… Brent … Mark Wr…\n 8 19 You … Dan +… &lt;NA&gt;                   2013 It wa… Dan Sm… Dan Smy…\n 9 Helluva… Frank… &lt;NA&gt;                   2013 Satur… Rodney… Marshal…\n10 Chillin… Cole … &lt;NA&gt;                   2013 I got… Cole S… Jody St…\n# ℹ 474 more rows\n# ℹ 1 more variable: rough_order &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#participate-1",
+    "href": "slides/01-hello-world.html#participate-1",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199.\nLog in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#take-a-peek-participate-2",
+    "href": "slides/01-hello-world.html#take-a-peek-participate-2",
+    "title": "Hello, World!",
+    "section": "Take a peek + Participate 💻📱",
+    "text": "Take a peek + Participate 💻📱\n\n\n\n\n# A tibble: 484 × 8\n   song     artist featuring entered_top_30_in lyrics writers producer\n   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   \n 1 Wake Up… Craig… &lt;NA&gt;                   2013 My fr… Josh O… Craig M…\n 2 Young L… Kip M… &lt;NA&gt;                   2013 Your … Kip Mo… Brett J…\n 3 Beat of… Brett… &lt;NA&gt;                   2013 Well … Brett … Brett E…\n 4 The Hea… Danie… &lt;NA&gt;                   2013 She h… Brett … Brett J…\n 5 Everyth… Thomp… &lt;NA&gt;                   2013 My mo… Keifer… RIch Re…\n 6 Goodnig… Randy… &lt;NA&gt;                   2013 Girl … Rob Ha… Derek G…\n 7 Cold Be… Josh … &lt;NA&gt;                   2013 I hea… Brent … Mark Wr…\n 8 19 You … Dan +… &lt;NA&gt;                   2013 It wa… Dan Sm… Dan Smy…\n 9 Helluva… Frank… &lt;NA&gt;                   2013 Satur… Rodney… Marshal…\n10 Chillin… Cole … &lt;NA&gt;                   2013 I got… Cole S… Jody St…\n# ℹ 474 more rows\n# ℹ 1 more variable: rough_order &lt;dbl&gt;\n\n\n\n\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199. Log in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#when-did-these-songs-chart",
+    "href": "slides/01-hello-world.html#when-did-these-songs-chart",
+    "title": "Hello, World!",
+    "section": "When did these songs chart?",
+    "text": "When did these songs chart?\nEvery song in this dataset broke into the Top 30 in some year. One way to make sense of a variable like this is to visualize it."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#visualize-4",
+    "href": "slides/01-hello-world.html#visualize-4",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodecountry |&gt;\n  count(entered_top_30_in) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(x = factor(entered_top_30_in), y = prop)) +\n  geom_col(fill = brand$all_aboard) +\n  scale_y_continuous(labels = percent_format(accuracy = 1)) +\n  labs(\n    title = \"When did these songs break into the Top 30?\",\n    x = NULL,\n    y = NULL,\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#who-is-on-country-radio",
+    "href": "slides/01-hello-world.html#who-is-on-country-radio",
+    "title": "Hello, World!",
+    "section": "Who is on country radio?",
+    "text": "Who is on country radio?\nThere are 484 songs in the data, but only 121 different artists. Let’s look at the 15 with the most Top 30 hits.\n\nCodecountry |&gt;\n  count(artist, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  ggplot(aes(y = fct_reorder(artist, n), x = n, fill = n)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_gradient(low = brand$neptune_green, high = brand$poseidon) +\n  labs(\n    title = \"Who had the most Top 30 country hits?\",\n    y = NULL,\n    x = \"Number of songs\",\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#who-writes-country-songs",
+    "href": "slides/01-hello-world.html#who-writes-country-songs",
+    "title": "Hello, World!",
+    "section": "Who writes country songs?",
+    "text": "Who writes country songs?\nSongs are usually written by more than one person, so the writers variable holds a whole list in a single cell:\n\nCodecountry |&gt;\n  select(song, writers)\n\n# A tibble: 484 × 2\n   song                                     writers                   \n   &lt;chr&gt;                                    &lt;chr&gt;                     \n 1 Wake Up Lovin You                        Josh Osborne, Matthew Ram…\n 2 Young Love                               Kip Moore, Dan Couch, Wes…\n 3 Beat of the Music                        Brett Eldredge, Ross Copp…\n 4 The Heart of Dixie                       Brett James, Caitlyn Smit…\n 5 Everything I Shouldn't Be Thinking About Keifer Thompson, Shawna T…\n 6 Goodnight Kiss                           Rob Hatch, Jason Sellers,…\n 7 Cold Beer With Your Name On It           Brent Anderson, Clint Dan…\n 8 19 You + Me                              Dan Smyers, Shay Mooney, …\n 9 Helluva Life                             Rodney Clawson, Chris Tom…\n10 Chillin' It                              Cole Swindell, Shane Minor\n# ℹ 474 more rows"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tidy-transform-2",
+    "href": "slides/01-hello-world.html#tidy-transform-2",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform",
+    "text": "Tidy + Transform\nBefore we can visualize this variable, we need to tidy and transform it."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tidy-transform-3",
+    "href": "slides/01-hello-world.html#tidy-transform-3",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform",
+    "text": "Tidy + Transform\n\nCodecountry |&gt;\n  # separate into multiple rows for each writer, using comma as delimiter\n  separate_longer_delim(writers, delim = \", \") |&gt;\n  count(writers, sort = TRUE)\n\n# A tibble: 517 × 2\n   writers             n\n   &lt;chr&gt;           &lt;int&gt;\n 1 Ashley Gorley      44\n 2 Shane McAnally     36\n 3 Ross Copperman     32\n 4 Josh Osborne       29\n 5 Rhett Akins        23\n 6 Hillary Lindsey    18\n 7 Jesse Frasure      18\n 8 Jon Nite           17\n 9 Zach Crowell       16\n10 Luke Laird         14\n# ℹ 507 more rows"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#visualize-5",
+    "href": "slides/01-hello-world.html#visualize-5",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodecountry |&gt;\n  separate_longer_delim(writers, delim = \", \") |&gt;\n  count(writers, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  ggplot(aes(y = fct_reorder(writers, n), x = n, fill = n)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_taylor_c(album = \"Speak Now\") +\n  labs(\n    title = \"Is country radio run by a small circle of hitmakers?\",\n    y = NULL,\n    x = \"Number of songs written\",\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#what-do-country-songs-sing-about",
+    "href": "slides/01-hello-world.html#what-do-country-songs-sing-about",
+    "title": "Hello, World!",
+    "section": "What do country songs sing about?",
+    "text": "What do country songs sing about?\nThe lyrics variable contains the entire text of each song:\n\n“My friends call me up ’cause they know I’m down / Take me out to paint the town and help me get over it…”\n\nWe can use text mining techniques, like tokenizing to words, to explore it."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tidy-transform-summarize-2",
+    "href": "slides/01-hello-world.html#tidy-transform-summarize-2",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform + Summarize",
+    "text": "Tidy + Transform + Summarize\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(word, lyrics) |&gt;\n  anti_join(stop_words, by = \"word\") |&gt;\n  count(word, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  print(n = Inf)\n\n# A tibble: 15 × 2\n   word        n\n   &lt;chr&gt;   &lt;int&gt;\n 1 yeah      996\n 2 girl      781\n 3 baby      749\n 4 love      743\n 5 wanna     632\n 6 gonna     611\n 7 time      502\n 8 night     454\n 9 tonight   332\n10 heart     293\n11 home      272\n12 kiss      263\n13 world     261\n14 gotta     256\n15 eyes      240"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tokenize-to-bigrams",
+    "href": "slides/01-hello-world.html#tokenize-to-bigrams",
+    "title": "Hello, World!",
+    "section": "Tokenize to bigrams",
+    "text": "Tokenize to bigrams\nWe can also tokenize to bigrams (pairs of words):\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(bigram, lyrics, token = \"ngrams\", n = 2) |&gt;\n  count(bigram, sort = TRUE) |&gt;\n  slice_head(n = 8) |&gt;\n  print(n = Inf)\n\n# A tibble: 8 × 2\n  bigram       n\n  &lt;chr&gt;    &lt;int&gt;\n1 in the     692\n2 a little   513\n3 on the     413\n4 and i      381\n5 i know     282\n6 i don't    276\n7 i can      254\n8 in a       249\n\n\n. . .\nHmm. Not very informative – these are all common words!"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#drop-the-stop-words",
+    "href": "slides/01-hello-world.html#drop-the-stop-words",
+    "title": "Hello, World!",
+    "section": "Drop the stop words",
+    "text": "Drop the stop words\nLet’s split each bigram in two and throw away the pairs built from common words:\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(bigram, lyrics, token = \"ngrams\", n = 2) |&gt;\n  separate_wider_delim(bigram, delim = \" \", names = c(\"word1\", \"word2\")) |&gt;\n  anti_join(stop_words, by = join_by(word1 == word)) |&gt;\n  anti_join(stop_words, by = join_by(word2 == word)) |&gt;\n  count(word1, word2, sort = TRUE) |&gt;\n  slice_head(n = 20) |&gt;\n  print(n = Inf)\n\n# A tibble: 20 × 3\n   word1      word2       n\n   &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt;\n 1 yeah       yeah       93\n 2 boo        boo        81\n 3 ooh        ooh        81\n 4 friday     night      71\n 5 hey        hey        45\n 6 tonight    tonight    44\n 7 home       home       36\n 8 yeah       boy        33\n 9 saturday   night      32\n10 somebody's gotta      32\n11 cold       beer       31\n12 dance      floor      31\n13 gonna      love       31\n14 country    song       30\n15 la         la         28\n16 wanna      kiss       28\n17 whoa       whoa       28\n18 da         da         27\n19 honky      tonk       26\n20 yeah       baby       25"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#can-ai-help-1",
+    "href": "slides/01-hello-world.html#can-ai-help-1",
+    "title": "Hello, World!",
+    "section": "Can AI help?",
+    "text": "Can AI help?\nWe could also ask a large language model to read every song and tell us what it’s about:\n\nCodelibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nprompts &lt;- country |&gt;\n  pull(lyrics) |&gt;\n  as.list()\n\ntype_song &lt;- type_object(\n  theme = type_string(),\n  mentions_alcohol = type_boolean()\n)\n\nsong_themes &lt;- parallel_chat_structured(\n  chat,\n  prompts,\n  type = type_song\n)\nsong_themes"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#can-it-be-trusted-100-1",
+    "href": "slides/01-hello-world.html#can-it-be-trusted-100-1",
+    "title": "Hello, World!",
+    "section": "Can it be trusted 100%?",
+    "text": "Can it be trusted 100%?\nAsk an AI (or a person!) what country songs are about and you’ll hear: beer, trucks, dirt roads, blue jeans, tractors.\n. . .\nBut we have the lyrics, so we can just check:\n\nCodecountry |&gt;\n  mutate(lyrics_lower = str_to_lower(lyrics)) |&gt;\n  summarize(\n    truck = mean(str_detect(lyrics_lower, \"truck\")),\n    whiskey = mean(str_detect(lyrics_lower, \"whiskey\")),\n    beer = mean(str_detect(lyrics_lower, \"beer\")),\n    `dirt road` = mean(str_detect(lyrics_lower, \"dirt road\")),\n    `blue jeans` = mean(str_detect(lyrics_lower, \"blue jeans\")),\n    tractor = mean(str_detect(lyrics_lower, \"tractor\"))\n  ) |&gt;\n  pivot_longer(\n    everything(),\n    names_to = \"stereotype\",\n    values_to = \"prop\"\n  ) |&gt;\n  arrange(desc(prop))\n\n# A tibble: 6 × 2\n  stereotype   prop\n  &lt;chr&gt;       &lt;dbl&gt;\n1 truck      0.120 \n2 whiskey    0.116 \n3 beer       0.0868\n4 dirt road  0.0227\n5 blue jeans 0.0227\n6 tractor    0.0103"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#communicate",
+    "href": "slides/01-hello-world.html#communicate",
+    "title": "Hello, World!",
+    "section": "Communicate",
+    "text": "Communicate\n\n\nOnly about 12% of these songs mention a truck, and 1% mention a tractor.\nThe words that actually dominate are girl, baby, love, and night.\nThe stereotype is memorable, not frequent – and that difference is only visible once you look at the data.\n\n\n. . .\n\n\n\n\n\n\nTip\n\n\n\nThis is what we mean by statistical thinking: a claim that “feels true” is a hypothesis, not a finding."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#homepage",
+    "href": "slides/01-hello-world.html#homepage",
+    "title": "Hello, World!",
+    "section": "Homepage",
+    "text": "Homepage\nhttps://sta199-f26.github.io\n\nAll course materials\nLinks to Canvas, GitHub, RStudio containers, etc."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#course-toolkit",
+    "href": "slides/01-hello-world.html#course-toolkit",
+    "title": "Hello, World!",
+    "section": "Course toolkit",
+    "text": "Course toolkit\nAll linked from the course website:\n\nGitHub organization: github.com/sta199-f26\n\nRStudio containers: cmgr.oit.duke.edu/containers\n\nCommunication: Ed Discussion\nAssignment submission and feedback: Gradescope"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#activities",
+    "href": "slides/01-hello-world.html#activities",
+    "title": "Hello, World!",
+    "section": "Activities",
+    "text": "Activities\n\nIntroduce new content and prepare for lectures by watching the videos and completing the readings\nAttend and actively participate in lectures (and answer questions for participation credit) and labs, office hours, team meetings\nPractice applying statistical concepts and computing with application exercises during lecture\nPut together what you’ve learned to analyze real-world data\n\nLab assignments\nHomework assignments\nExams\nTerm project completed in teams"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#attendance-and-participation",
+    "href": "slides/01-hello-world.html#attendance-and-participation",
+    "title": "Hello, World!",
+    "section": "Attendance and participation",
+    "text": "Attendance and participation\n\nDaily in lecture\nTracked for credit, but not based on correctness, only participation (and often they will be questions designed to make you think that might not have a single right answer!)"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#application-exercises",
+    "href": "slides/01-hello-world.html#application-exercises",
+    "title": "Hello, World!",
+    "section": "Application exercises",
+    "text": "Application exercises\n\nDaily-ish in lecture\nNot graded, but tracked for feedback on workflow"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#labs",
+    "href": "slides/01-hello-world.html#labs",
+    "title": "Hello, World!",
+    "section": "Labs",
+    "text": "Labs\n\nHands-on practice with data analysis\nA sigle exercise per lab, graded based on being there and in something reasonable + correctness\nCompleted in-person, in lab, in teams\nTeams randomized each week until project teams assigned\nDeveloped collaboratively, but turned in individually by the end of the lab session\n8 throughout semester, two lowest scores dropped\nNo late work accepted"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#homework",
+    "href": "slides/01-hello-world.html#homework",
+    "title": "Hello, World!",
+    "section": "Homework",
+    "text": "Homework\n\nHands-on practice with data analysis\nSome questions for practice with instant feedback by AI\n1-2 randomly sampled questions to be graded by humans for correctness\nCan consult with course team and peers, but completed and turned in individually by the end of the week\n7 throughout semester, lowest score dropped\nUp to 3 days late (-5% per day), no late work accepted after that\nOne-time late penalty waiver: Can be used on any homework assignment, no questions asked, must be requested from Dr. Knox before the deadline"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#exams",
+    "href": "slides/01-hello-world.html#exams",
+    "title": "Hello, World!",
+    "section": "Exams",
+    "text": "Exams\n\nTwo exams + final\n\nAll exams comprised of two parts:\n\nMultiple choice questions\nShort answer questions, on homework specifics (read: difficult/impossible to answer correctly without having done the homework)\n\n\nOne sheet of notes for each exam, no larger than 8 1/2 x 11, both sides, must be prepared by you\nNo extensions or make-ups\n\n\n\n\n\n\n\nCaution\n\n\n\nExam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#project",
+    "href": "slides/01-hello-world.html#project",
+    "title": "Hello, World!",
+    "section": "Project",
+    "text": "Project\n\nDataset of your choice, method of your choice\nTeamwork\nSeven milestones, interim deadlines throughout semester\nFinal milestone: Presentation in lab and write-up\nMust be in lab, in-person to present\nPeer review between teams for content, peer evaluation within teams for contribution\nSome lab sessions allocated to project progress\n\n\n\n\n\n\n\nCaution\n\n\n\nProject presentation date cannot be changed. You must complete the project to pass this class."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#teams",
+    "href": "slides/01-hello-world.html#teams",
+    "title": "Hello, World!",
+    "section": "Teams",
+    "text": "Teams\n\nRandomized at first for weekly labs\nThen selected by you or assigned by me if you don’t express a preference for project and remaining labs\n\nExpectations and roles\n\nEveryone is expected to contribute equal effort\n\nEveryone is expected to understand all code turned in\nIndividual contribution evaluated by peer evaluation, commits, etc.\n\n\nFor the project: Peer evaluation during teamwork and after completion"
+  },
+  {
+    "objectID": "slides/01-hello-world.html#grading",
+    "href": "slides/01-hello-world.html#grading",
+    "title": "Hello, World!",
+    "section": "Grading",
+    "text": "Grading\n\n\nCategory\nPercentage\n\n\n\nLectures (attendance + participation)\n5%\n\n\nHW\n5%\n\n\nLabs\n10%\n\n\nProject\n15%\n\n\nExam 1\n20%\n\n\nExam 2\n20%\n\n\nFinal\n25%\n\n\n\nSee course syllabus for how the final letter grade will be determined."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#participate-2",
+    "href": "slides/01-hello-world.html#participate-2",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/sta199.\nLog in with your Duke NetID."
+  },
+  {
+    "objectID": "slides/01-hello-world.html#tasks-due-wednesday",
+    "href": "slides/01-hello-world.html#tasks-due-wednesday",
+    "title": "Hello, World!",
+    "section": "Tasks due Wednesday",
+    "text": "Tasks due Wednesday\n\nComplete the getting to know you survey, then accept your GitHub organization invitation\nRead the syllabus\nComplete readings and videos for Wednesday"
+  },
+  {
     "objectID": "exam-review.html",
     "href": "exam-review.html",
     "title": "Exam reviews",
