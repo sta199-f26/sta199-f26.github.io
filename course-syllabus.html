@@ -457,17 +457,15 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr">TL;DR</a>
   <ul class="collapse">
-  <li><a href="#course-overview" id="toc-course-overview" class="nav-link" data-scroll-target="#course-overview">Course Overview</a></li>
   <li><a href="#required-materials" id="toc-required-materials" class="nav-link" data-scroll-target="#required-materials">Required Materials</a></li>
-  <li><a href="#assessment-grading" id="toc-assessment-grading" class="nav-link" data-scroll-target="#assessment-grading">Assessment &amp; Grading</a></li>
+  <li><a href="#grading-table" id="toc-grading-table" class="nav-link" data-scroll-target="#grading-table">Assessment &amp; Grading</a></li>
   <li><a href="#key-policies" id="toc-key-policies" class="nav-link" data-scroll-target="#key-policies">Key Policies</a>
   <ul class="collapse">
   <li><a href="#academic-honesty" id="toc-academic-honesty" class="nav-link" data-scroll-target="#academic-honesty">Academic Honesty</a></li>
   <li><a href="#deadlines-late-work" id="toc-deadlines-late-work" class="nav-link" data-scroll-target="#deadlines-late-work">Deadlines &amp; Late Work</a></li>
   <li><a href="#attendance" id="toc-attendance" class="nav-link" data-scroll-target="#attendance">Attendance</a></li>
   </ul></li>
-  <li><a href="#success-tips" id="toc-success-tips" class="nav-link" data-scroll-target="#success-tips">Success Tips</a></li>
-  <li><a href="#important-dates" id="toc-important-dates" class="nav-link" data-scroll-target="#important-dates">Important Dates</a></li>
+  <li><a href="#dates" id="toc-dates" class="nav-link" data-scroll-target="#dates">Important dates</a></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
   </ul></li>
   <li><a href="#long-version" id="toc-long-version" class="nav-link" data-scroll-target="#long-version">Long version</a>
@@ -482,7 +480,6 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#inclusive-community" id="toc-inclusive-community" class="nav-link" data-scroll-target="#inclusive-community">Inclusive community</a></li>
   <li><a href="#personal-pronouns" id="toc-personal-pronouns" class="nav-link" data-scroll-target="#personal-pronouns">Personal pronouns</a></li>
-  <li><a href="#accessibility" id="toc-accessibility" class="nav-link" data-scroll-target="#accessibility">Accessibility</a></li>
   <li><a href="#communication" id="toc-communication" class="nav-link" data-scroll-target="#communication">Communication</a></li>
   <li><a href="#email" id="toc-email" class="nav-link" data-scroll-target="#email">Email</a></li>
   </ul></li>
@@ -492,8 +489,9 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#lectures" id="toc-lectures" class="nav-link" data-scroll-target="#lectures">Lectures</a></li>
   <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  <li><a href="#teams" id="toc-teams" class="nav-link" data-scroll-target="#teams">Teams</a></li>
-  <li><a href="#activities-assessment" id="toc-activities-assessment" class="nav-link" data-scroll-target="#activities-assessment">Activities &amp; Assessment</a></li>
+  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
+  <li><a href="#exams" id="toc-exams" class="nav-link" data-scroll-target="#exams">Exams</a></li>
+  <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project">Project</a></li>
   </ul></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
   <li><a href="#course-policies" id="toc-course-policies" class="nav-link" data-scroll-target="#course-policies">Course policies</a>
@@ -511,7 +509,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#academic-accommodations" id="toc-academic-accommodations" class="nav-link" data-scroll-target="#academic-accommodations">Academic accommodations</a></li>
   <li><a href="#religious-accommodations" id="toc-religious-accommodations" class="nav-link" data-scroll-target="#religious-accommodations">Religious accommodations</a></li>
   </ul></li>
-  <li><a href="#important-dates-1" id="toc-important-dates-1" class="nav-link" data-scroll-target="#important-dates-1">Important dates</a></li>
+  <li><a href="#important-dates" id="toc-important-dates" class="nav-link" data-scroll-target="#important-dates">Important dates</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/course-syllabus.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="course-syllabus.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -542,21 +540,17 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="tldr" class="level1">
 <h1>TL;DR</h1>
-<p>for quick reference…<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> but really, read the <a href="#long-version">long version</a>!</p>
-<section id="course-overview" class="level2">
-<h2 class="anchored" data-anchor-id="course-overview">Course Overview</h2>
-<p>Learn to explore, visualize, and analyze data using R and Positron through real-world problems. Covers data wrangling, visualization, modeling, statistical inference, and ethical considerations in data science, including responsible AI tool usage.</p>
-</section>
+<p>for quick reference… but really, read the <a href="#long-version">long version</a>!</p>
 <section id="required-materials" class="level2">
 <h2 class="anchored" data-anchor-id="required-materials">Required Materials</h2>
 <ul>
 <li><strong>Textbooks</strong> (free online): <em>R for Data Science, 2e</em> and <em>Introduction to Modern Statistics</em></li>
-<li><strong>Computing</strong>: Laptop required for all classes; R accessed through Duke containers, no installation needed</li>
+<li><strong>Computing</strong>: Laptop required for all classes; R and Positron accessed through Duke containers, no installation needed</li>
 <li><strong>Platform</strong>: Course website at <a href="https://sta199-f26.github.io">sta199-f26.github.io</a> – everything you need is there or linked from there!</li>
 </ul>
 </section>
-<section id="assessment-grading" class="level2">
-<h2 class="anchored" data-anchor-id="assessment-grading">Assessment &amp; Grading</h2>
+<section id="grading-table" class="level2">
+<h2 class="anchored" data-anchor-id="grading-table">Assessment &amp; Grading</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 38%">
@@ -589,7 +583,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td>Project</td>
 <td>15%</td>
-<td>Team-based data analysis with write-up and presentation</td>
+<td>Team-based data analysis with write-up and presentation, must be completed to pass the class</td>
 </tr>
 <tr class="odd">
 <td>Exam 1</td>
@@ -608,6 +602,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<p>See <a href="#exams">improvement bonus</a> for how the final exam can replace a lower midterm score.</p>
 </section>
 <section id="key-policies" class="level2">
 <h2 class="anchored" data-anchor-id="key-policies">Key Policies</h2>
@@ -626,7 +621,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Homework</strong>: Up to 3 days late (-5% per day)</li>
 <li><strong>Labs</strong>: No late work (completed in class)</li>
 <li><strong>Exams/Project</strong>: No extensions or make-ups</li>
-<li><strong>One-time late penalty waiver</strong>: One-time waiver for homework late penalty, <a href="mailto:mary.knox@duke.edu">request before deadline</a></li>
+<li><strong>One-time late penalty waiver</strong>: Waives the homework late penalty once per semester; <a href="mailto:mary.knox@duke.edu">request before deadline</a></li>
 </ul>
 </section>
 <section id="attendance" class="level3">
@@ -638,37 +633,29 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="success-tips" class="level2">
-<h2 class="anchored" data-anchor-id="success-tips">Success Tips</h2>
-<ol type="1">
-<li><strong>Prepare</strong>: Watch videos and read before class</li>
-<li><strong>Engage</strong>: Attend all lectures and labs actively</li>
-<li><strong>Ask questions</strong>: Use office hours and Ed Discussion forum</li>
-<li><strong>Start early</strong>: Don’t procrastinate on assignments</li>
-<li><strong>Stay current</strong>: Content builds progressively</li>
-</ol>
-</section>
-<section id="important-dates" class="level2">
-<h2 class="anchored" data-anchor-id="important-dates">Important Dates</h2>
+<section id="dates" class="level2">
+<h2 class="anchored" data-anchor-id="dates">Important dates</h2>
 <ul>
-<li><strong>Classes begin</strong>: Aug 24</li>
-<li><strong>Exam 1</strong>: Oct 7 (in-class)</li>
-<li><strong>Fall break</strong>: Oct 12-13</li>
-<li><strong>Project</strong>: Nov 5 (presentation in lab + write-up)</li>
-<li><strong>Exam 2</strong>: Nov 18 (in-class)</li>
-<li><strong>Classes end</strong>: Dec 4</li>
-<li><strong>Final exam</strong>: Dec 10</li>
+<li><strong>Aug 24:</strong> Classes begin</li>
+<li><strong>Sep 4:</strong> Drop/add ends</li>
+<li><strong>Sep 7:</strong> Labor Day</li>
+<li><strong>Oct 7:</strong> Exam 1 (in-class)</li>
+<li><strong>Oct 12-13:</strong> Fall break</li>
+<li><strong>Nov 5:</strong> Project presentation in lab + write-up</li>
+<li><strong>Nov 6:</strong> Last day to withdraw with W</li>
+<li><strong>Nov 18:</strong> Exam 2 (in-class)</li>
+<li><strong>Nov 25-27:</strong> Thanksgiving break</li>
+<li><strong>Dec 4:</strong> Classes end</li>
+<li><strong>Dec 10:</strong> Final exam</li>
 </ul>
 </section>
 <section id="getting-help" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help">Getting Help</h2>
 <ul>
-<li><strong>Office hours</strong>: Regular TA and instructor availability</li>
-<li><strong>Ed Discussion</strong>: Online forum for course questions</li>
-<li><strong>Email</strong>: Include “STA 199” in subject line</li>
-<li><strong>Accommodations</strong>: Contact SDAO for academic accommodations</li>
+<li><strong>Course content and assignments</strong>: Office hours or <a href="https://edstem.org/">Ed Discussion</a></li>
+<li><strong>Extensions, accommodations, missed work, registration</strong>: Course coordinator Dr.&nbsp;Mary Knox, <a href="mailto:mary.knox@duke.edu">mary.knox@duke.edu</a></li>
+<li><strong>Email</strong>: Include “STA 199” in the subject line</li>
 </ul>
-<p><strong>Note</strong>: You cannot pass without completing the project. The course emphasizes hands-on learning, ethical data science practices, and effective communication of results.</p>
 </section>
 </section>
 <section id="long-version" class="level1">
@@ -683,7 +670,7 @@ ul.task-list li input[type="checkbox"] {
 <li>work on problems and case studies inspired by and based on real-world questions and data;</li>
 <li>explore ethical considerations in data science, including issues of misrepresentation, privacy, and bias;</li>
 <li>responsibly leverage AI tools within data science workflows while critically assessing the validity and potential biases in AI-generated insights;</li>
-<li>learn to communicate results through written assignments and project presentation effectively.</li>
+<li>effectively communicate results through written assignments and a project presentation.</li>
 </ul>
 </section>
 <section id="course-materials" class="level2">
@@ -698,33 +685,24 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="computing" class="level3">
 <h3 class="anchored" data-anchor-id="computing">Computing</h3>
-<p>You will need a laptop you can bring to lecture and lab for this course. We will use the statistical software R. Students will be able to access R through Docker containers provided by Duke Office of Information Technology. See the <a href="./computing-access.html">computing page</a> for more information.</p>
+<p>We will use the statistical software R through the Positron IDE, which you’ll access through Docker containers provided by the Duke Office of Information Technology, so there’s nothing to install. See the <a href="./computing-access.html">computing page</a> for more information.</p>
 </section>
 </section>
 <section id="course-community" class="level2">
 <h2 class="anchored" data-anchor-id="course-community">Course community</h2>
 <section id="inclusive-community" class="level3">
 <h3 class="anchored" data-anchor-id="inclusive-community">Inclusive community</h3>
-<p>It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength, and benefit. I intend to present materials and activities that respect diversity and align with <a href="https://provost.duke.edu/about/dukes-commitment-diversity-and-inclusion/">Duke’s Commitment to Diversity and Inclusion</a>. Your suggestions are encouraged and appreciated. Please let me know ways to improve the effectiveness of the course for you personally or for other students or student groups.</p>
-<p>Furthermore, I would like to create a learning environment for my students that supports a diversity of thoughts, perspectives, and experiences and honors their identities. To help accomplish this:</p>
-<ul>
-<li>If you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource.</li>
-<li>I (like many people) am still in the process of learning about diverse perspectives and identities. If anything was said in class (by anyone) that made you feel uncomfortable, please let me or a teaching team member know.</li>
-</ul>
+<p>I intend that students from diverse backgrounds and perspectives be well served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity students bring to this class be viewed as a resource, strength, and benefit. I also intend to present materials and activities that respect diversity and align with <a href="https://provost.duke.edu/about/dukes-commitment-diversity-and-inclusion/">Duke’s Commitment to Diversity and Inclusion</a>. Your suggestions are encouraged and appreciated. Please let me know ways to improve the course’s effectiveness for you personally, other students, or student groups.</p>
+<p>If you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource.</p>
+<p>I (like many people) am still in the process of learning about diverse perspectives and identities. If anything was said in class (by anyone) that made you feel uncomfortable, please let me or a member of the teaching team know.</p>
 </section>
 <section id="personal-pronouns" class="level3">
 <h3 class="anchored" data-anchor-id="personal-pronouns">Personal pronouns</h3>
 <p>Using pronouns can help foster a respectful campus environment where all community members can thrive. Sharing pronouns is always optional for members of the Duke community. If you would like to share yours, you can update them in DukeHub. You can learn more at the <a href="https://students.duke.edu/belonging/icr/csgd/pronouns/dukehub-zoom/">DukeHub &amp; Zoom Tutorials</a>.</p>
 </section>
-<section id="accessibility" class="level3">
-<h3 class="anchored" data-anchor-id="accessibility">Accessibility</h3>
-<p>If any portion of the course is not accessible to you due to challenges with technology or the course format, please let me know so we can make appropriate accommodations.</p>
-<p>The <a href="https://access.duke.edu/students">Student Disability Access Office (SDAO)</a> is available to ensure that students can engage with their courses and related assignments. Students should contact the SDAO to <a href="https://access.duke.edu/requests">request or update accommodations</a> under these circumstances.</p>
-</section>
 <section id="communication" class="level3">
 <h3 class="anchored" data-anchor-id="communication">Communication</h3>
-<p>All lecture notes, assignment instructions, an up-to-date schedule, and other course materials may be found on the course website: <a href="https://sta199-f26.github.io/" title="STA 199 - Fall 2026 course website">sta199-f26.github.io</a>.</p>
-<p>Announcements will periodically be emailed through Canvas Announcements. Please check your email regularly to ensure you have the latest announcements for the course.</p>
+<p>Announcements will be emailed periodically via Canvas Announcements. Please check your email regularly to ensure you receive the latest course announcements.</p>
 </section>
 <section id="email" class="level3">
 <h3 class="anchored" data-anchor-id="email">Email</h3>
@@ -733,15 +711,15 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="five-tips-for-success" class="level2">
 <h2 class="anchored" data-anchor-id="five-tips-for-success">Five tips for success</h2>
-<p>Your success in this course depends very much on you and the effort you put into it. The course has been organized so that the burden of learning is on you. Your TAs and I will help you by providing you with materials answering questions, and setting a pace, but for this to work, you must do the following:</p>
+<p>Your success in this course depends very much on you and the effort you put into it. The course has been organized so that the burden of learning is on you. Your TAs and I will help you by providing you with materials, answering questions, and setting a pace, but for this to work, you must do the following:</p>
 <ol type="1">
 <li><strong>Watch the videos and do the readings before each class.</strong></li>
 </ol>
-<p>Come prepared so you can deeply engage with the material during lectures and labs instead of using class time to learn the basics.</p>
+<p>Come prepared so you can engage deeply with the material during lectures and labs, rather than spending class time learning the basics.</p>
 <ol start="2" type="1">
 <li><strong>Be present and engaged in every lecture and lab.</strong></li>
 </ol>
-<p>In lectures do the application exercises, ask questions, and participate in discussions. In labs, work on the lab exercises, ask questions, and collaborate with your teammates. If you miss a class, make sure to catch up on the material before the next class.</p>
+<p>In lectures, do the application exercises, ask questions, and participate in discussions. In labs, work on the lab exercises, ask questions, and collaborate with your teammates. If you miss a class, make sure to catch up on the material before the next class.</p>
 <ol start="3" type="1">
 <li><strong>Ask questions.</strong></li>
 </ol>
@@ -749,72 +727,57 @@ ul.task-list li input[type="checkbox"] {
 <ol start="4" type="1">
 <li><strong>Do the homework.</strong></li>
 </ol>
-<p>The earlier you start, the better. It’s not enough to just mechanically plow through the exercises. You should ask yourself how these exercises relate to earlier material and imagine how they might be changed (to make questions for an exam, for example).</p>
+<p>The earlier you start, the better. It’s not enough to just mechanically plow through the exercises. It’s definitely not useful to ask AI to do it for you – the goal isn’t “finishing” the homework, but actually “doing” it. You should ask yourself how these exercises relate to earlier material and imagine how they might be adapted (for example, to make questions for an exam).</p>
 <ol start="5" type="1">
 <li><strong>Don’t procrastinate.</strong></li>
 </ol>
-<p>The content builds upon what was taught in previous weeks, so if something is confusing to you in Week 2, Week 3 will become more confusing, Week 4 even worse, etc. Don’t let the week end with unanswered questions. But if you find yourself falling behind and not knowing where to begin asking, come to office hours and work with a member of the teaching team to help you identify a good (re)starting point.</p>
+<p>The content builds on what was taught in previous weeks, so if something is confusing to you in Week 2, Week 3 will be even more confusing, and Week 4 even worse, etc. Don’t let the week end with unanswered questions. But if you find yourself falling behind and not knowing where to begin asking, come to office hours and work with a member of the teaching team to help you identify a good (re)starting point.</p>
 </section>
 <section id="getting-help-1" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help-1">Getting help</h2>
 <ul>
-<li>If you have a question during the lecture or lab, feel free to ask it! There are likely other students with the same question, so by asking, you will create a learning opportunity for everyone.</li>
-<li>The teaching team is here to help you be successful in the course. You are encouraged to attend office hours to ask questions about the course content and assignments. Many questions are most effectively answered as you discuss them with others, so office hours are a valuable resource. Please use them!</li>
+<li>The teaching team is here to help you be successful in the course. You are encouraged to attend office hours to ask questions about the course content and assignments. Office hours are a valuable resource — please use them!</li>
 <li>Outside of class and office hours, any general questions about course content or assignments should be posted on the class discussion forum, <a href="https://edstem.org/">Ed Discussion</a>. There is a chance another student has already asked a similar question, so please check the other posts on the forum before adding a new question. If you know the answer to a question, I encourage you to respond!</li>
 </ul>
 <p>Check out the <a href="course-support.html">Support</a> tab for more resources.</p>
 </section>
 <section id="course-components" class="level2">
 <h2 class="anchored" data-anchor-id="course-components">Course components</h2>
+<p>You submit all assignments the same way: push your work to the assignment’s GitHub repository and submit the PDF output on Gradescope. Labs are due at the end of your lab session; homework is due by 11:59 pm on Wednesdays. Submit what you have even if you haven’t finished, as you will receive partial credit for your work.</p>
 <section id="lectures" class="level3">
 <h3 class="anchored" data-anchor-id="lectures">Lectures</h3>
-<p>Lectures designed to be interactive, so you gain experience applying new concepts and learning from each other. My role as instructor is to introduce you to new methods, tools, and techniques, but it is up to you to take them and use them. A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing. Therefore, most lectures will feature application exercises that will serve as opportunities to practice what you’re learning as you’re learning it and be great preparation for the assignments and exams. You are expected to prepare for these by completing assigned readings and videos.</p>
-<p>You are expected to bring a laptop (or Chromebook) to each class so that you can participate in the application activities. Please ensure your device is fully charged before you come to class, as the number of outlets in the classroom will not be sufficient to accommodate everyone. A tablet also works, but the user experience will be much smoother on a laptop.</p>
+<p>Lectures are designed to be interactive, so you gain experience applying new concepts and learning from each other. My role as instructor is to introduce you to new methods, tools, and techniques, but it is up to you to take them and use them. A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing. Therefore, most lectures will feature application exercises that serve as opportunities to practice what you’re learning as you go and provide great preparation for the assignments and exams. You are expected to prepare for these by completing assigned readings and videos.</p>
+<p>You are expected to bring a laptop (or Chromebook) to each class to participate in the application activities. Please ensure your device is fully charged before you come to class, as the number of outlets in the classroom will not be sufficient to accommodate everyone.</p>
+<p>Application exercises won’t be graded directly, but we will track activity on them to ensure you’re staying engaged with the course, and exams will feature topics and questions from these exercises. Attendance and participation in lectures will instead be tracked through in-class questions via Wooclap, which you can access on your laptop or phone. You will earn points for answering questions during lecture, and these points will contribute to your attendance and participation grade.</p>
+<p><em>There are 25 lectures during the semester. You must participate in Wooclap questions in at least 17 lectures to get full credit on this component. Otherwise, your grade on this component will be calculated as the percentage of lectures you attended and participated in, e.g., if you attend and participate in 15/25 lectures, you get (15/25) x 5% = 3%.</em></p>
 </section>
 <section id="labs" class="level3">
 <h3 class="anchored" data-anchor-id="labs">Labs</h3>
-<p>Labs are designed to be hands-on at all times, therefore you’re similarly expected to bring a laptop to each lab session.</p>
-<p>During labs you will get a brief introduction to the week’s assignments from your TA and then work on the lab exercise with your teammates. You may also have time to start working on your homework assignment during lab, once you complete the lab exercise.</p>
-</section>
-<section id="teams" class="level3">
-<h3 class="anchored" data-anchor-id="teams">Teams</h3>
-<p>You will start off the semester in randomly assigned teams for each lab session for the first few weeks. Then, you will be assigned to a project team that you will work with for the remainder of the semester.</p>
-<p>All team members are expected to contribute equally to the completion of the project, and you will be asked to evaluate your team members throughout the semester. Failure to adequately contribute to any project component will result in a penalty to your mark relative to the team’s overall mark. You are expected to use the provided GitHub repository as the central collaborative platform. Commits to this repository will be used as a metric (one of several) of each team member’s relative contribution to each project.</p>
-</section>
-<section id="activities-assessment" class="level3">
-<h3 class="anchored" data-anchor-id="activities-assessment">Activities &amp; Assessment</h3>
-<p>You will be assessed based on seven components: lecture, lab, homework, project, two exams, a final, and attendance and participation.</p>
-<section id="lectures-1" class="level4">
-<h4 class="anchored" data-anchor-id="lectures-1">Lectures</h4>
-<p>Attendance and participation will be tracked through in-class questions via Wooclap, which you can access on your laptop or phone. You will earn points for answering questions during lecture, and these points will contribute to your attendance and participation grade.</p>
-<p><em>There are 25 lectures during the semester. You must participate in Wooclap questions in at least 17 lectures to get full credit on this component. Otherwise your grade on this component will be calculated as the percentage of lectures you attended and participated, e.g., if you attend and participate in 17/25 lectures, you get the full 5% but if you attend and participate in 15/25 lectures, you get (15/25) x 5% = 3%.</em></p>
-<p>Application exercises won’t be graded directly, but we will track activity on them to ensure you’re staying engaged with the course and exams will feature topics and questions from these exercises.</p>
-</section>
-<section id="labs-1" class="level4">
-<h4 class="anchored" data-anchor-id="labs-1">Labs</h4>
-<p>In the first few weeks of the semester, you will be randomly assigned to a team and work with your teammates on an exercise that is due at the end of the lab session. Once project teams are formed, you will work with that team on the lab exercises. You must be present in lab to complete the lab assignment. There is no way to make up for missing a lab.</p>
-<p>You will submit your lab assignments by pushing your work to your GitHub repository for the lab and submitting the PDF output on Gradescope <em>by the end of your lab session.</em></p>
+<p>Labs are designed to be hands-on at all times, so you’re expected to bring a laptop to each lab session.</p>
+<p>During labs, you will get a brief introduction to the lab assignment from your TA and then work on the exercises with your teammates; each student submits their own write-up of the lab assignment. It’s your responsibility to submit your work on time.</p>
+<p>In the first few weeks of the semester, you will be randomly assigned to a team and work with your teammates on an exercise that is due at the end of the lab session. Once project teams are formed, you will work with that team on the lab exercises. You must be present in lab to complete the lab assignment.</p>
 <p><em>There are eight graded labs in the semester. The lowest two lab grades will be dropped at the end of the semester, which means you can miss up to two lab sessions with no penalty.</em></p>
 </section>
-<section id="homework" class="level4">
-<h4 class="anchored" data-anchor-id="homework">Homework</h4>
+<section id="homework" class="level3">
+<h3 class="anchored" data-anchor-id="homework">Homework</h3>
 <p>You will complete homework assignments individually. You may start working on your homework assignment during your lab session, once you complete your lab exercises, but you will likely need to finish it outside of class. Your homework will be comprised of some practice exercises where you can get immediate feedback from AI tools designed for this course and some graded exercises.</p>
-<p>You will submit your homework assignments by pushing your work to your GitHub repository for the homework and submitting the PDF output on Gradescope <em>by 11:59pm on Wednesdays</em>.</p>
+<p>You will submit your homework assignments by pushing your work to your GitHub repository for the homework and submitting the PDF output on Gradescope <em>by 11:59 pm on Wednesdays</em>.</p>
 <p><em>There are seven graded homework assignments in the semester. The lowest homework grade will be dropped at the end of the semester, which means you can miss one homework assignment with no penalty.</em></p>
 </section>
-<section id="exams" class="level4">
-<h4 class="anchored" data-anchor-id="exams">Exams</h4>
-<p>This course will have three exams: two exams and a final. Each exam will be completed in class, and you may use a cheat sheet.</p>
-<p>You can demonstrate what you’ve learned in the course thus far through these exams. The exams will focus on both conceptual understanding of the content and application through analysis and computational tasks. The exam’s content will be related to the content in videos and reading assignments, lectures, application exercises, and labs.</p>
-<p><em>Missed exams: There are no make-up exams. If you miss Exam 1 or 2 due to an illness or similar documented with a Dean’s Excuse, your final exam score will replace the missed exam score. If you miss the Final Exam due to an illness or similar documented with a Dean’s Excuse, you will receive an Incomplete and can take the final exam later.</em></p>
+<section id="exams" class="level3">
+<h3 class="anchored" data-anchor-id="exams">Exams</h3>
+<p>This course has three exams: two midterms and a final. Each exam will be completed in class, and you may use a cheat sheet (1 page, both sides, prepared by you).</p>
+<p>The exams will focus on both conceptual understanding of the content and application through analysis and computational tasks. The exam will cover material from videos, reading assignments, lectures, application exercises, homework assignments, and labs.</p>
+<p><em>Missed exams: There are no make-up exams. If you miss Exam 1 or 2 due to a documented illness or similar circumstance (Dean’s Excuse), your final exam score will replace the missed exam score. If you miss the Final Exam due to a documented illness or similar circumstance (Dean’s Excuse), you will receive an Incomplete and will take the final exam later.</em></p>
 <p><em>Improvement bonus: For students who take all exams (Exam 1, Exam 2, and Final Exam), the final exam score will replace the lower of the two mid-semester exam scores, if the final exam score is higher.</em></p>
 </section>
-<section id="project" class="level4">
-<h4 class="anchored" data-anchor-id="project">Project</h4>
-<p>The project aims to apply what you’ve learned throughout the semester to analyze an interesting data-driven research question. The project will be completed in teams, with each team presenting their work during a lab session and preparing a written report.</p>
+<section id="project" class="level3">
+<h3 class="anchored" data-anchor-id="project">Project</h3>
+<p>The project aims to apply what you’ve learned throughout the semester to analyze an interesting data-driven research question. In a nutshell, you will ask a question you’re curious about and answer it with a dataset of your choice. The project will be completed in teams, with each team presenting their work during a lab session and preparing a written report.</p>
+<p>Your project will be completed in seven milestones, each with its own instructions and grading criteria. More information about the project will be provided during the semester.</p>
+<p>Overall, the assessment of the project will emphasize the quality of your work, including the clarity, correctness, and effectiveness of your communication, rather than the quantity of work you produce.</p>
+<p>You will be evaluated on the final product your team produces as well as on your individual contributions. All team members are expected to contribute equally to the project, and you will be asked to evaluate them throughout the semester. Failure to adequately contribute to any project component will result in a penalty to your mark relative to the team’s overall mark. You are expected to use the provided GitHub repository as the central collaborative platform. Commits to this repository will be used as a metric (one of several) of each team member’s relative contribution to each project.</p>
 <p><em>You cannot pass this course if you have not completed the project.</em></p>
-<p>More information about the project will be provided during the semester.</p>
-</section>
 </section>
 </section>
 <section id="grading" class="level2">
@@ -922,7 +885,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="course-policies">Course policies</h2>
 <section id="duke-community-standard" class="level3">
 <h3 class="anchored" data-anchor-id="duke-community-standard">Duke Community Standard</h3>
-<p>As a student in this course, you have agreed to uphold the <a href="https://trinity.duke.edu/undergraduate/academic-policies/community-standard-student-conduct">Duke Community Standard</a> and the practices specific to this course.</p>
+<p>As a student in this course, you have agreed to uphold the <a href="https://trinity.duke.edu/undergraduate/academic-policies/community-standard-student-conduct">Duke Community Standard</a> and the practices specific to this course. It is the responsibility of all students to understand and follow all Duke policies, including academic integrity (e.g., completing one’s own work, following proper citation of sources, adhering to guidance around group work projects, and more). Any questions or concerns regarding academic integrity can be directed to the Office of Student Conduct and Community Standards at <a href="mailto:conduct@duke.edu">conduct@duke.edu</a>.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_KN97j30ST4" title="Duke Community Standard" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
 </iframe>
 </section>
@@ -935,69 +898,65 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><p><strong>Collaboration:</strong> Only work that is clearly assigned as teamwork should be completed collaboratively. On individual assignments, you may not directly share work (including code) with another student in this class; on team assignments, you may not directly share work (including code) with another team. “Sharing” includes, but is not limited to, messaging, emailing, or otherwise providing your work to another student or team.</p>
 <ul>
-<li><p>Labs: Collaboration in teams for lab assignments is not only allowed but expected. You will work together with your lab team to complete the lab exercise. However, each student must submit their own write-up of the lab exercise, which should reflect their understanding and ideas. It’s expected that lab submissions will be similar across team members.</p></li>
-<li><p>Project: Similarly, collaboration within teams is not only allowed but expected for the project. The difference is that the project is a single, collaborative work developed by the entire team. It is the team’s responsibility to make sure all components of the project are vetted and revised by all team members, even if some division of labor takes place for first drafts of components. Communication between teams at a high level is also allowed; however, you may not share code or project components across teams.</p></li>
+<li><p>Labs: Collaboration in teams for lab assignments is not only allowed but expected. You will work together with your lab team to complete the lab exercise. However, each student must submit their own write-up of the lab exercise, reflecting their understanding and ideas. It’s expected that lab submissions will be similar across team members.</p></li>
+<li><p>Project: The project is a single, collaborative work developed by the entire team. It is the team’s responsibility to ensure that all components of the project are vetted and revised by all team members, even if some division of labor occurs for first drafts. High-level communication between teams is also allowed; however, you may not share code or project components across teams.</p></li>
 <li><p>Homework: You may discuss homework assignments with other students; however, you may not directly share (or copy) code or write-up with other students. For homework assignments, sharing (or copying) of the code or write-up will be considered a violation for all students involved, regardless of who initiated the sharing.</p></li>
-<li><p>Exams: You may not discuss or otherwise work with others on the exams. On exams, collaboration, sharing (or copying) of the code, or using unauthorized materials will be considered a violation for all students involved, regardless of who initiated the sharing.</p></li>
+<li><p>Exams: You may not discuss or otherwise work with others on the exams. During exams, collaboration or the use of unauthorized materials will be considered a violation for all students involved, regardless of who initiated the sharing.</p></li>
 </ul></li>
-<li><p><strong>Use of online resources:</strong> I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., StackOverflow), but you must explicitly cite where you obtained any code you directly use (or use as inspiration). <strong>Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment.</strong></p></li>
-<li><p><strong>Use of generative artificial intelligence (AI)</strong>: You should treat generative AI, such as ChatGPT, like other online resources. Two guiding principles govern how to use AI in this course:</p>
+<li><p><strong>Use of online resources:</strong> I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., Stack Overflow). Still, you must explicitly cite where you obtained any code you directly use (or use as inspiration).</p></li>
+<li><p><strong>Use of generative artificial intelligence (AI)</strong>: You should treat the use of AI tools and LLMs (e.g.&nbsp;ChatGPT, Claude, Gemini, GitHub Copilot) like other online resources. Two guiding principles govern how to use AI in this course:</p>
 <ol type="1">
 <li><p><em>Cognitive dimension:</em> Working with AI should not reduce your thinking ability. We will practice using AI to facilitate, rather than hinder, learning.</p></li>
-<li><p><em>Ethical dimension</em><strong>:</strong> Students using AI should be transparent about their use and ensure it aligns with academic integrity.</p></li>
+<li><p><em>Ethical dimension:</em> Students using AI should be transparent about their use and ensure it aligns with academic integrity.</p></li>
 </ol>
+<p>If you choose to use AI tools and LLMs, you must follow these guidelines:</p>
 <ul>
-<li><span aria-hidden="true"><i class="fa-solid fa-check" aria-label="check"></i></span> <strong>AI tools for code:</strong> You may use generative AI tools when you need help with assignments. However you should first attempt to solve the problem yourself. Your submission should not be a copy-paste of AI-generated content – you must edit the content to ensure it reflects your understanding, has your voice and intellectual input, and conforms with course materials, syntax, terminology, and style. Additionally, <strong>the prompt you use cannot be copied and pasted directly from the assignment; you must create a prompt yourself.</strong></li>
+<li>Disclose your usage by indicating as such in the AI disclosure statement accompanying the assignment.</li>
+<li>Cite any AI-generated content you use in your work, including code and narrative. You may use <a href="https://guides.lib.monash.edu/c.php?g=219786&amp;p=6972087">these guidelines</a> to cite AI-generated content. <strong>The bare minimum citation must include the AI tool you’re using (e.g., ChatGPT), the model the tool uses, the date when you ran the prompt, and a link to the full transcript of the session starting with your prompt.</strong></li>
+<li>Do not copy-paste assignment prompts into AI tools. Instead, you must create your own prompt that reflects your understanding of the assignment and the course materials.</li>
+<li>Do not just copy-paste/insert AI-generated content into your assignment. Instead, edit the content to ensure it reflects your understanding, has your voice and intellectual input, and conforms with course materials, syntax, terminology, and style.</li>
 </ul>
-<p>You must also explicitly cite work submitted that is based on AI-generated content. You may use <a href="https://guides.lib.monash.edu/c.php?g=219786&amp;p=6972087">these guidelines</a> to cite AI-generated content. <strong>The bare minimum citation must include the AI tool you’re using (e.g., ChatGPT), the model the tool uses, the date when you ran the prompt, and a link to the full transcript of the session starting with your prompt.</strong> A citation must be included for each exercise where you used AI tools.</p>
-<ul>
-<li><p><span aria-hidden="true"><i class="fa-solid fa-ban" aria-label="ban"></i></span> <strong>AI tools for lab:</strong> Unless instructed otherwise, you may not use AI tools during lab. We encourage you to work with your teammates and ask your TAs questions.</p></li>
-<li><p><span aria-hidden="true"><i class="fa-solid fa-ban" aria-label="ban"></i></span> <strong>AI tools for narrative:</strong> Unless instructed otherwise, you may not use AI tools to generate a narrative that you then copy-paste verbatim into an assignment or edit and then insert into your assignment.</p></li>
-<li><p><span aria-hidden="true"><i class="fa-solid fa-check" aria-label="check"></i></span> <strong>AI tools for learning:</strong> You’re welcome to ask AI tools questions that might help your learning and understanding in this course. However you should be critical of the answers you receive, as AI-generated content may not always be accurate or reliable. Use it to supplement your understanding, not as a substitute for learning.</p></li>
+<p>In general, you may use AI as a resource as you complete assignments, but not to answer the exercises for you. You are ultimately responsible for the work you turn in; it should reflect <em>your</em> understanding of the course content. Identifying AI-generated content is fairly straightforward. <strong>Any content identified as AI-generated but not cited as such will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment.</strong></p>
+<p>Finally, if you’re using AI tools for learning, be critical of the answers you receive: AI-generated content may not always be accurate or reliable, or, more likely, it may not be based on course materials, making it more confusing than helpful.</p></li>
 </ul>
-<p>In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you. You are ultimately responsible for the work you turn in; it should reflect <em>your</em> understanding of the course content. Identifying AI-generated content is fairly straightforward. <strong>Any code identified as AI-generated but not cited as such and any narrative identified as AI-generated will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment.</strong></p></li>
-</ul>
-<p>If you are unsure if using a particular resource complies with the academic honesty policy, please ask a teaching team member.</p>
+<p>If you are unsure whether using a particular resource complies with the academic honesty policy, please ask a member of the teaching team.</p>
 </section>
 <section id="what-happens-if-you-violate-the-academic-honesty-policy" class="level4">
 <h4 class="anchored" data-anchor-id="what-happens-if-you-violate-the-academic-honesty-policy">What happens if you violate the academic honesty policy?</h4>
-<p>Any violations in academic honesty standards as outlined in the <a href="https://trinity.duke.edu/undergraduate/academic-policies/community-standard-student-conduct">Duke Community Standard</a> and those specific to this course</p>
+<p>Any violations in academic honesty standards as outlined in the <a href="https://trinity.duke.edu/undergraduate/academic-policies/community-standard-student-conduct">Duke Community Standard</a> and those specific to this course:</p>
 <ul>
 <li><p>will automatically result in a 0 for the relevant portion or the entire assignment or assessment,</p></li>
 <li><p>can result in further deductions to your overall course grade (e.g., drop down to the next letter grade or drop down to an F), and</p></li>
 <li><p>can be reported to the <a href="https://students.duke.edu/get-assistance/community-standard/osccs/">Office of Student Conduct &amp; Community Standards</a> for further action.</p></li>
 </ul>
-<p>Regardless of course delivery format, it is the responsibility of all students to understand and follow all Duke policies, including academic integrity (e.g., completing one’s own work, following proper citation of sources, adhering to guidance around group work projects, and more). Ignoring these requirements is a violation of the Duke Community Standard. Any questions and/or concerns regarding academic integrity can be directed to the Office of Student Conduct and Community Standards at <a href="mailto:conduct@duke.edu">conduct@duke.edu</a>.</p>
 </section>
 </section>
 <section id="late-work-extensions" class="level3">
 <h3 class="anchored" data-anchor-id="late-work-extensions">Late work &amp; extensions</h3>
-<p>The due dates for homework assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback in a timely manner. We understand that things come up periodically that could make it difficult to submit an assignment by the deadline. Note that the lowest homework assignment and lowest 2 lab assignments will be dropped to accommodate such circumstances.</p>
+<p>The due dates for homework assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback promptly. We understand that things come up periodically that could make it difficult to submit an assignment by the deadline, which is why the lowest homework and the lowest two lab grades are dropped.</p>
 <ul>
-<li>Homework assignments may be submitted up to 3 days late. A 5% deduction will be applied for each 24-hour period during which the assignment is late.</li>
-<li>No late work is accepted for labs since these are designed to be completed in class.</li>
-<li>No late work is accepted for exams.</li>
-<li>No late work is accepted for projects.</li>
+<li>Homework assignments may be submitted up to 3 days late. A 5% deduction will be applied for every 24 hours the assignment is late.</li>
+<li>No late work is accepted for labs, exams, or the project.</li>
 </ul>
 </section>
 <section id="one-time-late-penalty-waiver" class="level3">
 <h3 class="anchored" data-anchor-id="one-time-late-penalty-waiver">One-time late penalty waiver</h3>
-<p>If circumstances prevent you from completing a homework by the stated due date, you may email the course coordinator, <a href="mailto:mary.knox@duke.edu">Dr.&nbsp;Mary Knox</a>, <strong>before the deadline</strong> to request to waive the late penalty (up to 15%). In your email, you only need to request the waiver; you do not need to provide an explanation. This waiver may only be used <strong>once</strong> in the semester, so use it wisely. The waiver may only be used for homework assignments, not for attendance/participation, labs, exams, or the project.</p>
+<p>If circumstances prevent you from completing a homework assignment by the stated due date, you may email the course coordinator, <a href="mailto:mary.knox@duke.edu">Dr.&nbsp;Mary Knox</a>, <strong>before the deadline</strong> to request a waiver of the late penalty (up to the maximum 15%, i.e., 3 days late). In your email, you only need to request the waiver; you do not need to explain. This waiver may only be used <strong>once</strong> in the semester, so use it wisely. The waiver may only be used for homework assignments, not for attendance/participation, labs, exams, or the project.</p>
 <p>If circumstances have a longer-term impact on your academic performance, please let your Quad advisor or academic dean know. They can be a resource. Please let me know if you need help contacting them.</p>
 </section>
 <section id="regrade-requests" class="level3">
 <h3 class="anchored" data-anchor-id="regrade-requests">Regrade requests</h3>
-<p>Regrade requests must be submitted on Gradescope within a week after an assignment is returned. Regrade requests will be considered if there was an error in the grade calculation or if a correct answer was mistakenly marked as incorrect. Requests to dispute the number of points deducted for an incorrect response will not be considered. Regrade requests are also not a mechanism for asking for clarification on feedback, those questions should be brought to office hours. Note that by submitting a regrade request, the <strong>entire assignment may be regraded</strong>, which could potentially result in losing points.</p>
+<p>Regrade requests must be submitted on Gradescope within a week after an assignment is returned. Regrade requests will be considered if there was an error in the grade calculation or if a correct answer was mistakenly marked as incorrect. Requests to dispute the number of points deducted for an incorrect response will not be considered. Regrade requests are also not a mechanism for asking for clarification on feedback; those questions should be brought to office hours. Note that by submitting a regrade request, the <strong>entire assignment may be regraded</strong>, which could potentially result in losing points.</p>
 <p><em>No grades will be changed after the final exam has been administered.</em></p>
 </section>
 <section id="attendance-policy" class="level3">
 <h3 class="anchored" data-anchor-id="attendance-policy">Attendance policy</h3>
-<p>Every student is expected to attend and participate in lecture and labs and a portion of your grade depends on this. There may be times, however, when you cannot attend class. Lecture recordings are available upon request for students who have an excused absence. See the <a href="./course-syllabus.html#lecture-recording-request">Lecture recording request</a> policy for more detail. If you miss a lecture, make sure to review the material and complete the application exercise, if applicable, before the next lecture. Labs are dedicated to completing the lab assignment and collaborating with your lab team and there is no way to make up for missing a lab.</p>
+<p>Every student is expected to attend and participate in lectures and labs, and a portion of your grade depends on this (see <a href="#lectures">Lectures</a> and <a href="#labs">Labs</a>). If you miss a lecture, review the material and complete the application exercise, if applicable, before the next lecture. Recordings are available upon request for excused absences; see the <a href="#lecture-recording-request">Lecture recording request</a> policy. There is no way to make up for missing a lab.</p>
 <p>More details on Trinity attendance policies are available <a href="https://trinity.duke.edu/undergraduate/academic-policies/class-attendance-and-missed-work">here</a>.</p>
 </section>
 <section id="lecture-recording-request" class="level3">
 <h3 class="anchored" data-anchor-id="lecture-recording-request">Lecture recording request</h3>
-<p>Lectures will be recorded on Panopto and will be made available to students with an excused absence upon request. Videos shared with such students will be available for a week after the lecture date. To request a particular lecture’s video, please fill out the form at the link below. Please submit the form within 24 hours of missing lecture to ensure you have sufficient time to watch the recording. Please also make sure that any official documentation, such as incapacitation forms, Dean’s excuses, NOVAPs, and quarantine/removal from class notices from student health are also uploaded to the form.</p>
+<p>Lectures will be recorded on Panopto and will be made available to students with an excused absence upon request. Videos shared with such students will be available for a week after the lecture date. To request a specific lecture’s video, please complete the form at the link below. Please submit the form within 24 hours of missing the lecture to ensure you have sufficient time to watch the recording. Please also make sure that any official documentation, such as an incapacitation form, Dean’s excuse, or NOVAP, is uploaded to the form.</p>
 <p>🔗 <a href="https://forms.office.com/r/z6KrpJyD8q" class="uri">https://forms.office.com/r/z6KrpJyD8q</a></p>
 <p>About one week before each exam, the class recordings will be available to all students. These recordings will be available until the start of the exam.</p>
 </section>
@@ -1006,42 +965,37 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="accommodations">Accommodations</h2>
 <section id="academic-accommodations" class="level3">
 <h3 class="anchored" data-anchor-id="academic-accommodations">Academic accommodations</h3>
-<p>If you need accommodations for this class, you will need to register with the Student Disability Access Office (SDAO) and provide them with documentation related to your needs. SDAO will work with you to determine what accommodations are appropriate for your situation. Please note that accommodations are not retroactive and disability accommodations cannot be provided until a Faculty Accommodation Letter has been given to me. Please contact SDAO for more information: <a href="mailto:sdao@duke.edu">sdao@duke.edu</a> or <a href="https://access.duke.edu/">access.duke.edu</a>.</p>
+<p>If any portion of the course is inaccessible to you due to technical issues or the course format, please let me know so we can make appropriate accommodations.</p>
+<p>For disability accommodations, register with the <a href="https://access.duke.edu/students">Student Disability Access Office (SDAO)</a> and provide documentation related to your needs; SDAO will work with you to determine what accommodations are appropriate for your situation. Please note that accommodations are not retroactive, and disability accommodations cannot be provided until a Faculty Accommodation Letter has been given to me. Please contact SDAO for more information: <a href="mailto:sdao@duke.edu">sdao@duke.edu</a> or <a href="https://access.duke.edu/requests">request or update accommodations</a> directly.</p>
 </section>
 <section id="religious-accommodations" class="level3">
 <h3 class="anchored" data-anchor-id="religious-accommodations">Religious accommodations</h3>
-<p>Students are permitted by university policy to be absent from class to observe a religious holiday. Accordingly, Trinity College of Arts &amp; Sciences and the Pratt School of Engineering have established procedures to be followed by students for notifying their instructors of an absence necessitated by the observance of a religious holiday. Please submit requests for religious accommodations at the beginning of the semester so that we can work to make suitable arrangements well ahead of time. You can find the policy and relevant notification form here: <a href="https://trinity.duke.edu/undergraduate/academic-policies/religious-holidays">trinity.duke.edu/undergraduate/academic-policies/religious-holidays</a></p>
+<p>Students are permitted by university policy to be absent from class to observe a religious holiday. Accordingly, Trinity College of Arts &amp; Sciences and the Pratt School of Engineering have established procedures for students to follow when notifying their instructors of an absence necessitated by observance of a religious holiday. Please submit requests for religious accommodations at the beginning of the semester so we can make suitable arrangements well in advance. You can find the policy and relevant notification form here: <a href="https://trinity.duke.edu/undergraduate/academic-policies/religious-holidays">trinity.duke.edu/undergraduate/academic-policies/religious-holidays</a></p>
 </section>
 </section>
-<section id="important-dates-1" class="level2">
-<h2 class="anchored" data-anchor-id="important-dates-1">Important dates</h2>
+<section id="important-dates" class="level2">
+<h2 class="anchored" data-anchor-id="important-dates">Important dates</h2>
 <ul>
-<li><p><strong>Aug 24:</strong> Classes begin</p></li>
-<li><p><strong>Sep 4:</strong> Drop/add ends</p></li>
-<li><p><strong>Sep 7:</strong> Labor Day</p></li>
-<li><p><strong>Oct 7:</strong> Exam 1: in-class</p></li>
-<li><p><strong>Oct 12-13</strong>: Fall break</p></li>
-<li><p><strong>Nov 5</strong>: Project presentation in lab + write-up</p></li>
-<li><p><strong>Nov 6</strong>: Last day to withdraw with W</p></li>
-<li><p><strong>Nov 18:</strong> Exam 2: in-class</p></li>
-<li><p><strong>Nov 25-27</strong>: Thanksgiving break</p></li>
-<li><p><strong>Dec 4</strong>: Classes end</p></li>
-<li><p><strong>Dec 10</strong>: Final exam</p></li>
+<li><strong>Aug 24:</strong> Classes begin</li>
+<li><strong>Sep 4:</strong> Drop/add ends</li>
+<li><strong>Sep 7:</strong> Labor Day</li>
+<li><strong>Oct 7:</strong> Exam 1 (in-class)</li>
+<li><strong>Oct 12-13:</strong> Fall break</li>
+<li><strong>Nov 5:</strong> Project presentation in lab + write-up</li>
+<li><strong>Nov 6:</strong> Last day to withdraw with W</li>
+<li><strong>Nov 18:</strong> Exam 2 (in-class)</li>
+<li><strong>Nov 25-27:</strong> Thanksgiving break</li>
+<li><strong>Dec 4:</strong> Classes end</li>
+<li><strong>Dec 10:</strong> Final exam</li>
 </ul>
-<p>Lab and project deadlines are listed on the course schedule.</p>
-<p>For more important dates, see the full <a href="https://registrar.duke.edu/2025-2026-academic-calendar">Duke Academic Calendar</a>.</p>
+<p>Assignment due dates are listed on the course schedule.</p>
+<p>For more important dates, see the full <a href="https://registrar.duke.edu/2026-2027-academic-calendar/">Duke Academic Calendar</a>.</p>
 
 
 </section>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>The TL;DR short version was generated by Claude Sonnet 4 on 2025-08-23 with the prompt “Summarize the following syllabus to a 1-pager” and providing the <a href="#long-version">long version</a> content for context.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
