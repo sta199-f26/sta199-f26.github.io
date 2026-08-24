@@ -1,0 +1,482 @@
+---
+title: ""
+page-layout: custom
+toc: false
+execute:
+  freeze: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{=html}
+<style>
+/* ---------------------------------------------------------------------------
+   PROTOTYPE ONLY. Everything here is scoped to .lp-* classes and lives in
+   this page so it cannot affect the rest of the site. If we keep this
+   direction, these rules move into style/sta199.scss and the hardcoded
+   hexes become brand variables.
+   --------------------------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
+.lp-hero,
+.lp-cards,
+.lp-week { --lp-poseidon: #133955;
+           --lp-aboard:   #5C97CB;
+           --lp-egret:    #F3ECE0;
+           --lp-green:    #7FBB9E;
+           --lp-clay:     #D29380;
+           --lp-under:    #83807B; }
+
+/* ---------- Pandoc/Quarto artifact cleanup ----------
+   Pandoc wraps each heading in a <section> and each inline block in <p>, and
+   Quarto's anchorJS adds hover anchor links to every heading. None of that is
+   wanted inside the hero or the cards, so neutralize it locally. */
+
+.lp-hero section,
+.lp-cards section,
+.lp-week section { margin: 0; }
+
+.lp-eyebrow p,
+.lp-card-icon p,
+.lp-btns p,
+.lp-hero-logo p { margin: 0; }
+
+.lp-hero .anchorjs-link,
+.lp-cards .anchorjs-link,
+.lp-week .anchorjs-link { display: none !important; }
+
+.lp-card-body p:last-child { margin-bottom: 0; }
+
+/* ---------- Hero ---------- */
+
+.lp-hero {
+  background:
+    radial-gradient(ellipse 80% 120% at 85% -10%, #1d5480 0%, transparent 60%),
+    linear-gradient(160deg, #133955 0%, #0d2739 100%);
+  color: #fff;
+  padding: 4.5rem 2rem 4rem;
+  margin-bottom: 0;
+}
+
+.lp-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.lp-hero-logo img {
+  width: 190px;
+  height: auto;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, .45));
+}
+
+.lp-hero-text { flex: 1 1 380px; }
+
+.lp-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: .78rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--lp-green);
+  margin-bottom: .9rem;
+}
+
+.lp-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  line-height: .98;
+  letter-spacing: -.03em;
+  margin: 0 0 .6rem;
+  color: #fff;
+  border: none;
+}
+
+.lp-hero h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  margin: 0 0 1.9rem;
+  color: rgba(255, 255, 255, .82);
+  border: none;
+  max-width: 30ch;
+}
+
+.lp-btns { display: flex; gap: .85rem; flex-wrap: wrap; }
+
+.lp-btn {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: .98rem;
+  padding: .7rem 1.6rem;
+  border-radius: 100px;
+  text-decoration: none !important;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  display: inline-block;
+}
+
+.lp-btn-primary {
+  background: var(--lp-green);
+  color: #0d2739 !important;
+  box-shadow: 0 4px 16px rgba(127, 187, 158, .3);
+}
+
+.lp-btn-primary:hover {
+  background: #93cbaf;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(127, 187, 158, .4);
+}
+
+.lp-btn-ghost {
+  background: transparent;
+  color: #fff !important;
+  border: 1.5px solid rgba(255, 255, 255, .35);
+}
+
+.lp-btn-ghost:hover {
+  background: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .6);
+  transform: translateY(-2px);
+}
+
+/* ---------- Info cards ---------- */
+
+.lp-cards {
+  max-width: 1100px;
+  margin: -2.5rem auto 3.5rem;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.lp-card {
+  background: #fff;
+  border: 1px solid #e6e9ec;
+  border-radius: 14px;
+  padding: 1.5rem 1.5rem 1.35rem;
+  box-shadow: 0 6px 24px rgba(19, 57, 85, .09);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.lp-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(19, 57, 85, .15);
+}
+
+.lp-card-icon {
+  font-size: 1.35rem;
+  color: var(--lp-aboard);
+  margin-bottom: .7rem;
+}
+
+.lp-card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--lp-under);
+  margin: 0 0 .6rem;
+  border: none;
+}
+
+.lp-card-body { font-size: .95rem; line-height: 1.5; }
+.lp-card-body strong { color: var(--lp-poseidon); font-weight: 700; }
+.lp-card-body .lp-muted { color: var(--lp-under); font-size: .87rem; }
+.lp-card-body a { text-decoration: none; }
+.lp-card-body a:hover { text-decoration: underline; }
+
+/* ---------- This week ---------- */
+
+.lp-week {
+  max-width: 1100px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+.lp-week-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid #e6e9ec;
+  padding-bottom: .7rem;
+  margin-bottom: .35rem;
+  flex-wrap: wrap;
+}
+
+.lp-week-head h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -.02em;
+  color: var(--lp-poseidon);
+  margin: 0;
+  border: none;
+}
+
+.lp-week-head a {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: .92rem;
+  text-decoration: none;
+}
+
+.lp-row {
+  display: grid;
+  grid-template-columns: 5.5rem 4.5rem 1fr auto;
+  gap: 1.1rem;
+  align-items: center;
+  padding: 1rem .35rem;
+  border-bottom: 1px solid #eef1f3;
+}
+
+.lp-row:hover { background: #fafbfc; }
+
+.lp-date {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: .88rem;
+  color: var(--lp-under);
+  white-space: nowrap;
+}
+
+.lp-badge {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: .68rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  padding: .3rem .6rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.lp-badge-lec    { background: #13395518; color: #133955; }
+.lp-badge-lab    { background: #7FBB9E30; color: #3d6b55; }
+.lp-badge-exam   { background: #B9839140; color: #7a4a58; }
+.lp-badge-other  { background: #83807B20; color: #5a5854; }
+
+.lp-topic {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 1.03rem;
+  color: var(--lp-poseidon);
+  line-height: 1.3;
+}
+
+.lp-due {
+  font-size: .85rem;
+  color: var(--lp-clay);
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.lp-empty {
+  padding: 1.6rem .35rem;
+  color: var(--lp-under);
+  font-style: italic;
+}
+
+@media (max-width: 620px) {
+  .lp-row { grid-template-columns: 1fr; gap: .4rem; }
+  .lp-badge { justify-self: start; }
+  .lp-due { text-align: left; }
+  .lp-hero { padding: 3rem 1.5rem 3.5rem; }
+  .lp-hero-inner { gap: 2rem; }
+}
+
+/* ---------- Dark mode ---------- */
+
+body.quarto-dark .lp-card {
+  background: #242424;
+  border-color: #3a3a3a;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .4);
+}
+body.quarto-dark .lp-card-body strong,
+body.quarto-dark .lp-topic,
+body.quarto-dark .lp-week-head h2 { color: #e8eef3; }
+body.quarto-dark .lp-week-head { border-bottom-color: #3a3a3a; }
+body.quarto-dark .lp-row { border-bottom-color: #2e2e2e; }
+body.quarto-dark .lp-row:hover { background: #1f1f1f; }
+/* The site-wide `linkcolor: "#133955"` is a dark navy that all but vanishes
+   on a dark card, so lift links to a legible tint of all-aboard. */
+body.quarto-dark .lp-card-body a,
+body.quarto-dark .lp-week-head a { color: #8fc0e8; }
+
+body.quarto-dark .lp-badge-lec  { background: #5C97CB30; color: #a8c9e6; }
+body.quarto-dark .lp-badge-lab  { background: #7FBB9E30; color: #a5d4bd; }
+body.quarto-dark .lp-badge-exam { background: #B9839140; color: #d9b3bd; }
+</style>
+```
+
+::: {.lp-hero}
+::: {.lp-hero-inner}
+::: {.lp-hero-logo}
+![](img/logo.png){fig-alt="STA 199 course hex logo" .nolightbox}
+:::
+
+::: {.lp-hero-text}
+::: {.lp-eyebrow}
+Duke University · Fall 2026
+:::
+
+# STA 199CCL
+
+## Introduction to Data Science<br>and Statistical Thinking
+
+::: {.lp-btns}
+[Schedule](index.qmd){.lp-btn .lp-btn-primary}
+[Syllabus](course-syllabus.qmd){.lp-btn .lp-btn-ghost}
+:::
+:::
+:::
+:::
+
+::: {.lp-cards}
+::: {.lp-card}
+::: {.lp-card-icon}
+{{< fa regular clock >}}
+:::
+
+### Meetings
+
+::: {.lp-card-body}
+**Lecture** Mon & Wed, 1:25–2:40 pm<br>
+[Biological Sciences 111]{.lp-muted}
+
+**Lab** Thursdays<br>
+[10 sections · Perkins LINK & Old Chem]{.lp-muted}
+:::
+:::
+
+::: {.lp-card}
+::: {.lp-card-icon}
+{{< fa regular user >}}
+:::
+
+### Teaching team
+
+::: {.lp-card-body}
+**Dr. Mine Çetinkaya-Rundel**<br>
+[Instructor]{.lp-muted}
+
+[Supported by a team of undergraduate and graduate TAs]{.lp-muted}
+
+[Meet the team →](course-team.qmd)
+:::
+:::
+
+::: {.lp-card}
+::: {.lp-card-icon}
+{{< fa laptop-code >}}
+:::
+
+### Computing
+
+::: {.lp-card-body}
+Everything runs in **R** via Duke's Positron containers — nothing to install.
+
+[Launch container →](https://cmgr.oit.duke.edu/containers)<br>
+[Get access →](computing-access.qmd)
+:::
+:::
+:::
+
+::: {.lp-week}
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: asis
+
+library(googlesheets4)
+library(tidyverse)
+gs4_deauth()
+
+d <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1mMJwre7sE2RGyorwwn87cyBv6RY1woeV3pKeS_MoQz8/edit?gid=675503730#gid=675503730",
+  sheet = "Schedule"
+)
+
+today <- Sys.Date()
+
+sched <- d |>
+  filter(session != "None") |>
+  mutate(date = as.Date(map_chr(date, as.character))) |>
+  filter(!is.na(date))
+
+# Current Monday-Sunday window; if the semester hasn't started (or the week is
+# empty), fall back to the next few sessions so the block is never blank.
+monday <- today - (as.integer(format(today, "%u")) - 1)
+this_week <- sched |> filter(date >= monday, date <= monday + 6)
+heading <- "This week"
+
+if (nrow(this_week) == 0) {
+  this_week <- sched |> filter(date >= today) |> slice_head(n = 4)
+  heading <- "Coming up"
+}
+
+# Strip markdown/HTML links down to their label text for the compact view.
+plain <- function(x) {
+  x |>
+    str_replace_all("<br\\s*/?>", " · ") |>
+    str_replace_all("<[^>]*>", "") |>
+    str_replace_all("\\[([^]]*)\\]\\([^)]*\\)", "\\1") |>
+    str_replace_all("[*_]", "") |>
+    str_squish()
+}
+
+badge_class <- function(s) {
+  case_when(
+    s == "Lec" ~ "lp-badge-lec",
+    s == "Lab" ~ "lp-badge-lab",
+    str_detect(coalesce(s, ""), regex("exam", ignore_case = TRUE)) ~ "lp-badge-exam",
+    TRUE ~ "lp-badge-other"
+  )
+}
+
+cat(sprintf(
+  '<div class="lp-week-head"><h2>%s</h2><a href="index.html">Full schedule &rarr;</a></div>\n',
+  heading
+))
+
+if (nrow(this_week) == 0) {
+  cat('<div class="lp-empty">Schedule coming soon.</div>\n')
+} else {
+  this_week |>
+    mutate(
+      html = sprintf(
+        paste0(
+          '<div class="lp-row">',
+          '<div class="lp-date">%s</div>',
+          '<div class="lp-badge %s">%s</div>',
+          '<div class="lp-topic">%s</div>',
+          '<div class="lp-due">%s</div>',
+          '</div>'
+        ),
+        format(date, "%a %b %e") |> str_squish(),
+        badge_class(session),
+        coalesce(session, "—"),
+        plain(coalesce(topic, "")),
+        plain(coalesce(due, ""))
+      )
+    ) |>
+    pull(html) |>
+    walk(~ cat(.x, "\n"))
+}
+```
+
+:::
