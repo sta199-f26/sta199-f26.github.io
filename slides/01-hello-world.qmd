@@ -127,12 +127,12 @@ Please share with at least two classmates...
 --- [Grady Smith](https://www.youtube.com/watch?v=48ZxNFGJTo8), country music critic
 :::
 
-## Where the data comes from {.smaller}
+## Data {.smaller}
 
 ::: {.columns}
 
 ::: {.column .fragment}
-{{< fa music size=4x title="Music note icon" >}} 
+{{< fa music size=3x title="Music note icon" >}} 
 
 Grady Smith kept a spreadsheet of every country song that reached the Top 30 of Billboard's Country Airplay chart.
 
@@ -140,9 +140,9 @@ Grady Smith kept a spreadsheet of every country song that reached the Top 30 of 
 :::
 
 ::: {.column .fragment}
-{{< fa file-csv size=4x title="CSV file icon" >}} 
+{{< fa file-csv size=3x title="CSV file icon" >}} 
 
-Someone tidied it up and put it in a CSV (comma-separated values) file.
+Someone tidied it up and put it in a CSV (comma-separated values) file and released it as part of the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) project.
 
 :::
 
@@ -170,15 +170,15 @@ library(taylor) # for a surprise!
 Import the data called `country-lyrics.csv` in the folder called `data` using the `read_csv()` function:
 
 ```{r}
-#| label: cl-read-shown
-#| eval: false
-country <- read_csv("data/country-lyrics.csv")
-```
-
-```{r}
 #| label: cl-read-real
 #| include: false
 country <- read_csv(here::here("slides", "data/country-lyrics.csv"))
+```
+
+```{r}
+#| label: cl-read-show
+#| eval: false
+country <- read_csv("data/country-lyrics.csv")
 ```
 
 ```{r}
@@ -362,38 +362,55 @@ country |>
   print(n = Inf)
 ```
 
-## Can AI help? {.smaller}
+## Can AI help? {.smaller .scrollable}
 
-We could also ask a large language model to read every song and tell us what it's about:
+We could also ask a large language model to read every song and tell us what it's about?
 
-```{r}
-#| label: cl-ellmer
-#| code-fold: true
-#| freeze: true
-library(ellmer)
+> "What are common themes in these country song lyrics?" [Attached data file `country-lyrics.csv`.] 24 August 2026. ChatGPT 5.6 Sol Light. [chatgpt.com/share/e/6a8c7343-62e4-83ea-b114-715f9b847cea](https://chatgpt.com/share/e/6a8c7343-62e4-83ea-b114-715f9b847cea)
 
-chat <- chat_openai()
+::: xsmall
 
-prompts <- country |>
-  pull(lyrics) |>
-  as.list()
+Across the 484 songs in [country-lyrics.csv](sandbox:/workspace/scratch/fea9b77f1ff8/upload/country-lyrics.csv), several recurring themes stand out:
 
-type_song <- type_object(
-  theme = type_string(),
-  mentions_alcohol = type_boolean()
-)
+1. **Romantic love and attraction**
+   The dominant theme: falling in love, physical attraction, kissing, longing, and wanting to be together. Love-related language appears in roughly 94% of the songs.
 
-song_themes <- parallel_chat_structured(
-  chat,
-  prompts,
-  type = type_song
-)
-song_themes
-```
+2. **Heartbreak and separation**
+   Many songs focus on breakups, regret, loneliness, missing someone, or being unable to move on. This appears in approximately 73% of the songs, often alongside love rather than separately from it.
 
-## Can it be trusted 100%? {.smaller}
+3. **Drinking and nightlife**
+   Beer, whiskey, bars, neon lights, and getting drunk frequently serve as settings or coping mechanisms—especially for heartbreak. Related language appears in about 60% of the songs.
 
-Ask an AI (or a person!) what country songs are about and you'll hear: **beer, trucks, dirt roads, blue jeans, tractors**.
+4. **Music and dancing**
+   Radios, songs, dancing, guitars, and jukeboxes are prominent. Music often brings couples together, evokes a memory, or provides the soundtrack for driving and partying. About 56% contain this imagery.
+
+5. **Roads, trucks, and escape**
+   Driving can represent romance, independence, returning home, or leaving a painful situation behind. Roads, trucks, and related imagery occur in approximately 55%.
+
+6. **Partying and carefree pleasure**
+   Friday nights, weekends, bonfires, dancing, and “good times” create an idealized space temporarily free from responsibility. This theme appears in about half the songs.
+
+7. **Faith, hope, and resilience**
+   References to God, prayer, heaven, belief, strength, and survival often accompany songs about hardship or gratitude. Related language occurs in approximately 43%.
+
+8. **Home, family, and belonging**
+   Home is both a physical place and an emotional anchor. Parents, family roots, and returning home appear in around 40% of the songs.
+
+9. **Rural and small-town identity**
+   Country roads, fields, porches, boots, farms, and small towns establish a distinct cultural setting and sense of authenticity. About 32% explicitly use this imagery.
+
+10. **Youth, memory, and nostalgia**
+    Songs frequently look back on summer, adolescence, first love, or an earlier and supposedly simpler time. Explicit nostalgic language appears in roughly 27%.
+
+The broadest overarching theme is **emotion tied to place**: love, heartbreak, and personal identity are repeatedly expressed through small towns, roads, vehicles, bars, music, and home. The lyrics also contain a recurring tension between **leaving and belonging**—wanting to escape one’s circumstances while remaining emotionally attached to a person, hometown, or former life.
+
+These percentages are approximate keyword-based measures, and the categories overlap: one song can simultaneously be about heartbreak, whiskey, driving, and home.
+
+:::
+
+## Checks and balances {.smaller}
+
+Ask anyone what country songs are about and you'll likely hear: beer, trucks, dirt roads, blue jeans, tractors.
 
 . . .
 
@@ -433,7 +450,7 @@ country |>
 . . .
 
 ::: callout-tip
-This is what we mean by **statistical thinking**: a claim that "feels true" is a hypothesis, not a finding.
+This is what we mean by **statistical thinking**: a claim that "feels true" is not a finding, but you can explore and verify the claim with data and the skills you'll learn in this course.
 :::
 
 # Course overview
@@ -454,6 +471,19 @@ All linked from the course website:
 -   Communication: Ed Discussion
 -   Assignment submission and feedback: Gradescope
 
+## Course materials {.smaller}
+
+Both textbooks are **free online** and linked from the course website:
+
+-   [R for Data Science, 2e](https://r4ds.hadley.nz/) -- Wickham, Çetinkaya-Rundel, Grolemund
+-   [Introduction to Modern Statistics](https://openintrostat.github.io/ims/) -- Çetinkaya-Rundel, Hardin
+
+Computing:
+
+-   R and Positron run in containers provided by Duke OIT -- **nothing to install**
+
+-   **Bring a laptop (or Chromebook) to every class, fully charged** -- there aren't enough outlets in the classroom for everyone
+
 ## Activities {.smaller}
 
 -   Introduce new content and prepare for lectures by watching the videos and completing the readings
@@ -467,9 +497,13 @@ All linked from the course website:
 
 ## Attendance and participation {.smaller}
 
--   Daily in lecture
+-   Daily in lecture, via Wooclap on your laptop or phone
 
 -   Tracked for credit, but not based on correctness, only participation (and often they will be questions designed to make you think that might not have a single right answer!)
+
+-   There are 25 lectures this semester: **participate in at least 17 for full credit**
+
+-   Below that, the score is prorated, e.g. participating in 15/25 lectures gives (15/25) × 5% = 3%
 
 ## Application exercises {.smaller}
 
@@ -481,7 +515,7 @@ All linked from the course website:
 
 -   Hands-on practice with data analysis
 
--   A sigle exercise per lab, graded based on being there and in something reasonable + correctness
+-   A single exercise per lab, graded on turning in something reasonable + correctness
 
 -   Completed in-person, in lab, in teams
 
@@ -489,7 +523,7 @@ All linked from the course website:
 
 -   Developed collaboratively, but turned in individually by the end of the lab session
 
--   8 throughout semester, two lowest scores dropped
+-   Two lowest scores dropped
 
 -   No late work accepted
 
@@ -501,17 +535,37 @@ All linked from the course website:
 
 -   1-2 randomly sampled questions to be graded by humans for correctness
 
--   Can consult with course team and peers, but completed and turned in individually by the end of the week
+-   Can consult with course team and peers, but completed and turned in individually by **11:59 pm on Wednesdays**
 
--   7 throughout semester, lowest score dropped
+-   Lowest score dropped
 
 -   Up to 3 days late (-5% per day), no late work accepted after that
 
 -   One-time late penalty waiver: Can be used on any homework assignment, no questions asked, must be requested from Dr. Knox before the deadline
 
-## Exams {.smaller}
+## Turning in labs and HWs {.smaller}
 
--   Two exams + final
+Every assignment, same two steps:
+
+1.  **Push** your work to the assignment's GitHub repository
+2.  **Submit** the PDF output on **Gradescope**
+
+. . .
+
+-   Labs are due at the **end of your lab session**
+-   Homework is due by **11:59 pm on Wednesdays**
+
+. . .
+
+Submit what you have even if you haven't finished -- you'll get partial credit for your work.
+
+## Exams - structure {.smaller}
+
+-   Two exams + final, all in class:
+
+    -   **Exam 1: Wednesday, October 7**
+    -   **Exam 2: Wednesday, November 18**
+    -   **Final: Thursday, December 10**
 
 -   All exams comprised of two parts:
 
@@ -519,12 +573,23 @@ All linked from the course website:
 
     -   Short answer questions, on homework specifics (read: difficult/impossible to answer correctly without having done the homework)
 
+-   Cover material from videos, readings, lectures, application exercises, homework, and labs
+
 -   One sheet of notes for each exam, no larger than 8 1/2 x 11, both sides, **must be prepared by you**
 
-- No extensions or make-ups
+## Exams - policies {.smaller}
+
+-   No extensions and no make-up exams.
+
+-   With documentation (Dean's excuse or similar):
+
+    -   Miss Exam 1 or 2 → your final exam score replaces the missed score
+    -   Miss the Final → you receive an Incomplete and take the final later
+
+-   **Improvement bonus:** If you take all three exams, your final exam score replaces the *lower* of your two mid-semester exam scores -- if the final score is higher.
 
 ::: callout-caution
-Exam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class.
+Exam dates cannot be changed and no make-up exams will be given. If you can't take the exams on Oct 7, Nov 18, and Dec 10, you should drop this class.
 :::
 
 ## Project {.smaller}
@@ -535,16 +600,16 @@ Exam dates cannot be changed and no make-up exams will be given. If you can’t 
 
 -   Seven milestones, interim deadlines throughout semester
 
--   Final milestone: Presentation in lab and write-up
+-   Final milestone: Presentation in lab and write-up, **Thursday, November 5**
 
 -   Must be in lab, in-person to present
 
--   Peer review between teams for content, peer evaluation within teams for contribution
+-   Peer feedback between teams on presentation content; peer evaluation *within* teams for contribution, alongside commit history
 
 -   Some lab sessions allocated to project progress
 
 ::: callout-caution
-Project presentation date cannot be changed. You must complete the project to pass this class.
+The project presentation date (Nov 5) cannot be changed, and no late work is accepted for the project. You must complete the project to pass this class.
 :::
 
 ## Teams {.smaller}
@@ -574,7 +639,7 @@ Project presentation date cannot be changed. You must complete the project to pa
 
 See course syllabus for how the final letter grade will be determined.
 
-# Course overview + policies
+# Policies and support
 
 ## Tips for success
 
@@ -584,12 +649,15 @@ See course syllabus for how the final letter grade will be determined.
 -   Start early: Don’t procrastinate on assignments
 -   Stay current: Content builds progressively
 
-## Support
+## Support {.smaller}
 
 -   Help from humans:
     -   Attend office hours
     -   Ask and answer questions on the discussion forum
--   Reserve email for questions on personal matters and/or grades
+-   Reserve email for questions on personal matters and/or grades, and **include "STA 199" in the subject line**
+    -   Extensions, accommodations, missed work, registration → course coordinator **Dr. Mary Knox**, [mary.knox\@duke.edu](mailto:mary.knox@duke.edu)
+    -   Anything else not suited to the forum → **Dr. Çetinkaya-Rundel**, [mc301\@duke.edu](mailto:mc301@duke.edu)
+    -   Expect a reply within 48 hours, Monday through Friday; slower over the weekend
 -   Read the course support page
 
 ## Announcements
@@ -612,33 +680,66 @@ It is my intent that students from all diverse backgrounds and perspectives be w
 
 ## Access and accommodations {.smaller}
 
--   The [Duke Access and Accommodation Services](https://access.duke.edu) is available to ensure that students are able to engage with their courses and related assignments.
+-   For disability accommodations, register with the [Student Disability Access Office (SDAO)](https://access.duke.edu/students) and provide documentation related to your needs; SDAO will work with you to determine what accommodations are appropriate.
 
--   Accoomodations for exams must be arranged through Access and Accommodation Services and exams with accommodations must be taken in the testing center.
+-   Accommodations are **not retroactive**, and cannot be provided until I have received your Faculty Accommodation Letter -- so start the process early.
+
+-   Accommodations for exams must be arranged through SDAO, and exams with accommodations must be taken in the testing center.
+
+-   Athletic travel conflicts and religious holidays: Submit requests for accommodations **at the beginning of the semester** so we can make suitable arrangements well in advance.
 
 -   I am committed to making all course materials accessible and I'm always learning how to do this better.
     If any course component is not accessible to you in any way, please don't hesitate to let me know.
 
-## Late work, waivers, lecture recordings, regrades...
+## Late work, waivers, lecture recordings, regrades... {.smaller}
 
 -   We have policies!
--   Read about them on the [course syllabus](https://sta199-f25.github.io/course-syllabus.html) and refer back to them when you need it
+
+-   Read about them on the [course syllabus](https://sta199-f26.github.io/course-syllabus.html) and refer back to them when you need it
+
+. . .
+
+Two that are easy to miss:
+
+-   **Lecture recordings:** available for excused absences only -- submit the request form **within 24 hours** of the missed lecture, with documentation
+-   **Regrade requests:** on Gradescope, **within one week** of an assignment being returned; note that the entire assignment may be regraded
 
 ## Participate 💻📱 {.smaller}
 
 {{< include _wooclap-slide.qmd >}}
 
-## Use of AI tools {.smaller}
+## Use of AI tools
 
 - AI tools are not a replacement for understanding the material, but they can help you learn it.
 
 - Reading code and writing code are skills that take time and practice to develop - both are essential.
 
-- The nature of these tools is changing rapidly - autocomplete vs chatbots vs agentic tools
+- The nature of these tools is changing rapidly - autocomplete vs. chatbots vs. agentic tools.
+
+::: aside
+A piece on AI and education that I read recently that resonated with me is ["School is a gym, not a job"](https://erichudson.substack.com/p/school-is-a-gym-not-a-job) by Eric Hudson.
+:::
 
 ## Centaurs vs. reverse centaurs
 
 ![Image source: Hill Cantons, for more details see Cory Doctorow’s commentary [Reverse Centaurs in Locus Magazine](https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/).](images/01/centaurs.png){fig-alt="A centaur (horse body, human head) and a reverse centaur (horse head, human body)." fig-align="center"}
+
+## Use of AI tools: the rules {.smaller}
+
+You may use AI as a resource as you complete assignments, but not to answer the exercises for you.
+
+::: incremental
+-   **Disclose** your use in the AI disclosure statement accompanying the assignment
+-   **Cite** what you use: the tool, the model, the date you ran the prompt, and a link to the full transcript
+-   **Don't** paste assignment prompts into AI tools -- write your own prompt that reflects your understanding
+-   **Don't** paste AI output into your assignment -- edit it so it carries your voice and matches course syntax, terminology, and style
+:::
+
+. . .
+
+::: callout-important
+Any content identified as AI-generated but not cited as such will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment.
+:::
 
 ## Academic integrity
 
@@ -666,3 +767,7 @@ It is my intent that students from all diverse backgrounds and perspectives be w
 -   Complete the getting to know you survey, then accept your GitHub organization invitation
 -   Read the syllabus
 -   Complete readings and videos for Wednesday
+
+All linked from the course website at 
+
+[sta199-fa26.github.io](https://sta199-f26.github.io/)
