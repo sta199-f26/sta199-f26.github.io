@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
 <meta name="dcterms.date" content="2026-08-24">
-<title>Hello, World! – STA 199</title>
+<title>Hello, World! – STA 199CCL</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,15 +107,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<meta property="og:title" content="Hello, World! – STA 199">
+<meta property="og:title" content="Hello, World! – STA 199CCL">
 <meta property="og:description" content="Lecture 1">
 <meta property="og:image" content="https://sta199-f26.github.io/slides/images/01/data-science-cycle.png">
-<meta property="og:site_name" content="STA 199">
+<meta property="og:site_name" content="STA 199CCL">
 <meta property="og:image:alt" content="Data science cycle: Import, tidy, transform, visualize, model, communicate.">
 <meta property="og:image:height" content="1080">
 <meta property="og:image:width" content="1920">
 </head>
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199 course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="RStudio containers" class="quarto-navigation-tool px-1" aria-label="RStudio containers"><i class="bi bi-code-square"></i></a>
@@ -494,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#lets-do-some-data-science" id="toc-lets-do-some-data-science" class="nav-link" data-scroll-target="#lets-do-some-data-science">Let’s do some data science!</a></li>
   <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 💻📱</a></li>
   <li><a href="#are-the-stereotypes-about-country-music-actually-true" id="toc-are-the-stereotypes-about-country-music-actually-true" class="nav-link" data-scroll-target="#are-the-stereotypes-about-country-music-actually-true">Are the stereotypes about country music actually true?</a></li>
-  <li><a href="#where-the-data-comes-from" id="toc-where-the-data-comes-from" class="nav-link" data-scroll-target="#where-the-data-comes-from">Where the data comes from</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
   <li><a href="#load-some-packages" id="toc-load-some-packages" class="nav-link" data-scroll-target="#load-some-packages">Load some packages</a></li>
   <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data">Import the data</a></li>
@@ -511,7 +511,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tokenize-to-bigrams" id="toc-tokenize-to-bigrams" class="nav-link" data-scroll-target="#tokenize-to-bigrams">Tokenize to bigrams</a></li>
   <li><a href="#drop-the-stop-words" id="toc-drop-the-stop-words" class="nav-link" data-scroll-target="#drop-the-stop-words">Drop the stop words</a></li>
   <li><a href="#can-ai-help" id="toc-can-ai-help" class="nav-link" data-scroll-target="#can-ai-help">Can AI help?</a></li>
-  <li><a href="#can-it-be-trusted-100" id="toc-can-it-be-trusted-100" class="nav-link" data-scroll-target="#can-it-be-trusted-100">Can it be trusted 100%?</a></li>
+  <li><a href="#checks-and-balances" id="toc-checks-and-balances" class="nav-link" data-scroll-target="#checks-and-balances">Checks and balances</a></li>
   <li><a href="#communicate" id="toc-communicate" class="nav-link" data-scroll-target="#communicate">Communicate</a></li>
   </ul>
 </li>
@@ -520,19 +520,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
 <li><a href="#homepage" id="toc-homepage" class="nav-link" data-scroll-target="#homepage">Homepage</a></li>
   <li><a href="#course-toolkit" id="toc-course-toolkit" class="nav-link" data-scroll-target="#course-toolkit">Course toolkit</a></li>
+  <li><a href="#course-materials" id="toc-course-materials" class="nav-link" data-scroll-target="#course-materials">Course materials</a></li>
   <li><a href="#activities" id="toc-activities" class="nav-link" data-scroll-target="#activities">Activities</a></li>
   <li><a href="#attendance-and-participation" id="toc-attendance-and-participation" class="nav-link" data-scroll-target="#attendance-and-participation">Attendance and participation</a></li>
   <li><a href="#application-exercises" id="toc-application-exercises" class="nav-link" data-scroll-target="#application-exercises">Application exercises</a></li>
   <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
   <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
-  <li><a href="#exams" id="toc-exams" class="nav-link" data-scroll-target="#exams">Exams</a></li>
+  <li><a href="#turning-in-labs-and-hws" id="toc-turning-in-labs-and-hws" class="nav-link" data-scroll-target="#turning-in-labs-and-hws">Turning in labs and HWs</a></li>
+  <li><a href="#exams---structure" id="toc-exams---structure" class="nav-link" data-scroll-target="#exams---structure">Exams - structure</a></li>
+  <li><a href="#exams---policies" id="toc-exams---policies" class="nav-link" data-scroll-target="#exams---policies">Exams - policies</a></li>
   <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project">Project</a></li>
   <li><a href="#teams" id="toc-teams" class="nav-link" data-scroll-target="#teams">Teams</a></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
   </ul>
 </li>
   <li>
-<a href="#course-overview-policies" id="toc-course-overview-policies" class="nav-link" data-scroll-target="#course-overview-policies">Course overview + policies</a>
+<a href="#policies-and-support" id="toc-policies-and-support" class="nav-link" data-scroll-target="#policies-and-support">Policies and support</a>
   <ul class="collapse">
 <li><a href="#tips-for-success" id="toc-tips-for-success" class="nav-link" data-scroll-target="#tips-for-success">Tips for success</a></li>
   <li><a href="#support" id="toc-support" class="nav-link" data-scroll-target="#support">Support</a></li>
@@ -543,6 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#participate-1" id="toc-participate-1" class="nav-link" data-scroll-target="#participate-1">Participate 💻📱</a></li>
   <li><a href="#use-of-ai-tools" id="toc-use-of-ai-tools" class="nav-link" data-scroll-target="#use-of-ai-tools">Use of AI tools</a></li>
   <li><a href="#centaurs-vs.-reverse-centaurs" id="toc-centaurs-vs.-reverse-centaurs" class="nav-link" data-scroll-target="#centaurs-vs.-reverse-centaurs">Centaurs vs.&nbsp;reverse centaurs</a></li>
+  <li><a href="#use-of-ai-tools-the-rules" id="toc-use-of-ai-tools-the-rules" class="nav-link" data-scroll-target="#use-of-ai-tools-the-rules">Use of AI tools: the rules</a></li>
   <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic integrity</a></li>
   <li><a href="#a-note-on-showing-up-and-participating" id="toc-a-note-on-showing-up-and-participating" class="nav-link" data-scroll-target="#a-note-on-showing-up-and-participating">A note on showing up and participating</a></li>
   </ul>
@@ -556,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/01-hello-world.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="01-hello-world-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Hello, World!</h1>
 <p class="subtitle lead">Lecture 1</p>
 </div>
@@ -685,15 +689,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>“Is it REALLY all about beer and trucks and girls and blue jeans? Are all the lyrics REALLY the same?”</p>
 <p>— <a href="https://www.youtube.com/watch?v=48ZxNFGJTo8">Grady Smith</a>, country music critic</p>
 </div>
-</section><section id="where-the-data-comes-from" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="where-the-data-comes-from">Where the data comes from</h2>
+</section><section id="data" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data">Data</h2>
 <div class="columns">
 <div class="column fragment">
-<p><i class="fa-solid fa-music fa-4x" title="Music note icon" aria-label="music"></i></p>
+<p><i class="fa-solid fa-music fa-3x" title="Music note icon" aria-label="music"></i></p>
 <p>Grady Smith kept a spreadsheet of every country song that reached the Top 30 of Billboard’s Country Airplay chart.</p>
 </div>
 <div class="column fragment">
-<p><i class="fa-solid fa-file-csv fa-4x" title="CSV file icon" aria-label="file-csv"></i></p>
-<p>Someone tidied it up and put it in a CSV (comma-separated values) file.</p>
+<p><i class="fa-solid fa-file-csv fa-3x" title="CSV file icon" aria-label="file-csv"></i></p>
+<p>Someone tidied it up and put it in a CSV (comma-separated values) file and released it as part of the <a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a> project.</p>
 </div>
 </div>
 </section><section id="import" class="level2"><h2 class="anchored" data-anchor-id="import">Import</h2>
@@ -960,59 +964,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 20 yeah       baby       25</code></pre>
 </div>
 </div>
-</section><section id="can-ai-help" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="can-ai-help">Can AI help?</h2>
-<p>We could also ask a large language model to read every song and tell us what it’s about:</p>
-<div class="cell" data-freeze="true">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu">chat_openai</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Using model = "gpt-4.1".</code></pre>
+</section><section id="can-ai-help" class="level2 smaller scrollable"><h2 class="smaller scrollable anchored" data-anchor-id="can-ai-help">Can AI help?</h2>
+<p>We could also ask a large language model to read every song and tell us what it’s about?</p>
+<blockquote class="blockquote">
+<p>“What are common themes in these country song lyrics?” [Attached data file <code>country-lyrics.csv</code>.] 24 August 2026. ChatGPT 5.6 Sol Light. <a href="https://chatgpt.com/share/e/6a8c7343-62e4-83ea-b114-715f9b847cea">chatgpt.com/share/e/6a8c7343-62e4-83ea-b114-715f9b847cea</a></p>
+</blockquote>
+<div class="xsmall">
+<p>Across the 484 songs in <a href="sandbox:/workspace/scratch/fea9b77f1ff8/upload/country-lyrics.csv">country-lyrics.csv</a>, several recurring themes stand out:</p>
+<ol type="1">
+<li><p><strong>Romantic love and attraction</strong> The dominant theme: falling in love, physical attraction, kissing, longing, and wanting to be together. Love-related language appears in roughly 94% of the songs.</p></li>
+<li><p><strong>Heartbreak and separation</strong> Many songs focus on breakups, regret, loneliness, missing someone, or being unable to move on. This appears in approximately 73% of the songs, often alongside love rather than separately from it.</p></li>
+<li><p><strong>Drinking and nightlife</strong> Beer, whiskey, bars, neon lights, and getting drunk frequently serve as settings or coping mechanisms—especially for heartbreak. Related language appears in about 60% of the songs.</p></li>
+<li><p><strong>Music and dancing</strong> Radios, songs, dancing, guitars, and jukeboxes are prominent. Music often brings couples together, evokes a memory, or provides the soundtrack for driving and partying. About 56% contain this imagery.</p></li>
+<li><p><strong>Roads, trucks, and escape</strong> Driving can represent romance, independence, returning home, or leaving a painful situation behind. Roads, trucks, and related imagery occur in approximately 55%.</p></li>
+<li><p><strong>Partying and carefree pleasure</strong> Friday nights, weekends, bonfires, dancing, and “good times” create an idealized space temporarily free from responsibility. This theme appears in about half the songs.</p></li>
+<li><p><strong>Faith, hope, and resilience</strong> References to God, prayer, heaven, belief, strength, and survival often accompany songs about hardship or gratitude. Related language occurs in approximately 43%.</p></li>
+<li><p><strong>Home, family, and belonging</strong> Home is both a physical place and an emotional anchor. Parents, family roots, and returning home appear in around 40% of the songs.</p></li>
+<li><p><strong>Rural and small-town identity</strong> Country roads, fields, porches, boots, farms, and small towns establish a distinct cultural setting and sense of authenticity. About 32% explicitly use this imagery.</p></li>
+<li><p><strong>Youth, memory, and nostalgia</strong> Songs frequently look back on summer, adolescence, first love, or an earlier and supposedly simpler time. Explicit nostalgic language appears in roughly 27%.</p></li>
+</ol>
+<p>The broadest overarching theme is <strong>emotion tied to place</strong>: love, heartbreak, and personal identity are repeatedly expressed through small towns, roads, vehicles, bars, music, and home. The lyrics also contain a recurring tension between <strong>leaving and belonging</strong>—wanting to escape one’s circumstances while remaining emotionally attached to a person, hometown, or former life.</p>
+<p>These percentages are approximate keyword-based measures, and the categories overlap: one song can simultaneously be about heartbreak, whiskey, driving, and home.</p>
 </div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prompts</span> <span class="op">&lt;-</span> <span class="va">country</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">lyrics</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">type_song</span> <span class="op">&lt;-</span> <span class="fu">type_object</span><span class="op">(</span></span>
-<span>  theme <span class="op">=</span> <span class="fu">type_string</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  mentions_alcohol <span class="op">=</span> <span class="fu">type_boolean</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">song_themes</span> <span class="op">&lt;-</span> <span class="fu">parallel_chat_structured</span><span class="op">(</span></span>
-<span>  <span class="va">chat</span>,</span>
-<span>  <span class="va">prompts</span>,</span>
-<span>  type <span class="op">=</span> <span class="va">type_song</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Warning: 473 requests did not complete.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 11 requests errored.</code></pre>
-</div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">song_themes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 484 × 3
-   theme mentions_alcohol .error    
-   &lt;chr&gt; &lt;lgl&gt;            &lt;list&gt;    
- 1 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 2 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 3 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 4 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 5 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 6 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 7 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 8 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 9 &lt;NA&gt;  NA               &lt;ht2__401&gt;
-10 &lt;NA&gt;  NA               &lt;ht2__401&gt;
-# ℹ 474 more rows</code></pre>
-</div>
-</div>
-</section><section id="can-it-be-trusted-100" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="can-it-be-trusted-100">Can it be trusted 100%?</h2>
-<p>Ask an AI (or a person!) what country songs are about and you’ll hear: <strong>beer, trucks, dirt roads, blue jeans, tractors</strong>.</p>
+</section><section id="checks-and-balances" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="checks-and-balances">Checks and balances</h2>
+<p>Ask anyone what country songs are about and you’ll likely hear: beer, trucks, dirt roads, blue jeans, tractors.</p>
 <p>. . .</p>
 <p>But we have the lyrics, so we can just <em>check</em>:</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country</span> <span class="op">|&gt;</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>lyrics_lower <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span><span class="op">(</span><span class="va">lyrics</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
 <span>    truck <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">lyrics_lower</span>, <span class="st">"truck"</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -1059,7 +1038,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is what we mean by <strong>statistical thinking</strong>: a claim that “feels true” is a hypothesis, not a finding.</p>
+<p>This is what we mean by <strong>statistical thinking</strong>: a claim that “feels true” is not a finding, but you can explore and verify the claim with data and the skills you’ll learn in this course.</p>
 </div>
 </div>
 </section></section><section id="course-overview" class="level1"><h1>Course overview</h1>
@@ -1077,6 +1056,18 @@ Tip
 </li>
 <li>Communication: Ed Discussion</li>
 <li>Assignment submission and feedback: Gradescope</li>
+</ul></section><section id="course-materials" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="course-materials">Course materials</h2>
+<p>Both textbooks are <strong>free online</strong> and linked from the course website:</p>
+<ul>
+<li>
+<a href="https://r4ds.hadley.nz/">R for Data Science, 2e</a> – Wickham, Çetinkaya-Rundel, Grolemund</li>
+<li>
+<a href="https://openintrostat.github.io/ims/">Introduction to Modern Statistics</a> – Çetinkaya-Rundel, Hardin</li>
+</ul>
+<p>Computing:</p>
+<ul>
+<li><p>R and Positron run in containers provided by Duke OIT – <strong>nothing to install</strong></p></li>
+<li><p><strong>Bring a laptop (or Chromebook) to every class, fully charged</strong> – there aren’t enough outlets in the classroom for everyone</p></li>
 </ul></section><section id="activities" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="activities">Activities</h2>
 <ul>
 <li>Introduce new content and prepare for lectures by watching the videos and completing the readings</li>
@@ -1092,8 +1083,10 @@ Tip
 </li>
 </ul></section><section id="attendance-and-participation" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="attendance-and-participation">Attendance and participation</h2>
 <ul>
-<li><p>Daily in lecture</p></li>
+<li><p>Daily in lecture, via Wooclap on your laptop or phone</p></li>
 <li><p>Tracked for credit, but not based on correctness, only participation (and often they will be questions designed to make you think that might not have a single right answer!)</p></li>
+<li><p>There are 25 lectures this semester: <strong>participate in at least 17 for full credit</strong></p></li>
+<li><p>Below that, the score is prorated, e.g.&nbsp;participating in 15/25 lectures gives (15/25) × 5% = 3%</p></li>
 </ul></section><section id="application-exercises" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="application-exercises">Application exercises</h2>
 <ul>
 <li><p>Daily-ish in lecture</p></li>
@@ -1101,24 +1094,49 @@ Tip
 </ul></section><section id="labs" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="labs">Labs</h2>
 <ul>
 <li><p>Hands-on practice with data analysis</p></li>
-<li><p>A sigle exercise per lab, graded based on being there and in something reasonable + correctness</p></li>
+<li><p>A single exercise per lab, graded on turning in something reasonable + correctness</p></li>
 <li><p>Completed in-person, in lab, in teams</p></li>
 <li><p>Teams randomized each week until project teams assigned</p></li>
 <li><p>Developed collaboratively, but turned in individually by the end of the lab session</p></li>
-<li><p>8 throughout semester, two lowest scores dropped</p></li>
+<li><p>Two lowest scores dropped</p></li>
 <li><p>No late work accepted</p></li>
 </ul></section><section id="homework" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="homework">Homework</h2>
 <ul>
 <li><p>Hands-on practice with data analysis</p></li>
 <li><p>Some questions for practice with instant feedback by AI</p></li>
 <li><p>1-2 randomly sampled questions to be graded by humans for correctness</p></li>
-<li><p>Can consult with course team and peers, but completed and turned in individually by the end of the week</p></li>
-<li><p>7 throughout semester, lowest score dropped</p></li>
+<li><p>Can consult with course team and peers, but completed and turned in individually by <strong>11:59 pm on Wednesdays</strong></p></li>
+<li><p>Lowest score dropped</p></li>
 <li><p>Up to 3 days late (-5% per day), no late work accepted after that</p></li>
 <li><p>One-time late penalty waiver: Can be used on any homework assignment, no questions asked, must be requested from Dr.&nbsp;Knox before the deadline</p></li>
-</ul></section><section id="exams" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="exams">Exams</h2>
+</ul></section><section id="turning-in-labs-and-hws" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="turning-in-labs-and-hws">Turning in labs and HWs</h2>
+<p>Every assignment, same two steps:</p>
+<ol type="1">
+<li>
+<strong>Push</strong> your work to the assignment’s GitHub repository</li>
+<li>
+<strong>Submit</strong> the PDF output on <strong>Gradescope</strong>
+</li>
+</ol>
+<p>. . .</p>
 <ul>
-<li><p>Two exams + final</p></li>
+<li>Labs are due at the <strong>end of your lab session</strong>
+</li>
+<li>Homework is due by <strong>11:59 pm on Wednesdays</strong>
+</li>
+</ul>
+<p>. . .</p>
+<p>Submit what you have even if you haven’t finished – you’ll get partial credit for your work.</p>
+</section><section id="exams---structure" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="exams---structure">Exams - structure</h2>
+<ul>
+<li>
+<p>Two exams + final, all in class:</p>
+<ul>
+<li><strong>Exam 1: Wednesday, October 7</strong></li>
+<li><strong>Exam 2: Wednesday, November 18</strong></li>
+<li><strong>Final: Thursday, December 10</strong></li>
+</ul>
+</li>
 <li>
 <p>All exams comprised of two parts:</p>
 <ul>
@@ -1126,8 +1144,19 @@ Tip
 <li><p>Short answer questions, on homework specifics (read: difficult/impossible to answer correctly without having done the homework)</p></li>
 </ul>
 </li>
+<li><p>Cover material from videos, readings, lectures, application exercises, homework, and labs</p></li>
 <li><p>One sheet of notes for each exam, no larger than 8 1/2 x 11, both sides, <strong>must be prepared by you</strong></p></li>
-<li><p>No extensions or make-ups</p></li>
+</ul></section><section id="exams---policies" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="exams---policies">Exams - policies</h2>
+<ul>
+<li><p>No extensions and no make-up exams.</p></li>
+<li>
+<p>With documentation (Dean’s excuse or similar):</p>
+<ul>
+<li>Miss Exam 1 or 2 → your final exam score replaces the missed score</li>
+<li>Miss the Final → you receive an Incomplete and take the final later</li>
+</ul>
+</li>
+<li><p><strong>Improvement bonus:</strong> If you take all three exams, your final exam score replaces the <em>lower</em> of your two mid-semester exam scores – if the final score is higher.</p></li>
 </ul>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1139,7 +1168,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Exam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class.</p>
+<p>Exam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on Oct 7, Nov 18, and Dec 10, you should drop this class.</p>
 </div>
 </div>
 </section><section id="project" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="project">Project</h2>
@@ -1147,9 +1176,9 @@ Caution
 <li><p>Dataset of your choice, method of your choice</p></li>
 <li><p>Teamwork</p></li>
 <li><p>Seven milestones, interim deadlines throughout semester</p></li>
-<li><p>Final milestone: Presentation in lab and write-up</p></li>
+<li><p>Final milestone: Presentation in lab and write-up, <strong>Thursday, November 5</strong></p></li>
 <li><p>Must be in lab, in-person to present</p></li>
-<li><p>Peer review between teams for content, peer evaluation within teams for contribution</p></li>
+<li><p>Peer feedback between teams on presentation content; peer evaluation <em>within</em> teams for contribution, alongside commit history</p></li>
 <li><p>Some lab sessions allocated to project progress</p></li>
 </ul>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -1162,7 +1191,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Project presentation date cannot be changed. You must complete the project to pass this class.</p>
+<p>The project presentation date (Nov 5) cannot be changed, and no late work is accepted for the project. You must complete the project to pass this class.</p>
 </div>
 </div>
 </section><section id="teams" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="teams">Teams</h2>
@@ -1217,7 +1246,7 @@ Caution
 </tbody>
 </table>
 <p>See course syllabus for how the final letter grade will be determined.</p>
-</section></section><section id="course-overview-policies" class="level1"><h1>Course overview + policies</h1>
+</section></section><section id="policies-and-support" class="level1 page-columns page-full"><h1>Policies and support</h1>
 <section id="tips-for-success" class="level2"><h2 class="anchored" data-anchor-id="tips-for-success">Tips for success</h2>
 <ul>
 <li>Prepare: Watch videos and read before class</li>
@@ -1225,7 +1254,7 @@ Caution
 <li>Ask questions: Use office hours and Ed Discussion forum</li>
 <li>Start early: Don’t procrastinate on assignments</li>
 <li>Stay current: Content builds progressively</li>
-</ul></section><section id="support" class="level2"><h2 class="anchored" data-anchor-id="support">Support</h2>
+</ul></section><section id="support" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="support">Support</h2>
 <ul>
 <li>Help from humans:
 <ul>
@@ -1233,7 +1262,15 @@ Caution
 <li>Ask and answer questions on the discussion forum</li>
 </ul>
 </li>
-<li>Reserve email for questions on personal matters and/or grades</li>
+<li>Reserve email for questions on personal matters and/or grades, and <strong>include “STA 199” in the subject line</strong>
+<ul>
+<li>Extensions, accommodations, missed work, registration → course coordinator <strong>Dr.&nbsp;Mary Knox</strong>, <a href="mailto:mary.knox@duke.edu">mary.knox@duke.edu</a>
+</li>
+<li>Anything else not suited to the forum → <strong>Dr.&nbsp;Çetinkaya-Rundel</strong>, <a href="mailto:mc301@duke.edu">mc301@duke.edu</a>
+</li>
+<li>Expect a reply within 48 hours, Monday through Friday; slower over the weekend</li>
+</ul>
+</li>
 <li>Read the course support page</li>
 </ul></section><section id="announcements" class="level2"><h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
 <ul>
@@ -1251,13 +1288,23 @@ Caution
 </div>
 </section><section id="access-and-accommodations" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="access-and-accommodations">Access and accommodations</h2>
 <ul>
-<li><p>The <a href="https://access.duke.edu">Duke Access and Accommodation Services</a> is available to ensure that students are able to engage with their courses and related assignments.</p></li>
-<li><p>Accoomodations for exams must be arranged through Access and Accommodation Services and exams with accommodations must be taken in the testing center.</p></li>
+<li><p>For disability accommodations, register with the <a href="https://access.duke.edu/students">Student Disability Access Office (SDAO)</a> and provide documentation related to your needs; SDAO will work with you to determine what accommodations are appropriate.</p></li>
+<li><p>Accommodations are <strong>not retroactive</strong>, and cannot be provided until I have received your Faculty Accommodation Letter – so start the process early.</p></li>
+<li><p>Accommodations for exams must be arranged through SDAO, and exams with accommodations must be taken in the testing center.</p></li>
+<li><p>Athletic travel conflicts and religious holidays: Submit requests for accommodations <strong>at the beginning of the semester</strong> so we can make suitable arrangements well in advance.</p></li>
 <li><p>I am committed to making all course materials accessible and I’m always learning how to do this better. If any course component is not accessible to you in any way, please don’t hesitate to let me know.</p></li>
-</ul></section><section id="late-work-waivers-lecture-recordings-regrades" class="level2"><h2 class="anchored" data-anchor-id="late-work-waivers-lecture-recordings-regrades">Late work, waivers, lecture recordings, regrades…</h2>
+</ul></section><section id="late-work-waivers-lecture-recordings-regrades" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="late-work-waivers-lecture-recordings-regrades">Late work, waivers, lecture recordings, regrades…</h2>
 <ul>
-<li>We have policies!</li>
-<li>Read about them on the <a href="https://sta199-f25.github.io/course-syllabus.html">course syllabus</a> and refer back to them when you need it</li>
+<li><p>We have policies!</p></li>
+<li><p>Read about them on the <a href="https://sta199-f26.github.io/course-syllabus.html">course syllabus</a> and refer back to them when you need it</p></li>
+</ul>
+<p>. . .</p>
+<p>Two that are easy to miss:</p>
+<ul>
+<li>
+<strong>Lecture recordings:</strong> available for excused absences only – submit the request form <strong>within 24 hours</strong> of the missed lecture, with documentation</li>
+<li>
+<strong>Regrade requests:</strong> on Gradescope, <strong>within one week</strong> of an assignment being returned; note that the entire assignment may be regraded</li>
 </ul></section><section id="participate-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="participate-1">Participate 💻📱</h2>
 <div class="columns">
 <div class="column">
@@ -1267,18 +1314,50 @@ Caution
 <p>Log in with your Duke NetID.</p>
 </div>
 </div>
-</section><section id="use-of-ai-tools" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="use-of-ai-tools">Use of AI tools</h2>
+</section><section id="use-of-ai-tools" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="use-of-ai-tools">Use of AI tools</h2>
 <ul>
 <li><p>AI tools are not a replacement for understanding the material, but they can help you learn it.</p></li>
 <li><p>Reading code and writing code are skills that take time and practice to develop - both are essential.</p></li>
-<li><p>The nature of these tools is changing rapidly - autocomplete vs chatbots vs agentic tools</p></li>
-</ul></section><section id="centaurs-vs.-reverse-centaurs" class="level2"><h2 class="anchored" data-anchor-id="centaurs-vs.-reverse-centaurs">Centaurs vs.&nbsp;reverse centaurs</h2>
+<li><p>The nature of these tools is changing rapidly - autocomplete vs.&nbsp;chatbots vs.&nbsp;agentic tools.</p></li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>A piece on AI and education that I read recently that resonated with me is <a href="https://erichudson.substack.com/p/school-is-a-gym-not-a-job">“School is a gym, not a job”</a> by Eric Hudson.</p>
+</div></div></section><section id="centaurs-vs.-reverse-centaurs" class="level2"><h2 class="anchored" data-anchor-id="centaurs-vs.-reverse-centaurs">Centaurs vs.&nbsp;reverse centaurs</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="images/01/centaurs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Image source: Hill Cantons, for more details see Cory Doctorow’s commentary Reverse Centaurs in Locus Magazine."><img src="images/01/centaurs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A centaur (horse body, human head) and a reverse centaur (horse head, human body)."></a></p>
 </figure>
 </div>
 <figcaption>Image source: Hill Cantons, for more details see Cory Doctorow’s commentary <a href="https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/">Reverse Centaurs in Locus Magazine</a>.</figcaption></figure>
+</div>
+</section><section id="use-of-ai-tools-the-rules" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="use-of-ai-tools-the-rules">Use of AI tools: the rules</h2>
+<p>You may use AI as a resource as you complete assignments, but not to answer the exercises for you.</p>
+<div class="incremental">
+<ul class="incremental">
+<li>
+<strong>Disclose</strong> your use in the AI disclosure statement accompanying the assignment</li>
+<li>
+<strong>Cite</strong> what you use: the tool, the model, the date you ran the prompt, and a link to the full transcript</li>
+<li>
+<strong>Don’t</strong> paste assignment prompts into AI tools – write your own prompt that reflects your understanding</li>
+<li>
+<strong>Don’t</strong> paste AI output into your assignment – edit it so it carries your voice and matches course syntax, terminology, and style</li>
+</ul>
+</div>
+<p>. . .</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Any content identified as AI-generated but not cited as such will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment.</p>
+</div>
 </div>
 </section><section id="academic-integrity" class="level2"><h2 class="anchored" data-anchor-id="academic-integrity">Academic integrity</h2>
 <blockquote class="blockquote">
@@ -1301,6 +1380,8 @@ Caution
 <li>Read the syllabus</li>
 <li>Complete readings and videos for Wednesday</li>
 </ul>
+<p>All linked from the course website at</p>
+<p><a href="https://sta199-f26.github.io/">sta199-fa26.github.io</a></p>
 
 
 </section></section></main><!-- /main --><script>

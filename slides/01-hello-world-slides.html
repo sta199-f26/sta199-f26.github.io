@@ -15,7 +15,7 @@
 <meta name="generator" content="quarto-1.7.32">
 <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
 <meta name="dcterms.date" content="2026-08-24">
-<title>STA 199 – Hello, World!</title>
+<title>STA 199CCL – Hello, World!</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -192,9 +192,9 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Hello, World! – STA 199">
+<meta property="og:title" content="Hello, World! – STA 199CCL">
 <meta property="og:description" content="Lecture 1">
-<meta property="og:site_name" content="STA 199">
+<meta property="og:site_name" content="STA 199CCL">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -271,7 +271,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>What you hope to get out of this course</li>
 </ul>
 </div>
-<div id="timer_9b14266eeb5cff3f76504f3283d1fa8d8d320395" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
+<div id="timer_ec1cafbfaad446f3a11ab1a3fccf52952dc5cd5b" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
@@ -311,14 +311,14 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>“Is it REALLY all about beer and trucks and girls and blue jeans? Are all the lyrics REALLY the same?”</p>
 <p>— <a href="https://www.youtube.com/watch?v=48ZxNFGJTo8">Grady Smith</a>, country music critic</p>
 </div>
-</section><section id="where-the-data-comes-from" class="slide level2 smaller"><h2>Where the data comes from</h2>
+</section><section id="data" class="slide level2 smaller"><h2>Data</h2>
 <div class="columns">
 <div class="column fragment">
-<p><i class="fa-solid fa-music fa-4x" title="Music note icon" aria-label="music"></i></p>
+<p><i class="fa-solid fa-music fa-3x" title="Music note icon" aria-label="music"></i></p>
 <p>Grady Smith kept a spreadsheet of every country song that reached the Top 30 of Billboard’s Country Airplay chart.</p>
 </div><div class="column fragment">
-<p><i class="fa-solid fa-file-csv fa-4x" title="CSV file icon" aria-label="file-csv"></i></p>
-<p>Someone tidied it up and put it in a CSV (comma-separated values) file.</p>
+<p><i class="fa-solid fa-file-csv fa-3x" title="CSV file icon" aria-label="file-csv"></i></p>
+<p>Someone tidied it up and put it in a CSV (comma-separated values) file and released it as part of the <a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a> project.</p>
 </div></div>
 </section><section id="import" class="slide level2"><h2>Import</h2>
 
@@ -561,74 +561,49 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 20 yeah       baby       25</code></pre>
 </div>
 </div>
-</section><section id="can-ai-help" class="slide level2 smaller"><h2>Can AI help?</h2>
-<p>We could also ask a large language model to read every song and tell us what it’s about:</p>
-<div class="cell" data-freeze="true">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Using model = "gpt-4.1".</code></pre>
+</section><section id="can-ai-help" class="slide level2 smaller scrollable"><h2>Can AI help?</h2>
+<p>We could also ask a large language model to read every song and tell us what it’s about?</p>
+<blockquote>
+<p>“What are common themes in these country song lyrics?” [Attached data file <code>country-lyrics.csv</code>.] 24 August 2026. ChatGPT 5.6 Sol Light. <a href="https://chatgpt.com/share/e/6a8c7343-62e4-83ea-b114-715f9b847cea">chatgpt.com/share/e/6a8c7343-62e4-83ea-b114-715f9b847cea</a></p>
+</blockquote>
+<div class="xsmall">
+<p>Across the 484 songs in <a href="sandbox:/workspace/scratch/fea9b77f1ff8/upload/country-lyrics.csv">country-lyrics.csv</a>, several recurring themes stand out:</p>
+<ol type="1">
+<li><p><strong>Romantic love and attraction</strong> The dominant theme: falling in love, physical attraction, kissing, longing, and wanting to be together. Love-related language appears in roughly 94% of the songs.</p></li>
+<li><p><strong>Heartbreak and separation</strong> Many songs focus on breakups, regret, loneliness, missing someone, or being unable to move on. This appears in approximately 73% of the songs, often alongside love rather than separately from it.</p></li>
+<li><p><strong>Drinking and nightlife</strong> Beer, whiskey, bars, neon lights, and getting drunk frequently serve as settings or coping mechanisms—especially for heartbreak. Related language appears in about 60% of the songs.</p></li>
+<li><p><strong>Music and dancing</strong> Radios, songs, dancing, guitars, and jukeboxes are prominent. Music often brings couples together, evokes a memory, or provides the soundtrack for driving and partying. About 56% contain this imagery.</p></li>
+<li><p><strong>Roads, trucks, and escape</strong> Driving can represent romance, independence, returning home, or leaving a painful situation behind. Roads, trucks, and related imagery occur in approximately 55%.</p></li>
+<li><p><strong>Partying and carefree pleasure</strong> Friday nights, weekends, bonfires, dancing, and “good times” create an idealized space temporarily free from responsibility. This theme appears in about half the songs.</p></li>
+<li><p><strong>Faith, hope, and resilience</strong> References to God, prayer, heaven, belief, strength, and survival often accompany songs about hardship or gratitude. Related language occurs in approximately 43%.</p></li>
+<li><p><strong>Home, family, and belonging</strong> Home is both a physical place and an emotional anchor. Parents, family roots, and returning home appear in around 40% of the songs.</p></li>
+<li><p><strong>Rural and small-town identity</strong> Country roads, fields, porches, boots, farms, and small towns establish a distinct cultural setting and sense of authenticity. About 32% explicitly use this imagery.</p></li>
+<li><p><strong>Youth, memory, and nostalgia</strong> Songs frequently look back on summer, adolescence, first love, or an earlier and supposedly simpler time. Explicit nostalgic language appears in roughly 27%.</p></li>
+</ol>
+<p>The broadest overarching theme is <strong>emotion tied to place</strong>: love, heartbreak, and personal identity are repeatedly expressed through small towns, roads, vehicles, bars, music, and home. The lyrics also contain a recurring tension between <strong>leaving and belonging</strong>—wanting to escape one’s circumstances while remaining emotionally attached to a person, hometown, or former life.</p>
+<p>These percentages are approximate keyword-based measures, and the categories overlap: one song can simultaneously be about heartbreak, whiskey, driving, and home.</p>
 </div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>prompts <span class="ot">&lt;-</span> country <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a></a>  <span class="fu">pull</span>(lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a></a>  <span class="fu">as.list</span>()</span>
-<span id="cb20-4"><a></a></span>
-<span id="cb20-5"><a></a>type_song <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb20-6"><a></a>  <span class="at">theme =</span> <span class="fu">type_string</span>(),</span>
-<span id="cb20-7"><a></a>  <span class="at">mentions_alcohol =</span> <span class="fu">type_boolean</span>()</span>
-<span id="cb20-8"><a></a>)</span>
-<span id="cb20-9"><a></a></span>
-<span id="cb20-10"><a></a>song_themes <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
-<span id="cb20-11"><a></a>  chat,</span>
-<span id="cb20-12"><a></a>  prompts,</span>
-<span id="cb20-13"><a></a>  <span class="at">type =</span> type_song</span>
-<span id="cb20-14"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Warning: 473 requests did not complete.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 11 requests errored.</code></pre>
-</div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>song_themes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 484 × 3
-   theme mentions_alcohol .error    
-   &lt;chr&gt; &lt;lgl&gt;            &lt;list&gt;    
- 1 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 2 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 3 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 4 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 5 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 6 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 7 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 8 &lt;NA&gt;  NA               &lt;ht2__401&gt;
- 9 &lt;NA&gt;  NA               &lt;ht2__401&gt;
-10 &lt;NA&gt;  NA               &lt;ht2__401&gt;
-# ℹ 474 more rows</code></pre>
-</div>
-</div>
-</section><section id="can-it-be-trusted-100" class="slide level2 smaller"><h2>Can it be trusted 100%?</h2>
-<p>Ask an AI (or a person!) what country songs are about and you’ll hear: <strong>beer, trucks, dirt roads, blue jeans, tractors</strong>.</p>
+</section><section id="checks-and-balances" class="slide level2 smaller"><h2>Checks and balances</h2>
+<p>Ask anyone what country songs are about and you’ll likely hear: beer, trucks, dirt roads, blue jeans, tractors.</p>
 <div class="fragment">
 <p>But we have the lyrics, so we can just <em>check</em>:</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a></a>  <span class="fu">mutate</span>(<span class="at">lyrics_lower =</span> <span class="fu">str_to_lower</span>(lyrics)) <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a></a>  <span class="fu">summarize</span>(</span>
-<span id="cb25-4"><a></a>    <span class="at">truck =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"truck"</span>)),</span>
-<span id="cb25-5"><a></a>    <span class="at">whiskey =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"whiskey"</span>)),</span>
-<span id="cb25-6"><a></a>    <span class="at">beer =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"beer"</span>)),</span>
-<span id="cb25-7"><a></a>    <span class="st">`</span><span class="at">dirt road</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"dirt road"</span>)),</span>
-<span id="cb25-8"><a></a>    <span class="st">`</span><span class="at">blue jeans</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"blue jeans"</span>)),</span>
-<span id="cb25-9"><a></a>    <span class="at">tractor =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"tractor"</span>))</span>
-<span id="cb25-10"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb25-11"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb25-12"><a></a>    <span class="fu">everything</span>(),</span>
-<span id="cb25-13"><a></a>    <span class="at">names_to =</span> <span class="st">"stereotype"</span>,</span>
-<span id="cb25-14"><a></a>    <span class="at">values_to =</span> <span class="st">"prop"</span></span>
-<span id="cb25-15"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb25-16"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>country <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">mutate</span>(<span class="at">lyrics_lower =</span> <span class="fu">str_to_lower</span>(lyrics)) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">summarize</span>(</span>
+<span id="cb18-4"><a></a>    <span class="at">truck =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"truck"</span>)),</span>
+<span id="cb18-5"><a></a>    <span class="at">whiskey =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"whiskey"</span>)),</span>
+<span id="cb18-6"><a></a>    <span class="at">beer =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"beer"</span>)),</span>
+<span id="cb18-7"><a></a>    <span class="st">`</span><span class="at">dirt road</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"dirt road"</span>)),</span>
+<span id="cb18-8"><a></a>    <span class="st">`</span><span class="at">blue jeans</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"blue jeans"</span>)),</span>
+<span id="cb18-9"><a></a>    <span class="at">tractor =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"tractor"</span>))</span>
+<span id="cb18-10"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-11"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb18-12"><a></a>    <span class="fu">everything</span>(),</span>
+<span id="cb18-13"><a></a>    <span class="at">names_to =</span> <span class="st">"stereotype"</span>,</span>
+<span id="cb18-14"><a></a>    <span class="at">values_to =</span> <span class="st">"prop"</span></span>
+<span id="cb18-15"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-16"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   stereotype   prop
@@ -658,7 +633,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>This is what we mean by <strong>statistical thinking</strong>: a claim that “feels true” is a hypothesis, not a finding.</p>
+<p>This is what we mean by <strong>statistical thinking</strong>: a claim that “feels true” is not a finding, but you can explore and verify the claim with data and the skills you’ll learn in this course.</p>
 </div>
 </div>
 </div>
@@ -679,6 +654,18 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </li>
 <li>Communication: Ed Discussion</li>
 <li>Assignment submission and feedback: Gradescope</li>
+</ul></section><section id="course-materials" class="slide level2 smaller"><h2>Course materials</h2>
+<p>Both textbooks are <strong>free online</strong> and linked from the course website:</p>
+<ul>
+<li>
+<a href="https://r4ds.hadley.nz/">R for Data Science, 2e</a> – Wickham, Çetinkaya-Rundel, Grolemund</li>
+<li>
+<a href="https://openintrostat.github.io/ims/">Introduction to Modern Statistics</a> – Çetinkaya-Rundel, Hardin</li>
+</ul>
+<p>Computing:</p>
+<ul>
+<li><p>R and Positron run in containers provided by Duke OIT – <strong>nothing to install</strong></p></li>
+<li><p><strong>Bring a laptop (or Chromebook) to every class, fully charged</strong> – there aren’t enough outlets in the classroom for everyone</p></li>
 </ul></section><section id="activities" class="slide level2 smaller"><h2>Activities</h2>
 <ul>
 <li>Introduce new content and prepare for lectures by watching the videos and completing the readings</li>
@@ -694,8 +681,10 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </li>
 </ul></section><section id="attendance-and-participation" class="slide level2 smaller"><h2>Attendance and participation</h2>
 <ul>
-<li><p>Daily in lecture</p></li>
+<li><p>Daily in lecture, via Wooclap on your laptop or phone</p></li>
 <li><p>Tracked for credit, but not based on correctness, only participation (and often they will be questions designed to make you think that might not have a single right answer!)</p></li>
+<li><p>There are 25 lectures this semester: <strong>participate in at least 17 for full credit</strong></p></li>
+<li><p>Below that, the score is prorated, e.g.&nbsp;participating in 15/25 lectures gives (15/25) × 5% = 3%</p></li>
 </ul></section><section id="application-exercises" class="slide level2 smaller"><h2>Application exercises</h2>
 <ul>
 <li><p>Daily-ish in lecture</p></li>
@@ -703,24 +692,51 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </ul></section><section id="labs" class="slide level2 smaller"><h2>Labs</h2>
 <ul>
 <li><p>Hands-on practice with data analysis</p></li>
-<li><p>A sigle exercise per lab, graded based on being there and in something reasonable + correctness</p></li>
+<li><p>A single exercise per lab, graded on turning in something reasonable + correctness</p></li>
 <li><p>Completed in-person, in lab, in teams</p></li>
 <li><p>Teams randomized each week until project teams assigned</p></li>
 <li><p>Developed collaboratively, but turned in individually by the end of the lab session</p></li>
-<li><p>8 throughout semester, two lowest scores dropped</p></li>
+<li><p>Two lowest scores dropped</p></li>
 <li><p>No late work accepted</p></li>
 </ul></section><section id="homework" class="slide level2 smaller"><h2>Homework</h2>
 <ul>
 <li><p>Hands-on practice with data analysis</p></li>
 <li><p>Some questions for practice with instant feedback by AI</p></li>
 <li><p>1-2 randomly sampled questions to be graded by humans for correctness</p></li>
-<li><p>Can consult with course team and peers, but completed and turned in individually by the end of the week</p></li>
-<li><p>7 throughout semester, lowest score dropped</p></li>
+<li><p>Can consult with course team and peers, but completed and turned in individually by <strong>11:59 pm on Wednesdays</strong></p></li>
+<li><p>Lowest score dropped</p></li>
 <li><p>Up to 3 days late (-5% per day), no late work accepted after that</p></li>
 <li><p>One-time late penalty waiver: Can be used on any homework assignment, no questions asked, must be requested from Dr.&nbsp;Knox before the deadline</p></li>
-</ul></section><section id="exams" class="slide level2 smaller"><h2>Exams</h2>
+</ul></section><section id="turning-in-labs-and-hws" class="slide level2 smaller"><h2>Turning in labs and HWs</h2>
+<p>Every assignment, same two steps:</p>
+<ol type="1">
+<li>
+<strong>Push</strong> your work to the assignment’s GitHub repository</li>
+<li>
+<strong>Submit</strong> the PDF output on <strong>Gradescope</strong>
+</li>
+</ol>
+<div class="fragment">
 <ul>
-<li><p>Two exams + final</p></li>
+<li>Labs are due at the <strong>end of your lab session</strong>
+</li>
+<li>Homework is due by <strong>11:59 pm on Wednesdays</strong>
+</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Submit what you have even if you haven’t finished – you’ll get partial credit for your work.</p>
+</div>
+</section><section id="exams---structure" class="slide level2 smaller"><h2>Exams - structure</h2>
+<ul>
+<li>
+<p>Two exams + final, all in class:</p>
+<ul>
+<li><strong>Exam 1: Wednesday, October 7</strong></li>
+<li><strong>Exam 2: Wednesday, November 18</strong></li>
+<li><strong>Final: Thursday, December 10</strong></li>
+</ul>
+</li>
 <li>
 <p>All exams comprised of two parts:</p>
 <ul>
@@ -728,8 +744,19 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li><p>Short answer questions, on homework specifics (read: difficult/impossible to answer correctly without having done the homework)</p></li>
 </ul>
 </li>
+<li><p>Cover material from videos, readings, lectures, application exercises, homework, and labs</p></li>
 <li><p>One sheet of notes for each exam, no larger than 8 1/2 x 11, both sides, <strong>must be prepared by you</strong></p></li>
-<li><p>No extensions or make-ups</p></li>
+</ul></section><section id="exams---policies" class="slide level2 smaller"><h2>Exams - policies</h2>
+<ul>
+<li><p>No extensions and no make-up exams.</p></li>
+<li>
+<p>With documentation (Dean’s excuse or similar):</p>
+<ul>
+<li>Miss Exam 1 or 2 → your final exam score replaces the missed score</li>
+<li>Miss the Final → you receive an Incomplete and take the final later</li>
+</ul>
+</li>
+<li><p><strong>Improvement bonus:</strong> If you take all three exams, your final exam score replaces the <em>lower</em> of your two mid-semester exam scores – if the final score is higher.</p></li>
 </ul>
 <div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
@@ -740,7 +767,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p><strong>Caution</strong></p>
 </div>
 <div class="callout-content">
-<p>Exam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class.</p>
+<p>Exam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on Oct 7, Nov 18, and Dec 10, you should drop this class.</p>
 </div>
 </div>
 </div>
@@ -749,9 +776,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li><p>Dataset of your choice, method of your choice</p></li>
 <li><p>Teamwork</p></li>
 <li><p>Seven milestones, interim deadlines throughout semester</p></li>
-<li><p>Final milestone: Presentation in lab and write-up</p></li>
+<li><p>Final milestone: Presentation in lab and write-up, <strong>Thursday, November 5</strong></p></li>
 <li><p>Must be in lab, in-person to present</p></li>
-<li><p>Peer review between teams for content, peer evaluation within teams for contribution</p></li>
+<li><p>Peer feedback between teams on presentation content; peer evaluation <em>within</em> teams for contribution, alongside commit history</p></li>
 <li><p>Some lab sessions allocated to project progress</p></li>
 </ul>
 <div class="callout callout-caution callout-titled callout-style-default">
@@ -763,7 +790,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p><strong>Caution</strong></p>
 </div>
 <div class="callout-content">
-<p>Project presentation date cannot be changed. You must complete the project to pass this class.</p>
+<p>The project presentation date (Nov 5) cannot be changed, and no late work is accepted for the project. You must complete the project to pass this class.</p>
 </div>
 </div>
 </div>
@@ -819,7 +846,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </tbody>
 </table>
 <p>See course syllabus for how the final letter grade will be determined.</p>
-</section></section><section><section id="course-overview-policies" class="title-slide slide level1 center"><h1>Course overview + policies</h1>
+</section></section><section><section id="policies-and-support" class="title-slide slide level1 center"><h1>Policies and support</h1>
 
 </section><section id="tips-for-success" class="slide level2"><h2>Tips for success</h2>
 <ul>
@@ -828,7 +855,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Ask questions: Use office hours and Ed Discussion forum</li>
 <li>Start early: Don’t procrastinate on assignments</li>
 <li>Stay current: Content builds progressively</li>
-</ul></section><section id="support" class="slide level2"><h2>Support</h2>
+</ul></section><section id="support" class="slide level2 smaller"><h2>Support</h2>
 <ul>
 <li>Help from humans:
 <ul>
@@ -836,7 +863,15 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Ask and answer questions on the discussion forum</li>
 </ul>
 </li>
-<li>Reserve email for questions on personal matters and/or grades</li>
+<li>Reserve email for questions on personal matters and/or grades, and <strong>include “STA 199” in the subject line</strong>
+<ul>
+<li>Extensions, accommodations, missed work, registration → course coordinator <strong>Dr.&nbsp;Mary Knox</strong>, <a href="mailto:mary.knox@duke.edu">mary.knox@duke.edu</a>
+</li>
+<li>Anything else not suited to the forum → <strong>Dr.&nbsp;Çetinkaya-Rundel</strong>, <a href="mailto:mc301@duke.edu">mc301@duke.edu</a>
+</li>
+<li>Expect a reply within 48 hours, Monday through Friday; slower over the weekend</li>
+</ul>
+</li>
 <li>Read the course support page</li>
 </ul></section><section id="announcements" class="slide level2"><h2>Announcements</h2>
 <ul>
@@ -851,14 +886,26 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li class="fragment">I (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it.</li>
 </ul></section><section id="access-and-accommodations" class="slide level2 smaller"><h2>Access and accommodations</h2>
 <ul>
-<li><p>The <a href="https://access.duke.edu">Duke Access and Accommodation Services</a> is available to ensure that students are able to engage with their courses and related assignments.</p></li>
-<li><p>Accoomodations for exams must be arranged through Access and Accommodation Services and exams with accommodations must be taken in the testing center.</p></li>
+<li><p>For disability accommodations, register with the <a href="https://access.duke.edu/students">Student Disability Access Office (SDAO)</a> and provide documentation related to your needs; SDAO will work with you to determine what accommodations are appropriate.</p></li>
+<li><p>Accommodations are <strong>not retroactive</strong>, and cannot be provided until I have received your Faculty Accommodation Letter – so start the process early.</p></li>
+<li><p>Accommodations for exams must be arranged through SDAO, and exams with accommodations must be taken in the testing center.</p></li>
+<li><p>Athletic travel conflicts and religious holidays: Submit requests for accommodations <strong>at the beginning of the semester</strong> so we can make suitable arrangements well in advance.</p></li>
 <li><p>I am committed to making all course materials accessible and I’m always learning how to do this better. If any course component is not accessible to you in any way, please don’t hesitate to let me know.</p></li>
-</ul></section><section id="late-work-waivers-lecture-recordings-regrades" class="slide level2"><h2>Late work, waivers, lecture recordings, regrades…</h2>
+</ul></section><section id="late-work-waivers-lecture-recordings-regrades" class="slide level2 smaller"><h2>Late work, waivers, lecture recordings, regrades…</h2>
 <ul>
-<li>We have policies!</li>
-<li>Read about them on the <a href="https://sta199-f25.github.io/course-syllabus.html">course syllabus</a> and refer back to them when you need it</li>
-</ul></section><section id="participate-1" class="slide level2 smaller"><h2>Participate 💻📱</h2>
+<li><p>We have policies!</p></li>
+<li><p>Read about them on the <a href="https://sta199-f26.github.io/course-syllabus.html">course syllabus</a> and refer back to them when you need it</p></li>
+</ul>
+<div class="fragment">
+<p>Two that are easy to miss:</p>
+<ul>
+<li>
+<strong>Lecture recordings:</strong> available for excused absences only – submit the request form <strong>within 24 hours</strong> of the missed lecture, with documentation</li>
+<li>
+<strong>Regrade requests:</strong> on Gradescope, <strong>within one week</strong> of an assignment being returned; note that the entire assignment may be regraded</li>
+</ul>
+</div>
+</section><section id="participate-1" class="slide level2 smaller"><h2>Participate 💻📱</h2>
 <div class="columns">
 <div class="column">
 <p><img data-src="images/wooclap-qr.png"></p>
@@ -866,14 +913,45 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Scan the QR code or go to <a href="https://app.wooclap.com/OQPLQEK">app.wooclap.com/OQPLQEK</a>.</p>
 <p>Log in with your Duke NetID.</p>
 </div></div>
-</section><section id="use-of-ai-tools" class="slide level2 smaller"><h2>Use of AI tools</h2>
+</section><section id="use-of-ai-tools" class="slide level2"><h2>Use of AI tools</h2>
 <ul>
 <li><p>AI tools are not a replacement for understanding the material, but they can help you learn it.</p></li>
 <li><p>Reading code and writing code are skills that take time and practice to develop - both are essential.</p></li>
-<li><p>The nature of these tools is changing rapidly - autocomplete vs chatbots vs agentic tools</p></li>
-</ul></section><section id="centaurs-vs.-reverse-centaurs" class="slide level2"><h2>Centaurs vs.&nbsp;reverse centaurs</h2>
+<li><p>The nature of these tools is changing rapidly - autocomplete vs.&nbsp;chatbots vs.&nbsp;agentic tools.</p></li>
+</ul>
 
-<img data-src="images/01/centaurs.png" alt="A centaur (horse body, human head) and a reverse centaur (horse head, human body)." class="r-stretch quarto-figure-center"><p class="caption">Image source: Hill Cantons, for more details see Cory Doctorow’s commentary <a href="https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/">Reverse Centaurs in Locus Magazine</a>.</p></section><section id="academic-integrity" class="slide level2"><h2>Academic integrity</h2>
+<aside><div>
+<p>A piece on AI and education that I read recently that resonated with me is <a href="https://erichudson.substack.com/p/school-is-a-gym-not-a-job">“School is a gym, not a job”</a> by Eric Hudson.</p>
+</div></aside></section><section id="centaurs-vs.-reverse-centaurs" class="slide level2"><h2>Centaurs vs.&nbsp;reverse centaurs</h2>
+
+<img data-src="images/01/centaurs.png" alt="A centaur (horse body, human head) and a reverse centaur (horse head, human body)." class="r-stretch quarto-figure-center"><p class="caption">Image source: Hill Cantons, for more details see Cory Doctorow’s commentary <a href="https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/">Reverse Centaurs in Locus Magazine</a>.</p></section><section id="use-of-ai-tools-the-rules" class="slide level2 smaller"><h2>Use of AI tools: the rules</h2>
+<p>You may use AI as a resource as you complete assignments, but not to answer the exercises for you.</p>
+<ul>
+<li class="fragment">
+<strong>Disclose</strong> your use in the AI disclosure statement accompanying the assignment</li>
+<li class="fragment">
+<strong>Cite</strong> what you use: the tool, the model, the date you ran the prompt, and a link to the full transcript</li>
+<li class="fragment">
+<strong>Don’t</strong> paste assignment prompts into AI tools – write your own prompt that reflects your understanding</li>
+<li class="fragment">
+<strong>Don’t</strong> paste AI output into your assignment – edit it so it carries your voice and matches course syntax, terminology, and style</li>
+</ul>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Any content identified as AI-generated but not cited as such will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="academic-integrity" class="slide level2"><h2>Academic integrity</h2>
 <blockquote>
 <p>To uphold the Duke Community Standard:</p>
 <ul>
@@ -895,6 +973,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Read the syllabus</li>
 <li>Complete readings and videos for Wednesday</li>
 </ul>
+<p>All linked from the course website at</p>
+<p><a href="https://sta199-f26.github.io/">sta199-fa26.github.io</a></p>
 
 
 </section></section>
