@@ -1,27 +1,40 @@
+/*-- scss:functions --*/
+
+// Tint used for the callout-style boxes below, matching the ~31% alpha of the
+// 8-digit hex values those rules previously hardcoded.
+@function brand-tint($color) {
+  @return rgba($color, 0.3);
+}
+
 /*-- scss:defaults --*/
 
-// fonts
-@import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap';
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
-
-$font-family-sans-serif: "Atkinson Hyperlegible", sans-serif;
-$presentation-heading-color: #005871;
+// Fonts come from _brand.yml's typography section (Atkinson Hyperlegible as
+// base, Gochi Hand for .hand below).
 $presentation-title-slide-text-align: "left";
-$link-color: #005871;
-$code-color: #005871;
 $code-block-font-size: 0.6em;
 $presentation-font-size-root: 45px;
 $presentation-h2-font-size: 1.2em;
 
+// Colors are not set here on purpose. _brand.yml already drives them:
+// `foreground: poseidon` gives $body-color and $presentation-heading-color
+// (#133955), and `primary: all-aboard` gives $link-color (#5C97CB).
+// Note that the $brand-<name> variables are only in scope in scss:rules
+// below, not in this defaults layer, so brand colors are applied there.
+
 /*-- scss:rules --*/
+
+// Inline code, previously a hardcoded teal. Excludes highlighted code blocks
+// (.sourceCode) and the countdown extension, which style themselves.
+.reveal code:not(.sourceCode):not(.countdown-time) {
+  color: $brand-arabian-spice;
+}
 
 details>summary {
   font-size: 0.75em;
 }
 
 .reveal #title-slide .subtitle {
-  color: #005871;
+  color: $brand-poseidon;
   font-weight: bold;
   text-align: left;
 }
@@ -63,51 +76,51 @@ details>summary {
 }
 
 .reveal .slide .question {
-  border-left: 3px solid #005871;
+  border-left: 3px solid $primary;
   padding-left: 0.5em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
-  background: #00587150;
+  background: brand-tint($primary);
 }
 
 .reveal .slide .poll {
-  border-left: 3px solid #6b4140;
+  border-left: 3px solid $brand-red-mahogany;
   padding-left: 0.5em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
-  background: #6b414050;
+  background: brand-tint($brand-red-mahogany);
 }
 
 .reveal .slide .task {
-  border-left: 3px solid #d1805f;
+  border-left: 3px solid $brand-muted-clay;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding: 0.5em;
-  background: #d1805f50;
+  background: brand-tint($brand-muted-clay);
 }
 
 .reveal .slide .appex {
-  border-left: 3px solid #eed4d9;
+  border-left: 3px solid $brand-foxglove;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding: 0.5em;
-  background: #eed4d950;
+  background: brand-tint($brand-foxglove);
 }
 
 .reveal .slide .demo {
-  border-left: 3px solid #9AA067;
+  border-left: 3px solid $brand-green-envy;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding: 0.5em;
-  background: #9AA06750;
+  background: brand-tint($brand-green-envy);
 }
 
 .reveal .slide .wooclap {
-  border-left: 3px solid #6B4140;
+  border-left: 3px solid $brand-red-mahogany;
   padding-left: 0.5em;
   padding-top: 0.25em;
   padding-bottom: 0.05em;
-  background: #6B414050;
+  background: brand-tint($brand-red-mahogany);
 }
 
 .reveal .slide .wooclap-choices ul {
@@ -132,7 +145,7 @@ details>summary {
 }
 
 .reveal pre code {
-  background-color: #e2e2e2;
+  background-color: $brand-egret;
   margin-bottom: 10px;
 }
 
@@ -142,7 +155,7 @@ details>summary {
 }
 
 .reveal dl.code-annotation-container-grid {
-  background-color: #ecf1f7;
+  background-color: mix($primary, white, 12%);
   font-size: 1em;
   margin-top: 5px;
   margin-bottom: 5px;

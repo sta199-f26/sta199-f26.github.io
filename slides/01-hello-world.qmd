@@ -566,6 +566,15 @@ country <- read_csv("data/country-lyrics.csv")
 country <- read_csv(here::here("slides", "data/country-lyrics.csv"))
 ```
 
+```{r}
+#| label: cl-brand
+#| include: false
+# Plot colors are read from _brand.yml so the figures and the slide theme stay
+# in sync. Hyphens become underscores so they can be used as brand$all_aboard.
+brand <- yaml::read_yaml(here::here("_brand.yml"))$color$palette
+names(brand) <- gsub("-", "_", names(brand))
+```
+
 ## Take a peek at the data {.smaller}
 
 ```{r}
@@ -609,7 +618,7 @@ country |>
   count(entered_top_30_in) |>
   mutate(prop = n / sum(n)) |>
   ggplot(aes(x = factor(entered_top_30_in), y = prop)) +
-  geom_col(show.legend = FALSE) +
+  geom_col(fill = brand$all_aboard) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(
     title = "When did these songs break into the Top 30?",
@@ -634,7 +643,7 @@ country |>
   slice_head(n = 15) |>
   ggplot(aes(y = fct_reorder(artist, n), x = n, fill = n)) +
   geom_col(show.legend = FALSE) +
-  scale_fill_viridis_c(option = "E") +
+  scale_fill_gradient(low = brand$neptune_green, high = brand$poseidon) +
   labs(
     title = "Who had the most Top 30 country hits?",
     y = NULL,
