@@ -60,8 +60,10 @@ Go to [github.com](https://github.com/) and sign in to your GitHub account. Make
 If you don't have a GitHub account, you'll need to create one. To do so, click on *Sign up* in the upper right corner of the GitHub page and follow the instructions. You do not have to use your Duke email address for your GitHub account, but I recommend doing so.\[\^3\] Similarly, you do not need to use your real name or your Duke NetID for your GitHub username, but I recommend reviewing the advice at <https://happygitwithr.com/github-acct#username-advice> before choosing a username.
 :::
 
-::: callout-important
-If you haven't yet filled out your *Getting to know you* survey yet or haven't submitted your GitHub username as part of it, let your TA know your GitHub username asap.
+::: {.callout-important collapse="true"}
+# Haven't filled out the Getting to know you survey? 
+**STOP HERE AND TALK TO A TA!**
+If you haven't yet filled out your *Getting to know you* survey yet or haven't submitted your GitHub username as part of it, let your TA know your GitHub username asap. This is essential for being able to complete the rest of your lab.
 :::
 
 ### Update your GitHub profile
@@ -146,6 +148,19 @@ You'll get acquainted with Positron throughout the semester, but here is the hig
 
   ![](images/lab-0/sign-in-to-github-from-positron/8-accounts-logged-in.png){fig-alt="Signed into GitHub in Positron" fig-align="center"}
 
+::: {.callout-tip collapse="true"}
+## Getting an error in Positron?
+We have identified two possible errors that you may encounter when signing into GitHub from Positron. 
+
+- If you get an error in Positron that says something like "Having trouble logging in? Would you like to try a different way? (personal access token)" (or similar), you can ignore it. Click `x` on the corner of the error pop-up and click on Accounts again. If you still don't see your username in the Accounts menu, flag a TA for help!
+
+![](images/lab-0/sign-in-to-github-from-positron/8-potential-error-1.png){fig-alt="Potential error in Positron that says Having trouble logging in? Would you like to try a different way? (personal access token)" fig-align="center"}
+
+- If you get an error in Positron that says an Extension needs to be updated or restarted, click on the Extensions icon in the Activity Bar, and then **Reload Window**. Then, start over in Step 1 and try again. If you still don't see your username in the Accounts menu, flag a TA for help!
+
+![](images/lab-0/sign-in-to-github-from-positron/8-potential-error-2.png){fig-alt="Reloading window to restarting Extensions in Positron." fig-align="center"}
+:::
+
 ### Configure Git to introduce yourself
 
 There is one more thing we need to do before getting started on the assignment. Specifically, we need to configure your Git so that Positron can communicate with GitHub. This requires two pieces of information: your (real, human first and last) name and email address (that you used when creating your GitHub account).
@@ -162,43 +177,38 @@ You've heard a bit about 📦 packages in the context of R, and you'll hear a lo
 
   The first time you do this, it may take a minute or so to install the `tinytex` package to set up your R environment for the course.Once it's done, you'll see a message in your console stating "Installation successful"
 
-- **Step 2:** Then type the following lines of code in the **Console**, filling in your name and the address associated with your GitHub account. If you're copying and pasting, you might see a warning message about your container wanting to see text and images copied to the clipboard. Hit **Allow** to allow this.
+- **Step 2:** Then type the following lines of code in the **Console**, filling in your name and the address associated with your GitHub account, and hit enter/return. 
 
-```{r}
-usethis::use_git_config(
-  user.name = "Your name",
-  user.email = "Email associated with your GitHub account"
-)
-```
+  ::: {.callout-tip collapse="true"}
+  ## Getting an error about pasting from the clipboard?
+  If you're copying and pasting, you might see a warning message about your container wanting to see text and images copied to the clipboard. Hit **Allow** to allow this.
+  :::
 
-For example, mine would be
+  ```{r}
+  usethis::use_git_config(
+    user.name = "Your name",
+    user.email = "Email associated with your GitHub account"
+  )
+  ```
 
-```{r}
-usethis::use_git_config(
-  user.name = "Mine Çetinkaya-Rundel",
-  user.email = "cetinkaya.mine@gmail.com"
-)
-```
+  For example, mine would be
 
-![](images/lab-0/configure-git/2-type-in-console.png){fig-alt="Typing Git configuration in the console" fig-align="center"}
+  ```{r}
+  usethis::use_git_config(
+    user.name = "Mine Çetinkaya-Rundel",
+    user.email = "cetinkaya.mine@gmail.com"
+  )
+  ```
 
-::: callout-note
-I used my gmail because that is the one I used to create my GitHub account. You should also be using the email address you used to create your GitHub account, it's ok if it isn't your Duke email. If you don't do this, we won't be able to tell who you are and give you points for the work you do...[^3]
-:::
+  ![](images/lab-0/configure-git/2-type-in-console.png){fig-alt="Typing Git configuration in the console" fig-align="center"}
 
-[^3]: Well, a more accurate statement would be that we will be reaching out to you to get things right during the first few weeks of classes. But, it's best if you can get it right today!
+  ::: callout-note
+  I used my Gmail arress because that is the email I used to create my GitHub account. You should also be using the email address you used to create your GitHub account, it's ok if it isn't your Duke email. If you don't do this, we won't be able to tell who you are and give you points for the work you do...[^3]
+  :::
+
+  [^3]: Well, a more accurate statement would be that we will be reaching out to you to get things right during the first few weeks of classes. But, it's best if you can get it right today!
 
 You are now ready to interact with GitHub via Positron!
-
-::: {.callout-tip collapse="true"}
-## Need a recap? Watch this video!
-
-<!-- [TO DO: need to create this video] -->
-
-The following video walks you through the steps outlined in the sign into GitHub from Positron and Git configuration sections above.
-
-{{< video https://youtu.be/3lONVzFw680 >}}
-:::
 
 # Hello, STA 199 students!
 

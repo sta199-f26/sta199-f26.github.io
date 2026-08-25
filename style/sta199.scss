@@ -80,6 +80,13 @@ div.sourceCode pre.sourceCode {
   background-color: #e9e9e9;
 }
 
+/* Quarto's default `li code.sourceCode` rule (intended for inline code) also
+   matches block code inside cells nested in list items, painting it #fefefe.
+   Restore the gray cell background there. */
+li div.sourceCode pre.sourceCode code.sourceCode {
+  background-color: #e9e9e9;
+}
+
 /* Added for website compliance: to ignore text for icons (see course-overview.qmd) */
 .about-link-text {
   position: absolute;
