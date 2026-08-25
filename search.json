@@ -196,375 +196,641 @@
     ]
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#meet-the-prof",
-    "href": "slides/01-hello-world-slides.html#meet-the-prof",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#while-you-wait",
+    "href": "slides/02-meet-the-toolkit-slides.html#while-you-wait",
     "title": "Hello, World!",
-    "section": "Meet the prof",
-    "text": "Meet the prof\n\n\nDr. Mine Çetinkaya-Rundel\nProfessor of the Practice\nDirector of First-Year Experience in Trinity College of Arts & Sciences\nAssociate Director of Undergraduate Studies, Statistical Science\nOffice: Old Chem 211C\n\nOffice hours:\n\n3:30-5 pm on Wednesdays at my office\nAlways available after class\nAlso available by appointment"
+    "section": "While you wait…",
+    "text": "While you wait…\nFill out the Getting to know you survey if you haven’t yet done so."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#meet-the-course-team",
-    "href": "slides/01-hello-world-slides.html#meet-the-course-team",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#meet-some-of-the-course-team",
+    "href": "slides/02-meet-the-toolkit-slides.html#meet-some-of-the-course-team",
     "title": "Hello, World!",
-    "section": "Meet the course team",
-    "text": "Meet the course team\n\n\n\nMary Knox (Course coordinator)\nJosh Lim (PhD) (Head TA)\nHelen Chen (PhD)\nCael Elmore (PhD)\nRobbie Hao (MS)\nCarl Emerson (MS)\nJuan Pablo Lopez Escamilla (MS)\nKenna Roberts (MS)\nYasmine Abdel-Rahman (UG)\n\n\n\nTally Coulter (UG)\nOliver Gao (UG)\nHellen Han (UG)\nHyunjin Lee (UG)\nAnric Ngan (UG)\nChelsea Nguyen (UG)\nMax Niu (UG)\nSophie Schwartz (UG)\nAllison Yang (UG)"
+    "section": "Meet (some of the) course team",
+    "text": "Meet (some of the) course team\n\nMary Knox (Course coordinator)\nRobbie Hao (MS)\nHyunjin Lee (UG)\nMax Niu (UG)"
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#meet-each-other",
-    "href": "slides/01-hello-world-slides.html#meet-each-other",
-    "title": "Hello, World!",
-    "section": "Meet each other!",
-    "text": "Meet each other!\n\nPlease share with at least two classmates…\n\nYour name\nYour year\nWhere you’re from\nWhat you did this past summer\nWhat you hope to get out of this course\n\n\n\n  \n    −\n    +\n \n 04:00"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#meet-data-science",
-    "href": "slides/01-hello-world-slides.html#meet-data-science",
-    "title": "Hello, World!",
-    "section": "Meet data science",
-    "text": "Meet data science\n\nData science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nWe’re going to learn to do this in a modern and tidy way – more on that later!\nThis is a course on introduction to data science, with an emphasis on statistical thinking."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#lets-do-some-data-science",
-    "href": "slides/01-hello-world-slides.html#lets-do-some-data-science",
-    "title": "Hello, World!",
-    "section": "Let’s do some data science!",
-    "text": "Let’s do some data science!\n\n\n\nToday we’re going to explore some data together, following the data science cycle.\nOur question: Are the stereotypes about country music actually true?"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#participate",
-    "href": "slides/01-hello-world-slides.html#participate",
-    "title": "Hello, World!",
-    "section": "Participate 💻📱",
-    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/OQPLQEK.\nLog in with your Duke NetID."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#are-the-stereotypes-about-country-music-actually-true",
-    "href": "slides/01-hello-world-slides.html#are-the-stereotypes-about-country-music-actually-true",
-    "title": "Hello, World!",
-    "section": "Are the stereotypes about country music actually true?",
-    "text": "Are the stereotypes about country music actually true?\n\n“Is it REALLY all about beer and trucks and girls and blue jeans? Are all the lyrics REALLY the same?”\n— Grady Smith, country music critic"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#data",
-    "href": "slides/01-hello-world-slides.html#data",
-    "title": "Hello, World!",
-    "section": "Data",
-    "text": "Data\n\n\n\nGrady Smith kept a spreadsheet of every country song that reached the Top 30 of Billboard’s Country Airplay chart.\n\n\nSomeone tidied it up and put it in a CSV (comma-separated values) file and released it as part of the TidyTuesday project."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#import",
-    "href": "slides/01-hello-world-slides.html#import",
-    "title": "Hello, World!",
-    "section": "Import",
-    "text": "Import"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#load-some-packages",
-    "href": "slides/01-hello-world-slides.html#load-some-packages",
-    "title": "Hello, World!",
-    "section": "Load some packages",
-    "text": "Load some packages\nMore on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:\n\nlibrary(tidyverse) # for data wrangling and visualization\nlibrary(scales) # for better axis labels\nlibrary(tidytext) # for handling text data\nlibrary(taylor) # for a surprise!"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#import-the-data",
-    "href": "slides/01-hello-world-slides.html#import-the-data",
-    "title": "Hello, World!",
-    "section": "Import the data",
-    "text": "Import the data\nImport the data called country-lyrics.csv in the folder called data using the read_csv() function:\n\ncountry &lt;- read_csv(\"data/country-lyrics.csv\")"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#take-a-peek-at-the-data",
-    "href": "slides/01-hello-world-slides.html#take-a-peek-at-the-data",
-    "title": "Hello, World!",
-    "section": "Take a peek at the data",
-    "text": "Take a peek at the data\n\ncountry\n\n# A tibble: 484 × 8\n   song     artist featuring entered_top_30_in lyrics writers producer\n   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   \n 1 Wake Up… Craig… &lt;NA&gt;                   2013 My fr… Josh O… Craig M…\n 2 Young L… Kip M… &lt;NA&gt;                   2013 Your … Kip Mo… Brett J…\n 3 Beat of… Brett… &lt;NA&gt;                   2013 Well … Brett … Brett E…\n 4 The Hea… Danie… &lt;NA&gt;                   2013 She h… Brett … Brett J…\n 5 Everyth… Thomp… &lt;NA&gt;                   2013 My mo… Keifer… RIch Re…\n 6 Goodnig… Randy… &lt;NA&gt;                   2013 Girl … Rob Ha… Derek G…\n 7 Cold Be… Josh … &lt;NA&gt;                   2013 I hea… Brent … Mark Wr…\n 8 19 You … Dan +… &lt;NA&gt;                   2013 It wa… Dan Sm… Dan Smy…\n 9 Helluva… Frank… &lt;NA&gt;                   2013 Satur… Rodney… Marshal…\n10 Chillin… Cole … &lt;NA&gt;                   2013 I got… Cole S… Jody St…\n# ℹ 474 more rows\n# ℹ 1 more variable: rough_order &lt;dbl&gt;"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#when-did-these-songs-chart",
-    "href": "slides/01-hello-world-slides.html#when-did-these-songs-chart",
-    "title": "Hello, World!",
-    "section": "When did these songs chart?",
-    "text": "When did these songs chart?\nEvery song in this dataset broke into the Top 30 in some year. One way to make sense of a variable like this is to visualize it."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#visualize",
-    "href": "slides/01-hello-world-slides.html#visualize",
-    "title": "Hello, World!",
-    "section": "Visualize",
-    "text": "Visualize\n\nCodecountry |&gt;\n  count(entered_top_30_in) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(x = entered_top_30_in, y = prop, group = 1)) +\n  geom_point() +\n  geom_line() +\n  scale_y_continuous(labels = percent_format(accuracy = 1)) +\n  scale_x_continuous(breaks = seq(2013, 2019, by = 1)) +\n  labs(\n    title = \"When did these songs break into the Top 30?\",\n    x = NULL,\n    y = NULL,\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#who-is-on-country-radio",
-    "href": "slides/01-hello-world-slides.html#who-is-on-country-radio",
-    "title": "Hello, World!",
-    "section": "Who is on country radio?",
-    "text": "Who is on country radio?\nThere are 484 songs in the data, but only 121 different artists. Let’s look at the 15 with the most Top 30 hits.\n\nCodecountry |&gt;\n  count(artist, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  ggplot(aes(y = fct_reorder(artist, n), x = n, fill = n)) +\n  geom_col(show.legend = FALSE) +\n  labs(\n    title = \"Who had the most Top 30 country hits?\",\n    y = NULL,\n    x = \"Number of songs\",\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#who-writes-country-songs",
-    "href": "slides/01-hello-world-slides.html#who-writes-country-songs",
-    "title": "Hello, World!",
-    "section": "Who writes country songs?",
-    "text": "Who writes country songs?\nSongs are usually written by more than one person, so the writers variable holds a whole list in a single cell:\n\nCodecountry |&gt;\n  select(song, writers)\n\n# A tibble: 484 × 2\n   song                                     writers                   \n   &lt;chr&gt;                                    &lt;chr&gt;                     \n 1 Wake Up Lovin You                        Josh Osborne, Matthew Ram…\n 2 Young Love                               Kip Moore, Dan Couch, Wes…\n 3 Beat of the Music                        Brett Eldredge, Ross Copp…\n 4 The Heart of Dixie                       Brett James, Caitlyn Smit…\n 5 Everything I Shouldn't Be Thinking About Keifer Thompson, Shawna T…\n 6 Goodnight Kiss                           Rob Hatch, Jason Sellers,…\n 7 Cold Beer With Your Name On It           Brent Anderson, Clint Dan…\n 8 19 You + Me                              Dan Smyers, Shay Mooney, …\n 9 Helluva Life                             Rodney Clawson, Chris Tom…\n10 Chillin' It                              Cole Swindell, Shane Minor\n# ℹ 474 more rows"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#tidy-transform",
-    "href": "slides/01-hello-world-slides.html#tidy-transform",
-    "title": "Hello, World!",
-    "section": "Tidy + Transform",
-    "text": "Tidy + Transform\nBefore we can visualize this variable, we need to tidy and transform it."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#tidy-transform-1",
-    "href": "slides/01-hello-world-slides.html#tidy-transform-1",
-    "title": "Hello, World!",
-    "section": "Tidy + Transform",
-    "text": "Tidy + Transform\n\nCodecountry |&gt;\n  # separate into multiple rows for each writer, using comma as delimiter\n  separate_longer_delim(writers, delim = \", \") |&gt;\n  count(writers, sort = TRUE)\n\n# A tibble: 517 × 2\n   writers             n\n   &lt;chr&gt;           &lt;int&gt;\n 1 Ashley Gorley      44\n 2 Shane McAnally     36\n 3 Ross Copperman     32\n 4 Josh Osborne       29\n 5 Rhett Akins        23\n 6 Hillary Lindsey    18\n 7 Jesse Frasure      18\n 8 Jon Nite           17\n 9 Zach Crowell       16\n10 Luke Laird         14\n# ℹ 507 more rows"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#visualize-1",
-    "href": "slides/01-hello-world-slides.html#visualize-1",
-    "title": "Hello, World!",
-    "section": "Visualize",
-    "text": "Visualize\n\nCodecountry |&gt;\n  separate_longer_delim(writers, delim = \", \") |&gt;\n  count(writers, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  ggplot(aes(y = fct_reorder(writers, n), x = n, fill = n)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_taylor_c(album = \"Speak Now\") +\n  labs(\n    title = \"Is country radio run by a small circle of hitmakers?\",\n    y = NULL,\n    x = \"Number of songs written\",\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#what-do-country-songs-sing-about",
-    "href": "slides/01-hello-world-slides.html#what-do-country-songs-sing-about",
-    "title": "Hello, World!",
-    "section": "What do country songs sing about?",
-    "text": "What do country songs sing about?\nThe lyrics variable contains the entire text of each song:\n\n“My friends call me up ’cause they know I’m down / Take me out to paint the town and help me get over it…”\n\nWe can use text mining techniques, like tokenizing to words, to explore it."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#tidy-transform-summarize",
-    "href": "slides/01-hello-world-slides.html#tidy-transform-summarize",
-    "title": "Hello, World!",
-    "section": "Tidy + Transform + Summarize",
-    "text": "Tidy + Transform + Summarize\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(word, lyrics) |&gt;\n  anti_join(stop_words, by = \"word\") |&gt;\n  count(word, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  print(n = Inf)\n\n# A tibble: 15 × 2\n   word        n\n   &lt;chr&gt;   &lt;int&gt;\n 1 yeah      996\n 2 girl      781\n 3 baby      749\n 4 love      743\n 5 wanna     632\n 6 gonna     611\n 7 time      502\n 8 night     454\n 9 tonight   332\n10 heart     293\n11 home      272\n12 kiss      263\n13 world     261\n14 gotta     256\n15 eyes      240"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#tokenize-to-bigrams",
-    "href": "slides/01-hello-world-slides.html#tokenize-to-bigrams",
-    "title": "Hello, World!",
-    "section": "Tokenize to bigrams",
-    "text": "Tokenize to bigrams\nWe can also tokenize to bigrams (pairs of words):\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(bigram, lyrics, token = \"ngrams\", n = 2) |&gt;\n  count(bigram, sort = TRUE) |&gt;\n  slice_head(n = 8) |&gt;\n  print(n = Inf)\n\n# A tibble: 8 × 2\n  bigram       n\n  &lt;chr&gt;    &lt;int&gt;\n1 in the     692\n2 a little   513\n3 on the     413\n4 and i      381\n5 i know     282\n6 i don't    276\n7 i can      254\n8 in a       249\n\n\n\nHmm. Not very informative – these are all common words!"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#drop-the-stop-words",
-    "href": "slides/01-hello-world-slides.html#drop-the-stop-words",
-    "title": "Hello, World!",
-    "section": "Drop the stop words",
-    "text": "Drop the stop words\nLet’s split each bigram in two and throw away the pairs built from common words:\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(bigram, lyrics, token = \"ngrams\", n = 2) |&gt;\n  separate_wider_delim(bigram, delim = \" \", names = c(\"word1\", \"word2\")) |&gt;\n  anti_join(stop_words, by = join_by(word1 == word)) |&gt;\n  anti_join(stop_words, by = join_by(word2 == word)) |&gt;\n  count(word1, word2, sort = TRUE) |&gt;\n  slice_head(n = 20) |&gt;\n  print(n = Inf)\n\n# A tibble: 20 × 3\n   word1      word2       n\n   &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt;\n 1 yeah       yeah       93\n 2 boo        boo        81\n 3 ooh        ooh        81\n 4 friday     night      71\n 5 hey        hey        45\n 6 tonight    tonight    44\n 7 home       home       36\n 8 yeah       boy        33\n 9 saturday   night      32\n10 somebody's gotta      32\n11 cold       beer       31\n12 dance      floor      31\n13 gonna      love       31\n14 country    song       30\n15 la         la         28\n16 wanna      kiss       28\n17 whoa       whoa       28\n18 da         da         27\n19 honky      tonk       26\n20 yeah       baby       25"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#can-ai-help",
-    "href": "slides/01-hello-world-slides.html#can-ai-help",
-    "title": "Hello, World!",
-    "section": "Can AI help?",
-    "text": "Can AI help?\nWe could also ask a large language model to read every song and tell us what it’s about?\n\n“What are common themes in these country song lyrics?” [Attached data file country-lyrics.csv.] 24 August 2026. ChatGPT 5.6 Sol Light. chatgpt.com/share/e/6a8c7343-62e4-83ea-b114-715f9b847cea\n\n\nAcross the 484 songs in country-lyrics.csv, several recurring themes stand out:\n\nRomantic love and attraction The dominant theme: falling in love, physical attraction, kissing, longing, and wanting to be together. Love-related language appears in roughly 94% of the songs.\nHeartbreak and separation Many songs focus on breakups, regret, loneliness, missing someone, or being unable to move on. This appears in approximately 73% of the songs, often alongside love rather than separately from it.\nDrinking and nightlife Beer, whiskey, bars, neon lights, and getting drunk frequently serve as settings or coping mechanisms—especially for heartbreak. Related language appears in about 60% of the songs.\nMusic and dancing Radios, songs, dancing, guitars, and jukeboxes are prominent. Music often brings couples together, evokes a memory, or provides the soundtrack for driving and partying. About 56% contain this imagery.\nRoads, trucks, and escape Driving can represent romance, independence, returning home, or leaving a painful situation behind. Roads, trucks, and related imagery occur in approximately 55%.\nPartying and carefree pleasure Friday nights, weekends, bonfires, dancing, and “good times” create an idealized space temporarily free from responsibility. This theme appears in about half the songs.\nFaith, hope, and resilience References to God, prayer, heaven, belief, strength, and survival often accompany songs about hardship or gratitude. Related language occurs in approximately 43%.\nHome, family, and belonging Home is both a physical place and an emotional anchor. Parents, family roots, and returning home appear in around 40% of the songs.\nRural and small-town identity Country roads, fields, porches, boots, farms, and small towns establish a distinct cultural setting and sense of authenticity. About 32% explicitly use this imagery.\nYouth, memory, and nostalgia Songs frequently look back on summer, adolescence, first love, or an earlier and supposedly simpler time. Explicit nostalgic language appears in roughly 27%.\n\nThe broadest overarching theme is emotion tied to place: love, heartbreak, and personal identity are repeatedly expressed through small towns, roads, vehicles, bars, music, and home. The lyrics also contain a recurring tension between leaving and belonging—wanting to escape one’s circumstances while remaining emotionally attached to a person, hometown, or former life.\nThese percentages are approximate keyword-based measures, and the categories overlap: one song can simultaneously be about heartbreak, whiskey, driving, and home."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#checks-and-balances",
-    "href": "slides/01-hello-world-slides.html#checks-and-balances",
-    "title": "Hello, World!",
-    "section": "Checks and balances",
-    "text": "Checks and balances\nAsk anyone what country songs are about and you’ll likely hear: beer, trucks, dirt roads, blue jeans, tractors.\n\nBut we have the lyrics, so we can just check:\n\nCodecountry |&gt;\n  mutate(lyrics_lower = str_to_lower(lyrics)) |&gt;\n  summarize(\n    truck = mean(str_detect(lyrics_lower, \"truck\")),\n    whiskey = mean(str_detect(lyrics_lower, \"whiskey\")),\n    beer = mean(str_detect(lyrics_lower, \"beer\")),\n    `dirt road` = mean(str_detect(lyrics_lower, \"dirt road\")),\n    `blue jeans` = mean(str_detect(lyrics_lower, \"blue jeans\")),\n    tractor = mean(str_detect(lyrics_lower, \"tractor\"))\n  ) |&gt;\n  pivot_longer(\n    everything(),\n    names_to = \"stereotype\",\n    values_to = \"prop\"\n  ) |&gt;\n  arrange(desc(prop))\n\n# A tibble: 6 × 2\n  stereotype   prop\n  &lt;chr&gt;       &lt;dbl&gt;\n1 truck      0.120 \n2 whiskey    0.116 \n3 beer       0.0868\n4 dirt road  0.0227\n5 blue jeans 0.0227\n6 tractor    0.0103"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#communicate",
-    "href": "slides/01-hello-world-slides.html#communicate",
-    "title": "Hello, World!",
-    "section": "Communicate",
-    "text": "Communicate\n\nOnly about 12% of these songs mention a truck, and 1% mention a tractor.\nThe words that actually dominate are girl, baby, love, and night.\nThe stereotype is memorable, not frequent – and that difference is only visible once you look at the data.\n\n\n\n\n\n\n\n\nTip\n\n\nThis is what we mean by statistical thinking: a claim that “feels true” is not a finding, but you can explore and verify the claim with data and the skills you’ll learn in this course."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#homepage",
-    "href": "slides/01-hello-world-slides.html#homepage",
-    "title": "Hello, World!",
-    "section": "Homepage",
-    "text": "Homepage\nhttps://sta199-f26.github.io\n\nAll course materials\nLinks to Canvas, GitHub, Positron containers, etc."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#course-toolkit",
-    "href": "slides/01-hello-world-slides.html#course-toolkit",
-    "title": "Hello, World!",
-    "section": "Course toolkit",
-    "text": "Course toolkit\nAll linked from the course website:\n\nGitHub organization: github.com/sta199-f26\n\nPositron containers: cmgr.oit.duke.edu/containers\n\nCommunication: Ed Discussion\nAssignment submission and feedback: Gradescope"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#course-materials",
-    "href": "slides/01-hello-world-slides.html#course-materials",
-    "title": "Hello, World!",
-    "section": "Course materials",
-    "text": "Course materials\nBoth textbooks are free online and linked from the course website:\n\n\nR for Data Science, 2e – Wickham, Çetinkaya-Rundel, Grolemund\n\nIntroduction to Modern Statistics – Çetinkaya-Rundel, Hardin\n\nComputing:\n\nR and Positron run in containers provided by Duke OIT – nothing to install\nBring a laptop (or Chromebook) to every class, fully charged – there aren’t enough outlets in the classroom for everyone"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#activities",
-    "href": "slides/01-hello-world-slides.html#activities",
-    "title": "Hello, World!",
-    "section": "Activities",
-    "text": "Activities\n\nIntroduce new content and prepare for lectures by watching the videos and completing the readings\nAttend and actively participate in lectures (and answer questions for participation credit) and labs, office hours, team meetings\nPractice applying statistical concepts and computing with application exercises during lecture\nPut together what you’ve learned to analyze real-world data\n\nLab assignments\nHomework assignments\nExams\nTerm project completed in teams"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#attendance-and-participation",
-    "href": "slides/01-hello-world-slides.html#attendance-and-participation",
-    "title": "Hello, World!",
-    "section": "Attendance and participation",
-    "text": "Attendance and participation\n\nDaily in lecture, via Wooclap on your laptop or phone\nTracked for credit, but not based on correctness, only participation (and often they will be questions designed to make you think that might not have a single right answer!)\nThere are 25 lectures this semester: participate in at least 17 for full credit\nBelow that, the score is prorated, e.g. participating in 15/25 lectures gives (15/25) × 5% = 3%"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#application-exercises",
-    "href": "slides/01-hello-world-slides.html#application-exercises",
-    "title": "Hello, World!",
-    "section": "Application exercises",
-    "text": "Application exercises\n\nDaily-ish in lecture\nNot graded, but tracked for feedback on workflow"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#labs",
-    "href": "slides/01-hello-world-slides.html#labs",
-    "title": "Hello, World!",
-    "section": "Labs",
-    "text": "Labs\n\nHands-on practice with data analysis\nA single exercise per lab, graded on turning in something reasonable + correctness\nCompleted in-person, in lab, in teams\nTeams randomized each week until project teams assigned\nDeveloped collaboratively, but turned in individually by the end of the lab session\nTwo lowest scores dropped\nNo late work accepted"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#homework",
-    "href": "slides/01-hello-world-slides.html#homework",
-    "title": "Hello, World!",
-    "section": "Homework",
-    "text": "Homework\n\nHands-on practice with data analysis\nSome questions for practice with instant feedback by AI\n1-2 randomly sampled questions to be graded by humans for correctness\nCan consult with course team and peers, but completed and turned in individually by 11:59 pm on Wednesdays\nLowest score dropped\nUp to 3 days late (-5% per day), no late work accepted after that\nOne-time late penalty waiver: Can be used on any homework assignment, no questions asked, must be requested from Dr. Knox before the deadline"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#turning-in-labs-and-hws",
-    "href": "slides/01-hello-world-slides.html#turning-in-labs-and-hws",
-    "title": "Hello, World!",
-    "section": "Turning in labs and HWs",
-    "text": "Turning in labs and HWs\nEvery assignment, same two steps:\n\n\nPush your work to the assignment’s GitHub repository\n\nSubmit the PDF output on Gradescope\n\n\n\n\nLabs are due at the end of your lab session\n\nHomework is due by 11:59 pm on Wednesdays\n\n\n\n\nSubmit what you have even if you haven’t finished – you’ll get partial credit for your work."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#exams---structure",
-    "href": "slides/01-hello-world-slides.html#exams---structure",
-    "title": "Hello, World!",
-    "section": "Exams - structure",
-    "text": "Exams - structure\n\n\nTwo exams + final, all in class:\n\nExam 1: Wednesday, October 7\nExam 2: Wednesday, November 18\nFinal: Thursday, December 10\n\n\n\nAll exams comprised of two parts:\n\nMultiple choice questions\nShort answer questions, on homework specifics (read: difficult/impossible to answer correctly without having done the homework)\n\n\nCover material from videos, readings, lectures, application exercises, homework, and labs\nOne sheet of notes for each exam, no larger than 8 1/2 x 11, both sides, must be prepared by you"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#exams---policies",
-    "href": "slides/01-hello-world-slides.html#exams---policies",
-    "title": "Hello, World!",
-    "section": "Exams - policies",
-    "text": "Exams - policies\n\nNo extensions and no make-up exams.\n\nWith documentation (Dean’s excuse or similar):\n\nMiss Exam 1 or 2 → your final exam score replaces the missed score\nMiss the Final → you receive an Incomplete and take the final later\n\n\nImprovement bonus: If you take all three exams, your final exam score replaces the lower of your two mid-semester exam scores – if the final score is higher.\n\n\n\n\n\n\n\nCaution\n\n\nExam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on Oct 7, Nov 18, and Dec 10, you should drop this class."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#project",
-    "href": "slides/01-hello-world-slides.html#project",
-    "title": "Hello, World!",
-    "section": "Project",
-    "text": "Project\n\nDataset of your choice, method of your choice\nTeamwork\nSeven milestones, interim deadlines throughout semester\nFinal milestone: Presentation in lab and write-up, Thursday, November 5\nMust be in lab, in-person to present\nPeer feedback between teams on presentation content; peer evaluation within teams for contribution, alongside commit history\nSome lab sessions allocated to project progress\n\n\n\n\n\n\n\nCaution\n\n\nThe project presentation date (Nov 5) cannot be changed, and no late work is accepted for the project. You must complete the project to pass this class."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#teams",
-    "href": "slides/01-hello-world-slides.html#teams",
-    "title": "Hello, World!",
-    "section": "Teams",
-    "text": "Teams\n\nRandomized at first for weekly labs\nThen selected by you or assigned by me if you don’t express a preference for project and remaining labs\n\nExpectations and roles\n\nEveryone is expected to contribute equal effort\n\nEveryone is expected to understand all code turned in\nIndividual contribution evaluated by peer evaluation, commits, etc.\n\n\nFor the project: Peer evaluation during teamwork and after completion"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#grading",
-    "href": "slides/01-hello-world-slides.html#grading",
-    "title": "Hello, World!",
-    "section": "Grading",
-    "text": "Grading\n\n\nCategory\nPercentage\n\n\n\nLectures (attendance + participation)\n5%\n\n\nHW\n5%\n\n\nLabs\n10%\n\n\nProject\n15%\n\n\nExam 1\n20%\n\n\nExam 2\n20%\n\n\nFinal\n25%\n\n\n\nSee course syllabus for how the final letter grade will be determined."
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#tips-for-success",
-    "href": "slides/01-hello-world-slides.html#tips-for-success",
-    "title": "Hello, World!",
-    "section": "Tips for success",
-    "text": "Tips for success\n\nPrepare: Watch videos and read before class\nEngage: Attend all lectures and labs actively\nAsk questions: Use office hours and Ed Discussion forum\nStart early: Don’t procrastinate on assignments\nStay current: Content builds progressively"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#support",
-    "href": "slides/01-hello-world-slides.html#support",
-    "title": "Hello, World!",
-    "section": "Support",
-    "text": "Support\n\nHelp from humans:\n\nAttend office hours\nAsk and answer questions on the discussion forum\n\n\nReserve email for questions on personal matters and/or grades, and include “STA 199” in the subject line\n\nExtensions, accommodations, missed work, registration → course coordinator Dr. Mary Knox, mary.knox@duke.edu\n\nAnything else not suited to the forum → Dr. Çetinkaya-Rundel, mc301@duke.edu\n\nExpect a reply within 48 hours, Monday through Friday; slower over the weekend\n\n\nRead the course support page"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#announcements",
-    "href": "slides/01-hello-world-slides.html#announcements",
-    "title": "Hello, World!",
-    "section": "Announcements",
-    "text": "Announcements\n\nPosted on Canvas (Announcements tool) and sent via email, be sure to check both regularly\nI’ll assume that you’ve read an announcement by the next “business” day\nI’ll (try my best to) send a weekly update announcement each Friday, outlining the plan for the following week and reminding you what you need to do to prepare, practice, and perform"
-  },
-  {
-    "objectID": "slides/01-hello-world-slides.html#diversity-inclusion-and-belonging",
-    "href": "slides/01-hello-world-slides.html#diversity-inclusion-and-belonging",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#diversity-inclusion-and-belonging",
+    "href": "slides/02-meet-the-toolkit-slides.html#diversity-inclusion-and-belonging",
     "title": "Hello, World!",
     "section": "Diversity, inclusion, and belonging",
     "text": "Diversity, inclusion, and belonging\nIt is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit.\n\nFill out the Getting to know you survey.\nIf you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. I want to be a resource for you. If you prefer to speak with someone outside of the course, your advisors, and deans are excellent resources.\nI (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#access-and-accommodations",
-    "href": "slides/01-hello-world-slides.html#access-and-accommodations",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#access-and-accommodations",
+    "href": "slides/02-meet-the-toolkit-slides.html#access-and-accommodations",
     "title": "Hello, World!",
     "section": "Access and accommodations",
     "text": "Access and accommodations\n\nFor disability accommodations, register with the Student Disability Access Office (SDAO) and provide documentation related to your needs; SDAO will work with you to determine what accommodations are appropriate.\nAccommodations are not retroactive, and cannot be provided until I have received your Faculty Accommodation Letter – so start the process early.\nAccommodations for exams must be arranged through SDAO, and exams with accommodations must be taken in the testing center.\nAthletic travel conflicts and religious holidays: Submit requests for accommodations at the beginning of the semester so we can make suitable arrangements well in advance.\nI am committed to making all course materials accessible and I’m always learning how to do this better. If any course component is not accessible to you in any way, please don’t hesitate to let me know."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#late-work-waivers-lecture-recordings-regrades",
-    "href": "slides/01-hello-world-slides.html#late-work-waivers-lecture-recordings-regrades",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#late-work-waivers-lecture-recordings-regrades",
+    "href": "slides/02-meet-the-toolkit-slides.html#late-work-waivers-lecture-recordings-regrades",
     "title": "Hello, World!",
     "section": "Late work, waivers, lecture recordings, regrades…",
     "text": "Late work, waivers, lecture recordings, regrades…\n\nWe have policies!\nRead about them on the course syllabus and refer back to them when you need it\n\n\nTwo that are easy to miss:\n\n\nLecture recordings: available for excused absences only – submit the request form within 24 hours of the missed lecture, with documentation\n\nRegrade requests: on Gradescope, within one week of an assignment being returned; note that the entire assignment may be regraded"
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#participate-1",
-    "href": "slides/01-hello-world-slides.html#participate-1",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#participate",
+    "href": "slides/02-meet-the-toolkit-slides.html#participate",
     "title": "Hello, World!",
     "section": "Participate 💻📱",
-    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/OQPLQEK.\nLog in with your Duke NetID."
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#use-of-ai-tools",
-    "href": "slides/01-hello-world-slides.html#use-of-ai-tools",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#use-of-ai-tools",
+    "href": "slides/02-meet-the-toolkit-slides.html#use-of-ai-tools",
     "title": "Hello, World!",
     "section": "Use of AI tools",
     "text": "Use of AI tools\n\nAI tools are not a replacement for understanding the material, but they can help you learn it.\nReading code and writing code are skills that take time and practice to develop - both are essential.\nThe nature of these tools is changing rapidly - autocomplete vs. chatbots vs. agentic tools.\n\n\n\nA piece on AI and education that I read recently that resonated with me is “School is a gym, not a job” by Eric Hudson."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#centaurs-vs.-reverse-centaurs",
-    "href": "slides/01-hello-world-slides.html#centaurs-vs.-reverse-centaurs",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#centaurs-vs.-reverse-centaurs",
+    "href": "slides/02-meet-the-toolkit-slides.html#centaurs-vs.-reverse-centaurs",
     "title": "Hello, World!",
     "section": "Centaurs vs. reverse centaurs",
     "text": "Centaurs vs. reverse centaurs\n\nImage source: Hill Cantons, for more details see Cory Doctorow’s commentary Reverse Centaurs in Locus Magazine."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#use-of-ai-tools-the-rules",
-    "href": "slides/01-hello-world-slides.html#use-of-ai-tools-the-rules",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#use-of-ai-tools-the-rules",
+    "href": "slides/02-meet-the-toolkit-slides.html#use-of-ai-tools-the-rules",
     "title": "Hello, World!",
     "section": "Use of AI tools: the rules",
     "text": "Use of AI tools: the rules\nYou may use AI as a resource as you complete assignments, but not to answer the exercises for you.\n\n\nDisclose your use in the AI disclosure statement accompanying the assignment\n\nCite what you use: the tool, the model, the date you ran the prompt, and a link to the full transcript\n\nDon’t paste assignment prompts into AI tools – write your own prompt that reflects your understanding\n\nDon’t paste AI output into your assignment – edit it so it carries your voice and matches course syntax, terminology, and style\n\n\n\n\n\n\n\n\nImportant\n\n\nAny content identified as AI-generated but not cited as such will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#academic-integrity",
-    "href": "slides/01-hello-world-slides.html#academic-integrity",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#academic-integrity",
+    "href": "slides/02-meet-the-toolkit-slides.html#academic-integrity",
     "title": "Hello, World!",
     "section": "Academic integrity",
     "text": "Academic integrity\n\nTo uphold the Duke Community Standard:\n\nI will not lie, cheat, or steal in my academic endeavors;\nI will conduct myself honorably in all my endeavors; and\nI will act if the Standard is compromised."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#a-note-on-showing-up-and-participating",
-    "href": "slides/01-hello-world-slides.html#a-note-on-showing-up-and-participating",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#a-note-on-showing-up-and-participating",
+    "href": "slides/02-meet-the-toolkit-slides.html#a-note-on-showing-up-and-participating",
     "title": "Hello, World!",
     "section": "A note on showing up and participating",
     "text": "A note on showing up and participating\n\nThis is a large “lecture” but with lots of opportunities and expectations for active learning, participation, and collaboration.\nYou are expected to show up and participate in all lectures and labs, though there are a good number of each you can miss without penalty.\nIt’s possible to read the books and watch the videos and get an exposure to the material we cover in the course without showing up, but the experience will be much less rich and you will likely miss out on a lot of learning. That’s why the assessments and workflows are designed to reward and reinforce active participation."
   },
   {
-    "objectID": "slides/01-hello-world-slides.html#tasks-due-wednesday",
-    "href": "slides/01-hello-world-slides.html#tasks-due-wednesday",
+    "objectID": "slides/02-meet-the-toolkit-slides.html#learning-goals",
+    "href": "slides/02-meet-the-toolkit-slides.html#learning-goals",
     "title": "Hello, World!",
-    "section": "Tasks due Wednesday",
-    "text": "Tasks due Wednesday\n\nComplete the getting to know you survey, then accept your GitHub organization invitation\nRead the syllabus\nComplete readings and videos for Wednesday\n\nAll linked from the course website at\nsta199-fa26.github.io"
+    "section": "Learning goals",
+    "text": "Learning goals\nBy the end of the course, you will be able to gain insight from data, reproducibly (with literate programming and version control) and collaboratively, using modern programming tools and techniques."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#computational-toolkit",
+    "href": "slides/02-meet-the-toolkit-slides.html#computational-toolkit",
+    "title": "Hello, World!",
+    "section": "Computational toolkit",
+    "text": "Computational toolkit\n\nComputing:\n\nLanguage: R\nIDE: RStudio\nPackages: tidyverse (primarily), plus others\nAuthoring: Quarto\n\n\nVersion control:\n\nTracking: Git\nHosting and collaboration: GitHub"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#reproducibility-checklist",
+    "href": "slides/02-meet-the-toolkit-slides.html#reproducibility-checklist",
+    "title": "Hello, World!",
+    "section": "Reproducibility checklist",
+    "text": "Reproducibility checklist\n\nWhat does it mean for a data analysis to be “reproducible”?\n\n\nShort-term goals:\n\nAre the tables and figures reproducible from the code and data?\nDoes the code actually do what you think it does?\nIn addition to what was done, is it clear why it was done?\n\n\n\nLong-term goals:\n\nCan the code be used for other data?\nCan you extend the code to do other things?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#toolkit-for-reproducibility",
+    "href": "slides/02-meet-the-toolkit-slides.html#toolkit-for-reproducibility",
+    "title": "Hello, World!",
+    "section": "Toolkit for reproducibility",
+    "text": "Toolkit for reproducibility\n\nScriptability – Coding as opposed to using a point-and-click tool \\(\\rightarrow\\) R\nLiterate programming – Code, narrative, output in one place, as opposed to copying and pasting code output into a document (e.g., Word or Google Doc) that contains the narrative \\(\\rightarrow\\) Quarto\nVersion control – Track changes with brief messages that describe those changes \\(\\rightarrow\\) Git / GitHub"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#an-analogy-to-english",
+    "href": "slides/02-meet-the-toolkit-slides.html#an-analogy-to-english",
+    "title": "Hello, World!",
+    "section": "An analogy to English",
+    "text": "An analogy to English\nSuppose you wanted to write an essay for a literature class.\n\nYou would need to pick a language (e.g., English)\nand choose an interface to write your document with (such as Microsoft Word with a .docx word document)\nYou also might want to use track changes to see edits you make\nand use a platform such as Google Drive to collaborate"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#r-and-positron-1",
+    "href": "slides/02-meet-the-toolkit-slides.html#r-and-positron-1",
+    "title": "Hello, World!",
+    "section": "R and Positron",
+    "text": "R and Positron\n\n\n\n\n\n\n\nR is an open-source statistical programming language\n\nR is also an environment for statistical computing and graphics\nIt’s easily extensible with packages\n\n\n\n\n\nRStudio is a convenient interface for R called an IDE (integrated development environment), e.g. “I write R code in the RStudio IDE”\n\nRStudio is not a requirement for programming with R, but it’s very commonly used by R programmers and data scientists"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#r-vs.-rstudio",
+    "href": "slides/02-meet-the-toolkit-slides.html#r-vs.-rstudio",
+    "title": "Hello, World!",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\n\n\n\n\n\nSource: Modern Dive."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#r-packages",
+    "href": "slides/02-meet-the-toolkit-slides.html#r-packages",
+    "title": "Hello, World!",
+    "section": "R packages",
+    "text": "R packages\n\nPackages: Fundamental units of reproducible R code, including reusable R functions, the documentation that describes how to use them, and sample data1\nAs of 27 August 2025, there are 22,578 R packages available on CRAN (the Comprehensive R Archive Network)2\nWe’re going to work with a small (but important) subset of these!\n\n\n\n1 Wickham and Bryan, R Packages.\n2CRAN contributed packages."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#tour-r-rstudio",
+    "href": "slides/02-meet-the-toolkit-slides.html#tour-r-rstudio",
+    "title": "Hello, World!",
+    "section": "Tour: R + RStudio",
+    "text": "Tour: R + RStudio\n\n\n\nOption 1:\nSit back and enjoy the show!\n\n\n\nOption 2:\nGo to your container and launch RStudio."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#tour-recap-r-rstudio",
+    "href": "slides/02-meet-the-toolkit-slides.html#tour-recap-r-rstudio",
+    "title": "Hello, World!",
+    "section": "Tour recap: R + RStudio",
+    "text": "Tour recap: R + RStudio"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#packages",
+    "href": "slides/02-meet-the-toolkit-slides.html#packages",
+    "title": "Hello, World!",
+    "section": "Packages",
+    "text": "Packages\n\nInstalled with install.packages(), once per system:\n\n\ninstall.packages(\"palmerpenguins\")\n\n\n\n\n\n\n\nNote\n\n\nWe already pre-installed many of the package you’ll need for this course, so you might go the whole semester without needing to run install.packages()!\n\n\n\n\n\nLoaded with library(), once per session:\n\n\nlibrary(palmerpenguins)"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#packages-an-analogy",
+    "href": "slides/02-meet-the-toolkit-slides.html#packages-an-analogy",
+    "title": "Hello, World!",
+    "section": "Packages, an analogy",
+    "text": "Packages, an analogy\nIf data analysis was cooking…\n\nInstalling a package would be like buying ingredients from the store\nLoading a package would be like getting the ingredients out of your pantry and setting them on your counter top to be used"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#tidyverse",
+    "href": "slides/02-meet-the-toolkit-slides.html#tidyverse",
+    "title": "Hello, World!",
+    "section": "tidyverse",
+    "text": "tidyverse\n\naka the package you’ll hear about the most…\n\n\n\n\n\ntidyverse.org\n\nThe tidyverse is an opinionated collection of R packages designed for data science\nAll packages share an underlying philosophy and a common grammar"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#data-frames-and-variables",
+    "href": "slides/02-meet-the-toolkit-slides.html#data-frames-and-variables",
+    "title": "Hello, World!",
+    "section": "Data frames and variables",
+    "text": "Data frames and variables\n\nEach row of a data frame is an observation\n\n\n\n\nEach column of a data frame is a variable\n\n\n\n\n\nColumns (variables) in data frames can be accessed with $:\n\n\ndataframe$variable_name"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#penguins-data-frame",
+    "href": "slides/02-meet-the-toolkit-slides.html#penguins-data-frame",
+    "title": "Hello, World!",
+    "section": "\npenguins data frame",
+    "text": "penguins data frame\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181\n 2 Adelie  Torgersen           39.5          17.4               186\n 3 Adelie  Torgersen           40.3          18                 195\n 4 Adelie  Torgersen           NA            NA                  NA\n 5 Adelie  Torgersen           36.7          19.3               193\n 6 Adelie  Torgersen           39.3          20.6               190\n 7 Adelie  Torgersen           38.9          17.8               181\n 8 Adelie  Torgersen           39.2          19.6               195\n 9 Adelie  Torgersen           34.1          18.1               193\n10 Adelie  Torgersen           42            20.2               190\n# ℹ 334 more rows\n# ℹ 3 more variables: body_mass_g &lt;int&gt;, sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#bill_length_mm",
+    "href": "slides/02-meet-the-toolkit-slides.html#bill_length_mm",
+    "title": "Hello, World!",
+    "section": "bill_length_mm",
+    "text": "bill_length_mm\n\npenguins$bill_length_mm\n\n  [1] 39.1 39.5 40.3   NA 36.7 39.3 38.9 39.2 34.1 42.0 37.8 37.8 41.1\n [14] 38.6 34.6 36.6 38.7 42.5 34.4 46.0 37.8 37.7 35.9 38.2 38.8 35.3\n [27] 40.6 40.5 37.9 40.5 39.5 37.2 39.5 40.9 36.4 39.2 38.8 42.2 37.6\n [40] 39.8 36.5 40.8 36.0 44.1 37.0 39.6 41.1 37.5 36.0 42.3 39.6 40.1\n [53] 35.0 42.0 34.5 41.4 39.0 40.6 36.5 37.6 35.7 41.3 37.6 41.1 36.4\n [66] 41.6 35.5 41.1 35.9 41.8 33.5 39.7 39.6 45.8 35.5 42.8 40.9 37.2\n [79] 36.2 42.1 34.6 42.9 36.7 35.1 37.3 41.3 36.3 36.9 38.3 38.9 35.7\n [92] 41.1 34.0 39.6 36.2 40.8 38.1 40.3 33.1 43.2 35.0 41.0 37.7 37.8\n[105] 37.9 39.7 38.6 38.2 38.1 43.2 38.1 45.6 39.7 42.2 39.6 42.7 38.6\n[118] 37.3 35.7 41.1 36.2 37.7 40.2 41.4 35.2 40.6 38.8 41.5 39.0 44.1\n[131] 38.5 43.1 36.8 37.5 38.1 41.1 35.6 40.2 37.0 39.7 40.2 40.6 32.1\n[144] 40.7 37.3 39.0 39.2 36.6 36.0 37.8 36.0 41.5 46.1 50.0 48.7 50.0\n[157] 47.6 46.5 45.4 46.7 43.3 46.8 40.9 49.0 45.5 48.4 45.8 49.3 42.0\n[170] 49.2 46.2 48.7 50.2 45.1 46.5 46.3 42.9 46.1 44.5 47.8 48.2 50.0\n[183] 47.3 42.8 45.1 59.6 49.1 48.4 42.6 44.4 44.0 48.7 42.7 49.6 45.3\n[196] 49.6 50.5 43.6 45.5 50.5 44.9 45.2 46.6 48.5 45.1 50.1 46.5 45.0\n[209] 43.8 45.5 43.2 50.4 45.3 46.2 45.7 54.3 45.8 49.8 46.2 49.5 43.5\n[222] 50.7 47.7 46.4 48.2 46.5 46.4 48.6 47.5 51.1 45.2 45.2 49.1 52.5\n[235] 47.4 50.0 44.9 50.8 43.4 51.3 47.5 52.1 47.5 52.2 45.5 49.5 44.5\n[248] 50.8 49.4 46.9 48.4 51.1 48.5 55.9 47.2 49.1 47.3 46.8 41.7 53.4\n[261] 43.3 48.1 50.5 49.8 43.5 51.5 46.2 55.1 44.5 48.8 47.2   NA 46.8\n[274] 50.4 45.2 49.9 46.5 50.0 51.3 45.4 52.7 45.2 46.1 51.3 46.0 51.3\n[287] 46.6 51.7 47.0 52.0 45.9 50.5 50.3 58.0 46.4 49.2 42.4 48.5 43.2\n[300] 50.6 46.7 52.0 50.5 49.5 46.4 52.8 40.9 54.2 42.5 51.0 49.7 47.5\n[313] 47.6 52.0 46.9 53.5 49.0 46.2 50.9 45.5 50.9 50.8 50.1 49.0 51.5\n[326] 49.8 48.1 51.4 45.7 50.7 42.5 52.2 45.2 49.3 50.2 45.6 51.9 46.8\n[339] 45.7 55.8 43.5 49.6 50.8 50.2"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#participate-1",
+    "href": "slides/02-meet-the-toolkit-slides.html#participate-1",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\nWhy did the error occur?\n\n\nflipper_length_mm\n\nError: object 'flipper_length_mm' not found\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#flipper_length_mm",
+    "href": "slides/02-meet-the-toolkit-slides.html#flipper_length_mm",
+    "title": "Hello, World!",
+    "section": "flipper_length_mm",
+    "text": "flipper_length_mm\nThis can be fixed by using penguins$flipper_length_mm.\n\npenguins$flipper_length_mm\n\n  [1] 181 186 195  NA 193 190 181 195 193 190 186 180 182 191 198 185\n [17] 195 197 184 194 174 180 189 185 180 187 183 187 172 180 178 178\n [33] 188 184 195 196 190 180 181 184 182 195 186 196 185 190 182 179\n [49] 190 191 186 188 190 200 187 191 186 193 181 194 185 195 185 192\n [65] 184 192 195 188 190 198 190 190 196 197 190 195 191 184 187 195\n [81] 189 196 187 193 191 194 190 189 189 190 202 205 185 186 187 208\n [97] 190 196 178 192 192 203 183 190 193 184 199 190 181 197 198 191\n[113] 193 197 191 196 188 199 189 189 187 198 176 202 186 199 191 195\n[129] 191 210 190 197 193 199 187 190 191 200 185 193 193 187 188 190\n[145] 192 185 190 184 195 193 187 201 211 230 210 218 215 210 211 219\n[161] 209 215 214 216 214 213 210 217 210 221 209 222 218 215 213 215\n[177] 215 215 216 215 210 220 222 209 207 230 220 220 213 219 208 208\n[193] 208 225 210 216 222 217 210 225 213 215 210 220 210 225 217 220\n[209] 208 220 208 224 208 221 214 231 219 230 214 229 220 223 216 221\n[225] 221 217 216 230 209 220 215 223 212 221 212 224 212 228 218 218\n[241] 212 230 218 228 212 224 214 226 216 222 203 225 219 228 215 228\n[257] 216 215 210 219 208 209 216 229 213 230 217 230 217 222 214  NA\n[273] 215 222 212 213 192 196 193 188 197 198 178 197 195 198 193 194\n[289] 185 201 190 201 197 181 190 195 181 191 187 193 195 197 200 200\n[305] 191 205 187 201 187 203 195 199 195 210 192 205 210 187 196 196\n[321] 196 201 190 212 187 198 199 201 193 203 187 197 191 203 202 194\n[337] 206 189 195 207 202 193 210 198"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#functionargument",
+    "href": "slides/02-meet-the-toolkit-slides.html#functionargument",
+    "title": "Hello, World!",
+    "section": "function(argument)",
+    "text": "function(argument)\nFunctions are (most often) verbs, followed by what they will be applied to in parentheses:\n\ndo_this(to_this)\ndo_that(to_this, to_that, with_those)"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#trimmed-mean",
+    "href": "slides/02-meet-the-toolkit-slides.html#trimmed-mean",
+    "title": "Hello, World!",
+    "section": "\ntrimmed mean()\n",
+    "text": "trimmed mean()\n\n\nx &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 100)\nx\n\n [1]   1   2   3   4   5   6   7   8   9 100\n\n\n\nmean(x)\n\n[1] 14.5\n\n\n\nmean(x, trim = 0.05)\n\n[1] 14.5"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#help",
+    "href": "slides/02-meet-the-toolkit-slides.html#help",
+    "title": "Hello, World!",
+    "section": "Help",
+    "text": "Help\nObject documentation can be accessed with ?\n\n\n\n?mean\n\n\nVideo"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#git-and-github",
+    "href": "slides/02-meet-the-toolkit-slides.html#git-and-github",
+    "title": "Hello, World!",
+    "section": "Git and GitHub",
+    "text": "Git and GitHub\n\n\n\n\n\n\n\nGit is a version control system – like “Track Changes” features from Microsoft Word, on steroids\nIt’s not the only version control system, but it’s a very popular one\n\n\n\n\n\n\n\nGitHub is the home for your Git-based projects on the internet – like DropBox but much, much better\nWe will use GitHub as a platform for web hosting and collaboration (and as our course management system!)"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#versioning---done-badly",
+    "href": "slides/02-meet-the-toolkit-slides.html#versioning---done-badly",
+    "title": "Hello, World!",
+    "section": "Versioning - done badly",
+    "text": "Versioning - done badly"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#versioning---done-better",
+    "href": "slides/02-meet-the-toolkit-slides.html#versioning---done-better",
+    "title": "Hello, World!",
+    "section": "Versioning - done better",
+    "text": "Versioning - done better"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#versioning---done-even-better",
+    "href": "slides/02-meet-the-toolkit-slides.html#versioning---done-even-better",
+    "title": "Hello, World!",
+    "section": "Versioning - done even better",
+    "text": "Versioning - done even better\n\nwith human readable messages"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#how-will-we-use-git-and-github",
+    "href": "slides/02-meet-the-toolkit-slides.html#how-will-we-use-git-and-github",
+    "title": "Hello, World!",
+    "section": "How will we use Git and GitHub?",
+    "text": "How will we use Git and GitHub?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#how-will-we-use-git-and-github-1",
+    "href": "slides/02-meet-the-toolkit-slides.html#how-will-we-use-git-and-github-1",
+    "title": "Hello, World!",
+    "section": "How will we use Git and GitHub?",
+    "text": "How will we use Git and GitHub?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#how-will-we-use-git-and-github-2",
+    "href": "slides/02-meet-the-toolkit-slides.html#how-will-we-use-git-and-github-2",
+    "title": "Hello, World!",
+    "section": "How will we use Git and GitHub?",
+    "text": "How will we use Git and GitHub?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#how-will-we-use-git-and-github-3",
+    "href": "slides/02-meet-the-toolkit-slides.html#how-will-we-use-git-and-github-3",
+    "title": "Hello, World!",
+    "section": "How will we use Git and GitHub?",
+    "text": "How will we use Git and GitHub?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#git-and-github-tips",
+    "href": "slides/02-meet-the-toolkit-slides.html#git-and-github-tips",
+    "title": "Hello, World!",
+    "section": "Git and GitHub tips",
+    "text": "Git and GitHub tips\n\nThere are millions of git commands – ok, that’s an exaggeration, but there are a lot of them – and very few people know them all. 99% of the time you will use git to add, commit, push, and pull.\nWe will be doing Git things and interfacing with GitHub through RStudio, but if you google for help you might come across methods for doing these things in the command line – skip that and move on to the next resource unless you feel comfortable trying it out.\nThere is a great resource for working with git and R: happygitwithr.com. Some of the content in there is beyond the scope of this course, but it’s a good place to look for help."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#tour-git-github",
+    "href": "slides/02-meet-the-toolkit-slides.html#tour-git-github",
+    "title": "Hello, World!",
+    "section": "Tour: Git + GitHub",
+    "text": "Tour: Git + GitHub\n\n\n\nOption 1:\nSit back and enjoy the show!\n\n\n\n\n\n\n\nNote\n\n\nYou’ll need to stick to this option if you haven’t yet accepted your GitHub invite and don’t have a repo created for you.\n\n\n\n\n\nOption 2:\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your container.\n\n\n\n\nTour recap: Git + GitHub\n\nFind your application repo, that will always be named using the naming convention assignment_title-YOUR-GITHUB-NAME, e.g., ae-mine-cetinkaya-rundel or lab-1-mine-cetinkaya-rundel.\nClick on the green “Code” button, make sure SSH is selected, copy the repo URL\n\n\n\n\n\n\nIn RStudio, File &gt; New Project &gt; From Version Control &gt; Git\nPaste repo URL copied in previous step, then click tab to auto-fill the project name, then click Create Project\nIf you haven’t done Lab 0, for one time only, type yes in the pop-up dialogue"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#what-could-have-gone-wrong",
+    "href": "slides/02-meet-the-toolkit-slides.html#what-could-have-gone-wrong",
+    "title": "Hello, World!",
+    "section": "What could have gone wrong?",
+    "text": "What could have gone wrong?\n\nNever received GitHub invite \\(\\rightarrow\\) Fill out “Getting to know you survey\nNever accepted GitHub invite \\(\\rightarrow\\) Look for it in your email and accept it\nCloning repo fails \\(\\rightarrow\\) Review/redo Lab 0 steps for setting up SSH key\nStill no luck? Stay after class today or come by my office hours tomorrow or post on Ed for help"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#quarto-1",
+    "href": "slides/02-meet-the-toolkit-slides.html#quarto-1",
+    "title": "Hello, World!",
+    "section": "Quarto",
+    "text": "Quarto\n\nFully reproducible reports – each time you render the analysis is ran from the beginning\nCode goes in cells narrative goes outside of cells\nOptional: A visual editor for a familiar / Google docs-like editing experience"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit-slides.html#tasks",
+    "href": "slides/02-meet-the-toolkit-slides.html#tasks",
+    "title": "Hello, World!",
+    "section": "Tasks",
+    "text": "Tasks\n\n\nDue tonight: Complete the Getting to know you survey if you haven’t yet done so.\nTomorrow: Show up to lab on time with a charged laptop and find your team and sit with them.\n\nBefore Monday:\n\nComplete the readings and watch the videos\n???"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html",
+    "href": "slides/02-meet-the-toolkit.html",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Fill out the Getting to know you survey if you haven’t yet done so.\n\n\nMary Knox (Course coordinator)\nRobbie Hao (MS)\nHyunjin Lee (UG)\nMax Niu (UG)"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#while-you-wait",
+    "href": "slides/02-meet-the-toolkit.html#while-you-wait",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Fill out the Getting to know you survey if you haven’t yet done so."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#meet-some-of-the-course-team",
+    "href": "slides/02-meet-the-toolkit.html#meet-some-of-the-course-team",
+    "title": "Hello, World!",
+    "section": "",
+    "text": "Mary Knox (Course coordinator)\nRobbie Hao (MS)\nHyunjin Lee (UG)\nMax Niu (UG)"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#diversity-inclusion-and-belonging",
+    "href": "slides/02-meet-the-toolkit.html#diversity-inclusion-and-belonging",
+    "title": "Hello, World!",
+    "section": "Diversity, inclusion, and belonging",
+    "text": "Diversity, inclusion, and belonging\nIt is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit.\n\n\nFill out the Getting to know you survey.\nIf you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. I want to be a resource for you. If you prefer to speak with someone outside of the course, your advisors, and deans are excellent resources.\nI (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#access-and-accommodations",
+    "href": "slides/02-meet-the-toolkit.html#access-and-accommodations",
+    "title": "Hello, World!",
+    "section": "Access and accommodations",
+    "text": "Access and accommodations\n\nFor disability accommodations, register with the Student Disability Access Office (SDAO) and provide documentation related to your needs; SDAO will work with you to determine what accommodations are appropriate.\nAccommodations are not retroactive, and cannot be provided until I have received your Faculty Accommodation Letter – so start the process early.\nAccommodations for exams must be arranged through SDAO, and exams with accommodations must be taken in the testing center.\nAthletic travel conflicts and religious holidays: Submit requests for accommodations at the beginning of the semester so we can make suitable arrangements well in advance.\nI am committed to making all course materials accessible and I’m always learning how to do this better. If any course component is not accessible to you in any way, please don’t hesitate to let me know."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#late-work-waivers-lecture-recordings-regrades",
+    "href": "slides/02-meet-the-toolkit.html#late-work-waivers-lecture-recordings-regrades",
+    "title": "Hello, World!",
+    "section": "Late work, waivers, lecture recordings, regrades…",
+    "text": "Late work, waivers, lecture recordings, regrades…\n\nWe have policies!\nRead about them on the course syllabus and refer back to them when you need it\n\n. . .\nTwo that are easy to miss:\n\n\nLecture recordings: available for excused absences only – submit the request form within 24 hours of the missed lecture, with documentation\n\nRegrade requests: on Gradescope, within one week of an assignment being returned; note that the entire assignment may be regraded"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#participate",
+    "href": "slides/02-meet-the-toolkit.html#participate",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#use-of-ai-tools",
+    "href": "slides/02-meet-the-toolkit.html#use-of-ai-tools",
+    "title": "Hello, World!",
+    "section": "Use of AI tools",
+    "text": "Use of AI tools\n\nAI tools are not a replacement for understanding the material, but they can help you learn it.\nReading code and writing code are skills that take time and practice to develop - both are essential.\nThe nature of these tools is changing rapidly - autocomplete vs. chatbots vs. agentic tools.\n\n\n\nA piece on AI and education that I read recently that resonated with me is “School is a gym, not a job” by Eric Hudson."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#centaurs-vs.-reverse-centaurs",
+    "href": "slides/02-meet-the-toolkit.html#centaurs-vs.-reverse-centaurs",
+    "title": "Hello, World!",
+    "section": "Centaurs vs. reverse centaurs",
+    "text": "Centaurs vs. reverse centaurs\n\n\n\n\n\nImage source: Hill Cantons, for more details see Cory Doctorow’s commentary Reverse Centaurs in Locus Magazine."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#use-of-ai-tools-the-rules",
+    "href": "slides/02-meet-the-toolkit.html#use-of-ai-tools-the-rules",
+    "title": "Hello, World!",
+    "section": "Use of AI tools: the rules",
+    "text": "Use of AI tools: the rules\nYou may use AI as a resource as you complete assignments, but not to answer the exercises for you.\n\n\n\nDisclose your use in the AI disclosure statement accompanying the assignment\n\nCite what you use: the tool, the model, the date you ran the prompt, and a link to the full transcript\n\nDon’t paste assignment prompts into AI tools – write your own prompt that reflects your understanding\n\nDon’t paste AI output into your assignment – edit it so it carries your voice and matches course syntax, terminology, and style\n\n\n. . .\n\n\n\n\n\n\nImportant\n\n\n\nAny content identified as AI-generated but not cited as such will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#academic-integrity",
+    "href": "slides/02-meet-the-toolkit.html#academic-integrity",
+    "title": "Hello, World!",
+    "section": "Academic integrity",
+    "text": "Academic integrity\n\nTo uphold the Duke Community Standard:\n\nI will not lie, cheat, or steal in my academic endeavors;\nI will conduct myself honorably in all my endeavors; and\nI will act if the Standard is compromised."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#a-note-on-showing-up-and-participating",
+    "href": "slides/02-meet-the-toolkit.html#a-note-on-showing-up-and-participating",
+    "title": "Hello, World!",
+    "section": "A note on showing up and participating",
+    "text": "A note on showing up and participating\n\nThis is a large “lecture” but with lots of opportunities and expectations for active learning, participation, and collaboration.\nYou are expected to show up and participate in all lectures and labs, though there are a good number of each you can miss without penalty.\nIt’s possible to read the books and watch the videos and get an exposure to the material we cover in the course without showing up, but the experience will be much less rich and you will likely miss out on a lot of learning. That’s why the assessments and workflows are designed to reward and reinforce active participation."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#learning-goals",
+    "href": "slides/02-meet-the-toolkit.html#learning-goals",
+    "title": "Hello, World!",
+    "section": "Learning goals",
+    "text": "Learning goals\nBy the end of the course, you will be able to gain insight from data, reproducibly (with literate programming and version control) and collaboratively, using modern programming tools and techniques."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#computational-toolkit",
+    "href": "slides/02-meet-the-toolkit.html#computational-toolkit",
+    "title": "Hello, World!",
+    "section": "Computational toolkit",
+    "text": "Computational toolkit\n\nComputing:\n\nLanguage: R\nIDE: RStudio\nPackages: tidyverse (primarily), plus others\nAuthoring: Quarto\n\n\nVersion control:\n\nTracking: Git\nHosting and collaboration: GitHub"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#reproducibility-checklist",
+    "href": "slides/02-meet-the-toolkit.html#reproducibility-checklist",
+    "title": "Hello, World!",
+    "section": "Reproducibility checklist",
+    "text": "Reproducibility checklist\n\nWhat does it mean for a data analysis to be “reproducible”?\n\n. . .\nShort-term goals:\n\nAre the tables and figures reproducible from the code and data?\nDoes the code actually do what you think it does?\nIn addition to what was done, is it clear why it was done?\n\n. . .\nLong-term goals:\n\nCan the code be used for other data?\nCan you extend the code to do other things?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#toolkit-for-reproducibility",
+    "href": "slides/02-meet-the-toolkit.html#toolkit-for-reproducibility",
+    "title": "Hello, World!",
+    "section": "Toolkit for reproducibility",
+    "text": "Toolkit for reproducibility\n\n\nScriptability – Coding as opposed to using a point-and-click tool \\(\\rightarrow\\) R\nLiterate programming – Code, narrative, output in one place, as opposed to copying and pasting code output into a document (e.g., Word or Google Doc) that contains the narrative \\(\\rightarrow\\) Quarto\nVersion control – Track changes with brief messages that describe those changes \\(\\rightarrow\\) Git / GitHub"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#an-analogy-to-english",
+    "href": "slides/02-meet-the-toolkit.html#an-analogy-to-english",
+    "title": "Hello, World!",
+    "section": "An analogy to English",
+    "text": "An analogy to English\nSuppose you wanted to write an essay for a literature class.\n\nYou would need to pick a language (e.g., English)\nand choose an interface to write your document with (such as Microsoft Word with a .docx word document)\nYou also might want to use track changes to see edits you make\nand use a platform such as Google Drive to collaborate"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#r-and-positron-1",
+    "href": "slides/02-meet-the-toolkit.html#r-and-positron-1",
+    "title": "Hello, World!",
+    "section": "R and Positron",
+    "text": "R and Positron\n\n\n\n\n\n\n\nR is an open-source statistical programming language\n\nR is also an environment for statistical computing and graphics\nIt’s easily extensible with packages\n\n\n\n\n\n\nRStudio is a convenient interface for R called an IDE (integrated development environment), e.g. “I write R code in the RStudio IDE”\n\nRStudio is not a requirement for programming with R, but it’s very commonly used by R programmers and data scientists"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#r-vs.-rstudio",
+    "href": "slides/02-meet-the-toolkit.html#r-vs.-rstudio",
+    "title": "Hello, World!",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\n\n\n\n\n\nSource: Modern Dive."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#r-packages",
+    "href": "slides/02-meet-the-toolkit.html#r-packages",
+    "title": "Hello, World!",
+    "section": "R packages",
+    "text": "R packages\n\n\nPackages: Fundamental units of reproducible R code, including reusable R functions, the documentation that describes how to use them, and sample data1\nAs of 27 August 2025, there are 22,578 R packages available on CRAN (the Comprehensive R Archive Network)2\nWe’re going to work with a small (but important) subset of these!\n\n\n\n\n1 Wickham and Bryan, R Packages.\n2CRAN contributed packages."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#tour-r-rstudio",
+    "href": "slides/02-meet-the-toolkit.html#tour-r-rstudio",
+    "title": "Hello, World!",
+    "section": "Tour: R + RStudio",
+    "text": "Tour: R + RStudio\n\n\n\nOption 1:\nSit back and enjoy the show!\n\n\n\nOption 2:\nGo to your container and launch RStudio."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#tour-recap-r-rstudio",
+    "href": "slides/02-meet-the-toolkit.html#tour-recap-r-rstudio",
+    "title": "Hello, World!",
+    "section": "Tour recap: R + RStudio",
+    "text": "Tour recap: R + RStudio"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#packages",
+    "href": "slides/02-meet-the-toolkit.html#packages",
+    "title": "Hello, World!",
+    "section": "Packages",
+    "text": "Packages\n\nInstalled with install.packages(), once per system:\n\n\ninstall.packages(\"palmerpenguins\")\n\n\n\n\n\n\n\nNote\n\n\n\nWe already pre-installed many of the package you’ll need for this course, so you might go the whole semester without needing to run install.packages()!\n\n\n. . .\n\nLoaded with library(), once per session:\n\n\nlibrary(palmerpenguins)"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#packages-an-analogy",
+    "href": "slides/02-meet-the-toolkit.html#packages-an-analogy",
+    "title": "Hello, World!",
+    "section": "Packages, an analogy",
+    "text": "Packages, an analogy\nIf data analysis was cooking…\n\n\nInstalling a package would be like buying ingredients from the store\nLoading a package would be like getting the ingredients out of your pantry and setting them on your counter top to be used"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#tidyverse",
+    "href": "slides/02-meet-the-toolkit.html#tidyverse",
+    "title": "Hello, World!",
+    "section": "tidyverse",
+    "text": "tidyverse\n\naka the package you’ll hear about the most…\n\n\n\n\n\n\ntidyverse.org\n\nThe tidyverse is an opinionated collection of R packages designed for data science\nAll packages share an underlying philosophy and a common grammar"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#data-frames-and-variables",
+    "href": "slides/02-meet-the-toolkit.html#data-frames-and-variables",
+    "title": "Hello, World!",
+    "section": "Data frames and variables",
+    "text": "Data frames and variables\n\nEach row of a data frame is an observation\n\n\n. . .\n\nEach column of a data frame is a variable\n\n\n. . .\n\nColumns (variables) in data frames can be accessed with $:\n\n\ndataframe$variable_name"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#penguins-data-frame",
+    "href": "slides/02-meet-the-toolkit.html#penguins-data-frame",
+    "title": "Hello, World!",
+    "section": "\npenguins data frame",
+    "text": "penguins data frame\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181\n 2 Adelie  Torgersen           39.5          17.4               186\n 3 Adelie  Torgersen           40.3          18                 195\n 4 Adelie  Torgersen           NA            NA                  NA\n 5 Adelie  Torgersen           36.7          19.3               193\n 6 Adelie  Torgersen           39.3          20.6               190\n 7 Adelie  Torgersen           38.9          17.8               181\n 8 Adelie  Torgersen           39.2          19.6               195\n 9 Adelie  Torgersen           34.1          18.1               193\n10 Adelie  Torgersen           42            20.2               190\n# ℹ 334 more rows\n# ℹ 3 more variables: body_mass_g &lt;int&gt;, sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#bill_length_mm",
+    "href": "slides/02-meet-the-toolkit.html#bill_length_mm",
+    "title": "Hello, World!",
+    "section": "bill_length_mm",
+    "text": "bill_length_mm\n\npenguins$bill_length_mm\n\n  [1] 39.1 39.5 40.3   NA 36.7 39.3 38.9 39.2 34.1 42.0 37.8 37.8 41.1\n [14] 38.6 34.6 36.6 38.7 42.5 34.4 46.0 37.8 37.7 35.9 38.2 38.8 35.3\n [27] 40.6 40.5 37.9 40.5 39.5 37.2 39.5 40.9 36.4 39.2 38.8 42.2 37.6\n [40] 39.8 36.5 40.8 36.0 44.1 37.0 39.6 41.1 37.5 36.0 42.3 39.6 40.1\n [53] 35.0 42.0 34.5 41.4 39.0 40.6 36.5 37.6 35.7 41.3 37.6 41.1 36.4\n [66] 41.6 35.5 41.1 35.9 41.8 33.5 39.7 39.6 45.8 35.5 42.8 40.9 37.2\n [79] 36.2 42.1 34.6 42.9 36.7 35.1 37.3 41.3 36.3 36.9 38.3 38.9 35.7\n [92] 41.1 34.0 39.6 36.2 40.8 38.1 40.3 33.1 43.2 35.0 41.0 37.7 37.8\n[105] 37.9 39.7 38.6 38.2 38.1 43.2 38.1 45.6 39.7 42.2 39.6 42.7 38.6\n[118] 37.3 35.7 41.1 36.2 37.7 40.2 41.4 35.2 40.6 38.8 41.5 39.0 44.1\n[131] 38.5 43.1 36.8 37.5 38.1 41.1 35.6 40.2 37.0 39.7 40.2 40.6 32.1\n[144] 40.7 37.3 39.0 39.2 36.6 36.0 37.8 36.0 41.5 46.1 50.0 48.7 50.0\n[157] 47.6 46.5 45.4 46.7 43.3 46.8 40.9 49.0 45.5 48.4 45.8 49.3 42.0\n[170] 49.2 46.2 48.7 50.2 45.1 46.5 46.3 42.9 46.1 44.5 47.8 48.2 50.0\n[183] 47.3 42.8 45.1 59.6 49.1 48.4 42.6 44.4 44.0 48.7 42.7 49.6 45.3\n[196] 49.6 50.5 43.6 45.5 50.5 44.9 45.2 46.6 48.5 45.1 50.1 46.5 45.0\n[209] 43.8 45.5 43.2 50.4 45.3 46.2 45.7 54.3 45.8 49.8 46.2 49.5 43.5\n[222] 50.7 47.7 46.4 48.2 46.5 46.4 48.6 47.5 51.1 45.2 45.2 49.1 52.5\n[235] 47.4 50.0 44.9 50.8 43.4 51.3 47.5 52.1 47.5 52.2 45.5 49.5 44.5\n[248] 50.8 49.4 46.9 48.4 51.1 48.5 55.9 47.2 49.1 47.3 46.8 41.7 53.4\n[261] 43.3 48.1 50.5 49.8 43.5 51.5 46.2 55.1 44.5 48.8 47.2   NA 46.8\n[274] 50.4 45.2 49.9 46.5 50.0 51.3 45.4 52.7 45.2 46.1 51.3 46.0 51.3\n[287] 46.6 51.7 47.0 52.0 45.9 50.5 50.3 58.0 46.4 49.2 42.4 48.5 43.2\n[300] 50.6 46.7 52.0 50.5 49.5 46.4 52.8 40.9 54.2 42.5 51.0 49.7 47.5\n[313] 47.6 52.0 46.9 53.5 49.0 46.2 50.9 45.5 50.9 50.8 50.1 49.0 51.5\n[326] 49.8 48.1 51.4 45.7 50.7 42.5 52.2 45.2 49.3 50.2 45.6 51.9 46.8\n[339] 45.7 55.8 43.5 49.6 50.8 50.2"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#participate-1",
+    "href": "slides/02-meet-the-toolkit.html#participate-1",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\nWhy did the error occur?\n\n\nflipper_length_mm\n\nError: object 'flipper_length_mm' not found\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#flipper_length_mm",
+    "href": "slides/02-meet-the-toolkit.html#flipper_length_mm",
+    "title": "Hello, World!",
+    "section": "flipper_length_mm",
+    "text": "flipper_length_mm\nThis can be fixed by using penguins$flipper_length_mm.\n\npenguins$flipper_length_mm\n\n  [1] 181 186 195  NA 193 190 181 195 193 190 186 180 182 191 198 185\n [17] 195 197 184 194 174 180 189 185 180 187 183 187 172 180 178 178\n [33] 188 184 195 196 190 180 181 184 182 195 186 196 185 190 182 179\n [49] 190 191 186 188 190 200 187 191 186 193 181 194 185 195 185 192\n [65] 184 192 195 188 190 198 190 190 196 197 190 195 191 184 187 195\n [81] 189 196 187 193 191 194 190 189 189 190 202 205 185 186 187 208\n [97] 190 196 178 192 192 203 183 190 193 184 199 190 181 197 198 191\n[113] 193 197 191 196 188 199 189 189 187 198 176 202 186 199 191 195\n[129] 191 210 190 197 193 199 187 190 191 200 185 193 193 187 188 190\n[145] 192 185 190 184 195 193 187 201 211 230 210 218 215 210 211 219\n[161] 209 215 214 216 214 213 210 217 210 221 209 222 218 215 213 215\n[177] 215 215 216 215 210 220 222 209 207 230 220 220 213 219 208 208\n[193] 208 225 210 216 222 217 210 225 213 215 210 220 210 225 217 220\n[209] 208 220 208 224 208 221 214 231 219 230 214 229 220 223 216 221\n[225] 221 217 216 230 209 220 215 223 212 221 212 224 212 228 218 218\n[241] 212 230 218 228 212 224 214 226 216 222 203 225 219 228 215 228\n[257] 216 215 210 219 208 209 216 229 213 230 217 230 217 222 214  NA\n[273] 215 222 212 213 192 196 193 188 197 198 178 197 195 198 193 194\n[289] 185 201 190 201 197 181 190 195 181 191 187 193 195 197 200 200\n[305] 191 205 187 201 187 203 195 199 195 210 192 205 210 187 196 196\n[321] 196 201 190 212 187 198 199 201 193 203 187 197 191 203 202 194\n[337] 206 189 195 207 202 193 210 198"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#functionargument",
+    "href": "slides/02-meet-the-toolkit.html#functionargument",
+    "title": "Hello, World!",
+    "section": "function(argument)",
+    "text": "function(argument)\nFunctions are (most often) verbs, followed by what they will be applied to in parentheses:\n\ndo_this(to_this)\ndo_that(to_this, to_that, with_those)"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#trimmed-mean",
+    "href": "slides/02-meet-the-toolkit.html#trimmed-mean",
+    "title": "Hello, World!",
+    "section": "\ntrimmed mean()\n",
+    "text": "trimmed mean()\n\n\nx &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 100)\nx\n\n [1]   1   2   3   4   5   6   7   8   9 100\n\n\n\nmean(x)\n\n[1] 14.5\n\n\n\nmean(x, trim = 0.05)\n\n[1] 14.5"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#help",
+    "href": "slides/02-meet-the-toolkit.html#help",
+    "title": "Hello, World!",
+    "section": "Help",
+    "text": "Help\nObject documentation can be accessed with ?\n\n\n\n?mean\n\n\nVideo"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#git-and-github",
+    "href": "slides/02-meet-the-toolkit.html#git-and-github",
+    "title": "Hello, World!",
+    "section": "Git and GitHub",
+    "text": "Git and GitHub\n\n\n\n\n\n\n\nGit is a version control system – like “Track Changes” features from Microsoft Word, on steroids\nIt’s not the only version control system, but it’s a very popular one\n\n\n\n\n\n\n\n\nGitHub is the home for your Git-based projects on the internet – like DropBox but much, much better\nWe will use GitHub as a platform for web hosting and collaboration (and as our course management system!)"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#versioning---done-badly",
+    "href": "slides/02-meet-the-toolkit.html#versioning---done-badly",
+    "title": "Hello, World!",
+    "section": "Versioning - done badly",
+    "text": "Versioning - done badly"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#versioning---done-better",
+    "href": "slides/02-meet-the-toolkit.html#versioning---done-better",
+    "title": "Hello, World!",
+    "section": "Versioning - done better",
+    "text": "Versioning - done better"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#versioning---done-even-better",
+    "href": "slides/02-meet-the-toolkit.html#versioning---done-even-better",
+    "title": "Hello, World!",
+    "section": "Versioning - done even better",
+    "text": "Versioning - done even better\n\nwith human readable messages"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#how-will-we-use-git-and-github",
+    "href": "slides/02-meet-the-toolkit.html#how-will-we-use-git-and-github",
+    "title": "Hello, World!",
+    "section": "How will we use Git and GitHub?",
+    "text": "How will we use Git and GitHub?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#how-will-we-use-git-and-github-1",
+    "href": "slides/02-meet-the-toolkit.html#how-will-we-use-git-and-github-1",
+    "title": "Hello, World!",
+    "section": "How will we use Git and GitHub?",
+    "text": "How will we use Git and GitHub?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#how-will-we-use-git-and-github-2",
+    "href": "slides/02-meet-the-toolkit.html#how-will-we-use-git-and-github-2",
+    "title": "Hello, World!",
+    "section": "How will we use Git and GitHub?",
+    "text": "How will we use Git and GitHub?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#how-will-we-use-git-and-github-3",
+    "href": "slides/02-meet-the-toolkit.html#how-will-we-use-git-and-github-3",
+    "title": "Hello, World!",
+    "section": "How will we use Git and GitHub?",
+    "text": "How will we use Git and GitHub?"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#git-and-github-tips",
+    "href": "slides/02-meet-the-toolkit.html#git-and-github-tips",
+    "title": "Hello, World!",
+    "section": "Git and GitHub tips",
+    "text": "Git and GitHub tips\n\n\nThere are millions of git commands – ok, that’s an exaggeration, but there are a lot of them – and very few people know them all. 99% of the time you will use git to add, commit, push, and pull.\nWe will be doing Git things and interfacing with GitHub through RStudio, but if you google for help you might come across methods for doing these things in the command line – skip that and move on to the next resource unless you feel comfortable trying it out.\nThere is a great resource for working with git and R: happygitwithr.com. Some of the content in there is beyond the scope of this course, but it’s a good place to look for help."
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#tour-git-github",
+    "href": "slides/02-meet-the-toolkit.html#tour-git-github",
+    "title": "Hello, World!",
+    "section": "Tour: Git + GitHub",
+    "text": "Tour: Git + GitHub\n\n\n\nOption 1:\nSit back and enjoy the show!\n\n\n\n\n\n\n\nNote\n\n\n\nYou’ll need to stick to this option if you haven’t yet accepted your GitHub invite and don’t have a repo created for you.\n\n\n\n\nOption 2:\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your container.\n\n\n\n\n\nTour recap: Git + GitHub\n\nFind your application repo, that will always be named using the naming convention assignment_title-YOUR-GITHUB-NAME, e.g., ae-mine-cetinkaya-rundel or lab-1-mine-cetinkaya-rundel.\nClick on the green “Code” button, make sure SSH is selected, copy the repo URL\n\n\n\n\n\n\nIn RStudio, File &gt; New Project &gt; From Version Control &gt; Git\nPaste repo URL copied in previous step, then click tab to auto-fill the project name, then click Create Project\nIf you haven’t done Lab 0, for one time only, type yes in the pop-up dialogue"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#what-could-have-gone-wrong",
+    "href": "slides/02-meet-the-toolkit.html#what-could-have-gone-wrong",
+    "title": "Hello, World!",
+    "section": "What could have gone wrong?",
+    "text": "What could have gone wrong?\n\nNever received GitHub invite \\(\\rightarrow\\) Fill out “Getting to know you survey\nNever accepted GitHub invite \\(\\rightarrow\\) Look for it in your email and accept it\nCloning repo fails \\(\\rightarrow\\) Review/redo Lab 0 steps for setting up SSH key\nStill no luck? Stay after class today or come by my office hours tomorrow or post on Ed for help"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#quarto-1",
+    "href": "slides/02-meet-the-toolkit.html#quarto-1",
+    "title": "Hello, World!",
+    "section": "Quarto",
+    "text": "Quarto\n\n\nFully reproducible reports – each time you render the analysis is ran from the beginning\nCode goes in cells narrative goes outside of cells\nOptional: A visual editor for a familiar / Google docs-like editing experience"
+  },
+  {
+    "objectID": "slides/02-meet-the-toolkit.html#tasks",
+    "href": "slides/02-meet-the-toolkit.html#tasks",
+    "title": "Hello, World!",
+    "section": "Tasks",
+    "text": "Tasks\n\n\nDue tonight: Complete the Getting to know you survey if you haven’t yet done so.\nTomorrow: Show up to lab on time with a charged laptop and find your team and sit with them.\n\nBefore Monday:\n\nComplete the readings and watch the videos\n???"
   },
   {
     "objectID": "slides/01-hello-world.html",
@@ -613,7 +879,7 @@
     "href": "slides/01-hello-world.html#participate",
     "title": "Hello, World!",
     "section": "Participate 💻📱",
-    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/OQPLQEK.\nLog in with your Duke NetID."
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
   },
   {
     "objectID": "slides/01-hello-world.html#are-the-stereotypes-about-country-music-actually-true",
@@ -875,71 +1141,316 @@
     "text": "Announcements\n\nPosted on Canvas (Announcements tool) and sent via email, be sure to check both regularly\nI’ll assume that you’ve read an announcement by the next “business” day\nI’ll (try my best to) send a weekly update announcement each Friday, outlining the plan for the following week and reminding you what you need to do to prepare, practice, and perform"
   },
   {
-    "objectID": "slides/01-hello-world.html#diversity-inclusion-and-belonging",
-    "href": "slides/01-hello-world.html#diversity-inclusion-and-belonging",
-    "title": "Hello, World!",
-    "section": "Diversity, inclusion, and belonging",
-    "text": "Diversity, inclusion, and belonging\nIt is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit.\n\n\nFill out the Getting to know you survey.\nIf you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. I want to be a resource for you. If you prefer to speak with someone outside of the course, your advisors, and deans are excellent resources.\nI (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it."
-  },
-  {
-    "objectID": "slides/01-hello-world.html#access-and-accommodations",
-    "href": "slides/01-hello-world.html#access-and-accommodations",
-    "title": "Hello, World!",
-    "section": "Access and accommodations",
-    "text": "Access and accommodations\n\nFor disability accommodations, register with the Student Disability Access Office (SDAO) and provide documentation related to your needs; SDAO will work with you to determine what accommodations are appropriate.\nAccommodations are not retroactive, and cannot be provided until I have received your Faculty Accommodation Letter – so start the process early.\nAccommodations for exams must be arranged through SDAO, and exams with accommodations must be taken in the testing center.\nAthletic travel conflicts and religious holidays: Submit requests for accommodations at the beginning of the semester so we can make suitable arrangements well in advance.\nI am committed to making all course materials accessible and I’m always learning how to do this better. If any course component is not accessible to you in any way, please don’t hesitate to let me know."
-  },
-  {
-    "objectID": "slides/01-hello-world.html#late-work-waivers-lecture-recordings-regrades",
-    "href": "slides/01-hello-world.html#late-work-waivers-lecture-recordings-regrades",
-    "title": "Hello, World!",
-    "section": "Late work, waivers, lecture recordings, regrades…",
-    "text": "Late work, waivers, lecture recordings, regrades…\n\nWe have policies!\nRead about them on the course syllabus and refer back to them when you need it\n\n. . .\nTwo that are easy to miss:\n\n\nLecture recordings: available for excused absences only – submit the request form within 24 hours of the missed lecture, with documentation\n\nRegrade requests: on Gradescope, within one week of an assignment being returned; note that the entire assignment may be regraded"
-  },
-  {
-    "objectID": "slides/01-hello-world.html#participate-1",
-    "href": "slides/01-hello-world.html#participate-1",
-    "title": "Hello, World!",
-    "section": "Participate 💻📱",
-    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to app.wooclap.com/OQPLQEK.\nLog in with your Duke NetID."
-  },
-  {
-    "objectID": "slides/01-hello-world.html#use-of-ai-tools",
-    "href": "slides/01-hello-world.html#use-of-ai-tools",
-    "title": "Hello, World!",
-    "section": "Use of AI tools",
-    "text": "Use of AI tools\n\nAI tools are not a replacement for understanding the material, but they can help you learn it.\nReading code and writing code are skills that take time and practice to develop - both are essential.\nThe nature of these tools is changing rapidly - autocomplete vs. chatbots vs. agentic tools.\n\n\n\nA piece on AI and education that I read recently that resonated with me is “School is a gym, not a job” by Eric Hudson."
-  },
-  {
-    "objectID": "slides/01-hello-world.html#centaurs-vs.-reverse-centaurs",
-    "href": "slides/01-hello-world.html#centaurs-vs.-reverse-centaurs",
-    "title": "Hello, World!",
-    "section": "Centaurs vs. reverse centaurs",
-    "text": "Centaurs vs. reverse centaurs\n\n\n\n\n\nImage source: Hill Cantons, for more details see Cory Doctorow’s commentary Reverse Centaurs in Locus Magazine."
-  },
-  {
-    "objectID": "slides/01-hello-world.html#use-of-ai-tools-the-rules",
-    "href": "slides/01-hello-world.html#use-of-ai-tools-the-rules",
-    "title": "Hello, World!",
-    "section": "Use of AI tools: the rules",
-    "text": "Use of AI tools: the rules\nYou may use AI as a resource as you complete assignments, but not to answer the exercises for you.\n\n\n\nDisclose your use in the AI disclosure statement accompanying the assignment\n\nCite what you use: the tool, the model, the date you ran the prompt, and a link to the full transcript\n\nDon’t paste assignment prompts into AI tools – write your own prompt that reflects your understanding\n\nDon’t paste AI output into your assignment – edit it so it carries your voice and matches course syntax, terminology, and style\n\n\n. . .\n\n\n\n\n\n\nImportant\n\n\n\nAny content identified as AI-generated but not cited as such will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment."
-  },
-  {
-    "objectID": "slides/01-hello-world.html#academic-integrity",
-    "href": "slides/01-hello-world.html#academic-integrity",
-    "title": "Hello, World!",
-    "section": "Academic integrity",
-    "text": "Academic integrity\n\nTo uphold the Duke Community Standard:\n\nI will not lie, cheat, or steal in my academic endeavors;\nI will conduct myself honorably in all my endeavors; and\nI will act if the Standard is compromised."
-  },
-  {
-    "objectID": "slides/01-hello-world.html#a-note-on-showing-up-and-participating",
-    "href": "slides/01-hello-world.html#a-note-on-showing-up-and-participating",
-    "title": "Hello, World!",
-    "section": "A note on showing up and participating",
-    "text": "A note on showing up and participating\n\nThis is a large “lecture” but with lots of opportunities and expectations for active learning, participation, and collaboration.\nYou are expected to show up and participate in all lectures and labs, though there are a good number of each you can miss without penalty.\nIt’s possible to read the books and watch the videos and get an exposure to the material we cover in the course without showing up, but the experience will be much less rich and you will likely miss out on a lot of learning. That’s why the assessments and workflows are designed to reward and reinforce active participation."
-  },
-  {
     "objectID": "slides/01-hello-world.html#tasks-due-wednesday",
     "href": "slides/01-hello-world.html#tasks-due-wednesday",
+    "title": "Hello, World!",
+    "section": "Tasks due Wednesday",
+    "text": "Tasks due Wednesday\n\nComplete the getting to know you survey, then accept your GitHub organization invitation\nRead the syllabus\nComplete readings and videos for Wednesday\n\nAll linked from the course website at\nsta199-fa26.github.io"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#meet-the-prof",
+    "href": "slides/01-hello-world-slides.html#meet-the-prof",
+    "title": "Hello, World!",
+    "section": "Meet the prof",
+    "text": "Meet the prof\n\n\nDr. Mine Çetinkaya-Rundel\nProfessor of the Practice\nDirector of First-Year Experience in Trinity College of Arts & Sciences\nAssociate Director of Undergraduate Studies, Statistical Science\nOffice: Old Chem 211C\n\nOffice hours:\n\n3:30-5 pm on Wednesdays at my office\nAlways available after class\nAlso available by appointment"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#meet-the-course-team",
+    "href": "slides/01-hello-world-slides.html#meet-the-course-team",
+    "title": "Hello, World!",
+    "section": "Meet the course team",
+    "text": "Meet the course team\n\n\n\nMary Knox (Course coordinator)\nJosh Lim (PhD) (Head TA)\nHelen Chen (PhD)\nCael Elmore (PhD)\nRobbie Hao (MS)\nCarl Emerson (MS)\nJuan Pablo Lopez Escamilla (MS)\nKenna Roberts (MS)\nYasmine Abdel-Rahman (UG)\n\n\n\nTally Coulter (UG)\nOliver Gao (UG)\nHellen Han (UG)\nHyunjin Lee (UG)\nAnric Ngan (UG)\nChelsea Nguyen (UG)\nMax Niu (UG)\nSophie Schwartz (UG)\nAllison Yang (UG)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#meet-each-other",
+    "href": "slides/01-hello-world-slides.html#meet-each-other",
+    "title": "Hello, World!",
+    "section": "Meet each other!",
+    "text": "Meet each other!\n\nPlease share with at least two classmates…\n\nYour name\nYour year\nWhere you’re from\nWhat you did this past summer\nWhat you hope to get out of this course\n\n\n\n  \n    −\n    +\n \n 04:00"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#meet-data-science",
+    "href": "slides/01-hello-world-slides.html#meet-data-science",
+    "title": "Hello, World!",
+    "section": "Meet data science",
+    "text": "Meet data science\n\nData science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nWe’re going to learn to do this in a modern and tidy way – more on that later!\nThis is a course on introduction to data science, with an emphasis on statistical thinking."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#lets-do-some-data-science",
+    "href": "slides/01-hello-world-slides.html#lets-do-some-data-science",
+    "title": "Hello, World!",
+    "section": "Let’s do some data science!",
+    "text": "Let’s do some data science!\n\n\n\nToday we’re going to explore some data together, following the data science cycle.\nOur question: Are the stereotypes about country music actually true?"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#participate",
+    "href": "slides/01-hello-world-slides.html#participate",
+    "title": "Hello, World!",
+    "section": "Participate 💻📱",
+    "text": "Participate 💻📱\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#are-the-stereotypes-about-country-music-actually-true",
+    "href": "slides/01-hello-world-slides.html#are-the-stereotypes-about-country-music-actually-true",
+    "title": "Hello, World!",
+    "section": "Are the stereotypes about country music actually true?",
+    "text": "Are the stereotypes about country music actually true?\n\n“Is it REALLY all about beer and trucks and girls and blue jeans? Are all the lyrics REALLY the same?”\n— Grady Smith, country music critic"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#data",
+    "href": "slides/01-hello-world-slides.html#data",
+    "title": "Hello, World!",
+    "section": "Data",
+    "text": "Data\n\n\n\nGrady Smith kept a spreadsheet of every country song that reached the Top 30 of Billboard’s Country Airplay chart.\n\n\nSomeone tidied it up and put it in a CSV (comma-separated values) file and released it as part of the TidyTuesday project."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#import",
+    "href": "slides/01-hello-world-slides.html#import",
+    "title": "Hello, World!",
+    "section": "Import",
+    "text": "Import"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#load-some-packages",
+    "href": "slides/01-hello-world-slides.html#load-some-packages",
+    "title": "Hello, World!",
+    "section": "Load some packages",
+    "text": "Load some packages\nMore on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:\n\nlibrary(tidyverse) # for data wrangling and visualization\nlibrary(scales) # for better axis labels\nlibrary(tidytext) # for handling text data\nlibrary(taylor) # for a surprise!"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#import-the-data",
+    "href": "slides/01-hello-world-slides.html#import-the-data",
+    "title": "Hello, World!",
+    "section": "Import the data",
+    "text": "Import the data\nImport the data called country-lyrics.csv in the folder called data using the read_csv() function:\n\ncountry &lt;- read_csv(\"data/country-lyrics.csv\")"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#take-a-peek-at-the-data",
+    "href": "slides/01-hello-world-slides.html#take-a-peek-at-the-data",
+    "title": "Hello, World!",
+    "section": "Take a peek at the data",
+    "text": "Take a peek at the data\n\ncountry\n\n# A tibble: 484 × 8\n   song     artist featuring entered_top_30_in lyrics writers producer\n   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   \n 1 Wake Up… Craig… &lt;NA&gt;                   2013 My fr… Josh O… Craig M…\n 2 Young L… Kip M… &lt;NA&gt;                   2013 Your … Kip Mo… Brett J…\n 3 Beat of… Brett… &lt;NA&gt;                   2013 Well … Brett … Brett E…\n 4 The Hea… Danie… &lt;NA&gt;                   2013 She h… Brett … Brett J…\n 5 Everyth… Thomp… &lt;NA&gt;                   2013 My mo… Keifer… RIch Re…\n 6 Goodnig… Randy… &lt;NA&gt;                   2013 Girl … Rob Ha… Derek G…\n 7 Cold Be… Josh … &lt;NA&gt;                   2013 I hea… Brent … Mark Wr…\n 8 19 You … Dan +… &lt;NA&gt;                   2013 It wa… Dan Sm… Dan Smy…\n 9 Helluva… Frank… &lt;NA&gt;                   2013 Satur… Rodney… Marshal…\n10 Chillin… Cole … &lt;NA&gt;                   2013 I got… Cole S… Jody St…\n# ℹ 474 more rows\n# ℹ 1 more variable: rough_order &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#when-did-these-songs-chart",
+    "href": "slides/01-hello-world-slides.html#when-did-these-songs-chart",
+    "title": "Hello, World!",
+    "section": "When did these songs chart?",
+    "text": "When did these songs chart?\nEvery song in this dataset broke into the Top 30 in some year. One way to make sense of a variable like this is to visualize it."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#visualize",
+    "href": "slides/01-hello-world-slides.html#visualize",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodecountry |&gt;\n  count(entered_top_30_in) |&gt;\n  mutate(prop = n / sum(n)) |&gt;\n  ggplot(aes(x = entered_top_30_in, y = prop, group = 1)) +\n  geom_point() +\n  geom_line() +\n  scale_y_continuous(labels = percent_format(accuracy = 1)) +\n  scale_x_continuous(breaks = seq(2013, 2019, by = 1)) +\n  labs(\n    title = \"When did these songs break into the Top 30?\",\n    x = NULL,\n    y = NULL,\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#who-is-on-country-radio",
+    "href": "slides/01-hello-world-slides.html#who-is-on-country-radio",
+    "title": "Hello, World!",
+    "section": "Who is on country radio?",
+    "text": "Who is on country radio?\nThere are 484 songs in the data, but only 121 different artists. Let’s look at the 15 with the most Top 30 hits.\n\nCodecountry |&gt;\n  count(artist, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  ggplot(aes(y = fct_reorder(artist, n), x = n, fill = n)) +\n  geom_col(show.legend = FALSE) +\n  labs(\n    title = \"Who had the most Top 30 country hits?\",\n    y = NULL,\n    x = \"Number of songs\",\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#who-writes-country-songs",
+    "href": "slides/01-hello-world-slides.html#who-writes-country-songs",
+    "title": "Hello, World!",
+    "section": "Who writes country songs?",
+    "text": "Who writes country songs?\nSongs are usually written by more than one person, so the writers variable holds a whole list in a single cell:\n\nCodecountry |&gt;\n  select(song, writers)\n\n# A tibble: 484 × 2\n   song                                     writers                   \n   &lt;chr&gt;                                    &lt;chr&gt;                     \n 1 Wake Up Lovin You                        Josh Osborne, Matthew Ram…\n 2 Young Love                               Kip Moore, Dan Couch, Wes…\n 3 Beat of the Music                        Brett Eldredge, Ross Copp…\n 4 The Heart of Dixie                       Brett James, Caitlyn Smit…\n 5 Everything I Shouldn't Be Thinking About Keifer Thompson, Shawna T…\n 6 Goodnight Kiss                           Rob Hatch, Jason Sellers,…\n 7 Cold Beer With Your Name On It           Brent Anderson, Clint Dan…\n 8 19 You + Me                              Dan Smyers, Shay Mooney, …\n 9 Helluva Life                             Rodney Clawson, Chris Tom…\n10 Chillin' It                              Cole Swindell, Shane Minor\n# ℹ 474 more rows"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform",
+    "href": "slides/01-hello-world-slides.html#tidy-transform",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform",
+    "text": "Tidy + Transform\nBefore we can visualize this variable, we need to tidy and transform it."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform-1",
+    "href": "slides/01-hello-world-slides.html#tidy-transform-1",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform",
+    "text": "Tidy + Transform\n\nCodecountry |&gt;\n  # separate into multiple rows for each writer, using comma as delimiter\n  separate_longer_delim(writers, delim = \", \") |&gt;\n  count(writers, sort = TRUE)\n\n# A tibble: 517 × 2\n   writers             n\n   &lt;chr&gt;           &lt;int&gt;\n 1 Ashley Gorley      44\n 2 Shane McAnally     36\n 3 Ross Copperman     32\n 4 Josh Osborne       29\n 5 Rhett Akins        23\n 6 Hillary Lindsey    18\n 7 Jesse Frasure      18\n 8 Jon Nite           17\n 9 Zach Crowell       16\n10 Luke Laird         14\n# ℹ 507 more rows"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#visualize-1",
+    "href": "slides/01-hello-world-slides.html#visualize-1",
+    "title": "Hello, World!",
+    "section": "Visualize",
+    "text": "Visualize\n\nCodecountry |&gt;\n  separate_longer_delim(writers, delim = \", \") |&gt;\n  count(writers, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  ggplot(aes(y = fct_reorder(writers, n), x = n, fill = n)) +\n  geom_col(show.legend = FALSE) +\n  scale_fill_taylor_c(album = \"Speak Now\") +\n  labs(\n    title = \"Is country radio run by a small circle of hitmakers?\",\n    y = NULL,\n    x = \"Number of songs written\",\n    caption = \"Country songs reaching the Top 30 of Billboard's Country Airplay chart.\"\n  ) +\n  theme_minimal(base_size = 16)"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#what-do-country-songs-sing-about",
+    "href": "slides/01-hello-world-slides.html#what-do-country-songs-sing-about",
+    "title": "Hello, World!",
+    "section": "What do country songs sing about?",
+    "text": "What do country songs sing about?\nThe lyrics variable contains the entire text of each song:\n\n“My friends call me up ’cause they know I’m down / Take me out to paint the town and help me get over it…”\n\nWe can use text mining techniques, like tokenizing to words, to explore it."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tidy-transform-summarize",
+    "href": "slides/01-hello-world-slides.html#tidy-transform-summarize",
+    "title": "Hello, World!",
+    "section": "Tidy + Transform + Summarize",
+    "text": "Tidy + Transform + Summarize\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(word, lyrics) |&gt;\n  anti_join(stop_words, by = \"word\") |&gt;\n  count(word, sort = TRUE) |&gt;\n  slice_head(n = 15) |&gt;\n  print(n = Inf)\n\n# A tibble: 15 × 2\n   word        n\n   &lt;chr&gt;   &lt;int&gt;\n 1 yeah      996\n 2 girl      781\n 3 baby      749\n 4 love      743\n 5 wanna     632\n 6 gonna     611\n 7 time      502\n 8 night     454\n 9 tonight   332\n10 heart     293\n11 home      272\n12 kiss      263\n13 world     261\n14 gotta     256\n15 eyes      240"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tokenize-to-bigrams",
+    "href": "slides/01-hello-world-slides.html#tokenize-to-bigrams",
+    "title": "Hello, World!",
+    "section": "Tokenize to bigrams",
+    "text": "Tokenize to bigrams\nWe can also tokenize to bigrams (pairs of words):\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(bigram, lyrics, token = \"ngrams\", n = 2) |&gt;\n  count(bigram, sort = TRUE) |&gt;\n  slice_head(n = 8) |&gt;\n  print(n = Inf)\n\n# A tibble: 8 × 2\n  bigram       n\n  &lt;chr&gt;    &lt;int&gt;\n1 in the     692\n2 a little   513\n3 on the     413\n4 and i      381\n5 i know     282\n6 i don't    276\n7 i can      254\n8 in a       249\n\n\n\nHmm. Not very informative – these are all common words!"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#drop-the-stop-words",
+    "href": "slides/01-hello-world-slides.html#drop-the-stop-words",
+    "title": "Hello, World!",
+    "section": "Drop the stop words",
+    "text": "Drop the stop words\nLet’s split each bigram in two and throw away the pairs built from common words:\n\nCodecountry |&gt;\n  select(lyrics) |&gt;\n  unnest_tokens(bigram, lyrics, token = \"ngrams\", n = 2) |&gt;\n  separate_wider_delim(bigram, delim = \" \", names = c(\"word1\", \"word2\")) |&gt;\n  anti_join(stop_words, by = join_by(word1 == word)) |&gt;\n  anti_join(stop_words, by = join_by(word2 == word)) |&gt;\n  count(word1, word2, sort = TRUE) |&gt;\n  slice_head(n = 20) |&gt;\n  print(n = Inf)\n\n# A tibble: 20 × 3\n   word1      word2       n\n   &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt;\n 1 yeah       yeah       93\n 2 boo        boo        81\n 3 ooh        ooh        81\n 4 friday     night      71\n 5 hey        hey        45\n 6 tonight    tonight    44\n 7 home       home       36\n 8 yeah       boy        33\n 9 saturday   night      32\n10 somebody's gotta      32\n11 cold       beer       31\n12 dance      floor      31\n13 gonna      love       31\n14 country    song       30\n15 la         la         28\n16 wanna      kiss       28\n17 whoa       whoa       28\n18 da         da         27\n19 honky      tonk       26\n20 yeah       baby       25"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#can-ai-help",
+    "href": "slides/01-hello-world-slides.html#can-ai-help",
+    "title": "Hello, World!",
+    "section": "Can AI help?",
+    "text": "Can AI help?\nWe could also ask a large language model to read every song and tell us what it’s about?\n\n“What are common themes in these country song lyrics?” [Attached data file country-lyrics.csv.] 24 August 2026. ChatGPT 5.6 Sol Light. chatgpt.com/share/e/6a8c7343-62e4-83ea-b114-715f9b847cea\n\n\nAcross the 484 songs in country-lyrics.csv, several recurring themes stand out:\n\nRomantic love and attraction The dominant theme: falling in love, physical attraction, kissing, longing, and wanting to be together. Love-related language appears in roughly 94% of the songs.\nHeartbreak and separation Many songs focus on breakups, regret, loneliness, missing someone, or being unable to move on. This appears in approximately 73% of the songs, often alongside love rather than separately from it.\nDrinking and nightlife Beer, whiskey, bars, neon lights, and getting drunk frequently serve as settings or coping mechanisms—especially for heartbreak. Related language appears in about 60% of the songs.\nMusic and dancing Radios, songs, dancing, guitars, and jukeboxes are prominent. Music often brings couples together, evokes a memory, or provides the soundtrack for driving and partying. About 56% contain this imagery.\nRoads, trucks, and escape Driving can represent romance, independence, returning home, or leaving a painful situation behind. Roads, trucks, and related imagery occur in approximately 55%.\nPartying and carefree pleasure Friday nights, weekends, bonfires, dancing, and “good times” create an idealized space temporarily free from responsibility. This theme appears in about half the songs.\nFaith, hope, and resilience References to God, prayer, heaven, belief, strength, and survival often accompany songs about hardship or gratitude. Related language occurs in approximately 43%.\nHome, family, and belonging Home is both a physical place and an emotional anchor. Parents, family roots, and returning home appear in around 40% of the songs.\nRural and small-town identity Country roads, fields, porches, boots, farms, and small towns establish a distinct cultural setting and sense of authenticity. About 32% explicitly use this imagery.\nYouth, memory, and nostalgia Songs frequently look back on summer, adolescence, first love, or an earlier and supposedly simpler time. Explicit nostalgic language appears in roughly 27%.\n\nThe broadest overarching theme is emotion tied to place: love, heartbreak, and personal identity are repeatedly expressed through small towns, roads, vehicles, bars, music, and home. The lyrics also contain a recurring tension between leaving and belonging—wanting to escape one’s circumstances while remaining emotionally attached to a person, hometown, or former life.\nThese percentages are approximate keyword-based measures, and the categories overlap: one song can simultaneously be about heartbreak, whiskey, driving, and home."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#checks-and-balances",
+    "href": "slides/01-hello-world-slides.html#checks-and-balances",
+    "title": "Hello, World!",
+    "section": "Checks and balances",
+    "text": "Checks and balances\nAsk anyone what country songs are about and you’ll likely hear: beer, trucks, dirt roads, blue jeans, tractors.\n\nBut we have the lyrics, so we can just check:\n\nCodecountry |&gt;\n  mutate(lyrics_lower = str_to_lower(lyrics)) |&gt;\n  summarize(\n    truck = mean(str_detect(lyrics_lower, \"truck\")),\n    whiskey = mean(str_detect(lyrics_lower, \"whiskey\")),\n    beer = mean(str_detect(lyrics_lower, \"beer\")),\n    `dirt road` = mean(str_detect(lyrics_lower, \"dirt road\")),\n    `blue jeans` = mean(str_detect(lyrics_lower, \"blue jeans\")),\n    tractor = mean(str_detect(lyrics_lower, \"tractor\"))\n  ) |&gt;\n  pivot_longer(\n    everything(),\n    names_to = \"stereotype\",\n    values_to = \"prop\"\n  ) |&gt;\n  arrange(desc(prop))\n\n# A tibble: 6 × 2\n  stereotype   prop\n  &lt;chr&gt;       &lt;dbl&gt;\n1 truck      0.120 \n2 whiskey    0.116 \n3 beer       0.0868\n4 dirt road  0.0227\n5 blue jeans 0.0227\n6 tractor    0.0103"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#communicate",
+    "href": "slides/01-hello-world-slides.html#communicate",
+    "title": "Hello, World!",
+    "section": "Communicate",
+    "text": "Communicate\n\nOnly about 12% of these songs mention a truck, and 1% mention a tractor.\nThe words that actually dominate are girl, baby, love, and night.\nThe stereotype is memorable, not frequent – and that difference is only visible once you look at the data.\n\n\n\n\n\n\n\n\nTip\n\n\nThis is what we mean by statistical thinking: a claim that “feels true” is not a finding, but you can explore and verify the claim with data and the skills you’ll learn in this course."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#homepage",
+    "href": "slides/01-hello-world-slides.html#homepage",
+    "title": "Hello, World!",
+    "section": "Homepage",
+    "text": "Homepage\nhttps://sta199-f26.github.io\n\nAll course materials\nLinks to Canvas, GitHub, Positron containers, etc."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#course-toolkit",
+    "href": "slides/01-hello-world-slides.html#course-toolkit",
+    "title": "Hello, World!",
+    "section": "Course toolkit",
+    "text": "Course toolkit\nAll linked from the course website:\n\nGitHub organization: github.com/sta199-f26\n\nPositron containers: cmgr.oit.duke.edu/containers\n\nCommunication: Ed Discussion\nAssignment submission and feedback: Gradescope"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#course-materials",
+    "href": "slides/01-hello-world-slides.html#course-materials",
+    "title": "Hello, World!",
+    "section": "Course materials",
+    "text": "Course materials\nBoth textbooks are free online and linked from the course website:\n\n\nR for Data Science, 2e – Wickham, Çetinkaya-Rundel, Grolemund\n\nIntroduction to Modern Statistics – Çetinkaya-Rundel, Hardin\n\nComputing:\n\nR and Positron run in containers provided by Duke OIT – nothing to install\nBring a laptop (or Chromebook) to every class, fully charged – there aren’t enough outlets in the classroom for everyone"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#activities",
+    "href": "slides/01-hello-world-slides.html#activities",
+    "title": "Hello, World!",
+    "section": "Activities",
+    "text": "Activities\n\nIntroduce new content and prepare for lectures by watching the videos and completing the readings\nAttend and actively participate in lectures (and answer questions for participation credit) and labs, office hours, team meetings\nPractice applying statistical concepts and computing with application exercises during lecture\nPut together what you’ve learned to analyze real-world data\n\nLab assignments\nHomework assignments\nExams\nTerm project completed in teams"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#attendance-and-participation",
+    "href": "slides/01-hello-world-slides.html#attendance-and-participation",
+    "title": "Hello, World!",
+    "section": "Attendance and participation",
+    "text": "Attendance and participation\n\nDaily in lecture, via Wooclap on your laptop or phone\nTracked for credit, but not based on correctness, only participation (and often they will be questions designed to make you think that might not have a single right answer!)\nThere are 25 lectures this semester: participate in at least 17 for full credit\nBelow that, the score is prorated, e.g. participating in 15/25 lectures gives (15/25) × 5% = 3%"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#application-exercises",
+    "href": "slides/01-hello-world-slides.html#application-exercises",
+    "title": "Hello, World!",
+    "section": "Application exercises",
+    "text": "Application exercises\n\nDaily-ish in lecture\nNot graded, but tracked for feedback on workflow"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#labs",
+    "href": "slides/01-hello-world-slides.html#labs",
+    "title": "Hello, World!",
+    "section": "Labs",
+    "text": "Labs\n\nHands-on practice with data analysis\nA single exercise per lab, graded on turning in something reasonable + correctness\nCompleted in-person, in lab, in teams\nTeams randomized each week until project teams assigned\nDeveloped collaboratively, but turned in individually by the end of the lab session\nTwo lowest scores dropped\nNo late work accepted"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#homework",
+    "href": "slides/01-hello-world-slides.html#homework",
+    "title": "Hello, World!",
+    "section": "Homework",
+    "text": "Homework\n\nHands-on practice with data analysis\nSome questions for practice with instant feedback by AI\n1-2 randomly sampled questions to be graded by humans for correctness\nCan consult with course team and peers, but completed and turned in individually by 11:59 pm on Wednesdays\nLowest score dropped\nUp to 3 days late (-5% per day), no late work accepted after that\nOne-time late penalty waiver: Can be used on any homework assignment, no questions asked, must be requested from Dr. Knox before the deadline"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#turning-in-labs-and-hws",
+    "href": "slides/01-hello-world-slides.html#turning-in-labs-and-hws",
+    "title": "Hello, World!",
+    "section": "Turning in labs and HWs",
+    "text": "Turning in labs and HWs\nEvery assignment, same two steps:\n\n\nPush your work to the assignment’s GitHub repository\n\nSubmit the PDF output on Gradescope\n\n\n\n\nLabs are due at the end of your lab session\n\nHomework is due by 11:59 pm on Wednesdays\n\n\n\n\nSubmit what you have even if you haven’t finished – you’ll get partial credit for your work."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#exams---structure",
+    "href": "slides/01-hello-world-slides.html#exams---structure",
+    "title": "Hello, World!",
+    "section": "Exams - structure",
+    "text": "Exams - structure\n\n\nTwo exams + final, all in class:\n\nExam 1: Wednesday, October 7\nExam 2: Wednesday, November 18\nFinal: Thursday, December 10\n\n\n\nAll exams comprised of two parts:\n\nMultiple choice questions\nShort answer questions, on homework specifics (read: difficult/impossible to answer correctly without having done the homework)\n\n\nCover material from videos, readings, lectures, application exercises, homework, and labs\nOne sheet of notes for each exam, no larger than 8 1/2 x 11, both sides, must be prepared by you"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#exams---policies",
+    "href": "slides/01-hello-world-slides.html#exams---policies",
+    "title": "Hello, World!",
+    "section": "Exams - policies",
+    "text": "Exams - policies\n\nNo extensions and no make-up exams.\n\nWith documentation (Dean’s excuse or similar):\n\nMiss Exam 1 or 2 → your final exam score replaces the missed score\nMiss the Final → you receive an Incomplete and take the final later\n\n\nImprovement bonus: If you take all three exams, your final exam score replaces the lower of your two mid-semester exam scores – if the final score is higher.\n\n\n\n\n\n\n\nCaution\n\n\nExam dates cannot be changed and no make-up exams will be given. If you can’t take the exams on Oct 7, Nov 18, and Dec 10, you should drop this class."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#project",
+    "href": "slides/01-hello-world-slides.html#project",
+    "title": "Hello, World!",
+    "section": "Project",
+    "text": "Project\n\nDataset of your choice, method of your choice\nTeamwork\nSeven milestones, interim deadlines throughout semester\nFinal milestone: Presentation in lab and write-up, Thursday, November 5\nMust be in lab, in-person to present\nPeer feedback between teams on presentation content; peer evaluation within teams for contribution, alongside commit history\nSome lab sessions allocated to project progress\n\n\n\n\n\n\n\nCaution\n\n\nThe project presentation date (Nov 5) cannot be changed, and no late work is accepted for the project. You must complete the project to pass this class."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#teams",
+    "href": "slides/01-hello-world-slides.html#teams",
+    "title": "Hello, World!",
+    "section": "Teams",
+    "text": "Teams\n\nRandomized at first for weekly labs\nThen selected by you or assigned by me if you don’t express a preference for project and remaining labs\n\nExpectations and roles\n\nEveryone is expected to contribute equal effort\n\nEveryone is expected to understand all code turned in\nIndividual contribution evaluated by peer evaluation, commits, etc.\n\n\nFor the project: Peer evaluation during teamwork and after completion"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#grading",
+    "href": "slides/01-hello-world-slides.html#grading",
+    "title": "Hello, World!",
+    "section": "Grading",
+    "text": "Grading\n\n\nCategory\nPercentage\n\n\n\nLectures (attendance + participation)\n5%\n\n\nHW\n5%\n\n\nLabs\n10%\n\n\nProject\n15%\n\n\nExam 1\n20%\n\n\nExam 2\n20%\n\n\nFinal\n25%\n\n\n\nSee course syllabus for how the final letter grade will be determined."
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tips-for-success",
+    "href": "slides/01-hello-world-slides.html#tips-for-success",
+    "title": "Hello, World!",
+    "section": "Tips for success",
+    "text": "Tips for success\n\nPrepare: Watch videos and read before class\nEngage: Attend all lectures and labs actively\nAsk questions: Use office hours and Ed Discussion forum\nStart early: Don’t procrastinate on assignments\nStay current: Content builds progressively"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#support",
+    "href": "slides/01-hello-world-slides.html#support",
+    "title": "Hello, World!",
+    "section": "Support",
+    "text": "Support\n\nHelp from humans:\n\nAttend office hours\nAsk and answer questions on the discussion forum\n\n\nReserve email for questions on personal matters and/or grades, and include “STA 199” in the subject line\n\nExtensions, accommodations, missed work, registration → course coordinator Dr. Mary Knox, mary.knox@duke.edu\n\nAnything else not suited to the forum → Dr. Çetinkaya-Rundel, mc301@duke.edu\n\nExpect a reply within 48 hours, Monday through Friday; slower over the weekend\n\n\nRead the course support page"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#announcements",
+    "href": "slides/01-hello-world-slides.html#announcements",
+    "title": "Hello, World!",
+    "section": "Announcements",
+    "text": "Announcements\n\nPosted on Canvas (Announcements tool) and sent via email, be sure to check both regularly\nI’ll assume that you’ve read an announcement by the next “business” day\nI’ll (try my best to) send a weekly update announcement each Friday, outlining the plan for the following week and reminding you what you need to do to prepare, practice, and perform"
+  },
+  {
+    "objectID": "slides/01-hello-world-slides.html#tasks-due-wednesday",
+    "href": "slides/01-hello-world-slides.html#tasks-due-wednesday",
     "title": "Hello, World!",
     "section": "Tasks due Wednesday",
     "text": "Tasks due Wednesday\n\nComplete the getting to know you survey, then accept your GitHub organization invitation\nRead the syllabus\nComplete readings and videos for Wednesday\n\nAll linked from the course website at\nsta199-fa26.github.io"
