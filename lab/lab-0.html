@@ -108,9 +108,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script><meta name="quarto:status" content="draft">
 <meta property="og:title" content="Lab 0 – STA 199CCL">
 <meta property="og:description" content="Due: End of lab on Thurs, Aug 27">
-<meta property="og:image" content="https://sta199-f26.github.io/lab/images/lab-0/mise-en-place.jpg">
+<meta property="og:image" content="https://sta199-f26.github.io/lab/images/lab-0/1-preview.png">
 <meta property="og:site_name" content="STA 199CCL">
-<meta property="og:image:alt" content="A photo of a kitchen counter with various ingredients and tools arranged neatly, ready for cooking.">
+<meta property="og:image:alt" content="Preview lab-0.qmd in Positron">
+<meta property="og:image:height" content="2016">
+<meta property="og:image:width" content="3248">
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -501,6 +503,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#hello-sta-199-students" id="toc-hello-sta-199-students" class="nav-link" data-scroll-target="#hello-sta-199-students">Hello, STA 199 students!</a>
   <ul class="collapse">
 <li><a href="#clone-your-first-repository" id="toc-clone-your-first-repository" class="nav-link" data-scroll-target="#clone-your-first-repository">Clone your first repository</a></li>
+  <li>
+<a href="#work-on-lab-0" id="toc-work-on-lab-0" class="nav-link" data-scroll-target="#work-on-lab-0">Work on Lab 0</a>
+  <ul class="collapse">
+<li><a href="#update-authors" id="toc-update-authors" class="nav-link" data-scroll-target="#update-authors">Update authors</a></li>
+  <li><a href="#work-with-data" id="toc-work-with-data" class="nav-link" data-scroll-target="#work-with-data">Work with data</a></li>
+  <li><a href="#submit-your-work" id="toc-submit-your-work" class="nav-link" data-scroll-target="#submit-your-work">Submit your work</a></li>
+  </ul>
+</li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/lab/lab-0.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -861,26 +871,110 @@ Note
 </section></section></section><section id="hello-sta-199-students" class="level1"><h1>Hello, STA 199 students!</h1>
 <p>Now that you have your computational toolkit setup, it’s time to do some real data exploration. And what’s more exciting to explore than your own selves. In this section you’ll be provided a real but anonymized portion of your own <em>Getting to know you</em> survey responses. Each row in this dataset represents one of you, but we encourage you to not try to identify yourself or others in the data. And it would be pretty difficult to do so anyway because we’ve only shared your responses to which section you’re in, how much statistics and programming experience you have, some of the ways you learn best, and some types of data you’re interested in.</p>
 <section id="clone-your-first-repository" class="level2"><h2 class="anchored" data-anchor-id="clone-your-first-repository">Clone your first repository</h2>
-<p>Now that you have your GitHub account set up, you can clone your first repository.</p>
+<p>Now that you have your GitHub account set up, you can <strong>clone</strong> your first repository. That is, you take a repository on GitHub that we have prepared for you and download it to your Positron container so that you can work with it. And not just download the files, but do it in a way that allows you to keep your local copy of the repository in sync with the version on GitHub, by <strong>staging</strong> and then <strong>committing</strong> your changes and then <strong>pushing</strong> your work back to GitHub.</p>
 <p>To do so, follow these steps.</p>
 <ul>
-<li><p>Go to the repository for <strong>lab-0</strong> in the course GitHub organization: <code>https://github.com/sta199-f26/lab-0-YOUR-GITHUB-NAME</code>.</p></li>
-<li><p>Click on the green <strong>CODE</strong> button, select <strong>HTTPS</strong> under <strong>Clone</strong>. Click on the clipboard icon to copy the repo URL.</p></li>
-<li><p>In Positron, go to <em>New</em> ➛ <em>New Folder From Git…</em>.</p></li>
-<li><p>Paste the URL of the lab-0 repo into the dialog box labeled <em>Git repository URL</em>. Again, please make sure to have <em>HTTPS</em> highlighted under <em>Clone</em> when you copy the address.</p></li>
-<li><p>Click <em>OK</em>.</p></li>
-</ul>
-<p>TO DO: Do you trust the authors of the files in this folder? screenshot</p>
-<pre><code>![](images/lab-0/authenticity-of-host.png){fig-alt="Authenticity of host pop-up window asking to confirm the authenticity of the host. Type 'yes' in the box and hit Enter." width="400" fig-align="center"}</code></pre>
-<ul>
 <li>
-<p>Positron will now clone the repo and create a new Positron workspace for you. This might take a few seconds. Once done, the files from your GitHub repo will appear in the <em>Explorer</em> panel in Positron. If you don’t see it, click the Explorer icon (the page icon at the very top of the left-hand sidebar).</p>
-<!-- [mtk: maybe insert an image here of the explorer icon.] -->
+<p><strong>Step 1:</strong> Go to the repository for <strong>lab-0</strong> in the course GitHub organization: <code>https://github.com/sta199-f26/lab-0-YOUR-GITHUB-NAME</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/clone-repo/1-repo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/lab-0/clone-repo/1-repo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="GitHub repository for lab-0"></a></p>
+</figure>
+</div>
+</li>
+<li>
+<p><strong>Step 2:</strong> Click on the green <strong>CODE</strong> button, select <strong>HTTPS</strong> under <strong>Clone</strong>. Click on the clipboard icon to copy the repo URL.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/clone-repo/2-code.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="images/lab-0/clone-repo/2-code.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Code button for cloning the repository"></a></p>
+</figure>
+</div>
+</li>
+<li>
+<p><strong>Step 3:</strong> In Positron’s Welcome window, click on <em>New Folder From Git…</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/clone-repo/3-new-folder-from-git.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="images/lab-0/clone-repo/3-new-folder-from-git.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="New Folder From Git option in Positron"></a></p>
+</figure>
+</div>
+</li>
+<li>
+<p><strong>Step 4:</strong> Paste the URL of the lab-0 repo into the dialog box labeled <em>Git repository URL</em>. Again, please make sure to have <em>HTTPS</em> highlighted under <em>Clone</em> when you copy the address. Then click <em>OK</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/clone-repo/4-paste-url.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="images/lab-0/clone-repo/4-paste-url.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Pasting the GitHub repository URL into Positron"></a></p>
+</figure>
+</div>
 </li>
 </ul>
+<p>These steps will clone the repository from GitHub to your Positron container and create a new Positron folder for you. This might take a few seconds. Once done, the files from your GitHub repo will appear in the <em>Explorer</em> panel in Positron. If you don’t see it, click the Explorer icon (the page icon at the very top of the left-hand sidebar).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/clone-repo/cloned-repo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="images/lab-0/clone-repo/cloned-repo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Your Lab 0 folder in Positron"></a></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Seeing a dialog box asking if you trust the authors of this folder?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you see a dialog box asking if you trust the authors of this folder, click <strong>Yes</strong>. This is a security feature of Positron to ensure that you are aware that you are downloading files from the internet. You can safely trust the authors of this repository, as it is part of your course materials.</p>
+</div>
+</div>
+</div>
+</section><section id="work-on-lab-0" class="level2"><h2 class="anchored" data-anchor-id="work-on-lab-0">Work on Lab 0</h2>
+<p>FINALLY!!!</p>
+<p>The mise en place is finally done. And it’s time to do a tiny bit of data exploration to close the loop.</p>
+<p>First, open the Quarto file <code>lab-0.qmd</code>. You can do this by clicking on the file name. This will open the file name in the Explorer pane. Before you start working on the lab, click <em>Preview</em> to see what the rendered document looks like.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/1-preview.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="images/lab-0/1-preview.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Preview lab-0.qmd in Positron"></a></p>
+</figure>
+</div>
+<section id="update-authors" class="level3"><h3 class="anchored" data-anchor-id="update-authors">Update authors</h3>
+<p>In the YAML header at the top of the document, update the <code>author</code> field to include your name and your teammates’ names. Preview the document again to make sure your names appear correctly.</p>
+<p>You’ve made updates, previewed the document to confirm they look good, now it’s time to take a record of this change.</p>
+<p>Go to Source Control in the Activity bar (the icon that looks like a branch with a dot on it). You should see the files <code>lab-0.qmd</code> and <code>lab-0.pdf</code> listed under <em>Changes</em>. If you want to view what changed, click on <code>lab-0.qmd</code> to view the “diff” (i.e., the difference between the current version and the previous version) of the file. In this view red indicates lines that were removed and green indicates lines that were added.</p>
+<p>If all looks good, click on the <code>+</code> icon next to the file names to stage the changes. Then, in the <em>Message</em> box, type a message describing your change (e.g., “Updated authors”) and click <em>Commit</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/2-source-control.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="images/lab-0/2-source-control.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Source control in Positron"></a></p>
+</figure>
+</div>
+<p>At this point, you’ve taken a snapshot of your changes, but they are still only in your local Positron container. To get them to GitHub, you need to push them. To do so, click <em>Sync Changes</em>.</p>
+<p>Now if you go back to your repository, you’ll be able to see your changes there. Voila!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/3-changes-on-github.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="images/lab-0/3-changes-on-github.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Changes on GitHub"></a></p>
+</figure>
+</div>
+</section><section id="work-with-data" class="level3"><h3 class="anchored" data-anchor-id="work-with-data">Work with data</h3>
+<p>To finish up the lab, you’ll work with data from the course <em>Getting to know you</em> survey and answer two quick questions.</p>
+<section id="question-1" class="level4"><h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
+<p>The data is in the data folder of your repository, in a file called <code>getting-to-know-you.csv</code>. You’ve already learned in lecture how to view a CSV file in Positron and how to read it in R. The code for doing so is already in the <code>lab-0.qmd</code> file, so you just need to run it.</p>
+<ol type="a">
+<li>What does each row in the dataset represent?</li>
+<li>How many rows and how many columns does the dataset have?</li>
+</ol></section><section id="question-2" class="level4"><h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
+<p>Take a look at the data in the data viewer to get to know the variables in the dataset. As a team, come up with a question you might want to answer with these data.</p>
+<p>Once you’re done, commit and push your changes to GitHub.</p>
+</section></section><section id="submit-your-work" class="level3"><h3 class="anchored" data-anchor-id="submit-your-work">Submit your work</h3>
+<p>As a last step, submit your PDF file to Gradescope. You can do so by going to the course Gradescope page, selecting the Lab 0 assignment, and uploading your <code>lab-0.pdf</code> file.</p>
+<ul>
+<li>
+<strong>Step 1:</strong> Right-click on <code>lab-0.pdf</code> in the Explorer pane and click Download.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lab-0/4-download-pdf.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="images/lab-0/4-download-pdf.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Download lab-0.pdf from Positron"></a></p>
+</figure>
+</div>
+<ul>
+<li>
+<strong>Step 2:</strong> Find the downloaded file on your computer (likely in the Downloads folder) and upload it to Gradescope!</li>
+</ul>
+<p>Fantastic job, now go take a well deserved break!</p>
 
 
-</section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+</section></section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
 <li id="fn1"><p>Source: <a href="https://en.wikipedia.org/wiki/Mise_en_place">Wikipedia</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Yes, it’s too many steps. I don’t know why! But it works, and you’ll get used to it. Trust me, it beats downloading and installing everything you need on your computers!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
