@@ -220,27 +220,91 @@ And it would be pretty difficult to do so anyway because we've only shared your 
 
 ## Clone your first repository
 
-Now that you have your GitHub account set up, you can clone your first repository.
+Now that you have your GitHub account set up, you can **clone** your first repository.
+That is, you take a repository on GitHub that we have prepared for you and download it to your Positron container so that you can work with it.
+And not just download the files, but do it in a way that allows you to keep your local copy of the repository in sync with the version on GitHub, by **staging** and then **committing** your changes and then **pushing** your work back to GitHub.
 
 To do so, follow these steps.
 
-- Go to the repository for **lab-0** in the course GitHub organization: `https://github.com/sta199-f26/lab-0-YOUR-GITHUB-NAME`.
+- **Step 1:** Go to the repository for **lab-0** in the course GitHub organization: `https://github.com/sta199-f26/lab-0-YOUR-GITHUB-NAME`.
 
-- Click on the green **CODE** button, select **HTTPS** under **Clone**. Click on the clipboard icon to copy the repo URL.
+  ![](images/lab-0/clone-repo/1-repo.png){fig-alt="GitHub repository for lab-0" fig-align="center"}
 
-- In Positron, go to *New* ➛ *New Folder From Git...*.
+- **Step 2:** Click on the green **CODE** button, select **HTTPS** under **Clone**. Click on the clipboard icon to copy the repo URL.
 
-- Paste the URL of the lab-0 repo into the dialog box labeled *Git repository URL*. Again, please make sure to have *HTTPS* highlighted under *Clone* when you copy the address.
+  ![](images/lab-0/clone-repo/2-code.png){fig-alt="Code button for cloning the repository" fig-align="center"}
 
-- Click *OK*.
+- **Step 3:** In Positron's Welcome window, click on *New Folder From Git...*.
 
-TO DO: Do you trust the authors of the files in this folder? screenshot
+  ![](images/lab-0/clone-repo/3-new-folder-from-git.png){fig-alt="New Folder From Git option in Positron" fig-align="center"}
 
+- **Step 4:** Paste the URL of the lab-0 repo into the dialog box labeled *Git repository URL*. Again, please make sure to have *HTTPS* highlighted under *Clone* when you copy the address. Then click *OK*.
 
-```         
-![](images/lab-0/authenticity-of-host.png){fig-alt="Authenticity of host pop-up window asking to confirm the authenticity of the host. Type 'yes' in the box and hit Enter." width="400" fig-align="center"}
-```
+  ![](images/lab-0/clone-repo/4-paste-url.png){fig-alt="Pasting the GitHub repository URL into Positron" fig-align="center"}
 
-- Positron will now clone the repo and create a new Positron workspace for you. This might take a few seconds. Once done, the files from your GitHub repo will appear in the *Explorer* panel in Positron. If you don't see it, click the Explorer icon (the page icon at the very top of the left-hand sidebar).
+These steps will clone the repository from GitHub to your Positron container and create a new Positron folder for you. This might take a few seconds. Once done, the files from your GitHub repo will appear in the *Explorer* panel in Positron. If you don't see it, click the Explorer icon (the page icon at the very top of the left-hand sidebar).
 
-  <!-- [mtk: maybe insert an image here of the explorer icon.] -->
+![](images/lab-0/clone-repo/cloned-repo.png){fig-alt="Your Lab 0 folder in Positron" fig-align="center"}
+
+::: {.callout-tip collapse="true"}
+## Seeing a dialog box asking if you trust the authors of this folder?
+If you see a dialog box asking if you trust the authors of this folder, click **Yes**. This is a security feature of Positron to ensure that you are aware that you are downloading files from the internet. You can safely trust the authors of this repository, as it is part of your course materials.
+:::
+
+## Work on Lab 0
+
+FINALLY!!!
+
+The mise en place is finally done. And it's time to do a tiny bit of data exploration to close the loop.
+
+First, open the Quarto file `lab-0.qmd`. You can do this by clicking on the file name. This will open the file name in the Explorer pane.
+Before you start working on the lab, click *Preview* to see what the rendered document looks like.
+
+![](images/lab-0/1-preview.png){fig-alt="Preview lab-0.qmd in Positron" fig-align="center"}
+
+### Update authors
+
+In the YAML header at the top of the document, update the `author` field to include your name and your teammates' names. Preview the document again to make sure your names appear correctly.
+
+You've made updates, previewed the document to confirm they look good, now it's time to take a record of this change.
+
+Go to Source Control in the Activity bar (the icon that looks like a branch with a dot on it). You should see the files `lab-0.qmd` and `lab-0.pdf` listed under *Changes*. If you want to view what changed, click on `lab-0.qmd` to view the "diff" (i.e., the difference between the current version and the previous version) of the file. In this view red indicates lines that were removed and green indicates lines that were added. 
+
+If all looks good, click on the `+` icon next to the file names to stage the changes. Then, in the *Message* box, type a message describing your change (e.g., "Updated authors") and click *Commit*.
+
+![](images/lab-0/2-source-control.png){fig-alt="Source control in Positron" fig-align="center"}
+
+At this point, you've taken a snapshot of your changes, but they are still only in your local Positron container. To get them to GitHub, you need to push them. To do so, click *Sync Changes*.
+
+Now if you go back to your repository, you'll be able to see your changes there. Voila!
+
+![](images/lab-0/3-changes-on-github.png){fig-alt="Changes on GitHub" fig-align="center"}
+
+### Work with data
+
+To finish up the lab, you'll work with data from the course *Getting to know you* survey and answer two quick questions.
+
+#### Question 1
+
+The data is in the data folder of your repository, in a file called `getting-to-know-you.csv`. You've already learned in lecture how to view a CSV file in Positron and how to read it in R. The code for doing so is already in the `lab-0.qmd` file, so you just need to run it.
+
+a. What does each row in the dataset represent?
+b. How many rows and how many columns does the dataset have?
+
+#### Question 2
+
+Take a look at the data in the data viewer to get to know the variables in the dataset. As a team, come up with a question you might want to answer with these data.
+
+Once you're done, commit and push your changes to GitHub.
+
+### Submit your work
+
+As a last step, submit your PDF file to Gradescope. You can do so by going to the course Gradescope page, selecting the Lab 0 assignment, and uploading your `lab-0.pdf` file.
+
+- **Step 1:** Right-click on `lab-0.pdf` in the Explorer pane and click Download.
+
+![](images/lab-0/4-download-pdf.png){fig-alt="Download lab-0.pdf from Positron" fig-align="center"}
+
+- **Step 2:** Find the downloaded file on your computer (likely in the Downloads folder) and upload it to Gradescope!
+
+Fantastic job, now go take a well deserved break!
