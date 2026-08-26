@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -508,6 +473,7 @@ window.Quarto = {
   <ul class="collapse">
 <li><a href="#while-you-wait" id="toc-while-you-wait" class="nav-link" data-scroll-target="#while-you-wait">While you wait…</a></li>
   <li><a href="#meet-some-of-the-course-team" id="toc-meet-some-of-the-course-team" class="nav-link" data-scroll-target="#meet-some-of-the-course-team">Meet (some of the) course team</a></li>
+  <li><a href="#century-course" id="toc-century-course" class="nav-link" data-scroll-target="#century-course">Century Course</a></li>
   </ul>
 </li>
   <li>
@@ -517,63 +483,39 @@ window.Quarto = {
   <li><a href="#access-and-accommodations" id="toc-access-and-accommodations" class="nav-link" data-scroll-target="#access-and-accommodations">Access and accommodations</a></li>
   <li><a href="#late-work-waivers-lecture-recordings-regrades" id="toc-late-work-waivers-lecture-recordings-regrades" class="nav-link" data-scroll-target="#late-work-waivers-lecture-recordings-regrades">Late work, waivers, lecture recordings, regrades…</a></li>
   <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 💻📱</a></li>
-  <li><a href="#use-of-ai-tools" id="toc-use-of-ai-tools" class="nav-link" data-scroll-target="#use-of-ai-tools">Use of AI tools</a></li>
-  <li><a href="#centaurs-vs.-reverse-centaurs" id="toc-centaurs-vs.-reverse-centaurs" class="nav-link" data-scroll-target="#centaurs-vs.-reverse-centaurs">Centaurs vs.&nbsp;reverse centaurs</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#ai" id="toc-ai" class="nav-link" data-scroll-target="#ai">AI</a>
+  <ul class="collapse">
+<li><a href="#the-big-picture" id="toc-the-big-picture" class="nav-link" data-scroll-target="#the-big-picture">The big picture</a></li>
+  <li><a href="#use-of-ai-tools-for-sta-199" id="toc-use-of-ai-tools-for-sta-199" class="nav-link" data-scroll-target="#use-of-ai-tools-for-sta-199">Use of AI tools for STA 199</a></li>
+  <li><a href="#who-is-the-driver" id="toc-who-is-the-driver" class="nav-link" data-scroll-target="#who-is-the-driver">Who is the driver?</a></li>
   <li><a href="#use-of-ai-tools-the-rules" id="toc-use-of-ai-tools-the-rules" class="nav-link" data-scroll-target="#use-of-ai-tools-the-rules">Use of AI tools: the rules</a></li>
   <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic integrity</a></li>
   <li><a href="#a-note-on-showing-up-and-participating" id="toc-a-note-on-showing-up-and-participating" class="nav-link" data-scroll-target="#a-note-on-showing-up-and-participating">A note on showing up and participating</a></li>
   </ul>
 </li>
   <li>
-<a href="#feedback-on-getting-to-know-you-survey" id="toc-feedback-on-getting-to-know-you-survey" class="nav-link" data-scroll-target="#feedback-on-getting-to-know-you-survey">Feedback on <em>Getting to know you</em> survey</a>
+<a href="#meet-the-toolkit" id="toc-meet-the-toolkit" class="nav-link" data-scroll-target="#meet-the-toolkit">Meet the toolkit</a>
   <ul class="collapse">
-<li><a href="#century-course" id="toc-century-course" class="nav-link" data-scroll-target="#century-course">Century Course</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
-  <li><a href="#concerns" id="toc-concerns" class="nav-link" data-scroll-target="#concerns">Concerns</a></li>
-  <li><a href="#seeing-double" id="toc-seeing-double" class="nav-link" data-scroll-target="#seeing-double">Seeing double 👀</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#toolkit" id="toc-toolkit" class="nav-link" data-scroll-target="#toolkit">Toolkit</a>
-  <ul class="collapse">
-<li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning goals</a></li>
-  <li><a href="#computational-toolkit" id="toc-computational-toolkit" class="nav-link" data-scroll-target="#computational-toolkit">Computational toolkit</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#reproducible-data-analysis" id="toc-reproducible-data-analysis" class="nav-link" data-scroll-target="#reproducible-data-analysis">Reproducible data analysis</a>
-  <ul class="collapse">
-<li><a href="#reproducibility-checklist" id="toc-reproducibility-checklist" class="nav-link" data-scroll-target="#reproducibility-checklist">Reproducibility checklist</a></li>
-  <li><a href="#toolkit-for-reproducibility" id="toc-toolkit-for-reproducibility" class="nav-link" data-scroll-target="#toolkit-for-reproducibility">Toolkit for reproducibility</a></li>
+<li><a href="#computational-toolkit" id="toc-computational-toolkit" class="nav-link" data-scroll-target="#computational-toolkit">Computational toolkit</a></li>
+  <li><a href="#what-does-it-mean-for-a-data-analysis-to-be-reproducible" id="toc-what-does-it-mean-for-a-data-analysis-to-be-reproducible" class="nav-link" data-scroll-target="#what-does-it-mean-for-a-data-analysis-to-be-reproducible">What does it mean for a data analysis to be “reproducible”?</a></li>
+  <li><a href="#toolkit-for-reproducibile-data-analyses" id="toc-toolkit-for-reproducibile-data-analyses" class="nav-link" data-scroll-target="#toolkit-for-reproducibile-data-analyses">Toolkit for reproducibile data analyses</a></li>
   <li><a href="#an-analogy-to-english" id="toc-an-analogy-to-english" class="nav-link" data-scroll-target="#an-analogy-to-english">An analogy to English</a></li>
   </ul>
 </li>
   <li>
-<a href="#r-and-positron" id="toc-r-and-positron" class="nav-link" data-scroll-target="#r-and-positron">R and Positron</a>
+<a href="#writing-code-r-and-positron" id="toc-writing-code-r-and-positron" class="nav-link" data-scroll-target="#writing-code-r-and-positron">Writing code: R and Positron</a>
   <ul class="collapse">
-<li><a href="#r-and-positron-1" id="toc-r-and-positron-1" class="nav-link" data-scroll-target="#r-and-positron-1">R and Positron</a></li>
+<li><a href="#r-and-positron" id="toc-r-and-positron" class="nav-link" data-scroll-target="#r-and-positron">R and Positron</a></li>
   <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages">R packages</a></li>
   <li><a href="#tour-r-positron" id="toc-tour-r-positron" class="nav-link" data-scroll-target="#tour-r-positron">Tour: R + Positron</a></li>
+  <li><a href="#writing-code---writing-reports-quarto" id="toc-writing-code---writing-reports-quarto" class="nav-link" data-scroll-target="#writing-code---writing-reports-quarto">Writing code -&gt; writing reports: Quarto</a></li>
   </ul>
 </li>
   <li>
-<a href="#a-short-list-for-now-of-r-essentials" id="toc-a-short-list-for-now-of-r-essentials" class="nav-link" data-scroll-target="#a-short-list-for-now-of-r-essentials">A short list<br>(for now)<br>of R essentials</a>
-  <ul class="collapse">
-<li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#packages-an-analogy" id="toc-packages-an-analogy" class="nav-link" data-scroll-target="#packages-an-analogy">Packages, an analogy</a></li>
-  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse">tidyverse</a></li>
-  <li><a href="#data-frames-and-variables" id="toc-data-frames-and-variables" class="nav-link" data-scroll-target="#data-frames-and-variables">Data frames and variables</a></li>
-  <li><a href="#penguins-data-frame" id="toc-penguins-data-frame" class="nav-link" data-scroll-target="#penguins-data-frame"><code>penguins</code> data frame</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><code>section</code></a></li>
-  <li><a href="#participate-1" id="toc-participate-1" class="nav-link" data-scroll-target="#participate-1">Participate 💻📱</a></li>
-  <li><a href="#flipper_length_mm" id="toc-flipper_length_mm" class="nav-link" data-scroll-target="#flipper_length_mm"><code>flipper_length_mm</code></a></li>
-  <li><a href="#functionargument" id="toc-functionargument" class="nav-link" data-scroll-target="#functionargument"><code>function(argument)</code></a></li>
-  <li><a href="#trimmed-mean" id="toc-trimmed-mean" class="nav-link" data-scroll-target="#trimmed-mean"><code>trim</code>med <code>mean()</code></a></li>
-  <li><a href="#help" id="toc-help" class="nav-link" data-scroll-target="#help">Help</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#toolkit-version-control-and-collaboration" id="toc-toolkit-version-control-and-collaboration" class="nav-link" data-scroll-target="#toolkit-version-control-and-collaboration">Toolkit: Version control and collaboration</a>
+<a href="#version-control-and-collaboration-git-and-github" id="toc-version-control-and-collaboration-git-and-github" class="nav-link" data-scroll-target="#version-control-and-collaboration-git-and-github">Version control and collaboration: Git and GitHub</a>
   <ul class="collapse">
 <li><a href="#git-and-github" id="toc-git-and-github" class="nav-link" data-scroll-target="#git-and-github">Git and GitHub</a></li>
   <li><a href="#versioning---done-badly" id="toc-versioning---done-badly" class="nav-link" data-scroll-target="#versioning---done-badly">Versioning - done badly</a></li>
@@ -584,19 +526,16 @@ window.Quarto = {
   <li><a href="#how-will-we-use-git-and-github-2" id="toc-how-will-we-use-git-and-github-2" class="nav-link" data-scroll-target="#how-will-we-use-git-and-github-2">How will we use Git and GitHub?</a></li>
   <li><a href="#how-will-we-use-git-and-github-3" id="toc-how-will-we-use-git-and-github-3" class="nav-link" data-scroll-target="#how-will-we-use-git-and-github-3">How will we use Git and GitHub?</a></li>
   <li><a href="#git-and-github-tips" id="toc-git-and-github-tips" class="nav-link" data-scroll-target="#git-and-github-tips">Git and GitHub tips</a></li>
-  <li><a href="#tour-git-github" id="toc-tour-git-github" class="nav-link" data-scroll-target="#tour-git-github">Tour: Git + GitHub</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a>
-  <ul class="collapse">
-<li><a href="#quarto-1" id="toc-quarto-1" class="nav-link" data-scroll-target="#quarto-1">Quarto</a></li>
+  <li><a href="#tour-git-github-quarto" id="toc-tour-git-github-quarto" class="nav-link" data-scroll-target="#tour-git-github-quarto">Tour: Git + GitHub + Quarto</a></li>
   </ul>
 </li>
   <li>
 <a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a>
   <ul class="collapse">
-<li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
+<li><a href="#getting-to-know-you-feedback-questions" id="toc-getting-to-know-you-feedback-questions" class="nav-link" data-scroll-target="#getting-to-know-you-feedback-questions"><em>Getting to know you</em> feedback: Questions</a></li>
+  <li><a href="#getting-to-know-you-feedback-concerns" id="toc-getting-to-know-you-feedback-concerns" class="nav-link" data-scroll-target="#getting-to-know-you-feedback-concerns"><em>Getting to know you</em> feedback: Concerns</a></li>
+  <li><a href="#seeing-double" id="toc-seeing-double" class="nav-link" data-scroll-target="#seeing-double">Seeing double 👀</a></li>
+  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/02-meet-the-toolkit.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="02-meet-the-toolkit-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -639,21 +578,34 @@ window.Quarto = {
 
 </header><section id="warm-up" class="level1"><h1>Warm up</h1>
 <section id="while-you-wait" class="level2"><h2 class="anchored" data-anchor-id="while-you-wait">While you wait…</h2>
-<p>Fill out the Getting to know you survey if you haven’t yet done so.</p>
-</section><section id="meet-some-of-the-course-team" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="meet-some-of-the-course-team">Meet (some of the) course team</h2>
+<p>If you haven’t yet done so:</p>
+<ul>
+<li><p>Fill out the Getting to know you survey</p></li>
+<li><p>Accept the GitHub organization invite</p></li>
+</ul></section><section id="meet-some-of-the-course-team" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="meet-some-of-the-course-team">Meet (some of the) course team</h2>
 <ul>
 <li><strong>Mary Knox (Course coordinator)</strong></li>
 <li><strong>Robbie Hao (MS)</strong></li>
-<li><strong>Hyunjin Lee (UG)</strong></li>
 <li><strong>Max Niu (UG)</strong></li>
-</ul></section></section><section id="from-last-time-policies-and-support" class="level1 page-columns page-full"><h1>From last time: Policies and support</h1>
+</ul></section><section id="century-course" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="century-course">Century Course</h2>
+<blockquote class="blockquote">
+<p>“If students could take just one foundational course in your discipline, which course would best introduce them to its core questions and essential approaches?”</p>
+</blockquote>
+<p>Launched in Fall 2026, Century Courses</p>
+<ul>
+<li><p>provide students with a broad yet rigorous introduction to the fundamental knowledge, methodologies and ways of thinking that define an academic field,</p></li>
+<li><p>introduce students to a discipline’s foundational and core ideas, and</p></li>
+<li><p>invite students to engage with a field’s central questions and intellectual practices while equipping them with the conceptual tools needed for deeper exploration or further study.</p></li>
+</ul>
+<p>Read more at <a href="https://trinity.duke.edu/century-courses">trinity.duke.edu/century-courses</a>.</p>
+</section></section><section id="from-last-time-policies-and-support" class="level1"><h1>From last time: Policies and support</h1>
 <section id="diversity-inclusion-and-belonging" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="diversity-inclusion-and-belonging">Diversity, inclusion, and belonging</h2>
-<p>It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit.</p>
+<p>It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength, and benefit.</p>
 <div class="incremental">
 <ul class="incremental">
-<li>If you haven’t yet done so, fill out the Getting to know you survey.</li>
-<li>If you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. I want to be a resource for you. If you prefer to speak with someone outside of the course, your advisors, and deans are excellent resources.</li>
-<li>I (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it.</li>
+<li>Complete the <em>Getting to Know You</em> survey if you have not already.</li>
+<li>If you feel like your performance in the class is being impacted by your experiences outside of class, I’m here to help, and advisors and deans are also excellent resources.</li>
+<li>I am always learning. If something in class makes you uncomfortable, please let me know.</li>
 </ul>
 </div>
 </section><section id="access-and-accommodations" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="access-and-accommodations">Access and accommodations</h2>
@@ -691,24 +643,38 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="use-of-ai-tools" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="use-of-ai-tools">Use of AI tools</h2>
-<ul>
-<li><p>AI tools are not a replacement for understanding the material, but they can help you learn it.</p></li>
-<li><p>Reading code and writing code are skills that take time and practice to develop - both are essential.</p></li>
-<li><p>The nature of these tools is changing rapidly - autocomplete vs.&nbsp;chatbots vs.&nbsp;agentic tools.</p></li>
+</section></section><section id="ai" class="level1 page-columns page-full"><h1>AI</h1>
+<section id="the-big-picture" class="level2 smaller page-columns page-full"><h2 class="smaller anchored" data-anchor-id="the-big-picture">The big picture</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Yes, there is still value in learning what we teach in this course – for humanity and for your growth as a human</p></li>
+<li><p>No, the emergence of AI has not made reasoning with data and making decisions in the face of uncertainty irrelevant</p></li>
+<li><p>Yes, AI tools can do a really decent job of writing code and narrative, but… <a href="https://erichudson.substack.com/p/school-is-a-gym-not-a-job">“school is a gym, not a job”</a></p></li>
 </ul>
+</div>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>A piece on AI and education that I read recently that resonated with me is <a href="https://erichudson.substack.com/p/school-is-a-gym-not-a-job">“School is a gym, not a job”</a> by Eric Hudson.</p>
-</div></div></section><section id="centaurs-vs.-reverse-centaurs" class="level2"><h2 class="anchored" data-anchor-id="centaurs-vs.-reverse-centaurs">Centaurs vs.&nbsp;reverse centaurs</h2>
+<p>Recommended reading: <a href="https://erichudson.substack.com/p/school-is-a-gym-not-a-job">“School is a gym, not a job”</a> by Eric Hudson.</p>
+</div></div></section><section id="use-of-ai-tools-for-sta-199" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="use-of-ai-tools-for-sta-199">Use of AI tools for STA 199</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p>AI tools are not a replacement for understanding the material, but they can help you as you learn it, as long as you don’t fall into the trap of cognitive outsourcing disguised as productivity boosting</p></li>
+<li><p>Reading code and writing code are skills that take time and practice to develop - both are essential and rushing them does not benefit you in the long run</p></li>
+<li><p>The nature of these tools and how real data scientists use them is changing rapidly – autocomplete vs.&nbsp;chatbots vs.&nbsp;agentic tools – and we will demo some of this usage and <del>best</del> good practices later in the semester</p></li>
+</ul>
+</div>
+</section><section id="who-is-the-driver" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="who-is-the-driver">Who is the driver?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/01/centaurs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Image source: Hill Cantons, for more details see Cory Doctorow’s commentary Reverse Centaurs in Locus Magazine."><img src="images/01/centaurs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A centaur (horse body, human head) and a reverse centaur (horse head, human body)."></a></p>
+<figure class="figure"><p><a href="images/01/centaurs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Image source: Hill Cantons"><img src="images/01/centaurs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A centaur (horse body, human head) and a reverse centaur (horse head, human body)."></a></p>
 </figure>
 </div>
-<figcaption>Image source: Hill Cantons, for more details see Cory Doctorow’s commentary <a href="https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/">Reverse Centaurs in Locus Magazine</a>.</figcaption></figure>
+<figcaption>Image source: Hill Cantons</figcaption></figure>
 </div>
-</section><section id="use-of-ai-tools-the-rules" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="use-of-ai-tools-the-rules">Use of AI tools: the rules</h2>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Recommended reading: <a href="https://locusmag.com/feature/commentary-cory-doctorow-reverse-centaurs/">Reverse Centaurs</a> by Cory Doctorow in in Locus Magazine.</p>
+</div></div></section><section id="use-of-ai-tools-the-rules" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="use-of-ai-tools-the-rules">Use of AI tools: the rules</h2>
 <p>You may use AI as a resource as you complete assignments, but not to answer the exercises for you.</p>
 <div class="incremental">
 <ul class="incremental">
@@ -750,37 +716,11 @@ Important
 <li><p>This is a large “lecture” but with lots of opportunities and expectations for active learning, participation, and collaboration.</p></li>
 <li><p>You are expected to show up and participate in all lectures and labs, though there are a good number of each you can miss without penalty.</p></li>
 <li><p>It’s possible to read the books and watch the videos and get an exposure to the material we cover in the course without showing up, but the experience will be much less rich and you will likely miss out on a lot of learning. That’s why the assessments and workflows are designed to reward and reinforce active participation.</p></li>
-</ul></section></section><section id="feedback-on-getting-to-know-you-survey" class="level1"><h1>Feedback on <em>Getting to know you</em> survey</h1>
-<section id="century-course" class="level2"><h2 class="anchored" data-anchor-id="century-course">Century Course</h2>
-</section><section id="questions" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="questions">Questions</h2>
-<div class="incremental">
-<ul class="incremental">
-<li>Is the course designed for students with no prior coding or statistics background?</li>
-<li>What is the balance between learning statistical concepts and programming in R? How often will students code?</li>
-<li>How should students use readings, videos, and other materials—and which are essential?</li>
-<li>What should students expect from discussion projects, collaboration, and required uploads?</li>
-<li>What will exams look like, and what practice or study materials will be available?</li>
-<li>Where can students get help, and what kinds of collaboration are appropriate?</li>
-<li>How does the course compare to COMPSCI 216 (Everything Data) and STA 323 (Statistical Computing)?</li>
-</ul>
-</div>
-</section><section id="concerns" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="concerns">Concerns</h2>
-<div class="incremental">
-<ul class="incremental">
-<li>Dominant concern: lack of prior coding experience—especially learning R, syntax, troubleshooting, and technical tools such as GitHub.</li>
-<li>Keeping pace: worry about falling behind or being less prepared than classmates.</li>
-<li>Workload: concerns about labs, projects, time management, and other commitments.</li>
-<li>Assessment: questions about exams, grading, and effective study strategies.</li>
-<li>Smaller themes: group-project dynamics, large-lecture setting, and confidence with math/statistical terminology.</li>
-</ul>
-</div>
-</section><section id="seeing-double" class="level2"><h2 class="anchored" data-anchor-id="seeing-double">Seeing double 👀</h2>
-<p><br><br></p>
-<p>We have (at least) <span class="fragment"><strong>EIGHT</strong></span> twins in the course this semester!</p>
-</section></section><section id="toolkit" class="level1"><h1>Toolkit</h1>
-<section id="learning-goals" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="learning-goals">Learning goals</h2>
+</ul></section></section><section id="meet-the-toolkit" class="level1"><h1>Meet the toolkit</h1>
+<section id="computational-toolkit" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="computational-toolkit">Computational toolkit</h2>
+<blockquote class="blockquote">
 <p>By the end of the course, you will be able to gain insight from data, reproducibly (with literate programming and version control) and collaboratively, using modern programming tools and techniques.</p>
-</section><section id="computational-toolkit" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="computational-toolkit">Computational toolkit</h2>
+</blockquote>
 <ul>
 <li>Computing:
 <ul>
@@ -796,8 +736,7 @@ Important
 <li>Hosting and collaboration: GitHub</li>
 </ul>
 </li>
-</ul></section></section><section id="reproducible-data-analysis" class="level1"><h1>Reproducible data analysis</h1>
-<section id="reproducibility-checklist" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="reproducibility-checklist">Reproducibility checklist</h2>
+</ul></section><section id="what-does-it-mean-for-a-data-analysis-to-be-reproducible" class="level2"><h2 class="anchored" data-anchor-id="what-does-it-mean-for-a-data-analysis-to-be-reproducible">What does it mean for a data analysis to be “reproducible”?</h2>
 <div class="question">
 <p>What does it mean for a data analysis to be “reproducible”?</p>
 </div>
@@ -813,12 +752,12 @@ Important
 <ul>
 <li>Can the code be used for other data?</li>
 <li>Can you extend the code to do other things?</li>
-</ul></section><section id="toolkit-for-reproducibility" class="level2"><h2 class="anchored" data-anchor-id="toolkit-for-reproducibility">Toolkit for reproducibility</h2>
+</ul></section><section id="toolkit-for-reproducibile-data-analyses" class="level2"><h2 class="anchored" data-anchor-id="toolkit-for-reproducibile-data-analyses">Toolkit for reproducibile data analyses</h2>
 <div class="incremental">
 <ul class="incremental">
-<li>Scriptability – Coding as opposed to using a point-and-click tool <span class="math inline">\(\rightarrow\)</span> R</li>
-<li>Literate programming – Code, narrative, output in one place, as opposed to copying and pasting code output into a document (e.g., Word or Google Doc) that contains the narrative <span class="math inline">\(\rightarrow\)</span> Quarto</li>
-<li>Version control – Track changes with brief messages that describe those changes <span class="math inline">\(\rightarrow\)</span> Git / GitHub</li>
+<li><p>Scriptability – Coding as opposed to using a point-and-click tool <span class="math inline">\(\rightarrow\)</span> R</p></li>
+<li><p>Literate programming – Code, narrative, output in one place, as opposed to copying and pasting code output into a document (e.g., Word or Google Doc) that contains the narrative <span class="math inline">\(\rightarrow\)</span> Quarto</p></li>
+<li><p>Version control – Track changes with brief messages that describe those changes <span class="math inline">\(\rightarrow\)</span> Git / GitHub</p></li>
 </ul>
 </div>
 </section><section id="an-analogy-to-english" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="an-analogy-to-english">An analogy to English</h2>
@@ -833,8 +772,8 @@ Important
 <figure class="figure"><p><a href="images/02/english-analogy.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/02/english-analogy.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
-</section></section><section id="r-and-positron" class="level1 page-columns page-full"><h1>R and Positron</h1>
-<section id="r-and-positron-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="r-and-positron-1">R and Positron</h2>
+</section></section><section id="writing-code-r-and-positron" class="level1 page-columns page-full"><h1>Writing code: R and Positron</h1>
+<section id="r-and-positron" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="r-and-positron">R and Positron</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -875,396 +814,19 @@ Important
 <p><sup>2</sup><a href="https://cran.r-project.org/web/packages/">CRAN contributed packages</a>.</p>
 </div></div></section><section id="tour-r-positron" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="tour-r-positron">Tour: R + Positron</h2>
 <p>Sit back and enjoy the show!</p>
-</section></section><section id="a-short-list-for-now-of-r-essentials" class="level1"><h1>A short list<br>(for now)<br>of R essentials</h1>
-<section id="packages" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="packages">Packages</h2>
+<p>Or, join me in Positron and get a feel for following along – with 0 expectation that you actually follow along with everything for today 😀</p>
+</section><section id="writing-code---writing-reports-quarto" class="level2"><h2 class="anchored" data-anchor-id="writing-code---writing-reports-quarto">Writing code -&gt; writing reports: Quarto</h2>
 <ul>
-<li>Installed with <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, once per system:</li>
+<li><p>Fully reproducible reports – each time you render the analysis is ran from the beginning</p></li>
+<li><p>Code goes in cells narrative goes outside of cells</p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We already pre-installed many of the package you’ll need for this course, so you might go the whole semester without needing to run <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>!</p>
-</div>
-</div>
-<p>. . .</p>
-<ul>
-<li>Loaded with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, once per session:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.2.1     ✔ readr     2.2.0
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.3     ✔ tibble    3.3.1
-✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-✔ purrr     1.2.2     
-── Conflicts ──────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-</div>
-</section><section id="packages-an-analogy" class="level2"><h2 class="anchored" data-anchor-id="packages-an-analogy">Packages, an analogy</h2>
-<p>If data analysis was cooking…</p>
-<div class="incremental">
-<ul class="incremental">
-<li><p>Installing a package would be like buying ingredients from the store</p></li>
-<li><p>Loading a package would be like getting the ingredients out of your pantry and setting them on your counter top to be used</p></li>
-</ul>
-</div>
-</section><section id="tidyverse" class="level2"><h2 class="anchored" data-anchor-id="tidyverse">tidyverse</h2>
-<div class="hand">
-<p>aka the package you’ll hear about the most…</p>
-</div>
-<div class="columns">
-<div class="column" style="width:40%;">
-<p><a href="https://tidyverse.org"><img src="images/02/tidyverse.png" class="img-fluid" alt="Hex logos for dplyr, ggplot2, forcats, tibble, readr, stringr, tidyr, and purrr"></a></p>
-</div>
-<div class="column fragment" style="width:60%;">
-<p><a href="https://www.tidyverse.org/">tidyverse.org</a></p>
-<ul>
-<li>The <strong>tidyverse</strong> is an opinionated collection of R packages designed for data science</li>
-<li>All packages share an underlying philosophy and a common grammar</li>
-</ul>
-</div>
-</div>
-</section><section id="data-frames-and-variables" class="level2"><h2 class="anchored" data-anchor-id="data-frames-and-variables">Data frames and variables</h2>
-<ul>
-<li>Each row of a data frame is an <strong>observation</strong>
-</li>
-</ul>
-<p>. . .</p>
-<ul>
-<li>Each column of a data frame is a <strong>variable</strong>
-</li>
-</ul>
-<p>. . .</p>
-<ul>
-<li>Columns (variables) in data frames can be accessed with <code>$</code>:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dataframe</span><span class="op">$</span><span class="va">variable_name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="penguins-data-frame" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="penguins-data-frame">
-<code>penguins</code> data frame</h2>
-<div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">survey</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/getting-to-know-you.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 211 Columns: 19
-── Column specification ──────────────────────────────────────────────
-Delimiter: ","
-chr  (3): section, stats_exp, prog_exp
-dbl  (1): anonymous_id
-lgl (15): learn_best_reading, learn_best_videos, learn_best_hands_...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
-</section><section id="section" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="section"><code>section</code></h2>
-<div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">survey</span><span class="op">$</span><span class="va">section</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] "02L"                      "04L"                     
-  [3] "05L"                      "10L"                     
-  [5] "07L"                      "08L"                     
-  [7] "02L"                      "04L"                     
-  [9] "01L"                      "09L"                     
- [11] "08L"                      "01L"                     
- [13] "04L"                      "06L"                     
- [15] "07L"                      "08L"                     
- [17] "08L"                      "06L"                     
- [19] "09L"                      "09L"                     
- [21] "09L"                      "10L"                     
- [23] "06L"                      "09L"                     
- [25] "07L"                      "08L"                     
- [27] "04L"                      "08L"                     
- [29] "01L"                      "08L"                     
- [31] "02L"                      "06L"                     
- [33] "10L"                      "01L"                     
- [35] "07L"                      "01L"                     
- [37] "09L"                      "03L"                     
- [39] "04L"                      "07L"                     
- [41] "04L"                      "09L"                     
- [43] "06L"                      "10L"                     
- [45] "01L"                      "06L"                     
- [47] "09L"                      "09L"                     
- [49] "05L"                      "05L"                     
- [51] "01L"                      "08L"                     
- [53] "09L"                      "03L"                     
- [55] "09L"                      "10L"                     
- [57] "02L"                      "10L"                     
- [59] "08L"                      "05L"                     
- [61] "03L"                      "08L"                     
- [63] "05L"                      "10L"                     
- [65] "05L"                      "10L"                     
- [67] "02L"                      "09L"                     
- [69] "06L"                      "10L"                     
- [71] "04L"                      "01L"                     
- [73] "01L"                      "03L"                     
- [75] "03L"                      "04L, STA 199CCL.05L.Fa26"
- [77] "10L"                      "10L"                     
- [79] "03L"                      "10L"                     
- [81] "09L"                      "07L"                     
- [83] "05L"                      "01L"                     
- [85] "03L"                      "03L"                     
- [87] "08L"                      "02L"                     
- [89] "07L"                      "08L"                     
- [91] "05L"                      "06L"                     
- [93] "03L"                      "09L"                     
- [95] "07L"                      "02L"                     
- [97] "01L"                      "08L"                     
- [99] "10L"                      "01L"                     
-[101] "10L"                      "06L"                     
-[103] "05L"                      "08L"                     
-[105] "07L"                      "05L"                     
-[107] "02L"                      "03L"                     
-[109] "08L"                      "05L"                     
-[111] "06L"                      "02L"                     
-[113] "04L"                      "03L"                     
-[115] "05L"                      "08L"                     
-[117] "06L"                      "01L"                     
-[119] "04L"                      "05L"                     
-[121] "04L"                      "01L"                     
-[123] "01L"                      "01L"                     
-[125] "06L"                      "03L"                     
-[127] "01L"                      "03L"                     
-[129] "04L"                      "08L"                     
-[131] "03L"                      "04L"                     
-[133] "08L"                      "07L"                     
-[135] "04L"                      "07L"                     
-[137] "02L"                      "08L"                     
-[139] "01L"                      "10L"                     
-[141] "07L"                      "10L"                     
-[143] "09L"                      "04L"                     
-[145] "01L"                      "09L"                     
-[147] "08L"                      "01L"                     
-[149] "06L"                      "08L"                     
-[151] "06L"                      "09L"                     
-[153] "02L"                      "02L"                     
-[155] "01L"                      "08L"                     
-[157] "09L"                      "02L"                     
-[159] "07L"                      "08L"                     
-[161] "07L"                      "07L"                     
-[163] "02L"                      "02L"                     
-[165] "08L"                      "09L"                     
-[167] "06L"                      "09L"                     
-[169] "09L"                      "06L"                     
-[171] "01L"                      "02L"                     
-[173] "10L"                      "07L"                     
-[175] "08L"                      "02L"                     
-[177] "03L"                      "02L"                     
-[179] "03L"                      "06L"                     
-[181] "04L"                      "09L"                     
-[183] "06L"                      "03L"                     
-[185] "03L"                      "07L"                     
-[187] "05L"                      "04L"                     
-[189] "04L"                      "03L"                     
-[191] "02L"                      "09L"                     
-[193] "09L"                      "10L"                     
-[195] "10L"                      "10L"                     
-[197] "06L"                      "05L"                     
-[199] "02L"                      "01L"                     
-[201] "05L"                      "02L"                     
-[203] "09L"                      "04L"                     
-[205] "10L"                      "06L"                     
-[207] "05L"                      "02L"                     
-[209] "08L"                      "02L"                     
-[211] "01L"                     </code></pre>
-</div>
-</div>
-</section><section id="participate-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="participate-1">Participate 💻📱</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-<div class="task">
-<p>Why did the error occur?</p>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">section</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error:
-! object 'section' not found</code></pre>
-</div>
-</div>
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
-</figure>
-</div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
-</div>
-</div>
-</div>
-</section><section id="flipper_length_mm" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="flipper_length_mm"><code>flipper_length_mm</code></h2>
-<p>This can be fixed by using <code>survey$section</code>.</p>
-<div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">survey</span><span class="op">$</span><span class="va">section</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] "02L"                      "04L"                     
-  [3] "05L"                      "10L"                     
-  [5] "07L"                      "08L"                     
-  [7] "02L"                      "04L"                     
-  [9] "01L"                      "09L"                     
- [11] "08L"                      "01L"                     
- [13] "04L"                      "06L"                     
- [15] "07L"                      "08L"                     
- [17] "08L"                      "06L"                     
- [19] "09L"                      "09L"                     
- [21] "09L"                      "10L"                     
- [23] "06L"                      "09L"                     
- [25] "07L"                      "08L"                     
- [27] "04L"                      "08L"                     
- [29] "01L"                      "08L"                     
- [31] "02L"                      "06L"                     
- [33] "10L"                      "01L"                     
- [35] "07L"                      "01L"                     
- [37] "09L"                      "03L"                     
- [39] "04L"                      "07L"                     
- [41] "04L"                      "09L"                     
- [43] "06L"                      "10L"                     
- [45] "01L"                      "06L"                     
- [47] "09L"                      "09L"                     
- [49] "05L"                      "05L"                     
- [51] "01L"                      "08L"                     
- [53] "09L"                      "03L"                     
- [55] "09L"                      "10L"                     
- [57] "02L"                      "10L"                     
- [59] "08L"                      "05L"                     
- [61] "03L"                      "08L"                     
- [63] "05L"                      "10L"                     
- [65] "05L"                      "10L"                     
- [67] "02L"                      "09L"                     
- [69] "06L"                      "10L"                     
- [71] "04L"                      "01L"                     
- [73] "01L"                      "03L"                     
- [75] "03L"                      "04L, STA 199CCL.05L.Fa26"
- [77] "10L"                      "10L"                     
- [79] "03L"                      "10L"                     
- [81] "09L"                      "07L"                     
- [83] "05L"                      "01L"                     
- [85] "03L"                      "03L"                     
- [87] "08L"                      "02L"                     
- [89] "07L"                      "08L"                     
- [91] "05L"                      "06L"                     
- [93] "03L"                      "09L"                     
- [95] "07L"                      "02L"                     
- [97] "01L"                      "08L"                     
- [99] "10L"                      "01L"                     
-[101] "10L"                      "06L"                     
-[103] "05L"                      "08L"                     
-[105] "07L"                      "05L"                     
-[107] "02L"                      "03L"                     
-[109] "08L"                      "05L"                     
-[111] "06L"                      "02L"                     
-[113] "04L"                      "03L"                     
-[115] "05L"                      "08L"                     
-[117] "06L"                      "01L"                     
-[119] "04L"                      "05L"                     
-[121] "04L"                      "01L"                     
-[123] "01L"                      "01L"                     
-[125] "06L"                      "03L"                     
-[127] "01L"                      "03L"                     
-[129] "04L"                      "08L"                     
-[131] "03L"                      "04L"                     
-[133] "08L"                      "07L"                     
-[135] "04L"                      "07L"                     
-[137] "02L"                      "08L"                     
-[139] "01L"                      "10L"                     
-[141] "07L"                      "10L"                     
-[143] "09L"                      "04L"                     
-[145] "01L"                      "09L"                     
-[147] "08L"                      "01L"                     
-[149] "06L"                      "08L"                     
-[151] "06L"                      "09L"                     
-[153] "02L"                      "02L"                     
-[155] "01L"                      "08L"                     
-[157] "09L"                      "02L"                     
-[159] "07L"                      "08L"                     
-[161] "07L"                      "07L"                     
-[163] "02L"                      "02L"                     
-[165] "08L"                      "09L"                     
-[167] "06L"                      "09L"                     
-[169] "09L"                      "06L"                     
-[171] "01L"                      "02L"                     
-[173] "10L"                      "07L"                     
-[175] "08L"                      "02L"                     
-[177] "03L"                      "02L"                     
-[179] "03L"                      "06L"                     
-[181] "04L"                      "09L"                     
-[183] "06L"                      "03L"                     
-[185] "03L"                      "07L"                     
-[187] "05L"                      "04L"                     
-[189] "04L"                      "03L"                     
-[191] "02L"                      "09L"                     
-[193] "09L"                      "10L"                     
-[195] "10L"                      "10L"                     
-[197] "06L"                      "05L"                     
-[199] "02L"                      "01L"                     
-[201] "05L"                      "02L"                     
-[203] "09L"                      "04L"                     
-[205] "10L"                      "06L"                     
-[207] "05L"                      "02L"                     
-[209] "08L"                      "02L"                     
-[211] "01L"                     </code></pre>
-</div>
-</div>
-</section><section id="functionargument" class="level2"><h2 class="anchored" data-anchor-id="functionargument"><code>function(argument)</code></h2>
-<p>Functions are (most often) verbs, followed by what they will be applied to in parentheses:</p>
-<div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">do_this</span><span class="op">(</span><span class="va">to_this</span><span class="op">)</span></span>
-<span><span class="fu">do_that</span><span class="op">(</span><span class="va">to_this</span>, <span class="va">to_that</span>, <span class="va">with_those</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="trimmed-mean" class="level2"><h2 class="anchored" data-anchor-id="trimmed-mean">
-<code>trim</code>med <code>mean()</code>
-</h2>
-<div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">100</span><span class="op">)</span></span>
-<span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]   1   2   3   4   5   6   7   8   9 100</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 14.5</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, trim <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 14.5</code></pre>
-</div>
-</div>
-</section><section id="help" class="level2"><h2 class="anchored" data-anchor-id="help">Help</h2>
-<p>Object documentation can be accessed with <code>?</code></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:50%;">
-<p><a href="images/02/mean-docs.mov" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><video src="images/02/mean-docs.mov" class="img-fluid" alt="Documentation for mean function in R." controls=""></video></a><a href="images/02/mean-docs.mov">Video</a></p>
-</div>
-</div>
-</section></section><section id="toolkit-version-control-and-collaboration" class="level1"><h1>Toolkit: Version control and collaboration</h1>
+<p>More on this in a bit!</p>
+</section></section><section id="version-control-and-collaboration-git-and-github" class="level1"><h1>Version control and collaboration: Git and GitHub</h1>
 <section id="git-and-github" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="git-and-github">Git and GitHub</h2>
 <div class="columns">
 <div class="column fragment" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/git-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/02/git-logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Git logo" width="150"></a></p>
+<figure class="figure"><p><a href="images/02/git-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/02/git-logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Git logo" width="150"></a></p>
 </figure>
 </div>
 <ul>
@@ -1274,7 +836,7 @@ lgl (15): learn_best_reading, learn_best_videos, learn_best_hands_...
 </div>
 <div class="column fragment" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/github-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/02/github-logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="GitHub logo" width="150"></a></p>
+<figure class="figure"><p><a href="images/02/github-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/02/github-logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="GitHub logo" width="150"></a></p>
 </figure>
 </div>
 <ul>
@@ -1285,12 +847,12 @@ lgl (15): learn_best_reading, learn_best_videos, learn_best_hands_...
 </div>
 </section><section id="versioning---done-badly" class="level2"><h2 class="anchored" data-anchor-id="versioning---done-badly">Versioning - done badly</h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/phd_comics_vc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/02/phd_comics_vc.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<figure class="figure"><p><a href="images/02/phd_comics_vc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/02/phd_comics_vc.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 </section><section id="versioning---done-better" class="level2"><h2 class="anchored" data-anchor-id="versioning---done-better">Versioning - done better</h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/lego-steps.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/02/lego-steps.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<figure class="figure"><p><a href="images/02/lego-steps.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/02/lego-steps.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 </section><section id="versioning---done-even-better" class="level2"><h2 class="anchored" data-anchor-id="versioning---done-even-better">Versioning - done even better</h2>
@@ -1298,50 +860,64 @@ lgl (15): learn_best_reading, learn_best_videos, learn_best_hands_...
 <p>with human readable messages</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/lego-steps-commit-messages.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/02/lego-steps-commit-messages.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<figure class="figure"><p><a href="images/02/lego-steps-commit-messages.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/02/lego-steps-commit-messages.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 </section><section id="how-will-we-use-git-and-github" class="level2"><h2 class="anchored" data-anchor-id="how-will-we-use-git-and-github">How will we use Git and GitHub?</h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/whole-game-01.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/02/whole-game-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<figure class="figure"><p><a href="images/02/whole-game-01.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/02/whole-game-01.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 </section><section id="how-will-we-use-git-and-github-1" class="level2"><h2 class="anchored" data-anchor-id="how-will-we-use-git-and-github-1">How will we use Git and GitHub?</h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/whole-game-02.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="images/02/whole-game-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<figure class="figure"><p><a href="images/02/whole-game-02.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/02/whole-game-02.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 </section><section id="how-will-we-use-git-and-github-2" class="level2"><h2 class="anchored" data-anchor-id="how-will-we-use-git-and-github-2">How will we use Git and GitHub?</h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/whole-game-03.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/02/whole-game-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<figure class="figure"><p><a href="images/02/whole-game-03.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/02/whole-game-03.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 </section><section id="how-will-we-use-git-and-github-3" class="level2"><h2 class="anchored" data-anchor-id="how-will-we-use-git-and-github-3">How will we use Git and GitHub?</h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/02/whole-game-04.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="images/02/whole-game-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<figure class="figure"><p><a href="images/02/whole-game-04.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="images/02/whole-game-04.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 </section><section id="git-and-github-tips" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="git-and-github-tips">Git and GitHub tips</h2>
-<div class="incremental">
-<ul class="incremental">
-<li>There are millions of git commands – ok, that’s an exaggeration, but there are a lot of them – and very few people know them all. 99% of the time you will use git to add, commit, push, and pull.</li>
-<li>We will be doing Git things and interfacing with GitHub through Positron, but if you google for help you might come across methods for doing these things in the command line – skip that and move on to the next resource unless you feel comfortable trying it out.</li>
-<li>There is a great resource for working with git and R: <a href="http://happygitwithr.com/">happygitwithr.com</a>. Some of the content in there is beyond the scope of this course, but it’s a good place to look for help.</li>
-</ul>
-</div>
-</section><section id="tour-git-github" class="level2 smaller scrollable"><h2 class="smaller scrollable anchored" data-anchor-id="tour-git-github">Tour: Git + GitHub</h2>
+<ul>
+<li><p>There are millions of git commands – ok, that’s an exaggeration, but there are a lot of them – and very few people know them all. 99% of the time you will use git to add, commit, push, and pull.</p></li>
+<li><p>We will be doing Git things and interfacing with GitHub through Positron, but if you google for help you might come across methods for doing these things in the command line – skip that and move on to the next resource unless you feel comfortable trying it out.</p></li>
+</ul></section><section id="tour-git-github-quarto" class="level2 smaller scrollable"><h2 class="smaller scrollable anchored" data-anchor-id="tour-git-github-quarto">Tour: Git + GitHub + Quarto</h2>
 <p>Sit back and enjoy the show!</p>
-</section></section><section id="quarto" class="level1"><h1>Quarto</h1>
-<section id="quarto-1" class="level2"><h2 class="anchored" data-anchor-id="quarto-1">Quarto</h2>
+</section></section><section id="wrap-up" class="level1"><h1>Wrap up</h1>
+<section id="getting-to-know-you-feedback-questions" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="getting-to-know-you-feedback-questions">
+<em>Getting to know you</em> feedback: Questions</h2>
 <div class="incremental">
 <ul class="incremental">
-<li>Fully reproducible reports – each time you render the analysis is ran from the beginning</li>
-<li>Code goes in cells narrative goes outside of cells</li>
-<li>Optional: A visual editor for a familiar / Google docs-like editing experience</li>
+<li>Is the course designed for students with no prior coding or statistics background?</li>
+<li>What is the balance between learning statistical concepts and programming in R? How often will students code?</li>
+<li>How should students use readings, videos, and other materials—and which are essential?</li>
+<li>What should students expect from discussion projects, collaboration, and required uploads?</li>
+<li>What will exams look like, and what practice or study materials will be available?</li>
+<li>Where can students get help, and what kinds of collaboration are appropriate?</li>
+<li>How does the course compare to COMPSCI 216 (Everything Data) and STA 323 (Statistical Computing)?</li>
 </ul>
 </div>
-</section></section><section id="wrap-up" class="level1"><h1>Wrap up</h1>
-<section id="tasks" class="level2"><h2 class="anchored" data-anchor-id="tasks">Tasks</h2>
+</section><section id="getting-to-know-you-feedback-concerns" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="getting-to-know-you-feedback-concerns">
+<em>Getting to know you</em> feedback: Concerns</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Dominant concern: lack of prior coding experience—especially learning R, syntax, troubleshooting, and technical tools such as Git and GitHub</li>
+<li>Keeping pace: falling behind or being less prepared than classmates</li>
+<li>Workload: time management for labs, HW, projects, and other commitments</li>
+<li>Assessment: format of exams, details of grading, and effective study strategies</li>
+<li>Smaller themes: Group-project dynamics, large-lecture setting, and confidence with math/statistical terminology</li>
+</ul>
+</div>
+</section><section id="seeing-double" class="level2"><h2 class="anchored" data-anchor-id="seeing-double">Seeing double 👀</h2>
+<p><br><br></p>
+<p>We have (at least) <span class="fragment"><strong>EIGHT</strong></span> twins in the course this semester!</p>
+</section><section id="tasks" class="level2"><h2 class="anchored" data-anchor-id="tasks">Tasks</h2>
 <div class="columns">
 <div class="column">
 <p><strong>Due tonight:</strong> Complete the Getting to know you survey if you haven’t yet done so.</p>
@@ -1349,7 +925,8 @@ lgl (15): learn_best_reading, learn_best_videos, learn_best_hands_...
 </div><div class="column">
 <p><strong>Before Monday:</strong></p>
 <ul>
-<li>Complete the readings and watch the videos</li>
+<li><p>Catch up with anything you fell behind on this week</p></li>
+<li><p>Complete the readings and watch the videos for Monday’s lecture</p></li>
 </ul>
 </div>
 </div>
