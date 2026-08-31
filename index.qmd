@@ -58,9 +58,8 @@ d_prepared <- d |>
     #readings = if_else(date > prepare_cutoff_date, "*To be posted*", readings) #added the other & statements so that deadlines don't have "To be posted" language
     # Materials column: one icon per linked document in the sheet's materials
     # cell, which holds <br>-separated markdown links (e.g. "[slides 01](...)
-    # <br> [notes 01](...)"). "slides" links get a slide-deck icon, "notes"
-    # links a document icon. Gray outline icons while unposted; filled +
-    # linked once URLs are added to the sheet.
+    # <br> [notes 01](...)"). Gray outline icons while unposted; filled,
+    # type-specific brand colors once URLs are added to the sheet.
     materials = case_when(
       # In-class exams get no materials icon (review sessions keep theirs).
       str_detect(topic, "Exam.*In-class") ~ NA_character_,
@@ -84,6 +83,20 @@ d_prepared <- d |>
                 "fa-file-lines",
               TRUE ~ "fa-file-code"
             )
+            material_type <- case_when(
+              str_detect(label, regex("slides", ignore_case = TRUE)) ~ "slides",
+              str_detect(label, regex("notes", ignore_case = TRUE)) ~ "notes",
+              str_detect(
+                label,
+                regex("application exercise|\\bae\\b", ignore_case = TRUE)
+              ) ~ "ae",
+              str_detect(label, regex("lab", ignore_case = TRUE)) ~ "lab",
+              str_detect(
+                label,
+                regex("homework|\\bhw\\b", ignore_case = TRUE)
+              ) ~ "homework",
+              TRUE ~ "other"
+            )
             title <- if_else(is.na(label), "Materials", str_to_sentence(label))
             paste0(
               '<a href="',
@@ -95,7 +108,9 @@ d_prepared <- d |>
               '">',
               '<i class="fa-solid ',
               icon,
-              ' materials-icon" aria-hidden="true"></i></a>'
+              ' materials-icon materials-icon-',
+              material_type,
+              '" aria-hidden="true"></i></a>'
             )
           }) |>
           keep(~ .x != "") |>

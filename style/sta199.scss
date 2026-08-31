@@ -110,9 +110,8 @@ details summary {
   margin-bottom: 0.5em;
 }
 
-/* Schedule "Materials" column icons (see index.qmd).
-   One icon per linked document (slides, notes): gray outline while
-   unposted, filled brand color + link once the material is posted. */
+/* Schedule "Materials" column icons (see index.qmd): gray outline while
+   unposted, then a filled icon in a color keyed to the material type. */
 .materials-links {
   display: inline-flex;
   gap: 0.4em;
@@ -128,6 +127,14 @@ details summary {
   color: #133955;
   font-size: 1.2em;
 }
+
+/* Slides retain the course navy; notes use a lighter blue. */
+.materials-icon-slides { color: #133955; }
+.materials-icon-notes { color: #5C97CB; }
+.materials-icon-ae { color: #7FBB9E; }
+.materials-icon-lab { color: #A19436; }
+.materials-icon-homework { color: #B98391; }
+.materials-icon-other { color: #D29380; }
 
 a:hover .materials-icon {
   color: #5C97CB;
