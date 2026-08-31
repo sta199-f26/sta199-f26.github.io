@@ -4,9 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-<meta name="dcterms.date" content="2026-08-31">
-<title>Grammar of data visualization – STA 199CCL</title>
+<title>AE 01: GSS + data visualization – STA 199CCL</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,14 +105,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<meta property="og:title" content="Grammar of data visualization – STA 199CCL">
-<meta property="og:description" content="Lecture 3">
-<meta property="og:image" content="https://sta199-f26.github.io/slides/images/03/un-data-viz.png">
+<meta property="og:title" content="AE 01: GSS + data visualization – STA 199CCL">
+<meta property="og:description" content="Suggested answers">
+<meta property="og:image" content="https://sta199-f26.github.io/ae/ae-01-gss-dataviz-A_files/figure-html/health-bar-data-1.png">
 <meta property="og:site_name" content="STA 199CCL">
-<meta property="og:image:height" content="960">
-<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="711">
+<meta property="og:image:width" content="1152">
 </head>
-<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -283,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Grammar of data visualization</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">AE 01: GSS + data visualization</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -479,549 +477,344 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a>
+<a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a>
   <ul class="collapse">
-<li><a href="#while-you-wait" id="toc-while-you-wait" class="nav-link" data-scroll-target="#while-you-wait">While you wait…</a></li>
-  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
+<li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#get-to-know-the-data" id="toc-get-to-know-the-data" class="nav-link" data-scroll-target="#get-to-know-the-data">Get to know the data</a></li>
+  <li><a href="#variables-of-interest" id="toc-variables-of-interest" class="nav-link" data-scroll-target="#variables-of-interest">Variables of interest</a></li>
   </ul>
 </li>
+  <li><a href="#demo-one-categorical-variable" id="toc-demo-one-categorical-variable" class="nav-link" data-scroll-target="#demo-one-categorical-variable">Demo: One categorical variable</a></li>
   <li>
-<a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a>
+<a href="#two-categorical-variables" id="toc-two-categorical-variables" class="nav-link" data-scroll-target="#two-categorical-variables">Two categorical variables</a>
   <ul class="collapse">
-<li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load packages</a></li>
-  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
-  <li><a href="#general-social-survey-gss" id="toc-general-social-survey-gss" class="nav-link" data-scroll-target="#general-social-survey-gss">2024 General Social Survey (GSS)</a></li>
-  <li><a href="#view-the-data" id="toc-view-the-data" class="nav-link" data-scroll-target="#view-the-data">View the data</a></li>
-  <li><a href="#variables-in-our-extract" id="toc-variables-in-our-extract" class="nav-link" data-scroll-target="#variables-in-our-extract">Variables in our extract</a></li>
-  <li><a href="#start-with-a-question" id="toc-start-with-a-question" class="nav-link" data-scroll-target="#start-with-a-question">Start with a question</a></li>
-  <li><a href="#age-by-marital-status" id="toc-age-by-marital-status" class="nav-link" data-scroll-target="#age-by-marital-status">Age by marital status</a></li>
-  <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 📱💻</a></li>
-  <li><a href="#interpret-the-plot" id="toc-interpret-the-plot" class="nav-link" data-scroll-target="#interpret-the-plot">Interpret the plot</a></li>
-  <li><a href="#plot-autopsy" id="toc-plot-autopsy" class="nav-link" data-scroll-target="#plot-autopsy">Plot autopsy</a></li>
-  <li><a href="#mapping-and-aesthetics" id="toc-mapping-and-aesthetics" class="nav-link" data-scroll-target="#mapping-and-aesthetics">Mapping and aesthetics</a></li>
-  <li><a href="#map-a-variable-set-a-value" id="toc-map-a-variable-set-a-value" class="nav-link" data-scroll-target="#map-a-variable-set-a-value">Map a variable; set a value</a></li>
-  <li><a href="#grammar-of-graphics" id="toc-grammar-of-graphics" class="nav-link" data-scroll-target="#grammar-of-graphics">Grammar of graphics</a></li>
+<li><a href="#option-1---demo-stacked-bars" id="toc-option-1---demo-stacked-bars" class="nav-link" data-scroll-target="#option-1---demo-stacked-bars">Option 1 - Demo: Stacked bars</a></li>
+  <li><a href="#option-2---your-turn-dodged-bars" id="toc-option-2---your-turn-dodged-bars" class="nav-link" data-scroll-target="#option-2---your-turn-dodged-bars">Option 2 - Your turn: Dodged bars</a></li>
+  <li><a href="#option-3---demo-filled-bars" id="toc-option-3---demo-filled-bars" class="nav-link" data-scroll-target="#option-3---demo-filled-bars">Option 3 - Demo: Filled bars</a></li>
   </ul>
 </li>
-  <li>
-<a href="#application-exercise" id="toc-application-exercise" class="nav-link" data-scroll-target="#application-exercise">Application exercise</a>
-  <ul class="collapse">
-<li><a href="#lets-get-laptops-out" id="toc-lets-get-laptops-out" class="nav-link" data-scroll-target="#lets-get-laptops-out">Let’s get laptops out!</a></li>
-  <li><a href="#start-with-the-question" id="toc-start-with-the-question" class="nav-link" data-scroll-target="#start-with-the-question">Start with the question</a></li>
-  <li><a href="#interesting-qs---many-variables" id="toc-interesting-qs---many-variables" class="nav-link" data-scroll-target="#interesting-qs---many-variables">Interesting Qs &lt;-&gt; many variables</a></li>
-  </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/03-grammar-of-data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03-grammar-of-data-visualization-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+  <li><a href="#on-your-own" id="toc-on-your-own" class="nav-link" data-scroll-target="#on-your-own">On your own</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/ae/ae-01-gss-dataviz-A.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Grammar of data visualization</h1>
-<p class="subtitle lead">Lecture 3</p>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">AE 01: GSS + data visualization</h1>
+<p class="subtitle lead">Suggested answers</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Application exercise</div>
+    <div class="quarto-category">Answers</div>
+  </div>
+  </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Dr.&nbsp;Mine Çetinkaya-Rundel </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Duke University <br> STA 199 - Fall 2026
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 31, 2026</p>
-    </div>
-  </div>
+    
   
     
   </div>
   
 
 
-</header><section id="warm-up" class="level1"><h1>Warm up</h1>
-<section id="while-you-wait" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="while-you-wait">While you wait…</h2>
-<div class="columns">
-<div class="column egret-background" style="width:25%;">
-<p><strong>1. Clone your <code>ae</code> repository</strong></p>
-<p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p>
+</header><div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="column gray-background" style="width:75%;">
-<p><strong>2. Participate</strong> 📱💻</p>
-<div class="wooclap">
-<p>Remember this visualization from the code along video – what was it about?</p>
-</div>
-<div class="columns">
-<div class="column" style="width:80%;">
-<p><a href="images/03/un-data-viz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/03/un-data-viz.png" class="img-fluid"></a></p>
-</div>
-<div class="column xsmall" style="width:15%;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/03/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/03/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
-</figure>
-</div>
-<p>Go to <a href="https://app.wooclap.com/IOAADOR">wooclap.com</a> and use the code IOAADOR.</p>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>These are suggested answers. This document should be used as a reference only; it’s not designed to be an exhaustive key.</p>
 </div>
 </div>
-</section><section id="outline" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="outline">Outline</h2>
-<ul>
-<li>
-<p>Last week:</p>
-<ul>
-<li><p>We introduced you to the course toolkit.</p></li>
-<li><p>You <strong>cloned</strong> your <code>lab</code> repository and started making some updates in your Quarto documents.</p></li>
-<li><p>You <strong>committed and pushed</strong> your changes back – at least most of you did!</p></li>
-</ul>
-</li>
-</ul>
-<p>. . .</p>
-<ul>
-<li>
-<p>Today:</p>
-<ul>
-<li><p>You will <strong>clone</strong> your <code>ae</code> (application exercise) repository.</p></li>
-<li><p>We will introduce data visualization.</p></li>
-<li><p>You will work on the application exercise on data visualization, <strong>commit</strong> your changes, and <strong>push</strong> them.</p></li>
-</ul>
-</li>
-</ul></section></section><section id="data-visualization" class="level1 page-columns page-full"><h1>Data visualization</h1>
-<section id="load-packages" class="level2"><h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
+<p>In this mini-analysis, we use data from the 2024 General Social Survey (GSS) to get practice with creating and interpreting data visualizations.</p>
+<section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<section id="packages" class="level3"><h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>We’ll use the <strong>tidyverse</strong> package for this analysis.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reminder
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>tidyverse</strong> is the collection of R packages designed for data science.</p>
-</div>
-</div>
-</section><section id="load-the-data" class="level2"><h2 class="anchored" data-anchor-id="load-the-data">Load the data</h2>
+</section><section id="data" class="level3"><h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The data are stored as a CSV (comma-separated values) file in your repository’s <code>data</code> folder. Let’s read the file and save it as an object called <code>gss</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gss-2024.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reminder
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We can read this as “read the CSV file called <code>gss-2024.csv</code> in the data folder” and save the result as <code>gss</code>.</p>
-</div>
-</div>
-</section><section id="general-social-survey-gss" class="level2 smaller page-columns page-full"><h2 class="smaller anchored" data-anchor-id="general-social-survey-gss">2024 General Social Survey (GSS)</h2>
-<p>GSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.</p>
-<p>We’re working with GSS data from the most recent wave:</p>
-<ul>
-<li>Each row represents one survey respondent.</li>
-<li>The variables describe demographics, education, family, happiness, employment, and political identification.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The GSS is a cross-sectional survey. We can describe associations, but these data do not establish causation.</p>
-</div>
-</div>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Source: <a href="https://gss.norc.org/about-the-gss.html">gss.norc.org/about-the-gss.html</a>.</p>
-</div></div></section><section id="view-the-data" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="view-the-data">View the data</h2>
+</section><section id="get-to-know-the-data" class="level3"><h3 class="anchored" data-anchor-id="get-to-know-the-data">Get to know the data</h3>
+<p>We can use the <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> function to get an overview (or “glimpse”) of the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gss</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3,294 × 9
-    year marital_status   age education_years children happiness    
-   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        
- 1  2024 Never married     33              16        2 Not too happy
- 2  2024 Never married     64              16        0 Pretty happy 
- 3  2024 Married           69              14        0 Pretty happy 
- 4  2024 Never married     19              12        0 Pretty happy 
- 5  2024 Divorced          70              13        3 Not too happy
- 6  2024 Married           53              14        2 Pretty happy 
- 7  2024 Married           48              13        6 Pretty happy 
- 8  2024 Divorced          30              14        1 Not too happy
- 9  2024 Married           60              14        2 Very happy   
-10  2024 Never married     25              12        0 Pretty happy 
-# ℹ 3,284 more rows
-# ℹ 3 more variables: health &lt;chr&gt;, employment_status &lt;chr&gt;,
-#   party_id &lt;chr&gt;</code></pre>
+<pre><code>Rows: 3,294
+Columns: 9
+$ year              &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024…
+$ marital_status    &lt;chr&gt; "Never married", "Never married", "Married", "Never …
+$ age               &lt;dbl&gt; 33, 64, 69, 19, 70, 53, 48, 30, 60, 25, 23, 68, 43, …
+$ education_years   &lt;dbl&gt; 16, 16, 14, 12, 13, 14, 13, 14, 14, 12, 18, 5, 14, 1…
+$ children          &lt;dbl&gt; 2, 0, 0, 0, 3, 2, 6, 1, 2, 0, 0, 1, 2, 1, 3, 1, 2, N…
+$ happiness         &lt;chr&gt; "Not too happy", "Pretty happy", "Pretty happy", "Pr…
+$ health            &lt;chr&gt; "Good", "Good", "Good", "Good", "Good", "Good", "Goo…
+$ employment_status &lt;chr&gt; "Working full time", "Retired", "Retired", "Working …
+$ party_id          &lt;chr&gt; "Not very strong democrat", "Strong democrat", "Stro…</code></pre>
 </div>
 </div>
-</section><section id="variables-in-our-extract" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variables-in-our-extract">Variables in our extract</h2>
-<table class="caption-top table">
-<thead><tr class="header">
-<th>Variable</th>
-<th>Description</th>
-<th>Type</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>marital_status</code></td>
-<td>Current marital status</td>
-<td>Categorical</td>
-</tr>
-<tr class="even">
-<td><code>age</code></td>
-<td>Age in years</td>
-<td>Numerical</td>
-</tr>
-<tr class="odd">
-<td><code>education_years</code></td>
-<td>Completed years of education</td>
-<td>Numerical</td>
-</tr>
-<tr class="even">
-<td><code>children</code></td>
-<td>Number of children; 8 means 8 or more</td>
-<td>Numerical</td>
-</tr>
-<tr class="odd">
-<td><code>happiness</code></td>
-<td>Self-reported happiness</td>
-<td>Categorical</td>
-</tr>
-<tr class="even">
-<td><code>health</code></td>
-<td>Self-reported general health</td>
-<td>Categorical</td>
-</tr>
-<tr class="odd">
-<td><code>employment_status</code></td>
-<td>Current employment status</td>
-<td>Categorical</td>
-</tr>
-<tr class="even">
-<td><code>party_id</code></td>
-<td>Party identification</td>
-<td>Categorical</td>
-</tr>
-</tbody>
-</table></section><section id="start-with-a-question" class="level2"><h2 class="anchored" data-anchor-id="start-with-a-question">Start with a question</h2>
-<div class="question hand large">
-<p>How does age vary across marital-status groups?</p>
-</div>
-<p>Before writing code:</p>
 <ul>
-<li>Which variables do we need?</li>
-<li>What type is each variable?</li>
-<li>What kind of plot might answer the question?</li>
-</ul></section><section id="age-by-marital-status" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="age-by-marital-status">Age by marital status</h2>
-<div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">marital_status</span>, y <span class="op">=</span> <span class="va">age</span>, fill <span class="op">=</span> <span class="va">marital_status</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Age varies substantially across marital-status groups"</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"Marital status"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Age (years)"</span>,</span>
-<span>    caption <span class="op">=</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 94 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="img-fluid figure-img" width="864"></a></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="participate" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="participate">Participate 📱💻</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-<div class="wooclap">
-<p>The plot was created, but R displayed the warning below. What happened to the 94 observations?</p>
-</div>
-<pre class="text"><code>Warning: Removed 94 rows containing non-finite values
-outside the scale range (`stat_boxplot()`).</code></pre>
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/03/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/03/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
-</figure>
-</div>
-<p>Go to <a href="https://app.wooclap.com/IOAADOR">wooclap.com</a> and use the code IOAADOR.</p>
-</div>
-</div>
-</section><section id="interpret-the-plot" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="interpret-the-plot">Interpret the plot</h2>
-<div class="question">
-<p>With a partner:</p>
-<ul>
-<li>Which group has the highest median age? The lowest?</li>
-<li>Which groups have the greatest variability?</li>
-<li>What does one box summarize?</li>
-<li>Can this plot tell us whether marital status causes differences in age?</li>
+<li>What does each observation (row) in the data set represent?</li>
 </ul>
-</div>
+<p>Each observation represents a respondent to the 2024 GSS.</p>
+<ul>
+<li>How many observations (rows) are in the data set?</li>
+</ul>
+<p>There are 3294 respondents in the data set.</p>
+<ul>
+<li>How many variables (columns) are in the data set?</li>
+</ul>
+<p>There are 9 variables in the data set.</p>
+</section><section id="variables-of-interest" class="level3"><h3 class="anchored" data-anchor-id="variables-of-interest">Variables of interest</h3>
+<p>The variables we’ll focus on are the following:</p>
+<ul>
+<li>
+<code>marital_status</code>: Respondent’s current marital status.</li>
+<li>
+<code>happiness</code>: Respondent’s self-reported general happiness.</li>
+<li>
+<code>health</code>: Respondent’s self-reported general health.</li>
+</ul></section></section><section id="demo-one-categorical-variable" class="level2"><h2 class="anchored" data-anchor-id="demo-one-categorical-variable">Demo: One categorical variable</h2>
+<p>We begin with the question:</p>
+<blockquote class="blockquote">
+<p>What self-rated health levels are most common among respondents in the 2024 GSS?</p>
+</blockquote>
+<ul>
+<li>What type of plot is a good starting point for this question?</li>
+</ul>
+<p>Both the question and the variable type should guide our choice of visualization. Since <code>health</code> is a categorical variable, a bar chart is a useful place to start.</p>
+<ul>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> creates the initial base coordinate system. The first argument is the data you’re plotting, <code>gss</code>.</li>
+</ul>
 <div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></a></p>
+<figure class="figure"><p><a href="ae-01-gss-dataviz-A_files/figure-html/health-bar-data-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="ae-01-gss-dataviz-A_files/figure-html/health-bar-data-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="plot-autopsy" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="plot-autopsy">Plot autopsy</h2>
-<div class="cell" data-code-annotations="below">
-<div class="sourceCode" id="annotated-cell-5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">gss</span>,</span>
-<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">marital_status</span>, y <span class="op">=</span> <span class="va">age</span>, fill <span class="op">=</span> <span class="va">marital_status</span><span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="1">The <strong>data</strong> to visualize</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="2">The variables <strong>mapped</strong> to visual properties</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="3">The <strong>geometric object</strong> used to represent the observations</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The plot <strong>labels</strong></span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="7" data-code-annotation="5">The <strong>scale</strong> used to map values to colors</span>
-</dd>
-</dl>
-</div>
-</div>
-<p>. . .</p>
-<div class="question">
-<p>Which component would you change to plot different variables? Which component controls the variable represented by the fill color?</p>
-</div>
-</section><section id="mapping-and-aesthetics" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="mapping-and-aesthetics">Mapping and aesthetics</h2>
-<p><strong>Aesthetics</strong> are visual properties such as position, color, fill, shape, size, and transparency.</p>
-<p>. . .</p>
-<div class="columns">
-<div class="column" style="width:42%;">
-<p>For the GSS boxplot:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">marital_status</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">age</span>,</span>
-<span>  fill <span class="op">=</span> <span class="va">marital_status</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
-<thead><tr class="header">
-<th>Variable</th>
-<th>Aesthetic</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>marital_status</code></td>
-<td>x position</td>
-</tr>
-<tr class="even">
-<td><code>age</code></td>
-<td>y position</td>
-</tr>
-<tr class="odd">
-<td><code>marital_status</code></td>
-<td>fill color</td>
-</tr>
-</tbody>
-</table>
-</div><div class="column" style="width:58%;">
+<ul>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> tells how variables in the data map to visual properties of the graph.</li>
+</ul>
 <div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">health</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="ae-01-gss-dataviz-A_files/figure-html/health-bar-mapping-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="ae-01-gss-dataviz-A_files/figure-html/health-bar-mapping-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
-</section><section id="map-a-variable-set-a-value" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="map-a-variable-set-a-value">Map a variable; set a value</h2>
-<div class="columns">
-<div class="column">
-<p><strong>Map:</strong> fill varies with a variable, so ggplot2 creates a legend</p>
+<ul>
+<li>A <code>geom_</code> function specifies how observations will be represented. <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> creates a bar chart and counts the rows in each category for us.</li>
+</ul>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">marital_status</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">health</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="ae-01-gss-dataviz-A_files/figure-html/health-bar-geom-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="ae-01-gss-dataviz-A_files/figure-html/health-bar-geom-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<div class="column fragment">
-<p><strong>Set:</strong> every box has the same fill, so no legend is needed</p>
+<ul>
+<li>Which recorded health response is most common? Which is least common?</li>
+</ul>
+<p><strong>Good</strong> is the most common recorded health response among respondents in this data set, and <strong>poor</strong> is the least common. The <code>NA</code> bar represents the small number of respondents who did not provide a health response.</p>
+<ul>
+<li>The <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> function allows us to give the plot a meaningful title, axis labels, and a source.</li>
+</ul>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"pink"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">health</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Self-rated health among GSS respondents in 2024"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Self-rated health"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Number of respondents"</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="ae-01-gss-dataviz-A_files/figure-html/health-bar-labs-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="ae-01-gss-dataviz-A_files/figure-html/health-bar-labs-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="fragment callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Preview, commit, push
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Variables belong inside <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>; fixed visual choices belong outside it.</p>
+<p>Now that we’re done with our first task, it’s time to take a snapshot.</p>
+<ol type="1">
+<li>Preview your Quarto document and review the output. If all looks good…</li>
+<li>Go to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.</li>
+<li>Click Sync to push your changes to your application exercise repo on GitHub.</li>
+<li>Go to your repo on GitHub and confirm that you can see the updated files – you may need to refresh your browser window. Once your updated files are in your GitHub repo, you’re good to go!</li>
+</ol>
 </div>
 </div>
-</section><section id="grammar-of-graphics" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="grammar-of-graphics">Grammar of graphics</h2>
-<div class="columns">
-<div class="column">
-<ul>
-<li><p>When building or reading a plot, work through the layers as if they’re a checklist.</p></li>
-<li><p>Not every plot needs every component, but each component is a separate decision.</p></li>
-</ul>
-</div><div class="column">
-<p><a href="images/03/gg-layers.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/03/gg-layers.png" class="img-fluid"></a></p>
-</div>
-</div>
-</section></section><section id="application-exercise" class="level1"><h1>Application exercise</h1>
-<section id="lets-get-laptops-out" class="level2"><h2 class="anchored" data-anchor-id="lets-get-laptops-out">Let’s get laptops out!</h2>
-<div class="appex">
-<ul>
-<li><p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p></li>
-<li><p>Open <code>ae-01-gss-dataviz.qmd</code> in Positron and follow the instructions to complete the application exercise.</p></li>
-</ul>
-</div>
-</section><section id="start-with-the-question" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="start-with-the-question">Start with the question</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead><tr class="header">
-<th>Question</th>
-<th>Variables</th>
-<th>A useful first plot</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>What values are common?</td>
-<td>One categorical</td>
-<td><span class="fragment">Bar chart</span></td>
-</tr>
-<tr class="even">
-<td>What is the distribution?</td>
-<td>One numerical</td>
-<td><span class="fragment">Histogram or boxplot</span></td>
-</tr>
-<tr class="odd">
-<td>Do groups differ?</td>
-<td>Numerical + categorical</td>
-<td><span class="fragment">Boxplot or histogram by group</span></td>
-</tr>
-<tr class="even">
-<td>Are two categorical variables associated?</td>
-<td>Two categorical</td>
-<td><span class="fragment">Filled or dodged bar chart</span></td>
-</tr>
-<tr class="odd">
-<td>Are two numerical variables associated?</td>
-<td>Two numerical</td>
-<td><span class="fragment">Scatterplot</span></td>
-</tr>
-</tbody>
-</table></section><section id="interesting-qs---many-variables" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="interesting-qs---many-variables">Interesting Qs &lt;-&gt; many variables</h2>
-<p>Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as <code>color</code>, <code>shape</code>, <code>size</code>, <code>linewidth</code>, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):</p>
+</section><section id="two-categorical-variables" class="level2"><h2 class="anchored" data-anchor-id="two-categorical-variables">Two categorical variables</h2>
+<p>Now we ask:</p>
+<blockquote class="blockquote">
+<p>How does self-reported happiness vary across marital-status groups?</p>
+</blockquote>
+<p>Both <code>marital_status</code> and <code>happiness</code> are categorical variables.</p>
+<section id="option-1---demo-stacked-bars" class="level3"><h3 class="anchored" data-anchor-id="option-1---demo-stacked-bars">Option 1 - Demo: Stacked bars</h3>
+<p>Map <code>happiness</code> to the fill color. By default, <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> stacks the happiness categories within each marital-status bar.</p>
 <div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">marital_status</span>, fill <span class="op">=</span> <span class="va">happiness</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Happiness by marital status"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Marital status"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Number of respondents"</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"Happiness"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/four-vars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="03-grammar-of-data-visualization_files/figure-revealjs/four-vars-1.png" class="img-fluid figure-img" width="864"></a></p>
+<figure class="figure"><p><a href="ae-01-gss-dataviz-A_files/figure-html/happiness-marital-stacked-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="ae-01-gss-dataviz-A_files/figure-html/happiness-marital-stacked-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
+<p>This graph displays counts. It also shows that the marital-status groups have different numbers of respondents, which makes the colored segments difficult to compare directly.</p>
+</section><section id="option-2---your-turn-dodged-bars" class="level3"><h3 class="anchored" data-anchor-id="option-2---your-turn-dodged-bars">Option 2 - Your turn: Dodged bars</h3>
+<p>Modify the stacked bar chart by setting <code>position = "dodge"</code> inside <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>. This places the happiness categories side by side.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">marital_status</span>, fill <span class="op">=</span> <span class="va">happiness</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Happiness by marital status"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Marital status"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Number of respondents"</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"Happiness"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="ae-01-gss-dataviz-A_files/figure-html/happiness-marital-dodged-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="ae-01-gss-dataviz-A_files/figure-html/happiness-marital-dodged-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Dodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.</p>
+</section><section id="option-3---demo-filled-bars" class="level3"><h3 class="anchored" data-anchor-id="option-3---demo-filled-bars">Option 3 - Demo: Filled bars</h3>
+<p>Suppose our question is specifically about the distribution of happiness <em>within each marital-status group</em>. Setting <code>position = "fill"</code> gives every marital-status bar the same total height and displays proportions instead of counts.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">marital_status</span>, fill <span class="op">=</span> <span class="va">happiness</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Distribution of happiness within marital-status groups"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Marital status"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Proportion within marital-status group"</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"Happiness"</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="ae-01-gss-dataviz-A_files/figure-html/happiness-marital-filled-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="ae-01-gss-dataviz-A_files/figure-html/happiness-marital-filled-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>What is the denominator used to calculate the proportions in each bar?</li>
+</ul>
+<p>The denominator is the number of respondents in that marital-status group who have a recorded happiness response. Each bar adds to 100%.</p>
+<ul>
+<li>What patterns do you see?</li>
+</ul>
+<p>“Pretty happy” is the most prevalent response across all marital-status groups. The married group has the largest proportion reporting “Very happy,” while the separated group has the largest proportion reporting “Not too happy.”</p>
+<ul>
+<li>How do these plots answer the question about how happiness varies across marital-status groups? Which plot is the best?</li>
+</ul>
+<p>Stacked bars display counts split into groups. Dodged bars make it easier to compare counts for each combination. Filled bars compare within-group proportions; the denominator is the total for each x-axis group. The best position depends on the question you want the plot to answer.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview, commit, push
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that we’re done with our second task, it’s time to take another snapshot.</p>
+<ol type="1">
+<li>Preview your Quarto document.</li>
+<li>Stage and commit your changes with a simple and informative commit message.</li>
+<li>Push your changes to GitHub and confirm that the updated files appear in your repository.</li>
+</ol>
+</div>
+</div>
+</section></section><section id="on-your-own" class="level2"><h2 class="anchored" data-anchor-id="on-your-own">On your own</h2>
+<p>Do the following at the end of class or, if you run out of time, some before the next class.</p>
+<p>Use <code>gss</code> to answer one of the following questions with an appropriate plot:</p>
+<ul>
+<li>Is self-reported happiness distributed differently across self-rated health groups?</li>
+<li>How does employment status vary across marital-status groups?</li>
+<li>What is the relationship between education years and age? Does it differ by marital status?</li>
+</ul>
+<p>State your question, identify the variable type or types, and explain why your plot answers the question. Give the chart a meaningful title and labels, then describe the patterns using non-causal language.</p>
+<p><strong>One possible answer:</strong> Both <code>health</code> and <code>happiness</code> are categorical. A filled bar chart lets us compare the distribution of happiness within each health group.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">health</span>, fill <span class="op">=</span> <span class="va">happiness</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Happiness responses differ across self-rated health groups"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Self-rated health"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Proportion within health group"</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"Happiness"</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="ae-01-gss-dataviz-A_files/figure-html/health-happiness-filled-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="ae-01-gss-dataviz-A_files/figure-html/health-happiness-filled-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The proportion reporting “Very happy” is highest among respondents who rate their health as excellent. The proportion reporting “Not too happy” is highest among those who rate their health as poor. This is an association in the 2024 GSS data, not evidence that health causes happiness or that happiness causes health.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview, commit, push
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you’re done, take one last snapshot:</p>
+<ol type="1">
+<li>Preview your Quarto document.</li>
+<li>Stage and commit your changes with a simple and informative commit message.</li>
+<li>Push your changes to GitHub and confirm that the updated files appear in your repository.</li>
+</ol>
+</div>
+</div>
 
 
-</section></section></main><!-- /main --><script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1440,7 +1233,7 @@ Tip
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/03-grammar-of-data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/ae/ae-01-gss-dataviz-A.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

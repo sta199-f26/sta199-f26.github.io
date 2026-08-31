@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-
-<title>gss-2024 – STA 199CCL</title>
+<title>AE 01: GSS + data visualization – STA 199CCL</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,32 +17,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
-
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a49dc68354f0599563519d38dd448cd9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-7d0aad7eb9a93105b90922b8fe7a50ec.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-a49dc68354f0599563519d38dd448cd9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a49dc68354f0599563519d38dd448cd9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7d0aad7eb9a93105b90922b8fe7a50ec.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-a49dc68354f0599563519d38dd448cd9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -73,13 +102,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-
-
-<meta property="og:title" content="STA 199CCL">
+<meta property="og:title" content="AE 01: GSS + data visualization – STA 199CCL">
 <meta property="og:description" content="Homepage for STA 199CCL - Introduction to Data Science at Duke University, Fall 2026.">
 <meta property="og:site_name" content="STA 199CCL">
 </head>
-
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -245,36 +271,29 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">AE 01: GSS + data visualization</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
     <div class="dropdown">
       <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
               <i class="bi bi-person-raised-hand pe-1"></i>
             Office hours
@@ -287,11 +306,11 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
     <div class="dropdown">
       <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
               <i class="bi bi-megaphone-fill pe-1"></i>
             Announcements
@@ -310,7 +329,7 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div>
@@ -321,7 +340,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
@@ -329,51 +348,51 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-support.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-support.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Support</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-team.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-team.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Team</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-links.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Useful links</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course-faq.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FAQ</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -382,33 +401,33 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../computing-access.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Access</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../computing-code-alongs.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing-code-alongs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Code alongs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cheatsheets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -417,105 +436,273 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-      </ul>
-  </li>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 "></ul>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Labs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../hw.html" class="sidebar-item-text sidebar-link">
+  <a href="../hw.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Homeworks</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../ae.html" class="sidebar-item-text sidebar-link">
+  <a href="../ae.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Application exercises</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exam-review.html" class="sidebar-item-text sidebar-link">
+  <a href="../exam-review.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exam reviews</span></a>
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#gss-2024-teaching-extract" id="toc-gss-2024-teaching-extract" class="nav-link active" data-scroll-target="#gss-2024-teaching-extract">GSS 2024 teaching extract</a></li>
+<li>
+<a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a>
+  <ul class="collapse">
+<li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#get-to-know-the-data" id="toc-get-to-know-the-data" class="nav-link" data-scroll-target="#get-to-know-the-data">Get to know the data</a></li>
+  <li><a href="#variables-of-interest" id="toc-variables-of-interest" class="nav-link" data-scroll-target="#variables-of-interest">Variables of interest</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/data/gss-2024.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</li>
+  <li><a href="#demo-one-categorical-variable" id="toc-demo-one-categorical-variable" class="nav-link" data-scroll-target="#demo-one-categorical-variable">Demo: One categorical variable</a></li>
+  <li>
+<a href="#two-categorical-variables" id="toc-two-categorical-variables" class="nav-link" data-scroll-target="#two-categorical-variables">Two categorical variables</a>
+  <ul class="collapse">
+<li><a href="#option-1---demo-stacked-bars" id="toc-option-1---demo-stacked-bars" class="nav-link" data-scroll-target="#option-1---demo-stacked-bars">Option 1 - Demo: Stacked bars</a></li>
+  <li><a href="#option-2---your-turn-dodged-bars" id="toc-option-2---your-turn-dodged-bars" class="nav-link" data-scroll-target="#option-2---your-turn-dodged-bars">Option 2 - Your turn: Dodged bars</a></li>
+  <li><a href="#option-3---demo-filled-bars" id="toc-option-3---demo-filled-bars" class="nav-link" data-scroll-target="#option-3---demo-filled-bars">Option 3 - Demo: Filled bars</a></li>
+  </ul>
+</li>
+  <li><a href="#on-your-own" id="toc-on-your-own" class="nav-link" data-scroll-target="#on-your-own">On your own</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/ae/ae-01-gss-dataviz.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-</div>
-
-
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Dr.&nbsp;Mine Çetinkaya-Rundel </p>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">AE 01: GSS + data visualization</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Application exercise</div>
   </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Duke University <br> STA 199 - Fall 2026
-          </p>
-      </div>
   </div>
+
+
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
   
 
 
-</header>
-
-
-<section id="gss-2024-teaching-extract" class="level1">
-<h1>GSS 2024 teaching extract</h1>
-<p><code>gss-2024.csv</code> is a small teaching extract from the 2024 General Social Survey (GSS) Cross-section, Release 3a (July 2026), produced by NORC at the University of Chicago.</p>
-<p>It retains respondents with a substantive response to <code>MARITAL</code> and contains:</p>
+</header><p>In this mini-analysis, we use data from the 2024 General Social Survey (GSS) to get practice with creating and interpreting data visualizations.</p>
+<section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<section id="packages" class="level3"><h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>We’ll use the <strong>tidyverse</strong> package for this analysis.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="data" class="level3"><h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The data are stored as a CSV (comma-separated values) file in your repository’s <code>data</code> folder. Let’s read the file and save it as an object called <code>gss</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gss-2024.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="get-to-know-the-data" class="level3"><h3 class="anchored" data-anchor-id="get-to-know-the-data">Get to know the data</h3>
+<p>We can use the <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> function to get an overview (or “glimpse”) of the data.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gss</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3,294
+Columns: 9
+$ year              &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024…
+$ marital_status    &lt;chr&gt; "Never married", "Never married", "Married", "Never …
+$ age               &lt;dbl&gt; 33, 64, 69, 19, 70, 53, 48, 30, 60, 25, 23, 68, 43, …
+$ education_years   &lt;dbl&gt; 16, 16, 14, 12, 13, 14, 13, 14, 14, 12, 18, 5, 14, 1…
+$ children          &lt;dbl&gt; 2, 0, 0, 0, 3, 2, 6, 1, 2, 0, 0, 1, 2, 1, 3, 1, 2, N…
+$ happiness         &lt;chr&gt; "Not too happy", "Pretty happy", "Pretty happy", "Pr…
+$ health            &lt;chr&gt; "Good", "Good", "Good", "Good", "Good", "Good", "Goo…
+$ employment_status &lt;chr&gt; "Working full time", "Retired", "Retired", "Working …
+$ party_id          &lt;chr&gt; "Not very strong democrat", "Strong democrat", "Stro…</code></pre>
+</div>
+</div>
 <ul>
-<li><code>year</code>: GSS survey year;</li>
-<li><code>marital_status</code>: current marital status;</li>
-<li><code>age</code>: respondent age in years (top-coded at 89);</li>
-<li><code>education_years</code>: completed years of formal education;</li>
-<li><code>children</code>: number of children (8 means eight or more);</li>
-<li><code>happiness</code>: self-reported general happiness;</li>
-<li><code>health</code>: self-reported general health;</li>
-<li><code>employment_status</code>: current employment status;</li>
-<li><code>party_id</code>: party identification.</li>
+<li>What does each observation (row) in the data set represent?</li>
 </ul>
-<p>The source file is <a href="https://gss.norc.org/content/dam/gss/get-the-data/documents/stata/GSS_stata.zip">GSS 1972–2024 Cross-Sectional Cumulative Data, Release 3a</a>. The preparation script is <code>gss-2024-prep.R</code>.</p>
-<p>Use the data descriptively: it is a cross-sectional survey, so associations do not establish causation. <code>happiness</code>, <code>health</code>, <code>employment_status</code>, and <code>party_id</code> retain <code>NA</code> when the original response was non-substantive (for example, “don’t know” or “no answer”). The extract intentionally does not impute missing responses.</p>
+<p>Add your response here.</p>
+<ul>
+<li>How many observations (rows) are in the data set?</li>
+</ul>
+<p>Add your response here.</p>
+<ul>
+<li>How many variables (columns) are in the data set?</li>
+</ul>
+<p>Add your response here.</p>
+</section><section id="variables-of-interest" class="level3"><h3 class="anchored" data-anchor-id="variables-of-interest">Variables of interest</h3>
+<p>The variables we’ll focus on are the following:</p>
+<ul>
+<li>
+<code>marital_status</code>: Respondent’s current marital status.</li>
+<li>
+<code>happiness</code>: Respondent’s self-reported general happiness.</li>
+<li>
+<code>health</code>: Respondent’s self-reported general health.</li>
+</ul></section></section><section id="demo-one-categorical-variable" class="level2"><h2 class="anchored" data-anchor-id="demo-one-categorical-variable">Demo: One categorical variable</h2>
+<p>We begin with the question:</p>
+<blockquote class="blockquote">
+<p>What self-rated health levels are most common among respondents in the 2024 GSS?</p>
+</blockquote>
+<ul>
+<li>What type of plot is a good starting point for this question?</li>
+</ul>
+<p>Both the question and the variable type should guide our choice of visualization. Since <code>health</code> is a categorical variable, a bar chart is a useful place to start.</p>
+<ul>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> creates the initial base coordinate system. The first argument is the data you’re plotting, <code>gss</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> tells how variables in the data map to visual properties of the graph.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>A <code>geom_</code> function specifies how observations will be represented. <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> creates a bar chart and counts the rows in each category for us.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Which recorded health response is most common? Which is least common?</li>
+</ul>
+<p>Add your response here.</p>
+<ul>
+<li>The <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> function allows us to give the plot a meaningful title, axis labels, and a source.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview, commit, push
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that we’re done with our first task, it’s time to take a snapshot.</p>
+<ol type="1">
+<li>Preview your Quarto document and review the output. If all looks good…</li>
+<li>Go to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.</li>
+<li>Click Sync to push your changes to your application exercise repo on GitHub.</li>
+<li>Go to your repo on GitHub and confirm that you can see the updated files – you may need to refresh your browser window. Once your updated files are in your GitHub repo, you’re good to go!</li>
+</ol>
+</div>
+</div>
+</section><section id="two-categorical-variables" class="level2"><h2 class="anchored" data-anchor-id="two-categorical-variables">Two categorical variables</h2>
+<p>Now we ask:</p>
+<blockquote class="blockquote">
+<p>How does self-reported happiness vary across marital-status groups?</p>
+</blockquote>
+<p>Both <code>marital_status</code> and <code>happiness</code> are categorical variables.</p>
+<section id="option-1---demo-stacked-bars" class="level3"><h3 class="anchored" data-anchor-id="option-1---demo-stacked-bars">Option 1 - Demo: Stacked bars</h3>
+<p>Map <code>happiness</code> to the fill color. By default, <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> stacks the happiness categories within each marital-status bar.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This graph displays counts. It also shows that the marital-status groups have different numbers of respondents, which makes the colored segments difficult to compare directly.</p>
+</section><section id="option-2---your-turn-dodged-bars" class="level3"><h3 class="anchored" data-anchor-id="option-2---your-turn-dodged-bars">Option 2 - Your turn: Dodged bars</h3>
+<p>Modify the stacked bar chart by setting <code>position = "dodge"</code> inside <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>. This places the happiness categories side by side.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.</p>
+</section><section id="option-3---demo-filled-bars" class="level3"><h3 class="anchored" data-anchor-id="option-3---demo-filled-bars">Option 3 - Demo: Filled bars</h3>
+<p>Suppose our question is specifically about the distribution of happiness <em>within each marital-status group</em>. Setting <code>position = "fill"</code> gives every marital-status bar the same total height and displays proportions instead of counts.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>What is the denominator used to calculate the proportions in each bar?</li>
+</ul>
+<p>Add your response here.</p>
+<ul>
+<li>What patterns do you see?</li>
+</ul>
+<p>Add your response here.</p>
+<ul>
+<li>How do these plots answer the question about how happiness varies across marital-status groups? Which plot is the best?</li>
+</ul>
+<p>Add your response here.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview, commit, push
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now that we’re done with our second task, it’s time to take another snapshot.</p>
+<ol type="1">
+<li>Preview your Quarto document.</li>
+<li>Stage and commit your changes with a simple and informative commit message.</li>
+<li>Push your changes to GitHub and confirm that the updated files appear in your repository.</li>
+</ol>
+</div>
+</div>
+</section></section><section id="on-your-own" class="level2"><h2 class="anchored" data-anchor-id="on-your-own">On your own</h2>
+<p>Do the following at the end of class or, if you run out of time, some before the next class.</p>
+<p>Use <code>gss</code> to answer one of the following questions with an appropriate plot:</p>
+<ul>
+<li>Is self-reported happiness distributed differently across self-rated health groups?</li>
+<li>How does employment status vary across marital-status groups?</li>
+<li>What is the relationship between education years and age? Does it differ by marital status?</li>
+</ul>
+<p>State your question, identify the variable type or types, and explain why your plot answers the question. Give the chart a meaningful title and labels, then describe the patterns using non-causal language.</p>
+<p>Add response here. Insert code cells as needed.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview, commit, push
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you’re done, take one last snapshot:</p>
+<ol type="1">
+<li>Preview your Quarto document.</li>
+<li>Stage and commit your changes with a simple and informative commit message.</li>
+<li>Push your changes to GitHub and confirm that the updated files appear in your repository.</li>
+</ol>
+</div>
+</div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -928,21 +1115,18 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/data/gss-2024.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/ae/ae-01-gss-dataviz.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>

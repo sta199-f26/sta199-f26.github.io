@@ -4,7 +4,7 @@
     "href": "ae.html",
     "title": "Application exercises",
     "section": "",
-    "text": "More AEs to be added as the semester progresses.\n\n\n\n\n\n\n\n\nTitle\nSubtitle\n\n\n\n\n\nNo matching items",
+    "text": "More AEs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\nSubtitle\n\n\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\nSuggested answers\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\n \n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Application exercises"
     ]
@@ -63,6 +63,41 @@
       "Course information",
       "Team"
     ]
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz-A.html",
+    "href": "ae/ae-01-gss-dataviz-A.html",
+    "title": "AE 01: GSS + data visualization",
+    "section": "",
+    "text": "Important\n\n\n\nThese are suggested answers. This document should be used as a reference only; it’s not designed to be an exhaustive key.\nIn this mini-analysis, we use data from the 2024 General Social Survey (GSS) to get practice with creating and interpreting data visualizations."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz-A.html#getting-started",
+    "href": "ae/ae-01-gss-dataviz-A.html#getting-started",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Getting started",
+    "text": "Getting started\nPackages\nWe’ll use the tidyverse package for this analysis.\n\nlibrary(tidyverse)\n\nData\nThe data are stored as a CSV (comma-separated values) file in your repository’s data folder. Let’s read the file and save it as an object called gss.\n\ngss &lt;- read_csv(\"data/gss-2024.csv\")\n\nGet to know the data\nWe can use the glimpse() function to get an overview (or “glimpse”) of the data.\n\nglimpse(gss)\n\nRows: 3,294\nColumns: 9\n$ year              &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024…\n$ marital_status    &lt;chr&gt; \"Never married\", \"Never married\", \"Married\", \"Never …\n$ age               &lt;dbl&gt; 33, 64, 69, 19, 70, 53, 48, 30, 60, 25, 23, 68, 43, …\n$ education_years   &lt;dbl&gt; 16, 16, 14, 12, 13, 14, 13, 14, 14, 12, 18, 5, 14, 1…\n$ children          &lt;dbl&gt; 2, 0, 0, 0, 3, 2, 6, 1, 2, 0, 0, 1, 2, 1, 3, 1, 2, N…\n$ happiness         &lt;chr&gt; \"Not too happy\", \"Pretty happy\", \"Pretty happy\", \"Pr…\n$ health            &lt;chr&gt; \"Good\", \"Good\", \"Good\", \"Good\", \"Good\", \"Good\", \"Goo…\n$ employment_status &lt;chr&gt; \"Working full time\", \"Retired\", \"Retired\", \"Working …\n$ party_id          &lt;chr&gt; \"Not very strong democrat\", \"Strong democrat\", \"Stro…\n\n\n\nWhat does each observation (row) in the data set represent?\n\nEach observation represents a respondent to the 2024 GSS.\n\nHow many observations (rows) are in the data set?\n\nThere are 3294 respondents in the data set.\n\nHow many variables (columns) are in the data set?\n\nThere are 9 variables in the data set.\nVariables of interest\nThe variables we’ll focus on are the following:\n\n\nmarital_status: Respondent’s current marital status.\n\nhappiness: Respondent’s self-reported general happiness.\n\nhealth: Respondent’s self-reported general health."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz-A.html#demo-one-categorical-variable",
+    "href": "ae/ae-01-gss-dataviz-A.html#demo-one-categorical-variable",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Demo: One categorical variable",
+    "text": "Demo: One categorical variable\nWe begin with the question:\n\nWhat self-rated health levels are most common among respondents in the 2024 GSS?\n\n\nWhat type of plot is a good starting point for this question?\n\nBoth the question and the variable type should guide our choice of visualization. Since health is a categorical variable, a bar chart is a useful place to start.\n\n\nggplot() creates the initial base coordinate system. The first argument is the data you’re plotting, gss.\n\n\nggplot(gss)\n\n\n\n\n\n\n\n\n\naes() tells how variables in the data map to visual properties of the graph.\n\n\nggplot(gss, aes(x = health))\n\n\n\n\n\n\n\n\nA geom_ function specifies how observations will be represented. geom_bar() creates a bar chart and counts the rows in each category for us.\n\n\nggplot(gss, aes(x = health)) +\n  geom_bar()\n\n\n\n\n\n\n\n\nWhich recorded health response is most common? Which is least common?\n\nGood is the most common recorded health response among respondents in this data set, and poor is the least common. The NA bar represents the small number of respondents who did not provide a health response.\n\nThe labs() function allows us to give the plot a meaningful title, axis labels, and a source.\n\n\nggplot(gss, aes(x = health)) +\n  geom_bar() +\n  labs(\n    title = \"Self-rated health among GSS respondents in 2024\",\n    x = \"Self-rated health\",\n    y = \"Number of respondents\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nNow that we’re done with our first task, it’s time to take a snapshot.\n\nPreview your Quarto document and review the output. If all looks good…\nGo to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.\nClick Sync to push your changes to your application exercise repo on GitHub.\nGo to your repo on GitHub and confirm that you can see the updated files – you may need to refresh your browser window. Once your updated files are in your GitHub repo, you’re good to go!"
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz-A.html#two-categorical-variables",
+    "href": "ae/ae-01-gss-dataviz-A.html#two-categorical-variables",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Two categorical variables",
+    "text": "Two categorical variables\nNow we ask:\n\nHow does self-reported happiness vary across marital-status groups?\n\nBoth marital_status and happiness are categorical variables.\nOption 1 - Demo: Stacked bars\nMap happiness to the fill color. By default, geom_bar() stacks the happiness categories within each marital-status bar.\n\nggplot(gss, aes(x = marital_status, fill = happiness)) +\n  geom_bar() +\n  labs(\n    title = \"Happiness by marital status\",\n    x = \"Marital status\",\n    y = \"Number of respondents\",\n    fill = \"Happiness\"\n  )\n\n\n\n\n\n\n\nThis graph displays counts. It also shows that the marital-status groups have different numbers of respondents, which makes the colored segments difficult to compare directly.\nOption 2 - Your turn: Dodged bars\nModify the stacked bar chart by setting position = \"dodge\" inside geom_bar(). This places the happiness categories side by side.\n\nggplot(gss, aes(x = marital_status, fill = happiness)) +\n  geom_bar(position = \"dodge\") +\n  labs(\n    title = \"Happiness by marital status\",\n    x = \"Marital status\",\n    y = \"Number of respondents\",\n    fill = \"Happiness\"\n  )\n\n\n\n\n\n\n\nDodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.\nOption 3 - Demo: Filled bars\nSuppose our question is specifically about the distribution of happiness within each marital-status group. Setting position = \"fill\" gives every marital-status bar the same total height and displays proportions instead of counts.\n\nggplot(gss, aes(x = marital_status, fill = happiness)) +\n  geom_bar(position = \"fill\") +\n  labs(\n    title = \"Distribution of happiness within marital-status groups\",\n    x = \"Marital status\",\n    y = \"Proportion within marital-status group\",\n    fill = \"Happiness\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  )\n\n\n\n\n\n\n\n\nWhat is the denominator used to calculate the proportions in each bar?\n\nThe denominator is the number of respondents in that marital-status group who have a recorded happiness response. Each bar adds to 100%.\n\nWhat patterns do you see?\n\n“Pretty happy” is the most prevalent response across all marital-status groups. The married group has the largest proportion reporting “Very happy,” while the separated group has the largest proportion reporting “Not too happy.”\n\nHow do these plots answer the question about how happiness varies across marital-status groups? Which plot is the best?\n\nStacked bars display counts split into groups. Dodged bars make it easier to compare counts for each combination. Filled bars compare within-group proportions; the denominator is the total for each x-axis group. The best position depends on the question you want the plot to answer.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nNow that we’re done with our second task, it’s time to take another snapshot.\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz-A.html#on-your-own",
+    "href": "ae/ae-01-gss-dataviz-A.html#on-your-own",
+    "title": "AE 01: GSS + data visualization",
+    "section": "On your own",
+    "text": "On your own\nDo the following at the end of class or, if you run out of time, some before the next class.\nUse gss to answer one of the following questions with an appropriate plot:\n\nIs self-reported happiness distributed differently across self-rated health groups?\nHow does employment status vary across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\n\nState your question, identify the variable type or types, and explain why your plot answers the question. Give the chart a meaningful title and labels, then describe the patterns using non-causal language.\nOne possible answer: Both health and happiness are categorical. A filled bar chart lets us compare the distribution of happiness within each health group.\n\ngss |&gt;\n  ggplot(aes(x = health, fill = happiness)) +\n  geom_bar(position = \"fill\") +\n  labs(\n    title = \"Happiness responses differ across self-rated health groups\",\n    x = \"Self-rated health\",\n    y = \"Proportion within health group\",\n    fill = \"Happiness\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  )\n\n\n\n\n\n\n\nThe proportion reporting “Very happy” is highest among respondents who rate their health as excellent. The proportion reporting “Not too happy” is highest among those who rate their health as poor. This is an association in the 2024 GSS data, not evidence that health causes happiness or that happiness causes health.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nOnce you’re done, take one last snapshot:\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
   },
   {
     "objectID": "course-overview.html",
@@ -887,172 +922,18 @@
     "text": "Tasks due Wednesday\n\nComplete the getting to know you survey, then accept your GitHub organization invitation\nRead the syllabus\nComplete readings and videos for Wednesday\n\nAll linked from the course website at\nsta199-fa26.github.io"
   },
   {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#while-you-wait",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#while-you-wait",
-    "title": "Grammar of data visualization",
-    "section": "While you wait…",
-    "text": "While you wait…\n\n\n\n\n\n1. Clone your ae repository\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your Positron session in your container.\n\n2. Participate 📱💻\n\nWhat does each point represent in this visualization?\n\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code IOAADOR."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#outline",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#outline",
-    "title": "Grammar of data visualization",
-    "section": "Outline",
-    "text": "Outline\n\nLast week:\n\nWe introduced you to the course toolkit.\nYou cloned your lab repository and started making some updates in your Quarto documents.\nYou committed and pushed your changes back – at least most of you did!\n\n\n\n\nToday:\n\nYou will clone your ae (application exercise) repository.\nWe will introduce data visualization.\nYou will work on the application exercise on data visualization, commit your changes, and push them."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#load-packages",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#load-packages",
-    "title": "Grammar of data visualization",
-    "section": "Load packages",
-    "text": "Load packages\n\nlibrary(tidyverse)\n\n\n\n\n\n\n\n\nReminder\n\n\ntidyverse is the collection of R packages designed for data science."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#load-the-data",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#load-the-data",
-    "title": "Grammar of data visualization",
-    "section": "Load the data",
-    "text": "Load the data\n\ngss &lt;- read_csv(\"data/gss-2024.csv\")\n\n\n\n\n\n\n\n\nReminder\n\n\nWe can read this as “read the CSV file called gss-2024.csv in the data folder” and save the result as gss."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#general-social-survey-gss",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#general-social-survey-gss",
-    "title": "Grammar of data visualization",
-    "section": "2024 General Social Survey (GSS)",
-    "text": "2024 General Social Survey (GSS)\nGSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.\nWe’re working with GSS data from the most recent wave:\n\nEach row represents one survey respondent.\nThe variables describe demographics, education, family, happiness, employment, and political identification.\n\n\n\n\n\n\n\nNote\n\n\nThe GSS is a cross-sectional survey. We can describe associations, but these data do not establish causation.\n\n\n\n\n\nSource: gss.norc.org/about-the-gss.html."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#view-the-data",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#view-the-data",
-    "title": "Grammar of data visualization",
-    "section": "View the data",
-    "text": "View the data\n\ngss\n\n# A tibble: 3,294 × 9\n    year marital_status   age education_years children happiness    \n   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        \n 1  2024 Never married     33              16        2 Not too happy\n 2  2024 Never married     64              16        0 Pretty happy \n 3  2024 Married           69              14        0 Pretty happy \n 4  2024 Never married     19              12        0 Pretty happy \n 5  2024 Divorced          70              13        3 Not too happy\n 6  2024 Married           53              14        2 Pretty happy \n 7  2024 Married           48              13        6 Pretty happy \n 8  2024 Divorced          30              14        1 Not too happy\n 9  2024 Married           60              14        2 Very happy   \n10  2024 Never married     25              12        0 Pretty happy \n# ℹ 3,284 more rows\n# ℹ 3 more variables: health &lt;chr&gt;, employment_status &lt;chr&gt;,\n#   party_id &lt;chr&gt;"
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#variables-in-our-extract",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#variables-in-our-extract",
-    "title": "Grammar of data visualization",
-    "section": "Variables in our extract",
-    "text": "Variables in our extract\n\n\n\nVariable\nDescription\nType\n\n\n\n\nmarital_status\nCurrent marital status\nCategorical\n\n\nage\nAge in years\nNumerical\n\n\neducation_years\nCompleted years of education\nNumerical\n\n\nchildren\nNumber of children; 8 means 8 or more\nNumerical\n\n\nhappiness\nSelf-reported happiness\nCategorical\n\n\nhealth\nSelf-reported general health\nCategorical\n\n\nemployment_status\nCurrent employment status\nCategorical\n\n\nparty_id\nParty identification\nCategorical"
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#start-with-a-question",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#start-with-a-question",
-    "title": "Grammar of data visualization",
-    "section": "Start with a question",
-    "text": "Start with a question\n\nHow does age vary across marital-status groups?\n\nBefore writing code:\n\nWhich variables do we need?\nWhat type is each variable?\nWhat kind of plot might answer the question?"
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#age-by-marital-status",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#age-by-marital-status",
-    "title": "Grammar of data visualization",
-    "section": "Age by marital status",
-    "text": "Age by marital status\n\nggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +\n  geom_boxplot(show.legend = FALSE) +\n  labs(\n    title = \"Age varies substantially across marital-status groups\",\n    x = \"Marital status\",\n    y = \"Age (years)\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  ) +\n  scale_fill_viridis_d()\n\nWarning: Removed 94 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#participate",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#participate",
-    "title": "Grammar of data visualization",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nThe plot was created, but R displayed the warning below. What happened to the 94 observations?\n\nWarning: Removed 94 rows containing non-finite values\noutside the scale range (`stat_boxplot()`).\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#interpret-the-plot",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#interpret-the-plot",
-    "title": "Grammar of data visualization",
-    "section": "Interpret the plot",
-    "text": "Interpret the plot\n\nWith a partner:\n\nWhich group has the highest median age? The lowest?\nWhich groups have the greatest variability?\nWhat does one box summarize?\nCan this plot tell us whether marital status causes differences in age?"
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#plot-autopsy",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#plot-autopsy",
-    "title": "Grammar of data visualization",
-    "section": "Plot autopsy",
-    "text": "Plot autopsy\n\nggplot(\n1  data = gss,\n2  mapping = aes(x = marital_status, y = age, fill = marital_status)\n) +\n3  geom_boxplot() +\n4  labs(...) +\n5  scale_fill_viridis_d()\n\n\n1\n\nThe data to visualize\n\n2\n\nThe variables mapped to visual properties\n\n3\n\nThe geometric object used to represent the observations\n\n4\n\nThe plot labels\n\n5\n\nThe scale used to map values to colors\n\n\n\n\n\n\nWhich component would you change to plot different variables? Which component controls the variable represented by the fill color?"
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#mapping-and-aesthetics",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#mapping-and-aesthetics",
-    "title": "Grammar of data visualization",
-    "section": "Mapping and aesthetics",
-    "text": "Mapping and aesthetics\nAesthetics are visual properties such as position, color, fill, shape, size, and transparency.\n\n\n\nFor the GSS boxplot:\naes(\n  x = marital_status,\n  y = age,\n  fill = marital_status\n)\n\n\n\nVariable\nAesthetic\n\n\n\n\nmarital_status\nx position\n\n\nage\ny position\n\n\nmarital_status\nfill color"
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#map-a-variable-set-a-value",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#map-a-variable-set-a-value",
-    "title": "Grammar of data visualization",
-    "section": "Map a variable; set a value",
-    "text": "Map a variable; set a value\n\n\nMap: fill varies with a variable, so ggplot2 creates a legend\n\ngeom_boxplot(aes(fill = marital_status))\n\n\n\n\n\n\n\n\n\n\n\nSet: every box has the same fill, so no legend is needed\n\ngeom_boxplot(fill = \"pink\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nVariables belong inside aes(); fixed visual choices belong outside it."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#grammar-of-graphics",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#grammar-of-graphics",
-    "title": "Grammar of data visualization",
-    "section": "Grammar of graphics",
-    "text": "Grammar of graphics\n\n\n\nWhen building or reading a plot, work through the layers as if they’re a checklist.\nNot every plot needs every component, but each component is a separate decision."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#start-with-the-question",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#start-with-the-question",
-    "title": "Grammar of data visualization",
-    "section": "Start with the question",
-    "text": "Start with the question\n\n\n\n\n\n\n\n\nQuestion\nVariables\nA useful first plot\n\n\n\n\nWhat values are common?\nOne categorical\nBar chart\n\n\nWhat is the distribution?\nOne numerical\nHistogram or boxplot\n\n\nDo groups differ?\nNumerical + categorical\nBoxplot or histogram by group\n\n\nAre two categorical variables associated?\nTwo categorical\nFilled or dodged bar chart\n\n\nAre two numerical variables associated?\nTwo numerical\nScatterplot"
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#one-categorical-variable",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#one-categorical-variable",
-    "title": "Grammar of data visualization",
-    "section": "One categorical variable",
-    "text": "One categorical variable\n\ngss |&gt;\n  ggplot(aes(x = marital_status)) +\n  geom_bar(fill = \"pink\") +\n  labs(\n    title = \"Marital status among GSS respondents in 2024\",\n    x = \"Marital status\",\n    y = \"Number of respondents\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 20, hjust = 1))\n\n\nThe bar height is a count. geom_bar() counts rows for us."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#two-categorical-variables-what-is-the-denominator",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#two-categorical-variables-what-is-the-denominator",
-    "title": "Grammar of data visualization",
-    "section": "Two categorical variables: What is the denominator?",
-    "text": "Two categorical variables: What is the denominator?\nNow compare marital status and self-reported happiness in the 2024 GSS.\n\nA stacked bar chart shows counts, split into groups.\nA dodged bar chart makes counts in each combination easier to compare.\nA filled bar chart makes every bar height 100%, so it compares within-marital-status proportions."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#compare-the-choices",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#compare-the-choices",
-    "title": "Grammar of data visualization",
-    "section": "Compare the choices",
-    "text": "Compare the choices\n\n\nStacked: counts\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness)) +\n  geom_bar() +\n  labs(x = \"Marital status\", y = \"Count\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)\n\n\n\n\n\n\n\n\n\nDodged: counts\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness)) +\n  geom_bar(position = \"dodge\") +\n  labs(x = \"Marital status\", y = \"Count\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)\n\n\n\n\n\n\n\n\n\nFilled: proportions\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness)) +\n  geom_bar(position = \"fill\") +\n  scale_y_continuous(labels = scales::label_percent()) +\n  labs(x = \"Marital status\", y = \"Proportion\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)"
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#participate-1",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#participate-1",
-    "title": "Grammar of data visualization",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nYou want to compare the proportion in each happiness category within marital-status group. Which bar-chart position should you use, and why?\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#a-chart-is-an-argument",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#a-chart-is-an-argument",
-    "title": "Grammar of data visualization",
-    "section": "A chart is an argument",
-    "text": "A chart is an argument\n\nGive the reader a meaningful title, axis labels, and a legend.\nUse color deliberately; do not rely on color alone when another channel can help.\nChoose the denominator and chart form to answer the question.\nDescribe what the data show, and distinguish that description from a causal claim unless the data come from a randomized experiment or the visualization is part of a causal inference analysis."
-  },
-  {
-    "objectID": "slides/03-grammar-of-data-visualization-slides.html#on-your-own",
-    "href": "slides/03-grammar-of-data-visualization-slides.html#on-your-own",
-    "title": "Grammar of data visualization",
-    "section": "On your own",
-    "text": "On your own\n\nUse gss to answer one question below with an appropriate plot:\n\nIs self-reported happiness distributed differently across self-rated health groups?\nHow does employment status vary across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\n\nState the question, identify the variable type(s), and explain why your plot answers it. Then, describe patterns, making sure to avoid causal language."
-  },
-  {
     "objectID": "slides/03-grammar-of-data-visualization.html",
     "href": "slides/03-grammar-of-data-visualization.html",
     "title": "Grammar of data visualization",
     "section": "",
-    "text": "1. Clone your ae repository\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your Positron session in your container.\n\n\n2. Participate 📱💻\n\nWhat does each point represent in this visualization?\n\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code IOAADOR.\n\n\n\n\n\n\n\n\n\nLast week:\n\nWe introduced you to the course toolkit.\nYou cloned your lab repository and started making some updates in your Quarto documents.\nYou committed and pushed your changes back – at least most of you did!\n\n\n\n. . .\n\n\nToday:\n\nYou will clone your ae (application exercise) repository.\nWe will introduce data visualization.\nYou will work on the application exercise on data visualization, commit your changes, and push them."
+    "text": "1. Clone your ae repository\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your Positron session in your container.\n\n\n2. Participate 📱💻\n\nRemember this visualization from the code along video – what was it about?\n\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code IOAADOR.\n\n\n\n\n\n\n\nLast week:\n\nWe introduced you to the course toolkit.\nYou cloned your lab repository and started making some updates in your Quarto documents.\nYou committed and pushed your changes back – at least most of you did!\n\n\n\n. . .\n\n\nToday:\n\nYou will clone your ae (application exercise) repository.\nWe will introduce data visualization.\nYou will work on the application exercise on data visualization, commit your changes, and push them."
   },
   {
     "objectID": "slides/03-grammar-of-data-visualization.html#while-you-wait",
     "href": "slides/03-grammar-of-data-visualization.html#while-you-wait",
     "title": "Grammar of data visualization",
     "section": "",
-    "text": "1. Clone your ae repository\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your Positron session in your container.\n\n\n2. Participate 📱💻\n\nWhat does each point represent in this visualization?\n\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code IOAADOR."
+    "text": "1. Clone your ae repository\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your Positron session in your container.\n\n\n2. Participate 📱💻\n\nRemember this visualization from the code along video – what was it about?\n\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code IOAADOR."
   },
   {
     "objectID": "slides/03-grammar-of-data-visualization.html#outline",
@@ -1115,7 +996,7 @@
     "href": "slides/03-grammar-of-data-visualization.html#participate",
     "title": "Grammar of data visualization",
     "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nThe plot was created, but R displayed the warning below. What happened to the 94 observations?\n\nWarning: Removed 94 rows containing non-finite values\noutside the scale range (`stat_boxplot()`).\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+    "text": "Participate 📱💻\n\n\n\nThe plot was created, but R displayed the warning below. What happened to the 94 observations?\n\nWarning: Removed 94 rows containing non-finite values\noutside the scale range (`stat_boxplot()`).\n\n\n\n\n\nGo to wooclap.com and use the code IOAADOR."
   },
   {
     "objectID": "slides/03-grammar-of-data-visualization.html#interpret-the-plot",
@@ -1153,6 +1034,13 @@
     "text": "Grammar of graphics\n\n\n\nWhen building or reading a plot, work through the layers as if they’re a checklist.\nNot every plot needs every component, but each component is a separate decision."
   },
   {
+    "objectID": "slides/03-grammar-of-data-visualization.html#lets-get-laptops-out",
+    "href": "slides/03-grammar-of-data-visualization.html#lets-get-laptops-out",
+    "title": "Grammar of data visualization",
+    "section": "Let’s get laptops out!",
+    "text": "Let’s get laptops out!\n\n\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your Positron session in your container.\nOpen ae-01-gss-dataviz.qmd in Positron and follow the instructions to complete the application exercise."
+  },
+  {
     "objectID": "slides/03-grammar-of-data-visualization.html#start-with-the-question",
     "href": "slides/03-grammar-of-data-visualization.html#start-with-the-question",
     "title": "Grammar of data visualization",
@@ -1160,53 +1048,137 @@
     "text": "Start with the question\n\n\n\n\n\n\n\nQuestion\nVariables\nA useful first plot\n\n\n\nWhat values are common?\nOne categorical\nBar chart\n\n\nWhat is the distribution?\nOne numerical\nHistogram or boxplot\n\n\nDo groups differ?\nNumerical + categorical\nBoxplot or histogram by group\n\n\nAre two categorical variables associated?\nTwo categorical\nFilled or dodged bar chart\n\n\nAre two numerical variables associated?\nTwo numerical\nScatterplot"
   },
   {
-    "objectID": "slides/03-grammar-of-data-visualization.html#one-categorical-variable",
-    "href": "slides/03-grammar-of-data-visualization.html#one-categorical-variable",
+    "objectID": "slides/03-grammar-of-data-visualization.html#interesting-qs---many-variables",
+    "href": "slides/03-grammar-of-data-visualization.html#interesting-qs---many-variables",
     "title": "Grammar of data visualization",
-    "section": "One categorical variable",
-    "text": "One categorical variable\n\ngss |&gt;\n  ggplot(aes(x = marital_status)) +\n  geom_bar(fill = \"pink\") +\n  labs(\n    title = \"Marital status among GSS respondents in 2024\",\n    x = \"Marital status\",\n    y = \"Number of respondents\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 20, hjust = 1))\n\n\n\n\n\n\n\nThe bar height is a count. geom_bar() counts rows for us."
+    "section": "Interesting Qs <-> many variables",
+    "text": "Interesting Qs &lt;-&gt; many variables\nBring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as color, shape, size, linewidth, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):"
   },
   {
-    "objectID": "slides/03-grammar-of-data-visualization.html#two-categorical-variables-what-is-the-denominator",
-    "href": "slides/03-grammar-of-data-visualization.html#two-categorical-variables-what-is-the-denominator",
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#while-you-wait",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#while-you-wait",
     "title": "Grammar of data visualization",
-    "section": "Two categorical variables: What is the denominator?",
-    "text": "Two categorical variables: What is the denominator?\nNow compare marital status and self-reported happiness in the 2024 GSS.\n\nA stacked bar chart shows counts, split into groups.\nA dodged bar chart makes counts in each combination easier to compare.\nA filled bar chart makes every bar height 100%, so it compares within-marital-status proportions."
+    "section": "While you wait…",
+    "text": "While you wait…\n\n\n1. Clone your ae repository\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your Positron session in your container.\n\n2. Participate 📱💻\n\nRemember this visualization from the code along video – what was it about?\n\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code IOAADOR."
   },
   {
-    "objectID": "slides/03-grammar-of-data-visualization.html#compare-the-choices",
-    "href": "slides/03-grammar-of-data-visualization.html#compare-the-choices",
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#outline",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#outline",
     "title": "Grammar of data visualization",
-    "section": "Compare the choices",
-    "text": "Compare the choices\n\n\nStacked: counts\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness)) +\n  geom_bar() +\n  labs(x = \"Marital status\", y = \"Count\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)\n\n\n\n\n\n\n\n\nDodged: counts\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness)) +\n  geom_bar(position = \"dodge\") +\n  labs(x = \"Marital status\", y = \"Count\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)\n\n\n\n\n\n\n\n\nFilled: proportions\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness)) +\n  geom_bar(position = \"fill\") +\n  scale_y_continuous(labels = scales::label_percent()) +\n  labs(x = \"Marital status\", y = \"Proportion\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)"
+    "section": "Outline",
+    "text": "Outline\n\nLast week:\n\nWe introduced you to the course toolkit.\nYou cloned your lab repository and started making some updates in your Quarto documents.\nYou committed and pushed your changes back – at least most of you did!\n\n\n\n\nToday:\n\nYou will clone your ae (application exercise) repository.\nWe will introduce data visualization.\nYou will work on the application exercise on data visualization, commit your changes, and push them."
   },
   {
-    "objectID": "slides/03-grammar-of-data-visualization.html#participate-1",
-    "href": "slides/03-grammar-of-data-visualization.html#participate-1",
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#load-packages",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#load-packages",
+    "title": "Grammar of data visualization",
+    "section": "Load packages",
+    "text": "Load packages\n\nlibrary(tidyverse)\n\n\n\n\n\n\n\n\nReminder\n\n\ntidyverse is the collection of R packages designed for data science."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#load-the-data",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#load-the-data",
+    "title": "Grammar of data visualization",
+    "section": "Load the data",
+    "text": "Load the data\n\ngss &lt;- read_csv(\"data/gss-2024.csv\")\n\n\n\n\n\n\n\n\nReminder\n\n\nWe can read this as “read the CSV file called gss-2024.csv in the data folder” and save the result as gss."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#general-social-survey-gss",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#general-social-survey-gss",
+    "title": "Grammar of data visualization",
+    "section": "2024 General Social Survey (GSS)",
+    "text": "2024 General Social Survey (GSS)\nGSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.\nWe’re working with GSS data from the most recent wave:\n\nEach row represents one survey respondent.\nThe variables describe demographics, education, family, happiness, employment, and political identification.\n\n\n\n\n\n\n\nNote\n\n\nThe GSS is a cross-sectional survey. We can describe associations, but these data do not establish causation.\n\n\n\n\n\nSource: gss.norc.org/about-the-gss.html."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#view-the-data",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#view-the-data",
+    "title": "Grammar of data visualization",
+    "section": "View the data",
+    "text": "View the data\n\ngss\n\n# A tibble: 3,294 × 9\n    year marital_status   age education_years children happiness    \n   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        \n 1  2024 Never married     33              16        2 Not too happy\n 2  2024 Never married     64              16        0 Pretty happy \n 3  2024 Married           69              14        0 Pretty happy \n 4  2024 Never married     19              12        0 Pretty happy \n 5  2024 Divorced          70              13        3 Not too happy\n 6  2024 Married           53              14        2 Pretty happy \n 7  2024 Married           48              13        6 Pretty happy \n 8  2024 Divorced          30              14        1 Not too happy\n 9  2024 Married           60              14        2 Very happy   \n10  2024 Never married     25              12        0 Pretty happy \n# ℹ 3,284 more rows\n# ℹ 3 more variables: health &lt;chr&gt;, employment_status &lt;chr&gt;,\n#   party_id &lt;chr&gt;"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#variables-in-our-extract",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#variables-in-our-extract",
+    "title": "Grammar of data visualization",
+    "section": "Variables in our extract",
+    "text": "Variables in our extract\n\n\n\nVariable\nDescription\nType\n\n\n\n\nmarital_status\nCurrent marital status\nCategorical\n\n\nage\nAge in years\nNumerical\n\n\neducation_years\nCompleted years of education\nNumerical\n\n\nchildren\nNumber of children; 8 means 8 or more\nNumerical\n\n\nhappiness\nSelf-reported happiness\nCategorical\n\n\nhealth\nSelf-reported general health\nCategorical\n\n\nemployment_status\nCurrent employment status\nCategorical\n\n\nparty_id\nParty identification\nCategorical"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#start-with-a-question",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#start-with-a-question",
+    "title": "Grammar of data visualization",
+    "section": "Start with a question",
+    "text": "Start with a question\n\nHow does age vary across marital-status groups?\n\nBefore writing code:\n\nWhich variables do we need?\nWhat type is each variable?\nWhat kind of plot might answer the question?"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#age-by-marital-status",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#age-by-marital-status",
+    "title": "Grammar of data visualization",
+    "section": "Age by marital status",
+    "text": "Age by marital status\n\nggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +\n  geom_boxplot(show.legend = FALSE) +\n  labs(\n    title = \"Age varies substantially across marital-status groups\",\n    x = \"Marital status\",\n    y = \"Age (years)\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  ) +\n  scale_fill_viridis_d()\n\nWarning: Removed 94 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#participate",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#participate",
     "title": "Grammar of data visualization",
     "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nYou want to compare the proportion in each happiness category within marital-status group. Which bar-chart position should you use, and why?\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+    "text": "Participate 📱💻\n\n\n\nThe plot was created, but R displayed the warning below. What happened to the 94 observations?\n\nWarning: Removed 94 rows containing non-finite values\noutside the scale range (`stat_boxplot()`).\n\n\n\n\n\n\nGo to wooclap.com and use the code IOAADOR."
   },
   {
-    "objectID": "slides/03-grammar-of-data-visualization.html#a-chart-is-an-argument",
-    "href": "slides/03-grammar-of-data-visualization.html#a-chart-is-an-argument",
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#interpret-the-plot",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#interpret-the-plot",
     "title": "Grammar of data visualization",
-    "section": "A chart is an argument",
-    "text": "A chart is an argument\n\nGive the reader a meaningful title, axis labels, and a legend.\nUse color deliberately; do not rely on color alone when another channel can help.\nChoose the denominator and chart form to answer the question.\nDescribe what the data show, and distinguish that description from a causal claim unless the data come from a randomized experiment or the visualization is part of a causal inference analysis."
+    "section": "Interpret the plot",
+    "text": "Interpret the plot\n\nWith a partner:\n\nWhich group has the highest median age? The lowest?\nWhich groups have the greatest variability?\nWhat does one box summarize?\nCan this plot tell us whether marital status causes differences in age?"
   },
   {
-    "objectID": "slides/03-grammar-of-data-visualization.html#on-your-own",
-    "href": "slides/03-grammar-of-data-visualization.html#on-your-own",
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#plot-autopsy",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#plot-autopsy",
     "title": "Grammar of data visualization",
-    "section": "On your own",
-    "text": "On your own\n\nUse gss to answer one question below with an appropriate plot:\n\nIs self-reported happiness distributed differently across self-rated health groups?\nHow does employment status vary across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\n\nState the question, identify the variable type(s), and explain why your plot answers it. Then, describe patterns, making sure to avoid causal language."
+    "section": "Plot autopsy",
+    "text": "Plot autopsy\n\nggplot(\n1  data = gss,\n2  mapping = aes(x = marital_status, y = age, fill = marital_status)\n) +\n3  geom_boxplot() +\n4  labs(...) +\n5  scale_fill_viridis_d()\n\n\n1\n\nThe data to visualize\n\n2\n\nThe variables mapped to visual properties\n\n3\n\nThe geometric object used to represent the observations\n\n4\n\nThe plot labels\n\n5\n\nThe scale used to map values to colors\n\n\n\n\n\n\nWhich component would you change to plot different variables? Which component controls the variable represented by the fill color?"
   },
   {
-    "objectID": "slides/data/gss-2024.html",
-    "href": "slides/data/gss-2024.html",
-    "title": "GSS 2024 teaching extract",
-    "section": "",
-    "text": "GSS 2024 teaching extract\ngss-2024.csv is a small teaching extract from the 2024 General Social Survey (GSS) Cross-section, Release 3a (July 2026), produced by NORC at the University of Chicago.\nIt retains respondents with a substantive response to MARITAL and contains:\n\nyear: GSS survey year;\nmarital_status: current marital status;\nage: respondent age in years (top-coded at 89);\neducation_years: completed years of formal education;\nchildren: number of children (8 means eight or more);\nhappiness: self-reported general happiness;\nhealth: self-reported general health;\nemployment_status: current employment status;\nparty_id: party identification.\n\nThe source file is GSS 1972–2024 Cross-Sectional Cumulative Data, Release 3a. The preparation script is gss-2024-prep.R.\nUse the data descriptively: it is a cross-sectional survey, so associations do not establish causation. happiness, health, employment_status, and party_id retain NA when the original response was non-substantive (for example, “don’t know” or “no answer”). The extract intentionally does not impute missing responses."
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#mapping-and-aesthetics",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#mapping-and-aesthetics",
+    "title": "Grammar of data visualization",
+    "section": "Mapping and aesthetics",
+    "text": "Mapping and aesthetics\nAesthetics are visual properties such as position, color, fill, shape, size, and transparency.\n\n\n\nFor the GSS boxplot:\naes(\n  x = marital_status,\n  y = age,\n  fill = marital_status\n)\n\n\n\nVariable\nAesthetic\n\n\n\n\nmarital_status\nx position\n\n\nage\ny position\n\n\nmarital_status\nfill color"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#map-a-variable-set-a-value",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#map-a-variable-set-a-value",
+    "title": "Grammar of data visualization",
+    "section": "Map a variable; set a value",
+    "text": "Map a variable; set a value\n\n\nMap: fill varies with a variable, so ggplot2 creates a legend\n\ngeom_boxplot(aes(fill = marital_status))\n\n\n\n\n\n\n\n\n\n\n\nSet: every box has the same fill, so no legend is needed\n\ngeom_boxplot(fill = \"pink\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nVariables belong inside aes(); fixed visual choices belong outside it."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#grammar-of-graphics",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#grammar-of-graphics",
+    "title": "Grammar of data visualization",
+    "section": "Grammar of graphics",
+    "text": "Grammar of graphics\n\n\n\nWhen building or reading a plot, work through the layers as if they’re a checklist.\nNot every plot needs every component, but each component is a separate decision."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#lets-get-laptops-out",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#lets-get-laptops-out",
+    "title": "Grammar of data visualization",
+    "section": "Let’s get laptops out!",
+    "text": "Let’s get laptops out!\n\n\nGo to the course GitHub organization and clone ae-YOUR-GITHUB-NAME repo to your Positron session in your container.\nOpen ae-01-gss-dataviz.qmd in Positron and follow the instructions to complete the application exercise."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#start-with-the-question",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#start-with-the-question",
+    "title": "Grammar of data visualization",
+    "section": "Start with the question",
+    "text": "Start with the question\n\n\n\n\n\n\n\n\nQuestion\nVariables\nA useful first plot\n\n\n\n\nWhat values are common?\nOne categorical\nBar chart\n\n\nWhat is the distribution?\nOne numerical\nHistogram or boxplot\n\n\nDo groups differ?\nNumerical + categorical\nBoxplot or histogram by group\n\n\nAre two categorical variables associated?\nTwo categorical\nFilled or dodged bar chart\n\n\nAre two numerical variables associated?\nTwo numerical\nScatterplot"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#interesting-qs---many-variables",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#interesting-qs---many-variables",
+    "title": "Grammar of data visualization",
+    "section": "Interesting Qs <-> many variables",
+    "text": "Interesting Qs &lt;-&gt; many variables\nBring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as color, shape, size, linewidth, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):"
   },
   {
     "objectID": "slides/02-meet-the-toolkit.html",
@@ -2022,6 +1994,41 @@
       "Course information",
       "Syllabus"
     ]
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html",
+    "href": "ae/ae-01-gss-dataviz.html",
+    "title": "AE 01: GSS + data visualization",
+    "section": "",
+    "text": "In this mini-analysis, we use data from the 2024 General Social Survey (GSS) to get practice with creating and interpreting data visualizations."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html#getting-started",
+    "href": "ae/ae-01-gss-dataviz.html#getting-started",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Getting started",
+    "text": "Getting started\nPackages\nWe’ll use the tidyverse package for this analysis.\n\nlibrary(tidyverse)\n\nData\nThe data are stored as a CSV (comma-separated values) file in your repository’s data folder. Let’s read the file and save it as an object called gss.\n\ngss &lt;- read_csv(\"data/gss-2024.csv\")\n\nGet to know the data\nWe can use the glimpse() function to get an overview (or “glimpse”) of the data.\n\nglimpse(gss)\n\nRows: 3,294\nColumns: 9\n$ year              &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024…\n$ marital_status    &lt;chr&gt; \"Never married\", \"Never married\", \"Married\", \"Never …\n$ age               &lt;dbl&gt; 33, 64, 69, 19, 70, 53, 48, 30, 60, 25, 23, 68, 43, …\n$ education_years   &lt;dbl&gt; 16, 16, 14, 12, 13, 14, 13, 14, 14, 12, 18, 5, 14, 1…\n$ children          &lt;dbl&gt; 2, 0, 0, 0, 3, 2, 6, 1, 2, 0, 0, 1, 2, 1, 3, 1, 2, N…\n$ happiness         &lt;chr&gt; \"Not too happy\", \"Pretty happy\", \"Pretty happy\", \"Pr…\n$ health            &lt;chr&gt; \"Good\", \"Good\", \"Good\", \"Good\", \"Good\", \"Good\", \"Goo…\n$ employment_status &lt;chr&gt; \"Working full time\", \"Retired\", \"Retired\", \"Working …\n$ party_id          &lt;chr&gt; \"Not very strong democrat\", \"Strong democrat\", \"Stro…\n\n\n\nWhat does each observation (row) in the data set represent?\n\nAdd your response here.\n\nHow many observations (rows) are in the data set?\n\nAdd your response here.\n\nHow many variables (columns) are in the data set?\n\nAdd your response here.\nVariables of interest\nThe variables we’ll focus on are the following:\n\n\nmarital_status: Respondent’s current marital status.\n\nhappiness: Respondent’s self-reported general happiness.\n\nhealth: Respondent’s self-reported general health."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html#demo-one-categorical-variable",
+    "href": "ae/ae-01-gss-dataviz.html#demo-one-categorical-variable",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Demo: One categorical variable",
+    "text": "Demo: One categorical variable\nWe begin with the question:\n\nWhat self-rated health levels are most common among respondents in the 2024 GSS?\n\n\nWhat type of plot is a good starting point for this question?\n\nBoth the question and the variable type should guide our choice of visualization. Since health is a categorical variable, a bar chart is a useful place to start.\n\n\nggplot() creates the initial base coordinate system. The first argument is the data you’re plotting, gss.\n\n\n# add code here\n\n\n\naes() tells how variables in the data map to visual properties of the graph.\n\n\n# add code here\n\n\nA geom_ function specifies how observations will be represented. geom_bar() creates a bar chart and counts the rows in each category for us.\n\n\n# add code here\n\n\nWhich recorded health response is most common? Which is least common?\n\nAdd your response here.\n\nThe labs() function allows us to give the plot a meaningful title, axis labels, and a source.\n\n\n# add code here\n\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nNow that we’re done with our first task, it’s time to take a snapshot.\n\nPreview your Quarto document and review the output. If all looks good…\nGo to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.\nClick Sync to push your changes to your application exercise repo on GitHub.\nGo to your repo on GitHub and confirm that you can see the updated files – you may need to refresh your browser window. Once your updated files are in your GitHub repo, you’re good to go!"
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html#two-categorical-variables",
+    "href": "ae/ae-01-gss-dataviz.html#two-categorical-variables",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Two categorical variables",
+    "text": "Two categorical variables\nNow we ask:\n\nHow does self-reported happiness vary across marital-status groups?\n\nBoth marital_status and happiness are categorical variables.\nOption 1 - Demo: Stacked bars\nMap happiness to the fill color. By default, geom_bar() stacks the happiness categories within each marital-status bar.\n\n# add code here\n\nThis graph displays counts. It also shows that the marital-status groups have different numbers of respondents, which makes the colored segments difficult to compare directly.\nOption 2 - Your turn: Dodged bars\nModify the stacked bar chart by setting position = \"dodge\" inside geom_bar(). This places the happiness categories side by side.\n\n# add code here\n\nDodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.\nOption 3 - Demo: Filled bars\nSuppose our question is specifically about the distribution of happiness within each marital-status group. Setting position = \"fill\" gives every marital-status bar the same total height and displays proportions instead of counts.\n\n# add code here\n\n\nWhat is the denominator used to calculate the proportions in each bar?\n\nAdd your response here.\n\nWhat patterns do you see?\n\nAdd your response here.\n\nHow do these plots answer the question about how happiness varies across marital-status groups? Which plot is the best?\n\nAdd your response here.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nNow that we’re done with our second task, it’s time to take another snapshot.\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html#on-your-own",
+    "href": "ae/ae-01-gss-dataviz.html#on-your-own",
+    "title": "AE 01: GSS + data visualization",
+    "section": "On your own",
+    "text": "On your own\nDo the following at the end of class or, if you run out of time, some before the next class.\nUse gss to answer one of the following questions with an appropriate plot:\n\nIs self-reported happiness distributed differently across self-rated health groups?\nHow does employment status vary across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\n\nState your question, identify the variable type or types, and explain why your plot answers the question. Give the chart a meaningful title and labels, then describe the patterns using non-causal language.\nAdd response here. Insert code cells as needed.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nOnce you’re done, take one last snapshot:\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
   },
   {
     "objectID": "course-faq.html",

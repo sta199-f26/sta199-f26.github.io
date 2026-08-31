@@ -221,16 +221,13 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="while-you-wait" class="slide level2 smaller">
 <h2>While you wait…</h2>
 <div class="columns">
-<div class="callout callout-none no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
 <div class="column egret-background" style="width:25%;">
 <p><strong>1. Clone your <code>ae</code> repository</strong></p>
 <p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p>
 </div><div class="column gray-background" style="width:75%;">
 <p><strong>2. Participate</strong> 📱💻</p>
 <div class="wooclap">
-<p>What does each point represent in this visualization?</p>
+<p>Remember this visualization from the code along video – what was it about?</p>
 </div>
 <div class="columns">
 <div class="column" style="width:80%;">
@@ -244,9 +241,6 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Go to <a href="https://app.wooclap.com/IOAADOR">wooclap.com</a> and use the code IOAADOR.</p>
 </div></div>
 </div></div>
-</div>
-</div>
-</div>
 </section>
 <section id="outline" class="slide level2 smaller">
 <h2>Outline</h2>
@@ -460,12 +454,10 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
+<p><img data-src="images/03/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
 </figure>
 </div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
-</div>
+<p>Go to <a href="https://app.wooclap.com/IOAADOR">wooclap.com</a> and use the code IOAADOR.</p>
 </div></div>
 </section>
 <section id="interpret-the-plot" class="slide level2 smaller">
@@ -630,9 +622,18 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div></div>
 </section></section>
 <section>
-<section id="choosing-a-plot" class="title-slide slide level1 center">
-<h1>Choosing a plot</h1>
+<section id="application-exercise" class="title-slide slide level1 center">
+<h1>Application exercise</h1>
 
+</section>
+<section id="lets-get-laptops-out" class="slide level2">
+<h2>Let’s get laptops out!</h2>
+<div class="appex">
+<ul>
+<li><p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p></li>
+<li><p>Open <code>ae-01-gss-dataviz.qmd</code> in Positron and follow the instructions to complete the application exercise.</p></li>
+</ul>
+</div>
 </section>
 <section id="start-with-the-question" class="slide level2 smaller">
 <h2>Start with the question</h2>
@@ -678,131 +679,13 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </tbody>
 </table>
 </section>
-<section id="one-categorical-variable" class="slide level2 smaller">
-<h2>One categorical variable</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status)) <span class="sc">+</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-5"><a></a>    <span class="at">title =</span> <span class="st">"Marital status among GSS respondents in 2024"</span>,</span>
-<span id="cb11-6"><a></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
-<span id="cb11-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of respondents"</span>,</span>
-<span id="cb11-8"><a></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
-<span id="cb11-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb11-10"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb11-11"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" width="864" class="r-stretch"><p>The bar height is a <strong>count</strong>. <code>geom_bar()</code> counts rows for us.</p>
-</section>
-<section id="two-categorical-variables-what-is-the-denominator" class="slide level2 smaller">
-<h2>Two categorical variables: What is the denominator?</h2>
-<p>Now compare marital status and self-reported happiness in the 2024 GSS.</p>
-<ul>
-<li>A <strong>stacked</strong> bar chart shows counts, split into groups.</li>
-<li>A <strong>dodged</strong> bar chart makes counts in each combination easier to compare.</li>
-<li>A <strong>filled</strong> bar chart makes every bar height 100%, so it compares <em>within-marital-status proportions</em>.</li>
-</ul>
-</section>
-<section id="compare-the-choices" class="slide level2 smaller">
-<h2>Compare the choices</h2>
-<div class="columns">
-<div class="column" style="width:33%;">
-<p><strong>Stacked: counts</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness)) <span class="sc">+</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb12-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/stacked-bars-1.png" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:33%;">
-<p><strong>Dodged: counts</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness)) <span class="sc">+</span></span>
-<span id="cb13-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
-<span id="cb13-6"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/dodged-bars-1.png" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:33%;">
-<p><strong>Filled: proportions</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness)) <span class="sc">+</span></span>
-<span id="cb14-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb14-5"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
-<span id="cb14-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
-<span id="cb14-7"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/filled-bars-1.png" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="participate-1" class="slide level2 smaller">
-<h2>Participate 📱💻</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-<div class="wooclap">
-<p>You want to compare the proportion in each happiness category <em>within marital-status group</em>. Which bar-chart position should you use, and why?</p>
-</div>
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
-</figure>
-</div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
-</div>
-</div></div>
-</section>
-<section id="a-chart-is-an-argument" class="slide level2 smaller">
-<h2>A chart is an argument</h2>
-<ul>
-<li>Give the reader a meaningful title, axis labels, and a legend.</li>
-<li>Use color deliberately; do not rely on color alone when another channel can help.</li>
-<li>Choose the denominator and chart form to answer the question.</li>
-<li>Describe what the data show, and distinguish that description from a causal claim unless the data come from a randomized experiment or the visualization is part of a causal inference analysis.</li>
-</ul>
-</section>
-<section id="on-your-own" class="slide level2 smaller">
-<h2>On your own</h2>
-<div class="task">
-<p>Use <code>gss</code> to answer one question below with an appropriate plot:</p>
-<ul>
-<li>Is self-reported <strong>happiness</strong> distributed differently across self-rated <strong>health</strong> groups?</li>
-<li>How does <strong>employment status</strong> vary across marital-status groups?</li>
-<li>What is the relationship between <strong>education years</strong> and <strong>age</strong>? Does it differ by marital status?</li>
-</ul>
-<p>State the question, identify the variable type(s), and explain why your plot answers it. Then, describe patterns, making sure to avoid causal language.</p>
-</div>
+<section id="interesting-qs---many-variables" class="slide level2 xsmall">
+<h2>Interesting Qs &lt;-&gt; many variables</h2>
+<p>Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as <code>color</code>, <code>shape</code>, <code>size</code>, <code>linewidth</code>, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):</p>
 
 
-</section></section>
+
+<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/four-vars-1.png" width="864" class="r-stretch"></section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="slides/images/logo.png" class="slide-logo"></p>
