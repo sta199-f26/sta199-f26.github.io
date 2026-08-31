@@ -125,40 +125,37 @@ The variables are:
 
 ## Question 1
 
-1. How many songs are in the dataset? How many variables are there? Use inline code to answer both questions.
+How many songs are in the dataset? How many variables are there? Use inline code to answer both questions.
 
 ::: preview-commit-push
-Preview, commit, and push your changes to GitHub with the commit message "Added answer for Q1a".
-:::
-
-2. Make a histogram and a boxplot of `streams`.
-
-   - Is the distribution of weekly streams right-skewed, left-skewed, or approximately symmetric? Which plot or plots helped you decide?
-   - Is the distribution unimodal, bimodal, multimodal, or uniform? Which plot or plots helped you decide?
-   - In a single pipeline, identify the songs with unusually high weekly stream counts according to the boxplot. Display the song title, artist, and stream count in descending order of streams.
-
-::: preview-commit-push
-Preview, commit, and push your changes to GitHub with the commit message "Added answer for Q1b".
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Q1".
 :::
 
 ## Question 2
 
-1. Before making a plot, predict the association between the number of consecutive weeks a song has been on the chart and its streams this week. Do you expect a positive association, a negative association, or little/no association? Explain your reasoning.
+Make a histogram and a boxplot of `streams`.
+
+- Is the distribution of weekly streams right-skewed, left-skewed, or approximately symmetric? Which plot or plots helped you decide?
+
+- Is the distribution unimodal, bimodal, multimodal, or uniform? Which plot or plots helped you decide?
+
+- In a single pipeline, identify the songs with unusually high weekly stream counts according to the boxplot. Display the song title, artist, and stream count in descending order of streams.
+
+::: preview-commit-push
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Q2".
+:::
+
+## Question 3
+
+Before making a plot, predict the association between the number of consecutive weeks a song has been on the chart and its streams this week. Do you expect a positive association, a negative association, or little/no association? Explain your reasoning.
 
 ::: preview-commit-push
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
 :::
 
-2. Make a scatterplot of weekly streams on the y-axis versus weeks on the chart on the x-axis. Give your plot an informative title and axis labels. Describe the association. Was your prediction supported? Remember that this observational chart cannot tell us whether chart longevity causes streams, whether streams cause chart longevity, or whether another factor affects both.
+## Question 4
 
-3. A song's `peak_rank` is its best-ever position during its current run on the chart. Because smaller ranks are better, create a variable called `positions_below_peak` that measures how many positions a song's current rank is below its peak rank.
-
-   ```{r}
-   spotify <- spotify |>
-     mutate(positions_below_peak = rank - peak_rank)
-   ```
-
-   In one pipeline, display the 10 songs farthest below their peak rank. Include the song title, artist, current rank, peak rank, and `positions_below_peak`. What pattern do you notice? Choose one song from your results and give one plausible explanation for why it may be charting below its earlier peak. Your explanation is a hypothesis, not a conclusion supported by these data alone.
+Make a scatterplot of weekly streams on the y-axis versus weeks on the chart on the x-axis. Give your plot an informative title and axis labels. Describe the association. Was your prediction supported? Remember that this observational chart cannot tell us whether chart longevity causes streams, whether streams cause chart longevity, or whether another factor affects both.
 
 ::: preview-commit-push
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
