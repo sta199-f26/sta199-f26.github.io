@@ -504,12 +504,12 @@ ul.task-list li input[type="checkbox"] {
 <li><code>education_years</code>: completed years of formal education;</li>
 <li><code>children</code>: number of children (8 means eight or more);</li>
 <li><code>happiness</code>: self-reported general happiness;</li>
+<li><code>health</code>: self-reported general health;</li>
 <li><code>employment_status</code>: current employment status;</li>
-<li><code>party_id</code>: party identification; and</li>
-<li><code>weight</code>: <code>WTSSNRPS</code>, the post-stratification, nonresponse-adjusted person weight.</li>
+<li><code>party_id</code>: party identification.</li>
 </ul>
-<p>The source file is <a href="https://gss.norc.org/content/dam/gss/get-the-data/documents/stata/GSS_stata.zip">GSS 1972–2024 Cross-Sectional Cumulative Data, Release 3a</a>. NORC recommends <code>WTSSNRPS</code> for analyses from 2004–2024. The preparation script is <code>gss-2024-prep.R</code>.</p>
-<p>Use the data descriptively: it is a cross-sectional survey, so associations do not establish causation. <code>happiness</code>, <code>employment_status</code>, and <code>party_id</code> retain <code>NA</code> when the original response was non-substantive (for example, “don’t know” or “no answer”). The extract intentionally does not impute missing responses.</p>
+<p>The source file is <a href="https://gss.norc.org/content/dam/gss/get-the-data/documents/stata/GSS_stata.zip">GSS 1972–2024 Cross-Sectional Cumulative Data, Release 3a</a>. The preparation script is <code>gss-2024-prep.R</code>.</p>
+<p>Use the data descriptively: it is a cross-sectional survey, so associations do not establish causation. <code>happiness</code>, <code>health</code>, <code>employment_status</code>, and <code>party_id</code> retain <code>NA</code> when the original response was non-substantive (for example, “don’t know” or “no answer”). The extract intentionally does not impute missing responses.</p>
 
 
 </section>

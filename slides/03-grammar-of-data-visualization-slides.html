@@ -96,7 +96,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5fc1509d3aad92b9e8182397f59f9cc5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e6252c4e17f5bc7ca2b325d95856a013.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -221,30 +221,32 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="while-you-wait" class="slide level2 smaller">
 <h2>While you wait…</h2>
 <div class="columns">
-<div class="column" style="width:15%;">
-<p>If you haven’t yet done so:</p>
-<ul>
-<li><p>Fill out the Getting to know you survey</p></li>
-<li><p>Accept the GitHub organization invite</p></li>
-</ul>
-</div><div class="column" style="width:5%;">
-<p>&nbsp;</p>
-</div><div class="column" style="width:65%;">
-<p><strong>Participate</strong> 📱💻</p>
+<div class="callout callout-none no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<div class="column egret-background" style="width:25%;">
+<p><strong>1. Clone your <code>ae</code> repository</strong></p>
+<p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p>
+</div><div class="column gray-background" style="width:75%;">
+<p><strong>2. Participate</strong> 📱💻</p>
 <div class="wooclap">
-<p>What does point represent in this visualization?</p>
+<p>What does each point represent in this visualization?</p>
 </div>
+<div class="columns">
+<div class="column" style="width:80%;">
 <p><img data-src="images/03/un-data-viz.png"></p>
-</div><div class="column" style="width:15%;">
+</div><div class="column xsmall" style="width:15%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
+<p><img data-src="images/03/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
 </figure>
 </div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
-</div>
+<p>Go to <a href="https://app.wooclap.com/IOAADOR">wooclap.com</a> and use the code IOAADOR.</p>
 </div></div>
+</div></div>
+</div>
+</div>
+</div>
 </section>
 <section id="outline" class="slide level2 smaller">
 <h2>Outline</h2>
@@ -356,8 +358,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
  9  2024 Married           60              14        2 Very happy   
 10  2024 Never married     25              12        0 Pretty happy 
 # ℹ 3,284 more rows
-# ℹ 3 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;,
-#   weight &lt;dbl&gt;</code></pre>
+# ℹ 3 more variables: health &lt;chr&gt;, employment_status &lt;chr&gt;,
+#   party_id &lt;chr&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -398,11 +400,16 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <td>Categorical</td>
 </tr>
 <tr class="even">
+<td><code>health</code></td>
+<td>Self-reported general health</td>
+<td>Categorical</td>
+</tr>
+<tr class="odd">
 <td><code>employment_status</code></td>
 <td>Current employment status</td>
 <td>Categorical</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>party_id</code></td>
 <td>Party identification</td>
 <td>Categorical</td>
@@ -441,6 +448,26 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 
 </div>
 <img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" width="864" class="r-stretch"></section>
+<section id="participate" class="slide level2 smaller">
+<h2>Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>The plot was created, but R displayed the warning below. What happened to the 94 observations?</p>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>Warning: Removed 94 rows containing non-finite values</span>
+<span id="cb7-2"><a></a>outside the scale range (`stat_boxplot()`).</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div></div>
+</section>
 <section id="interpret-the-plot" class="slide level2 smaller">
 <h2>Interpret the plot</h2>
 <div class="question">
@@ -452,7 +479,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Can this plot tell us whether marital status causes differences in age?</li>
 </ul>
 </div>
-</section>
+
+<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" width="864" class="r-stretch"></section>
 <section id="plot-autopsy" class="slide level2 smaller">
 <h2>Plot autopsy</h2>
 <div class="cell" data-code-annotations="below">
@@ -490,7 +518,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 <div class="fragment">
 <div class="question">
-<p>Which component would you change to plot different variables? Which component controls the variable represented by color?</p>
+<p>Which component would you change to plot different variables? Which component controls the variable represented by the fill color?</p>
 </div>
 </div>
 </section>
@@ -501,11 +529,11 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="columns">
 <div class="column" style="width:42%;">
 <p>For the GSS boxplot:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">aes</span>(</span>
-<span id="cb7-2"><a></a>  <span class="at">x =</span> marital_status,</span>
-<span id="cb7-3"><a></a>  <span class="at">y =</span> age,</span>
-<span id="cb7-4"><a></a>  <span class="at">fill =</span> marital_status</span>
-<span id="cb7-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">aes</span>(</span>
+<span id="cb8-2"><a></a>  <span class="at">x =</span> marital_status,</span>
+<span id="cb8-3"><a></a>  <span class="at">y =</span> age,</span>
+<span id="cb8-4"><a></a>  <span class="at">fill =</span> marital_status</span>
+<span id="cb8-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -533,7 +561,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" width="672"></p>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -547,13 +575,13 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="column">
 <p><strong>Map:</strong> fill varies with a variable, so ggplot2 creates a legend</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-mapping-1.png" width="672"></p>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -561,7 +589,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div><div class="column fragment">
 <p><strong>Set:</strong> every box has the same fill, so no legend is needed</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"pink"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -653,32 +681,20 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="one-categorical-variable" class="slide level2 smaller">
 <h2>One categorical variable</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status)) <span class="sc">+</span></span>
-<span id="cb10-3"><a></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb10-5"><a></a>    <span class="at">title =</span> <span class="st">"Marital status among GSS respondents in 2024"</span>,</span>
-<span id="cb10-6"><a></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
-<span id="cb10-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of respondents"</span>,</span>
-<span id="cb10-8"><a></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
-<span id="cb10-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb10-10"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb10-11"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status)) <span class="sc">+</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-5"><a></a>    <span class="at">title =</span> <span class="st">"Marital status among GSS respondents in 2024"</span>,</span>
+<span id="cb11-6"><a></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
+<span id="cb11-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of respondents"</span>,</span>
+<span id="cb11-8"><a></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span id="cb11-9"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb11-10"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-11"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" width="864" class="r-stretch"><p>The bar height is a <strong>count</strong>. <code>geom_bar()</code> counts rows for us.</p>
-</section>
-<section id="counts-and-survey-weights" class="slide level2 smaller">
-<h2>Counts and survey weights</h2>
-<p>These two mappings answer slightly different questions:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># How many respondents are in each category?</span></span>
-<span id="cb11-2"><a></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status)</span>
-<span id="cb11-3"><a></a></span>
-<span id="cb11-4"><a></a><span class="co"># What is the survey-weighted size of each category?</span></span>
-<span id="cb11-5"><a></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">weight =</span> weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>For learning the grammar, we will focus on the plot structure. For population descriptions, we should use the GSS survey weights.</p>
 </section>
 <section id="two-categorical-variables-what-is-the-denominator" class="slide level2 smaller">
 <h2>Two categorical variables: What is the denominator?</h2>
@@ -697,9 +713,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>gss <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness)) <span class="sc">+</span></span>
 <span id="cb12-4"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb12-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
 <span id="cb12-6"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -714,9 +730,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>gss <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness)) <span class="sc">+</span></span>
 <span id="cb13-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
 <span id="cb13-6"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -731,7 +747,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>gss <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness)) <span class="sc">+</span></span>
 <span id="cb14-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
 <span id="cb14-5"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
 <span id="cb14-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
@@ -746,7 +762,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 </div></div>
 </section>
-<section id="participate" class="slide level2 smaller">
+<section id="participate-1" class="slide level2 smaller">
 <h2>Participate 📱💻</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
@@ -778,7 +794,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="task">
 <p>Use <code>gss</code> to answer one question below with an appropriate plot:</p>
 <ul>
-<li>Is self-reported <strong>happiness</strong> distributed differently across marital-status groups?</li>
+<li>Is self-reported <strong>happiness</strong> distributed differently across self-rated <strong>health</strong> groups?</li>
 <li>How does <strong>employment status</strong> vary across marital-status groups?</li>
 <li>What is the relationship between <strong>education years</strong> and <strong>age</strong>? Does it differ by marital status?</li>
 </ul>
