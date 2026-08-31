@@ -630,8 +630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="load-packages" class="level2">
 <h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -768,7 +767,7 @@ Note
 </section>
 <section id="start-with-a-question" class="level2">
 <h2 class="anchored" data-anchor-id="start-with-a-question">Start with a question</h2>
-<div class="hand large">
+<div class="question hand large">
 <p>How does age vary across marital-status groups?</p>
 </div>
 <p>Before writing code:</p>
@@ -781,14 +780,15 @@ Note
 <section id="age-by-marital-status" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="age-by-marital-status">Age by marital status</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gss, <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gss, <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age, <span class="at">fill =</span> marital_status)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Age varies substantially across marital-status groups"</span>,</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Age (years)"</span>,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 94 rows containing non-finite outside the scale range
 (`stat_boxplot()`).</code></pre>
@@ -804,6 +804,7 @@ Note
 </section>
 <section id="interpret-the-plot" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="interpret-the-plot">Interpret the plot</h2>
+<div class="question">
 <p>With a partner:</p>
 <ul>
 <li>Which group has the highest median age? The lowest?</li>
@@ -811,16 +812,18 @@ Note
 <li>What does one box summarize?</li>
 <li>Can this plot tell us whether marital status causes differences in age?</li>
 </ul>
+</div>
 </section>
 <section id="plot-autopsy" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="plot-autopsy">Plot autopsy</h2>
 <div class="cell" data-code-annotations="below">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gss,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age, <span class="at">fill =</span> marital_status)</span>
 <span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-7" class="code-annotation-target"><a href="#annotated-cell-5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
@@ -839,6 +842,10 @@ Note
 <dd>
 <span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The plot <strong>labels</strong></span>
 </dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="7" data-code-annotation="5">The <strong>scale</strong> used to map values to colors</span>
+</dd>
 </dl>
 </div>
 </div>
@@ -849,32 +856,110 @@ Note
 </section>
 <section id="mapping-and-aesthetics" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="mapping-and-aesthetics">Mapping and aesthetics</h2>
-<ul>
-<li><strong>Aesthetics</strong> are visual properties of a plot, such as position, color, fill, shape, size, and transparency.</li>
-<li>In the grammar of graphics, variables from the data frame are <strong>mapped</strong> to aesthetics.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
+<p><strong>Aesthetics</strong> are visual properties such as position, color, fill, shape, size, and transparency.</p>
+<p>. . .</p>
+<div class="columns">
+<div class="column" style="width:42%;">
+<p>For the GSS boxplot:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> marital_status,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> age,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> marital_status</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Aesthetic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>marital_status</code></td>
+<td>x position</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>y position</td>
+</tr>
+<tr class="odd">
+<td><code>marital_status</code></td>
+<td>fill color</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:58%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
 <figure class="figure">
-<p><a href="images/03/aesthetic-mapping.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/03/aesthetic-mapping.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="map-a-variable-set-a-value" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="map-a-variable-set-a-value">Map a variable; set a value</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Map:</strong> fill varies with a variable, so ggplot2 creates a legend</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map: fill varies with a variable, so ggplot2 creates a legend</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set: every box has the same fill, so no legend is needed</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-mapping-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-mapping-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column fragment">
+<p><strong>Set:</strong> every box has the same fill, so no legend is needed</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Variables belong inside <code>aes()</code>; fixed visual choices belong outside it.</p>
+</div>
+</div>
 </section>
 <section id="grammar-of-graphics" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="grammar-of-graphics">Grammar of graphics</h2>
-<p>When building or reading a plot, work through this checklist:</p>
-<p><strong>data</strong> → <strong>aesthetic mappings</strong> → <strong>geom</strong> → <strong>statistical transformation</strong> → <strong>facets</strong> → <strong>scales</strong> → <strong>labels</strong> → <strong>theme</strong></p>
-<p>Not every plot needs every component, but each component is a separate decision.</p>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>When building or reading a plot, work through the layers as if they’re a checklist.</p></li>
+<li><p>Not every plot needs every component, but each component is a separate decision.</p></li>
+</ul>
+</div><div class="column">
+<p><a href="images/03/gg-layers.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/03/gg-layers.png" class="img-fluid"></a></p>
+</div>
+</div>
 </section>
 </section>
 <section id="choosing-a-plot" class="level1">
@@ -898,27 +983,27 @@ Note
 <tr class="odd">
 <td>What values are common?</td>
 <td>One categorical</td>
-<td>Bar chart</td>
+<td><span class="fragment">Bar chart</span></td>
 </tr>
 <tr class="even">
 <td>What is the distribution?</td>
 <td>One numerical</td>
-<td>Histogram or boxplot</td>
+<td><span class="fragment">Histogram or boxplot</span></td>
 </tr>
 <tr class="odd">
 <td>Do groups differ?</td>
 <td>Numerical + categorical</td>
-<td>Boxplot or histogram by group</td>
+<td><span class="fragment">Boxplot or histogram by group</span></td>
 </tr>
 <tr class="even">
-<td>Are two categories associated?</td>
+<td>Are two categorical variables associated?</td>
 <td>Two categorical</td>
-<td>Filled or dodged bar chart</td>
+<td><span class="fragment">Filled or dodged bar chart</span></td>
 </tr>
 <tr class="odd">
-<td>Are two numerical variables related?</td>
+<td>Are two numerical variables associated?</td>
 <td>Two numerical</td>
-<td>Scatterplot</td>
+<td><span class="fragment">Scatterplot</span></td>
 </tr>
 </tbody>
 </table>
@@ -926,21 +1011,21 @@ Note
 <section id="one-categorical-variable" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="one-categorical-variable">One categorical variable</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Marital status among GSS respondents in 2024"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of respondents"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Marital status among GSS respondents in 2024"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of respondents"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" class="img-fluid figure-img" width="864"></a></p>
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" class="img-fluid figure-img" width="864"></a></p>
 </figure>
 </div>
 </div>
@@ -951,11 +1036,11 @@ Note
 <h2 class="smaller anchored" data-anchor-id="counts-and-survey-weights">Counts and survey weights</h2>
 <p>These two mappings answer slightly different questions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many respondents are in each category?</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the survey-weighted size of each category?</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">weight =</span> weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many respondents are in each category?</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the survey-weighted size of each category?</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">weight =</span> weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For learning the grammar, we will focus on the plot structure. For population descriptions, we should use the GSS survey weights.</p>
 </section>
@@ -974,16 +1059,16 @@ Note
 <div class="column" style="width:33%;">
 <p><strong>Stacked: counts</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/stacked-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-revealjs/stacked-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/stacked-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="03-grammar-of-data-visualization_files/figure-revealjs/stacked-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
 </figure>
 </div>
 </div>
@@ -991,16 +1076,16 @@ Note
 </div><div class="column" style="width:33%;">
 <p><strong>Dodged: counts</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/dodged-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-revealjs/dodged-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/dodged-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="03-grammar-of-data-visualization_files/figure-revealjs/dodged-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
 </figure>
 </div>
 </div>
@@ -1008,17 +1093,17 @@ Note
 </div><div class="column" style="width:33%;">
 <p><strong>Filled: proportions</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/filled-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-revealjs/filled-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/filled-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="03-grammar-of-data-visualization_files/figure-revealjs/filled-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
 </figure>
 </div>
 </div>
@@ -1036,7 +1121,7 @@ Note
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+<p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
 </figure>
 </div>
 <div class="small">
@@ -1051,33 +1136,19 @@ Note
 <li>Give the reader a meaningful title, axis labels, and a legend.</li>
 <li>Use color deliberately; do not rely on color alone when another channel can help.</li>
 <li>Choose the denominator and chart form to answer the question.</li>
-<li>Describe what the data show, and distinguish that description from a causal claim.</li>
+<li>Describe what the data show, and distinguish that description from a causal claim unless the data come from a randomized experiment or the visualization is part of a causal inference analysis.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The filled plot uses GSS survey weights. It shows an association in one cross-sectional survey, not evidence that marital status causes happiness or vice versa.</p>
-</div>
-</div>
 </section>
 <section id="on-your-own" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="on-your-own">On your own</h2>
 <div class="task">
 <p>Use <code>gss</code> to answer one question below with an appropriate plot:</p>
 <ul>
-<li>How does <strong>age</strong> vary across marital-status groups?</li>
 <li>Is self-reported <strong>happiness</strong> distributed differently across marital-status groups?</li>
-<li>What is the relationship between <strong>education years</strong> and <strong>age</strong>? Does it differ by marital status?</li>
 <li>How does <strong>employment status</strong> vary across marital-status groups?</li>
+<li>What is the relationship between <strong>education years</strong> and <strong>age</strong>? Does it differ by marital status?</li>
 </ul>
-<p>State the question, identify the variable type(s), and explain why your plot answers it. Describe patterns; do not make causal claims.</p>
+<p>State the question, identify the variable type(s), and explain why your plot answers it. Then, describe patterns, making sure to avoid causal language.</p>
 </div>
 
 
