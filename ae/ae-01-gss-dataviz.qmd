@@ -76,14 +76,12 @@ Both the question and the variable type should guide our choice of visualization
 # add code here
 ```
 
-- `aes()` tells how variables in the data should be mapped to visual properties of the graph.
+- `aes()` tells how variables in the data map to visual properties of the graph.
 
 ```{r}
 #| label: health-bar-mapping
 # add code here
 ```
-
-The result is exactly the same.
 
 - A `geom_` function specifies how observations will be represented. `geom_bar()` creates a bar chart and counts the rows in each category for us.
 
@@ -109,9 +107,9 @@ Add your response here.
 Now that we're done with our first task, it's time to take a snapshot.
 
 1.  Preview your Quarto document and review the output. If all looks good...
-2.  Go to the Source Control pane and stage your changes to each file listed. Then, commit your staged changes using a simple and informative message.
+2.  Go to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.
 3.  Click Sync to push your changes to your application exercise repo on GitHub.
-4.  Go to your repo on GitHub and confirm that you can see the updated files -- you may need to refresh your browser window. Once your updated files are in your repo on GitHub, you're good to go!
+4.  Go to your repo on GitHub and confirm that you can see the updated files -- you may need to refresh your browser window. Once your updated files are in your GitHub repo, you're good to go!
 :::
 
 ## Two categorical variables
@@ -142,7 +140,7 @@ Modify the stacked bar chart by setting `position = "dodge"` inside `geom_bar()`
 # add code here
 ```
 
-Dodging makes the count in each combination easier to compare, but larger marital-status groups still tend to have taller bars.
+Dodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.
 
 ### Option 3 - Demo: Filled bars
 
@@ -191,7 +189,6 @@ Add response here. Insert code cells as needed.
 
 ::: callout-important
 ## Preview, commit, push
-
 Once you're done, take one last snapshot:
 
 1.  Preview your Quarto document.
