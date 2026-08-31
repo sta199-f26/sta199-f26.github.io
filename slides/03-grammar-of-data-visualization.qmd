@@ -25,9 +25,9 @@ ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
 
 ## While you wait... {.smaller}
 
-::: {.columns}
+::: {.columns   .callout}
 
-::: {.column width="25%"}
+::: {.column .egret-background width="25%"}
 
 **1. Clone your `ae` repository**
 
@@ -35,7 +35,7 @@ Go to the [course GitHub organization](https://github.com/sta199-f26) and clone 
 
 :::
 
-::: {.column width="75%"}
+::: {.column .gray-background width="75%"}
 
 **2. Participate** 📱💻 
 
@@ -193,17 +193,13 @@ ggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +
 ::: {.column width="70%"}
 
 ::: wooclap
-The plot was created, but R displayed the warning below. Is this an error? What happened to the 94 observations?
+The plot was created, but R displayed the warning below. What happened to the 94 observations?
 :::
 
 ```text
 Warning: Removed 94 rows containing non-finite values
 outside the scale range (`stat_boxplot()`).
 ```
-
-::: {.callout-note .fragment}
-`age` is missing for 94 respondents, so ggplot2 could not place them on the y-axis. It omitted those rows and warned us rather than silently dropping them.
-:::
 
 :::
 
