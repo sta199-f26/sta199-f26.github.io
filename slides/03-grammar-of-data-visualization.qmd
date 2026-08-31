@@ -399,131 +399,13 @@ Variables belong inside `aes()`; fixed visual choices belong outside it.
 | Are two categorical variables associated? | Two categorical | [Filled or dodged bar chart]{.fragment} |
 | Are two numerical variables associated? | Two numerical | [Scatterplot]{.fragment} |
 
-## One categorical variable {.smaller}
+## Real questions
+
+- Real interesting questions involve multiple variables
+
+- We can bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as `color`, `shape`, `size`, `linewidth`, etc. and/or with faceting (creating small multiple plots based on the levels of a variable).
 
 ```{r}
-#| label: one-categorical
-#| fig-width: 9
-#| fig-height: 4
-gss |>
-  ggplot(aes(x = marital_status)) +
-  geom_bar(fill = "pink") +
-  labs(
-    title = "Marital status among GSS respondents in 2024",
-    x = "Marital status",
-    y = "Number of respondents",
-    caption = "Source: 2024 General Social Survey (GSS), NORC"
-  ) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 20, hjust = 1))
+#| label: four-vars
+
 ```
-
-The bar height is a **count**. `geom_bar()` counts rows for us.
-
-## Two categorical variables: What is the denominator? {.smaller}
-
-Now compare marital status and self-reported happiness in the 2024 GSS.
-
-- A **stacked** bar chart shows counts, split into groups.
-- A **dodged** bar chart makes counts in each combination easier to compare.
-- A **filled** bar chart makes every bar height 100%, so it compares *within-marital-status proportions*.
-
-## Compare the choices {.smaller}
-
-::: {.columns}
-
-::: {.column width="33%"}
-
-**Stacked: counts**
-
-```{r}
-#| label: stacked-bars
-#| fig-width: 4
-#| fig-height: 4
-gss |>
-  filter(!is.na(happiness)) |>
-  ggplot(aes(x = marital_status, fill = happiness)) +
-  geom_bar() +
-  labs(x = "Marital status", y = "Count", fill = "Happiness") +
-  theme_minimal(base_size = 11)
-```
-
-:::
-
-::: {.column width="33%"}
-
-**Dodged: counts**
-
-```{r}
-#| label: dodged-bars
-#| fig-width: 4
-#| fig-height: 4
-gss |>
-  filter(!is.na(happiness)) |>
-  ggplot(aes(x = marital_status, fill = happiness)) +
-  geom_bar(position = "dodge") +
-  labs(x = "Marital status", y = "Count", fill = "Happiness") +
-  theme_minimal(base_size = 11)
-```
-
-:::
-
-::: {.column width="33%"}
-
-**Filled: proportions**
-
-```{r}
-#| label: filled-bars
-#| fig-width: 4
-#| fig-height: 4
-gss |>
-  filter(!is.na(happiness)) |>
-  ggplot(aes(x = marital_status, fill = happiness)) +
-  geom_bar(position = "fill") +
-  scale_y_continuous(labels = scales::label_percent()) +
-  labs(x = "Marital status", y = "Proportion", fill = "Happiness") +
-  theme_minimal(base_size = 11)
-```
-
-:::
-
-:::
-
-## Participate 📱💻 {.smaller}
-
-::: {.columns}
-
-::: {.column width="70%"}
-
-::: wooclap
-You want to compare the proportion in each happiness category *within marital-status group*. Which bar-chart position should you use, and why?
-:::
-
-:::
-
-::: {.column width="30%"}
-
-{{< include _wooclap-column.qmd >}}
-
-:::
-
-:::
-
-## A chart is an argument {.smaller}
-
-- Give the reader a meaningful title, axis labels, and a legend.
-- Use color deliberately; do not rely on color alone when another channel can help.
-- Choose the denominator and chart form to answer the question.
-- Describe what the data show, and distinguish that description from a causal claim unless the data come from a randomized experiment or the visualization is part of a causal inference analysis.
-
-## On your own {.smaller}
-
-::: task
-Use `gss` to answer one question below with an appropriate plot:
-
-- Is self-reported **happiness** distributed differently across self-rated **health** groups?
-- How does **employment status** vary across marital-status groups?
-- What is the relationship between **education years** and **age**? Does it differ by marital status?
-
-State the question, identify the variable type(s), and explain why your plot answers it. Then, describe patterns, making sure to avoid causal language.
-:::
