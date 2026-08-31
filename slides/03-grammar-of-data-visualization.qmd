@@ -27,35 +27,39 @@ ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
 
 ::: {.columns}
 
-::: {.column width="15%"}
+::: {.column width="25%"}
 
-If you haven't yet done so:
+**1. Clone your `ae` repository**
 
-- Fill out the Getting to know you survey
-
-- Accept the GitHub organization invite
+Go to the [course GitHub organization](https://github.com/sta199-f26) and clone `ae-YOUR-GITHUB-NAME` repo to [your Positron session](https://cmgr.oit.duke.edu/containers) in your container.
 
 :::
 
-::: {.column width="5%"}
-&nbsp;
-:::
+::: {.column width="75%"}
 
-::: {.column width="65%"}
-
-**Participate** 📱💻 
+**2. Participate** 📱💻 
 
 ::: wooclap
-What does point represent in this visualization?
+What does each point represent in this visualization?
 :::
+
+::: columns
+
+::: {.column width="80%"}
 
 ![](images/03/un-data-viz.png)
 
 :::
 
-::: {.column width="15%"}
+::: {.column width="15%" .xsmall}
 
-{{< include _wooclap-column.qmd >}}
+![](images/03/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/IOAADOR) and use the code IOAADOR.
+
+:::
+
+:::
 
 :::
 
@@ -149,6 +153,7 @@ gss
 | `education_years` | Completed years of education | Numerical |
 | `children` | Number of children; 8 means 8 or more | Numerical |
 | `happiness` | Self-reported happiness | Categorical |
+| `health` | Self-reported general health | Categorical |
 | `employment_status` | Current employment status | Categorical |
 | `party_id` | Party identification | Categorical |
 
@@ -181,6 +186,35 @@ ggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +
   scale_fill_viridis_d()
 ```
 
+## Participate 📱💻 {.smaller}
+
+::: {.columns}
+
+::: {.column width="70%"}
+
+::: wooclap
+The plot was created, but R displayed the warning below. Is this an error? What happened to the 94 observations?
+:::
+
+```text
+Warning: Removed 94 rows containing non-finite values
+outside the scale range (`stat_boxplot()`).
+```
+
+::: {.callout-note .fragment}
+`age` is missing for 94 respondents, so ggplot2 could not place them on the y-axis. It omitted those rows and warned us rather than silently dropping them.
+:::
+
+:::
+
+::: {.column width="30%"}
+
+{{< include _wooclap-column.qmd >}}
+
+:::
+
+:::
+
 ## Interpret the plot {.smaller}
 
 ::: question
@@ -193,7 +227,11 @@ With a partner:
 :::
 
 ```{r}
-
+#| ref-label: age-marital-boxplot
+#| fig-width: 9
+#| fig-height: 4.5
+#| echo: false
+#| warning: false
 ```
 
 ## Plot autopsy {.smaller}
@@ -208,7 +246,7 @@ ggplot(
 ) +
   geom_boxplot() + # <3>
   labs(...) + # <4>
-  scale_fill_viridis_d() #<5>
+  scale_fill_viridis_d() # <5>
 ```
 
 1. The **data** to visualize
@@ -220,7 +258,7 @@ ggplot(
 . . .
 
 ::: question
-Which component would you change to plot different variables? Which component controls the variable represented by color?
+Which component would you change to plot different variables? Which component controls the variable represented by the fill color?
 :::
 
 ## Mapping and aesthetics {.smaller}
@@ -254,11 +292,20 @@ aes(
 ::: {.column width="58%"}
 
 ```{r}
-#| ref-label: age-marital-boxplot
+#| label: age-marital-boxplot-simplified
 #| echo: false
 #| warning: false
 #| fig-width: 7
-#| fig-height: 4
+#| fig-height: 3.5
+ggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = NULL,
+    caption = NULL
+  ) +
+  scale_fill_viridis_d()
 ```
 
 :::
@@ -280,20 +327,11 @@ geom_boxplot(aes(fill = marital_status))
 ```
 
 ```{r}
-#| label: age-marital-boxplot-mapping
+#| ref-label: age-marital-boxplot-simplified
 #| echo: false
 #| warning: false
 #| fig-width: 7
 #| fig-height: 3.5
-ggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +
-  geom_boxplot(show.legend = FALSE) +
-  labs(
-    title = NULL,
-    x = NULL,
-    y = NULL,
-    caption = NULL
-  ) +
-  scale_fill_viridis_d()
 ```
 
 :::
@@ -305,7 +343,7 @@ ggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +
 ```{r}
 #| label: setting
 #| eval: false
-geom_boxplot(fill = "steelblue")
+geom_boxplot(fill = "pink")
 ```
 
 ```{r}
@@ -386,21 +424,6 @@ gss |>
 
 The bar height is a **count**. `geom_bar()` counts rows for us.
 
-## Counts and survey weights {.smaller}
-
-These two mappings answer slightly different questions:
-
-```{r}
-#| eval: false
-# How many respondents are in each category?
-aes(x = marital_status)
-
-# What is the survey-weighted size of each category?
-aes(x = marital_status, weight = weight)
-```
-
-For learning the grammar, we will focus on the plot structure. For population descriptions, we should use the GSS survey weights.
-
 ## Two categorical variables: What is the denominator? {.smaller}
 
 Now compare marital status and self-reported happiness in the 2024 GSS.
@@ -423,9 +446,9 @@ Now compare marital status and self-reported happiness in the 2024 GSS.
 #| fig-height: 4
 gss |>
   filter(!is.na(happiness)) |>
-  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +
+  ggplot(aes(x = marital_status, fill = happiness)) +
   geom_bar() +
-  labs(x = "Marital status", y = "Weighted count", fill = "Happiness") +
+  labs(x = "Marital status", y = "Count", fill = "Happiness") +
   theme_minimal(base_size = 11)
 ```
 
@@ -441,9 +464,9 @@ gss |>
 #| fig-height: 4
 gss |>
   filter(!is.na(happiness)) |>
-  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +
+  ggplot(aes(x = marital_status, fill = happiness)) +
   geom_bar(position = "dodge") +
-  labs(x = "Marital status", y = "Weighted count", fill = "Happiness") +
+  labs(x = "Marital status", y = "Count", fill = "Happiness") +
   theme_minimal(base_size = 11)
 ```
 
@@ -459,7 +482,7 @@ gss |>
 #| fig-height: 4
 gss |>
   filter(!is.na(happiness)) |>
-  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +
+  ggplot(aes(x = marital_status, fill = happiness)) +
   geom_bar(position = "fill") +
   scale_y_continuous(labels = scales::label_percent()) +
   labs(x = "Marital status", y = "Proportion", fill = "Happiness") +
@@ -502,7 +525,7 @@ You want to compare the proportion in each happiness category *within marital-st
 ::: task
 Use `gss` to answer one question below with an appropriate plot:
 
-- Is self-reported **happiness** distributed differently across marital-status groups?
+- Is self-reported **happiness** distributed differently across self-rated **health** groups?
 - How does **employment status** vary across marital-status groups?
 - What is the relationship between **education years** and **age**? Does it differ by marital status?
 

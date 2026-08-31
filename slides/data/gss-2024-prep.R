@@ -15,7 +15,7 @@ on.exit(unlink(c(source_zip, source_dir), recursive = TRUE), add = TRUE)
 gss_2024 <- read_dta(
   source_dta,
   col_select = c(
-    year, marital, age, educ, childs, happy, wrkstat, partyid, wtssnrps
+    year, marital, age, educ, childs, happy, health, wrkstat, partyid
   )
 ) |>
   transmute(
@@ -29,24 +29,25 @@ gss_2024 <- read_dta(
     happiness = stringr::str_to_sentence(
       as.character(as_factor(happy, levels = "labels"))
     ),
+    health = stringr::str_to_sentence(
+      as.character(as_factor(health, levels = "labels"))
+    ),
     employment_status = stringr::str_to_sentence(
       as.character(as_factor(wrkstat, levels = "labels"))
     ),
     party_id = stringr::str_to_sentence(
       as.character(as_factor(partyid, levels = "labels"))
-    ),
-    weight = as.numeric(wtssnrps)
+    )
   ) |>
   filter(
     year == 2024L,
     !(marital_status %in% c(
       "No answer", "Skipped on web", "Don't know", "Refused", "Not applicable"
-    )),
-    !is.na(weight)
+    ))
   ) |>
   mutate(
     across(
-      c(happiness, employment_status, party_id),
+      c(happiness, health, employment_status, party_id),
       ~ if_else(
         .x %in% c(
           "Don't know", "No answer", "Skipped on web", "Refused", "Not applicable",
