@@ -94,15 +94,13 @@ Run this code cell, then render your document. Loading `tidyverse` gives you acc
 
 # Data
 
-You will analyze a fixed snapshot of the first 200 songs on Spotify's Global Weekly chart for the week dated August 27, 2026. Each row represents a song. Using a fixed snapshot means every team works with the same data and can reproduce the same results.
+You will analyze a fixed snapshot of the first 200 songs on Spotify's Global Weekly chart for the week dated August 27, 2026. Each row represents a song. 
 
-The course team saved this fixed snapshot after retrieving Spotify chart values from [Kworb's republished Spotify Global Weekly chart](https://kworb.net/spotify/country/global_weekly.html).
+Spotify releases a new chart every week, and a website called [Kworb.net](https://kworb.net/) releases a snapshot of these data weekly. This week's data was retrieved from [Kworb's republished Spotify Global Weekly chart](https://kworb.net/spotify/country/global_weekly.html) on August 29, 2026.
 
-::: {.callout-note collapse="true"}
-## Data provenance
+Spotify states that its chart stream counts are generated using a formula that filters for chart eligibility, so `streams` should not be interpreted as every raw Spotify play.[^1]
 
-Spotify is the underlying chart provider; Kworb is a third-party chart-tracking website that republishes the chart. See the [dataset notes](data/spotify-global-weekly-2026-08-27.md) for provenance and chart-methodology details.
-:::
+[^1]: See Spotify's chart documentation: <https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/>.
 
 Read the data into R with:
 
@@ -116,7 +114,7 @@ spotify <- read_csv(
 The variables are:
 
 - `rank`: Position on the chart, where 1 is the highest position.
-- `previous_rank_change`: Change in position from the previous weekly chart. A positive value indicates that a song moved up the chart; a negative value indicates that it moved down.
+- `previous_rank_change`: Change in position from the previous weekly chart. A `+` indicates that a song moved up the chart; a `-` indicates that it moved down, aand `=` indicates no change. `NEW` or `RE` can appear in a full chart extract
 - `artist`: Credited artist or artists.
 - `song`: Song title.
 - `weeks_on_chart`: Number of consecutive weeks the song has appeared on the chart.
@@ -127,10 +125,10 @@ The variables are:
 
 ## Question 1
 
-1. How many songs are in the dataset? How many variables are there? Use inline code to answer both questions. For example, writing `` `r nrow(spotify)` `` in your Quarto document will display the number of rows in `spotify` when you render it.
+1. How many songs are in the dataset? How many variables are there? Use inline code to answer both questions.
 
 ::: render-commit-push
-Render, commit, and push your changes to GitHub with the commit message "Added answer for Q1a".
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Q1a".
 :::
 
 2. Make a histogram and a boxplot of `streams`.
@@ -140,7 +138,7 @@ Render, commit, and push your changes to GitHub with the commit message "Added a
    - In a single pipeline, identify the songs with unusually high weekly stream counts according to the boxplot. Display the song title, artist, and stream count in descending order of streams.
 
 ::: render-commit-push
-Render, commit, and push your changes to GitHub with the commit message "Added answer for Q1b".
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Q1b".
 :::
 
 ## Question 2
@@ -148,7 +146,7 @@ Render, commit, and push your changes to GitHub with the commit message "Added a
 1. Before making a plot, predict the association between the number of consecutive weeks a song has been on the chart and its streams this week. Do you expect a positive association, a negative association, or little/no association? Explain your reasoning.
 
 ::: render-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message.
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
 :::
 
 2. Make a scatterplot of weekly streams on the y-axis versus weeks on the chart on the x-axis. Give your plot an informative title and axis labels. Describe the association. Was your prediction supported? Remember that this observational chart cannot tell us whether chart longevity causes streams, whether streams cause chart longevity, or whether another factor affects both.
@@ -163,7 +161,7 @@ Render, commit, and push your changes to GitHub with an informative and concise 
    In one pipeline, display the 10 songs farthest below their peak rank. Include the song title, artist, current rank, peak rank, and `positions_below_peak`. What pattern do you notice? Choose one song from your results and give one plausible explanation for why it may be charting below its earlier peak. Your explanation is a hypothesis, not a conclusion supported by these data alone.
 
 ::: render-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message.
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
 :::
 
 ## Optional reflection
