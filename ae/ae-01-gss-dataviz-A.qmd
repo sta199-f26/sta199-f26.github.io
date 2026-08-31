@@ -82,14 +82,12 @@ Both the question and the variable type should guide our choice of visualization
 ggplot(gss)
 ```
 
-- `aes()` tells how variables in the data should be mapped to visual properties of the graph.
+- `aes()` tells how variables in the data map to visual properties of the graph.
 
 ```{r}
 #| label: health-bar-mapping
 ggplot(gss, aes(x = health))
 ```
-
-The result is exactly the same.
 
 - A `geom_` function specifies how observations will be represented. `geom_bar()` creates a bar chart and counts the rows in each category for us.
 
@@ -101,7 +99,7 @@ ggplot(gss, aes(x = health)) +
 
 - Which recorded health response is most common? Which is least common?
 
-**Good** is the most common recorded health response among respondents in this data set, and **poor** is the least common. The `NA` bar represents the small number of respondents without a recorded health response.
+**Good** is the most common recorded health response among respondents in this data set, and **poor** is the least common. The `NA` bar represents the small number of respondents who did not provide a health response.
 
 - The `labs()` function allows us to give the plot a meaningful title, axis labels, and a source.
 
@@ -123,9 +121,9 @@ ggplot(gss, aes(x = health)) +
 Now that we're done with our first task, it's time to take a snapshot.
 
 1.  Preview your Quarto document and review the output. If all looks good...
-2.  Go to the Source Control pane and stage your changes to each file listed. Then, commit your staged changes using a simple and informative message.
+2.  Go to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.
 3.  Click Sync to push your changes to your application exercise repo on GitHub.
-4.  Go to your repo on GitHub and confirm that you can see the updated files -- you may need to refresh your browser window. Once your updated files are in your repo on GitHub, you're good to go!
+4.  Go to your repo on GitHub and confirm that you can see the updated files -- you may need to refresh your browser window. Once your updated files are in your GitHub repo, you're good to go!
 :::
 
 ## Two categorical variables
@@ -170,7 +168,7 @@ ggplot(gss, aes(x = marital_status, fill = happiness)) +
   )
 ```
 
-Dodging makes the count in each combination easier to compare, but larger marital-status groups still tend to have taller bars.
+Dodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.
 
 ### Option 3 - Demo: Filled bars
 
@@ -195,11 +193,11 @@ The denominator is the number of respondents in that marital-status group who ha
 
 - What patterns do you see?
 
-"Pretty happy" is the most prevalent response in every marital-status group. The married group has the largest proportion reporting "Very happy," while the separated group has the largest proportion reporting "Not too happy."
+"Pretty happy" is the most prevalent response across all marital-status groups. The married group has the largest proportion reporting "Very happy," while the separated group has the largest proportion reporting "Not too happy."
 
 - How do these plots answer the question about how happiness varies across marital-status groups? Which plot is the best?
 
-Stacked bars display counts split into groups. Dodged bars make counts for each combination easier to compare. Filled bars compare within-group proportions; the denominator is the total for each x-axis group. The best position depends on the question you want the plot to answer.
+Stacked bars display counts split into groups. Dodged bars make it easier to compare counts for each combination. Filled bars compare within-group proportions; the denominator is the total for each x-axis group. The best position depends on the question you want the plot to answer.
 
 ::: callout-important
 ## Preview, commit, push

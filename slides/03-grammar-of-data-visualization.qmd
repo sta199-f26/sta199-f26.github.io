@@ -386,8 +386,15 @@ Variables belong inside `aes()`; fixed visual choices belong outside it.
 
 :::
 
+# Application exercise
 
-# Choosing a plot
+## Let's get laptops out!
+
+::: appex
+- Go to the [course GitHub organization](https://github.com/sta199-f26) and clone `ae-YOUR-GITHUB-NAME` repo to [your Positron session](https://cmgr.oit.duke.edu/containers) in your container.
+
+- Open `ae-01-gss-dataviz.qmd` in Positron and follow the instructions to complete the application exercise.
+:::
 
 ## Start with the question {.smaller}
 
@@ -399,13 +406,30 @@ Variables belong inside `aes()`; fixed visual choices belong outside it.
 | Are two categorical variables associated? | Two categorical | [Filled or dodged bar chart]{.fragment} |
 | Are two numerical variables associated? | Two numerical | [Scatterplot]{.fragment} |
 
-## Real questions
+## Interesting Qs <-> many variables {.xsmall}
 
-- Real interesting questions involve multiple variables
-
-- We can bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as `color`, `shape`, `size`, `linewidth`, etc. and/or with faceting (creating small multiple plots based on the levels of a variable).
+Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as `color`, `shape`, `size`, `linewidth`, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):
 
 ```{r}
 #| label: four-vars
-
+#| echo: false
+#| warning: false
+#| fig-asp: 0.5
+#| fig-width: 9
+gss |>
+  filter(!is.na(happiness), !is.na(health)) |>
+  ggplot(aes(y = age, x = happiness, color = health, fill = health)) +
+  geom_boxplot(show.legend = FALSE, alpha = 0.5) +
+  facet_wrap(~marital_status, nrow = 1) +
+  labs(
+    title = "Happiness, health, and age",
+    y = "Age (years)",
+    x = "Happiness",
+    color = "Health",
+    caption = "Source: 2024 General Social Survey (GSS), NORC"
+  ) +
+  theme_bw() +
+  ggthemes::scale_colour_colourblind() +
+  ggthemes::scale_fill_colourblind() +
+  scale_x_discrete(labels = scales::label_wrap(10))
 ```
