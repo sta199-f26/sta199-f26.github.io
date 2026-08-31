@@ -90,7 +90,6 @@ What does point represent in this visualization?
 #| label: load-packages
 #| message: false
 library(tidyverse)
-library(ggthemes)
 ```
 
 <br>
@@ -155,7 +154,7 @@ gss
 
 ## Start with a question
 
-::: {.hand .large}
+::: {.question .hand .large}
 How does age vary across marital-status groups?
 :::
 
@@ -171,24 +170,31 @@ Before writing code:
 #| label: age-marital-boxplot
 #| fig-width: 9
 #| fig-height: 4.5
-ggplot(gss, aes(x = marital_status, y = age)) +
-  geom_boxplot() +
+ggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +
+  geom_boxplot(show.legend = FALSE) +
   labs(
     title = "Age varies substantially across marital-status groups",
     x = "Marital status",
     y = "Age (years)",
     caption = "Source: 2024 General Social Survey (GSS), NORC"
-  )
+  ) +
+  scale_fill_viridis_d()
 ```
 
 ## Interpret the plot {.smaller}
 
+::: question
 With a partner:
 
 - Which group has the highest median age? The lowest?
 - Which groups have the greatest variability?
 - What does one box summarize?
 - Can this plot tell us whether marital status causes differences in age?
+:::
+
+```{r}
+
+```
 
 ## Plot autopsy {.smaller}
 
@@ -198,16 +204,18 @@ With a partner:
 #| code-annotations: below
 ggplot(
   data = gss, # <1>
-  mapping = aes(x = marital_status, y = age) # <2>
+  mapping = aes(x = marital_status, y = age, fill = marital_status) # <2>
 ) +
   geom_boxplot() + # <3>
   labs(...) + # <4>
+  scale_fill_viridis_d() #<5>
 ```
 
 1. The **data** to visualize
 2. The variables **mapped** to visual properties
 3. The **geometric object** used to represent the observations
 4. The plot **labels**
+5. The **scale** used to map values to colors
 
 . . .
 
@@ -217,32 +225,133 @@ Which component would you change to plot different variables? Which component co
 
 ## Mapping and aesthetics {.smaller}
 
-- **Aesthetics** are visual properties of a plot, such as position, color, fill, shape, size, and transparency.
-- In the grammar of graphics, variables from the data frame are **mapped** to aesthetics.
+**Aesthetics** are visual properties such as position, color, fill, shape, size, and transparency.
 
-![](images/03/aesthetic-mapping.gif){fig-align="center"}
+. . .
+
+::: {.columns}
+
+::: {.column width="42%"}
+
+For the GSS boxplot:
+
+```r
+aes(
+  x = marital_status,
+  y = age,
+  fill = marital_status
+)
+```
+
+| Variable | Aesthetic |
+|---|---|
+| `marital_status` | x position |
+| `age` | y position |
+| `marital_status` | fill color |
+
+:::
+
+::: {.column width="58%"}
+
+```{r}
+#| ref-label: age-marital-boxplot
+#| echo: false
+#| warning: false
+#| fig-width: 7
+#| fig-height: 4
+```
+
+:::
+
+:::
 
 ## Map a variable; set a value {.smaller}
 
-```{r}
-#| label: mapping-versus-setting
-#| eval: false
-# Map: fill varies with a variable, so ggplot2 creates a legend
-geom_boxplot(aes(fill = marital_status))
+::: {.columns}
 
-# Set: every box has the same fill, so no legend is needed
+::: {.column}
+
+**Map:** fill varies with a variable, so ggplot2 creates a legend
+
+```{r}
+#| label: mapping
+#| eval: false
+geom_boxplot(aes(fill = marital_status))
+```
+
+```{r}
+#| label: age-marital-boxplot-mapping
+#| echo: false
+#| warning: false
+#| fig-width: 7
+#| fig-height: 3.5
+ggplot(gss, aes(x = marital_status, y = age, fill = marital_status)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = NULL,
+    caption = NULL
+  ) +
+  scale_fill_viridis_d()
+```
+
+:::
+
+::: {.column .fragment}
+
+**Set:** every box has the same fill, so no legend is needed
+
+```{r}
+#| label: setting
+#| eval: false
 geom_boxplot(fill = "steelblue")
 ```
 
+```{r}
+#| label: age-marital-boxplot-setting
+#| echo: false
+#| warning: false
+#| fig-width: 7
+#| fig-height: 3.5
+ggplot(gss, aes(x = marital_status, y = age)) +
+  geom_boxplot(fill = "pink") +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = NULL,
+    caption = NULL
+  )
+```
+
+:::
+
+:::
+
+::: {.callout-tip .fragment}
 Variables belong inside `aes()`; fixed visual choices belong outside it.
+:::
 
 ## Grammar of graphics {.smaller}
 
-When building or reading a plot, work through this checklist:
+::: {.columns}
 
-**data** → **aesthetic mappings** → **geom** → **statistical transformation** → **facets** → **scales** → **labels** → **theme**
+::: {.column}
 
-Not every plot needs every component, but each component is a separate decision.
+- When building or reading a plot, work through the layers as if they're a checklist.
+
+- Not every plot needs every component, but each component is a separate decision.
+
+:::
+
+::: {.column}
+
+![](images/03/gg-layers.png)
+
+:::
+
+:::
+
 
 # Choosing a plot
 
@@ -250,11 +359,11 @@ Not every plot needs every component, but each component is a separate decision.
 
 | Question | Variables | A useful first plot |
 |---|---|---|
-| What values are common? | One categorical | Bar chart |
-| What is the distribution? | One numerical | Histogram or boxplot |
-| Do groups differ? | Numerical + categorical | Boxplot or histogram by group |
-| Are two categories associated? | Two categorical | Filled or dodged bar chart |
-| Are two numerical variables related? | Two numerical | Scatterplot |
+| What values are common? | One categorical | [Bar chart]{.fragment} |
+| What is the distribution? | One numerical | [Histogram or boxplot]{.fragment} |
+| Do groups differ? | Numerical + categorical | [Boxplot or histogram by group]{.fragment} |
+| Are two categorical variables associated? | Two categorical | [Filled or dodged bar chart]{.fragment} |
+| Are two numerical variables associated? | Two numerical | [Scatterplot]{.fragment} |
 
 ## One categorical variable {.smaller}
 
@@ -264,7 +373,7 @@ Not every plot needs every component, but each component is a separate decision.
 #| fig-height: 4
 gss |>
   ggplot(aes(x = marital_status)) +
-  geom_bar(fill = "steelblue") +
+  geom_bar(fill = "pink") +
   labs(
     title = "Marital status among GSS respondents in 2024",
     x = "Marital status",
@@ -386,21 +495,16 @@ You want to compare the proportion in each happiness category *within marital-st
 - Give the reader a meaningful title, axis labels, and a legend.
 - Use color deliberately; do not rely on color alone when another channel can help.
 - Choose the denominator and chart form to answer the question.
-- Describe what the data show, and distinguish that description from a causal claim.
-
-::: callout-note
-The filled plot uses GSS survey weights. It shows an association in one cross-sectional survey, not evidence that marital status causes happiness or vice versa.
-:::
+- Describe what the data show, and distinguish that description from a causal claim unless the data come from a randomized experiment or the visualization is part of a causal inference analysis.
 
 ## On your own {.smaller}
 
 ::: task
 Use `gss` to answer one question below with an appropriate plot:
 
-- How does **age** vary across marital-status groups?
 - Is self-reported **happiness** distributed differently across marital-status groups?
-- What is the relationship between **education years** and **age**? Does it differ by marital status?
 - How does **employment status** vary across marital-status groups?
+- What is the relationship between **education years** and **age**? Does it differ by marital status?
 
-State the question, identify the variable type(s), and explain why your plot answers it. Describe patterns; do not make causal claims.
+State the question, identify the variable type(s), and explain why your plot answers it. Then, describe patterns, making sure to avoid causal language.
 :::
