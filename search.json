@@ -887,6 +887,328 @@
     "text": "Tasks due Wednesday\n\nComplete the getting to know you survey, then accept your GitHub organization invitation\nRead the syllabus\nComplete readings and videos for Wednesday\n\nAll linked from the course website at\nsta199-fa26.github.io"
   },
   {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#while-you-wait",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#while-you-wait",
+    "title": "Grammar of data visualization",
+    "section": "While you wait…",
+    "text": "While you wait…\n\n\nIf you haven’t yet done so:\n\nFill out the Getting to know you survey\nAccept the GitHub organization invite\n\n\n \n\nParticipate 📱💻\n\nWhat does point represent in this visualization?\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#outline",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#outline",
+    "title": "Grammar of data visualization",
+    "section": "Outline",
+    "text": "Outline\n\nLast week:\n\nWe introduced you to the course toolkit.\nYou cloned your lab repository and started making some updates in your Quarto documents.\nYou committed and pushed your changes back – at least most of you did!\n\n\n\n\nToday:\n\nYou will clone your ae (application exercise) repository.\nWe will introduce data visualization.\nYou will work on the application exercise on data visualization, commit your changes, and push them."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#load-packages",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#load-packages",
+    "title": "Grammar of data visualization",
+    "section": "Load packages",
+    "text": "Load packages\n\nlibrary(tidyverse)\nlibrary(ggthemes)\n\n\n\n\n\n\n\n\nReminder\n\n\ntidyverse is the collection of R packages designed for data science."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#load-the-data",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#load-the-data",
+    "title": "Grammar of data visualization",
+    "section": "Load the data",
+    "text": "Load the data\n\ngss &lt;- read_csv(\"data/gss-2024.csv\")\n\n\n\n\n\n\n\n\nReminder\n\n\nWe can read this as “read the CSV file called gss-2024.csv in the data folder” and save the result as gss."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#general-social-survey-gss",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#general-social-survey-gss",
+    "title": "Grammar of data visualization",
+    "section": "2024 General Social Survey (GSS)",
+    "text": "2024 General Social Survey (GSS)\nGSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.\nWe’re working with GSS data from the most recent wave:\n\nEach row represents one survey respondent.\nThe variables describe demographics, education, family, happiness, employment, and political identification.\n\n\n\n\n\n\n\nNote\n\n\nThe GSS is a cross-sectional survey. We can describe associations, but these data do not establish causation.\n\n\n\n\n\nSource: gss.norc.org/about-the-gss.html."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#view-the-data",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#view-the-data",
+    "title": "Grammar of data visualization",
+    "section": "View the data",
+    "text": "View the data\n\ngss\n\n# A tibble: 3,294 × 9\n    year marital_status   age education_years children happiness    \n   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        \n 1  2024 Never married     33              16        2 Not too happy\n 2  2024 Never married     64              16        0 Pretty happy \n 3  2024 Married           69              14        0 Pretty happy \n 4  2024 Never married     19              12        0 Pretty happy \n 5  2024 Divorced          70              13        3 Not too happy\n 6  2024 Married           53              14        2 Pretty happy \n 7  2024 Married           48              13        6 Pretty happy \n 8  2024 Divorced          30              14        1 Not too happy\n 9  2024 Married           60              14        2 Very happy   \n10  2024 Never married     25              12        0 Pretty happy \n# ℹ 3,284 more rows\n# ℹ 3 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;,\n#   weight &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#variables-in-our-extract",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#variables-in-our-extract",
+    "title": "Grammar of data visualization",
+    "section": "Variables in our extract",
+    "text": "Variables in our extract\n\n\n\nVariable\nDescription\nType\n\n\n\n\nmarital_status\nCurrent marital status\nCategorical\n\n\nage\nAge in years\nNumerical\n\n\neducation_years\nCompleted years of education\nNumerical\n\n\nchildren\nNumber of children; 8 means 8 or more\nNumerical\n\n\nhappiness\nSelf-reported happiness\nCategorical\n\n\nemployment_status\nCurrent employment status\nCategorical\n\n\nparty_id\nParty identification\nCategorical"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#start-with-a-question",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#start-with-a-question",
+    "title": "Grammar of data visualization",
+    "section": "Start with a question",
+    "text": "Start with a question\n\nHow does age vary across marital-status groups?\n\nBefore writing code:\n\nWhich variables do we need?\nWhat type is each variable?\nWhat kind of plot might answer the question?"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#age-by-marital-status",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#age-by-marital-status",
+    "title": "Grammar of data visualization",
+    "section": "Age by marital status",
+    "text": "Age by marital status\n\nggplot(gss, aes(x = marital_status, y = age)) +\n  geom_boxplot() +\n  labs(\n    title = \"Age varies substantially across marital-status groups\",\n    x = \"Marital status\",\n    y = \"Age (years)\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  )\n\nWarning: Removed 94 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#interpret-the-plot",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#interpret-the-plot",
+    "title": "Grammar of data visualization",
+    "section": "Interpret the plot",
+    "text": "Interpret the plot\nWith a partner:\n\nWhich group has the highest median age? The lowest?\nWhich groups have the greatest variability?\nWhat does one box summarize?\nCan this plot tell us whether marital status causes differences in age?"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#plot-autopsy",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#plot-autopsy",
+    "title": "Grammar of data visualization",
+    "section": "Plot autopsy",
+    "text": "Plot autopsy\n\nggplot(\n1  data = gss,\n2  mapping = aes(x = marital_status, y = age)\n) +\n3  geom_boxplot() +\n4  labs(...) +\n\n\n1\n\nThe data to visualize\n\n2\n\nThe variables mapped to visual properties\n\n3\n\nThe geometric object used to represent the observations\n\n4\n\nThe plot labels\n\n\n\n\n\n\nWhich component would you change to plot different variables? Which component controls the variable represented by color?"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#mapping-and-aesthetics",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#mapping-and-aesthetics",
+    "title": "Grammar of data visualization",
+    "section": "Mapping and aesthetics",
+    "text": "Mapping and aesthetics\n\nAesthetics are visual properties of a plot, such as position, color, fill, shape, size, and transparency.\nIn the grammar of graphics, variables from the data frame are mapped to aesthetics."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#map-a-variable-set-a-value",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#map-a-variable-set-a-value",
+    "title": "Grammar of data visualization",
+    "section": "Map a variable; set a value",
+    "text": "Map a variable; set a value\n\n# Map: fill varies with a variable, so ggplot2 creates a legend\ngeom_boxplot(aes(fill = marital_status))\n\n# Set: every box has the same fill, so no legend is needed\ngeom_boxplot(fill = \"steelblue\")\n\nVariables belong inside aes(); fixed visual choices belong outside it."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#grammar-of-graphics",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#grammar-of-graphics",
+    "title": "Grammar of data visualization",
+    "section": "Grammar of graphics",
+    "text": "Grammar of graphics\nWhen building or reading a plot, work through this checklist:\ndata → aesthetic mappings → geom → statistical transformation → facets → scales → labels → theme\nNot every plot needs every component, but each component is a separate decision."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#start-with-the-question",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#start-with-the-question",
+    "title": "Grammar of data visualization",
+    "section": "Start with the question",
+    "text": "Start with the question\n\n\n\n\n\n\n\n\nQuestion\nVariables\nA useful first plot\n\n\n\n\nWhat values are common?\nOne categorical\nBar chart\n\n\nWhat is the distribution?\nOne numerical\nHistogram or boxplot\n\n\nDo groups differ?\nNumerical + categorical\nBoxplot or histogram by group\n\n\nAre two categories associated?\nTwo categorical\nFilled or dodged bar chart\n\n\nAre two numerical variables related?\nTwo numerical\nScatterplot"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#one-categorical-variable",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#one-categorical-variable",
+    "title": "Grammar of data visualization",
+    "section": "One categorical variable",
+    "text": "One categorical variable\n\ngss |&gt;\n  ggplot(aes(x = marital_status)) +\n  geom_bar(fill = \"steelblue\") +\n  labs(\n    title = \"Marital status among GSS respondents in 2024\",\n    x = \"Marital status\",\n    y = \"Number of respondents\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 20, hjust = 1))\n\n\nThe bar height is a count. geom_bar() counts rows for us."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#counts-and-survey-weights",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#counts-and-survey-weights",
+    "title": "Grammar of data visualization",
+    "section": "Counts and survey weights",
+    "text": "Counts and survey weights\nThese two mappings answer slightly different questions:\n\n# How many respondents are in each category?\naes(x = marital_status)\n\n# What is the survey-weighted size of each category?\naes(x = marital_status, weight = weight)\n\nFor learning the grammar, we will focus on the plot structure. For population descriptions, we should use the GSS survey weights."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#two-categorical-variables-what-is-the-denominator",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#two-categorical-variables-what-is-the-denominator",
+    "title": "Grammar of data visualization",
+    "section": "Two categorical variables: What is the denominator?",
+    "text": "Two categorical variables: What is the denominator?\nNow compare marital status and self-reported happiness in the 2024 GSS.\n\nA stacked bar chart shows counts, split into groups.\nA dodged bar chart makes counts in each combination easier to compare.\nA filled bar chart makes every bar height 100%, so it compares within-marital-status proportions."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#compare-the-choices",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#compare-the-choices",
+    "title": "Grammar of data visualization",
+    "section": "Compare the choices",
+    "text": "Compare the choices\n\n\nStacked: counts\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +\n  geom_bar() +\n  labs(x = \"Marital status\", y = \"Weighted count\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)\n\n\n\n\n\n\n\n\n\nDodged: counts\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +\n  geom_bar(position = \"dodge\") +\n  labs(x = \"Marital status\", y = \"Weighted count\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)\n\n\n\n\n\n\n\n\n\nFilled: proportions\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +\n  geom_bar(position = \"fill\") +\n  scale_y_continuous(labels = scales::label_percent()) +\n  labs(x = \"Marital status\", y = \"Proportion\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#participate",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#participate",
+    "title": "Grammar of data visualization",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nYou want to compare the proportion in each happiness category within marital-status group. Which bar-chart position should you use, and why?\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#a-chart-is-an-argument",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#a-chart-is-an-argument",
+    "title": "Grammar of data visualization",
+    "section": "A chart is an argument",
+    "text": "A chart is an argument\n\nGive the reader a meaningful title, axis labels, and a legend.\nUse color deliberately; do not rely on color alone when another channel can help.\nChoose the denominator and chart form to answer the question.\nDescribe what the data show, and distinguish that description from a causal claim.\n\n\n\n\n\n\n\nNote\n\n\nThe filled plot uses GSS survey weights. It shows an association in one cross-sectional survey, not evidence that marital status causes happiness or vice versa."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization-slides.html#on-your-own",
+    "href": "slides/03-grammar-of-data-visualization-slides.html#on-your-own",
+    "title": "Grammar of data visualization",
+    "section": "On your own",
+    "text": "On your own\n\nUse gss to answer one question below with an appropriate plot:\n\nHow does age vary across marital-status groups?\nIs self-reported happiness distributed differently across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\nHow does employment status vary across marital-status groups?\n\nState the question, identify the variable type(s), and explain why your plot answers it. Describe patterns; do not make causal claims."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html",
+    "href": "slides/03-grammar-of-data-visualization.html",
+    "title": "Grammar of data visualization",
+    "section": "",
+    "text": "If you haven’t yet done so:\n\nFill out the Getting to know you survey\nAccept the GitHub organization invite\n\n\n \n\nParticipate 📱💻\n\nWhat does point represent in this visualization?\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK.\n\n\n\n\n\n\n\nLast week:\n\nWe introduced you to the course toolkit.\nYou cloned your lab repository and started making some updates in your Quarto documents.\nYou committed and pushed your changes back – at least most of you did!\n\n\n. . .\n\nToday:\n\nYou will clone your ae (application exercise) repository.\nWe will introduce data visualization.\nYou will work on the application exercise on data visualization, commit your changes, and push them."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#while-you-wait",
+    "href": "slides/03-grammar-of-data-visualization.html#while-you-wait",
+    "title": "Grammar of data visualization",
+    "section": "",
+    "text": "If you haven’t yet done so:\n\nFill out the Getting to know you survey\nAccept the GitHub organization invite\n\n\n \n\nParticipate 📱💻\n\nWhat does point represent in this visualization?\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#outline",
+    "href": "slides/03-grammar-of-data-visualization.html#outline",
+    "title": "Grammar of data visualization",
+    "section": "",
+    "text": "Last week:\n\nWe introduced you to the course toolkit.\nYou cloned your lab repository and started making some updates in your Quarto documents.\nYou committed and pushed your changes back – at least most of you did!\n\n\n. . .\n\nToday:\n\nYou will clone your ae (application exercise) repository.\nWe will introduce data visualization.\nYou will work on the application exercise on data visualization, commit your changes, and push them."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#load-packages",
+    "href": "slides/03-grammar-of-data-visualization.html#load-packages",
+    "title": "Grammar of data visualization",
+    "section": "Load packages",
+    "text": "Load packages\n\nlibrary(tidyverse)\nlibrary(ggthemes)\n\n\n\n\n\n\n\n\nReminder\n\n\n\ntidyverse is the collection of R packages designed for data science."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#load-the-data",
+    "href": "slides/03-grammar-of-data-visualization.html#load-the-data",
+    "title": "Grammar of data visualization",
+    "section": "Load the data",
+    "text": "Load the data\n\ngss &lt;- read_csv(\"data/gss-2024.csv\")\n\n\n\n\n\n\n\n\nReminder\n\n\n\nWe can read this as “read the CSV file called gss-2024.csv in the data folder” and save the result as gss."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#general-social-survey-gss",
+    "href": "slides/03-grammar-of-data-visualization.html#general-social-survey-gss",
+    "title": "Grammar of data visualization",
+    "section": "2024 General Social Survey (GSS)",
+    "text": "2024 General Social Survey (GSS)\nGSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.\nWe’re working with GSS data from the most recent wave:\n\nEach row represents one survey respondent.\nThe variables describe demographics, education, family, happiness, employment, and political identification.\n\n\n\n\n\n\n\nNote\n\n\n\nThe GSS is a cross-sectional survey. We can describe associations, but these data do not establish causation.\n\n\n\n\nSource: gss.norc.org/about-the-gss.html."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#view-the-data",
+    "href": "slides/03-grammar-of-data-visualization.html#view-the-data",
+    "title": "Grammar of data visualization",
+    "section": "View the data",
+    "text": "View the data\n\ngss\n\n# A tibble: 3,294 × 9\n    year marital_status   age education_years children happiness    \n   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        \n 1  2024 Never married     33              16        2 Not too happy\n 2  2024 Never married     64              16        0 Pretty happy \n 3  2024 Married           69              14        0 Pretty happy \n 4  2024 Never married     19              12        0 Pretty happy \n 5  2024 Divorced          70              13        3 Not too happy\n 6  2024 Married           53              14        2 Pretty happy \n 7  2024 Married           48              13        6 Pretty happy \n 8  2024 Divorced          30              14        1 Not too happy\n 9  2024 Married           60              14        2 Very happy   \n10  2024 Never married     25              12        0 Pretty happy \n# ℹ 3,284 more rows\n# ℹ 3 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;,\n#   weight &lt;dbl&gt;"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#variables-in-our-extract",
+    "href": "slides/03-grammar-of-data-visualization.html#variables-in-our-extract",
+    "title": "Grammar of data visualization",
+    "section": "Variables in our extract",
+    "text": "Variables in our extract\n\n\n\nVariable\nDescription\nType\n\n\n\n\nmarital_status\nCurrent marital status\nCategorical\n\n\nage\nAge in years\nNumerical\n\n\neducation_years\nCompleted years of education\nNumerical\n\n\nchildren\nNumber of children; 8 means 8 or more\nNumerical\n\n\nhappiness\nSelf-reported happiness\nCategorical\n\n\nemployment_status\nCurrent employment status\nCategorical\n\n\nparty_id\nParty identification\nCategorical"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#start-with-a-question",
+    "href": "slides/03-grammar-of-data-visualization.html#start-with-a-question",
+    "title": "Grammar of data visualization",
+    "section": "Start with a question",
+    "text": "Start with a question\n\nHow does age vary across marital-status groups?\n\nBefore writing code:\n\nWhich variables do we need?\nWhat type is each variable?\nWhat kind of plot might answer the question?"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#age-by-marital-status",
+    "href": "slides/03-grammar-of-data-visualization.html#age-by-marital-status",
+    "title": "Grammar of data visualization",
+    "section": "Age by marital status",
+    "text": "Age by marital status\n\nggplot(gss, aes(x = marital_status, y = age)) +\n  geom_boxplot() +\n  labs(\n    title = \"Age varies substantially across marital-status groups\",\n    x = \"Marital status\",\n    y = \"Age (years)\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  )\n\nWarning: Removed 94 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#interpret-the-plot",
+    "href": "slides/03-grammar-of-data-visualization.html#interpret-the-plot",
+    "title": "Grammar of data visualization",
+    "section": "Interpret the plot",
+    "text": "Interpret the plot\nWith a partner:\n\nWhich group has the highest median age? The lowest?\nWhich groups have the greatest variability?\nWhat does one box summarize?\nCan this plot tell us whether marital status causes differences in age?"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#plot-autopsy",
+    "href": "slides/03-grammar-of-data-visualization.html#plot-autopsy",
+    "title": "Grammar of data visualization",
+    "section": "Plot autopsy",
+    "text": "Plot autopsy\n\nggplot(\n1  data = gss,\n2  mapping = aes(x = marital_status, y = age)\n) +\n3  geom_boxplot() +\n4  labs(...) +\n\n\n1\n\nThe data to visualize\n\n2\n\nThe variables mapped to visual properties\n\n3\n\nThe geometric object used to represent the observations\n\n4\n\nThe plot labels\n\n\n\n\n. . .\n\nWhich component would you change to plot different variables? Which component controls the variable represented by color?"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#mapping-and-aesthetics",
+    "href": "slides/03-grammar-of-data-visualization.html#mapping-and-aesthetics",
+    "title": "Grammar of data visualization",
+    "section": "Mapping and aesthetics",
+    "text": "Mapping and aesthetics\n\nAesthetics are visual properties of a plot, such as position, color, fill, shape, size, and transparency.\nIn the grammar of graphics, variables from the data frame are mapped to aesthetics."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#map-a-variable-set-a-value",
+    "href": "slides/03-grammar-of-data-visualization.html#map-a-variable-set-a-value",
+    "title": "Grammar of data visualization",
+    "section": "Map a variable; set a value",
+    "text": "Map a variable; set a value\n\n# Map: fill varies with a variable, so ggplot2 creates a legend\ngeom_boxplot(aes(fill = marital_status))\n\n# Set: every box has the same fill, so no legend is needed\ngeom_boxplot(fill = \"steelblue\")\n\nVariables belong inside aes(); fixed visual choices belong outside it."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#grammar-of-graphics",
+    "href": "slides/03-grammar-of-data-visualization.html#grammar-of-graphics",
+    "title": "Grammar of data visualization",
+    "section": "Grammar of graphics",
+    "text": "Grammar of graphics\nWhen building or reading a plot, work through this checklist:\ndata → aesthetic mappings → geom → statistical transformation → facets → scales → labels → theme\nNot every plot needs every component, but each component is a separate decision."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#start-with-the-question",
+    "href": "slides/03-grammar-of-data-visualization.html#start-with-the-question",
+    "title": "Grammar of data visualization",
+    "section": "Start with the question",
+    "text": "Start with the question\n\n\n\n\n\n\n\n\nQuestion\nVariables\nA useful first plot\n\n\n\n\nWhat values are common?\nOne categorical\nBar chart\n\n\nWhat is the distribution?\nOne numerical\nHistogram or boxplot\n\n\nDo groups differ?\nNumerical + categorical\nBoxplot or histogram by group\n\n\nAre two categories associated?\nTwo categorical\nFilled or dodged bar chart\n\n\nAre two numerical variables related?\nTwo numerical\nScatterplot"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#one-categorical-variable",
+    "href": "slides/03-grammar-of-data-visualization.html#one-categorical-variable",
+    "title": "Grammar of data visualization",
+    "section": "One categorical variable",
+    "text": "One categorical variable\n\ngss |&gt;\n  ggplot(aes(x = marital_status)) +\n  geom_bar(fill = \"steelblue\") +\n  labs(\n    title = \"Marital status among GSS respondents in 2024\",\n    x = \"Marital status\",\n    y = \"Number of respondents\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 20, hjust = 1))\n\n\n\n\n\n\n\n\nThe bar height is a count. geom_bar() counts rows for us."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#counts-and-survey-weights",
+    "href": "slides/03-grammar-of-data-visualization.html#counts-and-survey-weights",
+    "title": "Grammar of data visualization",
+    "section": "Counts and survey weights",
+    "text": "Counts and survey weights\nThese two mappings answer slightly different questions:\n\n# How many respondents are in each category?\naes(x = marital_status)\n\n# What is the survey-weighted size of each category?\naes(x = marital_status, weight = weight)\n\nFor learning the grammar, we will focus on the plot structure. For population descriptions, we should use the GSS survey weights."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#two-categorical-variables-what-is-the-denominator",
+    "href": "slides/03-grammar-of-data-visualization.html#two-categorical-variables-what-is-the-denominator",
+    "title": "Grammar of data visualization",
+    "section": "Two categorical variables: What is the denominator?",
+    "text": "Two categorical variables: What is the denominator?\nNow compare marital status and self-reported happiness in the 2024 GSS.\n\nA stacked bar chart shows counts, split into groups.\nA dodged bar chart makes counts in each combination easier to compare.\nA filled bar chart makes every bar height 100%, so it compares within-marital-status proportions."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#compare-the-choices",
+    "href": "slides/03-grammar-of-data-visualization.html#compare-the-choices",
+    "title": "Grammar of data visualization",
+    "section": "Compare the choices",
+    "text": "Compare the choices\n\n\nStacked: counts\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +\n  geom_bar() +\n  labs(x = \"Marital status\", y = \"Weighted count\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)\n\n\n\n\n\n\n\n\n\nDodged: counts\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +\n  geom_bar(position = \"dodge\") +\n  labs(x = \"Marital status\", y = \"Weighted count\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)\n\n\n\n\n\n\n\n\n\nFilled: proportions\n\ngss |&gt;\n  filter(!is.na(happiness)) |&gt;\n  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +\n  geom_bar(position = \"fill\") +\n  scale_y_continuous(labels = scales::label_percent()) +\n  labs(x = \"Marital status\", y = \"Proportion\", fill = \"Happiness\") +\n  theme_minimal(base_size = 11)"
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#participate",
+    "href": "slides/03-grammar-of-data-visualization.html#participate",
+    "title": "Grammar of data visualization",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nYou want to compare the proportion in each happiness category within marital-status group. Which bar-chart position should you use, and why?\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#a-chart-is-an-argument",
+    "href": "slides/03-grammar-of-data-visualization.html#a-chart-is-an-argument",
+    "title": "Grammar of data visualization",
+    "section": "A chart is an argument",
+    "text": "A chart is an argument\n\nGive the reader a meaningful title, axis labels, and a legend.\nUse color deliberately; do not rely on color alone when another channel can help.\nChoose the denominator and chart form to answer the question.\nDescribe what the data show, and distinguish that description from a causal claim.\n\n\n\n\n\n\n\nNote\n\n\n\nThe filled plot uses GSS survey weights. It shows an association in one cross-sectional survey, not evidence that marital status causes happiness or vice versa."
+  },
+  {
+    "objectID": "slides/03-grammar-of-data-visualization.html#on-your-own",
+    "href": "slides/03-grammar-of-data-visualization.html#on-your-own",
+    "title": "Grammar of data visualization",
+    "section": "On your own",
+    "text": "On your own\n\nUse gss to answer one question below with an appropriate plot:\n\nHow does age vary across marital-status groups?\nIs self-reported happiness distributed differently across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\nHow does employment status vary across marital-status groups?\n\nState the question, identify the variable type(s), and explain why your plot answers it. Describe patterns; do not make causal claims."
+  },
+  {
+    "objectID": "slides/data/gss-2024.html",
+    "href": "slides/data/gss-2024.html",
+    "title": "GSS 2024 teaching extract",
+    "section": "",
+    "text": "GSS 2024 teaching extract\ngss-2024.csv is a small teaching extract from the 2024 General Social Survey (GSS) Cross-section, Release 3a (July 2026), produced by NORC at the University of Chicago.\nIt retains respondents with a substantive response to MARITAL and contains:\n\nyear: GSS survey year;\nmarital_status: current marital status;\nage: respondent age in years (top-coded at 89);\neducation_years: completed years of formal education;\nchildren: number of children (8 means eight or more);\nhappiness: self-reported general happiness;\nemployment_status: current employment status;\nparty_id: party identification; and\nweight: WTSSNRPS, the post-stratification, nonresponse-adjusted person weight.\n\nThe source file is GSS 1972–2024 Cross-Sectional Cumulative Data, Release 3a. NORC recommends WTSSNRPS for analyses from 2004–2024. The preparation script is gss-2024-prep.R.\nUse the data descriptively: it is a cross-sectional survey, so associations do not establish causation. happiness, employment_status, and party_id retain NA when the original response was non-substantive (for example, “don’t know” or “no answer”). The extract intentionally does not impute missing responses."
+  },
+  {
     "objectID": "slides/02-meet-the-toolkit.html",
     "href": "slides/02-meet-the-toolkit.html",
     "title": "Hello, World!",

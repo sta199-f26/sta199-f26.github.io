@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
+<meta name="dcterms.date" content="2026-08-31">
+
+<title>Grammar of data visualization – STA 199CCL</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a49dc68354f0599563519d38dd448cd9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7d0aad7eb9a93105b90922b8fe7a50ec.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-a49dc68354f0599563519d38dd448cd9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="Grammar of data visualization – STA 199CCL">
+<meta property="og:description" content="Lecture 3">
+<meta property="og:image" content="https://sta199-f26.github.io/slides/images/03/un-data-viz.png">
+<meta property="og:site_name" content="STA 199CCL">
+<meta property="og:image:height" content="960">
+<meta property="og:image:width" content="1920">
+</head>
+
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Grammar of data visualization</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
+    <div class="dropdown">
+      <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
+              <i class="bi bi-person-raised-hand pe-1"></i>
+            Office hours
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://edstem.org/us/courses/101308/discussion">
+              <i class="bi bi-people-fill pe-1"></i>
+            Help from humans (Ed Discussion)
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
+              <i class="bi bi-megaphone-fill pe-1"></i>
+            Announcements
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.gradescope.com/courses/1350518">
+              <i class="bi bi-file-arrow-up-fill pe-1"></i>
+            Gradescope
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/gradebook">
+              <i class="bi bi-alphabet-uppercase pe-1"></i>
+            Gradebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-support.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Support</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-team.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Team</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Useful links</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-code-alongs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code alongs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homeworks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exam-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam reviews</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a>
+  <ul class="collapse">
+  <li><a href="#while-you-wait" id="toc-while-you-wait" class="nav-link" data-scroll-target="#while-you-wait">While you wait…</a></li>
+  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a>
+  <ul class="collapse">
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load packages</a></li>
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#general-social-survey-gss" id="toc-general-social-survey-gss" class="nav-link" data-scroll-target="#general-social-survey-gss">2024 General Social Survey (GSS)</a></li>
+  <li><a href="#view-the-data" id="toc-view-the-data" class="nav-link" data-scroll-target="#view-the-data">View the data</a></li>
+  <li><a href="#variables-in-our-extract" id="toc-variables-in-our-extract" class="nav-link" data-scroll-target="#variables-in-our-extract">Variables in our extract</a></li>
+  <li><a href="#start-with-a-question" id="toc-start-with-a-question" class="nav-link" data-scroll-target="#start-with-a-question">Start with a question</a></li>
+  <li><a href="#age-by-marital-status" id="toc-age-by-marital-status" class="nav-link" data-scroll-target="#age-by-marital-status">Age by marital status</a></li>
+  <li><a href="#interpret-the-plot" id="toc-interpret-the-plot" class="nav-link" data-scroll-target="#interpret-the-plot">Interpret the plot</a></li>
+  <li><a href="#plot-autopsy" id="toc-plot-autopsy" class="nav-link" data-scroll-target="#plot-autopsy">Plot autopsy</a></li>
+  <li><a href="#mapping-and-aesthetics" id="toc-mapping-and-aesthetics" class="nav-link" data-scroll-target="#mapping-and-aesthetics">Mapping and aesthetics</a></li>
+  <li><a href="#map-a-variable-set-a-value" id="toc-map-a-variable-set-a-value" class="nav-link" data-scroll-target="#map-a-variable-set-a-value">Map a variable; set a value</a></li>
+  <li><a href="#grammar-of-graphics" id="toc-grammar-of-graphics" class="nav-link" data-scroll-target="#grammar-of-graphics">Grammar of graphics</a></li>
+  </ul></li>
+  <li><a href="#choosing-a-plot" id="toc-choosing-a-plot" class="nav-link" data-scroll-target="#choosing-a-plot">Choosing a plot</a>
+  <ul class="collapse">
+  <li><a href="#start-with-the-question" id="toc-start-with-the-question" class="nav-link" data-scroll-target="#start-with-the-question">Start with the question</a></li>
+  <li><a href="#one-categorical-variable" id="toc-one-categorical-variable" class="nav-link" data-scroll-target="#one-categorical-variable">One categorical variable</a></li>
+  <li><a href="#counts-and-survey-weights" id="toc-counts-and-survey-weights" class="nav-link" data-scroll-target="#counts-and-survey-weights">Counts and survey weights</a></li>
+  <li><a href="#two-categorical-variables-what-is-the-denominator" id="toc-two-categorical-variables-what-is-the-denominator" class="nav-link" data-scroll-target="#two-categorical-variables-what-is-the-denominator">Two categorical variables: What is the denominator?</a></li>
+  <li><a href="#compare-the-choices" id="toc-compare-the-choices" class="nav-link" data-scroll-target="#compare-the-choices">Compare the choices</a></li>
+  <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 📱💻</a></li>
+  <li><a href="#a-chart-is-an-argument" id="toc-a-chart-is-an-argument" class="nav-link" data-scroll-target="#a-chart-is-an-argument">A chart is an argument</a></li>
+  <li><a href="#on-your-own" id="toc-on-your-own" class="nav-link" data-scroll-target="#on-your-own">On your own</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/03-grammar-of-data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03-grammar-of-data-visualization-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Grammar of data visualization</h1>
+<p class="subtitle lead">Lecture 3</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Dr.&nbsp;Mine Çetinkaya-Rundel </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Duke University <br> STA 199 - Fall 2026
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 31, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="warm-up" class="level1">
+<h1>Warm up</h1>
+<section id="while-you-wait" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="while-you-wait">While you wait…</h2>
+<div class="columns">
+<div class="column" style="width:15%;">
+<p>If you haven’t yet done so:</p>
+<ul>
+<li><p>Fill out the Getting to know you survey</p></li>
+<li><p>Accept the GitHub organization invite</p></li>
+</ul>
+</div><div class="column" style="width:5%;">
+<p>&nbsp;</p>
+</div><div class="column" style="width:65%;">
+<p><strong>Participate</strong> 📱💻</p>
+<div class="wooclap">
+<p>What does point represent in this visualization?</p>
+</div>
+<p><a href="images/03/un-data-viz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/03/un-data-viz.png" class="img-fluid"></a></p>
+</div><div class="column" style="width:15%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="outline" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="outline">Outline</h2>
+<ul>
+<li><p>Last week:</p>
+<ul>
+<li><p>We introduced you to the course toolkit.</p></li>
+<li><p>You <strong>cloned</strong> your <code>lab</code> repository and started making some updates in your Quarto documents.</p></li>
+<li><p>You <strong>committed and pushed</strong> your changes back – at least most of you did!</p></li>
+</ul></li>
+</ul>
+<p>. . .</p>
+<ul>
+<li><p>Today:</p>
+<ul>
+<li><p>You will <strong>clone</strong> your <code>ae</code> (application exercise) repository.</p></li>
+<li><p>We will introduce data visualization.</p></li>
+<li><p>You will work on the application exercise on data visualization, <strong>commit</strong> your changes, and <strong>push</strong> them.</p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="data-visualization" class="level1 page-columns page-full">
+<h1>Data visualization</h1>
+<section id="load-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reminder
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>tidyverse</strong> is the collection of R packages designed for data science.</p>
+</div>
+</div>
+</section>
+<section id="load-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-data">Load the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gss <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gss-2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reminder
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can read this as “read the CSV file called <code>gss-2024.csv</code> in the data folder” and save the result as <code>gss</code>.</p>
+</div>
+</div>
+</section>
+<section id="general-social-survey-gss" class="level2 smaller page-columns page-full">
+<h2 class="smaller anchored" data-anchor-id="general-social-survey-gss">2024 General Social Survey (GSS)</h2>
+<p>GSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.</p>
+<p>We’re working with GSS data from the most recent wave:</p>
+<ul>
+<li>Each row represents one survey respondent.</li>
+<li>The variables describe demographics, education, family, happiness, employment, and political identification.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The GSS is a cross-sectional survey. We can describe associations, but these data do not establish causation.</p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Source: <a href="https://gss.norc.org/about-the-gss.html">gss.norc.org/about-the-gss.html</a>.</p>
+</div></div></section>
+<section id="view-the-data" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="view-the-data">View the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,294 × 9
+    year marital_status   age education_years children happiness    
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        
+ 1  2024 Never married     33              16        2 Not too happy
+ 2  2024 Never married     64              16        0 Pretty happy 
+ 3  2024 Married           69              14        0 Pretty happy 
+ 4  2024 Never married     19              12        0 Pretty happy 
+ 5  2024 Divorced          70              13        3 Not too happy
+ 6  2024 Married           53              14        2 Pretty happy 
+ 7  2024 Married           48              13        6 Pretty happy 
+ 8  2024 Divorced          30              14        1 Not too happy
+ 9  2024 Married           60              14        2 Very happy   
+10  2024 Never married     25              12        0 Pretty happy 
+# ℹ 3,284 more rows
+# ℹ 3 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;,
+#   weight &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="variables-in-our-extract" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="variables-in-our-extract">Variables in our extract</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>marital_status</code></td>
+<td>Current marital status</td>
+<td>Categorical</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>Age in years</td>
+<td>Numerical</td>
+</tr>
+<tr class="odd">
+<td><code>education_years</code></td>
+<td>Completed years of education</td>
+<td>Numerical</td>
+</tr>
+<tr class="even">
+<td><code>children</code></td>
+<td>Number of children; 8 means 8 or more</td>
+<td>Numerical</td>
+</tr>
+<tr class="odd">
+<td><code>happiness</code></td>
+<td>Self-reported happiness</td>
+<td>Categorical</td>
+</tr>
+<tr class="even">
+<td><code>employment_status</code></td>
+<td>Current employment status</td>
+<td>Categorical</td>
+</tr>
+<tr class="odd">
+<td><code>party_id</code></td>
+<td>Party identification</td>
+<td>Categorical</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="start-with-a-question" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-a-question">Start with a question</h2>
+<div class="hand large">
+<p>How does age vary across marital-status groups?</p>
+</div>
+<p>Before writing code:</p>
+<ul>
+<li>Which variables do we need?</li>
+<li>What type is each variable?</li>
+<li>What kind of plot might answer the question?</li>
+</ul>
+</section>
+<section id="age-by-marital-status" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="age-by-marital-status">Age by marital status</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gss, <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Age varies substantially across marital-status groups"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Age (years)"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 94 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="img-fluid figure-img" width="864"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpret-the-plot" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="interpret-the-plot">Interpret the plot</h2>
+<p>With a partner:</p>
+<ul>
+<li>Which group has the highest median age? The lowest?</li>
+<li>Which groups have the greatest variability?</li>
+<li>What does one box summarize?</li>
+<li>Can this plot tell us whether marital status causes differences in age?</li>
+</ul>
+</section>
+<section id="plot-autopsy" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="plot-autopsy">Plot autopsy</h2>
+<div class="cell" data-code-annotations="below">
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gss,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age)</span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="1">The <strong>data</strong> to visualize</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="2">The variables <strong>mapped</strong> to visual properties</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="3">The <strong>geometric object</strong> used to represent the observations</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The plot <strong>labels</strong></span>
+</dd>
+</dl>
+</div>
+</div>
+<p>. . .</p>
+<div class="question">
+<p>Which component would you change to plot different variables? Which component controls the variable represented by color?</p>
+</div>
+</section>
+<section id="mapping-and-aesthetics" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="mapping-and-aesthetics">Mapping and aesthetics</h2>
+<ul>
+<li><strong>Aesthetics</strong> are visual properties of a plot, such as position, color, fill, shape, size, and transparency.</li>
+<li>In the grammar of graphics, variables from the data frame are <strong>mapped</strong> to aesthetics.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/03/aesthetic-mapping.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/03/aesthetic-mapping.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
+</section>
+<section id="map-a-variable-set-a-value" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="map-a-variable-set-a-value">Map a variable; set a value</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map: fill varies with a variable, so ggplot2 creates a legend</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set: every box has the same fill, so no legend is needed</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Variables belong inside <code>aes()</code>; fixed visual choices belong outside it.</p>
+</section>
+<section id="grammar-of-graphics" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="grammar-of-graphics">Grammar of graphics</h2>
+<p>When building or reading a plot, work through this checklist:</p>
+<p><strong>data</strong> → <strong>aesthetic mappings</strong> → <strong>geom</strong> → <strong>statistical transformation</strong> → <strong>facets</strong> → <strong>scales</strong> → <strong>labels</strong> → <strong>theme</strong></p>
+<p>Not every plot needs every component, but each component is a separate decision.</p>
+</section>
+</section>
+<section id="choosing-a-plot" class="level1">
+<h1>Choosing a plot</h1>
+<section id="start-with-the-question" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="start-with-the-question">Start with the question</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Variables</th>
+<th>A useful first plot</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What values are common?</td>
+<td>One categorical</td>
+<td>Bar chart</td>
+</tr>
+<tr class="even">
+<td>What is the distribution?</td>
+<td>One numerical</td>
+<td>Histogram or boxplot</td>
+</tr>
+<tr class="odd">
+<td>Do groups differ?</td>
+<td>Numerical + categorical</td>
+<td>Boxplot or histogram by group</td>
+</tr>
+<tr class="even">
+<td>Are two categories associated?</td>
+<td>Two categorical</td>
+<td>Filled or dodged bar chart</td>
+</tr>
+<tr class="odd">
+<td>Are two numerical variables related?</td>
+<td>Two numerical</td>
+<td>Scatterplot</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="one-categorical-variable" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="one-categorical-variable">One categorical variable</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Marital status among GSS respondents in 2024"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of respondents"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" class="img-fluid figure-img" width="864"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The bar height is a <strong>count</strong>. <code>geom_bar()</code> counts rows for us.</p>
+</section>
+<section id="counts-and-survey-weights" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="counts-and-survey-weights">Counts and survey weights</h2>
+<p>These two mappings answer slightly different questions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many respondents are in each category?</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the survey-weighted size of each category?</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">weight =</span> weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For learning the grammar, we will focus on the plot structure. For population descriptions, we should use the GSS survey weights.</p>
+</section>
+<section id="two-categorical-variables-what-is-the-denominator" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="two-categorical-variables-what-is-the-denominator">Two categorical variables: What is the denominator?</h2>
+<p>Now compare marital status and self-reported happiness in the 2024 GSS.</p>
+<ul>
+<li>A <strong>stacked</strong> bar chart shows counts, split into groups.</li>
+<li>A <strong>dodged</strong> bar chart makes counts in each combination easier to compare.</li>
+<li>A <strong>filled</strong> bar chart makes every bar height 100%, so it compares <em>within-marital-status proportions</em>.</li>
+</ul>
+</section>
+<section id="compare-the-choices" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="compare-the-choices">Compare the choices</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Stacked: counts</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/stacked-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-revealjs/stacked-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p><strong>Dodged: counts</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/dodged-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-revealjs/dodged-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p><strong>Filled: proportions</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/filled-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-revealjs/filled-bars-1.png" class="img-fluid figure-img" width="384"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="participate" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="participate">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>You want to compare the proportion in each happiness category <em>within marital-status group</em>. Which bar-chart position should you use, and why?</p>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="a-chart-is-an-argument" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="a-chart-is-an-argument">A chart is an argument</h2>
+<ul>
+<li>Give the reader a meaningful title, axis labels, and a legend.</li>
+<li>Use color deliberately; do not rely on color alone when another channel can help.</li>
+<li>Choose the denominator and chart form to answer the question.</li>
+<li>Describe what the data show, and distinguish that description from a causal claim.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The filled plot uses GSS survey weights. It shows an association in one cross-sectional survey, not evidence that marital status causes happiness or vice versa.</p>
+</div>
+</div>
+</section>
+<section id="on-your-own" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="on-your-own">On your own</h2>
+<div class="task">
+<p>Use <code>gss</code> to answer one question below with an appropriate plot:</p>
+<ul>
+<li>How does <strong>age</strong> vary across marital-status groups?</li>
+<li>Is self-reported <strong>happiness</strong> distributed differently across marital-status groups?</li>
+<li>What is the relationship between <strong>education years</strong> and <strong>age</strong>? Does it differ by marital status?</li>
+<li>How does <strong>employment status</strong> vary across marital-status groups?</li>
+</ul>
+<p>State the question, identify the variable type(s), and explain why your plot answers it. Describe patterns; do not make causal claims.</p>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+
+<script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sta199-f26\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/03-grammar-of-data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

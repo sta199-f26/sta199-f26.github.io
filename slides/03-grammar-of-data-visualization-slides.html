@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
+  <meta name="dcterms.date" content="2026-08-31">
+  <title>STA 199CCL – Grammar of data visualization</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5fc1509d3aad92b9e8182397f59f9cc5.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta property="og:title" content="Grammar of data visualization – STA 199CCL">
+<meta property="og:description" content="Lecture 3">
+<meta property="og:site_name" content="STA 199CCL">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Grammar of data visualization</h1>
+  <p class="subtitle">Lecture 3</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Mine Çetinkaya-Rundel 
+</div>
+        <p class="quarto-title-affiliation">
+            Duke University <br> STA 199 - Fall 2026
+          </p>
+    </div>
+</div>
+
+  <p class="date">August 31, 2026</p>
+</section>
+<section>
+<section id="warm-up" class="title-slide slide level1 center">
+<h1>Warm up</h1>
+
+</section>
+<section id="while-you-wait" class="slide level2 smaller">
+<h2>While you wait…</h2>
+<div class="columns">
+<div class="column" style="width:15%;">
+<p>If you haven’t yet done so:</p>
+<ul>
+<li><p>Fill out the Getting to know you survey</p></li>
+<li><p>Accept the GitHub organization invite</p></li>
+</ul>
+</div><div class="column" style="width:5%;">
+<p>&nbsp;</p>
+</div><div class="column" style="width:65%;">
+<p><strong>Participate</strong> 📱💻</p>
+<div class="wooclap">
+<p>What does point represent in this visualization?</p>
+</div>
+<p><img data-src="images/03/un-data-viz.png"></p>
+</div><div class="column" style="width:15%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div></div>
+</section>
+<section id="outline" class="slide level2 smaller">
+<h2>Outline</h2>
+<ul>
+<li><p>Last week:</p>
+<ul>
+<li><p>We introduced you to the course toolkit.</p></li>
+<li><p>You <strong>cloned</strong> your <code>lab</code> repository and started making some updates in your Quarto documents.</p></li>
+<li><p>You <strong>committed and pushed</strong> your changes back – at least most of you did!</p></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><p>Today:</p>
+<ul>
+<li><p>You will <strong>clone</strong> your <code>ae</code> (application exercise) repository.</p></li>
+<li><p>We will introduce data visualization.</p></li>
+<li><p>You will work on the application exercise on data visualization, <strong>commit</strong> your changes, and <strong>push</strong> them.</p></li>
+</ul></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="data-visualization" class="title-slide slide level1 center">
+<h1>Data visualization</h1>
+
+</section>
+<section id="load-packages" class="slide level2">
+<h2>Load packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(ggthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Reminder</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>tidyverse</strong> is the collection of R packages designed for data science.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="load-the-data" class="slide level2">
+<h2>Load the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>gss <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gss-2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Reminder</strong></p>
+</div>
+<div class="callout-content">
+<p>We can read this as “read the CSV file called <code>gss-2024.csv</code> in the data folder” and save the result as <code>gss</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="general-social-survey-gss" class="slide level2 smaller">
+<h2>2024 General Social Survey (GSS)</h2>
+<p>GSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.</p>
+<p>We’re working with GSS data from the most recent wave:</p>
+<ul>
+<li>Each row represents one survey respondent.</li>
+<li>The variables describe demographics, education, family, happiness, employment, and political identification.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>The GSS is a cross-sectional survey. We can describe associations, but these data do not establish causation.</p>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Source: <a href="https://gss.norc.org/about-the-gss.html">gss.norc.org/about-the-gss.html</a>.</p>
+</div></aside></section>
+<section id="view-the-data" class="slide level2 smaller">
+<h2>View the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,294 × 9
+    year marital_status   age education_years children happiness    
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        
+ 1  2024 Never married     33              16        2 Not too happy
+ 2  2024 Never married     64              16        0 Pretty happy 
+ 3  2024 Married           69              14        0 Pretty happy 
+ 4  2024 Never married     19              12        0 Pretty happy 
+ 5  2024 Divorced          70              13        3 Not too happy
+ 6  2024 Married           53              14        2 Pretty happy 
+ 7  2024 Married           48              13        6 Pretty happy 
+ 8  2024 Divorced          30              14        1 Not too happy
+ 9  2024 Married           60              14        2 Very happy   
+10  2024 Never married     25              12        0 Pretty happy 
+# ℹ 3,284 more rows
+# ℹ 3 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;,
+#   weight &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="variables-in-our-extract" class="slide level2 smaller">
+<h2>Variables in our extract</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>marital_status</code></td>
+<td>Current marital status</td>
+<td>Categorical</td>
+</tr>
+<tr class="even">
+<td><code>age</code></td>
+<td>Age in years</td>
+<td>Numerical</td>
+</tr>
+<tr class="odd">
+<td><code>education_years</code></td>
+<td>Completed years of education</td>
+<td>Numerical</td>
+</tr>
+<tr class="even">
+<td><code>children</code></td>
+<td>Number of children; 8 means 8 or more</td>
+<td>Numerical</td>
+</tr>
+<tr class="odd">
+<td><code>happiness</code></td>
+<td>Self-reported happiness</td>
+<td>Categorical</td>
+</tr>
+<tr class="even">
+<td><code>employment_status</code></td>
+<td>Current employment status</td>
+<td>Categorical</td>
+</tr>
+<tr class="odd">
+<td><code>party_id</code></td>
+<td>Party identification</td>
+<td>Categorical</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="start-with-a-question" class="slide level2">
+<h2>Start with a question</h2>
+<div class="hand large">
+<p>How does age vary across marital-status groups?</p>
+</div>
+<p>Before writing code:</p>
+<ul>
+<li>Which variables do we need?</li>
+<li>What type is each variable?</li>
+<li>What kind of plot might answer the question?</li>
+</ul>
+</section>
+<section id="age-by-marital-status" class="slide level2 smaller">
+<h2>Age by marital status</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(gss, <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age)) <span class="sc">+</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-4"><a></a>    <span class="at">title =</span> <span class="st">"Age varies substantially across marital-status groups"</span>,</span>
+<span id="cb5-5"><a></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
+<span id="cb5-6"><a></a>    <span class="at">y =</span> <span class="st">"Age (years)"</span>,</span>
+<span id="cb5-7"><a></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span id="cb5-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 94 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+
+</div>
+<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" width="864" class="r-stretch"></section>
+<section id="interpret-the-plot" class="slide level2 smaller">
+<h2>Interpret the plot</h2>
+<p>With a partner:</p>
+<ul>
+<li>Which group has the highest median age? The lowest?</li>
+<li>Which groups have the greatest variability?</li>
+<li>What does one box summarize?</li>
+<li>Can this plot tell us whether marital status causes differences in age?</li>
+</ul>
+</section>
+<section id="plot-autopsy" class="slide level2 smaller">
+<h2>Plot autopsy</h2>
+<div class="cell" data-code-annotations="below">
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a><span class="fu">ggplot</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2"></a>  <span class="at">data =</span> gss,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age)</span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4"></a>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="1">The <strong>data</strong> to visualize</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="2">The variables <strong>mapped</strong> to visual properties</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="3">The <strong>geometric object</strong> used to represent the observations</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The plot <strong>labels</strong></span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="fragment">
+<div class="question">
+<p>Which component would you change to plot different variables? Which component controls the variable represented by color?</p>
+</div>
+</div>
+</section>
+<section id="mapping-and-aesthetics" class="slide level2 smaller">
+<h2>Mapping and aesthetics</h2>
+<ul>
+<li><strong>Aesthetics</strong> are visual properties of a plot, such as position, color, fill, shape, size, and transparency.</li>
+<li>In the grammar of graphics, variables from the data frame are <strong>mapped</strong> to aesthetics.</li>
+</ul>
+
+<img data-src="images/03/aesthetic-mapping.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="map-a-variable-set-a-value" class="slide level2 smaller">
+<h2>Map a variable; set a value</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Map: fill varies with a variable, so ggplot2 creates a legend</span></span>
+<span id="cb7-2"><a></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="co"># Set: every box has the same fill, so no legend is needed</span></span>
+<span id="cb7-5"><a></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Variables belong inside <code>aes()</code>; fixed visual choices belong outside it.</p>
+</section>
+<section id="grammar-of-graphics" class="slide level2 smaller">
+<h2>Grammar of graphics</h2>
+<p>When building or reading a plot, work through this checklist:</p>
+<p><strong>data</strong> → <strong>aesthetic mappings</strong> → <strong>geom</strong> → <strong>statistical transformation</strong> → <strong>facets</strong> → <strong>scales</strong> → <strong>labels</strong> → <strong>theme</strong></p>
+<p>Not every plot needs every component, but each component is a separate decision.</p>
+</section></section>
+<section>
+<section id="choosing-a-plot" class="title-slide slide level1 center">
+<h1>Choosing a plot</h1>
+
+</section>
+<section id="start-with-the-question" class="slide level2 smaller">
+<h2>Start with the question</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Variables</th>
+<th>A useful first plot</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What values are common?</td>
+<td>One categorical</td>
+<td>Bar chart</td>
+</tr>
+<tr class="even">
+<td>What is the distribution?</td>
+<td>One numerical</td>
+<td>Histogram or boxplot</td>
+</tr>
+<tr class="odd">
+<td>Do groups differ?</td>
+<td>Numerical + categorical</td>
+<td>Boxplot or histogram by group</td>
+</tr>
+<tr class="even">
+<td>Are two categories associated?</td>
+<td>Two categorical</td>
+<td>Filled or dodged bar chart</td>
+</tr>
+<tr class="odd">
+<td>Are two numerical variables related?</td>
+<td>Two numerical</td>
+<td>Scatterplot</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="one-categorical-variable" class="slide level2 smaller">
+<h2>One categorical variable</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status)) <span class="sc">+</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-5"><a></a>    <span class="at">title =</span> <span class="st">"Marital status among GSS respondents in 2024"</span>,</span>
+<span id="cb8-6"><a></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
+<span id="cb8-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of respondents"</span>,</span>
+<span id="cb8-8"><a></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span id="cb8-9"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb8-10"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-11"><a></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/one-categorical-1.png" width="864" class="r-stretch"><p>The bar height is a <strong>count</strong>. <code>geom_bar()</code> counts rows for us.</p>
+</section>
+<section id="counts-and-survey-weights" class="slide level2 smaller">
+<h2>Counts and survey weights</h2>
+<p>These two mappings answer slightly different questions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># How many respondents are in each category?</span></span>
+<span id="cb9-2"><a></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status)</span>
+<span id="cb9-3"><a></a></span>
+<span id="cb9-4"><a></a><span class="co"># What is the survey-weighted size of each category?</span></span>
+<span id="cb9-5"><a></a><span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">weight =</span> weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For learning the grammar, we will focus on the plot structure. For population descriptions, we should use the GSS survey weights.</p>
+</section>
+<section id="two-categorical-variables-what-is-the-denominator" class="slide level2 smaller">
+<h2>Two categorical variables: What is the denominator?</h2>
+<p>Now compare marital status and self-reported happiness in the 2024 GSS.</p>
+<ul>
+<li>A <strong>stacked</strong> bar chart shows counts, split into groups.</li>
+<li>A <strong>dodged</strong> bar chart makes counts in each combination easier to compare.</li>
+<li>A <strong>filled</strong> bar chart makes every bar height 100%, so it compares <em>within-marital-status proportions</em>.</li>
+</ul>
+</section>
+<section id="compare-the-choices" class="slide level2 smaller">
+<h2>Compare the choices</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Stacked: counts</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/stacked-bars-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p><strong>Dodged: counts</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Weighted count"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/dodged-bars-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p><strong>Filled: proportions</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(happiness)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">fill =</span> happiness, <span class="at">weight =</span> weight)) <span class="sc">+</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb12-6"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Marital status"</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">fill =</span> <span class="st">"Happiness"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/filled-bars-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="participate" class="slide level2 smaller">
+<h2>Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>You want to compare the proportion in each happiness category <em>within marital-status group</em>. Which bar-chart position should you use, and why?</p>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/wooclap-qr.png" class="quarto-figure quarto-figure-center" width="200"></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div></div>
+</section>
+<section id="a-chart-is-an-argument" class="slide level2 smaller">
+<h2>A chart is an argument</h2>
+<ul>
+<li>Give the reader a meaningful title, axis labels, and a legend.</li>
+<li>Use color deliberately; do not rely on color alone when another channel can help.</li>
+<li>Choose the denominator and chart form to answer the question.</li>
+<li>Describe what the data show, and distinguish that description from a causal claim.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>The filled plot uses GSS survey weights. It shows an association in one cross-sectional survey, not evidence that marital status causes happiness or vice versa.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="on-your-own" class="slide level2 smaller">
+<h2>On your own</h2>
+<div class="task">
+<p>Use <code>gss</code> to answer one question below with an appropriate plot:</p>
+<ul>
+<li>How does <strong>age</strong> vary across marital-status groups?</li>
+<li>Is self-reported <strong>happiness</strong> distributed differently across marital-status groups?</li>
+<li>What is the relationship between <strong>education years</strong> and <strong>age</strong>? Does it differ by marital status?</li>
+<li>How does <strong>employment status</strong> vary across marital-status groups?</li>
+</ul>
+<p>State the question, identify the variable type(s), and explain why your plot answers it. Describe patterns; do not make causal claims.</p>
+</div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="slides/images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/sta199-f26\.github\.io\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
