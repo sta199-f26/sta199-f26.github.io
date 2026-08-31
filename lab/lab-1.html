@@ -499,6 +499,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
 <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   <li><a href="#optional-reflection" id="toc-optional-reflection" class="nav-link" data-scroll-target="#optional-reflection">Optional reflection</a></li>
   </ul>
 </li>
@@ -623,7 +625,7 @@ A good workflow
 <p>Read the data into R with:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spotify</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span></span>
-<span>  <span class="st">"data/spotify-global-weekly/spotify-global-weekly-2026-08-27.csv"</span></span>
+<span>  <span class="st">"data/spotify-global-weekly-2026-08-27.csv"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The variables are:</p>
@@ -644,43 +646,27 @@ A good workflow
 <code>streams</code>: Number of global streams during the chart week.</li>
 </ul></section><section id="questions" class="level1"><h1>Questions</h1>
 <section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<ol type="1">
-<li>How many songs are in the dataset? How many variables are there? Use inline code to answer both questions.</li>
-</ol>
+<p>How many songs are in the dataset? How many variables are there? Use inline code to answer both questions.</p>
 <div class="preview-commit-push">
-<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q1a”.</p>
-</div>
-<ol start="2" type="1">
-<li>
-<p>Make a histogram and a boxplot of <code>streams</code>.</p>
-<ul>
-<li>Is the distribution of weekly streams right-skewed, left-skewed, or approximately symmetric? Which plot or plots helped you decide?</li>
-<li>Is the distribution unimodal, bimodal, multimodal, or uniform? Which plot or plots helped you decide?</li>
-<li>In a single pipeline, identify the songs with unusually high weekly stream counts according to the boxplot. Display the song title, artist, and stream count in descending order of streams.</li>
-</ul>
-</li>
-</ol>
-<div class="preview-commit-push">
-<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q1b”.</p>
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q1”.</p>
 </div>
 </section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<ol type="1">
-<li>Before making a plot, predict the association between the number of consecutive weeks a song has been on the chart and its streams this week. Do you expect a positive association, a negative association, or little/no association? Explain your reasoning.</li>
-</ol>
+<p>Make a histogram and a boxplot of <code>streams</code>.</p>
+<ul>
+<li><p>Is the distribution of weekly streams right-skewed, left-skewed, or approximately symmetric? Which plot or plots helped you decide?</p></li>
+<li><p>Is the distribution unimodal, bimodal, multimodal, or uniform? Which plot or plots helped you decide?</p></li>
+<li><p>In a single pipeline, identify the songs with unusually high weekly stream counts according to the boxplot. Display the song title, artist, and stream count in descending order of streams.</p></li>
+</ul>
+<div class="preview-commit-push">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q2”.</p>
+</div>
+</section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Before making a plot, predict the association between the number of consecutive weeks a song has been on the chart and its streams this week. Do you expect a positive association, a negative association, or little/no association? Explain your reasoning.</p>
 <div class="preview-commit-push">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
-<ol start="2" type="1">
-<li><p>Make a scatterplot of weekly streams on the y-axis versus weeks on the chart on the x-axis. Give your plot an informative title and axis labels. Describe the association. Was your prediction supported? Remember that this observational chart cannot tell us whether chart longevity causes streams, whether streams cause chart longevity, or whether another factor affects both.</p></li>
-<li>
-<p>A song’s <code>peak_rank</code> is its best-ever position during its current run on the chart. Because smaller ranks are better, create a variable called <code>positions_below_peak</code> that measures how many positions a song’s current rank is below its peak rank.</p>
-<div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spotify</span> <span class="op">&lt;-</span> <span class="va">spotify</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>positions_below_peak <span class="op">=</span> <span class="va">rank</span> <span class="op">-</span> <span class="va">peak_rank</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In one pipeline, display the 10 songs farthest below their peak rank. Include the song title, artist, current rank, peak rank, and <code>positions_below_peak</code>. What pattern do you notice? Choose one song from your results and give one plausible explanation for why it may be charting below its earlier peak. Your explanation is a hypothesis, not a conclusion supported by these data alone.</p>
-</li>
-</ol>
+</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>Make a scatterplot of weekly streams on the y-axis versus weeks on the chart on the x-axis. Give your plot an informative title and axis labels. Describe the association. Was your prediction supported? Remember that this observational chart cannot tell us whether chart longevity causes streams, whether streams cause chart longevity, or whether another factor affects both.</p>
 <div class="preview-commit-push">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
