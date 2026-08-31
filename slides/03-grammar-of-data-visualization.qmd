@@ -23,7 +23,11 @@ ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
 
 # Warm up
 
-## While you wait...
+## While you wait... {.smaller}
+
+::: {.columns}
+
+::: {.column width="15%"}
 
 If you haven't yet done so:
 
@@ -31,35 +35,40 @@ If you haven't yet done so:
 
 - Accept the GitHub organization invite
 
-## Participate 📱💻 {.smaller}
+:::
 
-::: {.columns}
+::: {.column width="5%"}
+&nbsp;
+:::
 
-::: {.column width="70%"}
+::: {.column width="65%"}
+
+**Participate** 📱💻 
 
 ::: wooclap
-What is this a visualization of?
+What does point represent in this visualization?
 :::
 
-![](images/03/unknown-plot.png)
+![](images/03/un-data-viz.png)
 
 :::
 
-::: {.column width="30%"}
+::: {.column width="15%"}
 
 {{< include _wooclap-column.qmd >}}
 
 :::
 
-::: 
+:::
+
 
 ## Outline {.smaller}
 
--   Last time:
+-   Last week:
 
     -   We introduced you to the course toolkit.
 
-    -   You **cloned** your `ae` repositories and started making some updates in your Quarto documents.
+    -   You **cloned** your `lab` repository and started making some updates in your Quarto documents.
 
     -   You **committed and pushed** your changes back -- at least most of you did!
 
@@ -67,343 +76,290 @@ What is this a visualization of?
 
 -   Today:
 
-    -   You will wrap up that application exercis, and commit and push your final changes.
+    -   You will **clone** your `ae` (application exercise) repository.
 
     -   We will introduce data visualization.
 
-    -   You will **pull** to get today's application exercise file.
-
-    -   You will work on the new application exercise on data visualization, **commit** your changes, and **push** them.
-
-# From last time
-
-## Tour: Quarto (and more Git + GitHub) {.smaller .scrollable}
-
-::: appex
-**Option 2:**
-
-Go to RStudio and open the document `ae-01-income-inequality.qmd`.
-:::
-
-<br>
-
-<details>
-<summary>Tour recap: Quarto</summary>
-
-![](images/03/tour-quarto.png){fig-alt="RStudio IDE with a Quarto document, source code on the left and output on the right. Annotated to show the YAML, a link, a header, and a code cell." fig-align="center"}
-
-</details>
-
-<br>
-
-<details>
-<summary>Tour recap: Git + GitHub</summary>
-
-Once we made changes to our Quarto document, we
-
-- went to the Git pane in RStudio
-
-- staged our changes by clicking the checkboxes next to the relevant files
-
-- committed our changes with an informative commit message
-
-- pulled from GitHub to make sure we had the latest version of our repo
-
-- pushed our changes to our application exercise repos
-
-- confirmed on GitHub that we could see our changes pushed from RStudio
-
-</details>
-
-## How will we use Quarto?
-
--   Every application exercise, lab, project, etc. is an Quarto document
--   You'll always have a template Quarto document to start with
--   The amount of scaffolding in the template will decrease over the semester
-
-## What's with all the hexes?
-
-![](images/03/hexes.jpeg){fig-alt="Hex logos for many packages" fig-align="center"}
-
-## We have hexes too!
-
-::: task
-Grab one before you leave!
-:::
-
-::: center-align
-![](images/logo.png){fig-alt="STA 199 hex logo"}
-:::
+    -   You will work on the application exercise on data visualization, **commit** your changes, and **push** them.
 
 # Data visualization
-
-## Participate 📱💻 {.smaller}
-
-::: {.columns}
-
-::: {.column width="70%"}
-
-::: wooclap
-Remember this visualization from the code along video -- what was it about?
-:::
-
-![](images/03/un-data-viz.png)
-
-:::
-
-::: {.column width="30%"}
-
-{{< include _wooclap-column.qmd >}}
-
-:::
-
-::: 
-
-## Let' see... {.center}
-
-::: {.hand .large}
-how the sausage is made!
-:::
 
 ## Load packages
 
 ```{r}
 #| label: load-packages
 #| message: false
-library(unvotes)
 library(tidyverse)
 library(ggthemes)
 ```
 
-## Prepare the data {.smaller}
-
-```{r}
-#| label: un-data-prep
-us_uk_tr_votes <- un_votes |>
-  inner_join(un_roll_calls, by = "rcid") |>
-  inner_join(un_roll_call_issues, by = "rcid", relationship = "many-to-many") |>
-  filter(country %in% c("United Kingdom", "United States", "Turkey")) |>
-  mutate(year = year(date)) |>
-  group_by(country, year, issue) |>
-  summarize(percent_yes = mean(vote == "yes"), .groups = "drop")
-```
+<br>
 
 ::: callout-note
-Let's leave these details aside for a bit, we'll revisit this code at a later point in the semester.
-For now, let's agree that we need to do some "data wrangling" to get the data into the right format for the plot we want to create.
-Just note that we called the data frame we'll visualize `us_uk_tr_votes`.
+## Reminder
+
+**tidyverse** is the collection of R packages designed for data science. 
+:::
+
+## Load the data
+
+```{r}
+#| label: load-gss-data
+#| message: false
+gss <- read_csv("data/gss-2024.csv")
+```
+
+<br>
+
+::: callout-note
+## Reminder
+
+We can read this as "read the CSV file called `gss-2024.csv` in the data folder" and save the result as `gss`.
+:::
+
+## 2024 General Social Survey (GSS) {.smaller}
+
+GSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.
+
+We're working with GSS data from the most recent wave:
+
+- Each row represents one survey respondent.
+- The variables describe demographics, education, family, happiness, employment, and political identification.
+
+::: callout-note
+The GSS is a cross-sectional survey. We can describe associations, but these data do not establish causation.
+:::
+
+::: aside
+Source: [gss.norc.org/about-the-gss.html](https://gss.norc.org/about-the-gss.html).
 :::
 
 ## View the data {.smaller}
 
 ```{r}
-#| label: un-data-view
-us_uk_tr_votes
+#| label: gss-view
+gss
 ```
 
-## Visualize the data
+## Variables in our extract {.smaller}
+
+| Variable | Description | Type |
+|---|---|---|
+| `marital_status` | Current marital status | Categorical |
+| `age` | Age in years | Numerical |
+| `education_years` | Completed years of education | Numerical |
+| `children` | Number of children; 8 means 8 or more | Numerical |
+| `happiness` | Self-reported happiness | Categorical |
+| `employment_status` | Current employment status | Categorical |
+| `party_id` | Party identification | Categorical |
+
+## Start with a question
+
+::: {.hand .large}
+How does age vary across marital-status groups?
+:::
+
+Before writing code:
+
+- Which variables do we need?
+- What type is each variable?
+- What kind of plot might answer the question?
+
+## Age by marital status {.smaller}
 
 ```{r}
-#| label: un-code-placeholder
-# code to visualize the data
-```
-
-```{r}
-#| label: un-data-viz
-#| warning: false
+#| label: age-marital-boxplot
 #| fig-width: 9
-#| fig-height: 4
-#| fig-align: center
-#| echo: false
-ggplot(
-  us_uk_tr_votes,
-  aes(x = year, y = percent_yes, color = country)
-) +
-  geom_point(alpha = 0.5) +
-  geom_smooth(se = FALSE) +
-  facet_wrap(~issue) +
-  scale_color_colorblind() +
+#| fig-height: 4.5
+ggplot(gss, aes(x = marital_status, y = age)) +
+  geom_boxplot() +
   labs(
-    x = "Year",
-    y = "% yes",
-    color = "Country"
-  ) +
-  theme_minimal()
+    title = "Age varies substantially across marital-status groups",
+    x = "Marital status",
+    y = "Age (years)",
+    caption = "Source: 2024 General Social Survey (GSS), NORC"
+  )
 ```
 
-## Step 1. Prepare a canvas for plotting
+## Interpret the plot {.smaller}
+
+With a partner:
+
+- Which group has the highest median age? The lowest?
+- Which groups have the greatest variability?
+- What does one box summarize?
+- Can this plot tell us whether marital status causes differences in age?
+
+## Plot autopsy {.smaller}
 
 ```{r}
-#| label: step-1
-#| fig-width: 9
-#| fig-height: 3
-ggplot(data = us_uk_tr_votes)
+#| label: plot-autopsy
+#| eval: false
+#| code-annotations: below
+ggplot(
+  data = gss, # <1>
+  mapping = aes(x = marital_status, y = age) # <2>
+) +
+  geom_boxplot() + # <3>
+  labs(...) + # <4>
 ```
 
-## Step 2. Map variables to aesthetics {.smaller}
+1. The **data** to visualize
+2. The variables **mapped** to visual properties
+3. The **geometric object** used to represent the observations
+4. The plot **labels**
 
-*Map* `year` to the `x` *aesthetic*
+. . .
 
-```{r}
-#| label: step-2
-#| fig-width: 9
-#| fig-height: 3
-ggplot(data = us_uk_tr_votes, mapping = aes(x = year))
-```
-
-## Step 3. Map variables to aesthetics {.smaller}
-
-*Map* `percent_yes` to the `y` *aesthetic*
-
-```{r}
-#| label: step-3
-#| fig-width: 9
-#| fig-height: 3
-ggplot(data = us_uk_tr_votes, mapping = aes(x = year, y = percent_yes))
-```
+::: question
+Which component would you change to plot different variables? Which component controls the variable represented by color?
+:::
 
 ## Mapping and aesthetics {.smaller}
 
--   **Aesthetics** are visual properties of a plot
-
--   In the *grammar of graphics*, variables from the data frame are **map**ped to aesthetics
+- **Aesthetics** are visual properties of a plot, such as position, color, fill, shape, size, and transparency.
+- In the grammar of graphics, variables from the data frame are **mapped** to aesthetics.
 
 ![](images/03/aesthetic-mapping.gif){fig-align="center"}
 
-## Argument names {.smaller}
-
-It's common practice in R to omit the names of first two arguments of a function:
-
-. . .
-
--   Instead of:
-
-``` r
-ggplot(data = us_uk_tr_votes, mapping = aes(x = year, y = percent_yes))
-```
-
--   We usually write:
-
-``` r
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes))
-```
-
-## Step 4. Represent data on your canvas {.smaller}
-
-with a `geom`
+## Map a variable; set a value {.smaller}
 
 ```{r}
-#| label: step-4
-#| fig-width: 9
-#| fig-height: 3
-#| code-line-numbers: "|2"
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes)) +
-  geom_point()
+#| label: mapping-versus-setting
+#| eval: false
+# Map: fill varies with a variable, so ggplot2 creates a legend
+geom_boxplot(aes(fill = marital_status))
+
+# Set: every box has the same fill, so no legend is needed
+geom_boxplot(fill = "steelblue")
 ```
 
-## Step 5. Map variables to aesthetics {.smaller}
+Variables belong inside `aes()`; fixed visual choices belong outside it.
 
-*Map* `country` to the `color` *aesthetic*
+## Grammar of graphics {.smaller}
+
+When building or reading a plot, work through this checklist:
+
+**data** → **aesthetic mappings** → **geom** → **statistical transformation** → **facets** → **scales** → **labels** → **theme**
+
+Not every plot needs every component, but each component is a separate decision.
+
+# Choosing a plot
+
+## Start with the question {.smaller}
+
+| Question | Variables | A useful first plot |
+|---|---|---|
+| What values are common? | One categorical | Bar chart |
+| What is the distribution? | One numerical | Histogram or boxplot |
+| Do groups differ? | Numerical + categorical | Boxplot or histogram by group |
+| Are two categories associated? | Two categorical | Filled or dodged bar chart |
+| Are two numerical variables related? | Two numerical | Scatterplot |
+
+## One categorical variable {.smaller}
 
 ```{r}
-#| label: step-5
+#| label: one-categorical
 #| fig-width: 9
-#| fig-height: 3
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
-  geom_point()
-```
-
-## Step 6. Represent data on your canvas {.smaller}
-
-with another `geom`
-
-```{r}
-#| label: step-6
-#| fig-width: 9
-#| fig-height: 3
-#| code-line-numbers: "|3"
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
-  geom_point() +
-  geom_smooth()
-```
-
-## Warnings and messages
-
--   Adding `geom_smooth()` resulted in the following warning:
-
-```         
-`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-```
-
-. . .
-
--   It tells us the type of smoothing ggplot2 does under the hood when drawing the smooth curves that represent trends for each country.
-
-. . .
-
--   Going forward we'll suppress this warning to save some space.
-
-## Step 7. Split plot into facets
-
-```{r}
-#| label: step-7
-#| fig-width: 9
-#| fig-height: 3
-#| warning: false
-#| code-line-numbers: "|4"
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
-  geom_point() +
-  geom_smooth() +
-  facet_wrap(~issue)
-```
-
-## Step 8. Use a different color scale
-
-```{r}
-#| label: step-8
-#| fig-width: 9
-#| fig-height: 3
-#| warning: false
-#| code-line-numbers: "|5"
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
-  geom_point() +
-  geom_smooth() +
-  facet_wrap(~issue) +
-  scale_color_colorblind()
-```
-
-## Step 9. Apply a different theme
-
-```{r}
-#| label: step-9
-#| fig-width: 9
-#| fig-height: 3
-#| warning: false
-#| code-line-numbers: "|6"
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
-  geom_point() +
-  geom_smooth() +
-  facet_wrap(~issue) +
-  scale_color_colorblind() +
-  theme_minimal()
-```
-
-## Step 10. Add labels
-
-```{r}
-#| label: step-10
-#| fig-width: 9
-#| fig-height: 3
-#| warning: false
-#| code-line-numbers: "|7"
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
-  geom_point() +
-  geom_smooth() +
-  facet_wrap(~issue) +
-  scale_color_colorblind() +
+#| fig-height: 4
+gss |>
+  ggplot(aes(x = marital_status)) +
+  geom_bar(fill = "steelblue") +
+  labs(
+    title = "Marital status among GSS respondents in 2024",
+    x = "Marital status",
+    y = "Number of respondents",
+    caption = "Source: 2024 General Social Survey (GSS), NORC"
+  ) +
   theme_minimal() +
-  labs(x = "Year", y = "% yes", color = "Country")
+  theme(axis.text.x = element_text(angle = 20, hjust = 1))
 ```
+
+The bar height is a **count**. `geom_bar()` counts rows for us.
+
+## Counts and survey weights {.smaller}
+
+These two mappings answer slightly different questions:
+
+```{r}
+#| eval: false
+# How many respondents are in each category?
+aes(x = marital_status)
+
+# What is the survey-weighted size of each category?
+aes(x = marital_status, weight = weight)
+```
+
+For learning the grammar, we will focus on the plot structure. For population descriptions, we should use the GSS survey weights.
+
+## Two categorical variables: What is the denominator? {.smaller}
+
+Now compare marital status and self-reported happiness in the 2024 GSS.
+
+- A **stacked** bar chart shows counts, split into groups.
+- A **dodged** bar chart makes counts in each combination easier to compare.
+- A **filled** bar chart makes every bar height 100%, so it compares *within-marital-status proportions*.
+
+## Compare the choices {.smaller}
+
+::: {.columns}
+
+::: {.column width="33%"}
+
+**Stacked: counts**
+
+```{r}
+#| label: stacked-bars
+#| fig-width: 4
+#| fig-height: 4
+gss |>
+  filter(!is.na(happiness)) |>
+  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +
+  geom_bar() +
+  labs(x = "Marital status", y = "Weighted count", fill = "Happiness") +
+  theme_minimal(base_size = 11)
+```
+
+:::
+
+::: {.column width="33%"}
+
+**Dodged: counts**
+
+```{r}
+#| label: dodged-bars
+#| fig-width: 4
+#| fig-height: 4
+gss |>
+  filter(!is.na(happiness)) |>
+  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +
+  geom_bar(position = "dodge") +
+  labs(x = "Marital status", y = "Weighted count", fill = "Happiness") +
+  theme_minimal(base_size = 11)
+```
+
+:::
+
+::: {.column width="33%"}
+
+**Filled: proportions**
+
+```{r}
+#| label: filled-bars
+#| fig-width: 4
+#| fig-height: 4
+gss |>
+  filter(!is.na(happiness)) |>
+  ggplot(aes(x = marital_status, fill = happiness, weight = weight)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = scales::label_percent()) +
+  labs(x = "Marital status", y = "Proportion", fill = "Happiness") +
+  theme_minimal(base_size = 11)
+```
+
+:::
+
+:::
 
 ## Participate 📱💻 {.smaller}
 
@@ -412,10 +368,8 @@ ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
 ::: {.column width="70%"}
 
 ::: wooclap
-Which of the following modifications will change the transparency of the points in the plot?
+You want to compare the proportion in each happiness category *within marital-status group*. Which bar-chart position should you use, and why?
 :::
-
-![](images/03/un-data-viz.png)
 
 :::
 
@@ -425,61 +379,28 @@ Which of the following modifications will change the transparency of the points 
 
 :::
 
-::: 
-
-## Step 11. Set transparency of points
-
-with `alpha`
-
-```{r}
-#| label: step-11
-#| fig-width: 9
-#| fig-height: 3
-#| warning: false
-#| code-line-numbers: "|2"
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
-  geom_point(alpha = 0.5) +
-  geom_smooth() +
-  facet_wrap(~issue) +
-  scale_color_colorblind() +
-  theme_minimal() +
-  labs(x = "Year", y = "% yes", color = "Country")
-```
-
-## Step 12. Hide standard errors of curves
-
-with `se = FALSE`
-
-```{r}
-#| label: step-12
-#| fig-width: 9
-#| fig-height: 3
-#| warning: false
-#| code-line-numbers: "|3"
-ggplot(us_uk_tr_votes, aes(x = year, y = percent_yes, color = country)) +
-  geom_point(alpha = 0.5) +
-  geom_smooth(se = FALSE) +
-  facet_wrap(~issue) +
-  scale_color_colorblind() +
-  theme_minimal() +
-  labs(x = "Year", y = "% yes", color = "Country")
-```
-
-## Grammar of graphics {.smaller}
-
-::: columns
-::: {.column width="50%"}
-We built a plot layer-by-layer
-
--   just like described in the book *The Grammar of Graphics* and
--   implemented in the **ggplot2** package, the data visualization package of the tidyverse.
 :::
 
-::: {.column width="20%"}
-![](images/03/gg-book.png)
+## A chart is an argument {.smaller}
+
+- Give the reader a meaningful title, axis labels, and a legend.
+- Use color deliberately; do not rely on color alone when another channel can help.
+- Choose the denominator and chart form to answer the question.
+- Describe what the data show, and distinguish that description from a causal claim.
+
+::: callout-note
+The filled plot uses GSS survey weights. It shows an association in one cross-sectional survey, not evidence that marital status causes happiness or vice versa.
 :::
 
-::: {.column width="30%"}
-![](images/03/gg-layers.png)
-:::
+## On your own {.smaller}
+
+::: task
+Use `gss` to answer one question below with an appropriate plot:
+
+- How does **age** vary across marital-status groups?
+- Is self-reported **happiness** distributed differently across marital-status groups?
+- What is the relationship between **education years** and **age**? Does it differ by marital status?
+- How does **employment status** vary across marital-status groups?
+
+State the question, identify the variable type(s), and explain why your plot answers it. Describe patterns; do not make causal claims.
 :::
