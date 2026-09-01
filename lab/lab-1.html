@@ -551,7 +551,7 @@ Find your teammates
 </div>
 </div>
 <section id="introduction" class="level1"><h1>Introduction</h1>
-<p>This lab introduces the computing workflow we will use throughout the course: R, Positron, Quarto, Git, and GitHub. You will also work with a small dataset, make visualizations, and write a short reproducible report with your teammates.</p>
+<p>This lab reinforces the computing workflow we will use throughout the course: R, Positron, Quarto, Git, and GitHub. You will also work with a small dataset, make visualizations, and write a short reproducible report with your teammates.</p>
 <p>As the semester progresses, you are encouraged to experiment beyond the instructions in each lab. For now, focus on the basic building blocks: reading data, writing and running R code, making plots, rendering a Quarto document, and saving your work with Git and GitHub.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -563,23 +563,24 @@ Complete Lab 0 first
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This lab assumes you completed <a href="../lab/lab-0.html">Lab 0</a>, including setting up Positron, GitHub, and Git. If you have not, complete it first and let your TA know.</p>
+<p>This lab assumes you completed <a href="../lab/lab-0.html">Lab 0</a>, including setting up Positron, GitHub, and Git. If you have not, complete it first.</p>
 </div>
 </div>
 <section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
-<p>By the end of this lab, you will be able to:</p>
+<p>By the end of this lab, you will:</p>
 <ul>
-<li>use Positron, R, Quarto, Git, and GitHub as part of a reproducible data-science workflow;</li>
-<li>create a reproducible report with Quarto;</li>
-<li>create visualizations with the <code>tidyverse</code>, especially <code>ggplot2</code>; and</li>
+<li>gain experience using R, Positron, Git, and GitHub as part of a reproducible data-science workflow;</li>
+<li>create a reproducible report using Quarto;</li>
+<li>create data visualizations with the <code>tidyverse</code>, specifically using <code>ggplot2</code>; and</li>
 <li>use a simple <code>dplyr</code> pipeline to transform and examine data.</li>
 </ul></section></section><section id="getting-started" class="level1"><h1>Getting started</h1>
 <section id="clone-your-repository" class="level2"><h2 class="anchored" data-anchor-id="clone-your-repository">Clone your repository</h2>
-<p>Go to the course GitHub organization and open your team’s repository with the prefix <code>lab-1</code>. Clone it into Positron using the same process you used for Lab 0:</p>
+<p>Clone your <strong>lab-1</strong> repository using the same process used in Lab 0.</p>
 <ol type="1">
-<li>On GitHub, select <strong>Code</strong>, choose <strong>HTTPS</strong>, and copy the repository URL.</li>
-<li>In Positron, choose <strong>New Folder From Git…</strong>.</li>
-<li>Paste the repository URL and select <strong>OK</strong>.</li>
+<li>Go to the course GitHub organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> and click on the repository with prefix <code>lab-1</code>.</li>
+<li>Select the green <strong>Code</strong> button and choose <strong>HTTPS</strong> under <strong>Clone</strong>. Click on the clipboard icon to copy the repo URL.</li>
+<li>In Positron’s Welcome window, click on <em>New Folder From Git…</em>.</li>
+<li>Paste the repository URL into the dialog box labeled <em>Git repository URL</em> and select <strong>OK</strong>.</li>
 <li>Open <code>lab-1.qmd</code> in the Explorer pane.</li>
 </ol></section><section id="update-the-yaml" class="level2"><h2 class="anchored" data-anchor-id="update-the-yaml">Update the YAML</h2>
 <p>The material between the first pair of <code>---</code> lines in a Quarto document is its <em>YAML</em> (“YAML Ain’t Markup Language”). It stores information about the document.</p>
