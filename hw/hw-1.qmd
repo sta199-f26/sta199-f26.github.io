@@ -15,6 +15,7 @@ draft: true
   - writing a reproducible report using Quarto, and
   - version control using Git and GitHub
 - Create data visualizations with the `tidyverse`, specifically using `ggplot2`
+- Wrangle data with the `tidyverse`, specifically using `dplyr`
 - Interpret data visualizations
 
 ## Getting Started
@@ -51,59 +52,68 @@ library(ggthemes)
 
 ## Part 1
 
-We will use the `midwest` data frame for this part of the homework. It is part of the **ggplot2** R package, so the `midwest` data set is automatically loaded when you load the tidyverse package.
+For this part of the homework, you will use the `spotify` data frame from [Lab 1](../lab/lab-1.qmd).
 
-The data contains demographic characteristics of counties in the Midwest region of the United States.
+You will analyze a fixed snapshot of the first 200 songs on Spotify's Global Weekly chart for the week dated August 27, 2026. Each row represents a song.
+Spotify releases a new chart every week, and a website called [Kworb.net](https://kworb.net/) republishes a snapshot of these data weekly. This week's data was retrieved from [Kworb's republished Spotify Global Weekly chart](https://kworb.net/spotify/country/global_weekly.html) on August 29, 2026.
+Spotify states that its chart stream counts are generated using a formula that filters for chart eligibility, so `streams` should not be interpreted as every raw Spotify play.[^1]
 
-Because the data set is part of the **ggplot2** package, you can read documentation for the data set, including variable definitions by typing `?midwest` in the Console or searching for `midwest` in the Help pane.
+[^1]: See Spotify's chart documentation: <https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/>.
+Read the data into R with:
+```{r}
+#| label: load-spotify-data
+spotify <- read_csv("data/spotify-global-weekly-2026-08-27.csv")
+```
 
 ### Question 1
 
-Visualize the distribution of population density of counties using a histogram with `geom_histogram()` with four separate binwidths: a binwidth of 100, a binwidth of 1,000, a binwidth of 10,000, and a binwidth of 100,000. For example, you can create the first plot with:
-
+Visualize the distribution of `weeks_on_chart` using a histogram with `geom_histogram()` with three different binwidths: a binwidth of 100, a binwidth of 5, a binwidth of 50, and a binwidth of 500. For example, you can create the first plot with:
 ```{r}
-ggplot(midwest, aes(x = popdensity)) +
-  geom_histogram(binwidth = 100) +
+ggplot(spotify, aes(x = weeks_on_chart)) +
+  geom_histogram(binwidth = 5) +
   labs(
-    x = "Population density",
+    x = "Weeks on Chart",
     y = "Count",
-    title = "Population density of Midwestern counties",
-    subtitle = "Binwidth = 100"
+    title = "Distribution of Weeks on Spotify's Global Weekly Chart",
+    subtitle = "Binwidth = 500"
   )
 ```
 
-You will need to make four different histograms. Make sure to set informative titles and axis labels for each of your plots. Then, comment on which binwidth is most appropriate for these data and why.
+You will need to make three different histograms. Make sure to set informative titles and axis labels for each of your plots. Then, comment on which binwidth is most appropriate for these data and why.
 
-::: preview-commit-push
-Render, commit, and push your changes to GitHub with the commit message "Added answer for Question 1".
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 1".
 
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
 ### Question 2
 
-Visualize the distribution of population density of counties again, this time using a boxplot with `geom_boxplot()`. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of population density of counties and comment on any potential outliers, making sure to identify at least one county that is a clear outlier by name in your narrative and commenting on whether it makes sense to you that this county is an outlier. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.
+Visualize the distribution of `weeks_on_chart` again, this time using a boxplot with `geom_boxplot()`. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of `weeks_on_chart` and comment on any potential outliers, making sure to identify songs that are outliers by name in your narrative. Use a data wrangling pipeline using `filter()` to identify the outliers, and then use `select()` to keep only the `song` and `weeks_on_chart` variables in your output.
 
 ::: callout-important
 In describing a distribution, make sure to mention shape, center, spread, and any unusual observations.
 :::
 
-::: preview-commit-push
-Render, commit, and push your changes to GitHub with the commit message "Added answer for Question 2".
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 2".
 
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
 ### Question 3
 
-Create a scatterplot of the percentage below poverty (`percbelowpoverty` on the y-axis) versus percentage of people with a college degree (`percollege` on the x-axis), where the color [**and**]{.underline} shape of points are determined by `state`. Make sure to set informative titles, axis, and legend labels for your plot. First, describe the overall relationship between percentage of people with a college degree and percentage below poverty in Midwestern states, making sure to identify at least one county that is a clear outlier by name in your narrative. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them. Then, comment on whether you can identify how this relationship varies across states.
+A song's `peak_rank` is its best-ever position during its current run on the chart. Because smaller ranks are better, create a variable called `positions_below_peak` that measures how many positions a song's current rank is below its peak rank.
 
-::: callout-important
-In describing a relationship, make sure to mention direction, shape, and strength.
-:::
+```{r}
+spotify <- spotify |>
+  mutate(positions_below_peak = rank - peak_rank)
+```
 
-::: preview-commit-push
-Render, commit, and push your changes to GitHub with the commit message "Added answer for Question 3".
+In one pipeline, display the 10 songs farthest below their peak rank. Include the song title, artist, current rank, peak rank, and `positions_below_peak`. What pattern do you notice? Choose one song from your results and give one plausible explanation for why it may be charting below its earlier peak. Your explanation is a hypothesis, not a conclusion supported by these data alone.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 3".
 
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
@@ -124,8 +134,8 @@ Which state has the single largest county? Identify the name of this county. You
 In addition to answering the specific prompts above, make sure your response answers the initial question, "Do some states have counties that tend to be geographically larger than others?"
 :::
 
-::: preview-commit-push
-Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.
+::: source-control
+Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.
 
 Once again, make sure to commit and push all changed files so that your Git pane is empty afterwards.
 :::
@@ -153,8 +163,8 @@ midwest <- midwest |>
 In addition to answering the specific prompts above, make sure your response answers the initial question, "Do some states have a higher percentage of their counties located in a metropolitan area?"
 :::
 
-::: preview-commit-push
-Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.
+::: source-control
+Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.
 
 And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it's important and because we see students forget to do this. So take a moment to make sure you're following along with the version control instructions.
 :::
@@ -210,8 +220,8 @@ a.  Make a bar plot of the number of counties by `county_type`. What type of cou
 
 b.  What type of county is Durham County? Answer this question with a single pipeline where you `filter()` for Durham County and then `select()` the `county` and `county_type` variables.
 
-::: preview-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
 ### Question 7
@@ -232,8 +242,8 @@ b.  In a single pipeline, identify all rural non-metro counties that appear as o
 
 c.  Figure out where the counties you identified in part (b) are located in North Carolina, e.g., on the coast, on the northwest, etc. Include in your answer where you found this information with links to your references, e.g., Wikipedia, Google Maps, etc.
 
-::: preview-commit-push
-Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.
+::: source-control
+Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.
 :::
 
 ### Question 8
@@ -248,8 +258,8 @@ b.  In a single pipeline, identify *all* counties that appear as outliers in the
     You will need to use three conditions connected by the `|` operator in your `filter()` call, one for each county type.
     :::
 
-::: preview-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message.
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
 :::
 
 ### Question 9
@@ -276,26 +286,16 @@ Recreate the following visualization that compares the distribution of home owne
 - Width: You can also adjust the width of the plot by setting the `fig-width` option in the code cell. A larger value makes the plot wider.
 :::
 
-::: preview-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
 ### Question 10
 
-You used an AI-powered feedback tool to receive immediate feedback on your answers based on a rubric designed by the course instructor.
+Need scatterplot and explain relationship question.
 
-Write a short reflection (100-200 words, 5-10 sentences) addressing the following prompts:
-
-- Use of the tool: Describe how you interacted with the AI tool. What type of feedback did it provide on your code, your interpretation of results, or your written explanation? How did you respond to this feedback (e.g., revising code, clarifying your narrative)?
-
-- Quality of feedback: Evaluate the usefulness and clarity of the AI tool’s feedback. Did it help you identify errors, gaps in reasoning, or ways to improve communication of your results? Did the feedback align with your expectations of instructor-style feedback?
-
-- Critical reflection: What are the limitations of using AI-generated feedback in place of instructor feedback? How might it support your learning, and in what ways might it fall short?
-
-Your reflection should demonstrate critical thinking, not just description. Where possible, connect your observations to course concepts such as reproducibility, clarity in communication, or the iterative nature of data analysis.
-
-::: preview-commit-push
-Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
 ### Question 11
@@ -347,7 +347,7 @@ Did you select your pages on Gradescope? [^1] You don't need to write an answer 
 # Wrap-up
 
 ::: callout-warning
-Before you wrap up the assignment, make sure that you render, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub and your Git pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.
+Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub and your Git pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.
 :::
 
 ## Submission
