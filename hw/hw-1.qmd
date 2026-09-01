@@ -59,10 +59,14 @@ Spotify releases a new chart every week, and a website called [Kworb.net](https:
 Spotify states that its chart stream counts are generated using a formula that filters for chart eligibility, so `streams` should not be interpreted as every raw Spotify play.[^1]
 
 [^1]: See Spotify's chart documentation: <https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/>.
+
+For this homework, the data also include a broad `artist_genre` classification. These labels describe the credited artist's general musical style, not necessarily the genre of every individual song; artists and songs can belong to more than one genre.
+
 Read the data into R with:
 ```{r}
 #| label: load-spotify-data
-spotify <- read_csv("data/spotify-global-weekly-2026-08-27.csv")
+spotify <- read_csv("data/spotify-global-weekly-2026-08-27.csv") |>
+  left_join(read_csv("data/spotify-artist-genres.csv"), by = "artist")
 ```
 
 ### Question 1
@@ -120,18 +124,18 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 
 ### Question 4
 
-*Do some states have counties that tend to be geographically larger than others?*
+*Do songs from some genres tend to have higher weekly stream counts than others?*
 
-To explore this question, create side-by-side boxplots of area (`area`) of a county based on state (`state`).
+To explore this question, create side-by-side boxplots of weekly streams (`streams`) by artist genre (`artist_genre`). To keep the plot readable, include only the genres with at least 10 songs on the chart.
 
-How do typical county area sizes compare across states?
+How do typical weekly stream counts compare across these genres?
 
-How do variabilities of county sizes compare across states?
+How do the variabilities of weekly stream counts compare across these genres?
 
-Which state has the single largest county? Identify the name of this county. You can use the data viewer to identify it interactively, you do not have to write code.
+Which genre contains the single most-streamed song among the genres in your plot? Identify the song by name. You can use the data viewer to identify it interactively; you do not have to write code to identify it.
 
 ::: callout-tip
-In addition to answering the specific prompts above, make sure your response answers the initial question, "Do some states have counties that tend to be geographically larger than others?"
+In addition to answering the specific prompts above, make sure your response answers the initial question, "Do songs from some genres tend to have higher weekly stream counts than others?"
 :::
 
 ::: source-control
