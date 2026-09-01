@@ -72,9 +72,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-935de7b3199b1e714374491ca26b0e5c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-6c6f04b8f78781bcae4b062e82cdc916.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-935de7b3199b1e714374491ca26b0e5c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-afa0b4b835207b1eaecda9b8413fabad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f940def4130d37104c20e03c32c4b857.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-afa0b4b835207b1eaecda9b8413fabad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -593,6 +593,8 @@ window.Quarto = {
 </li>
 <li>Create data visualizations with the <code>tidyverse</code>, specifically using <code>ggplot2</code>
 </li>
+<li>Wrangle data with the <code>tidyverse</code>, specifically using <code>dplyr</code>
+</li>
 <li>Interpret data visualizations</li>
 </ul></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p>To get started, follow the instructions below.</p>
@@ -630,9 +632,10 @@ window.Quarto = {
 <li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
 </ul></section></section><section id="feedback-from-ai" class="level2"><h2 class="anchored" data-anchor-id="feedback-from-ai">🤖 Feedback from AI</h2>
 <p>You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.</p>
-<p>To get feedback from AI, write your answer to each question in the appropriate section of your homework <code>.qmd</code> file. Then, highlight your answer to a question, click on <em>Addins &gt; AIFEEDR &gt; Get feedback</em>. In the app that opens, select the appropriate homework number and question number. Then click on <em>Get Feedback</em>. Please be patient, feedback generation can take a few seconds. Once you read the feedback, you can go back to your Quarto document to improve your answer based on the feedback. You will then need to click the red X on the top left corner of the Viewer pane to stop the feedback app from running before you can re-render your Quarto document.</p>
+<p><strong>TO DO:</strong> Add specific instructions for AI feedback.</p>
 <p>The video below demonstrates how to use the AI feedback tool.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="aifeedr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p><strong>TO DO:</strong> Add video walkthrogh for AI feedback.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="Feedback with AI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization, <strong>scales</strong> for better axis labels, and <strong>ggthemes</strong> for additional color palettes.</p>
 <div class="cell">
@@ -642,28 +645,33 @@ window.Quarto = {
 </div>
 </section></section><section id="questions" class="level1"><h1>Questions</h1>
 <section id="part-1" class="level2"><h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
-<p>We will use the <code>midwest</code> data frame for this part of the homework. It is part of the <strong>ggplot2</strong> R package, so the <code>midwest</code> data set is automatically loaded when you load the tidyverse package.</p>
-<p>The data contains demographic characteristics of counties in the Midwest region of the United States.</p>
-<p>Because the data set is part of the <strong>ggplot2</strong> package, you can read documentation for the data set, including variable definitions by typing <code><a href="https://ggplot2.tidyverse.org/reference/midwest.html">?midwest</a></code> in the Console or searching for <code>midwest</code> in the Help pane.</p>
-<section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
-<p>Visualize the distribution of population density of counties using a histogram with <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> with four separate binwidths: a binwidth of 100, a binwidth of 1,000, a binwidth of 10,000, and a binwidth of 100,000. For example, you can create the first plot with:</p>
+<p>For this part of the homework, you will use the <code>spotify</code> data frame from Lab 1.</p>
+<p>You will analyze a fixed snapshot of the first 200 songs on Spotify’s Global Weekly chart for the week dated August 27, 2026. Each row represents a song. Spotify releases a new chart every week, and a website called <a href="https://kworb.net/">Kworb.net</a> republishes a snapshot of these data weekly. This week’s data was retrieved from <a href="https://kworb.net/spotify/country/global_weekly.html">Kworb’s republished Spotify Global Weekly chart</a> on August 29, 2026. Spotify states that its chart stream counts are generated using a formula that filters for chart eligibility, so <code>streams</code> should not be interpreted as every raw Spotify play.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>For this homework, the data also include a broad <code>artist_genre</code> classification. These labels describe the credited artist’s general musical style, not necessarily the genre of every individual song; artists and songs can belong to more than one genre.</p>
+<p>Read the data into R with:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">midwest</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">popdensity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spotify</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/spotify-global-weekly-2026-08-27.csv"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/spotify-artist-genres.csv"</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"artist"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>Visualize the distribution of <code>weeks_on_chart</code> using a histogram with <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> with three different binwidths: a binwidth of 100, a binwidth of 5, a binwidth of 50, and a binwidth of 500. For example, you can create the first plot with:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">spotify</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weeks_on_chart</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="st">"Population density"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Weeks on Chart"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Count"</span>,</span>
-<span>    title <span class="op">=</span> <span class="st">"Population density of Midwestern counties"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"Binwidth = 100"</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Distribution of Weeks on Spotify's Global Weekly Chart"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Binwidth = 500"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You will need to make four different histograms. Make sure to set informative titles and axis labels for each of your plots. Then, comment on which binwidth is most appropriate for these data and why.</p>
-<div class="preview-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”.</p>
+<p>You will need to make three different histograms. Make sure to set informative titles and axis labels for each of your plots. Then, comment on which binwidth is most appropriate for these data and why.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
 </section><section id="question-2" class="level3"><h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
-<p>Visualize the distribution of population density of counties again, this time using a boxplot with <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of population density of counties and comment on any potential outliers, making sure to identify at least one county that is a clear outlier by name in your narrative and commenting on whether it makes sense to you that this county is an outlier. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them.</p>
+<p>Visualize the distribution of <code>weeks_on_chart</code> again, this time using a boxplot with <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of <code>weeks_on_chart</code> and comment on any potential outliers, making sure to identify songs that are outliers by name in your narrative. Use a data wrangling pipeline using <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to identify the outliers, and then use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> to keep only the <code>song</code> and <code>weeks_on_chart</code> variables in your output.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -677,35 +685,27 @@ Important
 <p>In describing a distribution, make sure to mention shape, center, spread, and any unusual observations.</p>
 </div>
 </div>
-<div class="preview-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 2”.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 2”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
 </section><section id="question-3" class="level3"><h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
-<p>Create a scatterplot of the percentage below poverty (<code>percbelowpoverty</code> on the y-axis) versus percentage of people with a college degree (<code>percollege</code> on the x-axis), where the color <u><strong>and</strong></u> shape of points are determined by <code>state</code>. Make sure to set informative titles, axis, and legend labels for your plot. First, describe the overall relationship between percentage of people with a college degree and percentage below poverty in Midwestern states, making sure to identify at least one county that is a clear outlier by name in your narrative. You can use the data viewer to identify the outliers interactively, you do not have to write code to identify them. Then, comment on whether you can identify how this relationship varies across states.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>A song’s <code>peak_rank</code> is its best-ever position during its current run on the chart. Because smaller ranks are better, create a variable called <code>positions_below_peak</code> that measures how many positions a song’s current rank is below its peak rank.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spotify</span> <span class="op">&lt;-</span> <span class="va">spotify</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>positions_below_peak <span class="op">=</span> <span class="va">rank</span> <span class="op">-</span> <span class="va">peak_rank</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In describing a relationship, make sure to mention direction, shape, and strength.</p>
-</div>
-</div>
-<div class="preview-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.</p>
+<p>In one pipeline, display the 10 songs farthest below their peak rank. Include the song title, artist, current rank, peak rank, and <code>positions_below_peak</code>. What pattern do you notice? Choose one song from your results and give one plausible explanation for why it may be charting below its earlier peak. Your explanation is a hypothesis, not a conclusion supported by these data alone.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
 </section><section id="question-4" class="level3"><h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
-<p><em>Do some states have counties that tend to be geographically larger than others?</em></p>
-<p>To explore this question, create side-by-side boxplots of area (<code>area</code>) of a county based on state (<code>state</code>).</p>
-<p>How do typical county area sizes compare across states?</p>
-<p>How do variabilities of county sizes compare across states?</p>
-<p>Which state has the single largest county? Identify the name of this county. You can use the data viewer to identify it interactively, you do not have to write code.</p>
+<p><em>Do songs from some genres tend to have higher weekly stream counts than others?</em></p>
+<p>To explore this question, create side-by-side boxplots of weekly streams (<code>streams</code>) by artist genre (<code>artist_genre</code>). To keep the plot readable, include only the genres with at least 10 songs on the chart.</p>
+<p>How do typical weekly stream counts compare across these genres?</p>
+<p>How do the variabilities of weekly stream counts compare across these genres?</p>
+<p>Which genre contains the single most-streamed song among the genres in your plot? Identify the song by name. You can use the data viewer to identify it interactively; you do not have to write code to identify it.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -716,11 +716,11 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do some states have counties that tend to be geographically larger than others?”</p>
+<p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do songs from some genres tend to have higher weekly stream counts than others?”</p>
 </div>
 </div>
-<div class="preview-commit-push">
-<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+<div class="source-control">
+<p>Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>Once again, make sure to commit and push all changed files so that your Git pane is empty afterwards.</p>
 </div>
 </section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
@@ -738,7 +738,7 @@ Hint
 <div class="callout-body-container callout-body">
 <p>For this question, you should begin with the data wrangling pipeline below. We will learn more about data wrangling in the coming weeks, so this is a mini-preview. This pipeline creates a new variable called <code>metro</code> based on the value of the existing variable called <code>inmetro</code>. If the value of <code>inmetro</code> is equal to 1 (<code>inmetro == 1</code>), it sets the value of <code>metro</code> to <code>"Yes"</code>, and if not, it sets the value of <code>metro</code> to <code>"No"</code>. The resulting data frame is assigned back to <code>midwest</code>, overwriting the existing <code>midwest</code> data frame with a version that includes the new <code>metro</code> variable.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midwest</span> <span class="op">&lt;-</span> <span class="va">midwest</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midwest</span> <span class="op">&lt;-</span> <span class="va">midwest</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>metro <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">inmetro</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -756,8 +756,8 @@ Tip
 <p>In addition to answering the specific prompts above, make sure your response answers the initial question, “Do some states have a higher percentage of their counties located in a metropolitan area?”</p>
 </div>
 </div>
-<div class="preview-commit-push">
-<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+<div class="source-control">
+<p>Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>And once again, make sure to commit and push all changed files so that your Git pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re following along with the version control instructions.</p>
 </div>
 </section></section><section id="part-2" class="level2"><h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
@@ -813,15 +813,15 @@ Tip
 </ul>
 <p>Just like in lab, you can read this file into R with the following code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nc-county.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nc-county.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="question-6" class="level3"><h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
 <ol type="a">
 <li><p>Make a bar plot of the number of counties by <code>county_type</code>. What type of county is most common in North Carolina? What type of county is least common?</p></li>
 <li><p>What type of county is Durham County? Answer this question with a single pipeline where you <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> for Durham County and then <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> the <code>county</code> and <code>county_type</code> variables.</p></li>
 </ol>
-<div class="preview-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
 </section><section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
 <ol type="a">
@@ -848,8 +848,8 @@ Hint
 </li>
 <li><p>Figure out where the counties you identified in part (b) are located in North Carolina, e.g., on the coast, on the northwest, etc. Include in your answer where you found this information with links to your references, e.g., Wikipedia, Google Maps, etc.</p></li>
 </ol>
-<div class="preview-commit-push">
-<p>Now is another good time to render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+<div class="source-control">
+<p>Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
 </section><section id="question-8" class="level3"><h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
 <ol type="a">
@@ -871,8 +871,8 @@ Hint
 </div>
 </li>
 </ol>
-<div class="preview-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
 </section><section id="question-9" class="level3"><h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
 <p>Recreate the following visualization that compares the distribution of home ownership (<code>p_home_ownership</code>) by <code>county_type</code>. Then, highlight one feature of home ownership that this plot reveals in 1-2 sentences.</p>
@@ -898,20 +898,13 @@ Hints
 </ul>
 </div>
 </div>
-<div class="preview-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
 </section><section id="question-10" class="level3"><h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
-<p>You used an AI-powered feedback tool to receive immediate feedback on your answers based on a rubric designed by the course instructor.</p>
-<p>Write a short reflection (100-200 words, 5-10 sentences) addressing the following prompts:</p>
-<ul>
-<li><p>Use of the tool: Describe how you interacted with the AI tool. What type of feedback did it provide on your code, your interpretation of results, or your written explanation? How did you respond to this feedback (e.g., revising code, clarifying your narrative)?</p></li>
-<li><p>Quality of feedback: Evaluate the usefulness and clarity of the AI tool’s feedback. Did it help you identify errors, gaps in reasoning, or ways to improve communication of your results? Did the feedback align with your expectations of instructor-style feedback?</p></li>
-<li><p>Critical reflection: What are the limitations of using AI-generated feedback in place of instructor feedback? How might it support your learning, and in what ways might it fall short?</p></li>
-</ul>
-<p>Your reflection should demonstrate critical thinking, not just description. Where possible, connect your observations to course concepts such as reproducibility, clarity in communication, or the iterative nature of data analysis.</p>
-<div class="preview-commit-push">
-<p>Render, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
+<p>Need scatterplot and explain relationship question.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
 </section><section id="question-11" class="level3"><h3 class="anchored" data-anchor-id="question-11">Question 11</h3>
 <section id="ai-use-disclosure" class="level4"><h4 class="anchored" data-anchor-id="ai-use-disclosure">AI Use Disclosure</h4>
@@ -990,7 +983,7 @@ Hints
 </ul>
 </li>
 </ul></section></section><section id="question-12" class="level3"><h3 class="anchored" data-anchor-id="question-12">Question 12</h3>
-<p>Did you select your pages on Gradescope? <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> You don’t need to write an answer for this question.</p>
+<p>Did you select your pages on Gradescope? <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> You don’t need to write an answer for this question.</p>
 </section></section></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1002,7 +995,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Before you wrap up the assignment, make sure that you render, commit, and push one final time so that the final versions of both your <code>.qmd</code> file and the rendered PDF are pushed to GitHub and your Git pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.</p>
+<p>Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your <code>.qmd</code> file and the rendered PDF are pushed to GitHub and your Git pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.</p>
 </div>
 </div>
 <section id="submission" class="level2"><h2 class="anchored" data-anchor-id="submission">Submission</h2>
@@ -1048,6 +1041,7 @@ Checklist
 </section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
 <li id="fn1"><p>Selecting your pages for each question makes the grading process much smoother.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Selecting your pages for each question makes the grading process much smoother.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
