@@ -1725,6 +1725,104 @@
     "text": "To be posted closer to exam date."
   },
   {
+    "objectID": "lab/lab-1.html",
+    "href": "lab/lab-1.html",
+    "title": "Lab 1",
+    "section": "",
+    "text": "Find your teammates\n\n\n\nSit with your teammates before getting started. You will complete and submit one lab report per team."
+  },
+  {
+    "objectID": "lab/lab-1.html#learning-objectives",
+    "href": "lab/lab-1.html#learning-objectives",
+    "title": "Lab 1",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lab, you will:\n\ngain experience using R, Positron, Git, and GitHub as part of a reproducible data-science workflow;\ncreate a reproducible report using Quarto;\ncreate data visualizations with the tidyverse, specifically using ggplot2; and\nuse a simple dplyr pipeline to transform and examine data."
+  },
+  {
+    "objectID": "lab/lab-1.html#clone-your-repository",
+    "href": "lab/lab-1.html#clone-your-repository",
+    "title": "Lab 1",
+    "section": "Clone your repository",
+    "text": "Clone your repository\nClone your lab-1 repository using the same process used in Lab 0.\n\nGo to the course GitHub organization at github.com/sta199-f26 and click on the repository with prefix lab-1.\nSelect the green Code button and choose HTTPS under Clone. Click on the clipboard icon to copy the repo URL.\nIn Positron’s Welcome window, click on New Folder From Git….\nPaste the repository URL into the dialog box labeled Git repository URL and select OK.\nOpen lab-1.qmd in the Explorer pane."
+  },
+  {
+    "objectID": "lab/lab-1.html#update-the-yaml",
+    "href": "lab/lab-1.html#update-the-yaml",
+    "title": "Lab 1",
+    "section": "Update the YAML",
+    "text": "Update the YAML\nThe material between the first pair of --- lines in a Quarto document is its YAML (“YAML Ain’t Markup Language”). It stores information about the document.\nUpdate the authors field in your team’s lab-1.qmd file to list your names. Then render the document. Check that the rendered document displays your names."
+  },
+  {
+    "objectID": "lab/lab-1.html#commit-and-push",
+    "href": "lab/lab-1.html#commit-and-push",
+    "title": "Lab 1",
+    "section": "Commit and push",
+    "text": "Commit and push\nUse the Source Control pane in Positron to review the changes you made. Stage the changed files, use a meaningful commit message such as Updated authors, and commit. Then select Sync Changes to push your commit to GitHub.\n\n\n\n\n\n\nA good workflow\n\n\n\nYou do not need to commit after every small edit. Commit meaningful states of your work: for example, after completing a question or after making a plot you are happy with. You should have at least three meaningful commits by the end of this lab."
+  },
+  {
+    "objectID": "lab/lab-1.html#code",
+    "href": "lab/lab-1.html#code",
+    "title": "Lab 1",
+    "section": "Code",
+    "text": "Code\nFollow the tidyverse style guide. In particular:\n\nuse spaces around = and after commas;\nput a line break after |&gt; in a pipeline;\nindent code consistently; and\nkeep code lines short enough to be visible in the rendered document."
+  },
+  {
+    "objectID": "lab/lab-1.html#plots",
+    "href": "lab/lab-1.html#plots",
+    "title": "Lab 1",
+    "section": "Plots",
+    "text": "Plots\n\nGive every plot an informative title.\nLabel axes and legends with meaningful names and units when appropriate.\nMake deliberate aesthetic choices so the plot is easy to read."
+  },
+  {
+    "objectID": "lab/lab-1.html#question-1",
+    "href": "lab/lab-1.html#question-1",
+    "title": "Lab 1",
+    "section": "Question 1",
+    "text": "Question 1\nHow many songs are in the dataset? How many variables are there? Use inline code to answer both questions.\n\nPreview, commit, and push your changes to GitHub with the commit message “Added answer for Q1”."
+  },
+  {
+    "objectID": "lab/lab-1.html#question-2",
+    "href": "lab/lab-1.html#question-2",
+    "title": "Lab 1",
+    "section": "Question 2",
+    "text": "Question 2\nMake a histogram and a boxplot of streams. Then, answer the following questions:\n\nIs the distribution of weekly streams right-skewed, left-skewed, or approximately symmetric? Which plot or plots helped you decide?\nIs the distribution unimodal, bimodal, multimodal, or uniform? Which plot or plots helped you decide?\n\n\nPreview, commit, and push your changes to GitHub with the commit message “Added answer for Q2”."
+  },
+  {
+    "objectID": "lab/lab-1.html#question-3",
+    "href": "lab/lab-1.html#question-3",
+    "title": "Lab 1",
+    "section": "Question 3",
+    "text": "Question 3\nIn a single pipeline, identify the songs with unusually high weekly stream counts according to the boxplot. Display the song title, artist, and stream count in descending order of streams.\n\nPreview, commit, and push your changes to GitHub with the commit message “Added answer for Q3”."
+  },
+  {
+    "objectID": "lab/lab-1.html#question-4",
+    "href": "lab/lab-1.html#question-4",
+    "title": "Lab 1",
+    "section": "Question 4",
+    "text": "Question 4\nFind one song that has been on the chart for more than 100 weeks and one that has been on the chart for fewer than five weeks. What might explain the difference? This is an opportunity to explore the data; there is no single correct answer.\n\nPreview, commit, and push your changes to GitHub with the commit message “Added answer for Q4”."
+  },
+  {
+    "objectID": "lab/lab-1.html#question-5",
+    "href": "lab/lab-1.html#question-5",
+    "title": "Lab 1",
+    "section": "Question 5",
+    "text": "Question 5\nDid you select your pages on Gradescope? You don’t need to write an answer for this question."
+  },
+  {
+    "objectID": "lab/lab-1.html#grading-and-feedback",
+    "href": "lab/lab-1.html#grading-and-feedback",
+    "title": "Lab 1",
+    "section": "Grading and feedback",
+    "text": "Grading and feedback\nThis lab is worth 30 points:\n\n10 points for attending lab and submitting work by the end of lab; and\n20 points for correct and complete answers, clear presentation, and following the required workflow.\n\nThe workflow portion includes making at least three meaningful commits, pushing the final .qmd and rendered PDF to GitHub, and keeping your work organized."
+  },
+  {
+    "objectID": "lab/lab-1.html#footnotes",
+    "href": "lab/lab-1.html#footnotes",
+    "title": "Lab 1",
+    "section": "Footnotes",
+    "text": "Footnotes\n\nSee Spotify’s chart documentation: https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/.↩︎"
+  },
+  {
     "objectID": "course-support.html",
     "href": "course-support.html",
     "title": "Course support",
@@ -2149,7 +2247,7 @@
     "href": "lab.html",
     "title": "Labs",
     "section": "",
-    "text": "More labs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nNo.\n\n\n\nTitle\n\n\n\nDue date\n\n\n\n\n\n\n\n\nLab 0\n\n\nMise en place\n\n\nDue: End of lab on Thurs, Aug 27\n\n\n\n\n\n\nNo matching items",
+    "text": "More labs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nNo.\n\n\n\nTitle\n\n\n\nDue date\n\n\n\n\n\n\n\n\nLab 0\n\n\nMise en place\n\n\nDue: End of lab on Thurs, Aug 27\n\n\n\n\n\n\nLab 1\n\n\nWhat’s streaming around the world?\n\n\nDue: End of lab on Thurs, Sep 3\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Labs"
     ]
