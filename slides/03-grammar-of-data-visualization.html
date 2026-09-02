@@ -509,15 +509,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#lets-get-laptops-out" id="toc-lets-get-laptops-out" class="nav-link" data-scroll-target="#lets-get-laptops-out">Let’s get laptops out!</a></li>
   </ul>
 </li>
-  <li>
-<a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a>
-  <ul class="collapse">
-<li><a href="#start-with-the-question" id="toc-start-with-the-question" class="nav-link" data-scroll-target="#start-with-the-question">Start with the question</a></li>
-  <li><a href="#interesting-qs---many-variables" id="toc-interesting-qs---many-variables" class="nav-link" data-scroll-target="#interesting-qs---many-variables">Interesting Qs &lt;-&gt; many variables</a></li>
-  <li><a href="#getting-to-know-you-feedback-questions" id="toc-getting-to-know-you-feedback-questions" class="nav-link" data-scroll-target="#getting-to-know-you-feedback-questions"><em>Getting to know you</em> feedback: Questions</a></li>
-  <li><a href="#getting-to-know-you-feedback-concerns" id="toc-getting-to-know-you-feedback-concerns" class="nav-link" data-scroll-target="#getting-to-know-you-feedback-concerns"><em>Getting to know you</em> feedback: Concerns</a></li>
-  </ul>
-</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/03-grammar-of-data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03-grammar-of-data-visualization-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -668,21 +659,20 @@ Note
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,294 × 9
-    year marital_status   age education_years children happiness    
-   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        
- 1  2024 Never married     33              16        2 Not too happy
- 2  2024 Never married     64              16        0 Pretty happy 
- 3  2024 Married           69              14        0 Pretty happy 
- 4  2024 Never married     19              12        0 Pretty happy 
- 5  2024 Divorced          70              13        3 Not too happy
- 6  2024 Married           53              14        2 Pretty happy 
- 7  2024 Married           48              13        6 Pretty happy 
- 8  2024 Divorced          30              14        1 Not too happy
- 9  2024 Married           60              14        2 Very happy   
-10  2024 Never married     25              12        0 Pretty happy 
+    year marital_status   age education_years children happiness     health
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; 
+ 1  2024 Never married     33              16        2 Not too happy Good  
+ 2  2024 Never married     64              16        0 Pretty happy  Good  
+ 3  2024 Married           69              14        0 Pretty happy  Good  
+ 4  2024 Never married     19              12        0 Pretty happy  Good  
+ 5  2024 Divorced          70              13        3 Not too happy Good  
+ 6  2024 Married           53              14        2 Pretty happy  Good  
+ 7  2024 Married           48              13        6 Pretty happy  Good  
+ 8  2024 Divorced          30              14        1 Not too happy Good  
+ 9  2024 Married           60              14        2 Very happy    Good  
+10  2024 Never married     25              12        0 Pretty happy  Good  
 # ℹ 3,284 more rows
-# ℹ 3 more variables: health &lt;chr&gt;, employment_status &lt;chr&gt;,
-#   party_id &lt;chr&gt;</code></pre>
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
 </div>
 </div>
 </section><section id="variables-in-our-extract" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variables-in-our-extract">Variables in our extract</h2>
@@ -760,7 +750,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="img-fluid figure-img" width="864"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-1.png" class="img-fluid figure-img" width="864"></a></p>
 </figure>
 </div>
 </div>
@@ -794,7 +784,7 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></a></p>
 </figure>
 </div>
 </div>
@@ -872,7 +862,7 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-simplified-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-simplified-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -889,7 +879,7 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -903,7 +893,7 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-setting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-setting-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -942,118 +932,9 @@ Tip
 <li><p>Open <code>ae-01-gss-dataviz.qmd</code> in Positron and follow the instructions to complete the application exercise.</p></li>
 </ul>
 </div>
-</section></section><section id="wrap-up" class="level1"><h1>Wrap up</h1>
-<section id="start-with-the-question" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="start-with-the-question">Start with the question</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead><tr class="header">
-<th>Question</th>
-<th>Variables</th>
-<th>A useful first plot</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>What values are common?</td>
-<td>One categorical</td>
-<td><span class="fragment">Bar chart</span></td>
-</tr>
-<tr class="even">
-<td>What is the distribution?</td>
-<td>One numerical</td>
-<td><span class="fragment">Histogram or boxplot</span></td>
-</tr>
-<tr class="odd">
-<td>Do groups differ?</td>
-<td>Numerical + categorical</td>
-<td><span class="fragment">Boxplot or histogram by group</span></td>
-</tr>
-<tr class="even">
-<td>Are two categorical variables associated?</td>
-<td>Two categorical</td>
-<td><span class="fragment">Filled or dodged bar chart</span></td>
-</tr>
-<tr class="odd">
-<td>Are two numerical variables associated?</td>
-<td>Two numerical</td>
-<td><span class="fragment">Scatterplot</span></td>
-</tr>
-</tbody>
-</table></section><section id="interesting-qs---many-variables" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="interesting-qs---many-variables">Interesting Qs &lt;-&gt; many variables</h2>
-<p>Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as <code>color</code>, <code>shape</code>, <code>size</code>, <code>linewidth</code>, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/four-vars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="03-grammar-of-data-visualization_files/figure-revealjs/four-vars-1.png" class="img-fluid figure-img" width="864"></a></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="getting-to-know-you-feedback-questions" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="getting-to-know-you-feedback-questions">
-<em>Getting to know you</em> feedback: Questions</h2>
-<div class="incremental">
-<ul class="incremental">
-<li>Is the course designed for students with no prior coding or statistics background?</li>
-<li>What is the balance between learning statistical concepts and programming in R? How often will students code?</li>
-<li>How should students use readings, videos, and other materials—and which are essential?</li>
-<li>What should students expect from discussion projects, collaboration, and required uploads?</li>
-<li>What will exams look like, and what practice or study materials will be available?</li>
-<li>Where can students get help, and what kinds of collaboration are appropriate?</li>
-<li>How does the course compare to COMPSCI 216 (Everything Data) and STA 323 (Statistical Computing)?</li>
-</ul>
-</div>
-</section><section id="getting-to-know-you-feedback-concerns" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="getting-to-know-you-feedback-concerns">
-<em>Getting to know you</em> feedback: Concerns</h2>
-<div class="incremental">
-<ul class="incremental">
-<li>Dominant concern: lack of prior coding experience—especially learning R, syntax, troubleshooting, and technical tools such as Git and GitHub</li>
-<li>Keeping pace: falling behind or being less prepared than classmates</li>
-<li>Workload: time management for labs, HW, projects, and other commitments</li>
-<li>Assessment: format of exams, details of grading, and effective study strategies</li>
-<li>Smaller themes: Group-project dynamics, large-lecture setting, and confidence with math/statistical terminology</li>
-</ul>
-</div>
 
 
-</section></section></main><!-- /main --><script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {

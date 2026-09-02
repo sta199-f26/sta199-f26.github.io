@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
+  <meta name="dcterms.date" content="2026-09-02">
+  <title>STA 199CCL – Grammar of data transformation</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2a98be325e299d6b794465a705fa6e0e.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta property="og:title" content="Grammar of data transformation – STA 199CCL">
+<meta property="og:description" content="Lecture 4">
+<meta property="og:site_name" content="STA 199CCL">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Grammar of data transformation</h1>
+  <p class="subtitle">Lecture 4</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Mine Çetinkaya-Rundel 
+</div>
+        <p class="quarto-title-affiliation">
+            Duke University <br> STA 199 - Fall 2026
+          </p>
+    </div>
+</div>
+
+  <p class="date">September 2, 2026</p>
+</section>
+<section>
+<section id="warm-up" class="title-slide slide level1 center">
+<h1>Warm up</h1>
+
+</section>
+<section id="while-you-wait-participate" class="slide level2 smaller">
+<h2>While you wait: Participate 📱</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Which of the following is <strong>true</strong> about the code below?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(mtcars, _[blank]<span class="fu">_</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-3"><a></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="wooclap-choices">
+<ul>
+<li><code>mtcars</code> is the name of the variable being plotted on the x-axis</li>
+<li>The function that goes in the blank is <code>map()</code></li>
+<li>The data are being visualized with a scatterplot and a smooth line</li>
+<li>Some points on the plot will be colored differently than others</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/04/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/LISGDPO">wooclap.com</a> and use the code LISGDPO.</p>
+</div></div>
+</section>
+<section id="announcements" class="slide level2">
+<h2>Announcements</h2>
+<ul>
+<li><p>Following along with code along videos: See <a href="https://sta199-f26.github.io/computing-code-alongs.html" class="uri">https://sta199-f26.github.io/computing-code-alongs.html</a></p></li>
+<li><p>Lab 1 is tomorrow, HW 1 is due next Wednesday</p></li>
+<li><p>No class on Monday, September 7 (Labor Day)</p></li>
+</ul>
+</section></section>
+<section>
+<section id="from-last-time" class="title-slide slide level1 center">
+<h1>From last time</h1>
+
+</section>
+<section id="lets-get-laptops-out" class="slide level2 smaller">
+<h2>Let’s get laptops out!</h2>
+<div class="columns">
+<div class="column">
+<p><strong>If you were here on Monday and worked on <code>ae-01</code>:</strong></p>
+<div class="appex">
+<ul>
+<li><p>Go to Positron and open your <code>ae</code> project.</p></li>
+<li><p>Open <code>ae-01-gss-dataviz.qmd</code> in Positron and pick up where we left off.</p></li>
+</ul>
+</div>
+</div><div class="column">
+<p><strong>If you’re new here and didn’t work on <code>ae-01</code>:</strong></p>
+<div class="appex">
+<ul>
+<li><p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p></li>
+<li><p>Open <code>ae-01-gss-dataviz.qmd</code> in Positron and follow the instructions to complete the application exercise.</p></li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="start-with-the-question" class="slide level2 smaller">
+<h2>Start with the question</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Variables</th>
+<th>A useful first plot</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What values are common?</td>
+<td>One categorical</td>
+<td><span class="fragment">Bar chart</span></td>
+</tr>
+<tr class="even">
+<td>What is the distribution?</td>
+<td>One numerical</td>
+<td><span class="fragment">Histogram or boxplot</span></td>
+</tr>
+<tr class="odd">
+<td>Do groups differ?</td>
+<td>Numerical + categorical</td>
+<td><span class="fragment">Boxplot or histogram by group</span></td>
+</tr>
+<tr class="even">
+<td>Are two categorical variables associated?</td>
+<td>Two categorical</td>
+<td><span class="fragment">Filled or dodged bar chart</span></td>
+</tr>
+<tr class="odd">
+<td>Are two numerical variables associated?</td>
+<td>Two numerical</td>
+<td><span class="fragment">Scatterplot</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interesting-qs---many-variables" class="slide level2 xsmall">
+<h2>Interesting Qs &lt;-&gt; many variables</h2>
+<p>Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as <code>color</code>, <code>shape</code>, <code>size</code>, <code>linewidth</code>, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):</p>
+
+<img data-src="04-grammar-of-data-transformation_files/figure-revealjs/four-vars-1.png" width="864" class="r-stretch"></section></section>
+<section>
+<section id="a-short-list-for-now-of-r-essentials" class="title-slide slide level1 center">
+<h1>A short list<br>(for now)<br>of R essentials</h1>
+
+</section>
+<section id="packages" class="slide level2 smaller">
+<h2>Packages</h2>
+<ul>
+<li>Installed with <code>install.packages()</code>, once per system:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>We already pre-installed many of the package you’ll need for this course, so you might go the whole semester without needing to run <code>install.packages()</code>!</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Loaded with <code>library()</code>, once per session:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="tidyverse" class="slide level2">
+<h2>tidyverse</h2>
+<div class="hand">
+<p>aka the package you’ll hear about the most…</p>
+</div>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><a href="https://tidyverse.org"><img data-src="images/02/tidyverse.png" alt="Hex logos for dplyr, ggplot2, forcats, tibble, readr, stringr, tidyr, and purrr"></a></p>
+</div><div class="column fragment" style="width:60%;">
+<p><a href="https://www.tidyverse.org/">tidyverse.org</a></p>
+<ul>
+<li>The <strong>tidyverse</strong> is an opinionated collection of R packages designed for data science</li>
+<li>All packages share an underlying philosophy and a common grammar</li>
+</ul>
+</div></div>
+</section>
+<section id="data-frames-and-variables" class="slide level2">
+<h2>Data frames and variables</h2>
+<ul>
+<li>Each row of a data frame is an <strong>observation</strong></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Each column of a data frame is a <strong>variable</strong></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Columns (variables) in data frames can be accessed with <code>$</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>dataframe<span class="sc">$</span>variable_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="gss-data-frame" class="slide level2 smaller">
+<h2><code>gss</code> data frame</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,294 × 9
+    year marital_status   age education_years children happiness     health
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; 
+ 1  2024 Never married     33              16        2 Not too happy Good  
+ 2  2024 Never married     64              16        0 Pretty happy  Good  
+ 3  2024 Married           69              14        0 Pretty happy  Good  
+ 4  2024 Never married     19              12        0 Pretty happy  Good  
+ 5  2024 Divorced          70              13        3 Not too happy Good  
+ 6  2024 Married           53              14        2 Pretty happy  Good  
+ 7  2024 Married           48              13        6 Pretty happy  Good  
+ 8  2024 Divorced          30              14        1 Not too happy Good  
+ 9  2024 Married           60              14        2 Very happy    Good  
+10  2024 Never married     25              12        0 Pretty happy  Good  
+# ℹ 3,284 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="health-variable" class="slide level2 smaller">
+<h2><code>health</code> variable</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>gss<span class="sc">$</span>health</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   [1] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+   [7] "Good"      "Good"      "Good"      "Good"      "Good"      "Excellent"
+  [13] "Fair"      "Good"      "Fair"      "Excellent" "Good"      "Good"     
+  [19] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+  [25] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+  [31] "Good"      "Good"      "Excellent" "Fair"      "Good"      "Good"     
+  [37] "Excellent" "Good"      "Good"      "Good"      "Fair"      "Good"     
+  [43] "Good"      "Good"      "Poor"      "Good"      "Excellent" "Good"     
+  [49] "Excellent" "Good"      "Good"      "Good"      "Good"      "Good"     
+  [55] "Poor"      "Fair"      "Good"      "Good"      "Fair"      "Fair"     
+  [61] "Good"      "Good"      "Poor"      "Excellent" "Excellent" "Fair"     
+  [67] "Good"      "Good"      "Excellent" "Good"      "Good"      "Fair"     
+  [73] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Excellent"
+  [79] "Good"      "Good"      "Good"      "Good"      "Fair"      "Fair"     
+  [85] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Excellent"
+  [91] "Excellent" "Fair"      "Good"      "Excellent" "Good"      "Good"     
+  [97] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Excellent"
+ [103] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+ [109] "Good"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+ [115] "Poor"      "Good"      "Fair"      "Fair"      "Excellent" "Good"     
+ [121] "Good"      "Fair"      "Excellent" "Good"      "Fair"      "Fair"     
+ [127] "Excellent" "Fair"      "Excellent" "Fair"      "Good"      "Fair"     
+ [133] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+ [139] "Good"      "Good"      "Excellent" "Good"      "Good"      "Good"     
+ [145] "Good"      "Fair"      "Excellent" "Good"      "Good"      "Good"     
+ [151] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Good"     
+ [157] "Good"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+ [163] "Excellent" "Good"      "Excellent" "Good"      "Good"      "Good"     
+ [169] "Good"      "Excellent" "Fair"      "Poor"      "Good"      "Good"     
+ [175] "Excellent" "Good"      "Fair"      "Fair"      "Good"      "Fair"     
+ [181] "Fair"      "Good"      "Good"      "Excellent" "Excellent" "Fair"     
+ [187] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+ [193] "Fair"      "Excellent" "Fair"      "Poor"      "Fair"      "Good"     
+ [199] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+ [205] "Excellent" "Poor"      "Excellent" "Good"      "Good"      "Good"     
+ [211] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Fair"     
+ [217] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [223] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+ [229] "Poor"      "Good"      "Good"      "Excellent" "Good"      "Fair"     
+ [235] "Good"      "Fair"      "Good"      "Good"      "Good"      "Fair"     
+ [241] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+ [247] "Good"      "Fair"      "Poor"      "Good"      "Poor"      "Fair"     
+ [253] "Excellent" "Fair"      "Excellent" "Fair"      "Poor"      "Good"     
+ [259] "Good"      "Good"      "Excellent" "Good"      "Good"      "Fair"     
+ [265] "Good"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+ [271] "Fair"      "Good"      "Fair"      "Fair"      "Fair"      "Fair"     
+ [277] "Fair"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+ [283] "Good"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+ [289] "Excellent" "Good"      "Good"      "Good"      "Good"      "Good"     
+ [295] "Good"      "Good"      "Good"      "Good"      "Excellent" "Excellent"
+ [301] "Good"      "Fair"      "Good"      "Excellent" "Poor"      "Good"     
+ [307] "Good"      "Good"      "Good"      "Poor"      "Good"      "Fair"     
+ [313] "Fair"      "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+ [319] "Fair"      "Fair"      "Fair"      "Good"      "Good"      "Good"     
+ [325] "Good"      "Fair"      "Good"      "Fair"      "Poor"      "Excellent"
+ [331] "Excellent" "Good"      "Fair"      "Good"      "Fair"      "Good"     
+ [337] "Excellent" "Good"      "Fair"      "Good"      "Good"      "Good"     
+ [343] "Fair"      "Excellent" "Excellent" "Fair"      "Good"      "Good"     
+ [349] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [355] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Fair"     
+ [361] "Good"      "Excellent" "Good"      "Fair"      "Poor"      "Good"     
+ [367] "Fair"      "Excellent" "Fair"      "Fair"      "Good"      "Good"     
+ [373] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+ [379] "Fair"      "Fair"      "Excellent" "Good"      "Good"      "Excellent"
+ [385] "Good"      "Good"      "Poor"      "Good"      "Fair"      "Fair"     
+ [391] "Good"      "Good"      "Excellent" "Fair"      "Good"      "Fair"     
+ [397] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Poor"     
+ [403] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+ [409] "Good"      "Fair"      "Excellent" "Good"      "Fair"      "Fair"     
+ [415] "Good"      "Good"      "Good"      "Fair"      "Excellent" "Good"     
+ [421] "Good"      "Fair"      "Good"      "Good"      "Good"      "Fair"     
+ [427] "Good"      "Good"      "Good"      "Good"      "Fair"      "Excellent"
+ [433] "Excellent" "Excellent" "Fair"      "Good"      "Fair"      "Fair"     
+ [439] "Good"      "Excellent" "Excellent" "Good"      "Fair"      "Good"     
+ [445] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Good"     
+ [451] "Good"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+ [457] "Good"      "Good"      "Fair"      "Excellent" "Fair"      "Fair"     
+ [463] "Fair"      "Good"      "Excellent" "Fair"      "Good"      "Good"     
+ [469] "Good"      "Fair"      "Good"      "Fair"      "Good"      "Poor"     
+ [475] "Excellent" "Good"      "Excellent" "Excellent" "Fair"      "Excellent"
+ [481] "Good"      "Excellent" "Good"      "Fair"      "Excellent" "Excellent"
+ [487] "Excellent" "Fair"      "Excellent" "Excellent" "Fair"      "Excellent"
+ [493] "Good"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+ [499] "Poor"      "Fair"      NA          "Excellent" "Good"      "Poor"     
+ [505] NA          "Fair"      "Good"      "Excellent" "Good"      "Poor"     
+ [511] "Fair"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+ [517] "Good"      NA          "Good"      "Good"      "Good"      "Excellent"
+ [523] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+ [529] "Good"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+ [535] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Good"     
+ [541] "Good"      "Fair"      "Good"      "Excellent" "Fair"      "Good"     
+ [547] "Excellent" "Good"      "Good"      "Fair"      "Good"      "Excellent"
+ [553] "Excellent" "Fair"      "Excellent" "Fair"      "Excellent" "Good"     
+ [559] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+ [565] "Good"      "Good"      "Fair"      "Good"      "Excellent" "Excellent"
+ [571] "Good"      "Good"      "Poor"      "Good"      "Poor"      "Good"     
+ [577] "Excellent" "Fair"      "Good"      "Fair"      "Good"      "Fair"     
+ [583] "Fair"      "Poor"      "Good"      "Poor"      "Good"      "Fair"     
+ [589] "Good"      "Good"      "Good"      "Good"      "Fair"      "Fair"     
+ [595] "Fair"      "Poor"      "Poor"      "Fair"      "Fair"      "Good"     
+ [601] "Fair"      "Excellent" "Excellent" "Good"      "Fair"      "Good"     
+ [607] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Good"     
+ [613] "Good"      "Good"      "Good"      "Excellent" "Fair"      "Fair"     
+ [619] "Good"      "Good"      "Excellent" "Good"      "Fair"      "Good"     
+ [625] "Excellent" "Good"      "Good"      "Good"      "Fair"      "Good"     
+ [631] "Fair"      "Good"      "Excellent" "Good"      "Fair"      "Fair"     
+ [637] "Good"      "Good"      "Good"      "Fair"      "Excellent" "Fair"     
+ [643] "Good"      "Fair"      "Fair"      "Fair"      "Excellent" "Excellent"
+ [649] "Good"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+ [655] "Fair"      "Fair"      "Fair"      "Good"      "Fair"      "Excellent"
+ [661] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [667] "Good"      "Good"      "Fair"      "Excellent" "Good"      "Fair"     
+ [673] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Excellent"
+ [679] "Excellent" "Good"      "Fair"      "Excellent" "Excellent" "Good"     
+ [685] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Excellent"
+ [691] "Excellent" "Good"      "Fair"      "Good"      "Good"      "Fair"     
+ [697] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Good"     
+ [703] "Good"      "Fair"      "Good"      "Fair"      "Excellent" "Fair"     
+ [709] "Fair"      "Fair"      "Good"      "Fair"      "Poor"      "Good"     
+ [715] "Poor"      "Good"      "Excellent" "Good"      "Fair"      "Fair"     
+ [721] NA          "Fair"      "Good"      "Poor"      "Good"      "Good"     
+ [727] "Poor"      "Fair"      "Excellent" "Good"      "Fair"      "Good"     
+ [733] "Excellent" "Fair"      "Good"      "Fair"      "Fair"      "Fair"     
+ [739] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [745] "Fair"      "Fair"      "Good"      "Excellent" "Excellent" "Fair"     
+ [751] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [757] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [763] "Fair"      "Fair"      "Fair"      "Good"      "Good"      "Fair"     
+ [769] "Good"      "Fair"      "Excellent" "Fair"      "Good"      "Poor"     
+ [775] "Good"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+ [781] "Fair"      "Good"      "Good"      "Excellent" "Excellent" "Good"     
+ [787] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Fair"     
+ [793] "Good"      "Good"      "Good"      "Excellent" "Excellent" "Excellent"
+ [799] "Good"      "Good"      "Poor"      "Good"      "Fair"      "Good"     
+ [805] "Excellent" "Good"      "Fair"      "Fair"      "Good"      "Fair"     
+ [811] "Fair"      "Good"      "Good"      "Excellent" "Excellent" "Good"     
+ [817] "Excellent" "Good"      "Fair"      "Fair"      "Excellent" "Fair"     
+ [823] "Excellent" "Fair"      "Good"      "Good"      "Good"      "Fair"     
+ [829] "Good"      "Good"      "Poor"      "Fair"      "Good"      "Fair"     
+ [835] "Fair"      "Excellent" "Fair"      "Fair"      "Fair"      "Good"     
+ [841] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [847] "Good"      "Excellent" "Good"      "Good"      "Excellent" "Good"     
+ [853] "Excellent" "Fair"      "Fair"      "Fair"      "Excellent" "Excellent"
+ [859] "Good"      "Fair"      "Excellent" "Excellent" "Fair"      "Good"     
+ [865] "Good"      "Good"      "Poor"      "Good"      "Good"      "Excellent"
+ [871] "Good"      "Good"      "Fair"      "Good"      "Excellent" "Good"     
+ [877] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [883] "Good"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+ [889] "Poor"      "Good"      "Fair"      "Good"      "Fair"      "Poor"     
+ [895] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Fair"     
+ [901] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [907] "Excellent" "Good"      "Good"      "Fair"      "Good"      "Fair"     
+ [913] "Excellent" "Good"      "Excellent" "Good"      "Good"      "Good"     
+ [919] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Good"     
+ [925] "Good"      "Good"      "Good"      "Good"      "Excellent" "Fair"     
+ [931] "Fair"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+ [937] "Good"      "Good"      "Good"      "Excellent" "Excellent" "Fair"     
+ [943] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+ [949] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [955] "Excellent" "Good"      "Excellent" "Excellent" "Good"      "Fair"     
+ [961] "Good"      "Good"      "Good"      "Excellent" "Good"      "Excellent"
+ [967] "Good"      "Good"      "Excellent" "Good"      "Fair"      "Fair"     
+ [973] "Good"      "Fair"      "Good"      "Fair"      "Excellent" "Excellent"
+ [979] "Good"      "Good"      "Excellent" "Fair"      "Fair"      "Good"     
+ [985] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Good"     
+ [991] "Fair"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+ [997] "Good"      "Fair"      "Good"      "Excellent" "Excellent" "Good"     
+[1003] "Fair"      "Good"      "Fair"      "Fair"      "Good"      "Good"     
+[1009] "Fair"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+[1015] "Good"      "Fair"      "Good"      "Excellent" "Fair"      "Good"     
+[1021] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Good"     
+[1027] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[1033] "Good"      "Good"      "Fair"      "Poor"      "Good"      "Good"     
+[1039] "Good"      "Fair"      "Fair"      "Good"      "Good"      "Fair"     
+[1045] "Good"      "Fair"      "Excellent" "Good"      "Good"      "Fair"     
+[1051] "Fair"      "Excellent" "Good"      "Good"      "Good"      "Fair"     
+[1057] "Fair"      "Excellent" "Good"      "Good"      "Excellent" "Excellent"
+[1063] "Excellent" "Good"      "Good"      "Good"      "Good"      "Excellent"
+[1069] "Excellent" "Excellent" "Good"      "Fair"      "Good"      "Poor"     
+[1075] "Good"      "Good"      "Good"      "Fair"      "Poor"      "Excellent"
+[1081] "Excellent" "Good"      "Good"      "Excellent" "Good"      "Good"     
+[1087] "Good"      "Good"      "Fair"      "Fair"      "Good"      "Fair"     
+[1093] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Excellent"
+[1099] "Good"      "Good"      "Good"      "Fair"      "Poor"      "Good"     
+[1105] "Fair"      "Fair"      "Poor"      "Fair"      "Excellent" "Good"     
+[1111] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1117] "Good"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+[1123] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Fair"     
+[1129] "Fair"      "Excellent" "Good"      "Good"      "Fair"      "Excellent"
+[1135] "Fair"      "Excellent" "Good"      "Good"      "Poor"      "Good"     
+[1141] "Good"      "Fair"      "Good"      "Poor"      "Good"      "Fair"     
+[1147] "Good"      "Excellent" "Good"      "Good"      "Fair"      "Fair"     
+[1153] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Excellent"
+[1159] "Excellent" "Poor"      "Fair"      "Good"      "Excellent" "Good"     
+[1165] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[1171] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[1177] "Excellent" "Good"      "Excellent" "Fair"      "Fair"      "Good"     
+[1183] "Good"      "Excellent" "Good"      "Excellent" "Excellent" "Good"     
+[1189] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Excellent"
+[1195] "Good"      "Excellent" "Good"      "Good"      "Fair"      "Good"     
+[1201] "Good"      "Excellent" "Good"      "Good"      "Fair"      "Fair"     
+[1207] "Fair"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+[1213] "Good"      "Poor"      "Good"      "Good"      "Good"      "Fair"     
+[1219] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[1225] "Good"      "Excellent" "Good"      "Good"      "Good"      "Fair"     
+[1231] "Fair"      "Good"      "Good"      "Good"      "Good"      "Excellent"
+[1237] "Excellent" "Good"      "Good"      "Excellent" "Good"      "Good"     
+[1243] "Good"      "Good"      "Fair"      "Poor"      "Excellent" "Excellent"
+[1249] "Good"      "Good"      "Excellent" "Good"      "Good"      "Good"     
+[1255] "Fair"      "Good"      "Excellent" "Excellent" "Good"      "Poor"     
+[1261] "Good"      "Excellent" "Fair"      "Good"      "Fair"      "Fair"     
+[1267] "Good"      "Good"      "Good"      "Fair"      "Excellent" "Good"     
+[1273] "Excellent" "Excellent" "Fair"      "Excellent" "Fair"      "Good"     
+[1279] "Fair"      "Excellent" "Excellent" "Fair"      "Excellent" "Good"     
+[1285] "Good"      "Good"      "Excellent" NA          "Good"      "Good"     
+[1291] "Excellent" "Good"      "Fair"      "Excellent" "Good"      "Good"     
+[1297] "Good"      "Good"      "Excellent" "Fair"      "Excellent" "Good"     
+[1303] "Excellent" "Good"      "Excellent" "Fair"      "Good"      "Excellent"
+[1309] "Fair"      "Good"      "Excellent" NA          "Good"      "Good"     
+[1315] "Good"      "Excellent" "Good"      "Good"      "Good"      "Excellent"
+[1321] "Good"      "Good"      "Excellent" "Good"      "Good"      "Fair"     
+[1327] "Good"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[1333] "Excellent" "Good"      "Fair"      "Excellent" "Good"      "Good"     
+[1339] "Fair"      "Excellent" "Excellent" "Good"      "Fair"      "Good"     
+[1345] "Excellent" "Good"      "Excellent" "Excellent" "Poor"      "Good"     
+[1351] "Fair"      "Good"      "Good"      "Excellent" "Excellent" "Good"     
+[1357] "Good"      "Fair"      "Excellent" "Good"      "Excellent" "Good"     
+[1363] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1369] "Good"      "Good"      "Good"      "Good"      "Excellent" "Excellent"
+[1375] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Fair"     
+[1381] "Excellent" "Excellent" "Good"      "Fair"      "Fair"      "Good"     
+[1387] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[1393] "Good"      "Good"      "Good"      "Excellent" "Fair"      "Poor"     
+[1399] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Excellent"
+[1405] "Fair"      "Fair"      "Excellent" "Fair"      "Good"      "Excellent"
+[1411] "Good"      "Good"      "Good"      "Poor"      "Good"      "Excellent"
+[1417] "Good"      "Good"      "Excellent" "Good"      "Good"      "Good"     
+[1423] "Good"      "Good"      "Fair"      "Excellent" "Excellent" "Fair"     
+[1429] "Poor"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1435] "Excellent" "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1441] "Excellent" "Good"      "Good"      "Poor"      "Good"      "Good"     
+[1447] "Good"      "Fair"      "Good"      NA          "Good"      "Good"     
+[1453] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+[1459] "Good"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+[1465] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1471] "Good"      "Poor"      "Good"      "Good"      "Good"      "Good"     
+[1477] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1483] "Good"      "Good"      "Good"      "Excellent" "Good"      "Fair"     
+[1489] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Excellent"
+[1495] "Fair"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[1501] "Fair"      "Good"      "Fair"      "Good"      "Excellent" "Good"     
+[1507] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Fair"     
+[1513] "Excellent" "Good"      "Good"      "Good"      "Good"      "Good"     
+[1519] "Poor"      "Good"      "Fair"      "Good"      "Good"      "Excellent"
+[1525] "Good"      "Good"      "Fair"      "Fair"      "Good"      "Good"     
+[1531] "Good"      "Fair"      "Excellent" "Fair"      "Good"      "Good"     
+[1537] "Good"      "Good"      "Fair"      "Good"      "Good"      "Excellent"
+[1543] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[1549] "Excellent" "Good"      "Good"      "Excellent" "Good"      "Excellent"
+[1555] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Good"     
+[1561] "Fair"      "Good"      "Poor"      "Good"      "Good"      "Fair"     
+[1567] "Fair"      "Poor"      "Fair"      "Fair"      "Good"      "Excellent"
+[1573] "Good"      "Good"      "Fair"      "Good"      "Excellent" NA         
+[1579] "Good"      "Poor"      "Good"      "Good"      "Good"      "Fair"     
+[1585] "Good"      "Fair"      "Fair"      "Good"      "Good"      "Excellent"
+[1591] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Good"     
+[1597] "Good"      "Fair"      "Good"      "Good"      "Poor"      "Good"     
+[1603] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[1609] "Good"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+[1615] "Good"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+[1621] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[1627] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Fair"     
+[1633] "Good"      "Fair"      "Good"      "Poor"      "Good"      "Fair"     
+[1639] "Poor"      "Poor"      "Good"      "Good"      "Good"      "Fair"     
+[1645] "Good"      "Fair"      "Good"      "Good"      "Excellent" "Good"     
+[1651] "Poor"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[1657] "Fair"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+[1663] "Excellent" "Good"      "Fair"      "Poor"      "Fair"      "Excellent"
+[1669] "Excellent" "Excellent" "Fair"      "Good"      "Poor"      "Excellent"
+[1675] "Fair"      "Fair"      "Good"      "Poor"      "Fair"      "Good"     
+[1681] "Good"      "Good"      "Fair"      "Excellent" "Good"      "Poor"     
+[1687] "Poor"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1693] "Fair"      "Good"      "Good"      "Good"      "Good"      "Excellent"
+[1699] "Excellent" "Good"      "Excellent" "Fair"      "Fair"      "Good"     
+[1705] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Fair"     
+[1711] "Good"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[1717] "Fair"      "Excellent" "Fair"      "Poor"      "Excellent" "Good"     
+[1723] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+[1729] "Good"      "Good"      "Good"      "Excellent" "Fair"      "Poor"     
+[1735] "Fair"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+[1741] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[1747] "Excellent" "Good"      "Good"      "Good"      "Fair"      "Excellent"
+[1753] "Fair"      "Excellent" "Good"      "Good"      "Excellent" "Good"     
+[1759] "Good"      "Good"      "Good"      "Excellent" "Excellent" "Good"     
+[1765] "Fair"      "Fair"      "Good"      "Fair"      "Fair"      "Good"     
+[1771] "Excellent" "Good"      "Fair"      "Fair"      "Good"      "Fair"     
+[1777] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Good"     
+[1783] "Good"      "Good"      "Poor"      "Good"      "Good"      "Good"     
+[1789] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[1795] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[1801] "Excellent" "Poor"      "Good"      "Poor"      "Good"      "Fair"     
+[1807] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1813] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Poor"     
+[1819] "Fair"      "Poor"      "Good"      "Fair"      "Excellent" "Good"     
+[1825] "Good"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+[1831] "Good"      "Excellent" "Good"      "Good"      "Excellent" "Excellent"
+[1837] "Excellent" "Excellent" "Good"      "Good"      "Good"      "Good"     
+[1843] "Good"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[1849] "Excellent" "Good"      "Good"      "Good"      "Poor"      "Good"     
+[1855] "Good"      "Excellent" "Good"      "Good"      "Good"      "Fair"     
+[1861] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1867] "Excellent" "Fair"      "Good"      "Fair"      "Poor"      "Good"     
+[1873] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1879] "Good"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+[1885] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[1891] "Excellent" "Good"      "Good"      "Excellent" "Excellent" "Good"     
+[1897] "Good"      "Good"      "Poor"      "Good"      "Fair"      "Excellent"
+[1903] "Good"      "Excellent" "Fair"      "Excellent" "Good"      "Fair"     
+[1909] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1915] "Excellent" "Good"      "Fair"      "Good"      "Excellent" "Good"     
+[1921] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1927] "Excellent" "Good"      "Good"      "Good"      "Good"      "Excellent"
+[1933] "Excellent" "Good"      "Good"      "Good"      "Good"      "Good"     
+[1939] "Fair"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[1945] "Good"      "Good"      "Good"      "Good"      "Poor"      "Poor"     
+[1951] "Fair"      "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+[1957] "Good"      "Excellent" "Good"      "Fair"      "Fair"      "Good"     
+[1963] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[1969] "Fair"      "Good"      "Good"      "Good"      "Excellent" "Fair"     
+[1975] "Excellent" "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+[1981] "Fair"      "Fair"      "Fair"      "Good"      "Fair"      "Fair"     
+[1987] "Fair"      "Good"      "Fair"      "Excellent" "Fair"      "Excellent"
+[1993] "Excellent" "Excellent" "Good"      "Fair"      "Good"      "Excellent"
+[1999] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2005] "Fair"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+[2011] "Excellent" "Excellent" "Fair"      "Excellent" "Good"      "Good"     
+[2017] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+[2023] "Fair"      "Fair"      "Fair"      "Good"      "Good"      "Good"     
+[2029] "Good"      "Good"      "Good"      "Fair"      "Excellent" "Good"     
+[2035] "Good"      "Fair"      "Fair"      "Good"      "Good"      "Fair"     
+[2041] "Fair"      "Good"      "Fair"      "Good"      "Fair"      "Good"     
+[2047] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Poor"     
+[2053] "Good"      "Good"      "Good"      "Poor"      "Good"      "Fair"     
+[2059] "Good"      "Fair"      "Good"      "Fair"      "Good"      "Good"     
+[2065] "Good"      "Fair"      "Good"      "Good"      "Excellent" "Fair"     
+[2071] "Excellent" "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2077] "Fair"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+[2083] "Excellent" "Good"      "Fair"      "Excellent" "Good"      "Excellent"
+[2089] "Good"      "Excellent" "Good"      "Excellent" "Excellent" "Good"     
+[2095] "Good"      "Excellent" "Excellent" "Good"      "Excellent" "Good"     
+[2101] "Good"      "Good"      "Good"      "Good"      "Poor"      "Fair"     
+[2107] "Excellent" "Fair"      "Excellent" "Fair"      "Excellent" "Good"     
+[2113] "Excellent" "Fair"      "Good"      "Poor"      "Good"      "Poor"     
+[2119] "Fair"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+[2125] "Excellent" "Good"      "Good"      "Good"      "Good"      "Fair"     
+[2131] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Good"     
+[2137] "Excellent" "Excellent" "Good"      "Good"      "Good"      "Good"     
+[2143] "Fair"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+[2149] "Poor"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[2155] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Fair"     
+[2161] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[2167] "Good"      "Fair"      "Fair"      "Excellent" "Fair"      "Good"     
+[2173] "Fair"      "Fair"      "Good"      "Good"      "Excellent" "Fair"     
+[2179] "Fair"      "Good"      "Excellent" "Fair"      "Fair"      "Fair"     
+[2185] "Good"      NA          "Fair"      "Fair"      "Fair"      "Poor"     
+[2191] "Poor"      "Fair"      "Good"      "Fair"      "Excellent" "Good"     
+[2197] "Excellent" "Good"      "Poor"      "Fair"      "Poor"      "Fair"     
+[2203] "Good"      "Good"      "Good"      "Excellent" "Fair"      "Fair"     
+[2209] "Fair"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+[2215] "Good"      "Fair"      "Good"      "Good"      "Good"      "Poor"     
+[2221] "Poor"      "Excellent" "Good"      "Good"      "Good"      "Fair"     
+[2227] "Fair"      "Excellent" "Fair"      "Good"      "Excellent" "Fair"     
+[2233] "Good"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[2239] "Excellent" "Good"      "Fair"      "Excellent" "Good"      "Excellent"
+[2245] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Excellent"
+[2251] "Good"      "Good"      "Excellent" "Fair"      "Good"      "Good"     
+[2257] "Good"      "Good"      "Excellent" "Fair"      "Good"      "Fair"     
+[2263] "Good"      "Excellent" "Poor"      "Excellent" "Fair"      "Fair"     
+[2269] "Fair"      "Good"      "Excellent" "Fair"      "Good"      "Fair"     
+[2275] "Fair"      "Good"      "Fair"      "Good"      "Excellent" "Good"     
+[2281] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Poor"     
+[2287] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[2293] "Excellent" "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2299] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Excellent"
+[2305] "Good"      "Good"      "Excellent" "Good"      "Good"      "Good"     
+[2311] "Good"      "Fair"      "Good"      "Fair"      "Excellent" NA         
+[2317] "Good"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+[2323] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Good"     
+[2329] "Poor"      "Excellent" "Fair"      "Excellent" "Excellent" "Excellent"
+[2335] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+[2341] "Good"      "Fair"      "Good"      "Good"      "Excellent" "Fair"     
+[2347] "Good"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+[2353] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Excellent"
+[2359] "Good"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+[2365] "Good"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+[2371] "Good"      "Fair"      "Good"      "Good"      "Good"      "Excellent"
+[2377] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[2383] "Excellent" "Excellent" "Fair"      "Good"      "Good"      "Excellent"
+[2389] "Good"      "Excellent" "Good"      "Good"      "Good"      "Excellent"
+[2395] "Excellent" "Good"      "Good"      "Fair"      "Poor"      "Excellent"
+[2401] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Good"     
+[2407] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Excellent"
+[2413] "Good"      "Fair"      "Excellent" "Good"      "Excellent" "Excellent"
+[2419] "Good"      "Fair"      "Poor"      "Fair"      "Good"      "Fair"     
+[2425] "Fair"      "Good"      "Good"      "Poor"      "Excellent" "Good"     
+[2431] "Good"      "Good"      "Good"      "Fair"      "Good"      "Excellent"
+[2437] "Excellent" "Excellent" "Good"      "Good"      "Good"      "Good"     
+[2443] "Excellent" "Fair"      "Fair"      "Good"      "Excellent" "Excellent"
+[2449] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2455] "Good"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+[2461] "Good"      "Fair"      "Good"      "Good"      "Poor"      "Good"     
+[2467] "Fair"      "Fair"      "Fair"      "Fair"      "Fair"      "Good"     
+[2473] "Good"      "Good"      "Poor"      "Good"      "Good"      "Poor"     
+[2479] "Good"      "Good"      "Fair"      "Fair"      "Excellent" "Excellent"
+[2485] "Good"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+[2491] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[2497] "Fair"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[2503] "Good"      "Good"      "Fair"      "Excellent" "Excellent" "Poor"     
+[2509] "Excellent" "Good"      "Good"      "Good"      "Fair"      "Poor"     
+[2515] "Excellent" "Fair"      "Fair"      "Fair"      "Good"      "Good"     
+[2521] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Good"     
+[2527] "Good"      "Fair"      "Excellent" "Fair"      "Good"      "Fair"     
+[2533] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2539] "Fair"      "Good"      "Fair"      "Fair"      "Good"      "Good"     
+[2545] "Excellent" "Fair"      "Good"      "Good"      "Good"      "Excellent"
+[2551] "Poor"      "Good"      "Excellent" "Fair"      "Good"      "Excellent"
+[2557] "Fair"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[2563] "Good"      "Good"      "Fair"      NA          "Fair"      "Good"     
+[2569] "Good"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+[2575] "Good"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+[2581] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Good"     
+[2587] "Good"      "Fair"      "Fair"      "Good"      "Good"      "Good"     
+[2593] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Fair"     
+[2599] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Fair"     
+[2605] "Fair"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+[2611] "Good"      "Excellent" "Fair"      "Fair"      "Good"      "Excellent"
+[2617] "Good"      "Fair"      "Good"      "Good"      "Good"      "Excellent"
+[2623] "Excellent" "Fair"      "Poor"      "Good"      "Excellent" "Good"     
+[2629] "Good"      "Good"      "Fair"      "Good"      "Good"      "Excellent"
+[2635] "Fair"      "Excellent" "Fair"      "Poor"      "Good"      "Fair"     
+[2641] "Fair"      "Good"      "Fair"      "Fair"      "Poor"      "Good"     
+[2647] "Good"      "Poor"      "Excellent" "Good"      "Good"      "Good"     
+[2653] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Good"     
+[2659] "Excellent" "Fair"      "Poor"      "Good"      "Good"      "Fair"     
+[2665] "Good"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[2671] "Good"      "Fair"      "Good"      "Good"      "Fair"      "Fair"     
+[2677] "Fair"      "Good"      "Poor"      "Fair"      "Good"      "Good"     
+[2683] "Good"      "Excellent" "Excellent" "Excellent" "Fair"      "Good"     
+[2689] "Fair"      "Good"      "Fair"      "Poor"      "Fair"      "Fair"     
+[2695] "Good"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+[2701] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2707] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Good"     
+[2713] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Excellent"
+[2719] "Good"      "Good"      "Excellent" "Good"      "Good"      "Excellent"
+[2725] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[2731] "Fair"      "Excellent" "Poor"      "Fair"      "Good"      "Good"     
+[2737] "Fair"      "Poor"      "Fair"      "Good"      "Good"      "Fair"     
+[2743] "Fair"      "Fair"      "Good"      "Good"      "Excellent" "Good"     
+[2749] "Fair"      "Good"      "Excellent" "Fair"      "Fair"      "Excellent"
+[2755] "Fair"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+[2761] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[2767] "Good"      "Poor"      "Good"      "Good"      "Good"      "Fair"     
+[2773] "Good"      "Poor"      "Excellent" "Good"      "Fair"      "Fair"     
+[2779] NA          "Good"      "Good"      NA          "Good"      "Good"     
+[2785] "Good"      "Good"      "Fair"      "Excellent" "Good"      "Good"     
+[2791] "Excellent" "Good"      "Excellent" "Good"      "Good"      "Fair"     
+[2797] "Good"      "Fair"      "Good"      "Fair"      "Excellent" "Fair"     
+[2803] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[2809] "Fair"      "Fair"      "Fair"      "Good"      "Poor"      "Poor"     
+[2815] "Good"      "Excellent" "Good"      "Excellent" "Good"      "Fair"     
+[2821] "Fair"      "Good"      "Fair"      "Good"      "Fair"      "Fair"     
+[2827] "Fair"      "Good"      "Good"      "Poor"      "Good"      "Fair"     
+[2833] "Fair"      "Good"      "Excellent" "Fair"      "Good"      "Excellent"
+[2839] "Fair"      "Fair"      "Excellent" "Excellent" "Good"      "Good"     
+[2845] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Fair"     
+[2851] "Excellent" "Fair"      "Good"      "Fair"      "Fair"      "Good"     
+[2857] "Good"      "Good"      "Excellent" "Fair"      "Excellent" "Poor"     
+[2863] "Good"      "Excellent" "Fair"      "Fair"      "Good"      "Good"     
+[2869] "Excellent" "Fair"      "Excellent" "Good"      "Good"      "Excellent"
+[2875] "Good"      "Good"      "Fair"      "Fair"      "Good"      "Good"     
+[2881] "Good"      "Good"      "Excellent" "Good"      "Fair"      "Good"     
+[2887] "Excellent" "Fair"      "Good"      "Excellent" "Good"      "Good"     
+[2893] "Excellent" "Good"      "Poor"      "Good"      "Good"      "Good"     
+[2899] "Good"      "Excellent" "Good"      "Excellent" "Fair"      "Good"     
+[2905] "Fair"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[2911] "Poor"      "Excellent" "Fair"      "Fair"      "Excellent" "Good"     
+[2917] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Good"     
+[2923] "Good"      "Good"      "Excellent" "Excellent" "Excellent" "Good"     
+[2929] "Good"      "Fair"      "Good"      "Good"      "Excellent" "Excellent"
+[2935] "Excellent" "Good"      "Fair"      "Fair"      "Fair"      "Excellent"
+[2941] "Poor"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+[2947] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Good"     
+[2953] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+[2959] "Good"      "Excellent" "Excellent" "Fair"      "Good"      "Excellent"
+[2965] "Excellent" "Fair"      "Excellent" "Excellent" "Good"      "Good"     
+[2971] "Good"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+[2977] "Fair"      "Good"      "Good"      "Poor"      "Good"      "Fair"     
+[2983] "Fair"      "Poor"      "Fair"      "Good"      "Good"      "Good"     
+[2989] "Good"      "Fair"      "Excellent" "Fair"      "Good"      "Good"     
+[2995] "Fair"      "Fair"      "Fair"      "Poor"      "Fair"      "Good"     
+[3001] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+[3007] "Good"      "Fair"      "Poor"      "Poor"      "Fair"      "Fair"     
+[3013] "Poor"      "Fair"      "Fair"      "Poor"      "Good"      "Fair"     
+[3019] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Poor"     
+[3025] "Good"      "Good"      "Fair"      "Poor"      "Good"      "Poor"     
+[3031] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[3037] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Poor"     
+[3043] "Good"      "Excellent" "Excellent" "Excellent" "Excellent" "Good"     
+[3049] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[3055] "Good"      "Good"      "Excellent" "Excellent" "Fair"      "Good"     
+[3061] "Good"      "Good"      "Fair"      "Good"      "Good"      "Excellent"
+[3067] "Fair"      "Good"      "Fair"      "Good"      "Fair"      "Good"     
+[3073] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Fair"     
+[3079] "Excellent" "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[3085] "Excellent" "Fair"      "Good"      "Fair"      "Fair"      "Fair"     
+[3091] "Excellent" "Fair"      "Fair"      "Good"      "Excellent" "Fair"     
+[3097] "Fair"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+[3103] "Fair"      "Good"      "Good"      "Good"      "Good"      "Excellent"
+[3109] "Good"      "Fair"      "Excellent" "Excellent" "Excellent" "Good"     
+[3115] "Fair"      "Good"      "Excellent" "Excellent" "Good"      "Poor"     
+[3121] "Good"      "Fair"      "Good"      "Fair"      "Good"      "Good"     
+[3127] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[3133] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[3139] "Poor"      "Excellent" "Good"      "Good"      "Fair"      "Good"     
+[3145] "Fair"      "Good"      "Good"      "Poor"      "Good"      "Good"     
+[3151] "Good"      "Excellent" "Good"      "Excellent" "Fair"      "Fair"     
+[3157] "Good"      "Poor"      "Good"      "Poor"      "Good"      "Good"     
+[3163] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Fair"     
+[3169] "Fair"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+[3175] "Excellent" "Fair"      "Fair"      "Good"      "Good"      "Fair"     
+[3181] "Good"      "Fair"      "Fair"      "Fair"      "Good"      "Good"     
+[3187] "Fair"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+[3193] "Poor"      "Poor"      "Fair"      "Fair"      "Good"      "Good"     
+[3199] "Good"      "Good"      "Good"      "Good"      "Poor"      "Excellent"
+[3205] "Fair"      "Fair"      "Poor"      "Good"      "Good"      "Excellent"
+[3211] "Fair"      "Good"      "Excellent" "Fair"      "Good"      "Excellent"
+[3217] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[3223] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Poor"     
+[3229] "Fair"      "Fair"      "Poor"      "Good"      "Fair"      "Fair"     
+[3235] "Good"      "Good"      "Fair"      "Good"      "Excellent" "Good"     
+[3241] "Excellent" "Good"      "Excellent" "Fair"      "Excellent" "Excellent"
+[3247] "Good"      "Good"      "Excellent" "Good"      "Fair"      "Good"     
+[3253] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[3259] "Good"      "Good"      "Fair"      "Excellent" "Good"      "Excellent"
+[3265] "Good"      "Good"      "Fair"      "Good"      "Excellent" "Excellent"
+[3271] "Good"      "Good"      "Good"      "Excellent" "Good"      "Excellent"
+[3277] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[3283] "Fair"      "Fair"      "Excellent" "Excellent" "Excellent" "Excellent"
+[3289] "Good"      "Fair"      "Fair"      "Good"      "Excellent" "Good"     </code></pre>
+</div>
+</div>
+</section>
+<section id="participate" class="slide level2 smaller">
+<h2>Participate 📱</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Why did the error occur?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>happiness</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error:
+! object 'happiness' not found</code></pre>
+</div>
+</div>
+<div class="wooclap-choices">
+<ul>
+<li>Name of the variable is misspelled</li>
+<li>There is no such variable in the gss data frame</li>
+<li>Must refer to variable in a data frame with <code>$</code>: <code>gss$happiness</code></li>
+<li>Must refer to variable in a data frame with <code>|&gt;</code>: <code>gss |&gt; happiness</code></li>
+<li>Must refer to variable in a data frame with <code>$</code>: <code>happiness$gss</code></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/04/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/LISGDPO">wooclap.com</a> and use the code LISGDPO.</p>
+</div></div>
+</section>
+<section id="functionargument" class="slide level2">
+<h2><code>function(argument)</code></h2>
+<p>Functions are (most often) verbs, followed by what they will be applied to in parentheses, and separated by commas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">do_this</span>(to_this)</span>
+<span id="cb11-2"><a></a><span class="fu">do_that</span>(to_this, to_that, with_those)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="help" class="slide level2">
+<h2>Help</h2>
+<div class="columns">
+<div class="column">
+<p>Object documentation can be accessed with <code>?</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column">
+<p><video data-src="images/04/mean-docs.mov" alt="Documentation for mean function in R." controls=""><a href="images/04/mean-docs.mov">Video</a></video></p>
+</div></div>
+</section></section>
+<section>
+<section id="data-transformation" class="title-slide slide level1 center">
+<h1>Data transformation</h1>
+
+</section>
+<section id="a-quick-reminder" class="slide level2 smaller">
+<h2>A quick reminder</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-7" data-code-line-numbers="|1|2|3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1"></a>gss <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">45</span>) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3"></a>  <span class="fu">select</span>(age, employment_status, party_id, happiness)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="1" data-code-annotation="1">Start with the <code>gss</code> data frame</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="2">Filter for respondents older than 45</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="3" data-code-annotation="3">Select the columns <code>age</code>, <code>employment_status</code>, <code>party_id</code>, and <code>happiness</code></span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,814 × 4
+     age employment_status                      party_id               happiness
+   &lt;dbl&gt; &lt;chr&gt;                                  &lt;chr&gt;                  &lt;chr&gt;    
+ 1    64 Retired                                Strong democrat        Pretty h…
+ 2    69 Retired                                Strong democrat        Pretty h…
+ 3    70 Retired                                Independent (neither,… Not too …
+ 4    53 Unemployed, laid off, looking for work Independent (neither,… Pretty h…
+ 5    48 Working full time                      Strong democrat        Pretty h…
+ 6    60 Working full time                      Not very strong democ… Very hap…
+ 7    68 Retired                                Independent, close to… Very hap…
+ 8    63 Working full time                      Independent (neither,… Very hap…
+ 9    64 Working full time                      Independent, close to… Pretty h…
+10    63 Working part time                      Strong republican      Very hap…
+# ℹ 1,804 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="participate-1" class="slide level2 smaller">
+<h2>Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>In data transformation with the pipe operator <code>|&gt;</code>, what does the operator do?</p>
+<div class="wooclap-choices">
+<ul>
+<li>It ends a pipeline and prints the result.</li>
+<li>It joins two data frames together.</li>
+<li>It passes the output from the previous command into the first argument of the function in the next command.</li>
+<li>It is equivalent to the “or” operator.</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/04/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/LISGDPO">wooclap.com</a> and use the code LISGDPO.</p>
+</div></div>
+</section>
+<section id="the-pipe" class="slide level2 smaller">
+<h2>The pipe <code>|&gt;</code></h2>
+<p>The pipe operator passes what comes before it into the function that comes after it as the first argument in that function.</p>
+<div class="columns">
+<div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="dv">1</span> <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">sum</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</div></div>
+<p><br></p>
+<div class="columns">
+<div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">select</span>(<span class="fu">filter</span>(gss, age <span class="sc">&gt;</span> <span class="dv">50</span>), health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,568 × 1
+   health   
+   &lt;chr&gt;    
+ 1 Good     
+ 2 Good     
+ 3 Good     
+ 4 Good     
+ 5 Good     
+ 6 Excellent
+ 7 Fair     
+ 8 Good     
+ 9 Good     
+10 Good     
+# ℹ 1,558 more rows</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a></a>  <span class="fu">select</span>(health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,568 × 1
+   health   
+   &lt;chr&gt;    
+ 1 Good     
+ 2 Good     
+ 3 Good     
+ 4 Good     
+ 5 Good     
+ 6 Excellent
+ 7 Fair     
+ 8 Good     
+ 9 Good     
+10 Good     
+# ℹ 1,558 more rows</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="code-style-tip" class="slide level2 smaller">
+<h2>Code style tip <i class="fa-solid fa-lightbulb" aria-label="lightbulb"></i></h2>
+<div class="columns">
+<div class="column">
+<p>In data <strong>transformation</strong> pipelines, always use a</p>
+<ul>
+<li>space before <code>|&gt;</code></li>
+<li>line break after <code>|&gt;</code></li>
+<li>indent next line of code</li>
+</ul>
+</div><div class="column fragment">
+<p>In data <strong>visualization</strong> layers, always use a</p>
+<ul>
+<li>space before <code>+</code></li>
+<li>line break after <code>+</code></li>
+<li>indent next line of code</li>
+</ul>
+</div></div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Positron automatically takes care of this formatting when you save a document, or when you preview and it saves it for you. Don’t be surprised when it moves your code around to correct your code style!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-pipe-in-action" class="slide level2">
+<h2>The pipe, in action</h2>
+<div class="task">
+<p>Write a single pipeline to find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old.</p>
+<p>Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have. Arrange the rows in increasing order of age.</p>
+</div>
+</section>
+<section id="the-pipe---step-1" class="slide level2 small">
+<h2>The pipe - Step 1</h2>
+<div class="task xsmall">
+<p>Write a single pipeline to find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<p>Start with the <code>gss</code> data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,294 × 9
+    year marital_status   age education_years children happiness     health
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; 
+ 1  2024 Never married     33              16        2 Not too happy Good  
+ 2  2024 Never married     64              16        0 Pretty happy  Good  
+ 3  2024 Married           69              14        0 Pretty happy  Good  
+ 4  2024 Never married     19              12        0 Pretty happy  Good  
+ 5  2024 Divorced          70              13        3 Not too happy Good  
+ 6  2024 Married           53              14        2 Pretty happy  Good  
+ 7  2024 Married           48              13        6 Pretty happy  Good  
+ 8  2024 Divorced          30              14        1 Not too happy Good  
+ 9  2024 Married           60              14        2 Very happy    Good  
+10  2024 Never married     25              12        0 Pretty happy  Good  
+# ℹ 3,284 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-2" class="slide level2 small">
+<h2>The pipe - Step 2</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: <strong>retired</strong>, in excellent health, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a></a>  <span class="fu">filter</span>(employment_status <span class="sc">==</span> <span class="st">"Retired"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 795 × 9
+    year marital_status   age education_years children happiness     health   
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;    
+ 1  2024 Never married     64              16        0 Pretty happy  Good     
+ 2  2024 Married           69              14        0 Pretty happy  Good     
+ 3  2024 Divorced          70              13        3 Not too happy Good     
+ 4  2024 Widowed           68               5        1 Very happy    Excellent
+ 5  2024 Married           NA              13       NA Very happy    Good     
+ 6  2024 Divorced          75              13        2 Pretty happy  Good     
+ 7  2024 Married           73              16        2 Pretty happy  Good     
+ 8  2024 Married           74              14        3 Pretty happy  Good     
+ 9  2024 Married           70              16       NA Very happy    Good     
+10  2024 Married           79              17        2 Pretty happy  Good     
+# ℹ 785 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-3" class="slide level2 small">
+<h2>The pipe - Step 3</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: retired, <strong>in excellent health</strong>, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb26-3"><a></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb26-4"><a></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span></span>
+<span id="cb26-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 120 × 9
+    year marital_status   age education_years children happiness     health   
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;    
+ 1  2024 Widowed           68               5        1 Very happy    Excellent
+ 2  2024 Widowed           83              16        0 Very happy    Excellent
+ 3  2024 Married           NA              16        2 Pretty happy  Excellent
+ 4  2024 Widowed           75              14        2 Pretty happy  Excellent
+ 5  2024 Divorced          72              16        3 Pretty happy  Excellent
+ 6  2024 Married           66              18        1 Pretty happy  Excellent
+ 7  2024 Widowed           NA               1        3 Pretty happy  Excellent
+ 8  2024 Divorced          66              16        1 Pretty happy  Excellent
+ 9  2024 Divorced          69              18        0 Not too happy Excellent
+10  2024 Married           NA              12        2 Very happy    Excellent
+# ℹ 110 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-4" class="slide level2 small">
+<h2>The pipe - Step 4</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: retired, in excellent health, <strong>very happy</strong>, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb28-3"><a></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb28-4"><a></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb28-5"><a></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span></span>
+<span id="cb28-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 9
+    year marital_status   age education_years children happiness  health   
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    
+ 1  2024 Widowed           68               5        1 Very happy Excellent
+ 2  2024 Widowed           83              16        0 Very happy Excellent
+ 3  2024 Married           NA              12        2 Very happy Excellent
+ 4  2024 Divorced          NA              17        1 Very happy Excellent
+ 5  2024 Never married     71              18        0 Very happy Excellent
+ 6  2024 Married           75               2        6 Very happy Excellent
+ 7  2024 Divorced          66              16        3 Very happy Excellent
+ 8  2024 Married           79              13        1 Very happy Excellent
+ 9  2024 Divorced          71              18        2 Very happy Excellent
+10  2024 Married           74              17        1 Very happy Excellent
+# ℹ 34 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-5" class="slide level2 small">
+<h2>The pipe - Step 5</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: retired, in excellent health, very happy, and <strong>younger than 50 years old</strong>. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb30-3"><a></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb30-4"><a></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb30-5"><a></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span>,</span>
+<span id="cb30-6"><a></a>    age <span class="sc">&lt;</span> <span class="dv">50</span></span>
+<span id="cb30-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 9
+   year marital_status   age education_years children happiness  health   
+  &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    
+1  2024 Never married     47              20        3 Very happy Excellent
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-7" class="slide level2 small">
+<h2>The pipe - Step 7</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. <strong>Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</strong></p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb32-3"><a></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb32-4"><a></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb32-5"><a></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span>,</span>
+<span id="cb32-6"><a></a>    age <span class="sc">&lt;</span> <span class="dv">50</span></span>
+<span id="cb32-7"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb32-8"><a></a>  <span class="fu">select</span>(age, employment_status, health, happiness, children)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+    age employment_status health    happiness  children
+  &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+1    47 Retired           Excellent Very happy        3</code></pre>
+</div>
+</div>
+</section>
+<section id="in-this-class-you-will" class="slide level2 smaller">
+<h2>In this class, you will…</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Build cakes (<code>ggplot</code>) <img data-src="images/04/cake.png"></p>
+</div><div class="column" style="width:50%;">
+<p>Stack dolls (pipe <code>|&gt;</code>) <img data-src="images/04/matryoshka.png"></p>
+</div></div>
+<p>Master these constructs, and everything will be A-Ok!</p>
+
+<aside><div>
+<p>Source: <a href="https://unsplash.com/photos/white-pink-and-yellow-cake-GQvNc4bDRYw">Cake by Anirban Sengupta on Unsplash</a> and <a href="https://unsplash.com/photos/a-group-of-russian-nesting-dolls-sitting-on-a-table-YmULswIbc3I">Matryoshka dolls by Julia Kadel on Unsplash</a>.</p>
+</div></aside></section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center">
+<h1>Wrap up</h1>
+
+</section>
+<section id="getting-to-know-you-feedback-questions" class="slide level2 smaller">
+<h2><em>Getting to know you</em> feedback: Questions</h2>
+<ul>
+<li class="fragment">Is the course designed for students with no prior coding or statistics background?</li>
+<li class="fragment">What is the balance between learning statistical concepts and programming in R? How often will students code?</li>
+<li class="fragment">How should students use readings, videos, and other materials—and which are essential?</li>
+<li class="fragment">What should students expect from discussion projects, collaboration, and required uploads?</li>
+<li class="fragment">What will exams look like, and what practice or study materials will be available?</li>
+<li class="fragment">Where can students get help, and what kinds of collaboration are appropriate?</li>
+<li class="fragment">How does the course compare to COMPSCI 216 (Everything Data) and STA 323 (Statistical Computing)?</li>
+</ul>
+</section>
+<section id="getting-to-know-you-feedback-concerns" class="slide level2 smaller">
+<h2><em>Getting to know you</em> feedback: Concerns</h2>
+<ul>
+<li class="fragment">Dominant concern: lack of prior coding experience—especially learning R, syntax, troubleshooting, and technical tools such as Git and GitHub</li>
+<li class="fragment">Keeping pace: falling behind or being less prepared than classmates</li>
+<li class="fragment">Workload: time management for labs, HW, projects, and other commitments</li>
+<li class="fragment">Assessment: format of exams, details of grading, and effective study strategies</li>
+<li class="fragment">Smaller themes: Group-project dynamics, large-lecture setting, and confidence with math/statistical terminology</li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="slides/images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/sta199-f26\.github\.io\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

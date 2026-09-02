@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
+<meta name="dcterms.date" content="2026-09-02">
+
+<title>Grammar of data transformation – STA 199CCL</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-afa0b4b835207b1eaecda9b8413fabad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f940def4130d37104c20e03c32c4b857.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-afa0b4b835207b1eaecda9b8413fabad.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="Grammar of data transformation – STA 199CCL">
+<meta property="og:description" content="Lecture 4">
+<meta property="og:image" content="https://sta199-f26.github.io/slides/images/04/wooclap-qr.png">
+<meta property="og:site_name" content="STA 199CCL">
+<meta property="og:image:alt" content="QR code for Wooclap">
+<meta property="og:image:height" content="542">
+<meta property="og:image:width" content="540">
+</head>
+
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Grammar of data transformation</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
+    <div class="dropdown">
+      <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
+              <i class="bi bi-person-raised-hand pe-1"></i>
+            Office hours
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://edstem.org/us/courses/101308/discussion">
+              <i class="bi bi-people-fill pe-1"></i>
+            Help from humans (Ed Discussion)
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
+              <i class="bi bi-megaphone-fill pe-1"></i>
+            Announcements
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.gradescope.com/courses/1350518">
+              <i class="bi bi-file-arrow-up-fill pe-1"></i>
+            Gradescope
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/gradebook">
+              <i class="bi bi-alphabet-uppercase pe-1"></i>
+            Gradebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-support.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Support</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-team.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Team</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Useful links</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-code-alongs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code alongs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homeworks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exam-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam reviews</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a>
+  <ul class="collapse">
+  <li><a href="#while-you-wait-participate" id="toc-while-you-wait-participate" class="nav-link" data-scroll-target="#while-you-wait-participate">While you wait: Participate 📱</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  </ul></li>
+  <li><a href="#from-last-time" id="toc-from-last-time" class="nav-link" data-scroll-target="#from-last-time">From last time</a>
+  <ul class="collapse">
+  <li><a href="#lets-get-laptops-out" id="toc-lets-get-laptops-out" class="nav-link" data-scroll-target="#lets-get-laptops-out">Let’s get laptops out!</a></li>
+  <li><a href="#start-with-the-question" id="toc-start-with-the-question" class="nav-link" data-scroll-target="#start-with-the-question">Start with the question</a></li>
+  <li><a href="#interesting-qs---many-variables" id="toc-interesting-qs---many-variables" class="nav-link" data-scroll-target="#interesting-qs---many-variables">Interesting Qs &lt;-&gt; many variables</a></li>
+  </ul></li>
+  <li><a href="#a-short-list-for-now-of-r-essentials" id="toc-a-short-list-for-now-of-r-essentials" class="nav-link" data-scroll-target="#a-short-list-for-now-of-r-essentials">A short list<br>(for now)<br>of R essentials</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse">tidyverse</a></li>
+  <li><a href="#data-frames-and-variables" id="toc-data-frames-and-variables" class="nav-link" data-scroll-target="#data-frames-and-variables">Data frames and variables</a></li>
+  <li><a href="#gss-data-frame" id="toc-gss-data-frame" class="nav-link" data-scroll-target="#gss-data-frame"><code>gss</code> data frame</a></li>
+  <li><a href="#health-variable" id="toc-health-variable" class="nav-link" data-scroll-target="#health-variable"><code>health</code> variable</a></li>
+  <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 📱</a></li>
+  <li><a href="#functionargument" id="toc-functionargument" class="nav-link" data-scroll-target="#functionargument"><code>function(argument)</code></a></li>
+  <li><a href="#help" id="toc-help" class="nav-link" data-scroll-target="#help">Help</a></li>
+  </ul></li>
+  <li><a href="#data-transformation" id="toc-data-transformation" class="nav-link" data-scroll-target="#data-transformation">Data transformation</a>
+  <ul class="collapse">
+  <li><a href="#a-quick-reminder" id="toc-a-quick-reminder" class="nav-link" data-scroll-target="#a-quick-reminder">A quick reminder</a></li>
+  <li><a href="#participate-1" id="toc-participate-1" class="nav-link" data-scroll-target="#participate-1">Participate 📱💻</a></li>
+  <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The pipe <code>|&gt;</code></a></li>
+  <li><a href="#code-style-tip" id="toc-code-style-tip" class="nav-link" data-scroll-target="#code-style-tip">Code style tip <i class="fa-solid fa-lightbulb" aria-label="lightbulb"></i></a></li>
+  <li><a href="#the-pipe-in-action" id="toc-the-pipe-in-action" class="nav-link" data-scroll-target="#the-pipe-in-action">The pipe, in action</a></li>
+  <li><a href="#the-pipe---step-1" id="toc-the-pipe---step-1" class="nav-link" data-scroll-target="#the-pipe---step-1">The pipe - Step 1</a></li>
+  <li><a href="#the-pipe---step-2" id="toc-the-pipe---step-2" class="nav-link" data-scroll-target="#the-pipe---step-2">The pipe - Step 2</a></li>
+  <li><a href="#the-pipe---step-3" id="toc-the-pipe---step-3" class="nav-link" data-scroll-target="#the-pipe---step-3">The pipe - Step 3</a></li>
+  <li><a href="#the-pipe---step-4" id="toc-the-pipe---step-4" class="nav-link" data-scroll-target="#the-pipe---step-4">The pipe - Step 4</a></li>
+  <li><a href="#the-pipe---step-5" id="toc-the-pipe---step-5" class="nav-link" data-scroll-target="#the-pipe---step-5">The pipe - Step 5</a></li>
+  <li><a href="#the-pipe---step-7" id="toc-the-pipe---step-7" class="nav-link" data-scroll-target="#the-pipe---step-7">The pipe - Step 7</a></li>
+  <li><a href="#in-this-class-you-will" id="toc-in-this-class-you-will" class="nav-link" data-scroll-target="#in-this-class-you-will">In this class, you will…</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a>
+  <ul class="collapse">
+  <li><a href="#getting-to-know-you-feedback-questions" id="toc-getting-to-know-you-feedback-questions" class="nav-link" data-scroll-target="#getting-to-know-you-feedback-questions"><em>Getting to know you</em> feedback: Questions</a></li>
+  <li><a href="#getting-to-know-you-feedback-concerns" id="toc-getting-to-know-you-feedback-concerns" class="nav-link" data-scroll-target="#getting-to-know-you-feedback-concerns"><em>Getting to know you</em> feedback: Concerns</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/04-grammar-of-data-transformation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="04-grammar-of-data-transformation-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Grammar of data transformation</h1>
+<p class="subtitle lead">Lecture 4</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Dr.&nbsp;Mine Çetinkaya-Rundel </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Duke University <br> STA 199 - Fall 2026
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="warm-up" class="level1">
+<h1>Warm up</h1>
+<section id="while-you-wait-participate" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="while-you-wait-participate">While you wait: Participate 📱</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Which of the following is <strong>true</strong> about the code below?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, _[blank]<span class="fu">_</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="wooclap-choices">
+<ul>
+<li><code>mtcars</code> is the name of the variable being plotted on the x-axis</li>
+<li>The function that goes in the blank is <code>map()</code></li>
+<li>The data are being visualized with a scatterplot and a smooth line</li>
+<li>Some points on the plot will be colored differently than others</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/04/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/04/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/LISGDPO">wooclap.com</a> and use the code LISGDPO.</p>
+</div>
+</div>
+</section>
+<section id="announcements" class="level2">
+<h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
+<ul>
+<li><p>Following along with code along videos: See <a href="https://sta199-f26.github.io/computing-code-alongs.html" class="uri">https://sta199-f26.github.io/computing-code-alongs.html</a></p></li>
+<li><p>Lab 1 is tomorrow, HW 1 is due next Wednesday</p></li>
+<li><p>No class on Monday, September 7 (Labor Day)</p></li>
+</ul>
+</section>
+</section>
+<section id="from-last-time" class="level1">
+<h1>From last time</h1>
+<section id="lets-get-laptops-out" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="lets-get-laptops-out">Let’s get laptops out!</h2>
+<div class="columns">
+<div class="column">
+<p><strong>If you were here on Monday and worked on <code>ae-01</code>:</strong></p>
+<div class="appex">
+<ul>
+<li><p>Go to Positron and open your <code>ae</code> project.</p></li>
+<li><p>Open <code>ae-01-gss-dataviz.qmd</code> in Positron and pick up where we left off.</p></li>
+</ul>
+</div>
+</div><div class="column">
+<p><strong>If you’re new here and didn’t work on <code>ae-01</code>:</strong></p>
+<div class="appex">
+<ul>
+<li><p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p></li>
+<li><p>Open <code>ae-01-gss-dataviz.qmd</code> in Positron and follow the instructions to complete the application exercise.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="start-with-the-question" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="start-with-the-question">Start with the question</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Variables</th>
+<th>A useful first plot</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What values are common?</td>
+<td>One categorical</td>
+<td><span class="fragment">Bar chart</span></td>
+</tr>
+<tr class="even">
+<td>What is the distribution?</td>
+<td>One numerical</td>
+<td><span class="fragment">Histogram or boxplot</span></td>
+</tr>
+<tr class="odd">
+<td>Do groups differ?</td>
+<td>Numerical + categorical</td>
+<td><span class="fragment">Boxplot or histogram by group</span></td>
+</tr>
+<tr class="even">
+<td>Are two categorical variables associated?</td>
+<td>Two categorical</td>
+<td><span class="fragment">Filled or dodged bar chart</span></td>
+</tr>
+<tr class="odd">
+<td>Are two numerical variables associated?</td>
+<td>Two numerical</td>
+<td><span class="fragment">Scatterplot</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interesting-qs---many-variables" class="level2 xsmall">
+<h2 class="xsmall anchored" data-anchor-id="interesting-qs---many-variables">Interesting Qs &lt;-&gt; many variables</h2>
+<p>Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as <code>color</code>, <code>shape</code>, <code>size</code>, <code>linewidth</code>, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="04-grammar-of-data-transformation_files/figure-revealjs/four-vars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="04-grammar-of-data-transformation_files/figure-revealjs/four-vars-1.png" class="img-fluid figure-img" width="864"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="a-short-list-for-now-of-r-essentials" class="level1">
+<h1>A short list<br>(for now)<br>of R essentials</h1>
+<section id="packages" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="packages">Packages</h2>
+<ul>
+<li>Installed with <code>install.packages()</code>, once per system:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We already pre-installed many of the package you’ll need for this course, so you might go the whole semester without needing to run <code>install.packages()</code>!</p>
+</div>
+</div>
+<p>. . .</p>
+<ul>
+<li>Loaded with <code>library()</code>, once per session:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="tidyverse">tidyverse</h2>
+<div class="hand">
+<p>aka the package you’ll hear about the most…</p>
+</div>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><a href="https://tidyverse.org"><img src="images/02/tidyverse.png" class="img-fluid" alt="Hex logos for dplyr, ggplot2, forcats, tibble, readr, stringr, tidyr, and purrr"></a></p>
+</div><div class="column fragment" style="width:60%;">
+<p><a href="https://www.tidyverse.org/">tidyverse.org</a></p>
+<ul>
+<li>The <strong>tidyverse</strong> is an opinionated collection of R packages designed for data science</li>
+<li>All packages share an underlying philosophy and a common grammar</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="data-frames-and-variables" class="level2">
+<h2 class="anchored" data-anchor-id="data-frames-and-variables">Data frames and variables</h2>
+<ul>
+<li>Each row of a data frame is an <strong>observation</strong></li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>Each column of a data frame is a <strong>variable</strong></li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>Columns (variables) in data frames can be accessed with <code>$</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dataframe<span class="sc">$</span>variable_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gss-data-frame" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="gss-data-frame"><code>gss</code> data frame</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,294 × 9
+    year marital_status   age education_years children happiness     health
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; 
+ 1  2024 Never married     33              16        2 Not too happy Good  
+ 2  2024 Never married     64              16        0 Pretty happy  Good  
+ 3  2024 Married           69              14        0 Pretty happy  Good  
+ 4  2024 Never married     19              12        0 Pretty happy  Good  
+ 5  2024 Divorced          70              13        3 Not too happy Good  
+ 6  2024 Married           53              14        2 Pretty happy  Good  
+ 7  2024 Married           48              13        6 Pretty happy  Good  
+ 8  2024 Divorced          30              14        1 Not too happy Good  
+ 9  2024 Married           60              14        2 Very happy    Good  
+10  2024 Never married     25              12        0 Pretty happy  Good  
+# ℹ 3,284 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="health-variable" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="health-variable"><code>health</code> variable</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gss<span class="sc">$</span>health</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   [1] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+   [7] "Good"      "Good"      "Good"      "Good"      "Good"      "Excellent"
+  [13] "Fair"      "Good"      "Fair"      "Excellent" "Good"      "Good"     
+  [19] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+  [25] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+  [31] "Good"      "Good"      "Excellent" "Fair"      "Good"      "Good"     
+  [37] "Excellent" "Good"      "Good"      "Good"      "Fair"      "Good"     
+  [43] "Good"      "Good"      "Poor"      "Good"      "Excellent" "Good"     
+  [49] "Excellent" "Good"      "Good"      "Good"      "Good"      "Good"     
+  [55] "Poor"      "Fair"      "Good"      "Good"      "Fair"      "Fair"     
+  [61] "Good"      "Good"      "Poor"      "Excellent" "Excellent" "Fair"     
+  [67] "Good"      "Good"      "Excellent" "Good"      "Good"      "Fair"     
+  [73] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Excellent"
+  [79] "Good"      "Good"      "Good"      "Good"      "Fair"      "Fair"     
+  [85] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Excellent"
+  [91] "Excellent" "Fair"      "Good"      "Excellent" "Good"      "Good"     
+  [97] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Excellent"
+ [103] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+ [109] "Good"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+ [115] "Poor"      "Good"      "Fair"      "Fair"      "Excellent" "Good"     
+ [121] "Good"      "Fair"      "Excellent" "Good"      "Fair"      "Fair"     
+ [127] "Excellent" "Fair"      "Excellent" "Fair"      "Good"      "Fair"     
+ [133] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+ [139] "Good"      "Good"      "Excellent" "Good"      "Good"      "Good"     
+ [145] "Good"      "Fair"      "Excellent" "Good"      "Good"      "Good"     
+ [151] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Good"     
+ [157] "Good"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+ [163] "Excellent" "Good"      "Excellent" "Good"      "Good"      "Good"     
+ [169] "Good"      "Excellent" "Fair"      "Poor"      "Good"      "Good"     
+ [175] "Excellent" "Good"      "Fair"      "Fair"      "Good"      "Fair"     
+ [181] "Fair"      "Good"      "Good"      "Excellent" "Excellent" "Fair"     
+ [187] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+ [193] "Fair"      "Excellent" "Fair"      "Poor"      "Fair"      "Good"     
+ [199] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+ [205] "Excellent" "Poor"      "Excellent" "Good"      "Good"      "Good"     
+ [211] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Fair"     
+ [217] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [223] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+ [229] "Poor"      "Good"      "Good"      "Excellent" "Good"      "Fair"     
+ [235] "Good"      "Fair"      "Good"      "Good"      "Good"      "Fair"     
+ [241] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+ [247] "Good"      "Fair"      "Poor"      "Good"      "Poor"      "Fair"     
+ [253] "Excellent" "Fair"      "Excellent" "Fair"      "Poor"      "Good"     
+ [259] "Good"      "Good"      "Excellent" "Good"      "Good"      "Fair"     
+ [265] "Good"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+ [271] "Fair"      "Good"      "Fair"      "Fair"      "Fair"      "Fair"     
+ [277] "Fair"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+ [283] "Good"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+ [289] "Excellent" "Good"      "Good"      "Good"      "Good"      "Good"     
+ [295] "Good"      "Good"      "Good"      "Good"      "Excellent" "Excellent"
+ [301] "Good"      "Fair"      "Good"      "Excellent" "Poor"      "Good"     
+ [307] "Good"      "Good"      "Good"      "Poor"      "Good"      "Fair"     
+ [313] "Fair"      "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+ [319] "Fair"      "Fair"      "Fair"      "Good"      "Good"      "Good"     
+ [325] "Good"      "Fair"      "Good"      "Fair"      "Poor"      "Excellent"
+ [331] "Excellent" "Good"      "Fair"      "Good"      "Fair"      "Good"     
+ [337] "Excellent" "Good"      "Fair"      "Good"      "Good"      "Good"     
+ [343] "Fair"      "Excellent" "Excellent" "Fair"      "Good"      "Good"     
+ [349] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [355] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Fair"     
+ [361] "Good"      "Excellent" "Good"      "Fair"      "Poor"      "Good"     
+ [367] "Fair"      "Excellent" "Fair"      "Fair"      "Good"      "Good"     
+ [373] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+ [379] "Fair"      "Fair"      "Excellent" "Good"      "Good"      "Excellent"
+ [385] "Good"      "Good"      "Poor"      "Good"      "Fair"      "Fair"     
+ [391] "Good"      "Good"      "Excellent" "Fair"      "Good"      "Fair"     
+ [397] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Poor"     
+ [403] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+ [409] "Good"      "Fair"      "Excellent" "Good"      "Fair"      "Fair"     
+ [415] "Good"      "Good"      "Good"      "Fair"      "Excellent" "Good"     
+ [421] "Good"      "Fair"      "Good"      "Good"      "Good"      "Fair"     
+ [427] "Good"      "Good"      "Good"      "Good"      "Fair"      "Excellent"
+ [433] "Excellent" "Excellent" "Fair"      "Good"      "Fair"      "Fair"     
+ [439] "Good"      "Excellent" "Excellent" "Good"      "Fair"      "Good"     
+ [445] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Good"     
+ [451] "Good"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+ [457] "Good"      "Good"      "Fair"      "Excellent" "Fair"      "Fair"     
+ [463] "Fair"      "Good"      "Excellent" "Fair"      "Good"      "Good"     
+ [469] "Good"      "Fair"      "Good"      "Fair"      "Good"      "Poor"     
+ [475] "Excellent" "Good"      "Excellent" "Excellent" "Fair"      "Excellent"
+ [481] "Good"      "Excellent" "Good"      "Fair"      "Excellent" "Excellent"
+ [487] "Excellent" "Fair"      "Excellent" "Excellent" "Fair"      "Excellent"
+ [493] "Good"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+ [499] "Poor"      "Fair"      NA          "Excellent" "Good"      "Poor"     
+ [505] NA          "Fair"      "Good"      "Excellent" "Good"      "Poor"     
+ [511] "Fair"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+ [517] "Good"      NA          "Good"      "Good"      "Good"      "Excellent"
+ [523] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+ [529] "Good"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+ [535] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Good"     
+ [541] "Good"      "Fair"      "Good"      "Excellent" "Fair"      "Good"     
+ [547] "Excellent" "Good"      "Good"      "Fair"      "Good"      "Excellent"
+ [553] "Excellent" "Fair"      "Excellent" "Fair"      "Excellent" "Good"     
+ [559] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+ [565] "Good"      "Good"      "Fair"      "Good"      "Excellent" "Excellent"
+ [571] "Good"      "Good"      "Poor"      "Good"      "Poor"      "Good"     
+ [577] "Excellent" "Fair"      "Good"      "Fair"      "Good"      "Fair"     
+ [583] "Fair"      "Poor"      "Good"      "Poor"      "Good"      "Fair"     
+ [589] "Good"      "Good"      "Good"      "Good"      "Fair"      "Fair"     
+ [595] "Fair"      "Poor"      "Poor"      "Fair"      "Fair"      "Good"     
+ [601] "Fair"      "Excellent" "Excellent" "Good"      "Fair"      "Good"     
+ [607] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Good"     
+ [613] "Good"      "Good"      "Good"      "Excellent" "Fair"      "Fair"     
+ [619] "Good"      "Good"      "Excellent" "Good"      "Fair"      "Good"     
+ [625] "Excellent" "Good"      "Good"      "Good"      "Fair"      "Good"     
+ [631] "Fair"      "Good"      "Excellent" "Good"      "Fair"      "Fair"     
+ [637] "Good"      "Good"      "Good"      "Fair"      "Excellent" "Fair"     
+ [643] "Good"      "Fair"      "Fair"      "Fair"      "Excellent" "Excellent"
+ [649] "Good"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+ [655] "Fair"      "Fair"      "Fair"      "Good"      "Fair"      "Excellent"
+ [661] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [667] "Good"      "Good"      "Fair"      "Excellent" "Good"      "Fair"     
+ [673] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Excellent"
+ [679] "Excellent" "Good"      "Fair"      "Excellent" "Excellent" "Good"     
+ [685] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Excellent"
+ [691] "Excellent" "Good"      "Fair"      "Good"      "Good"      "Fair"     
+ [697] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Good"     
+ [703] "Good"      "Fair"      "Good"      "Fair"      "Excellent" "Fair"     
+ [709] "Fair"      "Fair"      "Good"      "Fair"      "Poor"      "Good"     
+ [715] "Poor"      "Good"      "Excellent" "Good"      "Fair"      "Fair"     
+ [721] NA          "Fair"      "Good"      "Poor"      "Good"      "Good"     
+ [727] "Poor"      "Fair"      "Excellent" "Good"      "Fair"      "Good"     
+ [733] "Excellent" "Fair"      "Good"      "Fair"      "Fair"      "Fair"     
+ [739] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [745] "Fair"      "Fair"      "Good"      "Excellent" "Excellent" "Fair"     
+ [751] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [757] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [763] "Fair"      "Fair"      "Fair"      "Good"      "Good"      "Fair"     
+ [769] "Good"      "Fair"      "Excellent" "Fair"      "Good"      "Poor"     
+ [775] "Good"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+ [781] "Fair"      "Good"      "Good"      "Excellent" "Excellent" "Good"     
+ [787] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Fair"     
+ [793] "Good"      "Good"      "Good"      "Excellent" "Excellent" "Excellent"
+ [799] "Good"      "Good"      "Poor"      "Good"      "Fair"      "Good"     
+ [805] "Excellent" "Good"      "Fair"      "Fair"      "Good"      "Fair"     
+ [811] "Fair"      "Good"      "Good"      "Excellent" "Excellent" "Good"     
+ [817] "Excellent" "Good"      "Fair"      "Fair"      "Excellent" "Fair"     
+ [823] "Excellent" "Fair"      "Good"      "Good"      "Good"      "Fair"     
+ [829] "Good"      "Good"      "Poor"      "Fair"      "Good"      "Fair"     
+ [835] "Fair"      "Excellent" "Fair"      "Fair"      "Fair"      "Good"     
+ [841] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [847] "Good"      "Excellent" "Good"      "Good"      "Excellent" "Good"     
+ [853] "Excellent" "Fair"      "Fair"      "Fair"      "Excellent" "Excellent"
+ [859] "Good"      "Fair"      "Excellent" "Excellent" "Fair"      "Good"     
+ [865] "Good"      "Good"      "Poor"      "Good"      "Good"      "Excellent"
+ [871] "Good"      "Good"      "Fair"      "Good"      "Excellent" "Good"     
+ [877] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+ [883] "Good"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+ [889] "Poor"      "Good"      "Fair"      "Good"      "Fair"      "Poor"     
+ [895] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Fair"     
+ [901] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [907] "Excellent" "Good"      "Good"      "Fair"      "Good"      "Fair"     
+ [913] "Excellent" "Good"      "Excellent" "Good"      "Good"      "Good"     
+ [919] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Good"     
+ [925] "Good"      "Good"      "Good"      "Good"      "Excellent" "Fair"     
+ [931] "Fair"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+ [937] "Good"      "Good"      "Good"      "Excellent" "Excellent" "Fair"     
+ [943] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+ [949] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+ [955] "Excellent" "Good"      "Excellent" "Excellent" "Good"      "Fair"     
+ [961] "Good"      "Good"      "Good"      "Excellent" "Good"      "Excellent"
+ [967] "Good"      "Good"      "Excellent" "Good"      "Fair"      "Fair"     
+ [973] "Good"      "Fair"      "Good"      "Fair"      "Excellent" "Excellent"
+ [979] "Good"      "Good"      "Excellent" "Fair"      "Fair"      "Good"     
+ [985] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Good"     
+ [991] "Fair"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+ [997] "Good"      "Fair"      "Good"      "Excellent" "Excellent" "Good"     
+[1003] "Fair"      "Good"      "Fair"      "Fair"      "Good"      "Good"     
+[1009] "Fair"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+[1015] "Good"      "Fair"      "Good"      "Excellent" "Fair"      "Good"     
+[1021] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Good"     
+[1027] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[1033] "Good"      "Good"      "Fair"      "Poor"      "Good"      "Good"     
+[1039] "Good"      "Fair"      "Fair"      "Good"      "Good"      "Fair"     
+[1045] "Good"      "Fair"      "Excellent" "Good"      "Good"      "Fair"     
+[1051] "Fair"      "Excellent" "Good"      "Good"      "Good"      "Fair"     
+[1057] "Fair"      "Excellent" "Good"      "Good"      "Excellent" "Excellent"
+[1063] "Excellent" "Good"      "Good"      "Good"      "Good"      "Excellent"
+[1069] "Excellent" "Excellent" "Good"      "Fair"      "Good"      "Poor"     
+[1075] "Good"      "Good"      "Good"      "Fair"      "Poor"      "Excellent"
+[1081] "Excellent" "Good"      "Good"      "Excellent" "Good"      "Good"     
+[1087] "Good"      "Good"      "Fair"      "Fair"      "Good"      "Fair"     
+[1093] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Excellent"
+[1099] "Good"      "Good"      "Good"      "Fair"      "Poor"      "Good"     
+[1105] "Fair"      "Fair"      "Poor"      "Fair"      "Excellent" "Good"     
+[1111] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1117] "Good"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+[1123] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Fair"     
+[1129] "Fair"      "Excellent" "Good"      "Good"      "Fair"      "Excellent"
+[1135] "Fair"      "Excellent" "Good"      "Good"      "Poor"      "Good"     
+[1141] "Good"      "Fair"      "Good"      "Poor"      "Good"      "Fair"     
+[1147] "Good"      "Excellent" "Good"      "Good"      "Fair"      "Fair"     
+[1153] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Excellent"
+[1159] "Excellent" "Poor"      "Fair"      "Good"      "Excellent" "Good"     
+[1165] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[1171] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[1177] "Excellent" "Good"      "Excellent" "Fair"      "Fair"      "Good"     
+[1183] "Good"      "Excellent" "Good"      "Excellent" "Excellent" "Good"     
+[1189] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Excellent"
+[1195] "Good"      "Excellent" "Good"      "Good"      "Fair"      "Good"     
+[1201] "Good"      "Excellent" "Good"      "Good"      "Fair"      "Fair"     
+[1207] "Fair"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+[1213] "Good"      "Poor"      "Good"      "Good"      "Good"      "Fair"     
+[1219] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[1225] "Good"      "Excellent" "Good"      "Good"      "Good"      "Fair"     
+[1231] "Fair"      "Good"      "Good"      "Good"      "Good"      "Excellent"
+[1237] "Excellent" "Good"      "Good"      "Excellent" "Good"      "Good"     
+[1243] "Good"      "Good"      "Fair"      "Poor"      "Excellent" "Excellent"
+[1249] "Good"      "Good"      "Excellent" "Good"      "Good"      "Good"     
+[1255] "Fair"      "Good"      "Excellent" "Excellent" "Good"      "Poor"     
+[1261] "Good"      "Excellent" "Fair"      "Good"      "Fair"      "Fair"     
+[1267] "Good"      "Good"      "Good"      "Fair"      "Excellent" "Good"     
+[1273] "Excellent" "Excellent" "Fair"      "Excellent" "Fair"      "Good"     
+[1279] "Fair"      "Excellent" "Excellent" "Fair"      "Excellent" "Good"     
+[1285] "Good"      "Good"      "Excellent" NA          "Good"      "Good"     
+[1291] "Excellent" "Good"      "Fair"      "Excellent" "Good"      "Good"     
+[1297] "Good"      "Good"      "Excellent" "Fair"      "Excellent" "Good"     
+[1303] "Excellent" "Good"      "Excellent" "Fair"      "Good"      "Excellent"
+[1309] "Fair"      "Good"      "Excellent" NA          "Good"      "Good"     
+[1315] "Good"      "Excellent" "Good"      "Good"      "Good"      "Excellent"
+[1321] "Good"      "Good"      "Excellent" "Good"      "Good"      "Fair"     
+[1327] "Good"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[1333] "Excellent" "Good"      "Fair"      "Excellent" "Good"      "Good"     
+[1339] "Fair"      "Excellent" "Excellent" "Good"      "Fair"      "Good"     
+[1345] "Excellent" "Good"      "Excellent" "Excellent" "Poor"      "Good"     
+[1351] "Fair"      "Good"      "Good"      "Excellent" "Excellent" "Good"     
+[1357] "Good"      "Fair"      "Excellent" "Good"      "Excellent" "Good"     
+[1363] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1369] "Good"      "Good"      "Good"      "Good"      "Excellent" "Excellent"
+[1375] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Fair"     
+[1381] "Excellent" "Excellent" "Good"      "Fair"      "Fair"      "Good"     
+[1387] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[1393] "Good"      "Good"      "Good"      "Excellent" "Fair"      "Poor"     
+[1399] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Excellent"
+[1405] "Fair"      "Fair"      "Excellent" "Fair"      "Good"      "Excellent"
+[1411] "Good"      "Good"      "Good"      "Poor"      "Good"      "Excellent"
+[1417] "Good"      "Good"      "Excellent" "Good"      "Good"      "Good"     
+[1423] "Good"      "Good"      "Fair"      "Excellent" "Excellent" "Fair"     
+[1429] "Poor"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1435] "Excellent" "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1441] "Excellent" "Good"      "Good"      "Poor"      "Good"      "Good"     
+[1447] "Good"      "Fair"      "Good"      NA          "Good"      "Good"     
+[1453] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+[1459] "Good"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+[1465] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1471] "Good"      "Poor"      "Good"      "Good"      "Good"      "Good"     
+[1477] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1483] "Good"      "Good"      "Good"      "Excellent" "Good"      "Fair"     
+[1489] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Excellent"
+[1495] "Fair"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[1501] "Fair"      "Good"      "Fair"      "Good"      "Excellent" "Good"     
+[1507] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Fair"     
+[1513] "Excellent" "Good"      "Good"      "Good"      "Good"      "Good"     
+[1519] "Poor"      "Good"      "Fair"      "Good"      "Good"      "Excellent"
+[1525] "Good"      "Good"      "Fair"      "Fair"      "Good"      "Good"     
+[1531] "Good"      "Fair"      "Excellent" "Fair"      "Good"      "Good"     
+[1537] "Good"      "Good"      "Fair"      "Good"      "Good"      "Excellent"
+[1543] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[1549] "Excellent" "Good"      "Good"      "Excellent" "Good"      "Excellent"
+[1555] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Good"     
+[1561] "Fair"      "Good"      "Poor"      "Good"      "Good"      "Fair"     
+[1567] "Fair"      "Poor"      "Fair"      "Fair"      "Good"      "Excellent"
+[1573] "Good"      "Good"      "Fair"      "Good"      "Excellent" NA         
+[1579] "Good"      "Poor"      "Good"      "Good"      "Good"      "Fair"     
+[1585] "Good"      "Fair"      "Fair"      "Good"      "Good"      "Excellent"
+[1591] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Good"     
+[1597] "Good"      "Fair"      "Good"      "Good"      "Poor"      "Good"     
+[1603] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[1609] "Good"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+[1615] "Good"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+[1621] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[1627] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Fair"     
+[1633] "Good"      "Fair"      "Good"      "Poor"      "Good"      "Fair"     
+[1639] "Poor"      "Poor"      "Good"      "Good"      "Good"      "Fair"     
+[1645] "Good"      "Fair"      "Good"      "Good"      "Excellent" "Good"     
+[1651] "Poor"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[1657] "Fair"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+[1663] "Excellent" "Good"      "Fair"      "Poor"      "Fair"      "Excellent"
+[1669] "Excellent" "Excellent" "Fair"      "Good"      "Poor"      "Excellent"
+[1675] "Fair"      "Fair"      "Good"      "Poor"      "Fair"      "Good"     
+[1681] "Good"      "Good"      "Fair"      "Excellent" "Good"      "Poor"     
+[1687] "Poor"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1693] "Fair"      "Good"      "Good"      "Good"      "Good"      "Excellent"
+[1699] "Excellent" "Good"      "Excellent" "Fair"      "Fair"      "Good"     
+[1705] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Fair"     
+[1711] "Good"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[1717] "Fair"      "Excellent" "Fair"      "Poor"      "Excellent" "Good"     
+[1723] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+[1729] "Good"      "Good"      "Good"      "Excellent" "Fair"      "Poor"     
+[1735] "Fair"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+[1741] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[1747] "Excellent" "Good"      "Good"      "Good"      "Fair"      "Excellent"
+[1753] "Fair"      "Excellent" "Good"      "Good"      "Excellent" "Good"     
+[1759] "Good"      "Good"      "Good"      "Excellent" "Excellent" "Good"     
+[1765] "Fair"      "Fair"      "Good"      "Fair"      "Fair"      "Good"     
+[1771] "Excellent" "Good"      "Fair"      "Fair"      "Good"      "Fair"     
+[1777] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Good"     
+[1783] "Good"      "Good"      "Poor"      "Good"      "Good"      "Good"     
+[1789] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[1795] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[1801] "Excellent" "Poor"      "Good"      "Poor"      "Good"      "Fair"     
+[1807] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1813] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Poor"     
+[1819] "Fair"      "Poor"      "Good"      "Fair"      "Excellent" "Good"     
+[1825] "Good"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+[1831] "Good"      "Excellent" "Good"      "Good"      "Excellent" "Excellent"
+[1837] "Excellent" "Excellent" "Good"      "Good"      "Good"      "Good"     
+[1843] "Good"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[1849] "Excellent" "Good"      "Good"      "Good"      "Poor"      "Good"     
+[1855] "Good"      "Excellent" "Good"      "Good"      "Good"      "Fair"     
+[1861] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[1867] "Excellent" "Fair"      "Good"      "Fair"      "Poor"      "Good"     
+[1873] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1879] "Good"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+[1885] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[1891] "Excellent" "Good"      "Good"      "Excellent" "Excellent" "Good"     
+[1897] "Good"      "Good"      "Poor"      "Good"      "Fair"      "Excellent"
+[1903] "Good"      "Excellent" "Fair"      "Excellent" "Good"      "Fair"     
+[1909] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1915] "Excellent" "Good"      "Fair"      "Good"      "Excellent" "Good"     
+[1921] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[1927] "Excellent" "Good"      "Good"      "Good"      "Good"      "Excellent"
+[1933] "Excellent" "Good"      "Good"      "Good"      "Good"      "Good"     
+[1939] "Fair"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[1945] "Good"      "Good"      "Good"      "Good"      "Poor"      "Poor"     
+[1951] "Fair"      "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+[1957] "Good"      "Excellent" "Good"      "Fair"      "Fair"      "Good"     
+[1963] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[1969] "Fair"      "Good"      "Good"      "Good"      "Excellent" "Fair"     
+[1975] "Excellent" "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+[1981] "Fair"      "Fair"      "Fair"      "Good"      "Fair"      "Fair"     
+[1987] "Fair"      "Good"      "Fair"      "Excellent" "Fair"      "Excellent"
+[1993] "Excellent" "Excellent" "Good"      "Fair"      "Good"      "Excellent"
+[1999] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2005] "Fair"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+[2011] "Excellent" "Excellent" "Fair"      "Excellent" "Good"      "Good"     
+[2017] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+[2023] "Fair"      "Fair"      "Fair"      "Good"      "Good"      "Good"     
+[2029] "Good"      "Good"      "Good"      "Fair"      "Excellent" "Good"     
+[2035] "Good"      "Fair"      "Fair"      "Good"      "Good"      "Fair"     
+[2041] "Fair"      "Good"      "Fair"      "Good"      "Fair"      "Good"     
+[2047] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Poor"     
+[2053] "Good"      "Good"      "Good"      "Poor"      "Good"      "Fair"     
+[2059] "Good"      "Fair"      "Good"      "Fair"      "Good"      "Good"     
+[2065] "Good"      "Fair"      "Good"      "Good"      "Excellent" "Fair"     
+[2071] "Excellent" "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2077] "Fair"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+[2083] "Excellent" "Good"      "Fair"      "Excellent" "Good"      "Excellent"
+[2089] "Good"      "Excellent" "Good"      "Excellent" "Excellent" "Good"     
+[2095] "Good"      "Excellent" "Excellent" "Good"      "Excellent" "Good"     
+[2101] "Good"      "Good"      "Good"      "Good"      "Poor"      "Fair"     
+[2107] "Excellent" "Fair"      "Excellent" "Fair"      "Excellent" "Good"     
+[2113] "Excellent" "Fair"      "Good"      "Poor"      "Good"      "Poor"     
+[2119] "Fair"      "Excellent" "Good"      "Excellent" "Good"      "Good"     
+[2125] "Excellent" "Good"      "Good"      "Good"      "Good"      "Fair"     
+[2131] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Good"     
+[2137] "Excellent" "Excellent" "Good"      "Good"      "Good"      "Good"     
+[2143] "Fair"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+[2149] "Poor"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[2155] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Fair"     
+[2161] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[2167] "Good"      "Fair"      "Fair"      "Excellent" "Fair"      "Good"     
+[2173] "Fair"      "Fair"      "Good"      "Good"      "Excellent" "Fair"     
+[2179] "Fair"      "Good"      "Excellent" "Fair"      "Fair"      "Fair"     
+[2185] "Good"      NA          "Fair"      "Fair"      "Fair"      "Poor"     
+[2191] "Poor"      "Fair"      "Good"      "Fair"      "Excellent" "Good"     
+[2197] "Excellent" "Good"      "Poor"      "Fair"      "Poor"      "Fair"     
+[2203] "Good"      "Good"      "Good"      "Excellent" "Fair"      "Fair"     
+[2209] "Fair"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+[2215] "Good"      "Fair"      "Good"      "Good"      "Good"      "Poor"     
+[2221] "Poor"      "Excellent" "Good"      "Good"      "Good"      "Fair"     
+[2227] "Fair"      "Excellent" "Fair"      "Good"      "Excellent" "Fair"     
+[2233] "Good"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[2239] "Excellent" "Good"      "Fair"      "Excellent" "Good"      "Excellent"
+[2245] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Excellent"
+[2251] "Good"      "Good"      "Excellent" "Fair"      "Good"      "Good"     
+[2257] "Good"      "Good"      "Excellent" "Fair"      "Good"      "Fair"     
+[2263] "Good"      "Excellent" "Poor"      "Excellent" "Fair"      "Fair"     
+[2269] "Fair"      "Good"      "Excellent" "Fair"      "Good"      "Fair"     
+[2275] "Fair"      "Good"      "Fair"      "Good"      "Excellent" "Good"     
+[2281] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Poor"     
+[2287] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[2293] "Excellent" "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2299] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Excellent"
+[2305] "Good"      "Good"      "Excellent" "Good"      "Good"      "Good"     
+[2311] "Good"      "Fair"      "Good"      "Fair"      "Excellent" NA         
+[2317] "Good"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+[2323] "Good"      "Fair"      "Good"      "Excellent" "Good"      "Good"     
+[2329] "Poor"      "Excellent" "Fair"      "Excellent" "Excellent" "Excellent"
+[2335] "Good"      "Good"      "Good"      "Excellent" "Good"      "Good"     
+[2341] "Good"      "Fair"      "Good"      "Good"      "Excellent" "Fair"     
+[2347] "Good"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+[2353] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Excellent"
+[2359] "Good"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+[2365] "Good"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+[2371] "Good"      "Fair"      "Good"      "Good"      "Good"      "Excellent"
+[2377] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[2383] "Excellent" "Excellent" "Fair"      "Good"      "Good"      "Excellent"
+[2389] "Good"      "Excellent" "Good"      "Good"      "Good"      "Excellent"
+[2395] "Excellent" "Good"      "Good"      "Fair"      "Poor"      "Excellent"
+[2401] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Good"     
+[2407] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Excellent"
+[2413] "Good"      "Fair"      "Excellent" "Good"      "Excellent" "Excellent"
+[2419] "Good"      "Fair"      "Poor"      "Fair"      "Good"      "Fair"     
+[2425] "Fair"      "Good"      "Good"      "Poor"      "Excellent" "Good"     
+[2431] "Good"      "Good"      "Good"      "Fair"      "Good"      "Excellent"
+[2437] "Excellent" "Excellent" "Good"      "Good"      "Good"      "Good"     
+[2443] "Excellent" "Fair"      "Fair"      "Good"      "Excellent" "Excellent"
+[2449] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2455] "Good"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+[2461] "Good"      "Fair"      "Good"      "Good"      "Poor"      "Good"     
+[2467] "Fair"      "Fair"      "Fair"      "Fair"      "Fair"      "Good"     
+[2473] "Good"      "Good"      "Poor"      "Good"      "Good"      "Poor"     
+[2479] "Good"      "Good"      "Fair"      "Fair"      "Excellent" "Excellent"
+[2485] "Good"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+[2491] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[2497] "Fair"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[2503] "Good"      "Good"      "Fair"      "Excellent" "Excellent" "Poor"     
+[2509] "Excellent" "Good"      "Good"      "Good"      "Fair"      "Poor"     
+[2515] "Excellent" "Fair"      "Fair"      "Fair"      "Good"      "Good"     
+[2521] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Good"     
+[2527] "Good"      "Fair"      "Excellent" "Fair"      "Good"      "Fair"     
+[2533] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2539] "Fair"      "Good"      "Fair"      "Fair"      "Good"      "Good"     
+[2545] "Excellent" "Fair"      "Good"      "Good"      "Good"      "Excellent"
+[2551] "Poor"      "Good"      "Excellent" "Fair"      "Good"      "Excellent"
+[2557] "Fair"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[2563] "Good"      "Good"      "Fair"      NA          "Fair"      "Good"     
+[2569] "Good"      "Good"      "Good"      "Good"      "Excellent" "Good"     
+[2575] "Good"      "Excellent" "Excellent" "Good"      "Good"      "Good"     
+[2581] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Good"     
+[2587] "Good"      "Fair"      "Fair"      "Good"      "Good"      "Good"     
+[2593] "Fair"      "Good"      "Good"      "Good"      "Fair"      "Fair"     
+[2599] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Fair"     
+[2605] "Fair"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+[2611] "Good"      "Excellent" "Fair"      "Fair"      "Good"      "Excellent"
+[2617] "Good"      "Fair"      "Good"      "Good"      "Good"      "Excellent"
+[2623] "Excellent" "Fair"      "Poor"      "Good"      "Excellent" "Good"     
+[2629] "Good"      "Good"      "Fair"      "Good"      "Good"      "Excellent"
+[2635] "Fair"      "Excellent" "Fair"      "Poor"      "Good"      "Fair"     
+[2641] "Fair"      "Good"      "Fair"      "Fair"      "Poor"      "Good"     
+[2647] "Good"      "Poor"      "Excellent" "Good"      "Good"      "Good"     
+[2653] "Good"      "Excellent" "Fair"      "Good"      "Good"      "Good"     
+[2659] "Excellent" "Fair"      "Poor"      "Good"      "Good"      "Fair"     
+[2665] "Good"      "Good"      "Good"      "Fair"      "Good"      "Good"     
+[2671] "Good"      "Fair"      "Good"      "Good"      "Fair"      "Fair"     
+[2677] "Fair"      "Good"      "Poor"      "Fair"      "Good"      "Good"     
+[2683] "Good"      "Excellent" "Excellent" "Excellent" "Fair"      "Good"     
+[2689] "Fair"      "Good"      "Fair"      "Poor"      "Fair"      "Fair"     
+[2695] "Good"      "Good"      "Good"      "Fair"      "Good"      "Fair"     
+[2701] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[2707] "Good"      "Good"      "Excellent" "Good"      "Excellent" "Good"     
+[2713] "Excellent" "Good"      "Good"      "Good"      "Excellent" "Excellent"
+[2719] "Good"      "Good"      "Excellent" "Good"      "Good"      "Excellent"
+[2725] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[2731] "Fair"      "Excellent" "Poor"      "Fair"      "Good"      "Good"     
+[2737] "Fair"      "Poor"      "Fair"      "Good"      "Good"      "Fair"     
+[2743] "Fair"      "Fair"      "Good"      "Good"      "Excellent" "Good"     
+[2749] "Fair"      "Good"      "Excellent" "Fair"      "Fair"      "Excellent"
+[2755] "Fair"      "Poor"      "Good"      "Excellent" "Good"      "Good"     
+[2761] "Fair"      "Good"      "Fair"      "Good"      "Good"      "Fair"     
+[2767] "Good"      "Poor"      "Good"      "Good"      "Good"      "Fair"     
+[2773] "Good"      "Poor"      "Excellent" "Good"      "Fair"      "Fair"     
+[2779] NA          "Good"      "Good"      NA          "Good"      "Good"     
+[2785] "Good"      "Good"      "Fair"      "Excellent" "Good"      "Good"     
+[2791] "Excellent" "Good"      "Excellent" "Good"      "Good"      "Fair"     
+[2797] "Good"      "Fair"      "Good"      "Fair"      "Excellent" "Fair"     
+[2803] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[2809] "Fair"      "Fair"      "Fair"      "Good"      "Poor"      "Poor"     
+[2815] "Good"      "Excellent" "Good"      "Excellent" "Good"      "Fair"     
+[2821] "Fair"      "Good"      "Fair"      "Good"      "Fair"      "Fair"     
+[2827] "Fair"      "Good"      "Good"      "Poor"      "Good"      "Fair"     
+[2833] "Fair"      "Good"      "Excellent" "Fair"      "Good"      "Excellent"
+[2839] "Fair"      "Fair"      "Excellent" "Excellent" "Good"      "Good"     
+[2845] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Fair"     
+[2851] "Excellent" "Fair"      "Good"      "Fair"      "Fair"      "Good"     
+[2857] "Good"      "Good"      "Excellent" "Fair"      "Excellent" "Poor"     
+[2863] "Good"      "Excellent" "Fair"      "Fair"      "Good"      "Good"     
+[2869] "Excellent" "Fair"      "Excellent" "Good"      "Good"      "Excellent"
+[2875] "Good"      "Good"      "Fair"      "Fair"      "Good"      "Good"     
+[2881] "Good"      "Good"      "Excellent" "Good"      "Fair"      "Good"     
+[2887] "Excellent" "Fair"      "Good"      "Excellent" "Good"      "Good"     
+[2893] "Excellent" "Good"      "Poor"      "Good"      "Good"      "Good"     
+[2899] "Good"      "Excellent" "Good"      "Excellent" "Fair"      "Good"     
+[2905] "Fair"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[2911] "Poor"      "Excellent" "Fair"      "Fair"      "Excellent" "Good"     
+[2917] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Good"     
+[2923] "Good"      "Good"      "Excellent" "Excellent" "Excellent" "Good"     
+[2929] "Good"      "Fair"      "Good"      "Good"      "Excellent" "Excellent"
+[2935] "Excellent" "Good"      "Fair"      "Fair"      "Fair"      "Excellent"
+[2941] "Poor"      "Good"      "Good"      "Good"      "Fair"      "Good"     
+[2947] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Good"     
+[2953] "Good"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+[2959] "Good"      "Excellent" "Excellent" "Fair"      "Good"      "Excellent"
+[2965] "Excellent" "Fair"      "Excellent" "Excellent" "Good"      "Good"     
+[2971] "Good"      "Good"      "Fair"      "Fair"      "Fair"      "Good"     
+[2977] "Fair"      "Good"      "Good"      "Poor"      "Good"      "Fair"     
+[2983] "Fair"      "Poor"      "Fair"      "Good"      "Good"      "Good"     
+[2989] "Good"      "Fair"      "Excellent" "Fair"      "Good"      "Good"     
+[2995] "Fair"      "Fair"      "Fair"      "Poor"      "Fair"      "Good"     
+[3001] "Good"      "Excellent" "Good"      "Fair"      "Good"      "Fair"     
+[3007] "Good"      "Fair"      "Poor"      "Poor"      "Fair"      "Fair"     
+[3013] "Poor"      "Fair"      "Fair"      "Poor"      "Good"      "Fair"     
+[3019] "Good"      "Fair"      "Fair"      "Good"      "Fair"      "Poor"     
+[3025] "Good"      "Good"      "Fair"      "Poor"      "Good"      "Poor"     
+[3031] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Good"     
+[3037] "Fair"      "Good"      "Good"      "Excellent" "Good"      "Poor"     
+[3043] "Good"      "Excellent" "Excellent" "Excellent" "Excellent" "Good"     
+[3049] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[3055] "Good"      "Good"      "Excellent" "Excellent" "Fair"      "Good"     
+[3061] "Good"      "Good"      "Fair"      "Good"      "Good"      "Excellent"
+[3067] "Fair"      "Good"      "Fair"      "Good"      "Fair"      "Good"     
+[3073] "Good"      "Good"      "Excellent" "Excellent" "Good"      "Fair"     
+[3079] "Excellent" "Excellent" "Good"      "Fair"      "Good"      "Good"     
+[3085] "Excellent" "Fair"      "Good"      "Fair"      "Fair"      "Fair"     
+[3091] "Excellent" "Fair"      "Fair"      "Good"      "Excellent" "Fair"     
+[3097] "Fair"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+[3103] "Fair"      "Good"      "Good"      "Good"      "Good"      "Excellent"
+[3109] "Good"      "Fair"      "Excellent" "Excellent" "Excellent" "Good"     
+[3115] "Fair"      "Good"      "Excellent" "Excellent" "Good"      "Poor"     
+[3121] "Good"      "Fair"      "Good"      "Fair"      "Good"      "Good"     
+[3127] "Good"      "Good"      "Good"      "Good"      "Good"      "Fair"     
+[3133] "Good"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[3139] "Poor"      "Excellent" "Good"      "Good"      "Fair"      "Good"     
+[3145] "Fair"      "Good"      "Good"      "Poor"      "Good"      "Good"     
+[3151] "Good"      "Excellent" "Good"      "Excellent" "Fair"      "Fair"     
+[3157] "Good"      "Poor"      "Good"      "Poor"      "Good"      "Good"     
+[3163] "Good"      "Good"      "Fair"      "Good"      "Fair"      "Fair"     
+[3169] "Fair"      "Fair"      "Good"      "Good"      "Fair"      "Good"     
+[3175] "Excellent" "Fair"      "Fair"      "Good"      "Good"      "Fair"     
+[3181] "Good"      "Fair"      "Fair"      "Fair"      "Good"      "Good"     
+[3187] "Fair"      "Excellent" "Good"      "Good"      "Good"      "Good"     
+[3193] "Poor"      "Poor"      "Fair"      "Fair"      "Good"      "Good"     
+[3199] "Good"      "Good"      "Good"      "Good"      "Poor"      "Excellent"
+[3205] "Fair"      "Fair"      "Poor"      "Good"      "Good"      "Excellent"
+[3211] "Fair"      "Good"      "Excellent" "Fair"      "Good"      "Excellent"
+[3217] "Good"      "Good"      "Fair"      "Good"      "Good"      "Good"     
+[3223] "Good"      "Good"      "Good"      "Fair"      "Fair"      "Poor"     
+[3229] "Fair"      "Fair"      "Poor"      "Good"      "Fair"      "Fair"     
+[3235] "Good"      "Good"      "Fair"      "Good"      "Excellent" "Good"     
+[3241] "Excellent" "Good"      "Excellent" "Fair"      "Excellent" "Excellent"
+[3247] "Good"      "Good"      "Excellent" "Good"      "Fair"      "Good"     
+[3253] "Fair"      "Good"      "Good"      "Good"      "Good"      "Good"     
+[3259] "Good"      "Good"      "Fair"      "Excellent" "Good"      "Excellent"
+[3265] "Good"      "Good"      "Fair"      "Good"      "Excellent" "Excellent"
+[3271] "Good"      "Good"      "Good"      "Excellent" "Good"      "Excellent"
+[3277] "Fair"      "Fair"      "Good"      "Good"      "Good"      "Good"     
+[3283] "Fair"      "Fair"      "Excellent" "Excellent" "Excellent" "Excellent"
+[3289] "Good"      "Fair"      "Fair"      "Good"      "Excellent" "Good"     </code></pre>
+</div>
+</div>
+</section>
+<section id="participate" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="participate">Participate 📱</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Why did the error occur?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>happiness</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error:
+! object 'happiness' not found</code></pre>
+</div>
+</div>
+<div class="wooclap-choices">
+<ul>
+<li>Name of the variable is misspelled</li>
+<li>There is no such variable in the gss data frame</li>
+<li>Must refer to variable in a data frame with <code>$</code>: <code>gss$happiness</code></li>
+<li>Must refer to variable in a data frame with <code>|&gt;</code>: <code>gss |&gt; happiness</code></li>
+<li>Must refer to variable in a data frame with <code>$</code>: <code>happiness$gss</code></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/04/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/04/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/LISGDPO">wooclap.com</a> and use the code LISGDPO.</p>
+</div>
+</div>
+</section>
+<section id="functionargument" class="level2">
+<h2 class="anchored" data-anchor-id="functionargument"><code>function(argument)</code></h2>
+<p>Functions are (most often) verbs, followed by what they will be applied to in parentheses, and separated by commas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">do_this</span>(to_this)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">do_that</span>(to_this, to_that, with_those)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="help" class="level2">
+<h2 class="anchored" data-anchor-id="help">Help</h2>
+<div class="columns">
+<div class="column">
+<p>Object documentation can be accessed with <code>?</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column">
+<p><a href="images/04/mean-docs.mov" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><video src="images/04/mean-docs.mov" class="img-fluid" alt="Documentation for mean function in R." controls=""></video></a><a href="images/04/mean-docs.mov">Video</a></p>
+</div>
+</div>
+</section>
+</section>
+<section id="data-transformation" class="level1 page-columns page-full">
+<h1>Data transformation</h1>
+<section id="a-quick-reminder" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="a-quick-reminder">A quick reminder</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1"></a>gss <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">45</span>) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3"></a>  <span class="fu">select</span>(age, employment_status, party_id, happiness)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="1" data-code-annotation="1">Start with the <code>gss</code> data frame</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="2">Filter for respondents older than 45</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="3" data-code-annotation="3">Select the columns <code>age</code>, <code>employment_status</code>, <code>party_id</code>, and <code>happiness</code></span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,814 × 4
+     age employment_status                      party_id               happiness
+   &lt;dbl&gt; &lt;chr&gt;                                  &lt;chr&gt;                  &lt;chr&gt;    
+ 1    64 Retired                                Strong democrat        Pretty h…
+ 2    69 Retired                                Strong democrat        Pretty h…
+ 3    70 Retired                                Independent (neither,… Not too …
+ 4    53 Unemployed, laid off, looking for work Independent (neither,… Pretty h…
+ 5    48 Working full time                      Strong democrat        Pretty h…
+ 6    60 Working full time                      Not very strong democ… Very hap…
+ 7    68 Retired                                Independent, close to… Very hap…
+ 8    63 Working full time                      Independent (neither,… Very hap…
+ 9    64 Working full time                      Independent, close to… Pretty h…
+10    63 Working part time                      Strong republican      Very hap…
+# ℹ 1,804 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="participate-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="participate-1">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>In data transformation with the pipe operator <code>|&gt;</code>, what does the operator do?</p>
+<div class="wooclap-choices">
+<ul>
+<li>It ends a pipeline and prints the result.</li>
+<li>It joins two data frames together.</li>
+<li>It passes the output from the previous command into the first argument of the function in the next command.</li>
+<li>It is equivalent to the “or” operator.</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/04/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/04/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/LISGDPO">wooclap.com</a> and use the code LISGDPO.</p>
+</div>
+</div>
+</section>
+<section id="the-pipe" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="the-pipe">The pipe <code>|&gt;</code></h2>
+<p>The pipe operator passes what comes before it into the function that comes after it as the first argument in that function.</p>
+<div class="columns">
+<div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="columns">
+<div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="fu">filter</span>(gss, age <span class="sc">&gt;</span> <span class="dv">50</span>), health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,568 × 1
+   health   
+   &lt;chr&gt;    
+ 1 Good     
+ 2 Good     
+ 3 Good     
+ 4 Good     
+ 5 Good     
+ 6 Excellent
+ 7 Fair     
+ 8 Good     
+ 9 Good     
+10 Good     
+# ℹ 1,558 more rows</code></pre>
+</div>
+</div>
+</div><div class="column fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,568 × 1
+   health   
+   &lt;chr&gt;    
+ 1 Good     
+ 2 Good     
+ 3 Good     
+ 4 Good     
+ 5 Good     
+ 6 Excellent
+ 7 Fair     
+ 8 Good     
+ 9 Good     
+10 Good     
+# ℹ 1,558 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-style-tip" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="code-style-tip">Code style tip <i class="fa-solid fa-lightbulb" aria-label="lightbulb"></i></h2>
+<div class="columns">
+<div class="column">
+<p>In data <strong>transformation</strong> pipelines, always use a</p>
+<ul>
+<li>space before <code>|&gt;</code></li>
+<li>line break after <code>|&gt;</code></li>
+<li>indent next line of code</li>
+</ul>
+</div><div class="column fragment">
+<p>In data <strong>visualization</strong> layers, always use a</p>
+<ul>
+<li>space before <code>+</code></li>
+<li>line break after <code>+</code></li>
+<li>indent next line of code</li>
+</ul>
+</div>
+</div>
+<div class="fragment callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Positron automatically takes care of this formatting when you save a document, or when you preview and it saves it for you. Don’t be surprised when it moves your code around to correct your code style!</p>
+</div>
+</div>
+</section>
+<section id="the-pipe-in-action" class="level2">
+<h2 class="anchored" data-anchor-id="the-pipe-in-action">The pipe, in action</h2>
+<div class="task">
+<p>Write a single pipeline to find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old.</p>
+<p>Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have. Arrange the rows in increasing order of age.</p>
+</div>
+</section>
+<section id="the-pipe---step-1" class="level2 small">
+<h2 class="small anchored" data-anchor-id="the-pipe---step-1">The pipe - Step 1</h2>
+<div class="task xsmall">
+<p>Write a single pipeline to find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<p>Start with the <code>gss</code> data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,294 × 9
+    year marital_status   age education_years children happiness     health
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; 
+ 1  2024 Never married     33              16        2 Not too happy Good  
+ 2  2024 Never married     64              16        0 Pretty happy  Good  
+ 3  2024 Married           69              14        0 Pretty happy  Good  
+ 4  2024 Never married     19              12        0 Pretty happy  Good  
+ 5  2024 Divorced          70              13        3 Not too happy Good  
+ 6  2024 Married           53              14        2 Pretty happy  Good  
+ 7  2024 Married           48              13        6 Pretty happy  Good  
+ 8  2024 Divorced          30              14        1 Not too happy Good  
+ 9  2024 Married           60              14        2 Very happy    Good  
+10  2024 Never married     25              12        0 Pretty happy  Good  
+# ℹ 3,284 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-2" class="level2 small">
+<h2 class="small anchored" data-anchor-id="the-pipe---step-2">The pipe - Step 2</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: <strong>retired</strong>, in excellent health, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">filter</span>(employment_status <span class="sc">==</span> <span class="st">"Retired"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 795 × 9
+    year marital_status   age education_years children happiness     health   
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;    
+ 1  2024 Never married     64              16        0 Pretty happy  Good     
+ 2  2024 Married           69              14        0 Pretty happy  Good     
+ 3  2024 Divorced          70              13        3 Not too happy Good     
+ 4  2024 Widowed           68               5        1 Very happy    Excellent
+ 5  2024 Married           NA              13       NA Very happy    Good     
+ 6  2024 Divorced          75              13        2 Pretty happy  Good     
+ 7  2024 Married           73              16        2 Pretty happy  Good     
+ 8  2024 Married           74              14        3 Pretty happy  Good     
+ 9  2024 Married           70              16       NA Very happy    Good     
+10  2024 Married           79              17        2 Pretty happy  Good     
+# ℹ 785 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-3" class="level2 small">
+<h2 class="small anchored" data-anchor-id="the-pipe---step-3">The pipe - Step 3</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: retired, <strong>in excellent health</strong>, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb26-3"><a href="#cb26-3"></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4"></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 120 × 9
+    year marital_status   age education_years children happiness     health   
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;    
+ 1  2024 Widowed           68               5        1 Very happy    Excellent
+ 2  2024 Widowed           83              16        0 Very happy    Excellent
+ 3  2024 Married           NA              16        2 Pretty happy  Excellent
+ 4  2024 Widowed           75              14        2 Pretty happy  Excellent
+ 5  2024 Divorced          72              16        3 Pretty happy  Excellent
+ 6  2024 Married           66              18        1 Pretty happy  Excellent
+ 7  2024 Widowed           NA               1        3 Pretty happy  Excellent
+ 8  2024 Divorced          66              16        1 Pretty happy  Excellent
+ 9  2024 Divorced          69              18        0 Not too happy Excellent
+10  2024 Married           NA              12        2 Very happy    Excellent
+# ℹ 110 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-4" class="level2 small">
+<h2 class="small anchored" data-anchor-id="the-pipe---step-4">The pipe - Step 4</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: retired, in excellent health, <strong>very happy</strong>, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb28-3"><a href="#cb28-3"></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5"></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 9
+    year marital_status   age education_years children happiness  health   
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    
+ 1  2024 Widowed           68               5        1 Very happy Excellent
+ 2  2024 Widowed           83              16        0 Very happy Excellent
+ 3  2024 Married           NA              12        2 Very happy Excellent
+ 4  2024 Divorced          NA              17        1 Very happy Excellent
+ 5  2024 Never married     71              18        0 Very happy Excellent
+ 6  2024 Married           75               2        6 Very happy Excellent
+ 7  2024 Divorced          66              16        3 Very happy Excellent
+ 8  2024 Married           79              13        1 Very happy Excellent
+ 9  2024 Divorced          71              18        2 Very happy Excellent
+10  2024 Married           74              17        1 Very happy Excellent
+# ℹ 34 more rows
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-5" class="level2 small">
+<h2 class="small anchored" data-anchor-id="the-pipe---step-5">The pipe - Step 5</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: retired, in excellent health, very happy, and <strong>younger than 50 years old</strong>. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb30-3"><a href="#cb30-3"></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4"></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5"></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span>,</span>
+<span id="cb30-6"><a href="#cb30-6"></a>    age <span class="sc">&lt;</span> <span class="dv">50</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 9
+   year marital_status   age education_years children happiness  health   
+  &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    
+1  2024 Never married     47              20        3 Very happy Excellent
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="the-pipe---step-7" class="level2 small">
+<h2 class="small anchored" data-anchor-id="the-pipe---step-7">The pipe - Step 7</h2>
+<div class="task xsmall">
+<p>Find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. <strong>Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</strong></p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb32-3"><a href="#cb32-3"></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb32-4"><a href="#cb32-4"></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5"></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6"></a>    age <span class="sc">&lt;</span> <span class="dv">50</span></span>
+<span id="cb32-7"><a href="#cb32-7"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a>  <span class="fu">select</span>(age, employment_status, health, happiness, children)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+    age employment_status health    happiness  children
+  &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+1    47 Retired           Excellent Very happy        3</code></pre>
+</div>
+</div>
+</section>
+<section id="in-this-class-you-will" class="level2 smaller page-columns page-full">
+<h2 class="smaller anchored" data-anchor-id="in-this-class-you-will">In this class, you will…</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Build cakes (<code>ggplot</code>) <img src="images/04/cake.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>Stack dolls (pipe <code>|&gt;</code>) <img src="images/04/matryoshka.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Master these constructs, and everything will be A-Ok!</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Source: <a href="https://unsplash.com/photos/white-pink-and-yellow-cake-GQvNc4bDRYw">Cake by Anirban Sengupta on Unsplash</a> and <a href="https://unsplash.com/photos/a-group-of-russian-nesting-dolls-sitting-on-a-table-YmULswIbc3I">Matryoshka dolls by Julia Kadel on Unsplash</a>.</p>
+</div></div></section>
+</section>
+<section id="wrap-up" class="level1">
+<h1>Wrap up</h1>
+<section id="getting-to-know-you-feedback-questions" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="getting-to-know-you-feedback-questions"><em>Getting to know you</em> feedback: Questions</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Is the course designed for students with no prior coding or statistics background?</li>
+<li>What is the balance between learning statistical concepts and programming in R? How often will students code?</li>
+<li>How should students use readings, videos, and other materials—and which are essential?</li>
+<li>What should students expect from discussion projects, collaboration, and required uploads?</li>
+<li>What will exams look like, and what practice or study materials will be available?</li>
+<li>Where can students get help, and what kinds of collaboration are appropriate?</li>
+<li>How does the course compare to COMPSCI 216 (Everything Data) and STA 323 (Statistical Computing)?</li>
+</ul>
+</div>
+</section>
+<section id="getting-to-know-you-feedback-concerns" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="getting-to-know-you-feedback-concerns"><em>Getting to know you</em> feedback: Concerns</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Dominant concern: lack of prior coding experience—especially learning R, syntax, troubleshooting, and technical tools such as Git and GitHub</li>
+<li>Keeping pace: falling behind or being less prepared than classmates</li>
+<li>Workload: time management for labs, HW, projects, and other commitments</li>
+<li>Assessment: format of exams, details of grading, and effective study strategies</li>
+<li>Smaller themes: Group-project dynamics, large-lecture setting, and confidence with math/statistical terminology</li>
+</ul>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+
+<script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sta199-f26\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/04-grammar-of-data-transformation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

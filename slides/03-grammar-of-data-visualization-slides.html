@@ -96,7 +96,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e6252c4e17f5bc7ca2b325d95856a013.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2a98be325e299d6b794465a705fa6e0e.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -339,21 +339,20 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,294 × 9
-    year marital_status   age education_years children happiness    
-   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        
- 1  2024 Never married     33              16        2 Not too happy
- 2  2024 Never married     64              16        0 Pretty happy 
- 3  2024 Married           69              14        0 Pretty happy 
- 4  2024 Never married     19              12        0 Pretty happy 
- 5  2024 Divorced          70              13        3 Not too happy
- 6  2024 Married           53              14        2 Pretty happy 
- 7  2024 Married           48              13        6 Pretty happy 
- 8  2024 Divorced          30              14        1 Not too happy
- 9  2024 Married           60              14        2 Very happy   
-10  2024 Never married     25              12        0 Pretty happy 
+    year marital_status   age education_years children happiness     health
+   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; 
+ 1  2024 Never married     33              16        2 Not too happy Good  
+ 2  2024 Never married     64              16        0 Pretty happy  Good  
+ 3  2024 Married           69              14        0 Pretty happy  Good  
+ 4  2024 Never married     19              12        0 Pretty happy  Good  
+ 5  2024 Divorced          70              13        3 Not too happy Good  
+ 6  2024 Married           53              14        2 Pretty happy  Good  
+ 7  2024 Married           48              13        6 Pretty happy  Good  
+ 8  2024 Divorced          30              14        1 Not too happy Good  
+ 9  2024 Married           60              14        2 Very happy    Good  
+10  2024 Never married     25              12        0 Pretty happy  Good  
 # ℹ 3,284 more rows
-# ℹ 3 more variables: health &lt;chr&gt;, employment_status &lt;chr&gt;,
-#   party_id &lt;chr&gt;</code></pre>
+# ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -441,7 +440,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 
 </div>
-<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" width="864" class="r-stretch"></section>
+<img data-src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-1.png" width="864" class="r-stretch"></section>
 <section id="participate" class="slide level2 smaller">
 <h2>Participate 📱💻</h2>
 <div class="columns">
@@ -472,7 +471,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </ul>
 </div>
 
-<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" width="864" class="r-stretch"></section>
+<img data-src="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-1-1.png" width="864" class="r-stretch"></section>
 <section id="plot-autopsy" class="slide level2 smaller">
 <h2>Plot autopsy</h2>
 <div class="cell" data-code-annotations="below">
@@ -553,7 +552,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" width="672"></p>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-simplified-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -573,7 +572,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" width="672"></p>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -587,7 +586,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" width="672"></p>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-setting-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -634,82 +633,6 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li><p>Open <code>ae-01-gss-dataviz.qmd</code> in Positron and follow the instructions to complete the application exercise.</p></li>
 </ul>
 </div>
-</section></section>
-<section>
-<section id="wrap-up" class="title-slide slide level1 center">
-<h1>Wrap up</h1>
-
-</section>
-<section id="start-with-the-question" class="slide level2 smaller">
-<h2>Start with the question</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Question</th>
-<th>Variables</th>
-<th>A useful first plot</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>What values are common?</td>
-<td>One categorical</td>
-<td><span class="fragment">Bar chart</span></td>
-</tr>
-<tr class="even">
-<td>What is the distribution?</td>
-<td>One numerical</td>
-<td><span class="fragment">Histogram or boxplot</span></td>
-</tr>
-<tr class="odd">
-<td>Do groups differ?</td>
-<td>Numerical + categorical</td>
-<td><span class="fragment">Boxplot or histogram by group</span></td>
-</tr>
-<tr class="even">
-<td>Are two categorical variables associated?</td>
-<td>Two categorical</td>
-<td><span class="fragment">Filled or dodged bar chart</span></td>
-</tr>
-<tr class="odd">
-<td>Are two numerical variables associated?</td>
-<td>Two numerical</td>
-<td><span class="fragment">Scatterplot</span></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="interesting-qs---many-variables" class="slide level2 xsmall">
-<h2>Interesting Qs &lt;-&gt; many variables</h2>
-<p>Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as <code>color</code>, <code>shape</code>, <code>size</code>, <code>linewidth</code>, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):</p>
-
-<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/four-vars-1.png" width="864" class="r-stretch"></section>
-<section id="getting-to-know-you-feedback-questions" class="slide level2 smaller">
-<h2><em>Getting to know you</em> feedback: Questions</h2>
-<ul>
-<li class="fragment">Is the course designed for students with no prior coding or statistics background?</li>
-<li class="fragment">What is the balance between learning statistical concepts and programming in R? How often will students code?</li>
-<li class="fragment">How should students use readings, videos, and other materials—and which are essential?</li>
-<li class="fragment">What should students expect from discussion projects, collaboration, and required uploads?</li>
-<li class="fragment">What will exams look like, and what practice or study materials will be available?</li>
-<li class="fragment">Where can students get help, and what kinds of collaboration are appropriate?</li>
-<li class="fragment">How does the course compare to COMPSCI 216 (Everything Data) and STA 323 (Statistical Computing)?</li>
-</ul>
-</section>
-<section id="getting-to-know-you-feedback-concerns" class="slide level2 smaller">
-<h2><em>Getting to know you</em> feedback: Concerns</h2>
-<ul>
-<li class="fragment">Dominant concern: lack of prior coding experience—especially learning R, syntax, troubleshooting, and technical tools such as Git and GitHub</li>
-<li class="fragment">Keeping pace: falling behind or being less prepared than classmates</li>
-<li class="fragment">Workload: time management for labs, HW, projects, and other commitments</li>
-<li class="fragment">Assessment: format of exams, details of grading, and effective study strategies</li>
-<li class="fragment">Smaller themes: Group-project dynamics, large-lecture setting, and confidence with math/statistical terminology</li>
-</ul>
 
 
 </section></section>
@@ -929,44 +852,6 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
