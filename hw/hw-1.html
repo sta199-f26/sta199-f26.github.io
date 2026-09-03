@@ -102,8 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><meta name="quarto:status" content="draft">
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -298,7 +297,7 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -510,7 +509,7 @@ window.Quarto = {
   <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
   </ul>
 </li>
-  <li><a href="#feedback-from-ai" id="toc-feedback-from-ai" class="nav-link" data-scroll-target="#feedback-from-ai">🤖 Feedback from AI</a></li>
+  <li><a href="#ai-support-and-feedback" id="toc-ai-support-and-feedback" class="nav-link" data-scroll-target="#ai-support-and-feedback">AI support and feedback</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   </ul>
 </li>
@@ -525,7 +524,7 @@ window.Quarto = {
   <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   </ul>
 </li>
-  <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI Use Disclosure</a></li>
+  <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI use disclosure</a></li>
   <li>
 <a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
   <ul class="collapse">
@@ -612,12 +611,27 @@ window.Quarto = {
 <ul>
 <li>You should have at least 3 commits with meaningful commit messages by the end of the assignment.</li>
 <li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
-</ul></section></section><section id="feedback-from-ai" class="level2"><h2 class="anchored" data-anchor-id="feedback-from-ai">🤖 Feedback from AI</h2>
-<p>You can get immediate feedback on all of the questions with AI, based on rubrics designed by the course instructor.</p>
-<p><strong>TO DO:</strong> Add specific instructions for AI feedback.</p>
-<p>The video below demonstrates how to use the AI feedback tool.</p>
-<p><strong>TO DO:</strong> Add video walkthrogh for AI feedback.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EyT6QQN1ouQ?si=DsG-laE30BykMJby" title="Feedback with AI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</ul></section></section><section id="ai-support-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="ai-support-and-feedback">AI support and feedback</h2>
+<p>You can get immediate support as well as feedback on all of the questions with AI, based on rubrics designed by the course instructor, via the Codex extension in Positron, and using AI access provided by Duke University.</p>
+<p>When working on your assignment, feel free to ask Codex for help, but don’t ask it to do your work for you. After completing a question, ask Codex to provide feedback on your answer, e.g., “Review my answer for Question 1.”</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Since this is your first time using Codex in Positron, you will first need to install the relevant extension and log in. To do so,</p>
+<ul>
+<li>Click on the Extensions icon in your activity bar.</li>
+<li>Search for <code>Codex</code> and install the <code>Codex - OpenAI's coding agent</code> extension.</li>
+</ul>
+<p>Then, log in with your Duke credentials. To do so, in the Codex window in Positron, click on “More options” and then “Use device code”. This will ask if you want to open an external website, click Open, and then paste the device code provided.</p>
+</div>
+</div>
 </section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization, <strong>scales</strong> for better axis labels, and <strong>ggthemes</strong> for additional color palettes.</p>
 <div class="cell">
@@ -734,7 +748,7 @@ Tip
 <p>Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>And once again, make sure to commit and push all changed files so that your source control pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re following along with the version control instructions.</p>
 </div>
-</section></section><section id="ai-use-disclosure" class="level1"><h1>AI Use Disclosure</h1>
+</section></section><section id="ai-use-disclosure" class="level1"><h1>AI use disclosure</h1>
 <p>The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.</p>
 <ul>
 <li><p>Did you use an LLM / generative AI tool when completing this assignment? (Yes or No)</p></li>
@@ -791,6 +805,7 @@ Checklist
 <p>Make sure you have:</p>
 <ul>
 <li>attempted all questions</li>
+<li>included an AI use disclosure</li>
 <li>rendered your Quarto document</li>
 <li>committed and pushed everything to your GitHub repository such that the Git pane in Positron is empty</li>
 <li>uploaded your PDF to Gradescope</li>
