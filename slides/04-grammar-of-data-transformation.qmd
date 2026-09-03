@@ -1,0 +1,552 @@
+---
+title: "Grammar of data transformation"
+subtitle: "Lecture 4"
+date: "2026-09-02"
+format: 
+  revealjs: 
+    output-file: 04-grammar-of-data-transformation-slides.html
+    footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    logo: "slides/images/logo.png" 
+    toc: false
+  html: 
+    code-link: true
+---
+
+# Warm up
+
+## While you wait: Participate 📱 {.smaller}
+
+::: {.columns}
+
+::: {.column width="70%"}
+
+::: wooclap
+Which of the following is **true** about the code below?
+
+```{r}
+#| eval: false
+#| message: false
+ggplot(mtcars, _[blank]_(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth()
+```
+
+::: wooclap-choices
+- `mtcars` is the name of the variable being plotted on the x-axis
+- The function that goes in the blank is `map()`
+- The data are being visualized with a scatterplot and a smooth line
+- Some points on the plot will be colored differently than others
+:::
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/04/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/LISGDPO) and use the code LISGDPO.
+
+:::
+
+::: 
+
+## Announcements
+
+-   Following along with code along videos: See <https://sta199-f26.github.io/computing-code-alongs.html>
+
+-   Lab 1 is tomorrow, HW 1 is due next Wednesday
+
+-   No class on Monday, September 7 (Labor Day)
+
+# From last time
+
+## Let's get laptops out! {.smaller}
+
+::: {.columns}
+
+::: {.column}
+
+**If you were here on Monday and worked on `ae-01`:**
+
+::: appex
+- Go to Positron and open your `ae` project.
+
+- Open `ae-01-gss-dataviz.qmd` in Positron and pick up where we left off.
+:::
+
+:::
+
+::: {.column}
+
+**If you're new here and didn't work on `ae-01`:**
+
+::: appex
+- Go to the [course GitHub organization](https://github.com/sta199-f26) and clone `ae-YOUR-GITHUB-NAME` repo to [your Positron session](https://cmgr.oit.duke.edu/containers) in your container.
+
+- Open `ae-01-gss-dataviz.qmd` in Positron and follow the instructions to complete the application exercise.
+:::
+
+:::
+
+:::
+
+## Start with the question {.smaller}
+
+| Question | Variables | A useful first plot |
+|---|---|---|
+| What values are common? | One categorical | [Bar chart]{.fragment} |
+| What is the distribution? | One numerical | [Histogram or boxplot]{.fragment} |
+| Do groups differ? | Numerical + categorical | [Boxplot or histogram by group]{.fragment} |
+| Are two categorical variables associated? | Two categorical | [Filled or dodged bar chart]{.fragment} |
+| Are two numerical variables associated? | Two numerical | [Scatterplot]{.fragment} |
+
+## Interesting Qs <-> many variables {.xsmall}
+
+Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as `color`, `shape`, `size`, `linewidth`, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):
+
+```{r}
+#| label: four-vars
+#| echo: false
+#| warning: false
+#| fig-asp: 0.5
+#| fig-width: 9
+library(tidyverse)
+gss <- read_csv("data/gss-2024.csv")
+gss |>
+  filter(!is.na(happiness), !is.na(health)) |>
+  ggplot(aes(y = age, x = happiness, color = health, fill = health)) +
+  geom_boxplot(show.legend = FALSE, alpha = 0.5) +
+  facet_wrap(~marital_status, nrow = 1) +
+  labs(
+    title = "Happiness, health, and age",
+    y = "Age (years)",
+    x = "Happiness",
+    color = "Health",
+    caption = "Source: 2024 General Social Survey (GSS), NORC"
+  ) +
+  theme_bw() +
+  ggthemes::scale_colour_colourblind() +
+  ggthemes::scale_fill_colourblind() +
+  scale_x_discrete(labels = scales::label_wrap(10))
+```
+
+# A short list<br>(for now)<br>of R essentials
+
+## Packages {.smaller}
+
+-   Installed with `install.packages()`, once per system:
+
+```{r}
+#| eval: false
+install.packages("tidyverse")
+```
+
+::: callout-note
+
+We already pre-installed many of the package you'll need for this course, so you might go the whole semester without needing to run `install.packages()`!
+
+:::
+
+. . .
+
+-   Loaded with `library()`, once per session:
+
+```{r}
+#| label: load-tidyverses
+library(tidyverse)
+```
+
+## tidyverse
+
+::: hand
+
+aka the package you'll hear about the most...
+
+:::
+
+::: columns
+
+::: {.column width="40%"}
+
+[![](images/02/tidyverse.png){fig-alt="Hex logos for dplyr, ggplot2, forcats, tibble, readr, stringr, tidyr, and purrr"}](https://tidyverse.org)
+
+:::
+
+::: {.column .fragment width="60%"}
+
+[tidyverse.org](https://www.tidyverse.org/)
+
+-   The **tidyverse** is an opinionated collection of R packages designed for data science
+-   All packages share an underlying philosophy and a common grammar
+
+:::
+
+:::
+
+## Data frames and variables
+
+-   Each row of a data frame is an **observation**
+
+. . .
+
+-   Each column of a data frame is a **variable**
+
+. . .
+
+-   Columns (variables) in data frames can be accessed with `$`:
+
+```{r}
+#| eval: false
+dataframe$variable_name
+```
+
+## `gss` data frame {.smaller}
+
+```{r}
+gss
+```
+
+## `health` variable {.smaller}
+
+```{r}
+gss$health
+```
+
+## Participate 📱 {.smaller}
+
+::: {.columns}
+
+::: {.column width="70%"}
+
+::: wooclap
+
+Why did the error occur?
+
+```{r}
+#| label: happiness-error
+#| error: true
+happiness
+```
+
+::: wooclap-choices
+- Name of the variable is misspelled
+- There is no such variable in the gss data frame
+- Must refer to variable in a data frame with `$`: `gss$happiness`
+- Must refer to variable in a data frame with `|>`: `gss |> happiness`
+- Must refer to variable in a data frame with `$`: `happiness$gss`
+:::
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/04/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/LISGDPO) and use the code LISGDPO.
+:::
+
+:::
+
+## `function(argument)`
+
+Functions are (most often) verbs, followed by what they will be applied to in parentheses, and separated by commas:
+
+```{r}
+#| eval: false
+do_this(to_this)
+do_that(to_this, to_that, with_those)
+```
+
+## Help
+
+::: columns
+
+::: {.column}
+
+Object documentation can be accessed with `?`
+
+```{r}
+#| eval: false
+?mean
+```
+
+:::
+
+::: {.column}
+
+![](images/04/mean-docs.mov){fig-alt="Documentation for mean function in R."}
+
+:::
+
+:::
+
+# Data transformation
+
+## A quick reminder {.smaller}
+
+```{r}
+#| code-line-numbers: "|1|2|3"
+gss |> # <1>
+  filter(age > 45) |> # <2>
+  select(age, employment_status, party_id, happiness) # <3>
+```
+
+1.  Start with the `gss` data frame
+2.  Filter for respondents older than 45
+3.  Select the columns `age`, `employment_status`, `party_id`, and `happiness`
+
+## Participate 📱💻 {.smaller}
+
+::: {.columns}
+
+::: {.column width="70%"}
+
+::: wooclap
+In data transformation with the pipe operator `|>`, what does the operator do?
+
+::: wooclap-choices
+- It ends a pipeline and prints the result.
+- It joins two data frames together.
+- It passes the output from the previous command into the first argument of the function in the next command.
+- It is equivalent to the "or" operator.
+:::
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/04/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/LISGDPO) and use the code LISGDPO.
+
+:::
+
+::: 
+
+## The pipe `|>` {.smaller}
+
+The pipe operator passes what comes before it into the function that comes after it as the first argument in that function.
+
+::: columns
+
+::: {.column .fragment}
+
+```{r}
+sum(1, 2)
+```
+
+:::
+
+::: {.column .fragment}
+
+```{r}
+1 |>
+  sum(2)
+```
+
+:::
+
+:::
+
+<br>
+
+::: columns
+
+::: {.column .fragment}
+
+```{r}
+select(filter(gss, age > 50), health)
+```
+
+:::
+
+::: {.column .fragment}
+
+```{r}
+gss |>
+  filter(age > 50) |>
+  select(health)
+```
+
+:::
+
+:::
+
+## Code style tip {{< fa lightbulb >}} {.smaller}
+
+::: {.columns}
+
+::: {.column}
+
+In data **transformation** pipelines, always use a
+
+-   space before `|>`
+-   line break after `|>`
+-   indent next line of code
+
+:::
+
+::: {.column .fragment}
+
+In data **visualization** layers, always use a
+
+-   space before `+`
+-   line break after `+`
+-   indent next line of code
+
+:::
+
+:::
+
+::: {.callout-tip .fragment}
+Positron automatically takes care of this formatting when you save a document, or when you preview and it saves it for you. Don't be surprised when it moves your code around to correct your code style!
+:::
+
+## The pipe, in action
+
+::: task
+Write a single pipeline to find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. 
+
+Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have. Arrange the rows in increasing order of age.
+:::
+
+## The pipe - Step 1 {.small}
+
+::: {.task .xsmall}
+Write a single pipeline to find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.
+:::
+
+Start with the `gss` data frame:
+
+```{r}
+gss
+```
+
+## The pipe - Step 2 {.small}
+
+::: {.task .xsmall}
+Find respondents who are living the dream: **retired**, in excellent health, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.
+:::
+
+```{r}
+#| code-line-numbers: "2"
+gss |>
+  filter(employment_status == "Retired")
+```
+
+## The pipe - Step 3 {.small}
+
+::: {.task .xsmall}
+Find respondents who are living the dream: retired, **in excellent health**, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.
+:::
+
+```{r}
+#| code-line-numbers: "4"
+gss |>
+  filter(
+    employment_status == "Retired",
+    health == "Excellent"
+  )
+```
+
+## The pipe - Step 4 {.small}
+
+::: {.task .xsmall}
+Find respondents who are living the dream: retired, in excellent health, **very happy**, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.
+:::
+
+```{r}
+#| code-line-numbers: "5"
+gss |>
+  filter(
+    employment_status == "Retired",
+    health == "Excellent",
+    happiness == "Very happy"
+  )
+```
+
+## The pipe - Step 5 {.small}
+
+::: {.task .xsmall}
+Find respondents who are living the dream: retired, in excellent health, very happy, and **younger than 50 years old**. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.
+:::
+
+```{r}
+#| code-line-numbers: "6"
+gss |>
+  filter(
+    employment_status == "Retired",
+    health == "Excellent",
+    happiness == "Very happy",
+    age < 50
+  )
+```
+
+## The pipe - Step 7 {.small}
+
+::: {.task .xsmall}
+Find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. **Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.**
+:::
+
+```{r}
+#| code-line-numbers: "8"
+gss |>
+  filter(
+    employment_status == "Retired",
+    health == "Excellent",
+    happiness == "Very happy",
+    age < 50
+  ) |>
+  select(age, employment_status, health, happiness, children)
+```
+
+## In this class, you will... {.smaller}
+
+::: columns
+::: {.column width="50%"}
+Build cakes (`ggplot`) ![](images/04/cake.png)
+:::
+
+::: {.column width="50%"}
+Stack dolls (pipe `|>`) ![](images/04/matryoshka.png)
+:::
+:::
+
+Master these constructs, and everything will be A-Ok!
+
+::: aside
+Source: [Cake by Anirban Sengupta on Unsplash](https://unsplash.com/photos/white-pink-and-yellow-cake-GQvNc4bDRYw) and [Matryoshka dolls by Julia Kadel  on Unsplash](https://unsplash.com/photos/a-group-of-russian-nesting-dolls-sitting-on-a-table-YmULswIbc3I).
+:::
+
+# Wrap up
+
+## *Getting to know you* feedback: Questions {.smaller}
+
+::: incremental
+- Is the course designed for students with no prior coding or statistics background?
+- What is the balance between learning statistical concepts and programming in R? How often will students code?
+- How should students use readings, videos, and other materials—and which are essential?
+- What should students expect from discussion projects, collaboration, and required uploads?
+- What will exams look like, and what practice or study materials will be available?
+- Where can students get help, and what kinds of collaboration are appropriate?
+- How does the course compare to COMPSCI 216 (Everything Data) and STA 323 (Statistical Computing)?
+:::
+
+## *Getting to know you* feedback: Concerns {.smaller}
+
+::: incremental
+- Dominant concern: lack of prior coding experience—especially learning R, syntax, troubleshooting, and technical tools such as Git and GitHub
+- Keeping pace: falling behind or being less prepared than classmates
+- Workload: time management for labs, HW, projects, and other commitments
+- Assessment: format of exams, details of grading, and effective study strategies
+- Smaller themes: Group-project dynamics, large-lecture setting, and confidence with math/statistical terminology
+:::

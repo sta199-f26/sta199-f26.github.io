@@ -1,0 +1,133 @@
+---
+title: HW 1 Rubric
+subtitle: Rubric
+---
+
+This is the rubric for AI feedback, not necessarily the rubric for grading.
+
+## Question 1
+
+1.  All code uses appropriate tidyverse functions and syntax.
+
+2.  Code produces a histogram with binwidth 5.
+
+3.  Code produces a histogram with binwidth 50.
+
+4.  Code produces a histogram with binwidth 500.
+
+5.  All plots have informative and human-readable titles and/or subtitles and axis labels.
+
+6.  Code style and readability: Line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present.
+
+7.  Narrative mentions the most appropriate binwidth among the choices.
+    - Note: Most appropriate binwidth among the choices: 50.
+
+8.  Narrative states a well-articulated and accurate reason for the chosen binwidth.
+    - Sample well-articulated and accurate reason: A much smaller binwidth results in too much detail in the histogram and a much larger binwidth hides important details binning too much of the data together.
+
+## Question 2
+
+1.  Code produces a boxplot with `weeks_on_chart` on either the x-axis or y-axis.
+
+2.  Plot has an informative title and/or subtitle and a human-readable axis label on the axis where `weeks_on_chart` is plotted.
+    - Note: A label on the other axis is optional since it is not meaningful in a boxplot.
+
+3.  Narrative mentions shape: the distribution is right-skewed and unimodal.
+
+4.  Narrative mentions center: a roughly estimated value or range of values for the median, approximately 45 weeks.
+
+5.  Narrative mentions spread: a roughly estimated value or range of values for the IQR or for the bounds of the middle 50% of the distribution, approximately 15 to 124 weeks.
+
+6.  Code uses `filter()` to identify all outliers.
+    - Note: The cutoff should be around 285 but doesn't have to be exactly that value.
+
+7.  Code uses `select()` to keep only `artist`, `song`, `weeks_on_chart`, and `rank` in the outlier output.
+
+8.  Code arranges the data frame in descending order of `weeks_on_chart`.
+
+9.  Narrative mentions something about expectedness/unexpectedness of outliers.
+    - Note: Any reasonable answer is acceptable, including "having had no expectations".
+
+10. Code style and readability: Line breaks after each `|>`, line breaks after each `+`, proper indentation, spaces around `=` signs if they are present, and spaces after commas if they are present.
+
+## Question 3
+
+
+1.  Code creates `positions_below_peak` with `mutate()` using `rank - peak_rank`.
+
+2.  Code uses a single data wrangling pipeline to produce the requested output.
+
+3.  Code identifies the 10 songs farthest below their peak rank.
+
+4.  Code orders the songs so that the largest values of `positions_below_peak` appear first.
+
+5.  Code uses `select()` to keep `song`, `artist`, `rank`, `peak_rank`, `positions_below_peak`, and `weeks_on_chart` in the output.
+
+6.  The output contains exactly 10 songs.
+
+7.  Narrative identifies a pattern supported by the output.
+
+8.  Narrative selects one song from the results and gives a plausible explanation for why it may be charting below its earlier peak.
+
+9.  The explanation is clearly presented as a hypothesis rather than a conclusion supported by these data alone.
+
+10. Code style and readability: Line breaks after each `|>`, proper indentation, spaces around `=` signs if they are present, and spaces after commas if they are present.
+
+## Question 4
+
+1.  Code produces a scatterplot with `geom_point()`.
+
+2.  Code maps `weeks_on_chart` to the x-axis and `positions_below_peak` to the y-axis.
+
+3.  Plot has an informative title and/or subtitle and human-readable axis labels that include appropriate units.
+
+4.  Narrative accurately describes the relationship between `weeks_on_chart` and `positions_below_peak`, such as a very weak positive relationship with substantial variability.
+
+5.  Code uses a single pipeline to identify a song that has been on the chart for a long time while remaining close to its peak rank: Riptde by Vance Joy.
+
+6.  Code uses `select()` to display `song`, `artist`, `rank`, `peak_rank`, `positions_below_peak`, and `weeks_on_chart`.
+
+7.  Narrative correctly identifies where the selected song appears on the scatterplot, such as far to the right and close to the bottom.
+
+8. Code style and readability: Line breaks after each `|>` and `+`, proper indentation, spaces around `=` signs if they are present, and spaces after commas if they are present.
+
+## Question 5
+
+1.  Code uses appropriate tidyverse functions and syntax.
+
+2.  Code identifies the genres with at least 10 songs on the chart and excludes genres with fewer than 10 songs from the plot.
+
+3.  Code produces side-by-side boxplots with `streams` plotted by `genre`.
+
+4.  Plot has an informative title and/or subtitle and human-readable axis labels for genre and weekly streams.
+
+5.  Narrative accurately compares typical weekly stream counts across the included genres, such as by comparing their medians.
+
+6.  Narrative accurately compares the variability of weekly stream counts across the included genres, such as by comparing their IQRs or overall spreads.
+
+7.  Narrative answers the initial question by explaining whether songs from some genres tend to have higher weekly stream counts than others.
+
+8.  Code uses a single pipeline to identify the single most-streamed song among the included genres.
+    - Note: There are multiple ways of identifying this song. A hard-coded list of eligible genres is also acceptable if it includes only genres with at least 10 songs.
+
+9.  Code identifies the correct song, artist, genre, and weekly stream count: "Earrings" by Malcolm Todd, a Pop song, with 25,092,481 streams.
+
+10. Code style and readability: Line breaks after each `|>`, line breaks after each `+`, proper indentation, spaces around `=` signs if they are present, and spaces after commas if they are present.
+
+## Question 6
+
+1.  Code creates `stream_level` with `mutate()` and `if_else()`, classifying songs according to whether `streams` is above the overall median.
+
+2.  Code produces a segmented bar plot with one bar for each genre and fills the bars according to `stream_level`.
+
+3.  Code includes only genres with at least 10 songs on the chart.
+
+4.  The y-axis represents proportions from 0 to 1.
+
+5.  Plot has an informative title and/or subtitle and human-readable axis labels.
+
+6.  Narrative compares the proportions of above-median songs across the included genres using reasonable approximate values.
+
+7.  Narrative correctly identifies Pop as having the highest proportion and Electronic as having the lowest proportion of songs above the overall median.
+
+8.  Code style and readability: Line breaks after each `|>`, line breaks after each `+`, proper indentation, spaces around `=` signs if they are present, and spaces after commas if they are present.
