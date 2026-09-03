@@ -523,8 +523,6 @@ window.Quarto = {
   <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
   <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
-  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
   </ul>
 </li>
   <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI Use Disclosure</a></li>
@@ -623,9 +621,7 @@ window.Quarto = {
 </section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <p>You will use the <strong>tidyverse</strong> package for data wrangling and visualization, <strong>scales</strong> for better axis labels, and <strong>ggthemes</strong> for additional color palettes.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jrnold.github.io/ggthemes/">ggthemes</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="questions" class="level1"><h1>Questions</h1>
 <p>For this homework, you will use the Spotify data from <a href="../lab/lab-1.html">Lab 1</a>.</p>
@@ -738,31 +734,6 @@ Tip
 <p>Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 <p>And once again, make sure to commit and push all changed files so that your source control pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re following along with the version control instructions.</p>
 </div>
-</section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
-<p>Create an overlaid density plot that compares the distribution of weekly streams (<code>streams</code>) by <code>genre</code>. Include only genres with at least 10 songs on the chart. Use filled density curves with transparency so that overlapping distributions remain visible, and use a colorblind-friendly color palette. Then, highlight one feature of weekly streams that this plot reveals in 1-2 sentences.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hints
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>x-axis: You can modify the x-axis labels to use commas in a <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code> layer. The <strong>scales</strong> package offers a handy function for formatting numbers, <code><a href="https://scales.r-lib.org/reference/label_number.html">label_comma()</a></code>. You can use this in the <code>labels</code> argument of <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous()</a></code>. In, <code><a href="https://scales.r-lib.org/reference/label_number.html">label_comma()</a></code>, set a <code>scale</code> and <code>suffix</code>.</p></li>
-<li><p>Color palette: The <code><a href="https://jrnold.github.io/ggthemes/reference/colorblind.html">scale_color_colorblind()</a></code> and <code><a href="https://jrnold.github.io/ggthemes/reference/colorblind.html">scale_fill_colorblind()</a></code> functions from the <strong>ggthemes</strong> package provide a color palette that is friendly for individuals with color vision deficiencies.</p></li>
-<li><p>Transparency: You should adjust the transparency of the filled density curves. You don’t have to worry about the exact transparency value, but you should try a few to get close.</p></li>
-<li><p>Theme: This plot uses a non-default theme. See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme options documentation</a> for options.</p></li>
-<li><p>Legend: You should move the legend to the top of the plot. You can do this in a <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> layer. See <a href="https://ggplot2.tidyverse.org/reference/theme.html">theme documentation</a> to identify the argument you need to change to move the legend.</p></li>
-<li><p>Aspect ratio: You can adjust the aspect ratio by setting the <code>fig-asp</code> option in the code cell. A smaller (closer to 0) value makes the plot shorter and wider, while a larger (closer to 1) value makes the plot square-ish.</p></li>
-<li><p>Width: You can also adjust the width of the plot by setting the <code>fig-width</code> option in the code cell. A larger value makes the plot wider.</p></li>
-</ul>
-</div>
-</div>
-</section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
-<p>Did you select your pages on Gradescope? <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> You don’t need to write an answer for this question.</p>
 </section></section><section id="ai-use-disclosure" class="level1"><h1>AI Use Disclosure</h1>
 <p>The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.</p>
 <ul>
@@ -823,6 +794,7 @@ Checklist
 <li>rendered your Quarto document</li>
 <li>committed and pushed everything to your GitHub repository such that the Git pane in Positron is empty</li>
 <li>uploaded your PDF to Gradescope</li>
+<li>selected your pages on Gradescope for each question</li>
 </ul>
 </div>
 </div>
@@ -841,7 +813,6 @@ Checklist
 </section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
 <li id="fn1"><p>See Spotify’s chart documentation: <a href="https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/" class="uri">https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Selecting your pages for each question makes the grading process much smoother.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
