@@ -2,8 +2,9 @@
 title: HW 1
 subtitle: Exploring Spotify charts and ...
 description: "Due: Wed, Sep 9, 11:59 pm"
+filters:
+  - ../remove-fmt-skip.lua
 categories: HW
-draft: true
 ---
 
 # Introduction
@@ -36,9 +37,19 @@ The guidelines should feel familiar, as they are the same ones from the lab! The
 
 {{< include _guidelines.qmd >}}
 
-## 🤖 Feedback from AI
+## AI support and feedback
 
-{{< include _ai-feedback.qmd >}}
+{{< include _ai-support-feedback.qmd >}}
+
+::: callout-important
+Since this is your first time using Codex in Positron, you will first need to install the relevant extension and log in.
+To do so,
+
+- Click on the Extensions icon in your activity bar.
+- Search for `Codex` and install the `Codex - OpenAI's coding agent` extension.
+
+Then, log in with your Duke credentials. To do so, in the Codex window in Positron, click on "More options" and then "Use device code". This will ask if you want to open an external website, click Open, and then paste the device code provided.
+:::
 
 ## Packages
 
@@ -179,33 +190,9 @@ Now is another good time to preview, commit, and push your changes to GitHub wit
 And once again, make sure to commit and push all changed files so that your source control pane is empty afterward. We keep repeating this because it's important and because we see students forget to do this. So take a moment to make sure you're following along with the version control instructions.
 :::
 
-# AI Use Disclosure
+# AI use disclosure
 
-The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.
-
-- Did you use an LLM / generative AI tool when completing this assignment? (Yes or No)
-
-- If Yes, list all of the ways you used it from the list below.
-  - I used it to clarify the question(s).
-  - I used it to better understand concept(s). 
-  - I asked it to help write code. 
-  - I gave it my code and asked it to help fix it. 
-  - I asked it about an error or unexpected code behavior. 
-  - I used it to get feedback on my answer(s). 
-  - I pasted the question prompt in and asked for help, but wrote my own answer. 
-  - I pasted the question prompt in and copied at least part of its response into my Quarto document.
-  - Other (please specify)
-
-- If Yes, list all the AI tools you used.
-  - Include the model name and version (if known). For example, "ChatGPT GPT-5.5" or "Claude Sonnet 4".
-  - Include the tool as well. For example, "Codex extension in Positron", "ChatGPT in a web browser", etc.
-
-Additionally, cite any other non-AI sources you used to help you complete the assignment, along with the question(s) for which you used each source.
-
-**Sample citations:**
-
-- Example 1: All questions: 5.6 Luna Light, in Codex in Positron.
-- Example 2: I used ChatGPT GPT-5.5 for Questions 5 and 7. Prompt: "Why did my code have an error?" (pasted code). 
+{{< include _disclosure.qmd >}}
 
 # Wrap-up
 
