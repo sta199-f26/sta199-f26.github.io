@@ -48,8 +48,6 @@ You will use the **tidyverse** package for data wrangling and visualization, **s
 #| eval: true
 #| message: false
 library(tidyverse)
-library(scales)
-library(ggthemes)
 ```
 
 # Questions
@@ -180,34 +178,6 @@ Now is another good time to preview, commit, and push your changes to GitHub wit
 
 And once again, make sure to commit and push all changed files so that your source control pane is empty afterward. We keep repeating this because it's important and because we see students forget to do this. So take a moment to make sure you're following along with the version control instructions.
 :::
-
-## Question 7
-
-Create an overlaid density plot that compares the distribution of weekly streams (`streams`) by `genre`. Include only genres with at least 10 songs on the chart. Use filled density curves with transparency so that overlapping distributions remain visible, and use a colorblind-friendly color palette. Then, highlight one feature of weekly streams that this plot reveals in 1-2 sentences.
-
-::: callout-tip
-#### Hints
-
-- x-axis: You can modify the x-axis labels to use commas in a `scale_x_continuous()` layer. The **scales** package offers a handy function for formatting numbers, `label_comma()`. You can use this in the `labels` argument of `scale_x_continuous()`. In, `label_comma()`, set a `scale` and `suffix`.
-
-- Color palette: The `scale_color_colorblind()` and `scale_fill_colorblind()` functions from the **ggthemes** package provide a color palette that is friendly for individuals with color vision deficiencies.
-
-- Transparency: You should adjust the transparency of the filled density curves. You don't have to worry about the exact transparency value, but you should try a few to get close.
-
-- Theme: This plot uses a non-default theme. See [theme options documentation](https://ggplot2.tidyverse.org/reference/ggtheme.html) for options.
-
-- Legend: You should move the legend to the top of the plot. You can do this in a `theme()` layer. See [theme documentation](https://ggplot2.tidyverse.org/reference/theme.html) to identify the argument you need to change to move the legend.
-
-- Aspect ratio: You can adjust the aspect ratio by setting the `fig-asp` option in the code cell. A smaller (closer to 0) value makes the plot shorter and wider, while a larger (closer to 1) value makes the plot square-ish.
-
-- Width: You can also adjust the width of the plot by setting the `fig-width` option in the code cell. A larger value makes the plot wider.
-:::
-
-## Question 8
-
-Did you select your pages on Gradescope? [^2] You don't need to write an answer for this question.
-
-[^2]: Selecting your pages for each question makes the grading process much smoother.
 
 # AI Use Disclosure
 
