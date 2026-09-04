@@ -66,7 +66,8 @@ library(tidyverse)
 For this homework, you will use the Spotify data from [Lab 1](../lab/lab-1.qmd).
 
 You will analyze a fixed snapshot of the first 200 songs on Spotify's Global Weekly chart for the week dated August 27, 2026. Each row represents a song.
-Spotify releases a new chart every week, and a website called [Kworb.net](https://kworb.net/) republishes a snapshot of these data weekly. This week's data was retrieved from [Kworb's republished Spotify Global Weekly chart](https://kworb.net/spotify/country/global_weekly.html) on August 29, 2026.
+Spotify releases a new chart every week, and a website called [Kworb.net](https://kworb.net/) republishes a snapshot of these data weekly. 
+This week's data was retrieved from [Kworb's republished Spotify Global Weekly chart](https://kworb.net/spotify/country/global_weekly.html) on August 29, 2026.
 Spotify states that its chart stream counts are generated using a formula that filters for chart eligibility, so `streams` should not be interpreted as every raw Spotify play.[^1] The data also include a broad `genre` classification. These labels describe the credited artist's general musical style, not necessarily the genre of every individual song; artists and songs can belong to more than one genre.
 
 [^1]: See Spotify's chart documentation: <https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/>.
