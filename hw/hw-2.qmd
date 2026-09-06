@@ -81,7 +81,9 @@ nc_county <- read_csv("data/nc-county.csv")
 
 ### Question 1
 
-Calculate the number of counties in each `county_type` and display your results in descending order of the number of counties.
+a. Report the number of rows and columns in `nc_county`.
+
+b. Calculate the number of counties in each `county_type` and display your results in descending order of the number of counties.
 
 Which county type has the highest number of counties, and how many counties does it contain?
 Which county type has the lowest number, and how many counties does it contain?
@@ -110,24 +112,6 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 
 ### Question 3
 
-Use population density to identify the most densely populated counties in North Carolina.
-
-1. Identify all counties with a population density greater than 500 people per square mile. Your code must use `filter()`.
-
-2. Identify the county with the highest population density. Your code must use `max()`.
-
-Answer each part using a single data-wrangling pipeline.
-Your response should be a data frame with the following five columns, in this order: `county`, `county_type`, `pop_dens_2020`, `pop_2020`, and `land_area_mi2`.
-If your response has multiple rows, arrange the counties in descending order of population density.
-
-::: source-control
-Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 3".
-
-Make sure to commit and push all changed files so that your Git pane is empty afterward.
-:::
-
-### Question 4
-
 Describe the distribution of population density of North Carolina counties using the following sentence as a starting point:
 
 > The distribution of population density of North Carolina counties is unimodal and extremely right-skewed. A typical North Carolina county has a population density of `_____` people per square mile. The middle 50% of North Carolina counties have population densities between `_____` and `_____` people per square mile.
@@ -138,6 +122,24 @@ Use a single pipeline to calculate the median, first quartile, and third quartil
 ::: callout-tip
 Think about which measures of center and spread are appropriate for a strongly right-skewed distribution.
 :::
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 3".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+### Question 4
+
+Use population density to identify the most densely populated counties in North Carolina.
+
+1. Identify all counties with a population density greater than 500 people per square mile. Your code must use `filter()`.
+
+2. Identify the county with the highest population density. Your code must use `max()`.
+
+Answer each part using a single data-wrangling pipeline.
+Your response should be a data frame with the following five columns, in this order: `county`, `county_type`, `pop_dens_2020`, `pop_2020`, and `land_area_mi2`.
+If your response has multiple rows, arrange the counties in descending order of population density.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 4".
@@ -182,9 +184,7 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 
 ### Question 6
 
-a.  Report the number of rows and columns in `nc_county`.
-
-b.  Create a new variable called `p_edu_he` (short for "percentage of population with higher education") that is the sum of the percentages of 
+Create a new variable called `p_edu_he` (short for "percentage of population with higher education") that is the sum of the percentages of
 
     - 25-44-year-olds with some college or an associate degree (`p_edu_scnd`), 
     - non-degree credentials (`p_edu_ndc`), 
@@ -192,12 +192,10 @@ b.  Create a new variable called `p_edu_he` (short for "percentage of population
     - a bachelor's degree (`p_edu_ba`), and
     - a master's, professional, or doctoral degree (`p_edu_mapl`).
 
-    and store this variable in the `nc_county` data frame.
-
-    Then, report the number of rows and columns in `nc_county` after adding this variable.
+and store this variable in the `nc_county` data frame.
 
 ::: callout-warning
-If you don't create the new variable `p_edu_he` in part (b), you will not be able to answer the remaining parts of this question or any of the remaining questions on the homework.
+If you don't create the new variable `p_edu_he`, you will not be able to answer the remaining parts of this question or any of the remaining questions on the homework.
 
 Therefore, here is a quick check to make sure you created the variable correctly -- after creating the variable, run the following code:
 
@@ -219,12 +217,12 @@ You should see the following output:
 3    0.525
 ```
 
-If you do not see this output, please revisit part (b) of this question and make sure you created the variable correctly. 
+If you do not see this output, please revisit the instructions above and make sure you created the variable correctly.
 Ask for help on Ed or in office hours if you need assistance.
 
 :::
 
-c.  In a single pipeline, calculate the 
+a.  In a single pipeline, calculate the
 
     - minimum,
     - first quartile (25th percentile),
@@ -235,7 +233,7 @@ c.  In a single pipeline, calculate the
 
     of `p_edu_he`.
 
-d.  In a single pipeline, calculate the same statistics as in the previous part, but for each `county_type`.
+b.  In a single pipeline, calculate the same statistics as in the previous part, but for each `county_type`.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 6".
