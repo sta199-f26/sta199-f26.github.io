@@ -9,9 +9,23 @@ draft: true
 
 # Introduction
 
+North Carolina is often described as one state, but its 100 counties differ in population, geography, access to resources, and economic and educational opportunities.
+In this homework, you will use county-level data to get to know North Carolina through data visualization and data transformation.
+
+The goal is not to rank counties or explain why one county is different from another.
+Instead, you will practice asking descriptive questions such as: How are counties organized? Where are the most densely populated counties? How common is broadband access across different types of counties? How does educational attainment vary across the state?
+
+As you work, remember that each row represents a county, not an individual person.
+Your summaries will therefore describe counties in North Carolina, and your conclusions should use careful, non-causal language.
+
 ## Learning objectives
 
-TO DO: Add
+By the end of this homework, you will:
+
+- use `dplyr` to count, filter, arrange, summarize, and create new variables;
+- use `ggplot2` to visualize categorical and numerical variables;
+- describe distributions using shape, center, spread, and unusual observations; and
+- use data to develop a more detailed understanding of variation among North Carolina counties.
 
 ## Getting Started
 
@@ -81,6 +95,9 @@ nc_county <- read_csv("data/nc-county.csv")
 
 ### Question 1
 
+We begin by getting an overview of how the counties in North Carolina are classified.
+This gives us a first sense of the balance between rural, suburban, and urban parts of the state.
+
 a. Report the number of rows and columns in `nc_county`.
 
 b. Calculate the number of counties in each `county_type` and display your results in descending order of the number of counties.
@@ -95,6 +112,9 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 :::
 
 ### Question 2
+
+The largest counties by population are not distributed evenly across county types.
+The following question helps identify which county types include several of North Carolina's more populous counties.
 
 A classmate says:
 
@@ -111,6 +131,9 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 :::
 
 ### Question 3
+
+North Carolina includes densely populated urban counties as well as counties with much more land and fewer residents.
+Before focusing on particular counties, summarize the overall distribution of population density.
 
 Describe the distribution of population density of North Carolina counties using the following sentence as a starting point:
 
@@ -131,6 +154,9 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 
 ### Question 4
 
+Now use the population-density distribution to identify specific places at the densely populated end of the spectrum.
+As you look at the results, consider which counties you recognize and what their population density might suggest about where people live in North Carolina.
+
 Use population density to identify the most densely populated counties in North Carolina.
 
 1. Identify all counties with a population density greater than 500 people per square mile. Your code must use `filter()`.
@@ -148,6 +174,9 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 :::
 
 ### Question 5
+
+Access to broadband internet is one part of the infrastructure that connects people to school, work, health information, and one another.
+Use the county data to explore whether broadband access appears to vary across the county types used in this dataset.
 
 Do some county types have a higher percentage of counties where at least 75% of households have broadband internet access?
 
@@ -183,6 +212,9 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 ## Questions 6–10: Deeper dive into NC Counties
 
 ### Question 6
+
+We next turn to education, another important dimension of life in North Carolina.
+The dataset records several education categories separately, so combine them into one measure of the percentage of 25–44-year-olds with some form of education beyond high school.
 
 Create a new variable called `p_edu_he` (short for "percentage of population with higher education") that is the sum of the percentages of
 
@@ -243,6 +275,9 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 
 ### Question 7
 
+The summary statistics in Question 6 describe higher education numerically.
+This visualization lets you see how the full distributions differ across county types and which counties contribute to those distributions.
+
 Using the variable you created in Question 6, re-create the following plot that shows the distribution of `p_edu_he` by `county_type`.
 
 ![](images/hw-2/plot-to-recreate.png)
@@ -271,6 +306,9 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 
 ### Question 8
 
+The points that fall beyond the typical range in the previous plot represent counties that may be especially useful for getting to know North Carolina's variation.
+Identify those counties so that you can connect the visual pattern to specific places.
+
 In a single pipeline, identify the outliers in the plot in the previous question, and return a data frame with the county name, county type, percentage with higher education. This data frame should be arranged in ascending order of county type and descending order of percentage with higher education.
 
 ::: source-control
@@ -280,6 +318,9 @@ Make sure to commit and push all changed files so that your Git pane is empty af
 :::
 
 ### Question 9
+
+Finally, examine how two county characteristics vary together.
+This comparison can help us describe whether counties with higher levels of higher education also tend to have higher median household incomes, while remembering that a county-level association is not evidence that one variable causes the other.
 
 Create a scatter plot with percentage of 25-44 year olds with higher education (`p_edu_he`) on the x-axis and median household income (`median_hh_income`) on the y-axis. Describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, identify the counties that correspond to these observations, and make sure to include the code you used to identify them as part of your answer. Your code should output the county name, percentage with higher education, and median household income for each unusual observation.
 
@@ -294,6 +335,8 @@ Preview, commit, and push your changes to GitHub with an informative and concise
 
 ### Question 10
 
+Use the data to ask and answer one final question about North Carolina counties.
+Your question should help a reader learn something new about the state and should use at least one variable that has not been the main focus of an earlier question.
 Come up with a question that you could answer with the `nc_county` data frame and the new `p_edu_he` variable you created in Question 6 and state it explicitly.
 Then, answer your question with an appropriate data visualization and/or data transformation pipeline and a brief description of your findings.
 
