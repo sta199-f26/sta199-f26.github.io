@@ -6,3 +6,197 @@ filters:
   - ../remove-fmt-skip.lua
 draft: true
 ---
+
+# Introduction
+
+## Learning objectives
+
+TO DO: Add
+
+## Getting Started
+
+## Guidelines
+
+## AI support and feedback
+
+## Packages
+
+You will use:
+
+- **tidyverse** package for data wrangling and visualization, 
+- **scales** for better axis labels, 
+- **ggthemes** for additional color palettes, and
+- **ggbeeswarm** for additional geoms.
+
+```{r}
+#| label: load-packages
+#| eval: true
+#| message: false
+library(tidyverse)
+library(scales)
+library(ggbeeswarm)
+library(ggthemes)
+```
+
+## Data
+
+In this homework you will work with a dataset that contains information on North Carolina counties. Some columns of the data come from the 2020 Census and others from the 2026 Attainment Profiles data distributed as part of the [myFutureNC Dashboard](https://dashboard.myfuturenc.org/county-data-and-resources/) maintained by Carolina Demography at the University of North Carolina at Chapel Hill. These data were retrieved on September 5, 2026 from these two resources.
+
+This dataset is stored in a file called `nc-county.csv` in the `data` folder of your repository.
+
+The variables in the dataset and their descriptions are the same as in HW 1:
+
+-   `county`: Name of county.
+-   `land_area_m2`: Land area of county in meters-squared, based on the 2020 census.
+-   `land_area_mi2`: Land area of county in miles-squared, based on the 2020 census.
+-   `pop_2020`: Population of county, based on the 2020 Census.
+-   `pop_dens_2020`: Population density calculated as population (`pop_2020`) divided by land area in miles-squared (people per mile-squared).
+-   `county_type`: Peer county type classification based on population characteristics, socioeconomic status, and geographic features used for grouping counties with similar demographic, social, and economic characteristics, allowing them to be compared and benchmarked against one another.
+-   `median_hh_income`: Median household income.
+-   `p_foreign_born`: Percentage of population that is foreign-born.
+-   `p_child_poverty`: Percentage of children living in poverty.
+-   `p_single_parent_hh`: Percentage of households with children that are single-parent households.
+-   `p_broadband`: Percentage of households with broadband internet access.
+-   `p_home_ownership`: Percentage of homes that are owner-occupied.
+-   `p_family_sustaining_wage`: Percentage of adults that earn a family-sustaining wage -- typically a wage that covers essential costs like housing, food, childcare, transportation, and healthcare for a family's basic needs within a specific geographic area
+-   `p_edu_lths`: Percentage of 25-44-year-olds with less than a high school diploma.
+-   `p_edu_hsged`: Percentage of 25-44-year-olds with a high school diploma or equivalent.
+-   `p_edu_scnd`: Percentage of 25-44-year-olds with some college or an associate degree.
+-   `p_edu_ndc`: Percentage of 25-44-year-olds with non-degree credentials -- certifications, licenses, or other credentials that demonstrate specific skills or knowledge but do not confer a formal academic degree.
+-   `p_edu_assoc`: Percentage of 25-44-year-olds with an associate degree.
+-   `p_edu_ba`: Percentage of 25-44-year-olds with a bachelor's degree.
+-   `p_edu_mapl`: Percentage of 25-44-year-olds with a master's, professional, or doctoral degree.
+-   `p_edu_hs_grad_rate`: High school graduation rate.
+-   `p_edu_chronic_absent_rate`: Chronic absenteeism rate.
+
+You can read this file into R with the following code:
+
+```{r}
+nc_county <- read_csv("data/nc-county.csv")
+```
+
+# Questions
+
+## Question 1
+
+a.  Report the number of rows and columns in `nc_county`.
+
+b.  Create a new variable called `p_edu_he` (short for "percentage of population with higher education") that is the sum of the percentages of 
+
+    - 25-44-year-olds with some college or an associate degree (`p_edu_scnd`), 
+    - non-degree credentials (`p_edu_ndc`), 
+    - an associate degree (`p_edu_assoc`), 
+    - a bachelor's degree (`p_edu_ba`), and
+    - a master's, professional, or doctoral degree (`p_edu_mapl`).
+
+    and store this variable in the `nc_county` data frame.
+
+    Then, report the number of rows and columns in `nc_county` after adding this variable.
+
+::: callout-warning
+If you don't create the new variable `p_edu_he` in part (b), you will not be able to answer the remaining parts of this question or any of the remaining questions on the homework.
+
+Therefore, here is a quick check to make sure you created the variable correctly -- after creating the variable, run the following code:
+
+```{r}
+#| eval: false
+nc_county |>
+  select(p_edu_he) |>
+  slice_head(n = 3)
+```
+
+You should see the following output:
+
+```
+# A tibble: 3 × 1
+  p_edu_he
+     <dbl>
+1    0.615
+2    0.525
+3    0.525
+```
+
+If you do not see this output, please revisit part (b) of this question and make sure you created the variable correctly. 
+Ask for help on Ed or in office hours if you need assistance.
+
+:::
+
+c.  In a single pipeline, calculate the 
+
+    - minimum,
+    - first quartile (25th percentile),
+    - median (50th percentile),
+    - mean,
+    - third quartile (75th percentile), and
+    - maximum
+
+    of `p_edu_he`.
+
+d.  In a single pipeline, calculate the same statistics as in the previous part, but for each `county_type`.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 6".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+### Question 2
+
+Using the variable you created in Question 6, re-create the following plot that shows the distribution of `p_edu_he` by `county_type`.
+
+![](images/hw-2/plot-to-recreate.png)
+
+::: callout-tip
+- x-axis: You learned how to format the x-axis as percentages in class and had a hint about it in your previous homework assignment. You can use the same approach here.
+
+- Points: The points are drawn with the `geom_beeswarm()` function from the **ggbeeswarm** package.
+
+- Outliers: The outliers in the box plots are drawn as _open circles_. You can specify this with the `outlier.shape` argument in `geom_boxplot()`. You can also adjust the size of the outliers with the `outlier.size` argument. The ggplot2 [aesthetic specifications documentation](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#point) has a list of shape names you can use for help.
+
+- Color palette: The colors for the box plots are manually specified in a `scale_color_manual()` layer. You do not need to worry about the exact colors, but you should try to get close, e.g., use blue-ish colors for Rural counties, red-ish for Suburban, and brown-ish for Urban. You can use HEX codes for colors or look up named colors in R in the [R colors cheatsheet](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf)
+
+- Transparancy: You should adjust the transparency of the box plots. You don't have to worry about the exact transparency value, but you should try to get close.
+
+- Theme: This plot uses a non-default theme. See [theme options documentation](https://ggplot2.tidyverse.org/reference/ggtheme.html) for options.
+
+- Aspect ratio and width: You can adjust the aspect ratio and width of your plot in your _rendered document_ by setting `fig-asp` and `fig-width` options in the code cell.
+:::
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 7".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+### Question 3
+
+In a single pipeline, identify the outliers in the plot in the previous question, and return a data frame with the county name, county type, percentage with higher education. This data frame should be arranged in ascending order of county type and descending order of percentage with higher education.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 8".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+### Question 4
+
+Create a scatter plot with percentage of 25-44 year olds with higher education (`p_edu_he`) on the x-axis and median household income (`median_hh_income`) on the y-axis. Describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, identify the counties that correspond to these observations, and make sure to include the code you used to identify them as part of your answer. Your code should output the county name, percentage with higher education, and median household income for each unusual observation.
+
+Requirements for the plot (in addition to the requirements in the overall assignment guidelines:
+
+- The x-axis should be formatted as percentages, e.g., 30%, not 0.3.
+- The y-axis should be formatted as dollar amounts, e.g., \$40,000, not 4e+04.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+:::
+
+### Question 5
+
+Come up with a question that you could answer with the `nc_county` data frame and the new `p_edu_he` variable you created in Question 6 and state it explicitly.
+Then, answer your question with an appropriate data visualization and/or data transformation pipeline and a brief description of your findings.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
