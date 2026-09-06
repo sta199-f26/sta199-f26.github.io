@@ -1,6 +1,6 @@
 ---
 title: HW 2
-subtitle: Deeper dive into Midwest and NC Counties
+subtitle: Deeper dive into North Carolina Counties
 description: "Due: Wed, Sep 16, 11:59 pm"
 filters:
   - ../remove-fmt-skip.lua
@@ -77,7 +77,110 @@ nc_county <- read_csv("data/nc-county.csv")
 
 # Questions
 
-## Question 1
+## Questions 1–5: Practice
+
+### Question 1
+
+Calculate the number of counties in each `county_type` and display your results in descending order of the number of counties.
+
+Which county type has the highest number of counties, and how many counties does it contain?
+Which county type has the lowest number, and how many counties does it contain?
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 1".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+### Question 2
+
+A classmate says:
+
+> “Look at that, there is a county type containing at least five counties with populations above 200,000!”
+
+In a single pipeline, discover all county types that could fill in the blank.
+Your response should be a data frame with only the county type and the number of counties with populations above 200,000, followed by a sentence identifying the county types that satisfy the statement.
+Your code must use `filter()`.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 2".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+### Question 3
+
+Use population density to identify the most densely populated counties in North Carolina.
+
+1. Identify all counties with a population density greater than 500 people per square mile. Your code must use `filter()`.
+
+2. Identify the county with the highest population density. Your code must use `max()`.
+
+Answer each part using a single data-wrangling pipeline.
+Your response should be a data frame with the following five columns, in this order: `county`, `county_type`, `pop_dens_2020`, `pop_2020`, and `land_area_mi2`.
+If your response has multiple rows, arrange the counties in descending order of population density.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 3".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+### Question 4
+
+Describe the distribution of population density of North Carolina counties using the following sentence as a starting point:
+
+> The distribution of population density of North Carolina counties is unimodal and extremely right-skewed. A typical North Carolina county has a population density of `_____` people per square mile. The middle 50% of North Carolina counties have population densities between `_____` and `_____` people per square mile.
+
+Calculate the values that should go into the blanks.
+Use a single pipeline to calculate the median, first quartile, and third quartile of `pop_dens_2020`.
+
+::: callout-tip
+Think about which measures of center and spread are appropriate for a strongly right-skewed distribution.
+:::
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 4".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+### Question 5
+
+Do some county types have a higher percentage of counties where at least 75% of households have broadband internet access?
+
+To explore this question, first create a new variable called `broadband_level` in `nc_county`.
+The variable should have the value `"At least 75%"` when `p_broadband` is greater than or equal to 0.75, and `"Below 75%"` otherwise.
+
+You can begin with the following pipeline:
+
+```{r}
+#| eval: false
+nc_county <- nc_county |>
+  mutate(
+    broadband_level = if_else(
+      p_broadband >= 0.75,
+      "At least 75%",
+      "Below 75%"
+    )
+  )
+```
+
+Then, create a segmented bar plot with one bar per `county_type`, filled according to `broadband_level`.
+The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.
+
+Compare the percentage of counties with at least 75% broadband access across the county types based on your plot.
+Supplement your narrative with rough estimates of these percentages.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 5".
+
+Make sure to commit and push all changed files so that your Git pane is empty afterward.
+:::
+
+## Questions 6–10: Deeper dive into NC Counties
+
+### Question 6
 
 a.  Report the number of rows and columns in `nc_county`.
 
@@ -140,7 +243,7 @@ Preview, commit, and push your changes to GitHub with the commit message "Added 
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
-### Question 2
+### Question 7
 
 Using the variable you created in Question 6, re-create the following plot that shows the distribution of `p_edu_he` by `county_type`.
 
@@ -168,7 +271,7 @@ Preview, commit, and push your changes to GitHub with the commit message "Added 
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
-### Question 3
+### Question 8
 
 In a single pipeline, identify the outliers in the plot in the previous question, and return a data frame with the county name, county type, percentage with higher education. This data frame should be arranged in ascending order of county type and descending order of percentage with higher education.
 
@@ -178,7 +281,7 @@ Preview, commit, and push your changes to GitHub with the commit message "Added 
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
 
-### Question 4
+### Question 9
 
 Create a scatter plot with percentage of 25-44 year olds with higher education (`p_edu_he`) on the x-axis and median household income (`median_hh_income`) on the y-axis. Describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, identify the counties that correspond to these observations, and make sure to include the code you used to identify them as part of your answer. Your code should output the county name, percentage with higher education, and median household income for each unusual observation.
 
@@ -191,7 +294,7 @@ Requirements for the plot (in addition to the requirements in the overall assign
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
 :::
 
-### Question 5
+### Question 10
 
 Come up with a question that you could answer with the `nc_county` data frame and the new `p_edu_he` variable you created in Question 6 and state it explicitly.
 Then, answer your question with an appropriate data visualization and/or data transformation pipeline and a brief description of your findings.
