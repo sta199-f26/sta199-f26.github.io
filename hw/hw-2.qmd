@@ -164,13 +164,10 @@ The following question helps identify which county types include several countie
 
 A classmate says:
 
-> “Look at that, there is a county type containing at least six counties where at least half of adults earn a family-sustaining wage!”
-
-TO DO: Update the statement above to be about counties where less than halff the adults earn a family-sustaining wage.
+> “Look at that, there is a county type containing at least six counties where at less than half of adults earn a family-sustaining wage!”
 
 In a single pipeline, discover all county types that could fill in the blank.
-Your response should be a data frame with only the county type and the number of counties where `p_family_sustaining_wage` is greater than or equal to 0.50, followed by a sentence identifying the county types that satisfy the statement.
-Your code must use `filter()`.
+Your response should be a data frame with only the county type and the number of counties where `p_family_sustaining_wage` is less than 0.50, followed by a sentence identifying the county types that satisfy the statement.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 2".
@@ -216,14 +213,12 @@ Make sure to commit and push all changed files so that your source control pane 
 
 ## Question 6
 
-We next turn to education, another important dimension of life in North Carolina.
+We next turn to education, another important dimension of life.
 The dataset records several education categories separately, so combine them into one measure of the percentage of 25–44-year-olds with some form of education beyond high school.
 
 Create a new variable called `p_edu_he` (short for "percentage of population with higher education") that is the sum of the percentages of
 
-    - 25-44-year-olds with some college or an associate degree (`p_edu_scnd`), 
-    - non-degree credentials (`p_edu_ndc`), 
-    - an associate degree (`p_edu_assoc`), 
+    - 25-44-year-olds with an associate degree (`p_edu_assoc`), 
     - a bachelor's degree (`p_edu_ba`), and
     - a master's, professional, or doctoral degree (`p_edu_mapl`).
 
@@ -309,10 +304,12 @@ Make sure to commit and push all changed files so that your source control pane 
 
 ## Question 8
 
-The points that fall beyond the typical range in the previous plot represent counties that may be especially useful for getting to know North Carolina's variation.
+The points that fall beyond the typical range in the previous plot represent counties that may be especially useful for getting to know North Carolina.
 Identify those counties so that you can connect the visual pattern to specific places.
 
-In a single pipeline, identify the outliers in the plot in the previous question, and return a data frame with the county name, county type, percentage with higher education. This data frame should be arranged in ascending order of county type and descending order of percentage with higher education.
+In a single pipeline, calculate the interquartile range (IQR) of `p_edu_he` for each `county_type`.
+Then, use the IQR and the rule "points that are 1.5 times IQR away from the 25th and 75th percentiles are considered outliers" rule to identify counties that are outliers in the distribution of `p_edu_he` for their county type.
+The output should be a data frame with the following three columns, in this order: `county`, `county_type`, and `p_edu_he`, and arranged in ascending order of county type and descending order of percentage with higher education.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 8".
