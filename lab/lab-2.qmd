@@ -25,7 +25,7 @@ By the end of this lab, you will:
 
 - use `dplyr` pipelines to arrange, group, summarize, and transform data;
 - group data by one or more variables and calculate summaries within groups;
-- explain how grouping affects the number of rows, columns, and groups in a data frame,
+- explain how grouping affects the number of rows, columns, and groups in a data frame;
 - distinguish between `summarize()` and `mutate()` when working with grouped data; and
 - understand how to use `.groups` argument in `summarize()` to control the grouping structure of the output.
 
@@ -54,6 +54,7 @@ Commit and push your changes with a meaningful commit message and push to GitHub
 In this lab we will work with the **tidyverse** package.
 
 ```{r}
+#| label: load-packages
 #| eval: true
 #| message: false
 library(tidyverse)
@@ -101,8 +102,8 @@ df_1 |>
   group_by(member)
 ```
 
-::: render-commit-push
-Render, commit, and push your changes to GitHub with the commit message "Added answer for Q1, parts a and b".
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Q1, parts a and b".
 
 Make sure to commit and push all changed files so that your Git pane is empty afterward.
 :::
