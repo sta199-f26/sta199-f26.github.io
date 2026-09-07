@@ -1,6 +1,6 @@
 ---
 title: HW 2
-subtitle: Deeper dive into North Carolina Counties
+subtitle: Wrangling and visualizing the Old North State
 description: "Due: Wed, Sep 16, 11:59 pm"
 filters:
   - ../remove-fmt-skip.lua
@@ -133,12 +133,12 @@ Make sure to commit and push all changed files so that your source control pane 
 North Carolina includes densely populated urban counties as well as counties with much more land and fewer residents.
 Before focusing on particular counties, summarize the overall distribution of population density.
 
-Describe the distribution of population density of North Carolina counties using the following sentence as a starting point:
+Your goal is to describe the distribution of population density (`pop_dens_2020`) of North Carolina counties using the following sentence as:
 
-> The distribution of population density of North Carolina counties is unimodal and extremely right-skewed. A typical North Carolina county has a population density of `_____` people per square mile. The middle 50% of North Carolina counties have population densities between `_____` and `_____` people per square mile.
+> The distribution of population density of North Carolina counties is ____. A typical North Carolina county has a population density of `_____` people per square mile. The middle 50% of North Carolina counties have population densities between `_____` and `_____` people per square mile.
 
-Calculate the values that should go into the blanks.
-Use a single pipeline to calculate the median, first quartile, and third quartile of `pop_dens_2020`.
+Figure out the words and values that should go into the blanks using data visualization(s) and summary statistics.
+Any summary statistics should be calculated in a single pipeline.
 
 ::: callout-tip
 Think about which measures of center and spread are appropriate for a strongly right-skewed distribution.
