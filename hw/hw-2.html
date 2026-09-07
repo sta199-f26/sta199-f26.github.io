@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="description" content="Due: Wed, Sep 16, 11:59 pm">
-
 <title>HW 2 – STA 199CCL</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -46,7 +77,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-e32f7b3979dc093efbdc56be01566bfe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -72,15 +105,40 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<meta name="quarto:status" content="draft">
-
-
+}</script><meta name="quarto:status" content="draft">
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 <meta property="og:title" content="HW 2 – STA 199CCL">
 <meta property="og:description" content="Due: Wed, Sep 16, 11:59 pm">
+<meta property="og:image" content="https://sta199-f26.github.io/hw/images/hw-2/plot-to-recreate.png">
 <meta property="og:site_name" content="STA 199CCL">
+<meta property="og:image:height" content="672">
+<meta property="og:image:width" content="1344">
 </head>
-
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -246,9 +304,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -259,23 +315,18 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
     <div class="dropdown">
       <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
               <i class="bi bi-person-raised-hand pe-1"></i>
             Office hours
@@ -288,11 +339,11 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
     <div class="dropdown">
       <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
               <i class="bi bi-megaphone-fill pe-1"></i>
             Announcements
@@ -311,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div>
@@ -322,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
@@ -330,8 +381,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
@@ -374,7 +425,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -383,8 +434,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Access</span></a>
@@ -409,7 +460,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -418,9 +469,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-      </ul>
-  </li>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 "></ul>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lab.html" class="sidebar-item-text sidebar-link">
@@ -446,21 +496,65 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+<li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li>
+<a href="#guidelines" id="toc-guidelines" class="nav-link" data-scroll-target="#guidelines">Guidelines</a>
+  <ul class="collapse">
+<li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">Plots</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
+  </ul>
+</li>
+  <li><a href="#ai-support-and-feedback" id="toc-ai-support-and-feedback" class="nav-link" data-scroll-target="#ai-support-and-feedback">AI support and feedback</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#packages-and-data" id="toc-packages-and-data" class="nav-link" data-scroll-target="#packages-and-data">Packages and data</a>
+  <ul class="collapse">
+<li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
+  <ul class="collapse">
+<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
+  </ul>
+</li>
+  <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI use disclosure</a></li>
+  <li>
+<a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
+  <ul class="collapse">
+<li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#grading-and-feedback" id="toc-grading-and-feedback" class="nav-link" data-scroll-target="#grading-and-feedback">Grading and feedback</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">HW 2</h1>
-<p class="subtitle lead">Deeper dive into Midwest and NC Counties</p>
+<p class="subtitle lead">Deeper dive into North Carolina Counties</p>
   <div class="quarto-categories">
     <div class="quarto-category">HW</div>
   </div>
@@ -482,14 +576,477 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><section id="introduction" class="level1"><h1>Introduction</h1>
+<p>North Carolina is often described as one state, but its 100 counties differ in population, geography, access to resources, and economic and educational opportunities. In this homework, you will use county-level data to get to know North Carolina through data visualization and data transformation.</p>
+<p>The goal is not to rank counties or explain why one county is different from another. Instead, you will practice asking descriptive questions such as: How are counties organized? Where are the most densely populated counties? How common is broadband access across different types of counties? How does educational attainment vary across the state?</p>
+<p>As you work, remember that each row represents a county, not an individual person. Your summaries will therefore describe counties in North Carolina, and your conclusions should use careful, non-causal language.</p>
+<section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>By the end of this homework, you will:</p>
+<ul>
+<li>use <code>dplyr</code> to count, filter, arrange, summarize, and create new variables;</li>
+<li>use <code>ggplot2</code> to visualize categorical and numerical variables;</li>
+<li>describe distributions using shape, center, spread, and unusual observations; and</li>
+<li>use data to develop a more detailed understanding of variation among North Carolina counties.</li>
+</ul></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+</section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
+<p>The guidelines should feel familiar, as they are the same ones from the lab! They are included below as a reminder.</p>
+<section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
+<p>Code should follow the <a href="https://style.tidyverse.org/">tidyverse style</a>. Particularly,</p>
+<ul>
+<li>there should be spaces before and line breaks after each <code>+</code> when building a <code>ggplot</code>,</li>
+<li>there should also be spaces before and line breaks after each <code>|&gt;</code> in a data transformation pipeline,</li>
+<li>code should be properly indented,</li>
+<li>there should be spaces around <code>=</code> signs and spaces after commas.</li>
+</ul>
+<p>Additionally, all code should be visible in the PDF output, i.e., should not run off the page on the PDF. Long lines that run off the page should be split across multiple lines with line breaks.</p>
+</section><section id="plots" class="level3"><h3 class="anchored" data-anchor-id="plots">Plots</h3>
+<ul>
+<li>Plots should have an informative title and, if needed, also a subtitle.</li>
+<li>Axes and legends should be labeled with both the variable name and its units (if applicable).</li>
+<li>Careful consideration should be given to aesthetic choices.</li>
+</ul></section><section id="workflow" class="level3"><h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
+<p>Continuing to develop a sound workflow for reproducible data analysis is important as you complete the lab and other assignments in this course.</p>
+<ul>
+<li>You should have at least 3 commits with meaningful commit messages by the end of the assignment.</li>
+<li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
+</ul></section></section><section id="ai-support-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="ai-support-and-feedback">AI support and feedback</h2>
+<p>You can get immediate support as well as feedback on all of the questions with AI, based on rubrics designed by the course instructor, via the Codex extension in Positron, and using AI access provided by Duke University.</p>
+<p>When working on your assignment, feel free to ask Codex for help, but don’t ask it to do your work for you. After completing a question, ask Codex to provide feedback on your answer, e.g., “Review my answer for Question 1.”</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have not yet enabled Duke’s ChatGPT Edu access or installed the Codex extension for Positron, follow the instructions in <a href="../hw/hw-1.html">HW 1</a>.</p>
+</div>
+</div>
+</section></section><section id="packages-and-data" class="level1"><h1>Packages and data</h1>
+<section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>You will use:</p>
+<ul>
+<li>
+<strong>tidyverse</strong> package for data wrangling and visualization,</li>
+<li>
+<strong>scales</strong> for better axis labels,</li>
+<li>
+<strong>ggthemes</strong> for additional color palettes, and</li>
+<li>
+<strong>ggbeeswarm</strong> for additional geoms.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/eclarke/ggbeeswarm">ggbeeswarm</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jrnold.github.io/ggthemes/">ggthemes</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>In this homework you will work with a dataset that contains information on North Carolina counties. Some columns of the data come from the 2020 Census and others from the 2026 Attainment Profiles data distributed as part of the <a href="https://dashboard.myfuturenc.org/county-data-and-resources/">myFutureNC Dashboard</a> maintained by Carolina Demography at the University of North Carolina at Chapel Hill. These data were retrieved on September 5, 2026 from these two resources.</p>
+<p>This dataset is stored in a file called <code>nc-county.csv</code> in the <code>data</code> folder of your repository.</p>
+<p>The variables in the dataset and their descriptions are as follows:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 20%">
+<col style="width: 75%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: right;">No.</th>
+<th>Variable</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td><code>county</code></td>
+<td>Name of county.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td><code>land_area_m2</code></td>
+<td>Land area of county in meters-squared, based on the 2020 census.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td><code>land_area_mi2</code></td>
+<td>Land area of county in miles-squared, based on the 2020 census.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td><code>pop_2020</code></td>
+<td>Population of county, based on the 2020 Census.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td><code>pop_dens_2020</code></td>
+<td>Population density calculated as population (<code>pop_2020</code>) divided by land area in miles-squared (people per mile-squared).</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td><code>county_type</code></td>
+<td>Peer county type classification based on population characteristics, socioeconomic status, and geographic features used for grouping counties with similar demographic, social, and economic characteristics, allowing them to be compared and benchmarked against one another.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td><code>median_hh_income</code></td>
+<td>Median household income.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td><code>p_foreign_born</code></td>
+<td>Percentage of population that is foreign-born.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td><code>p_child_poverty</code></td>
+<td>Percentage of children living in poverty.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td><code>p_single_parent_hh</code></td>
+<td>Percentage of households with children that are single-parent households.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td><code>p_broadband</code></td>
+<td>Percentage of households with broadband internet access.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td><code>p_home_ownership</code></td>
+<td>Percentage of homes that are owner-occupied.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td><code>p_family_sustaining_wage</code></td>
+<td>Percentage of adults that earn a family-sustaining wage – typically a wage that covers essential costs like housing, food, childcare, transportation, and healthcare for a family’s basic needs within a specific geographic area.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td><code>p_edu_lths</code></td>
+<td>Percentage of 25-44-year-olds with less than a high school diploma.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td><code>p_edu_hsged</code></td>
+<td>Percentage of 25-44-year-olds with a high school diploma or equivalent.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td><code>p_edu_scnd</code></td>
+<td>Percentage of 25-44-year-olds with some college.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td><code>p_edu_ndc</code></td>
+<td>Percentage of 25-44-year-olds with non-degree credentials – certifications, licenses, or other credentials that demonstrate specific skills or knowledge but do not confer a formal academic degree.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td><code>p_edu_assoc</code></td>
+<td>Percentage of 25-44-year-olds with an associate degree.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td><code>p_edu_ba</code></td>
+<td>Percentage of 25-44-year-olds with a bachelor’s degree.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td><code>p_edu_mapl</code></td>
+<td>Percentage of 25-44-year-olds with a master’s, professional, or doctoral degree.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21</td>
+<td><code>p_edu_hs_grad_rate</code></td>
+<td>High school graduation rate.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td><code>p_edu_chronic_absent_rate</code></td>
+<td>Chronic absenteeism rate.</td>
+</tr>
+</tbody>
+</table>
+<p>Percentage variables, including variables whose names begin with <code>p_</code>, are stored as proportions from 0 to 1. For example, a value of <code>0.75</code> represents 75%. When reporting findings, convert these proportions to percentages when appropriate.</p>
+<p>You can read this file into R with the following code:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nc-county.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="questions" class="level1"><h1>Questions</h1>
+<section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>We begin by getting an overview of how the counties in North Carolina are classified. This gives us a first sense of the balance between rural, suburban, and urban parts of the state.</p>
+<ol type="a">
+<li><p>Calculate the number of rows and columns in <code>nc_county</code>.</p></li>
+<li><p>Calculate the number of counties in each <code>county_type</code> and display your results in descending order of the number of counties.</p></li>
+<li><p>Based on your findings so far, write a short, introductory paragraph describing the dataset.</p></li>
+</ol>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>North Carolina includes densely populated urban counties as well as counties with much more land and fewer residents. Before focusing on particular counties, summarize the overall distribution of population density.</p>
+<p>Describe the distribution of population density of North Carolina counties using the following sentence as a starting point:</p>
+<blockquote class="blockquote">
+<p>The distribution of population density of North Carolina counties is unimodal and extremely right-skewed. A typical North Carolina county has a population density of <code>_____</code> people per square mile. The middle 50% of North Carolina counties have population densities between <code>_____</code> and <code>_____</code> people per square mile.</p>
+</blockquote>
+<p>Calculate the values that should go into the blanks. Use a single pipeline to calculate the median, first quartile, and third quartile of <code>pop_dens_2020</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Think about which measures of center and spread are appropriate for a strongly right-skewed distribution.</p>
+</div>
+</div>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 2”.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Now use the population-density distribution to identify specific places at the densely populated end of the spectrum. As you look at the results, consider which counties you recognize and what their population density might suggest about where people live in North Carolina.</p>
+<p>Use population density to identify the most densely populated counties in North Carolina.</p>
+<ol type="1">
+<li><p>Identify all counties with a population density greater than 500 people per square mile. Your code must use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>.</p></li>
+<li><p>Identify the county with the highest population density. Your code must use <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>.</p></li>
+</ol>
+<p>Answer each part using a single data-wrangling pipeline. Your response should be a data frame with the following five columns, in this order: <code>county</code>, <code>county_type</code>, <code>pop_dens_2020</code>, <code>pop_2020</code>, and <code>land_area_mi2</code>. If your response has multiple rows, arrange the counties in descending order of population density.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>The number of people living in a county is one way to understand North Carolina, but economic opportunity is another. The following question helps identify which county types include several counties where a relatively large share of adults earn a family-sustaining wage.</p>
+<p>A classmate says:</p>
+<blockquote class="blockquote">
+<p>“Look at that, there is a county type containing at least six counties where less than half of adults earn a family-sustaining wage!”</p>
+</blockquote>
+<p>In a single pipeline, discover all county types that could fill in the blank. Your response should be a data frame with only the county type and the number of counties where <code>p_family_sustaining_wage</code> is less than 0.50, followed by a sentence identifying the county types that satisfy the statement.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 4”.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p>Access to broadband internet is one part of the infrastructure that connects people to school, work, health information, and one another. Use the county data to explore whether broadband access appears to vary across the county types used in this dataset.</p>
+<p>Do some county types have a higher percentage of counties where at least 75% of households have broadband internet access?</p>
+<p>To explore this question, first create a new variable called <code>broadband_level</code> in <code>nc_county</code>. The variable should have the value <code>"At least 75%"</code> when <code>p_broadband</code> is greater than or equal to 0.75, and <code>"Below 75%"</code> otherwise.</p>
+<p>You can begin with the following pipeline:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="va">nc_county</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    broadband_level <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
+<span>      <span class="va">p_broadband</span> <span class="op">&gt;=</span> <span class="fl">0.75</span>,</span>
+<span>      <span class="st">"At least 75%"</span>,</span>
+<span>      <span class="st">"Below 75%"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, create a segmented bar plot with one bar per <code>county_type</code>, filled according to <code>broadband_level</code>. The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.</p>
+<p>Compare the percentage of counties with at least 75% broadband access across the county types based on your plot. Supplement your narrative with rough estimates of these percentages.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 5”.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p>We next turn to education, another important dimension of life in North Carolina. The dataset records several education categories separately, so combine them into one measure of the percentage of 25–44-year-olds with an associate degree or higher.</p>
+<p>Create a new variable called <code>p_edu_he</code> (short for “percentage with higher education”) that is the sum of the percentages of</p>
+<pre><code>- 25-44-year-olds with an associate degree (`p_edu_assoc`), 
+- a bachelor's degree (`p_edu_ba`), and
+- a master's, professional, or doctoral degree (`p_edu_mapl`).</code></pre>
+<p>and store this variable in the <code>nc_county</code> data frame.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you don’t create the new variable <code>p_edu_he</code>, you will not be able to answer the remaining parts of this question or any of the remaining questions on the homework.</p>
+<p>Therefore, here is a quick check to make sure you created the variable correctly – after creating the variable, run the following code:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">p_edu_he</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should see the following output:</p>
+<pre><code># A tibble: 3 × 1
+  p_edu_he
+     &lt;dbl&gt;
+1    0.427
+2    0.308
+3    0.342</code></pre>
+<p>These values are proportions: for example, <code>0.427</code> means that 42.7% of 25–44-year-olds in the county have an associate degree or higher.</p>
+<p>If you do not see this output, please revisit the instructions above and make sure you created the variable correctly. Ask for help on Ed or in office hours if you need assistance.</p>
+</div>
+</div>
+<ol type="a">
+<li>
+<p>In a single pipeline, calculate the</p>
+<ul>
+<li>minimum,</li>
+<li>first quartile (25th percentile),</li>
+<li>median (50th percentile),</li>
+<li>mean,</li>
+<li>third quartile (75th percentile), and</li>
+<li>maximum</li>
+</ul>
+<p>of <code>p_edu_he</code>.</p>
+</li>
+<li><p>In a single pipeline, calculate the same statistics as in the previous part, but for each <code>county_type</code>.</p></li>
+</ol>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 6”.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<p>The summary statistics in Question 6 describe higher education numerically. This visualization lets you see how the full distributions differ across county types and which counties contribute to those distributions.</p>
+<p>Using the variable you created in Question 6, re-create the following plot that shows the distribution of <code>p_edu_he</code> by <code>county_type</code>.</p>
+<p><a href="images/hw-2/plot-to-recreate.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hw-2/plot-to-recreate.png" class="img-fluid"></a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>x-axis: You learned how to format the x-axis as percentages in class and had a hint about it in your previous homework assignment. You can use the same approach here.</p></li>
+<li><p>Points: The points are drawn with the <code><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_beeswarm.html">geom_beeswarm()</a></code> function from the <strong>ggbeeswarm</strong> package.</p></li>
+<li><p>Outliers: The outliers in the box plots are drawn as <em>open circles</em>. You can specify this with the <code>outlier.shape</code> argument in <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>. You can also adjust the size of the outliers with the <code>outlier.size</code> argument. The ggplot2 <a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#point">aesthetic specifications documentation</a> has a list of shape names you can use for help.</p></li>
+<li><p>Color palette: The colors for the box plots are manually specified in a <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual()</a></code> layer. You do not need to worry about the exact colors, but you should try to get close, e.g., use blue-ish colors for Rural counties, red-ish for Suburban, and brown-ish for Urban. You can use HEX codes for colors or look up named colors in R in the <a href="https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf">R colors cheatsheet</a></p></li>
+<li><p>Transparancy: You should adjust the transparency of the box plots. You don’t have to worry about the exact transparency value, but you should try to get close.</p></li>
+<li><p>Theme: This plot uses a non-default theme. See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme options documentation</a> for options.</p></li>
+<li><p>Aspect ratio and width: You can adjust the aspect ratio and width of your plot in your <em>rendered document</em> by setting <code>fig-asp</code> and <code>fig-width</code> options in the code cell.</p></li>
+</ul>
+</div>
+</div>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 7”.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<p>The points that fall beyond the typical range in the previous plot represent counties that may be especially useful for getting to know North Carolina. Identify those counties so that you can connect the visual pattern to specific places.</p>
+<p>In a single pipeline, calculate the interquartile range (IQR) of <code>p_edu_he</code> for each <code>county_type</code>. Then, use the IQR and the rule “points that are 1.5 times IQR away from the 25th and 75th percentiles are considered outliers” rule to identify counties that are outliers in the distribution of <code>p_edu_he</code> for their county type. The output should be a data frame with the following three columns, in this order: <code>county</code>, <code>county_type</code>, and <code>p_edu_he</code>, and arranged in ascending order of county type and descending order of percentage with higher education.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 8”.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section><section id="question-9" class="level2"><h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+<p>Finally, examine how education and economic opportunity vary together. This comparison can help us describe whether counties with higher levels of higher education also tend to have a higher percentage of adults earning a family-sustaining wage, while remembering that a county-level association is not evidence that one variable causes the other.</p>
+<p>Create a scatter plot with percentage of 25-44-year-olds with higher education (<code>p_edu_he</code>) on the x-axis and percentage of adults earning a family-sustaining wage (<code>p_family_sustaining_wage</code>) on the y-axis. Describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, identify the counties that correspond to these observations, and make sure to include the code you used to identify them as part of your answer. Your code should output the county name, percentage with higher education, and percentage earning a family-sustaining wage for each unusual observation.</p>
+<p>Requirements for the plot, in addition to the requirements in the overall assignment guidelines, are as follows:</p>
+<ul>
+<li>The x-axis should be formatted as percentages, e.g., 30%, not 0.3.</li>
+<li>The y-axis should be formatted as percentages, e.g., 50%, not 0.5.</li>
+</ul>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+</div>
+</section><section id="question-10" class="level2"><h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
+<p>The previous questions treated higher educational attainment as a numerical variable. Now use it to identify the counties at the upper end of the distribution and explore whether those counties are concentrated in particular county types.</p>
+<ol type="a">
+<li><p>In a single pipeline, calculate the cutoff for the top 20% of counties based on <code>p_edu_he</code> and save it as <code>top_20_edu_cutoff</code> as a single numeric value. This cutoff is the 80th percentile of <code>p_edu_he</code>.</p></li>
+<li><p>In a single pipeline, create a new variable called <code>edu_percentile</code> in <code>nc_county</code> that indicates whether a county is in the <code>"Top 20%"</code> or <code>"Bottom 80%"</code> of counties based on <code>p_edu_he</code>. Use <code>top_20_edu_cutoff</code> to make this classification, and ensure that the levels of <code>edu_percentile</code> are ordered so that <code>"Top 20%"</code> comes before <code>"Bottom 80%"</code>.</p></li>
+<li><p>In a single pipeline, calculate the proportion of counties in each <code>edu_percentile</code> group for each <code>county_type</code>. Then, create a segmented bar plot with one bar for each <code>county_type</code>, filled according to <code>edu_percentile</code>. The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.</p></li>
+</ol>
+<p>Based on your table and plot, describe which county types have the largest proportions of counties in the top 20% of higher educational attainment. Remember that these are descriptive county-level comparisons and do not establish that county type causes educational attainment.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section></section><section id="ai-use-disclosure" class="level1"><h1>AI use disclosure</h1>
+<p>The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.</p>
+<ul>
+<li><p>Did you use an LLM / generative AI tool when completing this assignment? (Yes or No)</p></li>
+<li>
+<p>If Yes, list all of the ways you used it from the list below.</p>
+<ul>
+<li>I used it to clarify the question(s).</li>
+<li>I used it to better understand concept(s).</li>
+<li>I asked it to help write code.</li>
+<li>I gave it my code and asked it to help fix it.</li>
+<li>I asked it about an error or unexpected code behavior.</li>
+<li>I used it to get feedback on my answer(s).</li>
+<li>I pasted the question prompt in and asked for help, but wrote my own answer.</li>
+<li>I pasted the question prompt in and copied at least part of its response into my Quarto document.</li>
+<li>Other (please specify)</li>
+</ul>
+</li>
+<li>
+<p>If Yes, list all the AI tools you used.</p>
+<ul>
+<li>Include the model name and version (if known). For example, “ChatGPT GPT-5.5” or “Claude Sonnet 4”.</li>
+<li>Include the tool as well. For example, “Codex extension in Positron”, “ChatGPT in a web browser”, etc.</li>
+</ul>
+</li>
+</ul>
+<p>Additionally, cite any other non-AI sources you used to help you complete the assignment, along with the question(s) for which you used each source.</p>
+<p><strong>Sample citations:</strong></p>
+<ul>
+<li>Example 1: All questions: 5.6 Luna Light, in Codex in Positron.</li>
+<li>Example 2: I used ChatGPT GPT-5.5 for Questions 5 and 7. Prompt: “Why did my code have an error?” (pasted code).</li>
+</ul></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
+<div class="source-control">
+<p>Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your <code>.qmd</code> file and the rendered PDF are pushed to GitHub and your source control pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.</p>
+</div>
+<section id="submission" class="level2"><h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>Submit your PDF document to Gradescope by the deadline to be considered “on time”:</p>
+<ul>
+<li>Go to <a href="http://www.gradescope.com" class="uri">http://www.gradescope.com</a> and click <em>Log in</em> in the top right corner.</li>
+<li>Click <em>School Credentials</em> <span class="math inline">\(\rightarrow\)</span> <em>Duke NetID</em> and log in using your NetID credentials.</li>
+<li>Click on your <em>STA 199</em> course.</li>
+<li>Click on the assignment, and you’ll be prompted to submit it.</li>
+<li>Mark all the pages associated with question. All the pages of your homework should be associated with at least one question (i.e., should be “checked”).</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checklist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you have:</p>
+<ul>
+<li>attempted all questions</li>
+<li>included an AI use disclosure</li>
+<li>rendered your Quarto document</li>
+<li>committed and pushed everything to your GitHub repository such that the Git pane in Positron is empty</li>
+<li>uploaded your PDF to Gradescope</li>
+<li>selected your pages on Gradescope for each question</li>
+</ul>
+</div>
+</div>
+</section><section id="grading-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="grading-and-feedback">Grading and feedback</h2>
+<p>You can get immediate feedback on all of the questions with AI.</p>
+<p>Submit your final version of <code>hw-2.pdf</code> to Gradescope. Be sure to select the pages associated with each question.</p>
+<p>A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.</p>
+<p>There are also workflow points for:</p>
+<ul>
+<li>committing at least three times as you work through your homework,</li>
+<li>having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and</li>
+<li>overall organization.</li>
+</ul>
 
 
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -902,21 +1459,49 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
-</footer>
-
-
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 </body></html>
