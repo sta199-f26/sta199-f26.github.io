@@ -33,6 +33,8 @@ By the end of this homework, you will:
 
 ## AI support and feedback
 
+# Packages and data
+
 ## Packages
 
 You will use:
@@ -58,30 +60,34 @@ In this homework you will work with a dataset that contains information on North
 
 This dataset is stored in a file called `nc-county.csv` in the `data` folder of your repository.
 
-The variables in the dataset and their descriptions are the same as in HW 1:
+The variables in the dataset and their descriptions are as follows:
 
--   `county`: Name of county.
--   `land_area_m2`: Land area of county in meters-squared, based on the 2020 census.
--   `land_area_mi2`: Land area of county in miles-squared, based on the 2020 census.
--   `pop_2020`: Population of county, based on the 2020 Census.
--   `pop_dens_2020`: Population density calculated as population (`pop_2020`) divided by land area in miles-squared (people per mile-squared).
--   `county_type`: Peer county type classification based on population characteristics, socioeconomic status, and geographic features used for grouping counties with similar demographic, social, and economic characteristics, allowing them to be compared and benchmarked against one another.
--   `median_hh_income`: Median household income.
--   `p_foreign_born`: Percentage of population that is foreign-born.
--   `p_child_poverty`: Percentage of children living in poverty.
--   `p_single_parent_hh`: Percentage of households with children that are single-parent households.
--   `p_broadband`: Percentage of households with broadband internet access.
--   `p_home_ownership`: Percentage of homes that are owner-occupied.
--   `p_family_sustaining_wage`: Percentage of adults that earn a family-sustaining wage -- typically a wage that covers essential costs like housing, food, childcare, transportation, and healthcare for a family's basic needs within a specific geographic area
--   `p_edu_lths`: Percentage of 25-44-year-olds with less than a high school diploma.
--   `p_edu_hsged`: Percentage of 25-44-year-olds with a high school diploma or equivalent.
--   `p_edu_scnd`: Percentage of 25-44-year-olds with some college or an associate degree.
--   `p_edu_ndc`: Percentage of 25-44-year-olds with non-degree credentials -- certifications, licenses, or other credentials that demonstrate specific skills or knowledge but do not confer a formal academic degree.
--   `p_edu_assoc`: Percentage of 25-44-year-olds with an associate degree.
--   `p_edu_ba`: Percentage of 25-44-year-olds with a bachelor's degree.
--   `p_edu_mapl`: Percentage of 25-44-year-olds with a master's, professional, or doctoral degree.
--   `p_edu_hs_grad_rate`: High school graduation rate.
--   `p_edu_chronic_absent_rate`: Chronic absenteeism rate.
+|   | Variable | Description |
+|---:|---|---|
+| 1 | `county` | Name of county. |
+| 2 | `land_area_m2` | Land area of county in meters-squared, based on the 2020 census. |
+| 3 | `land_area_mi2` | Land area of county in miles-squared, based on the 2020 census. |
+| 4 | `pop_2020` | Population of county, based on the 2020 Census. |
+| 5 | `pop_dens_2020` | Population density calculated as population (`pop_2020`) divided by land area in miles-squared (people per mile-squared). |
+| 6 | `county_type` | Peer county type classification based on population characteristics, socioeconomic status, and geographic features used for grouping counties with similar demographic, social, and economic characteristics, allowing them to be compared and benchmarked against one another. |
+| 7 | `median_hh_income` | Median household income. |
+| 8 | `p_foreign_born` | Percentage of population that is foreign-born. |
+| 9 | `p_child_poverty` | Percentage of children living in poverty. |
+| 10 | `p_single_parent_hh` | Percentage of households with children that are single-parent households. |
+| 11 | `p_broadband` | Percentage of households with broadband internet access. |
+| 12 | `p_home_ownership` | Percentage of homes that are owner-occupied. |
+| 13 | `p_family_sustaining_wage` | Percentage of adults that earn a family-sustaining wage -- typically a wage that covers essential costs like housing, food, childcare, transportation, and healthcare for a family's basic needs within a specific geographic area. |
+| 14 | `p_edu_lths` | Percentage of 25-44-year-olds with less than a high school diploma. |
+| 15 | `p_edu_hsged` | Percentage of 25-44-year-olds with a high school diploma or equivalent. |
+| 16 | `p_edu_scnd` | Percentage of 25-44-year-olds with some college or an associate degree. |
+| 17 | `p_edu_ndc` | Percentage of 25-44-year-olds with non-degree credentials -- certifications, licenses, or other credentials that demonstrate specific skills or knowledge but do not confer a formal academic degree. |
+| 18 | `p_edu_assoc` | Percentage of 25-44-year-olds with an associate degree. |
+| 19 | `p_edu_ba` | Percentage of 25-44-year-olds with a bachelor's degree. |
+| 20 | `p_edu_mapl` | Percentage of 25-44-year-olds with a master's, professional, or doctoral degree. |
+| 21 | `p_edu_hs_grad_rate` | High school graduation rate. |
+| 22 | `p_edu_chronic_absent_rate` | Chronic absenteeism rate. |
+
+: {tbl-colwidths="[5,20,75]"}
 
 You can read this file into R with the following code:
 
@@ -96,12 +102,11 @@ nc_county <- read_csv("data/nc-county.csv")
 We begin by getting an overview of how the counties in North Carolina are classified.
 This gives us a first sense of the balance between rural, suburban, and urban parts of the state.
 
-a. Report the number of rows and columns in `nc_county`.
+a. Calculate the number of rows and columns in `nc_county`. 
 
 b. Calculate the number of counties in each `county_type` and display your results in descending order of the number of counties.
 
-Which county type has the highest number of counties, and how many counties does it contain?
-Which county type has the lowest number, and how many counties does it contain?
+c. Based on your findings so far, write a short, introductory paragraph describing the dataset.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 1".
@@ -110,25 +115,6 @@ Make sure to commit and push all changed files so that your source control pane 
 :::
 
 ## Question 2
-
-The number of people living in a county is one way to understand North Carolina, but economic opportunity is another.
-The following question helps identify which county types include several counties where a relatively large share of adults earn a family-sustaining wage.
-
-A classmate says:
-
-> “Look at that, there is a county type containing at least six counties where at least half of adults earn a family-sustaining wage!”
-
-In a single pipeline, discover all county types that could fill in the blank.
-Your response should be a data frame with only the county type and the number of counties where `p_family_sustaining_wage` is greater than or equal to 0.50, followed by a sentence identifying the county types that satisfy the statement.
-Your code must use `filter()`.
-
-::: source-control
-Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 2".
-
-Make sure to commit and push all changed files so that your source control pane is empty afterward.
-:::
-
-## Question 3
 
 North Carolina includes densely populated urban counties as well as counties with much more land and fewer residents.
 Before focusing on particular counties, summarize the overall distribution of population density.
@@ -150,7 +136,7 @@ Preview, commit, and push your changes to GitHub with the commit message "Added 
 Make sure to commit and push all changed files so that your source control pane is empty afterward.
 :::
 
-## Question 4
+## Question 3
 
 Now use the population-density distribution to identify specific places at the densely populated end of the spectrum.
 As you look at the results, consider which counties you recognize and what their population density might suggest about where people live in North Carolina.
@@ -167,6 +153,27 @@ If your response has multiple rows, arrange the counties in descending order of 
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 4".
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+:::
+
+## Question 4
+
+The number of people living in a county is one way to understand North Carolina, but economic opportunity is another.
+The following question helps identify which county types include several counties where a relatively large share of adults earn a family-sustaining wage.
+
+A classmate says:
+
+> “Look at that, there is a county type containing at least six counties where at least half of adults earn a family-sustaining wage!”
+
+TO DO: Update the statement above to be about counties where less than halff the adults earn a family-sustaining wage.
+
+In a single pipeline, discover all county types that could fill in the blank.
+Your response should be a data frame with only the county type and the number of counties where `p_family_sustaining_wage` is greater than or equal to 0.50, followed by a sentence identifying the county types that satisfy the statement.
+Your code must use `filter()`.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 2".
 
 Make sure to commit and push all changed files so that your source control pane is empty afterward.
 :::
@@ -320,7 +327,7 @@ This comparison can help us describe whether counties with higher levels of high
 
 Create a scatter plot with percentage of 25-44-year-olds with higher education (`p_edu_he`) on the x-axis and percentage of adults earning a family-sustaining wage (`p_family_sustaining_wage`) on the y-axis. Describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, identify the counties that correspond to these observations, and make sure to include the code you used to identify them as part of your answer. Your code should output the county name, percentage with higher education, and percentage earning a family-sustaining wage for each unusual observation.
 
-Requirements for the plot (in addition to the requirements in the overall assignment guidelines:
+Requirements for the plot, in addition to the requirements in the overall assignment guidelines, are as follows:
 
 - The x-axis should be formatted as percentages, e.g., 30%, not 0.3.
 - The y-axis should be formatted as percentages, e.g., 50%, not 0.5.
@@ -331,11 +338,21 @@ Preview, commit, and push your changes to GitHub with an informative and concise
 
 ## Question 10
 
-Use the data to ask and answer one final question about North Carolina counties.
-Your question should help a reader learn something new about the state and should use at least one variable that has not been the main focus of an earlier question.
-Come up with a question that you could answer with the `nc_county` data frame and the new `p_edu_he` variable you created in Question 6 and state it explicitly.
-Then, answer your question with an appropriate data visualization and/or data transformation pipeline and a brief description of your findings.
-You might explore variables such as child poverty, home ownership, broadband access, the foreign-born population, high school graduation, or chronic absenteeism.
+The previous questions treated higher educational attainment as a numerical variable.
+Now use it to identify the counties at the upper end of the distribution and explore whether those counties are concentrated in particular county types.
+
+a. In a single pipeline, calculate the cutoff for the top 20% of counties based on `p_edu_he` and save it as `top_20_edu_cutoff` as a single numeric value.
+This cutoff is the 80th percentile of `p_edu_he`.
+
+b. In a single pipeline, create a new variable called `edu_percentile` in `nc_county` that indicates whether a county is in the `"Top 20%"` or `"Bottom 80%"` of counties based on `p_edu_he`.
+Use `top_20_edu_cutoff` to make this classification, and ensure that the levels of `edu_percentile` are ordered so that `"Top 20%"` comes before `"Bottom 80%"`.
+
+c. In a single pipeline, calculate the proportion of counties in each `edu_percentile` group for each `county_type`.
+Then, create a segmented bar plot with one bar for each `county_type`, filled according to `edu_percentile`.
+The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.
+
+Based on your table and plot, describe which county types have the largest proportions of counties in the top 20% of higher educational attainment.
+Remember that these are descriptive county-level comparisons and do not establish that county type causes educational attainment.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
