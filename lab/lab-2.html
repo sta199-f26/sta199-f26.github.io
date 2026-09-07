@@ -583,8 +583,13 @@ Find your teammates
 <p>Make sure to upload your completed lab to Gradescope <strong>by the end of your lab session</strong> and commit and push your final version to GitHub.</p>
 <section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <p>By the end of this lab, you will:</p>
-<p>TO DO: Add this.</p>
-</section></section><section id="getting-started" class="level1"><h1>Getting started</h1>
+<ul>
+<li>use <code>dplyr</code> pipelines to arrange, group, summarize, and transform data;</li>
+<li>group data by one or more variables and calculate summaries within groups;</li>
+<li>explain how grouping affects the number of rows, columns, and groups in a data frame;</li>
+<li>distinguish between <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> when working with grouped data; and</li>
+<li>understand how to use <code>.groups</code> argument in <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> to control the grouping structure of the output.</li>
+</ul></section></section><section id="getting-started" class="level1"><h1>Getting started</h1>
 <p>Clone your <strong>lab-2</strong> repository using the same process used in Lab 0.</p>
 <ol type="1">
 <li>Go to the course GitHub organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> and click on the repository with prefix <code>lab-2</code>.</li>
@@ -650,8 +655,8 @@ Find your teammates
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">member</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="render-commit-push">
-<p>Render, commit, and push your changes to GitHub with the commit message “Added answer for Q1, parts a and b”.</p>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q1, parts a and b”.</p>
 <p>Make sure to commit and push all changed files so that your Git pane is empty afterward.</p>
 </div>
 <ol start="3" type="a">
