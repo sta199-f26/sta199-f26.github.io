@@ -155,15 +155,15 @@ Make sure to commit and push all changed files so that your source control pane 
 Now use the population-density distribution to identify specific places at the densely populated end of the spectrum.
 As you look at the results, consider which counties you recognize and what their population density might suggest about where people live in North Carolina.
 
-Use population density to identify the most densely populated counties in North Carolina.
-
-1. Identify all counties with a population density greater than 500 people per square mile. Your code must use `filter()`.
-
-2. Identify the county with the highest population density. Your code must use `max()`.
-
 Answer each part using a single data-wrangling pipeline.
 Your response should be a data frame with the following five columns, in this order: `county`, `county_type`, `pop_dens_2020`, `pop_2020`, and `land_area_mi2`.
 If your response has multiple rows, arrange the counties in descending order of population density.
+
+a. Find out which county Duke University is located in and identify its population density.
+
+b. Identify all counties with a population density greater than 500 people per square mile. Find a map of North Carolina counties from a reliable source online and use it to identify the locations of these counties (e.g., eastern, western, central, or coastal North Carolina). Your response should link to the map you found as well.
+
+c. Identify the county with the highest population density. Your code must use `max()`.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 3".
@@ -178,10 +178,10 @@ The following question helps identify which county types include several countie
 
 A classmate says:
 
-> “Look at that, there is a county type containing at least six counties where less than half of adults earn a family-sustaining wage!”
+> “Look at that, there is a county type containing at least ten counties where less than half of adults earn a family-sustaining wage!”
 
 In a single pipeline, discover all county types that could fill in the blank.
-Your response should be a data frame with only the county type and the number of counties where `p_family_sustaining_wage` is less than 0.50, followed by a sentence identifying the county types that satisfy the statement.
+Your response should be a data frame with only the county type and the number of counties in that county type where `p_family_sustaining_wage` is less than 0.50, and by 1-2 sentences identifying the county types that satisfy the statement and the county types that do not.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 4".
@@ -196,28 +196,15 @@ Use the county data to explore whether broadband access appears to vary across t
 
 Do some county types have a higher percentage of counties where at least 75% of households have broadband internet access?
 
-To explore this question, first create a new variable called `broadband_level` in `nc_county`.
+a. To explore this question, first create a new variable called `broadband_level` in `nc_county`.
 The variable should have the value `"At least 75%"` when `p_broadband` is greater than or equal to 0.75, and `"Below 75%"` otherwise.
 
-You can begin with the following pipeline:
-
-```{r}
-#| eval: false
-nc_county <- nc_county |>
-  mutate(
-    broadband_level = if_else(
-      p_broadband >= 0.75,
-      "At least 75%",
-      "Below 75%"
-    )
-  )
-```
-
-Then, create a segmented bar plot with one bar per `county_type`, filled according to `broadband_level`.
+b. Then, create a segmented bar plot with one bar per `county_type`, filled according to `broadband_level`.
 The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.
 
-Compare the percentage of counties with at least 75% broadband access across the county types based on your plot.
-Supplement your narrative with rough estimates of these percentages.
+c. Finally, in a single pipeline, calculate the proportion of counties with at least 75% broadband access for each `county_type`.
+
+d. Based on the visualization and the summary statistics, write a short paragraph comparing the percentage of counties with at least 75% broadband access across the county types based on your plot.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 5".
@@ -227,10 +214,11 @@ Make sure to commit and push all changed files so that your source control pane 
 
 ## Question 6
 
-We next turn to education, another important dimension of life in North Carolina.
-The dataset records several education categories separately, so combine them into one measure of the percentage of 25–44-year-olds with an associate degree or higher.
+We next turn to education, another important dimension of life.
+Specifically, we will examine the distribution of higher educational attainment across counties in North Carolina.
 
-Create a new variable called `p_edu_he` (short for "percentage with higher education") that is the sum of the percentages of
+The dataset records several education categories separately. 
+First, create a new variable called `p_edu_he` (short for "percentage with higher education") that is the sum of the percentages of
 
     - 25-44-year-olds with an associate degree (`p_edu_assoc`), 
     - a bachelor's degree (`p_edu_ba`), and
@@ -246,19 +234,19 @@ Therefore, here is a quick check to make sure you created the variable correctly
 ```{r}
 #| eval: false
 nc_county |>
-  select(p_edu_he) |>
+  select(county, p_edu_he) |>
   slice_head(n = 3)
 ```
 
 You should see the following output:
 
 ```
-# A tibble: 3 × 1
-  p_edu_he
-     <dbl>
-1    0.427
-2    0.308
-3    0.342
+# A tibble: 3 × 2
+  county    p_edu_he
+  <chr>        <dbl>
+1 Alamance     0.427
+2 Alexander    0.308
+3 Alleghany    0.342
 ```
 
 These values are proportions: for example, `0.427` means that 42.7% of 25–44-year-olds in the county have an associate degree or higher.
@@ -279,7 +267,7 @@ a.  In a single pipeline, calculate the
 
     of `p_edu_he`.
 
-b.  In a single pipeline, calculate the same statistics as in the previous part, but for each `county_type`.
+b.  In a single pipeline, calculate the same statistics as in the previous part, but for each `county_type`. Arrange the results in ascending order of median. Briefly comment on how these summary statistics vary across county types.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 6".
@@ -321,11 +309,15 @@ Make sure to commit and push all changed files so that your source control pane 
 ## Question 8
 
 The points that fall beyond the typical range in the previous plot represent counties that may be especially useful for getting to know North Carolina.
-Identify those counties so that you can connect the visual pattern to specific places.
+Identify those counties from the plot so that you can connect the visual pattern to specific places.
 
-In a single pipeline, calculate the interquartile range (IQR) of `p_edu_he` for each `county_type`.
-Then, use the IQR and the rule "points that are 1.5 times IQR away from the 25th and 75th percentiles are considered outliers" rule to identify counties that are outliers in the distribution of `p_edu_he` for their county type.
-The output should be a data frame with the following three columns, in this order: `county`, `county_type`, and `p_edu_he`, and arranged in ascending order of county type and descending order of percentage with higher education.
+In a single pipeline, identify the outliers in the plot you recreated in Question 7.
+The cutoff you use should be based on the definition of an outlier in a box plot, not a visual estimate from the plot.
+The output should be a data frame with the following three columns, in this order: `county`, `county_type`, and `p_edu_he`, and arranged in descending order of percentage with higher education.
+
+::: callout-tip
+First, calcalculate the interquartile range (IQR) of `p_edu_he` for each `county_type`.
+:::
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with the commit message "Added answer for Question 8".
@@ -335,15 +327,16 @@ Make sure to commit and push all changed files so that your source control pane 
 
 ## Question 9
 
-Finally, examine how education and economic opportunity vary together.
-This comparison can help us describe whether counties with higher levels of higher education also tend to have a higher percentage of adults earning a family-sustaining wage, while remembering that a county-level association is not evidence that one variable causes the other.
+Finally, examine the relationship between education and economic opportunity.
 
-Create a scatter plot with percentage of 25-44-year-olds with higher education (`p_edu_he`) on the x-axis and percentage of adults earning a family-sustaining wage (`p_family_sustaining_wage`) on the y-axis. Describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, identify the counties that correspond to these observations, and make sure to include the code you used to identify them as part of your answer. Your code should output the county name, percentage with higher education, and percentage earning a family-sustaining wage for each unusual observation.
+a. Create an appropriate visualization to explore the relationship between the percentage of 25-44-year-olds with higher education (`p_edu_he`) and the percentage of adults earning a family-sustaining wage (`p_family_sustaining_wage`). Decide which variables should be on which axes and state your reason for the decision in one sentence.
+In your plot, make sure values are formatted as percentages on both axes (e.g., 30% not 0.3).
 
-Requirements for the plot, in addition to the requirements in the overall assignment guidelines, are as follows:
+b. Based on your plot in Part a, describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, first describe in words the values for `p_edu_he` and `p_family_sustaining_wage` that make the observation unusual, then write code to identify these counties. Your code should output the county name, county type, and percentage with higher education, and percentage earning a family-sustaining wage for each unusual observation.
 
-- The x-axis should be formatted as percentages, e.g., 30%, not 0.3.
-- The y-axis should be formatted as percentages, e.g., 50%, not 0.5.
+::: callout-tip
+You will need to consider "and"s and "or"s when you write your code to identify unusual observations.
+:::
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
@@ -351,21 +344,14 @@ Preview, commit, and push your changes to GitHub with an informative and concise
 
 ## Question 10
 
-The previous questions treated higher educational attainment as a numerical variable.
-Now use it to identify the counties at the upper end of the distribution and explore whether those counties are concentrated in particular county types.
+In this last question, you get to be creative and work with a third variable of interest.
+Your goal is to explore how the relationship between higher educational attainment and earning a family-sustaining wage varies with a third variable.
 
-a. In a single pipeline, calculate the cutoff for the top 20% of counties based on `p_edu_he` and save it as `top_20_edu_cutoff` as a single numeric value.
-This cutoff is the 80th percentile of `p_edu_he`.
+a. Select a third variable (other than `county_type`, we had enough of that...) of interest from the dataset. This could be any variable that you think might influence or interact with the relationship between higher educational attainment and earning a family-sustaining wage. State the variable, whether it's numerical or categorical, and why you think it might be interesting to explore in this context.
 
-b. In a single pipeline, create a new variable called `edu_percentile` in `nc_county` that indicates whether a county is in the `"Top 20%"` or `"Bottom 80%"` of counties based on `p_edu_he`.
-Use `top_20_edu_cutoff` to make this classification, and ensure that the levels of `edu_percentile` are ordered so that `"Top 20%"` comes before `"Bottom 80%"`.
+b. Add this third variable to your plot in Question 9 to explore whether the relationship between higher educational attainment and earning a family-sustaining wage differs across the distribution of that third variable. Before making the plot, describe how the variable will be added to the plot (as a new aesthetic mapping, for faceting, or some other approach) and why you chose that approach.
 
-c. In a single pipeline, calculate the proportion of counties in each `edu_percentile` group for each `county_type`.
-Then, create a segmented bar plot with one bar for each `county_type`, filled according to `edu_percentile`.
-The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.
-
-Based on your table and plot, describe which county types have the largest proportions of counties in the top 20% of higher educational attainment.
-Remember that these are descriptive county-level comparisons and do not establish that county type causes educational attainment.
+c. Describe how, if at all, the relationship between higher educational attainment and earning a family-sustaining wage varies across the distribution of your third variable.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
