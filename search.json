@@ -105,55 +105,6 @@
     "text": "Footnotes\n\nSee Spotify’s chart documentation: https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/.↩︎"
   },
   {
-    "objectID": "hw/rubric-for-codex/hw-1-rubric.html",
-    "href": "hw/rubric-for-codex/hw-1-rubric.html",
-    "title": "HW 1 Rubric",
-    "section": "",
-    "text": "This is the rubric for AI feedback, not necessarily the rubric for grading."
-  },
-  {
-    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-1",
-    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-1",
-    "title": "HW 1 Rubric",
-    "section": "Question 1",
-    "text": "Question 1\n\nAll code uses appropriate tidyverse functions and syntax.\nCode produces a histogram with binwidth 5.\nCode produces a histogram with binwidth 50.\nCode produces a histogram with binwidth 500.\nAll plots have informative and human-readable titles and/or subtitles and axis labels.\nCode style and readability: Line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present.\nNarrative mentions the most appropriate binwidth among the choices.\n\nNote: Most appropriate binwidth among the choices: 50.\n\nNarrative states a well-articulated and accurate reason for the chosen binwidth.\n\nSample well-articulated and accurate reason: A much smaller binwidth results in too much detail in the histogram and a much larger binwidth hides important details binning too much of the data together."
-  },
-  {
-    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-2",
-    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-2",
-    "title": "HW 1 Rubric",
-    "section": "Question 2",
-    "text": "Question 2\n\nCode produces a boxplot with weeks_on_chart on either the x-axis or y-axis.\nPlot has an informative title and/or subtitle and a human-readable axis label on the axis where weeks_on_chart is plotted.\n\nNote: A label on the other axis is optional since it is not meaningful in a boxplot.\n\nNarrative mentions shape: the distribution is right-skewed and unimodal.\nNarrative mentions center: a roughly estimated value or range of values for the median, approximately 45 weeks.\nNarrative mentions spread: a roughly estimated value or range of values for the IQR or for the bounds of the middle 50% of the distribution, approximately 15 to 124 weeks.\nCode uses filter() to identify all outliers.\n\nNote: The cutoff should be around 285 but doesn’t have to be exactly that value.\n\nCode uses select() to keep only artist, song, weeks_on_chart, and rank in the outlier output.\nCode arranges the data frame in descending order of weeks_on_chart.\nNarrative mentions something about expectedness/unexpectedness of outliers.\n\nNote: Any reasonable answer is acceptable, including “having had no expectations”.\n\nCode style and readability: Line breaks after each |&gt;, line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
-  },
-  {
-    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-3",
-    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-3",
-    "title": "HW 1 Rubric",
-    "section": "Question 3",
-    "text": "Question 3\n\nCode creates positions_below_peak with mutate() using rank - peak_rank.\nCode uses a single data wrangling pipeline to produce the requested output.\nCode identifies the 10 songs farthest below their peak rank.\nCode orders the songs so that the largest values of positions_below_peak appear first.\nCode uses select() to keep song, artist, rank, peak_rank, positions_below_peak, and weeks_on_chart in the output.\nThe output contains exactly 10 songs.\nNarrative identifies a pattern supported by the output.\nNarrative selects one song from the results and gives a plausible explanation for why it may be charting below its earlier peak.\nThe explanation is clearly presented as a hypothesis rather than a conclusion supported by these data alone.\nCode style and readability: Line breaks after each |&gt;, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
-  },
-  {
-    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-4",
-    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-4",
-    "title": "HW 1 Rubric",
-    "section": "Question 4",
-    "text": "Question 4\n\nCode produces a scatterplot with geom_point().\nCode maps weeks_on_chart to the x-axis and positions_below_peak to the y-axis.\nPlot has an informative title and/or subtitle and human-readable axis labels that include appropriate units.\nNarrative accurately describes the relationship between weeks_on_chart and positions_below_peak, such as a very weak positive relationship with substantial variability.\nCode uses a single pipeline to identify a song that has been on the chart for a long time while remaining close to its peak rank: Riptde by Vance Joy.\nCode uses select() to display song, artist, rank, peak_rank, positions_below_peak, and weeks_on_chart.\nNarrative correctly identifies where the selected song appears on the scatterplot, such as far to the right and close to the bottom.\nCode style and readability: Line breaks after each |&gt; and +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
-  },
-  {
-    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-5",
-    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-5",
-    "title": "HW 1 Rubric",
-    "section": "Question 5",
-    "text": "Question 5\n\nCode uses appropriate tidyverse functions and syntax.\nCode identifies the genres with at least 10 songs on the chart and excludes genres with fewer than 10 songs from the plot.\nCode produces side-by-side boxplots with streams plotted by genre.\nPlot has an informative title and/or subtitle and human-readable axis labels for genre and weekly streams.\nNarrative accurately compares typical weekly stream counts across the included genres, such as by comparing their medians.\nNarrative accurately compares the variability of weekly stream counts across the included genres, such as by comparing their IQRs or overall spreads.\nNarrative answers the initial question by explaining whether songs from some genres tend to have higher weekly stream counts than others.\nCode uses a single pipeline to identify the single most-streamed song among the included genres.\n\nNote: There are multiple ways of identifying this song. A hard-coded list of eligible genres is also acceptable if it includes only genres with at least 10 songs.\n\nCode identifies the correct song, artist, genre, and weekly stream count: “Earrings” by Malcolm Todd, a Pop song, with 25,092,481 streams.\nCode style and readability: Line breaks after each |&gt;, line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
-  },
-  {
-    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-6",
-    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-6",
-    "title": "HW 1 Rubric",
-    "section": "Question 6",
-    "text": "Question 6\n\nCode creates stream_level with mutate() and if_else(), classifying songs according to whether streams is above the overall median.\nCode produces a segmented bar plot with one bar for each genre and fills the bars according to stream_level.\nCode includes only genres with at least 10 songs on the chart.\nThe y-axis represents proportions from 0 to 1.\nPlot has an informative title and/or subtitle and human-readable axis labels.\nNarrative compares the proportions of above-median songs across the included genres using reasonable approximate values.\nNarrative correctly identifies Pop as having the highest proportion and Electronic as having the lowest proportion of songs above the overall median.\nCode style and readability: Line breaks after each |&gt;, line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
-  },
-  {
     "objectID": "lab/lab-0.html",
     "href": "lab/lab-0.html",
     "title": "Lab 0",
