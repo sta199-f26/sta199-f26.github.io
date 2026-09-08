@@ -136,8 +136,8 @@ window.Quarto = {
 <meta property="og:description" content="Due: Wed, Sep 16, 11:59 pm">
 <meta property="og:image" content="https://sta199-f26.github.io/hw/images/hw-2/plot-to-recreate.png">
 <meta property="og:site_name" content="STA 199CCL">
-<meta property="og:image:height" content="672">
-<meta property="og:image:width" content="1344">
+<meta property="og:image:height" content="768">
+<meta property="og:image:width" content="1536">
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -815,12 +815,12 @@ Tip
 </div>
 </section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <p>Now use the population-density distribution to identify specific places at the densely populated end of the spectrum. As you look at the results, consider which counties you recognize and what their population density might suggest about where people live in North Carolina.</p>
-<p>Use population density to identify the most densely populated counties in North Carolina.</p>
-<ol type="1">
-<li><p>Identify all counties with a population density greater than 500 people per square mile. Your code must use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>.</p></li>
+<p>Answer each part using a single data-wrangling pipeline. Your response should be a data frame with the following five columns, in this order: <code>county</code>, <code>county_type</code>, <code>pop_dens_2020</code>, <code>pop_2020</code>, and <code>land_area_mi2</code>. If your response has multiple rows, arrange the counties in descending order of population density.</p>
+<ol type="a">
+<li><p>Find out which county Duke University is located in and identify its population density.</p></li>
+<li><p>Identify all counties with a population density greater than 500 people per square mile. Find a map of North Carolina counties from a reliable source online and use it to identify the locations of these counties (e.g., eastern, western, central, or coastal North Carolina). Your response should link to the map you found as well.</p></li>
 <li><p>Identify the county with the highest population density. Your code must use <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>.</p></li>
 </ol>
-<p>Answer each part using a single data-wrangling pipeline. Your response should be a data frame with the following five columns, in this order: <code>county</code>, <code>county_type</code>, <code>pop_dens_2020</code>, <code>pop_2020</code>, and <code>land_area_mi2</code>. If your response has multiple rows, arrange the counties in descending order of population density.</p>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.</p>
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
@@ -829,9 +829,9 @@ Tip
 <p>The number of people living in a county is one way to understand North Carolina, but economic opportunity is another. The following question helps identify which county types include several counties where a relatively large share of adults earn a family-sustaining wage.</p>
 <p>A classmate says:</p>
 <blockquote class="blockquote">
-<p>“Look at that, there is a county type containing at least six counties where less than half of adults earn a family-sustaining wage!”</p>
+<p>“Look at that, there is a county type containing at least ten counties where less than half of adults earn a family-sustaining wage!”</p>
 </blockquote>
-<p>In a single pipeline, discover all county types that could fill in the blank. Your response should be a data frame with only the county type and the number of counties where <code>p_family_sustaining_wage</code> is less than 0.50, followed by a sentence identifying the county types that satisfy the statement.</p>
+<p>In a single pipeline, discover all county types that could fill in the blank. Your response should be a data frame with only the county type and the number of counties in that county type where <code>p_family_sustaining_wage</code> is less than 0.50, and by 1-2 sentences identifying the county types that satisfy the statement and the county types that do not.</p>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 4”.</p>
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
@@ -839,27 +839,19 @@ Tip
 </section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
 <p>Access to broadband internet is one part of the infrastructure that connects people to school, work, health information, and one another. Use the county data to explore whether broadband access appears to vary across the county types used in this dataset.</p>
 <p>Do some county types have a higher percentage of counties where at least 75% of households have broadband internet access?</p>
-<p>To explore this question, first create a new variable called <code>broadband_level</code> in <code>nc_county</code>. The variable should have the value <code>"At least 75%"</code> when <code>p_broadband</code> is greater than or equal to 0.75, and <code>"Below 75%"</code> otherwise.</p>
-<p>You can begin with the following pipeline:</p>
-<div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">&lt;-</span> <span class="va">nc_county</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    broadband_level <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
-<span>      <span class="va">p_broadband</span> <span class="op">&gt;=</span> <span class="fl">0.75</span>,</span>
-<span>      <span class="st">"At least 75%"</span>,</span>
-<span>      <span class="st">"Below 75%"</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Then, create a segmented bar plot with one bar per <code>county_type</code>, filled according to <code>broadband_level</code>. The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.</p>
-<p>Compare the percentage of counties with at least 75% broadband access across the county types based on your plot. Supplement your narrative with rough estimates of these percentages.</p>
+<ol type="a">
+<li><p>To explore this question, first create a new variable called <code>broadband_level</code> in <code>nc_county</code>. The variable should have the value <code>"At least 75%"</code> when <code>p_broadband</code> is greater than or equal to 0.75, and <code>"Below 75%"</code> otherwise.</p></li>
+<li><p>Then, create a segmented bar plot with one bar per <code>county_type</code>, filled according to <code>broadband_level</code>. The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.</p></li>
+<li><p>Finally, in a single pipeline, calculate the proportion of counties with at least 75% broadband access for each <code>county_type</code>.</p></li>
+<li><p>Based on the visualization and the summary statistics, write a short paragraph comparing the percentage of counties with at least 75% broadband access across the county types based on your plot.</p></li>
+</ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 5”.</p>
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
-<p>We next turn to education, another important dimension of life in North Carolina. The dataset records several education categories separately, so combine them into one measure of the percentage of 25–44-year-olds with an associate degree or higher.</p>
-<p>Create a new variable called <code>p_edu_he</code> (short for “percentage with higher education”) that is the sum of the percentages of</p>
+<p>We next turn to education, another important dimension of life. Specifically, we will examine the distribution of higher educational attainment across counties in North Carolina.</p>
+<p>The dataset records several education categories separately. First, create a new variable called <code>p_edu_he</code> (short for “percentage with higher education”) that is the sum of the percentages of</p>
 <pre><code>- 25-44-year-olds with an associate degree (`p_edu_assoc`), 
 - a bachelor's degree (`p_edu_ba`), and
 - a master's, professional, or doctoral degree (`p_edu_mapl`).</code></pre>
@@ -877,17 +869,17 @@ Warning
 <p>If you don’t create the new variable <code>p_edu_he</code>, you will not be able to answer the remaining parts of this question or any of the remaining questions on the homework.</p>
 <p>Therefore, here is a quick check to make sure you created the variable correctly – after creating the variable, run the following code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">p_edu_he</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_county</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">county</span>, <span class="va">p_edu_he</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You should see the following output:</p>
-<pre><code># A tibble: 3 × 1
-  p_edu_he
-     &lt;dbl&gt;
-1    0.427
-2    0.308
-3    0.342</code></pre>
+<pre><code># A tibble: 3 × 2
+  county    p_edu_he
+  &lt;chr&gt;        &lt;dbl&gt;
+1 Alamance     0.427
+2 Alexander    0.308
+3 Alleghany    0.342</code></pre>
 <p>These values are proportions: for example, <code>0.427</code> means that 42.7% of 25–44-year-olds in the county have an associate degree or higher.</p>
 <p>If you do not see this output, please revisit the instructions above and make sure you created the variable correctly. Ask for help on Ed or in office hours if you need assistance.</p>
 </div>
@@ -905,7 +897,7 @@ Warning
 </ul>
 <p>of <code>p_edu_he</code>.</p>
 </li>
-<li><p>In a single pipeline, calculate the same statistics as in the previous part, but for each <code>county_type</code>.</p></li>
+<li><p>In a single pipeline, calculate the same statistics as in the previous part, but for each <code>county_type</code>. Arrange the results in ascending order of median. Briefly comment on how these summary statistics vary across county types.</p></li>
 </ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 6”.</p>
@@ -941,31 +933,54 @@ Tip
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
-<p>The points that fall beyond the typical range in the previous plot represent counties that may be especially useful for getting to know North Carolina. Identify those counties so that you can connect the visual pattern to specific places.</p>
-<p>In a single pipeline, calculate the interquartile range (IQR) of <code>p_edu_he</code> for each <code>county_type</code>. Then, use the IQR and the rule “points that are 1.5 times IQR away from the 25th and 75th percentiles are considered outliers” rule to identify counties that are outliers in the distribution of <code>p_edu_he</code> for their county type. The output should be a data frame with the following three columns, in this order: <code>county</code>, <code>county_type</code>, and <code>p_edu_he</code>, and arranged in ascending order of county type and descending order of percentage with higher education.</p>
+<p>The points that fall beyond the typical range in the previous plot represent counties that may be especially useful for getting to know North Carolina. Identify those counties from the plot so that you can connect the visual pattern to specific places.</p>
+<p>In a single pipeline, identify the outliers in the plot you recreated in Question 7. The cutoff you use should be based on the definition of an outlier in a box plot, not a visual estimate from the plot. The output should be a data frame with the following three columns, in this order: <code>county</code>, <code>county_type</code>, and <code>p_edu_he</code>, and arranged in descending order of percentage with higher education.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>First, calcalculate the interquartile range (IQR) of <code>p_edu_he</code> for each <code>county_type</code>.</p>
+</div>
+</div>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 8”.</p>
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-9" class="level2"><h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
-<p>Finally, examine how education and economic opportunity vary together. This comparison can help us describe whether counties with higher levels of higher education also tend to have a higher percentage of adults earning a family-sustaining wage, while remembering that a county-level association is not evidence that one variable causes the other.</p>
-<p>Create a scatter plot with percentage of 25-44-year-olds with higher education (<code>p_edu_he</code>) on the x-axis and percentage of adults earning a family-sustaining wage (<code>p_family_sustaining_wage</code>) on the y-axis. Describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, identify the counties that correspond to these observations, and make sure to include the code you used to identify them as part of your answer. Your code should output the county name, percentage with higher education, and percentage earning a family-sustaining wage for each unusual observation.</p>
-<p>Requirements for the plot, in addition to the requirements in the overall assignment guidelines, are as follows:</p>
-<ul>
-<li>The x-axis should be formatted as percentages, e.g., 30%, not 0.3.</li>
-<li>The y-axis should be formatted as percentages, e.g., 50%, not 0.5.</li>
-</ul>
+<p>Finally, examine the relationship between education and economic opportunity.</p>
+<ol type="a">
+<li><p>Create an appropriate visualization to explore the relationship between the percentage of 25-44-year-olds with higher education (<code>p_edu_he</code>) and the percentage of adults earning a family-sustaining wage (<code>p_family_sustaining_wage</code>). Decide which variables should be on which axes and state your reason for the decision in one sentence. In your plot, make sure values are formatted as percentages on both axes (e.g., 30% not 0.3).</p></li>
+<li><p>Based on your plot in Part a, describe the relationship between these two variables. In your description, make sure to comment on the direction, form, strength, and any unusual observations. For unusual observations, first describe in words the values for <code>p_edu_he</code> and <code>p_family_sustaining_wage</code> that make the observation unusual, then write code to identify these counties. Your code should output the county name, county type, and percentage with higher education, and percentage earning a family-sustaining wage for each unusual observation.</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You will need to consider “and”s and “or”s when you write your code to identify unusual observations.</p>
+</div>
+</div>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
 </section><section id="question-10" class="level2"><h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
-<p>The previous questions treated higher educational attainment as a numerical variable. Now use it to identify the counties at the upper end of the distribution and explore whether those counties are concentrated in particular county types.</p>
+<p>In this last question, you get to be creative and work with a third variable of interest. Your goal is to explore how the relationship between higher educational attainment and earning a family-sustaining wage varies with a third variable.</p>
 <ol type="a">
-<li><p>In a single pipeline, calculate the cutoff for the top 20% of counties based on <code>p_edu_he</code> and save it as <code>top_20_edu_cutoff</code> as a single numeric value. This cutoff is the 80th percentile of <code>p_edu_he</code>.</p></li>
-<li><p>In a single pipeline, create a new variable called <code>edu_percentile</code> in <code>nc_county</code> that indicates whether a county is in the <code>"Top 20%"</code> or <code>"Bottom 80%"</code> of counties based on <code>p_edu_he</code>. Use <code>top_20_edu_cutoff</code> to make this classification, and ensure that the levels of <code>edu_percentile</code> are ordered so that <code>"Top 20%"</code> comes before <code>"Bottom 80%"</code>.</p></li>
-<li><p>In a single pipeline, calculate the proportion of counties in each <code>edu_percentile</code> group for each <code>county_type</code>. Then, create a segmented bar plot with one bar for each <code>county_type</code>, filled according to <code>edu_percentile</code>. The y-axis should range from 0 to 1 and represent the proportion of counties in each county type.</p></li>
+<li><p>Select a third variable (other than <code>county_type</code>, we had enough of that…) of interest from the dataset. This could be any variable that you think might influence or interact with the relationship between higher educational attainment and earning a family-sustaining wage. State the variable, whether it’s numerical or categorical, and why you think it might be interesting to explore in this context.</p></li>
+<li><p>Add this third variable to your plot in Question 9 to explore whether the relationship between higher educational attainment and earning a family-sustaining wage differs across the distribution of that third variable. Before making the plot, describe how the variable will be added to the plot (as a new aesthetic mapping, for faceting, or some other approach) and why you chose that approach.</p></li>
+<li><p>Describe how, if at all, the relationship between higher educational attainment and earning a family-sustaining wage varies across the distribution of your third variable.</p></li>
 </ol>
-<p>Based on your table and plot, describe which county types have the largest proportions of counties in the top 20% of higher educational attainment. Remember that these are descriptive county-level comparisons and do not establish that county type causes educational attainment.</p>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
