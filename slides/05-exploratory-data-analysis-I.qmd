@@ -111,13 +111,9 @@ Source: [Cake by Anirban Sengupta on Unsplash](https://unsplash.com/photos/white
 
 ## Packages
 
--   For the data: [**usdata**](https://openintrostat.github.io/usdata/)
-
-```{r}
-library(usdata)
-```
-
--   For the analysis: [**tidyverse**](https://www.tidyverse.org/packages/), [**scales**](https://scales.r-lib.org), and [**ggthemes**](https://jrnold.github.io/ggthemes/)
+- For data wrangling and visualization: [**tidyverse**](https://www.tidyverse.org/packages/)
+- For pretty axis labels: [**scales**](https://scales.r-lib.org)
+- For themes and color scales: [**ggthemes**](https://jrnold.github.io/ggthemes/)
 
 ```{r}
 #| message: false
@@ -127,6 +123,17 @@ library(ggthemes)
 ```
 
 ## Data: `gerrymander` {.smaller}
+
+```{r}
+#| include: false
+gerrymander <- read_csv(here::here("slides", "data/gerrymander.csv"))
+```
+
+
+```{r}
+#| eval: false
+gerrymander <- read_csv("data/gerrymander.csv")
+```
 
 ```{r}
 gerrymander
@@ -166,21 +173,19 @@ glimpse(gerrymander)
 
 ## Data: `gerrymander` {.smaller}
 
--   Rows: Congressional districts
+-   Rows: Congressional districts, for each year in the data (2020, 2022, 2024)
 
 -   Columns:
 
-    -   Congressional district and state
+    -   Year, state abbreviation, state, congressional district
 
-    -   2016 election: winning party, % for Clinton, % for Trump, whether a Democrat won the House election, name of election winner
+    -   Name and party of house candidate that won the race in the given year
 
-    -   2018 election: winning party, whether a Democrat won the 2018 House election
+    -   Gerrymandering score for 2022, 2024, and 2026 (A: Good, B: Better than average with some bias, C: Average, D/F: Poor)
 
-    -   Whether a Democrat flipped the seat in the 2018 election
+    -   2024 election: % for Harris, % for Trump
 
-    -   Prevalence of gerrymandering: low, mid, and high
-
-## Variable types: `district`
+## Variable types: `year`
 
 ::: columns
 
@@ -188,18 +193,17 @@ glimpse(gerrymander)
 
 | Variable     | Type                               |
 |--------------|------------------------------------|
-| `district`   | [categorical, ID]{.fragment}       |
-| `last_name`  |                                    |
-| `first_name` |                                    |
-| `party16`    |                                    |
-| `clinton16`  |                                    |
-| `trump16`    |                                    |
-| `dem16`      |                                    |
+| `year`       | [numerical]{.fragment}             |
+| `state_abb`  |                                    |
 | `state`      |                                    |
-| `party18`    |                                    |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
+| `district`   |                                    |
+| `candidate`  |                                    |
+| `party`      |                                    |
+| `gerry_22`   |                                    |
+| `gerry_24`   |                                    |
+| `harris_24`  |                                    |
+| `trump_24`   |                                    |
+| `gerry_26`   |                                    |
 
 :::
 
@@ -207,13 +211,13 @@ glimpse(gerrymander)
 
 ```{r}
 gerrymander |>
-  select(district)
+  select(year)
 ```
 
 :::
 :::
 
-## Variable types: `last_name`
+## Variable types: `state_abb`
 
 ::: columns
 
@@ -221,18 +225,17 @@ gerrymander |>
 
 | Variable     | Type                               |
 |--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | [categorical, ID]{.fragment}       |
-| `first_name` |                                    |
-| `party16`    |                                    |
-| `clinton16`  |                                    |
-| `trump16`    |                                    |
-| `dem16`      |                                    |
+| `year`       | numerical                          |
+| `state_abb`  | [categorical, ID]{.fragment}       |
 | `state`      |                                    |
-| `party18`    |                                    |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
+| `district`   |                                    |
+| `candidate`  |                                    |
+| `party`      |                                    |
+| `gerry_22`   |                                    |
+| `gerry_24`   |                                    |
+| `harris_24`  |                                    |
+| `trump_24`   |                                    |
+| `gerry_26`   |                                    |
 
 :::
 
@@ -240,7 +243,7 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(last_name)
+  select(state_abb)
 ```
 
 :::
