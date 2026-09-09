@@ -402,11 +402,11 @@ gerrymander <- gerrymander_long |>
     names_glue = "house_{.value}_{year}"
   ) |>
   relocate(
-    house_candidate_20,
+    house_rep_20 = house_candidate_20,
     house_party_20,
-    house_candidate_22,
+    house_rep_22 = house_candidate_22,
     house_party_22,
-    house_candidate_24,
+    house_rep_24 = house_candidate_24,
     house_party_24,
     harris_24,
     trump_24,
@@ -420,3 +420,4 @@ gerrymander |>
   nrow()
 
 write_csv(gerrymander, file = "_data/gerrymander/gerrymander.csv")
+write_csv(gerrymander, file = "slides/data/gerrymander.csv")

@@ -135,10 +135,6 @@ gerrymander <- read_csv(here::here("slides", "data/gerrymander.csv"))
 gerrymander <- read_csv("data/gerrymander.csv")
 ```
 
-```{r}
-gerrymander
-```
-
 ## What is gerrymandering?
 
 <https://www.washingtonpost.com/business/wonkblog/gerrymandering-explained/2016/04/21/e447f5c2-07fe-11e6-bfed-ef65dff5970d_video.html>
@@ -171,6 +167,12 @@ You are given a new dataset to analyze. What are some of the first things you wo
 glimpse(gerrymander)
 ```
 
+. . .
+
+::: question
+How many congressional districts are there in the United States? How many rows are there in the data? Do the number of rows in the data match your expectations?
+:::
+
 ## Data: `gerrymander` {.smaller}
 
 -   Rows: Congressional districts, for each year in the data (2020, 2022, 2024)
@@ -193,7 +195,6 @@ glimpse(gerrymander)
 
 | Variable     | Type                               |
 |--------------|------------------------------------|
-| `year`       | [numerical]{.fragment}             |
 | `state_abb`  |                                    |
 | `state`      |                                    |
 | `district`   |                                    |
