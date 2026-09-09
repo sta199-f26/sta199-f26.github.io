@@ -413,7 +413,8 @@ gerrymander <- gerrymander_long |>
     starts_with("gerry"),
     .after = district
   ) |>
-  arrange(state_abb, district)
+  arrange(state_abb, district) |>
+  relocate(district)
 
 gerrymander |>
   filter(!is.na(house_party_24)) |>

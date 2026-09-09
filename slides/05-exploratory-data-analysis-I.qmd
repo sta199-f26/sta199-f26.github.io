@@ -15,6 +15,12 @@ format:
     code-link: true
 ---
 
+```{r}
+#| label: setup
+#| include: false
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+```
+
 # Warm up
 
 ## While you wait: Participate 📱 {.smaller}
@@ -51,7 +57,7 @@ The resulting data frame will have:
 
 ![](images/05/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
 
-Go to [wooclap.com](https://app.wooclap.com/NEW CODE) and use the code NEW CODE.
+Go to [wooclap.com](https://app.wooclap.com/KUCTINK) and use the code KUCTINK.
 
 :::
 
@@ -113,16 +119,14 @@ Source: [Cake by Anirban Sengupta on Unsplash](https://unsplash.com/photos/white
 
 - For data wrangling and visualization: [**tidyverse**](https://www.tidyverse.org/packages/)
 - For pretty axis labels: [**scales**](https://scales.r-lib.org)
-- For themes and color scales: [**ggthemes**](https://jrnold.github.io/ggthemes/)
 
 ```{r}
 #| message: false
 library(tidyverse)
 library(scales)
-library(ggthemes)
 ```
 
-## Data: `gerrymander` {.smaller}
+## Data: `gerrymander`
 
 ```{r}
 #| include: false
@@ -155,7 +159,9 @@ You are given a new dataset to analyze. What are some of the first things you wo
 
 ::: {.column width="25%"}
 
-{{< include _wooclap-column.qmd >}}
+![](images/05/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/KUCTINK) and use the code KUCTINK.
 
 :::
 
@@ -175,100 +181,40 @@ How many congressional districts are there in the United States? How many rows a
 
 ## Data: `gerrymander` {.smaller}
 
--   Rows: Congressional districts, for each year in the data (2020, 2022, 2024)
+-   Rows: Congressional districts in the 2020, 2022, and 2024 elections
 
 -   Columns:
 
-    -   Year, state abbreviation, state, congressional district
+    -   Congressional district, state abbreviation, and state name
 
-    -   Name and party of house candidate that won the race in the given year
-
-    -   Gerrymandering score for 2022, 2024, and 2026 (A: Good, B: Better than average with some bias, C: Average, D/F: Poor)
+    -   Name and party of the House candidate who won in 2020, 2022, and 2024
 
     -   2024 election: % for Harris, % for Trump
 
-## Variable types: `year`
+    -   Gerrymandering score for 2022, 2024, and 2026 (A: Good, B: Better than average with some bias, C: Average, D/F: Poor)
+
+## Variable types: `district`  {.smaller}
 
 ::: columns
 
 ::: {.column .xsmall}
 
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `state_abb`  |                                    |
-| `state`      |                                    |
-| `district`   |                                    |
-| `candidate`  |                                    |
-| `party`      |                                    |
-| `gerry_22`   |                                    |
-| `gerry_24`   |                                    |
-| `harris_24`  |                                    |
-| `trump_24`   |                                    |
-| `gerry_26`   |                                    |
-
-:::
-
-::: {.column .small}
-
-```{r}
-gerrymander |>
-  select(year)
-```
-
-:::
-:::
-
-## Variable types: `state_abb` and `state`
-
-::: columns
-
-::: {.column .xsmall}
-
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `year`       | numerical                          |
-| `state_abb`  | [categorical]{.fragment}           |
-| `state`      | [categorical]{.fragment}           |
-| `district`   |                                    |
-| `candidate`  |                                    |
-| `party`      |                                    |
-| `gerry_22`   |                                    |
-| `gerry_24`   |                                    |
-| `harris_24`  |                                    |
-| `trump_24`   |                                    |
-| `gerry_26`   |                                    |
-
-:::
-
-::: {.column .small}
-
-```{r}
-gerrymander |>
-  select(state_abb, state)
-```
-
-:::
-:::
-
-## Variable types: `district`
-
-::: columns
-
-::: {.column .xsmall}
-
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `year`       | numerical                          |
-| `state_abb`  | categorical                        |
-| `state`      | categorical                        |
-| `district`   | [categorical, ID]{.fragment}       |
-| `candidate`  |                                    |
-| `party`      |                                    |
-| `gerry_22`   |                                    |
-| `gerry_24`   |                                    |
-| `harris_24`  |                                    |
-| `trump_24`   |                                    |
-| `gerry_26`   |                                    |
+| Variable         | Type                               |
+|------------------|------------------------------------|
+| `district`       | [categorical, ID]{.fragment}       |
+| `state_abb`      |                                    |
+| `state`          |                                    |
+| `house_rep_20`   |                                    |
+| `house_party_20` |                                    |
+| `house_rep_22`   |                                    |
+| `house_party_22` |                                    |
+| `house_rep_24`   |                                    |
+| `house_party_24` |                                    |
+| `harris_24`      |                                    |
+| `trump_24`       |                                    |
+| `gerry_22`       |                                    |
+| `gerry_24`       |                                    |
+| `gerry_26`       |                                    |
 
 :::
 
@@ -282,25 +228,28 @@ gerrymander |>
 :::
 :::
 
-## Variable types: `candidate`
+## Variable types: `state_abb`  {.smaller}
 
 ::: columns
 
 ::: {.column .xsmall}
 
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `year`       | numerical                          |
-| `state_abb`  | categorical                        |
-| `state`      | categorical                        |
-| `district`   | categorical, ID                    |
-| `candidate`  | [categorical, ID]{.fragment}       |
-| `party`      |                                    |
-| `gerry_22`   |                                    |
-| `gerry_24`   |                                    |
-| `harris_24`  |                                    |
-| `trump_24`   |                                    |
-| `gerry_26`   |                                    |
+| Variable         | Type                               |
+|------------------|------------------------------------|
+| `district`       | categorical, ID                    |
+| `state_abb`      | [categorical]{.fragment}           |
+| `state`          |                                    |
+| `house_rep_20`   |                                    |
+| `house_party_20` |                                    |
+| `house_rep_22`   |                                    |
+| `house_party_22` |                                    |
+| `house_rep_24`   |                                    |
+| `house_party_24` |                                    |
+| `harris_24`      |                                    |
+| `trump_24`       |                                    |
+| `gerry_22`       |                                    |
+| `gerry_24`       |                                    |
+| `gerry_26`       |                                    |
 
 :::
 
@@ -308,31 +257,34 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(candidate)
+  select(district, state_abb)
 ```
 
 :::
 :::
 
-## Variable types: `party`
+## Variable types: `state`  {.smaller}
 
 ::: columns
 
 ::: {.column .xsmall}
 
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `year`       | numerical                          |
-| `state_abb`  | categorical                        |
-| `state`      | categorical                        |
-| `district`   | categorical, ID                    |
-| `candidate`  | categorical, ID                    |
-| `party`      | [categorical]{.fragment}           |
-| `gerry_22`   |                                    |
-| `gerry_24`   |                                    |
-| `harris_24`  |                                    |
-| `trump_24`   |                                    |
-| `gerry_26`   |                                    |
+| Variable         | Type                               |
+|------------------|------------------------------------|
+| `district`       | categorical, ID                    |
+| `state_abb`      | categorical                        |
+| `state`          | [categorical]{.fragment}           |
+| `house_rep_20`   |                                    |
+| `house_party_20` |                                    |
+| `house_rep_22`   |                                    |
+| `house_party_22` |                                    |
+| `house_rep_24`   |                                    |
+| `house_party_24` |                                    |
+| `harris_24`      |                                    |
+| `trump_24`       |                                    |
+| `gerry_22`       |                                    |
+| `gerry_24`       |                                    |
+| `gerry_26`       |                                    |
 
 :::
 
@@ -340,31 +292,69 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(party)
+  select(district, state)
 ```
 
 :::
 :::
 
-## Variable types: `gerry_22`, `gerry_24`, and `gerry_26`
+## Variable types: House representatives  {.smaller}
+
+::: columns
+
+::: {.column .xsmall width="30%"}
+
+| Variable         | Type                               |
+|------------------|------------------------------------|
+| `district`       | categorical, ID                    |
+| `state_abb`      | categorical                        |
+| `state`          | categorical                        |
+| `house_rep_20`   | [categorical, ID]{.fragment fragment-index="1"}       |
+| `house_party_20` |                                    |
+| `house_rep_22`   | [categorical, ID]{.fragment fragment-index="1"}       |
+| `house_party_22` |                                    |
+| `house_rep_24`   | [categorical, ID]{.fragment fragment-index="1"}       |
+| `house_party_24` |                                    |
+| `harris_24`      |                                    |
+| `trump_24`       |                                    |
+| `gerry_22`       |                                    |
+| `gerry_24`       |                                    |
+| `gerry_26`       |                                    |
+
+:::
+
+::: {.column .small width="70%"}
+
+```{r}
+gerrymander |>
+  select(district, starts_with("house_rep"))
+```
+
+:::
+:::
+
+## Variable types: winning parties  {.smaller}
 
 ::: columns
 
 ::: {.column .xsmall}
 
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `year`       | numerical                          |
-| `state_abb`  | categorical                        |
-| `state`      | categorical                        |
-| `district`   | categorical, ID                    |
-| `candidate`  | categorical, ID                    |
-| `party`      | categorical                        |
-| `gerry_22`   | [categorical]{.fragment}           |
-| `gerry_24`   | [categorical]{.fragment}           |
-| `harris_24`  |                                    |
-| `trump_24`   |                                    |
-| `gerry_26`   | [categorical]{.fragment}           |
+| Variable         | Type                               |
+|------------------|------------------------------------|
+| `district`       | categorical, ID                    |
+| `state_abb`      | categorical                        |
+| `state`          | categorical                        |
+| `house_rep_20`   | categorical, ID                    |
+| `house_party_20` | [categorical]{.fragment fragment-index="1"}           |
+| `house_rep_22`   | categorical, ID                    |
+| `house_party_22` | [categorical]{.fragment fragment-index="1"}           |
+| `house_rep_24`   | categorical, ID                    |
+| `house_party_24` | [categorical]{.fragment fragment-index="1"}           |
+| `harris_24`      |                                    |
+| `trump_24`       |                                    |
+| `gerry_22`       |                                    |
+| `gerry_24`       |                                    |
+| `gerry_26`       |                                    |
 
 :::
 
@@ -372,31 +362,34 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(starts_with("gerry"))
+  select(district, starts_with("house_party"))
 ```
 
 :::
 :::
 
-## Variable types: `harris_24` and `trump_24`
+## Variable types: `harris_24` and `trump_24`  {.smaller}
 
 ::: columns
 
 ::: {.column .xsmall}
 
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `year`       | numerical                          |
-| `state_abb`  | categorical                        |
-| `state`      | categorical                        |
-| `district`   | categorical, ID                    |
-| `candidate`  | categorical, ID                    |
-| `party`      | categorical                        |
-| `gerry_22`   | categorical                        |
-| `gerry_24`   | categorical                        |
-| `harris_24`  | [numerical, continuous]{.fragment} |
-| `trump_24`   | [numerical, continuous]{.fragment} |
-| `gerry_26`   | categorical                        |
+| Variable         | Type                               |
+|------------------|------------------------------------|
+| `district`       | categorical, ID                    |
+| `state_abb`      | categorical                        |
+| `state`          | categorical                        |
+| `house_rep_20`   | categorical, ID                    |
+| `house_party_20` | categorical                        |
+| `house_rep_22`   | categorical, ID                    |
+| `house_party_22` | categorical                        |
+| `house_rep_24`   | categorical, ID                    |
+| `house_party_24` | categorical                        |
+| `harris_24`      | [numerical, continuous]{.fragment fragment-index="1"} |
+| `trump_24`       | [numerical, continuous]{.fragment fragment-index="1"} |
+| `gerry_22`       |                                    |
+| `gerry_24`       |                                    |
+| `gerry_26`       |                                    |
 
 :::
 
@@ -404,11 +397,48 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(harris_24, trump_24)
+  select(district, harris_24, trump_24)
 ```
 
 :::
 :::
+
+## Variable types: Gerrymandering level {.smaller}
+
+::: columns
+
+::: {.column .xsmall}
+
+| Variable         | Type                               |
+|------------------|------------------------------------|
+| `district`       | categorical, ID                    |
+| `state_abb`      | categorical                        |
+| `state`          | categorical                        |
+| `house_rep_20`   | categorical, ID                    |
+| `house_party_20` | categorical                        |
+| `house_rep_22`   | categorical, ID                    |
+| `house_party_22` | categorical                        |
+| `house_rep_24`   | categorical, ID                    |
+| `house_party_24` | categorical                        |
+| `harris_24`      | numerical, continuous              |
+| `trump_24`       | numerical, continuous              |
+| `gerry_22`       | [categorical, ordinal]{.fragment fragment-index="1"}  |
+| `gerry_24`       | [categorical, ordinal]{.fragment fragment-index="1"}  |
+| `gerry_26`       | [categorical, ordinal]{.fragment fragment-index="1"}  |
+
+:::
+
+::: {.column .small}
+
+```{r}
+gerrymander |>
+  select(district, starts_with("gerry"))
+```
+
+:::
+:::
+
+Based on the [Gerrymandering Project's](https://nervous-noyce-f2ebc6.netlify.app/redistricting-report-card/) Redistricting Report Card.
 
 # Univariate analysis
 
@@ -422,13 +452,13 @@ Analyzing a single variable:
 -   Categorical: bar plot, pie chart, etc.
 :::
 
-. . .
-
-Focus: 2024 data
+## Focus: 2024 Elections
 
 ```{r}
 gerrymander_24 <- gerrymander |>
-  filter(year == 2024)
+  filter(!is.na(house_rep_24))
+
+dim(gerrymander_24)
 ```
 
 ## Histogram - Step 1
@@ -457,12 +487,12 @@ ggplot(gerrymander_24, aes(x = trump_24)) +
 
 ::: {.column width="80%"}
 
-::: wooclap
-Which of the following histograms has the most appropriate binwidth for visualizing the distribution of `trump_24`?
+::: {.wooclap .small}
+Which of the following has the most appropriate binwidth for visualizing the distribution of `trump_24`?
 
 ```{r}
-#| layout-ncol: 4
-#| fig-asp: 1
+#| layout-ncol: 2
+#| fig-asp: 0.618
 #| echo: false
 #| fig-width: 5
 ggplot(gerrymander_24, aes(x = trump_24)) +
@@ -485,7 +515,9 @@ ggplot(gerrymander_24, aes(x = trump_24)) +
 
 ::: {.column width="20%"}
 
-{{< include _wooclap-column.qmd >}}
+![](images/05/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/KUCTINK) and use the code KUCTINK.
 
 :::
 
@@ -542,7 +574,7 @@ ggplot(gerrymander_24, aes(y = trump_24)) +
   geom_boxplot()
 ```
 
-## Box plot - Step 4
+## Box plot - Step 4 {.smaller}
 
 ```{r}
 #| code-line-numbers: "3-8"
@@ -634,7 +666,12 @@ ggplot(gerrymander_24, aes(x = trump_24)) +
 gerrymander_24 |>
   summarize(
     mean = mean(trump_24),
-    median = median(trump_24)
+    sd = sd(trump_24),
+    min = min(trump_24),
+    q25 = quantile(trump_24, 0.25),
+    median = median(trump_24),
+    q75 = quantile(trump_24, 0.75),
+    max = max(trump_24),
   )
 ```
 
@@ -646,11 +683,9 @@ Describe the distribution of percent of vote received by Trump in 2024 President
 
 -   Shape: [The distribution of votes for Trump in the 2024 election from Congressional Districts is **unimodal and left-skewed**.]{.fragment}
 
-TO DO: Update values!!!
+-   Center: [The percent of vote received by Trump in the 2024 Presidential Election from a **typical** Congressional Districts is 50.3%.]{.fragment}
 
--   Center: [The percent of vote received by Trump in the 2024 Presidential Election from a **typical** Congressional Districts is 48.7%.]{.fragment}
-
--   Spread: [In the **middle 50%** of Congressional Districts, 34.8% to 58.1% of voters voted for Trump in the 2024 Presidential Election.]{.fragment}
+-   Spread: [In the **middle 50%** of Congressional Districts, 37.9% to 61% of voters voted for Trump in the 2024 Presidential Election.]{.fragment}
 
 -   Unusual observations: [-]{.fragment}
 
@@ -675,6 +710,8 @@ Analyzing the relationship between two variables:
 ```{r}
 #| code-line-numbers: "|2|3-6|8"
 #| output-location: column
+#| fig-asp: 1
+#| fig-width: 5
 ggplot(
   gerrymander_24,
   aes(
@@ -685,27 +722,14 @@ ggplot(
   geom_boxplot()
 ```
 
-## Summary statistics
-
-```{r}
-gerrymander_24 |>
-  summarize(
-    min = min(trump_24),
-    q25 = quantile(trump_24, 0.25),
-    median = median(trump_24),
-    q75 = quantile(trump_24, 0.75),
-    max = max(trump_24),
-  )
-```
-
 ## Participate 📱💻 {.smaller}
 
 ::: {.columns}
 
-::: {.column width="80%"}
+::: {.column width="85%"}
 
 ::: wooclap
-What goes in the `[blank]` in the code below to do the following step for each level of `gerry`?
+What goes in the `[blank]` in the code below to do the following step for each level of `gerry_24`?
 
 ::: {.columns}
 ::: {.column width="60%"}
@@ -740,15 +764,17 @@ gerrymander_24 |>
 
 :::
 
-::: {.column width="20%"}
+::: {.column width="15%"}
 
-{{< include _wooclap-column.qmd >}}
+![](images/05/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/KUCTINK) and use the code KUCTINK.
 
 :::
 
 ::: 
 
-## Grouped summary statistics
+## Grouped summary statistics {.smaller}
 
 ```{r}
 gerrymander_24 |>
@@ -762,115 +788,102 @@ gerrymander_24 |>
   )
 ```
 
+## `NA` for gerrymandering?
+
+```{r}
+#| code-line-numbers: "|2|3"
+gerrymander_24 |>
+  filter(is.na(gerry_24)) |>
+  select(district, starts_with("state"), starts_with("gerry"))
+```
+
 ## Density plots
 
 ```{r}
-#| code-line-numbers: "|4|5|8"
-#| output-location: column
-ggplot(
-  gerrymander_24,
-  aes(
-    x = trump_24,
-    color = gerry_24
-  )
-) +
+#| code-line-numbers: "|2|3|4"
+gerrymander_24 |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(x = trump_24, color = gerry_24)) +
   geom_density()
 ```
 
 ## Filled density plots
 
 ```{r}
-#| code-line-numbers: "6"
-#| output-location: column
-ggplot(
-  gerrymander_24,
-  aes(
-    x = trump_24,
-    color = gerry_24,
-    fill = gerry_24
-  )
-) +
+#| code-line-numbers: "|3"
+gerrymander_24 |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(x = trump_24, color = gerry_24, fill = gerry_24)) +
   geom_density()
 ```
 
 ## Better filled density plots
 
 ```{r}
-#| code-line-numbers: "5"
-ggplot(
-  gerrymander_24,
-  aes(x = trump_24, color = gerry_24, fill = gerry_24)
-) +
+#| code-line-numbers: "|4"
+gerrymander_24 |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(x = trump_24, color = gerry_24, fill = gerry_24)) +
   geom_density(alpha = 0.5)
 ```
 
-## Better colors
+## Better colors {.smaller}
 
 ```{r}
-#| code-line-numbers: "7-8"
-#| output-location: column
-ggplot(
-  gerrymander_24,
-  aes(x = trump_24, color = gerry_24, fill = gerry_24)
-) +
+#| code-line-numbers: "|5-6"
+gerrymander_24 |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(x = trump_24, color = gerry_24, fill = gerry_24)) +
   geom_density(alpha = 0.5) +
-  scale_colour_colourblind() +
-  scale_fill_colourblind()
+  scale_color_viridis_d() +
+  scale_fill_viridis_d()
 ```
 
-## Violin plots {.scrollable}
+## Violin plots {.smaller}
 
 ```{r}
-#| code-line-numbers: "5"
-ggplot(
-  gerrymander_24,
-  aes(x = trump_24, y = gerry_24, color = gerry_24)
-) +
+#| code-line-numbers: "4"
+gerrymander_24 |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(x = trump_24, y = gerry_24, color = gerry_24)) +
   geom_violin() +
-  scale_colour_colourblind() +
-  scale_fill_colourblind()
+  scale_color_viridis_d()
 ```
 
-## Multiple geoms {.scrollable}
+## Multiple geoms {.smaller}
 
 ```{r}
-#| code-line-numbers: "6"
-ggplot(
-  gerrymander,
-  aes(x = trump_24, y = gerry_24, color = gerry_24)
-) +
+#| code-line-numbers: "|5"
+gerrymander_24 |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(x = trump_24, y = gerry_24, color = gerry_24)) +
   geom_violin() +
   geom_point() +
-  scale_colour_colourblind() +
-  scale_fill_colourblind()
+  scale_color_viridis_d()
 ```
 
-## Multiple geoms {.scrollable}
+## Multiple geoms {.smaller}
 
 ```{r}
-#| code-line-numbers: "6"
-ggplot(
-  gerrymander_24,
-  aes(x = trump_24, y = gerry_24, color = gerry_24)
-) +
+#| code-line-numbers: "|5"
+gerrymander_24 |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(x = trump_24, y = gerry_24, color = gerry_24)) +
   geom_violin() +
   geom_jitter() +
-  scale_colour_colourblind() +
-  scale_fill_colourblind()
+  scale_color_viridis_d()
 ```
 
-## Remove legend {.scrollable}
+## Remove legend {.smaller}
 
 ```{r}
-#| code-line-numbers: "9"
-ggplot(
-  gerrymander_24,
-  aes(x = trump_24, y = gerry_24, color = gerry_24)
-) +
+#| code-line-numbers: "|7"
+gerrymander_24 |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(x = trump_24, y = gerry_24, color = gerry_24)) +
   geom_violin() +
   geom_jitter() +
-  scale_colour_colourblind() +
-  scale_fill_colourblind() +
+  scale_color_viridis_d() +
   theme(legend.position = "none")
 ```
 
