@@ -1,0 +1,2469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
+<meta name="dcterms.date" content="2026-09-02">
+<title>Exploratory data analysis I – STA 199CCL</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e32f7b3979dc093efbdc56be01566bfe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-dfd12aefa44b708841814508fb0a4ba1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-e32f7b3979dc093efbdc56be01566bfe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta property="og:title" content="Exploratory data analysis I – STA 199CCL">
+<meta property="og:description" content="Lecture 4">
+<meta property="og:image" content="https://sta199-f26.github.io/slides/images/05/wooclap-qr.png">
+<meta property="og:site_name" content="STA 199CCL">
+<meta property="og:image:alt" content="QR code for Wooclap">
+<meta property="og:image:height" content="638">
+<meta property="og:image:width" content="638">
+</head>
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exploratory data analysis I</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
+    <div class="dropdown">
+      <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
+              <i class="bi bi-person-raised-hand pe-1"></i>
+            Office hours
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://edstem.org/us/courses/101308/discussion">
+              <i class="bi bi-people-fill pe-1"></i>
+            Help from humans (Ed Discussion)
+            </a>
+          </li>
+      </ul>
+</div>
+    <div class="dropdown">
+      <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
+              <i class="bi bi-megaphone-fill pe-1"></i>
+            Announcements
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.gradescope.com/courses/1350518">
+              <i class="bi bi-file-arrow-up-fill pe-1"></i>
+            Gradescope
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/gradebook">
+              <i class="bi bi-alphabet-uppercase pe-1"></i>
+            Gradebook
+            </a>
+          </li>
+      </ul>
+</div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-support.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Support</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-team.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Team</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Useful links</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-code-alongs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code alongs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 "></ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homeworks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exam-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam reviews</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a>
+  <ul class="collapse">
+<li><a href="#while-you-wait-participate" id="toc-while-you-wait-participate" class="nav-link" data-scroll-target="#while-you-wait-participate">While you wait: Participate 📱</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  <li><a href="#getting-to-know-you-feedback-questions" id="toc-getting-to-know-you-feedback-questions" class="nav-link" data-scroll-target="#getting-to-know-you-feedback-questions"><em>Getting to know you</em> feedback: Questions</a></li>
+  <li><a href="#getting-to-know-you-feedback-concerns" id="toc-getting-to-know-you-feedback-concerns" class="nav-link" data-scroll-target="#getting-to-know-you-feedback-concerns"><em>Getting to know you</em> feedback: Concerns</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#from-last-time" id="toc-from-last-time" class="nav-link" data-scroll-target="#from-last-time">From last time</a>
+  <ul class="collapse">
+<li><a href="#in-this-class-you-will" id="toc-in-this-class-you-will" class="nav-link" data-scroll-target="#in-this-class-you-will">In this class, you will…</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory data analysis</a>
+  <ul class="collapse">
+<li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data-gerrymander" id="toc-data-gerrymander" class="nav-link" data-scroll-target="#data-gerrymander">Data: <code>gerrymander</code></a></li>
+  <li><a href="#what-is-gerrymandering" id="toc-what-is-gerrymandering" class="nav-link" data-scroll-target="#what-is-gerrymandering">What is gerrymandering?</a></li>
+  <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 📱💻</a></li>
+  <li><a href="#data-gerrymander-1" id="toc-data-gerrymander-1" class="nav-link" data-scroll-target="#data-gerrymander-1">Data: <code>gerrymander</code></a></li>
+  <li><a href="#data-gerrymander-2" id="toc-data-gerrymander-2" class="nav-link" data-scroll-target="#data-gerrymander-2">Data: <code>gerrymander</code></a></li>
+  <li><a href="#variable-types-district" id="toc-variable-types-district" class="nav-link" data-scroll-target="#variable-types-district">Variable types: <code>district</code></a></li>
+  <li><a href="#variable-types-state_abb" id="toc-variable-types-state_abb" class="nav-link" data-scroll-target="#variable-types-state_abb">Variable types: <code>state_abb</code></a></li>
+  <li><a href="#variable-types-state" id="toc-variable-types-state" class="nav-link" data-scroll-target="#variable-types-state">Variable types: <code>state</code></a></li>
+  <li><a href="#variable-types-house-representatives" id="toc-variable-types-house-representatives" class="nav-link" data-scroll-target="#variable-types-house-representatives">Variable types: House representatives</a></li>
+  <li><a href="#variable-types-winning-parties" id="toc-variable-types-winning-parties" class="nav-link" data-scroll-target="#variable-types-winning-parties">Variable types: winning parties</a></li>
+  <li><a href="#variable-types-harris_24-and-trump_24" id="toc-variable-types-harris_24-and-trump_24" class="nav-link" data-scroll-target="#variable-types-harris_24-and-trump_24">Variable types: <code>harris_24</code> and <code>trump_24</code></a></li>
+  <li><a href="#variable-types-gerrymandering-level" id="toc-variable-types-gerrymandering-level" class="nav-link" data-scroll-target="#variable-types-gerrymandering-level">Variable types: Gerrymandering level</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#univariate-analysis" id="toc-univariate-analysis" class="nav-link" data-scroll-target="#univariate-analysis">Univariate analysis</a>
+  <ul class="collapse">
+<li><a href="#univariate-analysis-1" id="toc-univariate-analysis-1" class="nav-link" data-scroll-target="#univariate-analysis-1">Univariate analysis</a></li>
+  <li><a href="#focus-2024-elections" id="toc-focus-2024-elections" class="nav-link" data-scroll-target="#focus-2024-elections">Focus: 2024 Elections</a></li>
+  <li><a href="#histogram---step-1" id="toc-histogram---step-1" class="nav-link" data-scroll-target="#histogram---step-1">Histogram - Step 1</a></li>
+  <li><a href="#histogram---step-2" id="toc-histogram---step-2" class="nav-link" data-scroll-target="#histogram---step-2">Histogram - Step 2</a></li>
+  <li><a href="#histogram---step-3" id="toc-histogram---step-3" class="nav-link" data-scroll-target="#histogram---step-3">Histogram - Step 3</a></li>
+  <li><a href="#participate-1" id="toc-participate-1" class="nav-link" data-scroll-target="#participate-1">Participate 📱💻</a></li>
+  <li><a href="#histogram---step-4" id="toc-histogram---step-4" class="nav-link" data-scroll-target="#histogram---step-4">Histogram - Step 4</a></li>
+  <li><a href="#histogram---step-5" id="toc-histogram---step-5" class="nav-link" data-scroll-target="#histogram---step-5">Histogram - Step 5</a></li>
+  <li><a href="#box-plot---step-1" id="toc-box-plot---step-1" class="nav-link" data-scroll-target="#box-plot---step-1">Box plot - Step 1</a></li>
+  <li><a href="#box-plot---step-2" id="toc-box-plot---step-2" class="nav-link" data-scroll-target="#box-plot---step-2">Box plot - Step 2</a></li>
+  <li><a href="#box-plot---step-3" id="toc-box-plot---step-3" class="nav-link" data-scroll-target="#box-plot---step-3">Box plot - Step 3</a></li>
+  <li><a href="#box-plot---alternative-step-2-3" id="toc-box-plot---alternative-step-2-3" class="nav-link" data-scroll-target="#box-plot---alternative-step-2-3">Box plot - Alternative Step 2 + 3</a></li>
+  <li><a href="#box-plot---step-4" id="toc-box-plot---step-4" class="nav-link" data-scroll-target="#box-plot---step-4">Box plot - Step 4</a></li>
+  <li><a href="#density-plot---step-1" id="toc-density-plot---step-1" class="nav-link" data-scroll-target="#density-plot---step-1">Density plot - Step 1</a></li>
+  <li><a href="#density-plot---step-2" id="toc-density-plot---step-2" class="nav-link" data-scroll-target="#density-plot---step-2">Density plot - Step 2</a></li>
+  <li><a href="#density-plot---step-3" id="toc-density-plot---step-3" class="nav-link" data-scroll-target="#density-plot---step-3">Density plot - Step 3</a></li>
+  <li><a href="#density-plot---step-4" id="toc-density-plot---step-4" class="nav-link" data-scroll-target="#density-plot---step-4">Density plot - Step 4</a></li>
+  <li><a href="#density-plot---step-5" id="toc-density-plot---step-5" class="nav-link" data-scroll-target="#density-plot---step-5">Density plot - Step 5</a></li>
+  <li><a href="#density-plot---step-6" id="toc-density-plot---step-6" class="nav-link" data-scroll-target="#density-plot---step-6">Density plot - Step 6</a></li>
+  <li><a href="#density-plot---step-7" id="toc-density-plot---step-7" class="nav-link" data-scroll-target="#density-plot---step-7">Density plot - Step 7</a></li>
+  <li><a href="#density-plot---step-8" id="toc-density-plot---step-8" class="nav-link" data-scroll-target="#density-plot---step-8">Density plot - Step 8</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary statistics</a></li>
+  <li><a href="#distribution-of-votes-for-trump-in-the-2024-election" id="toc-distribution-of-votes-for-trump-in-the-2024-election" class="nav-link" data-scroll-target="#distribution-of-votes-for-trump-in-the-2024-election">Distribution of votes for Trump in the 2024 election</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#bivariate-analysis" id="toc-bivariate-analysis" class="nav-link" data-scroll-target="#bivariate-analysis">Bivariate analysis</a>
+  <ul class="collapse">
+<li><a href="#bivariate-analysis-1" id="toc-bivariate-analysis-1" class="nav-link" data-scroll-target="#bivariate-analysis-1">Bivariate analysis</a></li>
+  <li><a href="#side-by-side-box-plots" id="toc-side-by-side-box-plots" class="nav-link" data-scroll-target="#side-by-side-box-plots">Side-by-side box plots</a></li>
+  <li><a href="#participate-2" id="toc-participate-2" class="nav-link" data-scroll-target="#participate-2">Participate 📱💻</a></li>
+  <li><a href="#grouped-summary-statistics" id="toc-grouped-summary-statistics" class="nav-link" data-scroll-target="#grouped-summary-statistics">Grouped summary statistics</a></li>
+  <li><a href="#na-for-gerrymandering" id="toc-na-for-gerrymandering" class="nav-link" data-scroll-target="#na-for-gerrymandering"><code>NA</code> for gerrymandering?</a></li>
+  <li><a href="#density-plots" id="toc-density-plots" class="nav-link" data-scroll-target="#density-plots">Density plots</a></li>
+  <li><a href="#filled-density-plots" id="toc-filled-density-plots" class="nav-link" data-scroll-target="#filled-density-plots">Filled density plots</a></li>
+  <li><a href="#better-filled-density-plots" id="toc-better-filled-density-plots" class="nav-link" data-scroll-target="#better-filled-density-plots">Better filled density plots</a></li>
+  <li><a href="#better-colors" id="toc-better-colors" class="nav-link" data-scroll-target="#better-colors">Better colors</a></li>
+  <li><a href="#violin-plots" id="toc-violin-plots" class="nav-link" data-scroll-target="#violin-plots">Violin plots</a></li>
+  <li><a href="#multiple-geoms" id="toc-multiple-geoms" class="nav-link" data-scroll-target="#multiple-geoms">Multiple geoms</a></li>
+  <li><a href="#multiple-geoms-1" id="toc-multiple-geoms-1" class="nav-link" data-scroll-target="#multiple-geoms-1">Multiple geoms</a></li>
+  <li><a href="#remove-legend" id="toc-remove-legend" class="nav-link" data-scroll-target="#remove-legend">Remove legend</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#multivariate-analysis" id="toc-multivariate-analysis" class="nav-link" data-scroll-target="#multivariate-analysis">Multivariate analysis</a>
+  <ul class="collapse">
+<li><a href="#multivariate-analysis-1" id="toc-multivariate-analysis-1" class="nav-link" data-scroll-target="#multivariate-analysis-1">Multivariate analysis</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#application-exercise" id="toc-application-exercise" class="nav-link" data-scroll-target="#application-exercise">Application exercise</a>
+  <ul class="collapse">
+<li><a href="#ae" id="toc-ae" class="nav-link" data-scroll-target="#ae">AE</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/05-exploratory-data-analysis-I.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="05-exploratory-data-analysis-I-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Exploratory data analysis I</h1>
+<p class="subtitle lead">Lecture 4</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Dr.&nbsp;Mine Çetinkaya-Rundel </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Duke University <br> STA 199 - Fall 2026
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header><section id="warm-up" class="level1"><h1>Warm up</h1>
+<section id="while-you-wait-participate" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="while-you-wait-participate">While you wait: Participate 📱</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Suppose you have a dataset <code>df</code> with 100 rows and 5 columns: <code>x1</code>, <code>x2</code>, <code>x3</code>, <code>x4</code>, and <code>x5</code>. <code>x1</code> is a categorical variable with levels <code>a</code> and <code>b</code>. You run the following code:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">x1</span> <span class="op">==</span> <span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span>, <span class="va">x5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The resulting data frame will have:</p>
+<div class="wooclap-choices">
+<ul>
+<li>3 columns, 50 rows</li>
+<li>3 columns, 100 rows</li>
+<li>3 columns, can’t tell how many rows</li>
+<li>5 columns, 100 rows</li>
+<li>5 columns, can’t tell how many rows</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/05/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/05/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/KUCTINK">wooclap.com</a> and use the code KUCTINK.</p>
+</div>
+</div>
+</section><section id="announcements" class="level2"><h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
+<p>HW 1 is due tonight at 11:59 pm:</p>
+<ul>
+<li><p>Push all work to GitHub.</p></li>
+<li><p>Submit a PDF of your PDF file to Gradescope and mark your pages.</p></li>
+</ul></section><section id="getting-to-know-you-feedback-questions" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="getting-to-know-you-feedback-questions">
+<em>Getting to know you</em> feedback: Questions</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Is the course designed for students with no prior coding or statistics background?</li>
+<li>What is the balance between learning statistical concepts and programming in R? How often will students code?</li>
+<li>How should students use readings, videos, and other materials—and which are essential?</li>
+<li>What should students expect from discussion projects, collaboration, and required uploads?</li>
+<li>What will exams look like, and what practice or study materials will be available?</li>
+<li>Where can students get help, and what kinds of collaboration are appropriate?</li>
+<li>How does the course compare to COMPSCI 216 (Everything Data) and STA 323 (Statistical Computing)?</li>
+</ul>
+</div>
+</section><section id="getting-to-know-you-feedback-concerns" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="getting-to-know-you-feedback-concerns">
+<em>Getting to know you</em> feedback: Concerns</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>Dominant concern: lack of prior coding experience—especially learning R, syntax, troubleshooting, and technical tools such as Git and GitHub</li>
+<li>Keeping pace: falling behind or being less prepared than classmates</li>
+<li>Workload: time management for labs, HW, projects, and other commitments</li>
+<li>Assessment: format of exams, details of grading, and effective study strategies</li>
+<li>Smaller themes: Group-project dynamics, large-lecture setting, and confidence with math/statistical terminology</li>
+</ul>
+</div>
+</section></section><section id="from-last-time" class="level1 page-columns page-full"><h1>From last time</h1>
+<section id="in-this-class-you-will" class="level2 smaller page-columns page-full"><h2 class="smaller anchored" data-anchor-id="in-this-class-you-will">In this class, you will…</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Build cakes (<code>ggplot</code>) <img src="images/05/cake.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>Stack dolls (pipe <code>|&gt;</code>) <img src="images/05/matryoshka.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Master these constructs, and everything will be A-Ok!</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Source: <a href="https://unsplash.com/photos/white-pink-and-yellow-cake-GQvNc4bDRYw">Cake by Anirban Sengupta on Unsplash</a> and <a href="https://unsplash.com/photos/a-group-of-russian-nesting-dolls-sitting-on-a-table-YmULswIbc3I">Matryoshka dolls by Julia Kadel on Unsplash</a>.</p>
+</div></div></section></section><section id="exploratory-data-analysis" class="level1"><h1>Exploratory data analysis</h1>
+<section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<ul>
+<li>For data wrangling and visualization: <a href="https://www.tidyverse.org/packages/"><strong>tidyverse</strong></a>
+</li>
+<li>For pretty axis labels: <a href="https://scales.r-lib.org"><strong>scales</strong></a>
+</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="data-gerrymander" class="level2"><h2 class="anchored" data-anchor-id="data-gerrymander">Data: <code>gerrymander</code>
+</h2>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gerrymander.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="what-is-gerrymandering" class="level2"><h2 class="anchored" data-anchor-id="what-is-gerrymandering">What is gerrymandering?</h2>
+<p><a href="https://www.washingtonpost.com/business/wonkblog/gerrymandering-explained/2016/04/21/e447f5c2-07fe-11e6-bfed-ef65dff5970d_video.html" class="uri">https://www.washingtonpost.com/business/wonkblog/gerrymandering-explained/2016/04/21/e447f5c2-07fe-11e6-bfed-ef65dff5970d_video.html</a></p>
+</section><section id="participate" class="level2"><h2 class="anchored" data-anchor-id="participate">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:75%;">
+<div class="wooclap">
+<p>You are given a new dataset to analyze. What are some of the first things you would do to get to know the data?</p>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/05/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/05/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/KUCTINK">wooclap.com</a> and use the code KUCTINK.</p>
+</div>
+</div>
+</section><section id="data-gerrymander-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-gerrymander-1">Data: <code>gerrymander</code>
+</h2>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gerrymander</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 443
+Columns: 14
+$ district       &lt;chr&gt; "AK-00", "AL-01", "AL-02", "AL-03", "AL-04", "AL-05", "…
+$ state_abb      &lt;chr&gt; "AK", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AR", "…
+$ state          &lt;chr&gt; "Alaska", "Alabama", "Alabama", "Alabama", "Alabama", "…
+$ house_rep_20   &lt;chr&gt; "Don Young", "Jerry Carl", "Barry Moore", "Mike Rogers"…
+$ house_party_20 &lt;chr&gt; "Republican", "Republican", "Republican", "Republican",…
+$ house_rep_22   &lt;chr&gt; "Mary Sattler Peltola", "Jerry L Carl", "Barry Moore", …
+$ house_party_22 &lt;chr&gt; "Democrat", "Republican", "Republican", "Republican", "…
+$ house_rep_24   &lt;chr&gt; "Nick Begich", "Barry Moore", "Shomari Figures", "Mike …
+$ house_party_24 &lt;chr&gt; "Republican", "Republican", "Democrat", "Republican", "…
+$ harris_24      &lt;dbl&gt; 41.41, 21.89, 53.52, 26.18, 15.96, 34.20, 29.68, 61.45,…
+$ trump_24       &lt;dbl&gt; 54.54, 76.94, 45.31, 72.71, 83.02, 64.02, 68.47, 37.50,…
+$ gerry_22       &lt;chr&gt; NA, "F", "F", "F", "F", "F", "F", "F", "C", "C", "C", "…
+$ gerry_24       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C", "…
+$ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C", "…</code></pre>
+</div>
+</div>
+<p>. . .</p>
+<div class="question">
+<p>How many congressional districts are there in the United States? How many rows are there in the data? Do the number of rows in the data match your expectations?</p>
+</div>
+</section><section id="data-gerrymander-2" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-gerrymander-2">Data: <code>gerrymander</code>
+</h2>
+<ul>
+<li><p>Rows: Congressional districts in the 2020, 2022, and 2024 elections</p></li>
+<li>
+<p>Columns:</p>
+<ul>
+<li><p>Congressional district, state abbreviation, and state name</p></li>
+<li><p>Name and party of the House candidate who won in 2020, 2022, and 2024</p></li>
+<li><p>2024 election: % for Harris, % for Trump</p></li>
+<li><p>Gerrymandering score for 2022, 2024, and 2026 (A: Good, B: Better than average with some bias, C: Average, D/F: Poor)</p></li>
+</ul>
+</li>
+</ul></section><section id="variable-types-district" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variable-types-district">Variable types: <code>district</code>
+</h2>
+<div class="columns">
+<div class="column xsmall">
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Variable</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>district</code></td>
+<td><span class="fragment">categorical, ID</span></td>
+</tr>
+<tr class="even">
+<td><code>state_abb</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>state</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_20</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_20</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_22</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_24</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>harris_24</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>trump_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>gerry_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_26</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column small">
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 443 × 1
+   district
+   &lt;chr&gt;   
+ 1 AK-00   
+ 2 AL-01   
+ 3 AL-02   
+ 4 AL-03   
+ 5 AL-04   
+ 6 AL-05   
+ 7 AL-06   
+ 8 AL-07   
+ 9 AR-01   
+10 AR-02   
+# ℹ 433 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section><section id="variable-types-state_abb" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variable-types-state_abb">Variable types: <code>state_abb</code>
+</h2>
+<div class="columns">
+<div class="column xsmall">
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Variable</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>district</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="even">
+<td><code>state_abb</code></td>
+<td><span class="fragment">categorical</span></td>
+</tr>
+<tr class="odd">
+<td><code>state</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_20</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_20</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_22</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_24</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>harris_24</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>trump_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>gerry_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_26</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column small">
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">state_abb</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 443 × 2
+   district state_abb
+   &lt;chr&gt;    &lt;chr&gt;    
+ 1 AK-00    AK       
+ 2 AL-01    AL       
+ 3 AL-02    AL       
+ 4 AL-03    AL       
+ 5 AL-04    AL       
+ 6 AL-05    AL       
+ 7 AL-06    AL       
+ 8 AL-07    AL       
+ 9 AR-01    AR       
+10 AR-02    AR       
+# ℹ 433 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section><section id="variable-types-state" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variable-types-state">Variable types: <code>state</code>
+</h2>
+<div class="columns">
+<div class="column xsmall">
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Variable</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>district</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="even">
+<td><code>state_abb</code></td>
+<td>categorical</td>
+</tr>
+<tr class="odd">
+<td><code>state</code></td>
+<td><span class="fragment">categorical</span></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_20</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_20</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_22</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_24</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>harris_24</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>trump_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>gerry_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_26</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column small">
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">state</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 443 × 2
+   district state   
+   &lt;chr&gt;    &lt;chr&gt;   
+ 1 AK-00    Alaska  
+ 2 AL-01    Alabama 
+ 3 AL-02    Alabama 
+ 4 AL-03    Alabama 
+ 5 AL-04    Alabama 
+ 6 AL-05    Alabama 
+ 7 AL-06    Alabama 
+ 8 AL-07    Alabama 
+ 9 AR-01    Arkansas
+10 AR-02    Arkansas
+# ℹ 433 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section><section id="variable-types-house-representatives" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variable-types-house-representatives">Variable types: House representatives</h2>
+<div class="columns">
+<div class="column xsmall" style="width:30%;">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead><tr class="header">
+<th>Variable</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>district</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="even">
+<td><code>state_abb</code></td>
+<td>categorical</td>
+</tr>
+<tr class="odd">
+<td><code>state</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>house_rep_20</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical, ID</span></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_20</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_22</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical, ID</span></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_22</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_24</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical, ID</span></td>
+</tr>
+<tr class="odd">
+<td><code>house_party_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>harris_24</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>trump_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>gerry_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_26</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column small" style="width:70%;">
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"house_rep"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 443 × 4
+   district house_rep_20                   house_rep_22             house_rep_24
+   &lt;chr&gt;    &lt;chr&gt;                          &lt;chr&gt;                    &lt;chr&gt;       
+ 1 AK-00    "Don Young"                    "Mary Sattler Peltola"   "Nick Begic…
+ 2 AL-01    "Jerry Carl"                   "Jerry L Carl"           "Barry Moor…
+ 3 AL-02    "Barry Moore"                  "Barry Moore"            "Shomari Fi…
+ 4 AL-03    "Mike Rogers"                  "Mike Rogers"            "Mike Roger…
+ 5 AL-04    "Robert B Aderholt"            "Robert B Aderholt"      "Robert B. …
+ 6 AL-05    "Mo Brooks"                    "Dale Strong"            "Dale W. St…
+ 7 AL-06    "Gary J Palmer"                "Gary J Palmer"          "Gary J. Pa…
+ 8 AL-07    "Terri A Sewell"               "Terri A Sewell"         "Terri A. S…
+ 9 AR-01    "Eric A \\\"Rick\\\" Crawford" "Eric A Â\u0080\u009cRi… "Eric A. \\…
+10 AR-02    "J French Hill"                "J French Hill"          "J. French …
+# ℹ 433 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section><section id="variable-types-winning-parties" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variable-types-winning-parties">Variable types: winning parties</h2>
+<div class="columns">
+<div class="column xsmall">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead><tr class="header">
+<th>Variable</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>district</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="even">
+<td><code>state_abb</code></td>
+<td>categorical</td>
+</tr>
+<tr class="odd">
+<td><code>state</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>house_rep_20</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_20</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical</span></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_22</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_22</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical</span></td>
+</tr>
+<tr class="even">
+<td><code>house_rep_24</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_24</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical</span></td>
+</tr>
+<tr class="even">
+<td><code>harris_24</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>trump_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>gerry_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_26</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column small">
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"house_party"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 443 × 4
+   district house_party_20 house_party_22 house_party_24
+   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;         
+ 1 AK-00    Republican     Democrat       Republican    
+ 2 AL-01    Republican     Republican     Republican    
+ 3 AL-02    Republican     Republican     Democrat      
+ 4 AL-03    Republican     Republican     Republican    
+ 5 AL-04    Republican     Republican     Republican    
+ 6 AL-05    Republican     Republican     Republican    
+ 7 AL-06    Republican     Republican     Republican    
+ 8 AL-07    Democrat       Democrat       Democrat      
+ 9 AR-01    Republican     Republican     Republican    
+10 AR-02    Republican     Republican     Republican    
+# ℹ 433 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section><section id="variable-types-harris_24-and-trump_24" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variable-types-harris_24-and-trump_24">Variable types: <code>harris_24</code> and <code>trump_24</code>
+</h2>
+<div class="columns">
+<div class="column xsmall">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead><tr class="header">
+<th>Variable</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>district</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="even">
+<td><code>state_abb</code></td>
+<td>categorical</td>
+</tr>
+<tr class="odd">
+<td><code>state</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>house_rep_20</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_20</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>house_rep_22</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_22</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>house_rep_24</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_24</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>harris_24</code></td>
+<td><span class="fragment" data-fragment-index="1">numerical, continuous</span></td>
+</tr>
+<tr class="odd">
+<td><code>trump_24</code></td>
+<td><span class="fragment" data-fragment-index="1">numerical, continuous</span></td>
+</tr>
+<tr class="even">
+<td><code>gerry_22</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>gerry_24</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>gerry_26</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column small">
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">harris_24</span>, <span class="va">trump_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 443 × 3
+   district harris_24 trump_24
+   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+ 1 AK-00         41.4     54.5
+ 2 AL-01         21.9     76.9
+ 3 AL-02         53.5     45.3
+ 4 AL-03         26.2     72.7
+ 5 AL-04         16.0     83.0
+ 6 AL-05         34.2     64.0
+ 7 AL-06         29.7     68.5
+ 8 AL-07         61.4     37.5
+ 9 AR-01         26.4     71.7
+10 AR-02         41.0     56.6
+# ℹ 433 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section><section id="variable-types-gerrymandering-level" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variable-types-gerrymandering-level">Variable types: Gerrymandering level</h2>
+<div class="columns">
+<div class="column xsmall">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead><tr class="header">
+<th>Variable</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>district</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="even">
+<td><code>state_abb</code></td>
+<td>categorical</td>
+</tr>
+<tr class="odd">
+<td><code>state</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>house_rep_20</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_20</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>house_rep_22</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_22</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>house_rep_24</code></td>
+<td>categorical, ID</td>
+</tr>
+<tr class="odd">
+<td><code>house_party_24</code></td>
+<td>categorical</td>
+</tr>
+<tr class="even">
+<td><code>harris_24</code></td>
+<td>numerical, continuous</td>
+</tr>
+<tr class="odd">
+<td><code>trump_24</code></td>
+<td>numerical, continuous</td>
+</tr>
+<tr class="even">
+<td><code>gerry_22</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical, ordinal</span></td>
+</tr>
+<tr class="odd">
+<td><code>gerry_24</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical, ordinal</span></td>
+</tr>
+<tr class="even">
+<td><code>gerry_26</code></td>
+<td><span class="fragment" data-fragment-index="1">categorical, ordinal</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column small">
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"gerry"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 443 × 4
+   district gerry_22 gerry_24 gerry_26
+   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+ 1 AK-00    &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 2 AL-01    F        B        B       
+ 3 AL-02    F        B        B       
+ 4 AL-03    F        B        B       
+ 5 AL-04    F        B        B       
+ 6 AL-05    F        B        B       
+ 7 AL-06    F        B        B       
+ 8 AL-07    F        B        B       
+ 9 AR-01    C        C        C       
+10 AR-02    C        C        C       
+# ℹ 433 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>Based on the <a href="https://nervous-noyce-f2ebc6.netlify.app/redistricting-report-card/">Gerrymandering Project’s</a> Redistricting Report Card.</p>
+</section></section><section id="univariate-analysis" class="level1"><h1>Univariate analysis</h1>
+<section id="univariate-analysis-1" class="level2"><h2 class="anchored" data-anchor-id="univariate-analysis-1">Univariate analysis</h2>
+<p>Analyzing a single variable:</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Numerical: histogram, box plot, density plot, etc.</p></li>
+<li><p>Categorical: bar plot, pie chart, etc.</p></li>
+</ul>
+</div>
+</section><section id="focus-2024-elections" class="level2"><h2 class="anchored" data-anchor-id="focus-2024-elections">Focus: 2024 Elections</h2>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">&lt;-</span> <span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">house_rep_24</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 435  14</code></pre>
+</div>
+</div>
+</section><section id="histogram---step-1" class="level2"><h2 class="anchored" data-anchor-id="histogram---step-1">Histogram - Step 1</h2>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="histogram---step-2" class="level2"><h2 class="anchored" data-anchor-id="histogram---step-2">Histogram - Step 2</h2>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="histogram---step-3" class="level2"><h2 class="anchored" data-anchor-id="histogram---step-3">Histogram - Step 3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="participate-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="participate-1">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:80%;">
+<div class="wooclap small">
+<p>Which of the following has the most appropriate binwidth for visualizing the distribution of <code>trump_24</code>?</p>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid" width="480"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-17-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-17-2.png" class="img-fluid" width="480"></a></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-17-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-17-3.png" class="img-fluid" width="480"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-17-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-17-4.png" class="img-fluid" width="480"></a></p>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:20%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/05/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/05/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/KUCTINK">wooclap.com</a> and use the code KUCTINK.</p>
+</div>
+</div>
+</section><section id="histogram---step-4" class="level2"><h2 class="anchored" data-anchor-id="histogram---step-4">Histogram - Step 4</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="histogram---step-5" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="histogram---step-5">Histogram - Step 5</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-5"><a href="#cb27-5"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8"></a>    <span class="at">y =</span> <span class="st">"Count"</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="box-plot---step-1" class="level2"><h2 class="anchored" data-anchor-id="box-plot---step-1">Box plot - Step 1</h2>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="box-plot---step-2" class="level2"><h2 class="anchored" data-anchor-id="box-plot---step-2">Box plot - Step 2</h2>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="box-plot---step-3" class="level2"><h2 class="anchored" data-anchor-id="box-plot---step-3">Box plot - Step 3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="box-plot---alternative-step-2-3" class="level2"><h2 class="anchored" data-anchor-id="box-plot---alternative-step-2-3">Box plot - Alternative Step 2 + 3</h2>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="box-plot---step-4" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="box-plot---step-4">Box plot - Step 4</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-24-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="density-plot---step-1" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-1">Density plot - Step 1</h2>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-25-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="density-plot---step-2" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-2">Density plot - Step 2</h2>
+<div class="cell">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="density-plot---step-3" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-3">Density plot - Step 3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="density-plot---step-4" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-4">Density plot - Step 4</h2>
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-28-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="density-plot---step-5" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-5">Density plot - Step 5</h2>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span>, fill <span class="op">=</span> <span class="st">"firebrick1"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-29-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="density-plot---step-6" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-6">Density plot - Step 6</h2>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span>, fill <span class="op">=</span> <span class="st">"firebrick1"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-30-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="density-plot---step-7" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-7">Density plot - Step 7</h2>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span></span>
+<span>    color <span class="op">=</span> <span class="st">"firebrick"</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"firebrick1"</span>,</span>
+<span>    alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>    linewidth <span class="op">=</span> <span class="fl">1</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-31-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="density-plot---step-8" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="density-plot---step-8">Density plot - Step 8</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb40-3"><a href="#cb40-3"></a>    <span class="at">color =</span> <span class="st">"firebrick"</span>,</span>
+<span id="cb40-4"><a href="#cb40-4"></a>    <span class="at">fill =</span> <span class="st">"firebrick1"</span>,</span>
+<span id="cb40-5"><a href="#cb40-5"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb40-6"><a href="#cb40-6"></a>    <span class="at">linewidth =</span> <span class="dv">2</span></span>
+<span id="cb40-7"><a href="#cb40-7"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8"></a>  <span class="fu">labs</span>(</span>
+<span id="cb40-9"><a href="#cb40-9"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
+<span id="cb40-10"><a href="#cb40-10"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
+<span id="cb40-11"><a href="#cb40-11"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
+<span id="cb40-12"><a href="#cb40-12"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb40-13"><a href="#cb40-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-32-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="summary-statistics" class="level2"><h2 class="anchored" data-anchor-id="summary-statistics">Summary statistics</h2>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>    sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>    min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>    q25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.25</span><span class="op">)</span>,</span>
+<span>    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>    q75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
+<span>    max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 7
+   mean    sd   min   q25 median   q75   max
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  49.2  15.2  10.6  37.9   50.3  61.0  83.0</code></pre>
+</div>
+</div>
+</section><section id="distribution-of-votes-for-trump-in-the-2024-election" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="distribution-of-votes-for-trump-in-the-2024-election">Distribution of votes for Trump in the 2024 election</h2>
+<div class="question">
+<p>Describe the distribution of percent of vote received by Trump in 2024 Presidential Election from Congressional Districts.</p>
+</div>
+<ul>
+<li><p>Shape: <span class="fragment">The distribution of votes for Trump in the 2024 election from Congressional Districts is <strong>unimodal and left-skewed</strong>.</span></p></li>
+<li><p>Center: <span class="fragment">The percent of vote received by Trump in the 2024 Presidential Election from a <strong>typical</strong> Congressional Districts is 50.3%.</span></p></li>
+<li><p>Spread: <span class="fragment">In the <strong>middle 50%</strong> of Congressional Districts, 37.9% to 61% of voters voted for Trump in the 2024 Presidential Election.</span></p></li>
+<li><p>Unusual observations: <span class="fragment">-</span></p></li>
+</ul></section></section><section id="bivariate-analysis" class="level1"><h1>Bivariate analysis</h1>
+<section id="bivariate-analysis-1" class="level2"><h2 class="anchored" data-anchor-id="bivariate-analysis-1">Bivariate analysis</h2>
+<p>Analyzing the relationship between two variables:</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Numerical + numerical: scatterplot</p></li>
+<li><p>Numerical + categorical: side-by-side box plots, violin plots, etc.</p></li>
+<li><p>Categorical + categorical: stacked bar plots</p></li>
+<li><p>Using an aesthetic (e.g., fill, color, shape, etc.) or facets to represent the second variable in any plot</p></li>
+</ul>
+</div>
+</section><section id="side-by-side-box-plots" class="level2"><h2 class="anchored" data-anchor-id="side-by-side-box-plots">Side-by-side box plots</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb43-2"><a href="#cb43-2"></a>  gerrymander_24,</span>
+<span id="cb43-3"><a href="#cb43-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb43-4"><a href="#cb43-4"></a>    <span class="at">x =</span> trump_24,</span>
+<span id="cb43-5"><a href="#cb43-5"></a>    <span class="at">y =</span> gerry_24</span>
+<span id="cb43-6"><a href="#cb43-6"></a>  )</span>
+<span id="cb43-7"><a href="#cb43-7"></a>) <span class="sc">+</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-34-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="480"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="participate-2" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="participate-2">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:85%;">
+<div class="wooclap">
+<p>What goes in the <code>[blank]</code> in the code below to do the following step for each level of <code>gerry_24</code>?</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># [blank]</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>    q25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.25</span><span class="op">)</span>,</span>
+<span>    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>    q75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
+<span>    max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="wooclap-choices">
+<ul>
+<li><code>filter(gerry_24)</code></li>
+<li><code>group_by(gerry_24)</code></li>
+<li><code>mutate(gerry_24)</code></li>
+<li><code>select(gerry_24)</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:15%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/05/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="images/05/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/KUCTINK">wooclap.com</a> and use the code KUCTINK.</p>
+</div>
+</div>
+</section><section id="grouped-summary-statistics" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="grouped-summary-statistics">Grouped summary statistics</h2>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">gerry_24</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>    q25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.25</span><span class="op">)</span>,</span>
+<span>    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>    q75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
+<span>    max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  gerry_24   min   q25 median   q75   max
+  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 A         10.8  36.7   47.0  57.7  81.3
+2 B         10.6  32.8   44.0  52.4  83.0
+3 C         39.3  59.7   65.5  70.7  77.0
+4 D         22.1  43.0   51.3  61.5  73.4
+5 F         13.5  45.9   57.7  62.2  78.4
+6 &lt;NA&gt;      32.6  37.8   43.6  61.2  72.3</code></pre>
+</div>
+</div>
+</section><section id="na-for-gerrymandering" class="level2"><h2 class="anchored" data-anchor-id="na-for-gerrymandering">
+<code>NA</code> for gerrymandering?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a>  <span class="fu">select</span>(district, <span class="fu">starts_with</span>(<span class="st">"state"</span>), <span class="fu">starts_with</span>(<span class="st">"gerry"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   district state_abb state        gerry_22 gerry_24 gerry_26
+   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+ 1 AK-00    AK        Alaska       &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 2 DE-00    DE        Delaware     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 3 HI-01    HI        Hawaii       &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 4 HI-02    HI        Hawaii       &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 5 ND-00    ND        North Dakota &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 6 RI-01    RI        Rhode Island &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 7 RI-02    RI        Rhode Island &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 8 SD-00    SD        South Dakota &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+ 9 VT-00    VT        Vermont      &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+10 WY-00    WY        Wyoming      &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    </code></pre>
+</div>
+</div>
+</section><section id="density-plots" class="level2"><h2 class="anchored" data-anchor-id="density-plots">Density plots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-38-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="filled-density-plots" class="level2"><h2 class="anchored" data-anchor-id="filled-density-plots">Filled density plots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb50-4"><a href="#cb50-4"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-39-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="better-filled-density-plots" class="level2"><h2 class="anchored" data-anchor-id="better-filled-density-plots">Better filled density plots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a href="#cb51-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-40-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="better-colors" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="better-colors">Better colors</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb52-6"><a href="#cb52-6"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-41-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="violin-plots" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="violin-plots">Violin plots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb53-5"><a href="#cb53-5"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-42-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="multiple-geoms" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="multiple-geoms">Multiple geoms</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb54-6"><a href="#cb54-6"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-43-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="multiple-geoms-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="multiple-geoms-1">Multiple geoms</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb55-2"><a href="#cb55-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a href="#cb55-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb55-4"><a href="#cb55-4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb55-5"><a href="#cb55-5"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb55-6"><a href="#cb55-6"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-44-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="remove-legend" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="remove-legend">Remove legend</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="#cb56-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb56-4"><a href="#cb56-4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb56-5"><a href="#cb56-5"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb56-7"><a href="#cb56-7"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-45-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="multivariate-analysis" class="level1"><h1>Multivariate analysis</h1>
+<section id="multivariate-analysis-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="multivariate-analysis-1">Multivariate analysis</h2>
+<p>Analyzing the relationship between multiple variables:</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>In general, one variable is identified as the <strong>outcome</strong> of interest</p></li>
+<li><p>The remaining variables are <strong>predictors</strong> or <strong>explanatory variables</strong></p></li>
+<li>
+<p>Plots for exploring multivariate relationships are the same as those for bivariate relationships, but <strong>conditional</strong> on one or more variables</p>
+<ul class="incremental">
+<li>Conditioning can be done via faceting or aesthetic mappings (e.g., scatterplot of <code>y</code> vs.&nbsp;<code>x1</code>, colored by <code>x2</code>, faceted by <code>x3</code>)</li>
+</ul>
+</li>
+<li>
+<p>Summary statistics for exploring multivariate relationships are the same as those for bivariate relationships, but <strong>conditional</strong> on one or more variables</p>
+<ul class="incremental">
+<li>Conditioning can be done via grouping (e.g., correlation between <code>y</code> and <code>x1</code>, grouped by levels of <code>x2</code> and <code>x3</code>)</li>
+</ul>
+</li>
+</ul>
+</div>
+</section></section><section id="application-exercise" class="level1"><h1>Application exercise</h1>
+<section id="ae" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="ae">AE</h2>
+<div class="appex">
+<ul>
+<li><p>Go to your ae project in RStudio.</p></li>
+<li><p>If you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.</p></li>
+<li><p>If you haven’t yet done so, click Pull to get today’s application exercise file:</p></li>
+<li><p>Work through the application exercise in class, and render, commit, and push your edits by the end of class.</p></li>
+</ul>
+</div>
+
+
+</section></section></main><!-- /main --><script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sta199-f26\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/05-exploratory-data-analysis-I.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+</body></html>
