@@ -366,7 +366,7 @@ pres_24 <- read_csv("_data/gerrymander/pres-24.csv") |>
     trump_24 = if_else(district == "NY-21", 60.1, trump_24)
   )
 
-gerrymander <- house_20_22_24 |>
+gerrymander_long <- house_20_22_24 |>
   left_join(pres_24, by = c("state", "state_abb", "district")) |>
   left_join(gerrymander_22_24_26, by = c("state", "state_abb")) |>
   select(
@@ -383,5 +383,40 @@ gerrymander <- house_20_22_24 |>
     gerry_26
   ) |>
   arrange(year, state_abb, state, district)
+
+# Use the 2024 district roster because reapportionment changed district IDs
+# after 2020; the union of IDs across all three elections has 443 districts.
+districts_2024 <- gerrymander_long |>
+  filter(year == 2024) |>
+  distinct(state_abb, state, district)
+
+gerrymander <- gerrymander_long |>
+  #semi_join(
+  #  districts_2024,
+  #  by = c("state_abb", "state", "district")
+  #) |>
+  mutate(year = str_sub(as.character(year), -2)) |>
+  pivot_wider(
+    names_from = year,
+    values_from = c(candidate, party),
+    names_glue = "house_{.value}_{year}"
+  ) |>
+  relocate(
+    house_candidate_20,
+    house_party_20,
+    house_candidate_22,
+    house_party_22,
+    house_candidate_24,
+    house_party_24,
+    harris_24,
+    trump_24,
+    starts_with("gerry"),
+    .after = district
+  ) |>
+  arrange(state_abb, district)
+
+gerrymander |>
+  filter(!is.na(house_party_24)) |>
+  nrow()
 
 write_csv(gerrymander, file = "_data/gerrymander/gerrymander.csv")
