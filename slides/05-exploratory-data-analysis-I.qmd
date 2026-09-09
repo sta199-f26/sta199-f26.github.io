@@ -1,10 +1,10 @@
 ---
-title: "Grammar of data transformation"
+title: "Exploratory data analysis I"
 subtitle: "Lecture 4"
 date: "2026-09-02"
 format: 
   revealjs: 
-    output-file: 04-grammar-of-data-transformation-slides.html
+    output-file: 05-exploratory-data-analysis-I-slides.html
     footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
     theme: slides.scss
     transition: fade
@@ -217,7 +217,7 @@ gerrymander |>
 :::
 :::
 
-## Variable types: `state_abb`
+## Variable types: `state_abb` and `state`
 
 ::: columns
 
@@ -226,8 +226,8 @@ gerrymander |>
 | Variable     | Type                               |
 |--------------|------------------------------------|
 | `year`       | numerical                          |
-| `state_abb`  | [categorical, ID]{.fragment}       |
-| `state`      |                                    |
+| `state_abb`  | [categorical]{.fragment}           |
+| `state`      | [categorical]{.fragment}           |
 | `district`   |                                    |
 | `candidate`  |                                    |
 | `party`      |                                    |
@@ -243,13 +243,13 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(state_abb)
+  select(state_abb, state)
 ```
 
 :::
 :::
 
-## Variable types: `first_name`
+## Variable types: `district`
 
 ::: columns
 
@@ -257,216 +257,17 @@ gerrymander |>
 
 | Variable     | Type                               |
 |--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | [categorical, ID]{.fragment}       |
-| `party16`    |                                    |
-| `clinton16`  |                                    |
-| `trump16`    |                                    |
-| `dem16`      |                                    |
-| `state`      |                                    |
-| `party18`    |                                    |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
-
-:::
-
-::: {.column .small}
-
-```{r}
-gerrymander |>
-  select(first_name)
-```
-
-:::
-:::
-
-## Variable types: `party16`
-
-::: columns
-
-::: {.column .xsmall}
-
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | [categorical]{.fragment}           |
-| `clinton16`  |                                    |
-| `trump16`    |                                    |
-| `dem16`      |                                    |
-| `state`      |                                    |
-| `party18`    |                                    |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
-
-:::
-
-::: {.column .small}
-
-```{r}
-gerrymander |>
-  select(party16)
-```
-
-:::
-:::
-
-## Variable types: `clinton16`
-
-::: columns
-
-::: {.column .xsmall}
-
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | categorical                        |
-| `clinton16`  | [numerical, continuous]{.fragment} |
-| `trump16`    |                                    |
-| `dem16`      |                                    |
-| `state`      |                                    |
-| `party18`    |                                    |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
-
-:::
-
-::: {.column .small}
-
-```{r}
-gerrymander |>
-  select(clinton16)
-```
-
-:::
-:::
-
-## Variable types: `trump16`
-
-::: columns
-
-::: {.column .xsmall}
-
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | categorical                        |
-| `clinton16`  | numerical, continuous              |
-| `trump16`    | [numerical, continuous]{.fragment} |
-| `dem16`      |                                    |
-| `state`      |                                    |
-| `party18`    |                                    |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
-
-:::
-
-::: {.column .small}
-
-```{r}
-gerrymander |>
-  select(trump16)
-```
-
-:::
-:::
-
-## Variable types: `dem16`
-
-::: columns
-
-::: {.column .xsmall}
-
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | categorical                        |
-| `clinton16`  | numerical, continuous              |
-| `trump16`    | numerical, continuous              |
-| `dem16`      | [categorical]{.fragment}           |
-| `state`      |                                    |
-| `party18`    |                                    |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
-
-:::
-
-::: {.column .small}
-
-```{r}
-gerrymander |>
-  select(dem16)
-```
-
-:::
-:::
-
-## Variable types: `state`
-
-::: columns
-
-::: {.column .xsmall}
-
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | categorical                        |
-| `clinton16`  | numerical, continuous              |
-| `trump16`    | numerical, continuous              |
-| `dem16`      | categorical                        |
-| `state`      | [categorical]{.fragment}           |
-| `party18`    |                                    |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
-
-:::
-
-::: {.column .small}
-
-```{r}
-gerrymander |>
-  select(state)
-```
-
-:::
-:::
-
-## Variable types: `party18`
-
-::: columns
-
-::: {.column .xsmall}
-
-| Variable     | Type                               |
-|--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | categorical                        |
-| `clinton16`  | numerical, continuous              |
-| `trump16`    | numerical, continuous              |
-| `dem16`      | categorical                        |
+| `year`       | numerical                          |
+| `state_abb`  | categorical                        |
 | `state`      | categorical                        |
-| `party18`    | [categorical]{.fragment}           |
-| `dem18`      |                                    |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
+| `district`   | [categorical, ID]{.fragment}       |
+| `candidate`  |                                    |
+| `party`      |                                    |
+| `gerry_22`   |                                    |
+| `gerry_24`   |                                    |
+| `harris_24`  |                                    |
+| `trump_24`   |                                    |
+| `gerry_26`   |                                    |
 
 :::
 
@@ -474,13 +275,13 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(party18)
+  select(district)
 ```
 
 :::
 :::
 
-## Variable types: `dem18`
+## Variable types: `candidate`
 
 ::: columns
 
@@ -488,18 +289,17 @@ gerrymander |>
 
 | Variable     | Type                               |
 |--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | categorical                        |
-| `clinton16`  | numerical, continuous              |
-| `trump16`    | numerical, continuous              |
-| `dem16`      | categorical                        |
+| `year`       | numerical                          |
+| `state_abb`  | categorical                        |
 | `state`      | categorical                        |
-| `party18`    | categorical                        |
-| `dem18`      | [categorical]{.fragment}           |
-| `flip18`     |                                    |
-| `gerry`      |                                    |
+| `district`   | categorical, ID                    |
+| `candidate`  | [categorical, ID]{.fragment}       |
+| `party`      |                                    |
+| `gerry_22`   |                                    |
+| `gerry_24`   |                                    |
+| `harris_24`  |                                    |
+| `trump_24`   |                                    |
+| `gerry_26`   |                                    |
 
 :::
 
@@ -507,13 +307,13 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(dem18)
+  select(candidate)
 ```
 
 :::
 :::
 
-## Variable types: `flip18`
+## Variable types: `party`
 
 ::: columns
 
@@ -521,18 +321,17 @@ gerrymander |>
 
 | Variable     | Type                               |
 |--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | categorical                        |
-| `clinton16`  | numerical, continuous              |
-| `trump16`    | numerical, continuous              |
-| `dem16`      | categorical                        |
+| `year`       | numerical                          |
+| `state_abb`  | categorical                        |
 | `state`      | categorical                        |
-| `party18`    | categorical                        |
-| `dem18`      | categorical                        |
-| `flip18`     | [categorical]{.fragment}           |
-| `gerry`      |                                    |
+| `district`   | categorical, ID                    |
+| `candidate`  | categorical, ID                    |
+| `party`      | [categorical]{.fragment}           |
+| `gerry_22`   |                                    |
+| `gerry_24`   |                                    |
+| `harris_24`  |                                    |
+| `trump_24`   |                                    |
+| `gerry_26`   |                                    |
 
 :::
 
@@ -540,13 +339,13 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(flip18)
+  select(party)
 ```
 
 :::
 :::
 
-## Variable types: `gerry`
+## Variable types: `gerry_22`, `gerry_24`, and `gerry_26`
 
 ::: columns
 
@@ -554,18 +353,17 @@ gerrymander |>
 
 | Variable     | Type                               |
 |--------------|------------------------------------|
-| `district`   | categorical, ID                    |
-| `last_name`  | categorical, ID                    |
-| `first_name` | categorical, ID                    |
-| `party16`    | categorical                        |
-| `clinton16`  | numerical, continuous              |
-| `trump16`    | numerical, continuous              |
-| `dem16`      | categorical                        |
+| `year`       | numerical                          |
+| `state_abb`  | categorical                        |
 | `state`      | categorical                        |
-| `party18`    | categorical                        |
-| `dem18`      | categorical                        |
-| `flip18`     | categorical                        |
-| `gerry`      | [categorical, ordinal]{.fragment}  |
+| `district`   | categorical, ID                    |
+| `candidate`  | categorical, ID                    |
+| `party`      | categorical                        |
+| `gerry_22`   | [categorical]{.fragment}           |
+| `gerry_24`   | [categorical]{.fragment}           |
+| `harris_24`  |                                    |
+| `trump_24`   |                                    |
+| `gerry_26`   | [categorical]{.fragment}           |
 
 :::
 
@@ -573,12 +371,43 @@ gerrymander |>
 
 ```{r}
 gerrymander |>
-  select(gerry)
+  select(starts_with("gerry"))
 ```
 
 :::
 :::
 
+## Variable types: `harris_24` and `trump_24`
+
+::: columns
+
+::: {.column .xsmall}
+
+| Variable     | Type                               |
+|--------------|------------------------------------|
+| `year`       | numerical                          |
+| `state_abb`  | categorical                        |
+| `state`      | categorical                        |
+| `district`   | categorical, ID                    |
+| `candidate`  | categorical, ID                    |
+| `party`      | categorical                        |
+| `gerry_22`   | categorical                        |
+| `gerry_24`   | categorical                        |
+| `harris_24`  | [numerical, continuous]{.fragment} |
+| `trump_24`   | [numerical, continuous]{.fragment} |
+| `gerry_26`   | categorical                        |
+
+:::
+
+::: {.column .small}
+
+```{r}
+gerrymander |>
+  select(harris_24, trump_24)
+```
+
+:::
+:::
 
 # Univariate analysis
 
@@ -592,23 +421,32 @@ Analyzing a single variable:
 -   Categorical: bar plot, pie chart, etc.
 :::
 
+. . .
+
+Focus: 2024 data
+
+```{r}
+gerrymander_24 <- gerrymander |>
+  filter(year == 2024)
+```
+
 ## Histogram - Step 1
 
 ```{r}
-ggplot(gerrymander)
+ggplot(gerrymander_24)
 ```
 
 ## Histogram - Step 2
 
 ```{r}
-ggplot(gerrymander, aes(x = trump16))
+ggplot(gerrymander_24, aes(x = trump_24))
 ```
 
 ## Histogram - Step 3
 
 ```{r}
 #| code-line-numbers: "2"
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_histogram()
 ```
 
@@ -619,23 +457,23 @@ ggplot(gerrymander, aes(x = trump16)) +
 ::: {.column width="80%"}
 
 ::: wooclap
-Which of the following histograms has the most appropriate binwidth for visualizing the distribution of `trump16`?
+Which of the following histograms has the most appropriate binwidth for visualizing the distribution of `trump_24`?
 
 ```{r}
 #| layout-ncol: 4
 #| fig-asp: 1
 #| echo: false
 #| fig-width: 5
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_histogram(binwidth = 1) +
   labs(title = "O Binwidth = 1")
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_histogram(binwidth = 5) +
   labs(title = "O Binwidth = 5")
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_histogram(binwidth = 10) +
   labs(title = "O Binwidth = 10")
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_histogram(binwidth = 25) +
   labs(title = "O Binwidth = 25")
 ```
@@ -656,7 +494,7 @@ ggplot(gerrymander, aes(x = trump16)) +
 
 ```{r}
 #| code-line-numbers: "3"
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_histogram(binwidth = 5) +
   scale_x_continuous(labels = label_percent(scale = 1))
 ```
@@ -665,11 +503,11 @@ ggplot(gerrymander, aes(x = trump16)) +
 
 ```{r}
 #| code-line-numbers: "4-9"
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_histogram(binwidth = 5) +
   scale_x_continuous(labels = label_percent(scale = 1)) +
   labs(
-    title = "Percent of vote received by Trump in 2016 Presidential Election",
+    title = "Percent of vote received by Trump in 2024 Presidential Election",
     subtitle = "From each Congressional District",
     x = "Percent of vote",
     y = "Count"
@@ -679,27 +517,27 @@ ggplot(gerrymander, aes(x = trump16)) +
 ## Box plot - Step 1
 
 ```{r}
-ggplot(gerrymander)
+ggplot(gerrymander_24)
 ```
 
 ## Box plot - Step 2
 
 ```{r}
-ggplot(gerrymander, aes(x = trump16))
+ggplot(gerrymander_24, aes(x = trump_24))
 ```
 
 ## Box plot - Step 3
 
 ```{r}
 #| code-line-numbers: "2"
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_boxplot()
 ```
 
 ## Box plot - Alternative Step 2 + 3
 
 ```{r}
-ggplot(gerrymander, aes(y = trump16)) +
+ggplot(gerrymander_24, aes(y = trump_24)) +
   geom_boxplot()
 ```
 
@@ -707,10 +545,10 @@ ggplot(gerrymander, aes(y = trump16)) +
 
 ```{r}
 #| code-line-numbers: "3-8"
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_boxplot() +
   labs(
-    title = "Percent of vote received by Trump in 2016 Presidential Election",
+    title = "Percent of vote received by Trump in 2024 Presidential Election",
     subtitle = "From each Congressional District",
     x = "Percent of vote",
     y = NULL
@@ -720,48 +558,48 @@ ggplot(gerrymander, aes(x = trump16)) +
 ## Density plot - Step 1
 
 ```{r}
-ggplot(gerrymander)
+ggplot(gerrymander_24)
 ```
 
 ## Density plot - Step 2
 
 ```{r}
-ggplot(gerrymander, aes(x = trump16))
+ggplot(gerrymander_24, aes(x = trump_24))
 ```
 
 ## Density plot - Step 3
 
 ```{r}
 #| code-line-numbers: "2"
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_density()
 ```
 
 ## Density plot - Step 4
 
 ```{r}
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_density(color = "firebrick")
 ```
 
 ## Density plot - Step 5
 
 ```{r}
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_density(color = "firebrick", fill = "firebrick1")
 ```
 
 ## Density plot - Step 6
 
 ```{r}
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_density(color = "firebrick", fill = "firebrick1", alpha = 0.5)
 ```
 
 ## Density plot - Step 7
 
 ```{r}
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_density(
     color = "firebrick",
     fill = "firebrick1",
@@ -774,7 +612,7 @@ ggplot(gerrymander, aes(x = trump16)) +
 
 ```{r}
 #| code-line-numbers: "3-8"
-ggplot(gerrymander, aes(x = trump16)) +
+ggplot(gerrymander_24, aes(x = trump_24)) +
   geom_density(
     color = "firebrick",
     fill = "firebrick1",
@@ -782,7 +620,7 @@ ggplot(gerrymander, aes(x = trump16)) +
     linewidth = 2
   ) +
   labs(
-    title = "Percent of vote received by Trump in 2016 Presidential Election",
+    title = "Percent of vote received by Trump in 2024 Presidential Election",
     subtitle = "From each Congressional District",
     x = "Percent of vote",
     y = "Density"
@@ -792,24 +630,26 @@ ggplot(gerrymander, aes(x = trump16)) +
 ## Summary statistics
 
 ```{r}
-gerrymander |>
+gerrymander_24 |>
   summarize(
-    mean = mean(trump16),
-    median = median(trump16)
+    mean = mean(trump_24),
+    median = median(trump_24)
   )
 ```
 
-## Distribution of votes for Trump in the 2016 election {.smaller}
+## Distribution of votes for Trump in the 2024 election {.smaller}
 
 ::: question
-Describe the distribution of percent of vote received by Trump in 2016 Presidential Election from Congressional Districts.
+Describe the distribution of percent of vote received by Trump in 2024 Presidential Election from Congressional Districts.
 :::
 
--   Shape: [The distribution of votes for Trump in the 2016 election from Congressional Districts is **unimodal and left-skewed**.]{.fragment}
+-   Shape: [The distribution of votes for Trump in the 2024 election from Congressional Districts is **unimodal and left-skewed**.]{.fragment}
 
--   Center: [The percent of vote received by Trump in the 2016 Presidential Election from a **typical** Congressional Districts is 48.7%.]{.fragment}
+TO DO: Update values!!!
 
--   Spread: [In the **middle 50%** of Congressional Districts, 34.8% to 58.1% of voters voted for Trump in the 2016 Presidential Election.]{.fragment}
+-   Center: [The percent of vote received by Trump in the 2024 Presidential Election from a **typical** Congressional Districts is 48.7%.]{.fragment}
+
+-   Spread: [In the **middle 50%** of Congressional Districts, 34.8% to 58.1% of voters voted for Trump in the 2024 Presidential Election.]{.fragment}
 
 -   Unusual observations: [-]{.fragment}
 
@@ -835,10 +675,10 @@ Analyzing the relationship between two variables:
 #| code-line-numbers: "|2|3-6|8"
 #| output-location: column
 ggplot(
-  gerrymander,
+  gerrymander_24,
   aes(
-    x = trump16,
-    y = gerry
+    x = trump_24,
+    y = gerry_24
   )
 ) +
   geom_boxplot()
@@ -847,13 +687,13 @@ ggplot(
 ## Summary statistics
 
 ```{r}
-gerrymander |>
+gerrymander_24 |>
   summarize(
-    min = min(trump16),
-    q25 = quantile(trump16, 0.25),
-    median = median(trump16),
-    q75 = quantile(trump16, 0.75),
-    max = max(trump16),
+    min = min(trump_24),
+    q25 = quantile(trump_24, 0.25),
+    median = median(trump_24),
+    q75 = quantile(trump_24, 0.75),
+    max = max(trump_24),
   )
 ```
 
@@ -871,14 +711,14 @@ What goes in the `[blank]` in the code below to do the following step for each l
 
 ```{r}
 #| eval: false
-gerrymander |>
+gerrymander_24 |>
   # [blank]
   summarize(
-    min = min(trump16),
-    q25 = quantile(trump16, 0.25),
-    median = median(trump16),
-    q75 = quantile(trump16, 0.75),
-    max = max(trump16),
+    min = min(trump_24),
+    q25 = quantile(trump_24, 0.25),
+    median = median(trump_24),
+    q75 = quantile(trump_24, 0.75),
+    max = max(trump_24),
   )
 ```
 
@@ -886,10 +726,10 @@ gerrymander |>
 ::: {.column width="40%"}
 
 ::: wooclap-choices
-- `filter(gerry)`
-- `group_by(gerry)`
-- `mutate(gerry)`
-- `select(gerry)`
+- `filter(gerry_24)`
+- `group_by(gerry_24)`
+- `mutate(gerry_24)`
+- `select(gerry_24)`
 :::
 
 :::
@@ -910,14 +750,14 @@ gerrymander |>
 ## Grouped summary statistics
 
 ```{r}
-gerrymander |>
-  group_by(gerry) |>
+gerrymander_24 |>
+  group_by(gerry_24) |>
   summarize(
-    min = min(trump16),
-    q25 = quantile(trump16, 0.25),
-    median = median(trump16),
-    q75 = quantile(trump16, 0.75),
-    max = max(trump16),
+    min = min(trump_24),
+    q25 = quantile(trump_24, 0.25),
+    median = median(trump_24),
+    q75 = quantile(trump_24, 0.75),
+    max = max(trump_24),
   )
 ```
 
@@ -927,10 +767,10 @@ gerrymander |>
 #| code-line-numbers: "|4|5|8"
 #| output-location: column
 ggplot(
-  gerrymander,
+  gerrymander_24,
   aes(
-    x = trump16,
-    color = gerry
+    x = trump_24,
+    color = gerry_24
   )
 ) +
   geom_density()
@@ -942,11 +782,11 @@ ggplot(
 #| code-line-numbers: "6"
 #| output-location: column
 ggplot(
-  gerrymander,
+  gerrymander_24,
   aes(
-    x = trump16,
-    color = gerry,
-    fill = gerry
+    x = trump_24,
+    color = gerry_24,
+    fill = gerry_24
   )
 ) +
   geom_density()
@@ -957,8 +797,8 @@ ggplot(
 ```{r}
 #| code-line-numbers: "5"
 ggplot(
-  gerrymander,
-  aes(x = trump16, color = gerry, fill = gerry)
+  gerrymander_24,
+  aes(x = trump_24, color = gerry_24, fill = gerry_24)
 ) +
   geom_density(alpha = 0.5)
 ```
@@ -969,12 +809,12 @@ ggplot(
 #| code-line-numbers: "7-8"
 #| output-location: column
 ggplot(
-  gerrymander,
-  aes(x = trump16, color = gerry, fill = gerry)
+  gerrymander_24,
+  aes(x = trump_24, color = gerry_24, fill = gerry_24)
 ) +
   geom_density(alpha = 0.5) +
-  scale_color_colorblind() +
-  scale_fill_colorblind()
+  scale_colour_colourblind() +
+  scale_fill_colourblind()
 ```
 
 ## Violin plots {.scrollable}
@@ -982,12 +822,12 @@ ggplot(
 ```{r}
 #| code-line-numbers: "5"
 ggplot(
-  gerrymander,
-  aes(x = trump16, y = gerry, color = gerry)
+  gerrymander_24,
+  aes(x = trump_24, y = gerry_24, color = gerry_24)
 ) +
   geom_violin() +
-  scale_color_colorblind() +
-  scale_fill_colorblind()
+  scale_colour_colourblind() +
+  scale_fill_colourblind()
 ```
 
 ## Multiple geoms {.scrollable}
@@ -996,12 +836,12 @@ ggplot(
 #| code-line-numbers: "6"
 ggplot(
   gerrymander,
-  aes(x = trump16, y = gerry, color = gerry)
+  aes(x = trump_24, y = gerry_24, color = gerry_24)
 ) +
   geom_violin() +
   geom_point() +
-  scale_color_colorblind() +
-  scale_fill_colorblind()
+  scale_colour_colourblind() +
+  scale_fill_colourblind()
 ```
 
 ## Multiple geoms {.scrollable}
@@ -1009,13 +849,13 @@ ggplot(
 ```{r}
 #| code-line-numbers: "6"
 ggplot(
-  gerrymander,
-  aes(x = trump16, y = gerry, color = gerry)
+  gerrymander_24,
+  aes(x = trump_24, y = gerry_24, color = gerry_24)
 ) +
   geom_violin() +
   geom_jitter() +
-  scale_color_colorblind() +
-  scale_fill_colorblind()
+  scale_colour_colourblind() +
+  scale_fill_colourblind()
 ```
 
 ## Remove legend {.scrollable}
@@ -1023,13 +863,13 @@ ggplot(
 ```{r}
 #| code-line-numbers: "9"
 ggplot(
-  gerrymander,
-  aes(x = trump16, y = gerry, color = gerry)
+  gerrymander_24,
+  aes(x = trump_24, y = gerry_24, color = gerry_24)
 ) +
   geom_violin() +
   geom_jitter() +
-  scale_color_colorblind() +
-  scale_fill_colorblind() +
+  scale_colour_colourblind() +
+  scale_fill_colourblind() +
   theme(legend.position = "none")
 ```
 
@@ -1066,7 +906,3 @@ Analyzing the relationship between multiple variables:
 
 -   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
 :::
-
-
-
-

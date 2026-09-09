@@ -357,7 +357,14 @@ house_20_22_24 <- read_csv("_data/gerrymander/house-20-22-24.csv") |>
   rename(state_abb = state_po)
 
 pres_24 <- read_csv("_data/gerrymander/pres-24.csv") |>
-  mutate(state = state.name[match(state_abb, state.abb)], .before = state_abb)
+  mutate(
+    state = state.name[match(state_abb, state.abb)],
+    .before = state_abb
+  ) |>
+  mutate(
+    harris_24 = if_else(district == "NY-21", 39.4, harris_24),
+    trump_24 = if_else(district == "NY-21", 60.1, trump_24)
+  )
 
 gerrymander <- house_20_22_24 |>
   left_join(pres_24, by = c("state", "state_abb", "district")) |>
