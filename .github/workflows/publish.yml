@@ -19,9 +19,6 @@ jobs:
           tinytex: true
           version: 1.7.32
 
-      - name: Work around flaky Google Chrome apt repo on the runner
-        run: sudo rm -f /etc/apt/sources.list.d/google-chrome*
-
       - name: Install libcurl
         run: |
           sudo apt-get update
