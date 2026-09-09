@@ -1,0 +1,101 @@
+---
+title: "AE 03: Gerrymandering + data exploration I"
+subtitle: "Suggested answers"
+categories: 
+  - Application exercise
+  - Answers
+---
+
+::: callout-important
+These are suggested answers.
+This document should be used as a reference only; it's not designed to be an exhaustive key.
+:::
+
+## Getting started
+
+### Packages
+
+We'll use the **tidyverse** package for this analysis.
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse)
+```
+
+### Data
+
+```{r}
+#| label: load-data
+#| message: false
+gerrymander <- read_csv("data/gerrymander.csv")
+```
+
+```{r}
+#| label: glimpse
+glimpse(gerrymander)
+```
+
+## Districts at the tails
+
+Make side-by-side box plots of percent of vote received by Trump in 2024 Presidential Election by prevalence of gerrymandering.
+Identify any Congressional Districts that are potential outliers.
+Are they different from the rest of the Congressional Districts within the given gerrymandering level due to high support or low support for Trump in the 2024 Presidential Election?
+Which state are they in?
+Which city are they in?
+
+```{r}
+#| label: outliers
+ggplot(gerrymander, aes(x = trump_24, y = gerry_24)) +
+  geom_boxplot()
+
+gerrymander |>
+  filter(gerry_24 == "F", trump_24 < 20) |>
+  select(state, district, trump_24, gerry_24)
+
+gerrymander |>
+  filter(gerry_24 == "C", trump_24 < 40) |>
+  select(state, district, trump_24, gerry_24)
+
+gerrymander |>
+  filter(gerry_24 == "B", trump_24 > 80) |>
+  select(state, district, trump_24, gerry_24)
+```
+
+## Flips
+
+How does the prevalence of various levels of gerrymandering vary among Congressional Districts that flipped from Republican to Democrat in the 2024 election compared to the 2022 election?
+Support your answer with a visualization as well as summary statistics.
+**Hint:** Calculate the conditional distribution of prevalance of various levels of gerrymandering based on whether a Democrat flipped the seat in the 2024 election compared to the 2022 election.
+
+```{r}
+#| label: calculate-flips
+gerrymander <- gerrymander |>
+  mutate(
+    flip_22_24 = case_when(
+      house_party_22 == "Republican" &
+        house_party_24 == "Democrat" ~ "Flip R to D",
+      house_party_22 == "Democrat" &
+        house_party_24 == "Republican" ~ "Flip D to R",
+      .default = "No Flip"
+    )
+  ) |>
+  relocate(house_party_22, house_party_24, flip_22_24, gerry_26, .after = state)
+```
+
+```{r}
+#| label: flips-viz
+gerrymander |>
+  filter(!is.na(gerry_24)) |>
+  ggplot(aes(y = flip_22_24, fill = gerry_26)) +
+  geom_bar(position = "fill")
+```
+
+```{r}
+#| label: flips-summary
+gerrymander |>
+  filter(!is.na(gerry_24)) |>
+  count(flip_22_24, gerry_26) |>
+  group_by(flip_22_24) |>
+  mutate(prop = n / sum(n))
+```

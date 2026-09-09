@@ -1,0 +1,63 @@
+---
+title: "AE 02: Gerrymandering + data exploration I"
+categories: Application exercise
+---
+
+## Getting started
+
+### Packages
+
+We'll use the **tidyverse** package for this analysis.
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse)
+```
+
+### Data
+
+```{r}
+#| label: load-data
+#| message: false
+gerrymander <- read_csv("data/gerrymander.csv")
+```
+
+```{r}
+#| label: glimpse
+glimpse(gerrymander)
+```
+
+## Districts at the tails
+
+Make side-by-side box plots of percent of vote received by Trump in 2024 Presidential Election by prevalence of gerrymandering.
+Identify any Congressional Districts that are potential outliers.
+Are they different from the rest of the Congressional Districts within the given gerrymandering level due to high support or low support for Trump in the 2024 Presidential Election?
+Which state are they in?
+Which city are they in?
+
+```{r}
+#| label: outliers
+# add code here
+```
+
+## Flips
+
+How does the prevalence of various levels of gerrymandering vary among Congressional Districts that flipped from Republican to Democrat in the 2024 election compared to the 2022 election?
+Support your answer with a visualization as well as summary statistics.
+**Hint:** Calculate the conditional distribution of prevalance of various levels of gerrymandering based on whether a Democrat flipped the seat in the 2024 election compared to the 2022 election.
+
+```{r}
+#| label: calculate-flips
+# add code here
+```
+
+```{r}
+#| label: flips-viz
+# add code here
+```
+
+```{r}
+#| label: flips-summary
+# add code here
+```
