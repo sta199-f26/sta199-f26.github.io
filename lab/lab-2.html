@@ -105,8 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><meta name="quarto:status" content="draft">
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -305,7 +304,7 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -627,14 +626,13 @@ Find your teammates
 </div>
 <ul>
 <li>
-<strong>Run</strong> the code cell by clicking on the green triangle (play) button for the code cell labeled <code>load-packages</code>. This loads the package to make its features (the functions and datasets in it) be accessible from your <em>Console</em>.</li>
-<li>Then, <strong>render</strong> the document which loads this package to make its features (the functions and datasets in it) be available for other code cells in your Quarto document.</li>
+<strong>Run</strong> the code cell by clicking on the green triangle (play) button for the code cell labeled <code>load-packages</code>. This loads the package to make its features (the functions and datasets in it) accessible from your <em>Console</em>.</li>
+<li>Then, <strong>render</strong> the document, which loads this package to make its features (the functions and datasets in it) available for other code cells in your Quarto document.</li>
 </ul></section><section id="questions" class="level1"><h1>Questions</h1>
 <p>For each part of each question below, copy and paste the code cell(s) provided into your Quarto document. Run and analyze the output. Then, answer the questions.</p>
 <section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <p><strong>Throwback Thursday</strong></p>
 <p>Review the feedback for your Lab 1 submission on Gradescope and write one sentence about what you learned.</p>
-<p>Replace this text with your answer</p>
 </section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
 <p><strong>Grouping by one variable.</strong></p>
 <p>For this question, you will work with the following dataset called <code>df_1</code>. The <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> function creates the data frame (the <code>tibble</code> object) <code>df_1</code> with two variables: <code>member</code> and <code>hours</code>. The following code is already included in your lab document.</p>
@@ -647,14 +645,14 @@ Find your teammates
 <span><span class="va">df_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="a">
-<li>What does the following pipeline do? Run it and analyze the result and articulate in words what <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> does.</li>
+<li>What does the following pipeline do? Run it, analyze the result, and articulate in words what <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> does.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">member</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="a">
-<li>What does the following pipeline do? Run it and analyze the result and articulate in words what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does.</li>
+<li>What does the following pipeline do? Run it, analyze the result, and articulate in words what <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> does.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_1</span> <span class="op">|&gt;</span></span>

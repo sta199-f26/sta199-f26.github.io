@@ -1870,7 +1870,7 @@
     "href": "lab.html",
     "title": "Labs",
     "section": "",
-    "text": "More labs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nNo.\n\n\n\nTitle\n\n\n\nDue date\n\n\n\n\n\n\n\n\nLab 0\n\n\nMise en place\n\n\nDue: End of lab on Thurs, Aug 27\n\n\n\n\n\n\nLab 1\n\n\nWhat’s streaming around the world?\n\n\nDue: End of lab on Thurs, Sep 3\n\n\n\n\n\n\nNo matching items",
+    "text": "More labs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nNo.\n\n\n\nTitle\n\n\n\nDue date\n\n\n\n\n\n\n\n\nLab 0\n\n\nMise en place\n\n\nDue: End of lab on Thurs, Aug 27\n\n\n\n\n\n\nLab 1\n\n\nWhat’s streaming around the world?\n\n\nDue: End of lab on Thurs, Sep 3\n\n\n\n\n\n\nLab 2\n\n\nGet in teams, then group_by()\n\n\nDue: End of lab on Thurs, Sep 10\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Labs"
     ]
@@ -3490,5 +3490,68 @@
     "title": "Hello, World!",
     "section": "Tasks",
     "text": "Tasks\n\n\nDue tonight: Complete the Getting to know you survey if you haven’t yet done so.\nTomorrow: Show up to lab on time with a charged laptop and find your team and sit with them.\n\nBefore Monday:\n\nCatch up with anything you fell behind on this week\nComplete the readings and watch the videos for Monday’s lecture"
+  },
+  {
+    "objectID": "lab/lab-2.html",
+    "href": "lab/lab-2.html",
+    "title": "Lab 2",
+    "section": "",
+    "text": "Find your teammates\n\n\n\n… and sit with them!"
+  },
+  {
+    "objectID": "lab/lab-2.html#learning-objectives",
+    "href": "lab/lab-2.html#learning-objectives",
+    "title": "Lab 2",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lab, you will:\n\nuse dplyr pipelines to arrange, group, summarize, and transform data;\ngroup data by one or more variables and calculate summaries within groups;\nexplain how grouping affects the number of rows, columns, and groups in a data frame;\ndistinguish between summarize() and mutate() when working with grouped data; and\nunderstand how to use .groups argument in summarize() to control the grouping structure of the output."
+  },
+  {
+    "objectID": "lab/lab-2.html#guidelines",
+    "href": "lab/lab-2.html#guidelines",
+    "title": "Lab 2",
+    "section": "Guidelines",
+    "text": "Guidelines\nCode\nCode should follow the tidyverse style. Particularly,\n\nthere should be spaces before and line breaks after each + when building a ggplot,\nthere should also be spaces before and line breaks after each |&gt; in a data transformation pipeline,\ncode should be properly indented,\nthere should be spaces around = signs and spaces after commas.\n\nAdditionally, all code should be visible in the PDF output, i.e., should not run off the page on the PDF. Long lines that run off the page should be split across multiple lines with line breaks.1\nPlots\n\nPlots should have an informative title and, if needed, also a subtitle.\nAxes and legends should be labeled with both the variable name and its units (if applicable).\nCareful consideration should be given to aesthetic choices.\nWorkflow\nContinuing to develop a sound workflow for reproducible data analysis is important as you complete the lab and other assignments in this course.\n\nYou should have at least 3 commits with meaningful commit messages by the end of the assignment.\nFinal versions of both your .qmd file and the rendered PDF should be pushed to GitHub."
+  },
+  {
+    "objectID": "lab/lab-2.html#question-1",
+    "href": "lab/lab-2.html#question-1",
+    "title": "Lab 2",
+    "section": "Question 1",
+    "text": "Question 1\nThrowback Thursday\nReview the feedback for your Lab 1 submission on Gradescope and write one sentence about what you learned."
+  },
+  {
+    "objectID": "lab/lab-2.html#question-2",
+    "href": "lab/lab-2.html#question-2",
+    "title": "Lab 2",
+    "section": "Question 2",
+    "text": "Question 2\nGrouping by one variable.\nFor this question, you will work with the following dataset called df_1. The tibble() function creates the data frame (the tibble object) df_1 with two variables: member and hours. The following code is already included in your lab document.\n\ndf_1 &lt;- tibble(\n  member = c(\"A\", \"B\", \"B\", \"A\", \"B\"),\n  hours = c(10, 5, 2, 7, 6)\n)\n\ndf_1\n\n\nWhat does the following pipeline do? Run it, analyze the result, and articulate in words what arrange() does.\n\n\ndf_1 |&gt;\n  arrange(member)\n\n\nWhat does the following pipeline do? Run it, analyze the result, and articulate in words what group_by() does.\n\n\ndf_1 |&gt;\n  group_by(member)\n\n\nPreview, commit, and push your changes to GitHub with the commit message “Added answer for Q1, parts a and b”.\nMake sure to commit and push all changed files so that your Git pane is empty afterward.\n\n\nRun the following code cell and analyze the result.\n\nHow many rows does the output have?\nHow many columns does the output have?\nIs the output grouped? If so, how many groups does it have?\n\n\n\n\ndf_1 |&gt;\n  group_by(member) |&gt;\n  summarize(total_hours = sum(hours))\n\n\n\n\n\n\n\nTip\n\n\n\n\n\nA visual representation of what group_by() does\n\n\n\n\nRun the following code cell and analyze the result.\n\nHow many rows does the output have?\nHow many columns does the output have?\nIs the output grouped? If so, how many groups does it have?\n\n\n\n\ndf_1 |&gt;\n  summarize(total_hours = sum(hours))\n\n\nPreview, commit, and push your changes to GitHub with a meaningful commit message."
+  },
+  {
+    "objectID": "lab/lab-2.html#question-3",
+    "href": "lab/lab-2.html#question-3",
+    "title": "Lab 2",
+    "section": "Question 3",
+    "text": "Question 3\nGrouping by two variables.\nFor this question, you will work with the following dataset called df_2. The tibble() function creates the data frame (the tibble object) df_2 with three variables: shift, member and hours. The following code is already included in your lab document.\n\ndf_2 &lt;- tibble(\n  shift = c(\n    \"day\",\n    \"day\",\n    \"night\",\n    \"day\",\n    \"night\",\n    \"day\",\n    \"night\",\n    \"night\",\n    \"day\",\n    \"night\"\n  ),\n  member = c(\"A\", \"B\", \"B\", \"A\", \"B\", \"B\", \"B\", \"A\", \"A\", \"B\"),\n  hours = c(10, 5, 2, 7, 6, 5, 4, 2, 3, 5)\n)\n\ndf_2\n\n\n\nHow many levels does member have? How many levels does shifthave? How many possible combinations are there of the levels of member and shift?\n\n\n\n\n\n\nTip\n\n\n\nYou can use the distinct() function to identify the levels of a categorical variable.\n\n\n\n\nRun the following code cell and analyze the result.\n\nHow many rows does the output have?\nHow many columns does the output have?\nIs the output grouped? If so, how many groups does it have?\nWhat does the message mean?\n\n\n\n\ndf_2 |&gt;\n  group_by(shift, member) |&gt;\n  summarize(mean_hours = mean(hours))\n\n\nRun the following code cell and analyze the result.\n\nHow many rows does the output have?\nHow many columns does the output have?\nIs the output grouped? If so, how many groups does it have?\n\n\n\n\ndf_2 |&gt;\n  group_by(shift, member) |&gt;\n  summarize(mean_hours = mean(hours), .groups = \"drop\")\n\n\nIn the following code cell, we add one more step to the data pipelines from the previous two parts. The new step uses slice_head(n = 1), which is designed to give the first row of the output. Run each and analyze the result. You will notice the results are different. Why?\n\n\n# pipeline from part b + slice_head()\ndf_2 |&gt;\n  group_by(shift, member) |&gt;\n  summarize(mean_hours = mean(hours)) |&gt;\n  slice_head(n = 1)\n\n# pipeline from part c + slice_head()\ndf_2 |&gt;\n  group_by(shift, member) |&gt;\n  summarize(mean_hours = mean(hours), .groups = \"drop\") |&gt;\n  slice_head(n = 1)\n\n\nRun the following code cell and analyze the result.\n\nHow many rows does the output have?\nHow many columns does the output have?\nIs the output grouped? If so, how many groups does it have?\nArticulate the difference between summarize() and mutate().\n\n\n\n\ndf_2 |&gt;\n  group_by(shift, member) |&gt;\n  mutate(mean_hours = mean(hours)) |&gt;\n  arrange(shift, member)\n\n\nPreview, commit, and push your changes to GitHub with a meaningful commit message."
+  },
+  {
+    "objectID": "lab/lab-2.html#submission",
+    "href": "lab/lab-2.html#submission",
+    "title": "Lab 2",
+    "section": "Submission",
+    "text": "Submission\nSubmit your PDF document to Gradescope by the end of the lab to be considered “on time”:\n\nGo to http://www.gradescope.com and click Log in in the top right corner.\nClick School Credentials \\(\\rightarrow\\) Duke NetID and log in using your NetID credentials.\nClick on your STA 199 course.\nClick on the assignment, and you’ll be prompted to submit it.\nMark all the pages associated with question. All the pages of your lab should be associated with at least one question (i.e., should be “checked”).\n\n\n\n\n\n\n\nChecklist\n\n\n\nMake sure you have:\n\nattempted every question;\npreviewed your Quarto document;\ncommitted and pushed all final changes to GitHub, ending with no pending or staged changes in the Source Control pane; and\nsubmitted your rendered PDF to Gradescope."
+  },
+  {
+    "objectID": "lab/lab-2.html#grading-and-feedback",
+    "href": "lab/lab-2.html#grading-and-feedback",
+    "title": "Lab 2",
+    "section": "Grading and feedback",
+    "text": "Grading and feedback\nThis lab is worth 30 points:\n\n10 points for attending lab and submitting work by the end of lab; and\n20 points for correct and complete answers, clear presentation, and following the required workflow.\n\nThe workflow portion includes making at least three meaningful commits, pushing the final .qmd and rendered PDF to GitHub, and keeping your work organized."
+  },
+  {
+    "objectID": "lab/lab-2.html#footnotes",
+    "href": "lab/lab-2.html#footnotes",
+    "title": "Lab 2",
+    "section": "Footnotes",
+    "text": "Footnotes\n\nRemember, haikus not novellas when writing code!↩︎"
   }
 ]
