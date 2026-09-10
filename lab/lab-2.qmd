@@ -60,8 +60,8 @@ In this lab we will work with the **tidyverse** package.
 library(tidyverse)
 ```
 
--   **Run** the code cell by clicking on the green triangle (play) button for the code cell labeled `load-packages`. This loads the package to make its features (the functions and datasets in it) be accessible from your *Console*.
--   Then, **render** the document which loads this package to make its features (the functions and datasets in it) be available for other code cells in your Quarto document.
+-   **Run** the code cell by clicking on the green triangle (play) button for the code cell labeled `load-packages`. This loads the package to make its features (the functions and datasets in it) accessible from your *Console*.
+-   Then, **render** the document, which loads this package to make its features (the functions and datasets in it) available for other code cells in your Quarto document.
 
 # Questions
 
@@ -74,8 +74,6 @@ Then, answer the questions.
 **Throwback Thursday**
 
 Review the feedback for your Lab 1 submission on Gradescope and write one sentence about what you learned.
-
-Replace this text with your answer
 
 ## Question 2
 
@@ -94,7 +92,7 @@ df_1 <- tibble(
 df_1
 ```
 
-a.  What does the following pipeline do? Run it and analyze the result and articulate in words what `arrange()` does.
+a.  What does the following pipeline do? Run it, analyze the result, and articulate in words what `arrange()` does.
 
 ```{r}
 #| results: false
@@ -102,7 +100,7 @@ df_1 |>
   arrange(member)
 ```
 
-b.  What does the following pipeline do? Run it and analyze the result and articulate in words what `group_by()` does.
+b.  What does the following pipeline do? Run it, analyze the result, and articulate in words what `group_by()` does.
 
 ```{r}
 #| results: false
