@@ -1,0 +1,201 @@
+---
+title: HW 1 Rubric
+subtitle: Rubric
+search: false
+---
+
+This is the rubric for AI feedback, not necessarily the rubric for grading.
+
+## Question 1
+
+1.  Part a - Code calculates the number of rows with `nrow()` and columns with `ncol()` or uses `dim()` to calculate both at once.
+
+2.  Part a - Output shows 100 rows and 22 columns.
+
+3.  Part b - Code counts the counties in each `county_type` with `count()`.
+
+4.  Part b - Code displays the county type counts in descending order of the number of counties with the `sort` argument in `count()` or in a subsequent step with `arrange()`.
+
+5.  Part b - Output shows 50 Rural - Non-Metro counties, 28 Rural - Metro counties, 16 Suburban counties, and 6 Urban counties.
+
+6.  Part c - Introductory narrative accurately explains that each row represents a North Carolina county and describes the dataset in a reasonable way.
+
+7.  Code style and readability: appropriate indentation, spaces around equals signs if they are present, spaces after commas, and readable code organization.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 2
+
+1.  Code makes either a histogram or density plot, or a boxplot as well as histogram or density plot of `pop_dens_2020`.
+
+2.  Code uses a single pipeline to calculate the median, first quartile, and third quartile of `pop_dens_2020`.
+
+3.  Output reports the median, first quartile, and third quartile of `pop_dens_2020` as approximately 112.0, 60.7, and 214.0 people per square mile, respectively.
+
+4.  Narrative identifies the distribution as unimodal.
+
+5.  Narrative identifies the distribution as right-skewed, extremely right-skewed, or strongly right-skewed.
+
+6.  Narrative correctly identifies the median as the typical value and the quartiles as the bounds of the middle 50%.
+
+7.  The reported median is approximately 112.0 people per square mile.
+
+8.  The reported first quartile is approximately 60.7 people per square mile.
+
+9.  The reported third quartile is approximately 214.0 people per square mile.
+
+10. Code style and readability: appropriate pipeline formatting, indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 3
+
+1.  Part a - Code `filter()`s for Durham County and selects the requested columns.
+    - Note: No narrative needed for this part.
+
+2.  Part b - Code `filter()`s for counties with `pop_dens_2020 > 500`, selects the requested columns, and arranges the output in descending order of `pop_dens_2020`.
+
+3.  Part b - Narrative identifies all nine counties with population density greater than 500 people per square mile and provides a reasonable geographic description of their locations and links to a map online.
+
+4.  Part c - Code `filter()`s for the county with the highest population density using `max()` and selects the requested columns.
+    - Note: No narrative needed for this part.
+
+5. Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 4
+
+1.  Code uses a single data-wrangling pipeline.
+
+2.  Code `filter()`s counties with `p_family_sustaining_wage < 0.50`.
+
+3.  Code `count()`s the qualifying counties within each `county_type`.
+
+4.  Code `filter()`s for only county types with at least 10 qualifying counties.
+
+5.  Code outputs only the county type and the number of qualifying counties.
+
+6.  Output reports 45 Rural - Non-Metro and 17 Rural - Metro counties that meet the requirement.
+
+7.  Narrative identifies the two qualifying county types (Rural Metro and Non-Metro) and correctly notes the other two that do not qualify (Urban and Suburban).
+
+8.  Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 5
+
+1.  Part a - Code creates `broadband_level` with `mutate()` and `if_else()`.
+
+2.  Part a - Code assigns `"At least 75%"` when `p_broadband >= 0.75` and `"Below 75%"` otherwise.
+
+3.  Part a - The new variable is stored in the `nc_county` data frame.
+
+4.  Part b - Code produces one segmented bar for each `county_type` with bars filled according to `broadband_level`.
+
+5.  Part b - Plot has an informative title and/or subtitle and human-readable axis labels, especially y-axis label that reflects "proportion" or similar.
+
+6.  Part c - Code calculates conditional probabilities for below and at least 75% broadband access for each county type in a single pipeline.
+
+7.  Part d - Narrative compares the percentages across county types and correctly identifies Urban as highest, Suburban as next, and the two rural types as much lower, with values from Part c.
+
+8.  Code style and readability: line breaks after each |> and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 6
+
+1.  Code creates `p_edu_he` with `mutate()`.
+
+2.  Code defines p_edu_he as p_edu_assoc + p_edu_ba + p_edu_mapl.
+
+3.  Code stores p_edu_he in the nc_county data frame.
+
+4.  Part a - Code uses a single pipeline to calculate the six requested overall statistics.
+
+5.  Part a - Output includes the minimum, first quartile, median, mean, third quartile, and maximum.
+
+6.  Part b - Code uses a single pipeline grouped by `county_type` to calculate the same six statistics as in Part a.
+
+7.  Part b - Code arranges in ascending order of median.
+
+8.  Part b - Narrative states that Urban counties have the highest typical attainment and Rural - Non-Metro counties have the lowest typical attainment.
+
+9.  Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, spaces after commas, and an explicit .groups choice where appropriate.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 7
+
+1.  Code maps `p_edu_he` to the x-axis and  `county_type` to the y-axis.
+
+2.  Code produces boxplots with `geom_boxplot()`.
+
+3.  Code overlays the observations with `geom_beeswarm()`.
+
+4.  Boxplot outliers are displayed as open circles.
+
+5.  Boxplots use partially transparent fills or an equivalent transparency adjustment.
+
+6.  The x-axis is formatted as percentages.
+
+7.  Plot displays blue-ish colors for Rural counties, red-ish for Suburban, and brown-ish for Urban.
+
+8.  Plot has correct titles and labels.
+
+9.  Plot uses the correct theme and doesn't have a legend.
+
+10. Code style and readability: line breaks after each |> and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 8
+
+1.  Code groups the data by `county_type` before identifying outliers.
+
+2.  Code uses a single pipeline to produce the outlier output.
+
+3.  Code calculates the IQR within each county type.
+
+4.  Code calculates lower and upper fences using 1.5 times the IQR subtracted from 25th percentile and added to 75th percentile.
+
+5.  Code filters observations below the lower fence or above the upper fence.
+
+6.  Output displays the columns `county`, `county_type`, and `p_edu_he`, in that order.
+
+7.  Output is arranged in descending order of `p_edu_he`.
+    Note: This requires that data is ungrouped before `arrange()`.
+
+8.  Output correctly identifies Chatham, Anson, Watauga, Moore, and Orange as the outliers, with no Urban outliers.
+
+9.  Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 9
+
+1.  Narrative gives a reasonable answer for why `p_edu_he` should be on the x-axis and `p_family_sustaining_wage` on the y-axis.
+
+2.  Code produces a scatterplot with `p_edu_he` on the x-axis and `p_family_sustaining_wage` on the y-axis.
+
+3.  The x and y-axes are formatted as percentages.
+
+4.  Narrative describes the association as positive in direction.
+
+5.  Narrative describes the form as approximately linear.
+
+6.  Narrative gives a reasonable description of strength.
+
+7.  Narrative gives defensible criteria for unusual observations.
+
+8.  Code used to filter for the outliers matches the described criteria.
+
+9.  Code style and readability: line breaks after each |> and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
+## Question 10
+
+1.  Part a - A third variable other than `county_type` is selected, correctly classified as numerical or categorical, and reason for selection is sufficiently articulated.
+
+2.  Part b - A reasonable statement about how the third variable will be incorporated into the plot is provided.
+
+3.  Part b - The plot is modified with the third variable in the way described.
+
+4.  Part c - An appropriate description of the relationship is given.
+
+5.  Code style and readability: line breaks after each |> and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Two or four spaces / tabs are ok for indentation.
+
