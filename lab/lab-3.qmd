@@ -7,3 +7,149 @@ draft: true
 execute:
   eval: false
 ---
+
+::: {.callout-important}
+## Find your teammates
+... and sit with them!
+:::
+
+# Introduction
+
+This lab is a deep dive into `group_by()`!
+
+Make sure to upload your completed lab to Gradescope **by the end of your lab session** and commit and push your final version to GitHub.
+
+## Learning objectives
+
+By the end of this lab, you will:
+
+- TO DO: Add
+
+# Getting started
+
+Clone your **lab-2** repository using the same process used in Lab 0. 
+
+1. Go to the course GitHub organization at [github.com/sta199-f26](https://github.com/sta199-f26) and click on the repository with the prefix `lab-3`. 
+2. Select the green **Code** button and choose **HTTPS** under **Clone**. Click on the clipboard icon to copy the repo URL.
+3. In Positron's Welcome window, click on *New Folder From Git...*.
+4. Paste the repository URL into the dialog box labeled *Git repository URL* and select **OK**.
+5. Open `lab-2.qmd` in the Explorer pane.
+
+Then, click *lab-3.qmd* to open the template Quarto file and update the `authors` field to add your name first (first and last) and then your teammates' names (first and last).
+Render the document.
+If you get a popup window error, click "Try again".
+Examine the rendered document and make sure your name is updated in the document.
+Commit and push your changes with a meaningful commit message and push to GitHub.
+
+## Guidelines
+
+{{< include _guidelines.qmd >}}
+
+# Packages
+
+In this lab we will work with the **tidyverse** package.
+
+```{r}
+#| label: load-packages
+#| eval: true
+#| message: false
+library(tidyverse)
+```
+
+-   **Run** the code cell by clicking on the green triangle (play) button for the code cell labeled `load-packages`. This loads the package to make its features (the functions and datasets in it) accessible from your *Console*.
+-   Then, **preview** the document, which loads this package to make its features (the functions and datasets in it) available for other code cells in your Quarto document.
+
+# Questions
+
+## Question 1
+
+For this question, you will work with the following dataset called `scores`.
+
+```{r}
+#| eval: true
+scores <- tribble(
+  ~student_id , ~math , ~english ,
+  "S1"        ,    90 ,       92 ,
+  "S2"        ,    85 ,       80 ,
+  "S3"        ,    88 ,       85 ,
+  "S4"        ,    95 ,       74
+)
+
+scores
+```
+
+::: callout-note
+The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read row-by-row layout.
+:::
+
+It has three variables (`student_id`, `math`, and `english`) and four rows (one for each student).
+
+Before writing any code, answer the following questions:
+
+- Suppose you want to reshape the data frame so that there is one row per student per subject.
+  What function would you use to do this?
+
+- If you reshaped the data to have one row per student per subject, 
+  - how many rows would the resulting data frame have?
+  - how many columns would the resulting data frame have and what would the column names be?
+
+Then, write the code to reshape the data frame as described above. 
+
+::: source-control
+Preview, commit, and push your changes to GitHub with a succinct and informative commit message.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+:::
+
+## Question 2
+
+For this question, you will work with the following dataset called `patients`.
+
+```{r}
+#| eval: true
+# fmt: skip
+patients <- tribble(
+  ~patient_id, ~measurement_time_, ~systolic_bp,
+  "P1",        "Morning",          120,
+  "P1",        "Noon",             115,
+  "P1",        "Evening",          123,
+  "P2",        "Morning",          118,
+  "P2",        "Evening",          121
+)
+
+patients
+```
+
+It has three variables (`patient_id`, `measurement_time_`, and `systolic_bp` -- short for systolic blood pressure) and five rows (one per patient per measurement time).
+
+Before writing any code, answer the following questions:
+
+- Suppose you want to reshape the data frame so that there is one row per patient and measurements at different times of the day are recorded in different columns.
+  What function would you use to do this?
+
+- If you reshaped the data to have one row per patient, 
+  - how many rows would the resulting data frame have?
+  - how many columns would the resulting data frame have and what would the column names be?
+
+Then, write the code to reshape the data frame as described above. What does the `NA` value mean in the resulting data frame?
+
+::: source-control
+Preview, commit, and push your changes to GitHub with a meaningful commit message.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+:::
+
+# Wrap-up
+
+## Submission
+
+{{< include _submission.qmd >}}
+
+## Grading and feedback
+
+This lab is worth 30 points:
+
+- 10 points for attending lab and submitting work by the end of lab; and
+- 20 points for correct and complete answers, clear presentation, and following the required workflow.
+
+The workflow portion includes making at least three meaningful commits, pushing the final `.qmd` and rendered PDF to GitHub, and keeping your work organized.
