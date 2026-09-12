@@ -537,7 +537,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Lab 3</h1>
-<p class="subtitle lead">To be posted</p>
+<p class="subtitle lead">The one with all the pivoting</p>
   <div class="quarto-categories">
     <div class="quarto-category">Lab</div>
   </div>
@@ -573,20 +573,24 @@ Find your teammates
 </div>
 </div>
 <section id="introduction" class="level1"><h1>Introduction</h1>
-<p>This lab is a deep dive into <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>!</p>
+<p><a href="https://youtu.be/L_PWbnHABsM?si=-8xSOXWFLNrPYUi4">Ross had a couch to move</a>. You have data to reshape. The instruction? <strong>Pivot!</strong></p>
+<p>In this lab, you will use <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> to reshape data between wide and long formats. Before writing code, you will think through what each row should represent and predict the structure of the result. Then, you will put your predictions to the test with student scores and patient measurements, working up to a pivot that also cleans up column names and converts data types.</p>
 <p>Make sure to upload your completed lab to Gradescope <strong>by the end of your lab session</strong> and commit and push your final version to GitHub.</p>
 <section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <p>By the end of this lab, you will:</p>
 <ul>
-<li>TO DO: Add</li>
+<li>Reshape data between wide and long formats using <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>.</li>
+<li>Predict the number of rows, column names, and data types produced by a pivot.</li>
+<li>Interpret missing values in reshaped data.</li>
+<li>Use <code>names_prefix</code>, <code>names_transform</code>, and <code>values_transform</code> to control names and data types when pivoting.</li>
 </ul></section></section><section id="getting-started" class="level1"><h1>Getting started</h1>
-<p>Clone your <strong>lab-2</strong> repository using the same process used in Lab 0.</p>
+<p>Clone your <strong>lab-3</strong> repository using the same process used in Lab 0.</p>
 <ol type="1">
 <li>Go to the course GitHub organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> and click on the repository with the prefix <code>lab-3</code>.</li>
 <li>Select the green <strong>Code</strong> button and choose <strong>HTTPS</strong> under <strong>Clone</strong>. Click on the clipboard icon to copy the repo URL.</li>
 <li>In Positron’s Welcome window, click on <em>New Folder From Git…</em>.</li>
 <li>Paste the repository URL into the dialog box labeled <em>Git repository URL</em> and select <strong>OK</strong>.</li>
-<li>Open <code>lab-2.qmd</code> in the Explorer pane.</li>
+<li>Open <code>lab-3.qmd</code> in the Explorer pane.</li>
 </ol>
 <p>Then, click <em>lab-3.qmd</em> to open the template Quarto file and update the <code>authors</code> field to add your name first (first and last) and then your teammates’ names (first and last). Render the document. If you get a popup window error, click “Try again”. Examine the rendered document and make sure your name is updated in the document. Commit and push your changes with a meaningful commit message and push to GitHub.</p>
 <section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
@@ -620,25 +624,29 @@ Find your teammates
 <li>Then, <strong>preview</strong> the document, which loads this package to make its features (the functions and datasets in it) available for other code cells in your Quarto document.</li>
 </ul></section><section id="questions" class="level1"><h1>Questions</h1>
 <section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p>For this question, you will work with the following dataset called <code>scores</code>.</p>
+<p>For this question, you will work with the following dataset called <code>scores</code>, containing paleontology and theater studies scores for the six students.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">student_id</span> , <span class="op">~</span><span class="va">math</span> , <span class="op">~</span><span class="va">english</span> ,</span>
-<span>  <span class="st">"S1"</span>        ,    <span class="fl">90</span> ,       <span class="fl">92</span> ,</span>
-<span>  <span class="st">"S2"</span>        ,    <span class="fl">85</span> ,       <span class="fl">80</span> ,</span>
-<span>  <span class="st">"S3"</span>        ,    <span class="fl">88</span> ,       <span class="fl">85</span> ,</span>
-<span>  <span class="st">"S4"</span>        ,    <span class="fl">95</span> ,       <span class="fl">74</span></span>
+<span>  <span class="op">~</span><span class="va">student_id</span> , <span class="op">~</span><span class="va">student_name</span> , <span class="op">~</span><span class="va">paleontology</span> , <span class="op">~</span><span class="va">theater</span> ,</span>
+<span>  <span class="st">"S1"</span>        , <span class="st">"Rachel"</span>      ,            <span class="fl">25</span> ,       <span class="fl">78</span> ,</span>
+<span>  <span class="st">"S2"</span>        , <span class="st">"Ross"</span>        ,           <span class="fl">100</span> ,       <span class="fl">72</span> ,</span>
+<span>  <span class="st">"S3"</span>        , <span class="st">"Monica"</span>      ,            <span class="fl">40</span> ,       <span class="fl">75</span> ,</span>
+<span>  <span class="st">"S4"</span>        , <span class="st">"Chandler"</span>    ,            <span class="fl">15</span> ,       <span class="fl">74</span> ,</span>
+<span>  <span class="st">"S5"</span>        , <span class="st">"Phoebe"</span>      ,            <span class="fl">20</span> ,       <span class="fl">80</span> ,</span>
+<span>  <span class="st">"S6"</span>        , <span class="st">"Joey"</span>        ,            <span class="fl">10</span> ,      <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">scores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  student_id  math english
-  &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;
-1 S1            90      92
-2 S2            85      80
-3 S3            88      85
-4 S4            95      74</code></pre>
+<pre><code># A tibble: 6 × 4
+  student_id student_name paleontology theater
+  &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;
+1 S1         Rachel                 25      78
+2 S2         Ross                  100      72
+3 S3         Monica                 40      75
+4 S4         Chandler               15      74
+5 S5         Phoebe                 20      80
+6 S6         Joey                   10     100</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -654,25 +662,25 @@ Note
 <p>The <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code> function is helpful for creating small data frames (<code>tibble</code>s) with an easier to read row-by-row layout.</p>
 </div>
 </div>
-<p>It has three variables (<code>student_id</code>, <code>math</code>, and <code>english</code>) and four rows (one for each student).</p>
-<p>Before writing any code, answer the following questions:</p>
+<p>It has four variables (<code>student_id</code>, <code>student_name</code>, <code>paleontology</code>, and <code>drama</code>) and six rows (one for each student).</p>
+<p>You want to reshape <code>scores</code> so that each student has one row for paleontology and one row for drama. Keep both <code>student_id</code> and <code>student_name</code>, and store the subject names in a column called <code>subject</code> and the scores in a column called <code>score</code>.</p>
+<ol type="a">
+<li>Before writing any code, answer the following questions:
 <ul>
-<li><p>Suppose you want to reshape the data frame so that there is one row per student per subject. What function would you use to do this?</p></li>
-<li>
-<p>If you reshaped the data to have one row per student per subject,</p>
-<ul>
-<li>how many rows would the resulting data frame have?</li>
-<li>how many columns would the resulting data frame have and what would the column names be?</li>
+<li>What function would you use to reshape the data in this way?</li>
+<li>Which columns should be pivoted, and which should remain as identifiers for each student?</li>
+<li>How many rows and columns would the resulting data frame have? What would the column names be?</li>
+<li>What would the two rows for Ross look like?</li>
 </ul>
 </li>
-</ul>
-<p>Then, write the code to reshape the data frame as described above.</p>
+<li>Write the code to reshape the data frame as described above and save the result as <code>scores_long</code>. Display <code>scores_long</code> and check that it matches your predictions.</li>
+</ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with a succinct and informative commit message.</p>
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p>For this question, you will work with the following dataset called <code>patients</code>.</p>
+<p><a href="https://friends.fandom.com/wiki/Dr._Drake_Ramoray">Dr.&nbsp;Drake Ramoray</a> is reviewing patient charts before morning rounds. For this question, you will help him reshape the following dataset called <code>patients</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">patients</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">patient_id</span> , <span class="op">~</span><span class="va">measurement_time_</span> , <span class="op">~</span><span class="va">systolic_bp</span> ,</span>
@@ -696,49 +704,58 @@ Note
 </div>
 </div>
 <p>It has three variables (<code>patient_id</code>, <code>measurement_time_</code>, and <code>systolic_bp</code> – short for systolic blood pressure) and five rows (one per patient per measurement time).</p>
-<p>Before writing any code, answer the following questions:</p>
+<ol type="a">
+<li>Before writing any code, answer the following questions:
 <ul>
-<li><p>Suppose you want to reshape the data frame so that there is one row per patient and measurements at different times of the day are recorded in different columns. What function would you use to do this?</p></li>
-<li>
-<p>If you reshaped the data to have one row per patient,</p>
+<li>Suppose you want to reshape the data frame so that there is one row per patient and measurements at different times of the day are recorded in different columns. What function would you use to do this?</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>If you reshaped the data to have one row per patient,
 <ul>
 <li>how many rows would the resulting data frame have?</li>
 <li>how many columns would the resulting data frame have and what would the column names be?</li>
 </ul>
 </li>
 </ul>
-<p>Then, write the code to reshape the data frame as described above. What does the <code>NA</code> value mean in the resulting data frame?</p>
+<ol start="2" type="a">
+<li>Then, write the code to reshape the data frame as described above. What does the <code>NA</code> value mean in the resulting data frame?</li>
+</ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with a meaningful commit message.</p>
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
-<p>For this question, you will work with the following dataset called <code>quiz_scores</code>.</p>
+<p>For this question, you will work with a portion of <a href="https://friends.fandom.com/wiki/Ross_Geller">Dr.&nbsp;Ross Geller</a>’s grade roster, stored in the following dataset called <code>quiz_scores</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">quiz_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">student_id</span> , <span class="op">~</span><span class="va">week_1</span> , <span class="op">~</span><span class="va">week_2</span> , <span class="op">~</span><span class="va">week_3</span> ,</span>
-<span>  <span class="st">"S1"</span>        , <span class="st">"80"</span>    , <span class="st">"85"</span>    , <span class="st">"90"</span>    ,</span>
-<span>  <span class="st">"S2"</span>        , <span class="st">"75"</span>    , <span class="cn">NA</span>      , <span class="st">"88"</span>    ,</span>
-<span>  <span class="st">"S3"</span>        , <span class="st">"92"</span>    , <span class="st">"90"</span>    , <span class="st">"95"</span></span>
+<span>  <span class="op">~</span><span class="va">student_id</span> , <span class="op">~</span><span class="va">student_name</span> , <span class="op">~</span><span class="va">week_1</span> , <span class="op">~</span><span class="va">week_2</span> , <span class="op">~</span><span class="va">week_3</span> ,</span>
+<span>  <span class="st">"S1"</span>        , <span class="st">"Elizabeth"</span>   , <span class="st">"80"</span>    , <span class="st">"85"</span>    , <span class="st">"90"</span>    ,</span>
+<span>  <span class="st">"S2"</span>        , <span class="st">"Burt"</span>        , <span class="st">"75"</span>    , <span class="cn">NA</span>      , <span class="st">"88"</span>    ,</span>
+<span>  <span class="st">"S3"</span>        , <span class="st">"Lydia"</span>       , <span class="st">"92"</span>    , <span class="st">"90"</span>    , <span class="st">"95"</span>    ,</span>
+<span>  <span class="st">"S4"</span>        , <span class="st">"Mel"</span>         , <span class="st">"78"</span>    , <span class="st">"82"</span>    , <span class="cn">NA</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">quiz_scores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 4
-  student_id week_1 week_2 week_3
-  &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
-1 S1         80     85     90    
-2 S2         75     &lt;NA&gt;   88    
-3 S3         92     90     95    </code></pre>
+<pre><code># A tibble: 4 × 5
+  student_id student_name week_1 week_2 week_3
+  &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+1 S1         Elizabeth    80     85     90    
+2 S2         Burt         75     &lt;NA&gt;   88    
+3 S3         Lydia        92     90     95    
+4 S4         Mel          78     82     &lt;NA&gt;  </code></pre>
 </div>
 </div>
-<p>It has one row per student and one column for each week’s quiz score. Notice that the scores are stored as character strings (in quotation marks), and one score is missing.</p>
-<p>You want to reshape this data frame to have one row per student per week and three columns: <code>student_id</code>, <code>week</code>, and <code>score</code>. The <code>week</code> column should contain the integers <code>1</code>, <code>2</code>, and <code>3</code>, and <code>score</code> should be numeric. Keep the row corresponding to the missing score.</p>
+<p>It has four rows (one per student) and five columns: two identifying each student (<code>student_id</code> and <code>student_name</code>) and three containing weekly quiz scores (<code>week_1</code>, <code>week_2</code>, and <code>week_3</code>). Notice that the scores are stored as character strings (in quotation marks), and Burt’s score for week 2 is missing.</p>
+<p>You want to reshape this data frame to have one row per student per week and four columns: <code>student_id</code>, <code>student_name</code>, <code>week</code>, and <code>score</code>. The <code>week</code> column should contain the integers <code>1</code>, <code>2</code>, and <code>3</code>, and <code>score</code> should be numeric. Keep both student identifiers and the row corresponding to Burt’s missing score.</p>
 <ol type="a">
 <li>Before writing any code, answer the following questions:</li>
 </ol>
 <ul>
 <li>What function would you use to reshape the data, and how many rows would the resulting data frame have?</li>
+<li>Which columns should be pivoted, and which should remain as identifiers for each student?</li>
 <li>If you only specified which columns to pivot and the new column names, what values and data type would you expect in <code>week</code>? What data type would you expect in <code>score</code>?</li>
 </ul>
 <p>Then, complete the following steps:</p>
@@ -759,8 +776,8 @@ Tip
 </div>
 </div>
 <ol start="3" type="a">
-<li><p>Display <code>quiz_scores_long</code> and use <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> to check the column types.Explain what each of the three new arguments does and why removing the prefix alone is not enough to make <code>week</code> an integer.</p></li>
-<li><p>Reshape <code>quiz_scores_long</code> back to one row per student, with columns named <code>week_1</code>, <code>week_2</code>, and <code>week_3</code>. Use <code>names_prefix</code> in <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> to restore the prefix. How does the role of <code>names_prefix</code> differ between the two pivot functions? How do the score column types in this result compare with those in the original <code>quiz_scores</code>?</p></li>
+<li><p>Display <code>quiz_scores_long</code> and use <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> to check the column types. Check that both student identifiers are retained and that Burt still has a row for week 2 with a missing score. Explain what each of the three new arguments does and why removing the prefix alone is not enough to make <code>week</code> an integer.</p></li>
+<li><p>Reshape <code>quiz_scores_long</code> back to one row per student, retaining <code>student_id</code> and <code>student_name</code> and restoring the score columns <code>week_1</code>, <code>week_2</code>, and <code>week_3</code>. Use <code>names_prefix</code> in <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> to restore the prefix. Check that the result has the same dimensions and column names as Dr.&nbsp;Geller’s original roster. How does the role of <code>names_prefix</code> differ between the two pivot functions? How do the score column types in this result compare with those in the original <code>quiz_scores</code>?</p></li>
 </ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with a meaningful commit message.</p>
