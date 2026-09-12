@@ -1,6 +1,6 @@
 ---
 title: Lab 3
-subtitle: To be posted
+subtitle: The one with all the pivoting
 description: "Due: End of lab on Thurs, Sep 17"
 categories: "Lab" 
 draft: true
@@ -15,7 +15,11 @@ execute:
 
 # Introduction
 
-This lab is a deep dive into `group_by()`!
+[Ross had a couch to move](https://youtu.be/L_PWbnHABsM?si=-8xSOXWFLNrPYUi4). You have data to reshape. The instruction? **Pivot!**
+
+In this lab, you will use `pivot_longer()` and `pivot_wider()` to reshape data between wide and long formats.
+Before writing code, you will think through what each row should represent and predict the structure of the result.
+Then, you will put your predictions to the test with student scores and patient measurements, working up to a pivot that also cleans up column names and converts data types.
 
 Make sure to upload your completed lab to Gradescope **by the end of your lab session** and commit and push your final version to GitHub.
 
@@ -23,17 +27,20 @@ Make sure to upload your completed lab to Gradescope **by the end of your lab se
 
 By the end of this lab, you will:
 
-- TO DO: Add
+- Reshape data between wide and long formats using `pivot_longer()` and `pivot_wider()`.
+- Predict the number of rows, column names, and data types produced by a pivot.
+- Interpret missing values in reshaped data.
+- Use `names_prefix`, `names_transform`, and `values_transform` to control names and data types when pivoting.
 
 # Getting started
 
-Clone your **lab-2** repository using the same process used in Lab 0. 
+Clone your **lab-3** repository using the same process used in Lab 0. 
 
 1. Go to the course GitHub organization at [github.com/sta199-f26](https://github.com/sta199-f26) and click on the repository with the prefix `lab-3`. 
 2. Select the green **Code** button and choose **HTTPS** under **Clone**. Click on the clipboard icon to copy the repo URL.
 3. In Positron's Welcome window, click on *New Folder From Git...*.
 4. Paste the repository URL into the dialog box labeled *Git repository URL* and select **OK**.
-5. Open `lab-2.qmd` in the Explorer pane.
+5. Open `lab-3.qmd` in the Explorer pane.
 
 Then, click *lab-3.qmd* to open the template Quarto file and update the `authors` field to add your name first (first and last) and then your teammates' names (first and last).
 Render the document.
@@ -63,16 +70,18 @@ library(tidyverse)
 
 ## Question 1
 
-For this question, you will work with the following dataset called `scores`.
+For this question, you will work with the following dataset called `scores`, containing paleontology and theater studies scores for the six students.
 
 ```{r}
 #| eval: true
 scores <- tribble(
-  ~student_id , ~math , ~english ,
-  "S1"        ,    90 ,       92 ,
-  "S2"        ,    85 ,       80 ,
-  "S3"        ,    88 ,       85 ,
-  "S4"        ,    95 ,       74
+  ~student_id , ~student_name , ~paleontology , ~theater ,
+  "S1"        , "Rachel"      ,            25 ,       78 ,
+  "S2"        , "Ross"        ,           100 ,       72 ,
+  "S3"        , "Monica"      ,            40 ,       75 ,
+  "S4"        , "Chandler"    ,            15 ,       74 ,
+  "S5"        , "Phoebe"      ,            20 ,       80 ,
+  "S6"        , "Joey"        ,            10 ,      100
 )
 
 scores
@@ -82,18 +91,18 @@ scores
 The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read row-by-row layout.
 :::
 
-It has three variables (`student_id`, `math`, and `english`) and four rows (one for each student).
+It has four variables (`student_id`, `student_name`, `paleontology`, and `drama`) and six rows (one for each student).
 
-Before writing any code, answer the following questions:
+You want to reshape `scores` so that each student has one row for paleontology and one row for drama.
+Keep both `student_id` and `student_name`, and store the subject names in a column called `subject` and the scores in a column called `score`.
 
-- Suppose you want to reshape the data frame so that there is one row per student per subject.
-  What function would you use to do this?
+a. Before writing any code, answer the following questions:
+   - What function would you use to reshape the data in this way?
+   - Which columns should be pivoted, and which should remain as identifiers for each student?
+   - How many rows and columns would the resulting data frame have? What would the column names be?
+   - What would the two rows for Ross look like?
 
-- If you reshaped the data to have one row per student per subject, 
-  - how many rows would the resulting data frame have?
-  - how many columns would the resulting data frame have and what would the column names be?
-
-Then, write the code to reshape the data frame as described above. 
+b. Write the code to reshape the data frame as described above and save the result as `scores_long`. Display `scores_long` and check that it matches your predictions.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with a succinct and informative commit message.
@@ -103,7 +112,7 @@ Make sure to commit and push all changed files so that your source control pane 
 
 ## Question 2
 
-For this question, you will work with the following dataset called `patients`.
+[Dr. Drake Ramoray](https://friends.fandom.com/wiki/Dr._Drake_Ramoray) is reviewing patient charts before morning rounds. For this question, you will help him reshape the following dataset called `patients`.
 
 ```{r}
 #| eval: true
@@ -121,16 +130,14 @@ patients
 
 It has three variables (`patient_id`, `measurement_time_`, and `systolic_bp` -- short for systolic blood pressure) and five rows (one per patient per measurement time).
 
-Before writing any code, answer the following questions:
-
-- Suppose you want to reshape the data frame so that there is one row per patient and measurements at different times of the day are recorded in different columns.
+a. Before writing any code, answer the following questions:
+   - Suppose you want to reshape the data frame so that there is one row per patient and measurements at different times of the day are recorded in different columns.
   What function would you use to do this?
+  - If you reshaped the data to have one row per patient, 
+    - how many rows would the resulting data frame have?
+    - how many columns would the resulting data frame have and what would the column names be?
 
-- If you reshaped the data to have one row per patient, 
-  - how many rows would the resulting data frame have?
-  - how many columns would the resulting data frame have and what would the column names be?
-
-Then, write the code to reshape the data frame as described above. What does the `NA` value mean in the resulting data frame?
+b. Then, write the code to reshape the data frame as described above. What does the `NA` value mean in the resulting data frame?
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with a meaningful commit message.
@@ -140,30 +147,32 @@ Make sure to commit and push all changed files so that your source control pane 
 
 ## Question 3
 
-For this question, you will work with the following dataset called `quiz_scores`.
+For this question, you will work with a portion of [Dr. Ross Geller](https://friends.fandom.com/wiki/Ross_Geller)'s grade roster, stored in the following dataset called `quiz_scores`.
 
 ```{r}
 #| eval: true
 quiz_scores <- tribble(
-  ~student_id , ~week_1 , ~week_2 , ~week_3 ,
-  "S1"        , "80"    , "85"    , "90"    ,
-  "S2"        , "75"    , NA      , "88"    ,
-  "S3"        , "92"    , "90"    , "95"
+  ~student_id , ~student_name , ~week_1 , ~week_2 , ~week_3 ,
+  "S1"        , "Elizabeth"   , "80"    , "85"    , "90"    ,
+  "S2"        , "Burt"        , "75"    , NA      , "88"    ,
+  "S3"        , "Lydia"       , "92"    , "90"    , "95"    ,
+  "S4"        , "Mel"         , "78"    , "82"    , NA
 )
 
 quiz_scores
 ```
 
-It has one row per student and one column for each week's quiz score.
-Notice that the scores are stored as character strings (in quotation marks), and one score is missing.
+It has four rows (one per student) and five columns: two identifying each student (`student_id` and `student_name`) and three containing weekly quiz scores (`week_1`, `week_2`, and `week_3`).
+Notice that the scores are stored as character strings (in quotation marks), and Burt's score for week 2 is missing.
 
-You want to reshape this data frame to have one row per student per week and three columns: `student_id`, `week`, and `score`.
+You want to reshape this data frame to have one row per student per week and four columns: `student_id`, `student_name`, `week`, and `score`.
 The `week` column should contain the integers `1`, `2`, and `3`, and `score` should be numeric.
-Keep the row corresponding to the missing score.
+Keep both student identifiers and the row corresponding to Burt's missing score.
 
 a. Before writing any code, answer the following questions:
 
   - What function would you use to reshape the data, and how many rows would the resulting data frame have?
+  - Which columns should be pivoted, and which should remain as identifiers for each student?
   - If you only specified which columns to pivot and the new column names, what values and data type would you expect in `week`? What data type would you expect in `score`?
 
 Then, complete the following steps:
@@ -174,9 +183,9 @@ b. Read about `names_prefix`, `names_transform`, and `values_transform` in the d
 Hint: `as.integer()` converts values to integers, and `as.numeric()` converts values to numbers. Supply transformation functions without parentheses, using the form `list(column_name = function_name)`.
 :::
 
-c. Display `quiz_scores_long` and use `glimpse()` to check the column types.Explain what each of the three new arguments does and why removing the prefix alone is not enough to make `week` an integer.
+c. Display `quiz_scores_long` and use `glimpse()` to check the column types. Check that both student identifiers are retained and that Burt still has a row for week 2 with a missing score. Explain what each of the three new arguments does and why removing the prefix alone is not enough to make `week` an integer.
 
-d. Reshape `quiz_scores_long` back to one row per student, with columns named `week_1`, `week_2`, and `week_3`. Use `names_prefix` in `pivot_wider()` to restore the prefix. How does the role of `names_prefix` differ between the two pivot functions? How do the score column types in this result compare with those in the original `quiz_scores`?
+d. Reshape `quiz_scores_long` back to one row per student, retaining `student_id` and `student_name` and restoring the score columns `week_1`, `week_2`, and `week_3`. Use `names_prefix` in `pivot_wider()` to restore the prefix. Check that the result has the same dimensions and column names as Dr. Geller's original roster. How does the role of `names_prefix` differ between the two pivot functions? How do the score column types in this result compare with those in the original `quiz_scores`?
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with a meaningful commit message.
