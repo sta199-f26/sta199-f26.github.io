@@ -86,7 +86,7 @@ gerrymander <- gerrymander |>
 ```{r}
 #| label: flips-viz
 gerrymander |>
-  filter(!is.na(gerry_24)) |>
+  filter(!is.na(gerry_26)) |>
   ggplot(aes(y = flip_22_24, fill = gerry_26)) +
   geom_bar(position = "fill")
 ```
@@ -94,7 +94,7 @@ gerrymander |>
 ```{r}
 #| label: flips-summary
 gerrymander |>
-  filter(!is.na(gerry_24)) |>
+  filter(!is.na(gerry_26)) |>
   count(flip_22_24, gerry_26) |>
   group_by(flip_22_24) |>
   mutate(prop = n / sum(n))
