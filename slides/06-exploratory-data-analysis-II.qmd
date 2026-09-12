@@ -66,9 +66,8 @@ Analyzing the relationship between multiple variables:
     -   Conditioning can be done via grouping (e.g., correlation between `y` and `x1`, grouped by levels of `x2` and `x3`)
 :::
 
-# `group_by()`, `summarize()`, `count()`
 
-## From the application exercise: `flip_22`
+## From the application exercise: `flip_22_24`
 
 ```{r}
 #| include: false
@@ -86,15 +85,140 @@ gerrymander_24 <- gerrymander_24 |>
       house_party_22 == "Democrat" &
         house_party_24 == "Republican" ~ "Flip D to R",
       .default = "No Flip"
-    ),
+    )
+  ) |>
+  relocate(house_party_22, house_party_24, flip_22_24, gerry_26, .after = state)
+```
+
+# `mutate()`
+
+## From grades to categories
+
+::: question
+How can we combine the 2026 gerrymandering grades into low, medium, and high prevalence of gerrymandering?
+:::
+
+-   A or B → Low
+-   C → Medium
+-   D or F → High
+
+We'll create a new variable called `gerry_26_cat` from `gerry_26`.
+
+## `mutate()`
+
+-   The `mutate()` function transforms (*mutates*) a data frame by creating a new column or updating an existing one
+
+-   We choose a name for the column on the left of `=` and describe how to calculate it on the right
+
+-   To create `gerry_26_cat`, we need different values for different grades
+
+```{r}
+#| eval: false
+gerrymander_24 |>
+  mutate(gerry_26_cat = ...)
+```
+
+## `mutate()` and `case_when()` {.smaller}
+
+Use `case_when()` to recode with multiple conditions:
+
+```{r}
+#| code-line-numbers: "|2-8|4-6|9"
+gerrymander_24 |>
+  mutate(
     gerry_26_cat = case_when(
       gerry_26 %in% c("A", "B") ~ "Low",
       gerry_26 == "C" ~ "Medium",
       gerry_26 %in% c("D", "F") ~ "High"
     )
   ) |>
-  relocate(house_party_22, house_party_24, flip_22_24, gerry_26, .after = state)
+  select(district, gerry_26, gerry_26_cat)
 ```
+
+-   Each condition goes on the left of `~`, and its new value goes on the right
+-   The first matching condition determines the value
+-   Grades that don't match any condition, including missing grades, get `NA`
+
+## `mutate()` and store {.smaller}
+
+Creating a column in a pipeline doesn't change the original data frame:
+
+```{r}
+#| error: true
+gerrymander_24 |>
+  select(district, gerry_26, gerry_26_cat)
+```
+
+. . .
+
+To keep the new column, store the result:
+
+```{r}
+gerrymander_24 <- gerrymander_24 |>
+  mutate(
+    gerry_26_cat = case_when(
+      gerry_26 %in% c("A", "B") ~ "Low",
+      gerry_26 == "C" ~ "Medium",
+      gerry_26 %in% c("D", "F") ~ "High"
+    )
+  )
+```
+
+## Check the new variable {.smaller}
+
+```{r}
+gerrymander_24 |>
+  select(district, gerry_26, gerry_26_cat)
+```
+
+::: question
+What value does `gerry_26_cat` have when `gerry_26` is missing? Why?
+:::
+
+## What's going on? {.smaller}
+
+::: question
+The gerrymandering categories appear in an unexpected order. What's going on?
+:::
+
+```{r}
+gerrymander_24 |>
+  filter(!is.na(gerry_26_cat)) |>
+  ggplot(aes(x = flip_22_24, fill = gerry_26_cat)) +
+  geom_bar(position = "fill")
+```
+
+## `mutate()` and `fct_relevel()` {.smaller}
+
+-   `flip_22_24` is a character variable, so the plot orders its values alphabetically
+-   `fct_relevel()` creates a factor with levels in the specified order
+-   We can use `mutate()` to overwrite `flip_22_24` and store the change
+
+```{r}
+#| code-line-numbers: "|1|3"
+gerrymander_24 <- gerrymander_24 |>
+  mutate(
+    gerry_26_cat = fct_relevel(gerry_26_cat, "Low", "Medium", "High")
+  )
+
+gerrymander_24 |>
+  select(district, gerry_26, gerry_26_cat)
+```
+
+## Revisit the plot {.smaller}
+
+::: question
+How does the distribution of 2022–2024 flip outcomes vary by prevalence of gerrymandering for the 2026 election?
+:::
+
+```{r}
+gerrymander_24 |>
+  filter(!is.na(gerry_26_cat)) |>
+  ggplot(aes(x = flip_22_24, fill = gerry_26_cat)) +
+  geom_bar(position = "fill")
+```
+
+# `group_by()`, `summarize()`, `count()`
 
 ## Spot the difference {.smaller}
 
@@ -302,175 +426,3 @@ gerrymander_24 |>
 
 :::
 
-# `mutate()`
-
-## Flip the question
-
-::: question
-How does the prevalence of gerrymandering for the 2026 election vary among Congressional Districts with different flip outcomes between the 2022 and 2024 elections?
-:::
-
-vs.
-
-::: question
-How does the distribution of 2022–2024 flip outcomes vary among Congressional Districts with low, medium, or high prevalence of gerrymandering for the 2026 election?
-:::
-
-## What's going on? {.smaller}
-
-::: {.question .xsmall}
-The following code plots the distribution of 2022–2024 flip outcomes within each level of gerrymandering for the 2026 election. However, the gerrymandering levels appear in an unexpected order.
-What's going on?
-:::
-
-```{r}
-gerrymander_24 |>
-  filter(!is.na(gerry_26_cat)) |>
-  ggplot(aes(x = gerry_26_cat, fill = flip_22_24)) +
-  geom_bar(position = "fill")
-```
-
-## Another glimpse at `gerrymander_24` {.smaller}
-
-```{r}
-gerrymander_24 |>
-  select(
-    district,
-    house_party_22,
-    house_party_24,
-    flip_22_24,
-    gerry_26,
-    gerry_26_cat
-  ) |>
-  glimpse()
-```
-
-## `mutate()`
-
--   We want to display `gerry_26_cat` in the order Low, Medium, High
-
--   But it's stored as a character variable, so the plot orders its values alphabetically
-
--   We can convert it to a factor with explicitly specified levels to control the order
-
--   The `mutate()` function transforms (*mutates*) a data frame by creating a new column or updating an existing one
-
-## `mutate()` in action {.smaller}
-
-You can create a new variable with `mutate()`:
-
-```{r}
-#| code-line-numbers: "|2-6|7"
-gerrymander_24 |>
-  mutate(
-    gerry_26_factor = fct_relevel(gerry_26_cat, "Low", "Medium", "High")
-  ) |>
-  relocate(district, gerry_26_cat, gerry_26_factor) # relocate for easier viewing
-```
-
-## Revisit the plot {.smaller}
-
-::: question
-How does the distribution of 2022–2024 flip outcomes vary by prevalence of gerrymandering for the 2026 election?
-:::
-
-```{r}
-#| output-location: column
-#| code-line-numbers: "|2-6|8"
-gerrymander_24 |>
-  mutate(
-    gerry_26_factor = factor(
-      gerry_26_cat,
-      levels = c("Low", "Medium", "High")
-    )
-  ) |>
-  filter(!is.na(gerry_26_factor)) |>
-  ggplot(aes(x = gerry_26_factor, fill = flip_22_24)) +
-  geom_bar(position = "fill")
-```
-
-## `mutate()` and overwrite
-
-You can overwrite an existing variable with `mutate()`:
-
-```{r}
-gerrymander_24 |>
-  mutate(
-    gerry_26_cat = factor(gerry_26_cat, levels = c("Low", "Medium", "High"))
-  ) |>
-  select(district, gerry_26_cat)
-```
-
-## `mutate()` and `if_else()` {.smaller}
-
-Use `mutate()` with `if_else()` to recode with an either/or logic:
-
-> If `flip_22_24` is "Flip R to D", recode it as "Democrat flipped", otherwise recode it as "Other outcome".
-
-```{r}
-#| code-line-numbers: "|2-6"
-gerrymander_24 |>
-  mutate(
-    dem_flip_22_24 = if_else(
-      flip_22_24 == "Flip R to D",
-      "Democrat flipped",
-      "Other outcome"
-    )
-  ) |>
-  select(district, flip_22_24, dem_flip_22_24)
-```
-
-## `mutate()` and `case_when()` {.smaller}
-
-Use `mutate()` with `case_when()` to recode with a more complex logic:
-
-> For the 2026 election, recode gerrymandering grades A or B as "Low", C as "Medium", and D or F as "High".
-
-```{r}
-gerrymander_24 |>
-  mutate(
-    gerry_26_cat = case_when(
-      gerry_26 %in% c("A", "B") ~ "Low",
-      gerry_26 == "C" ~ "Medium",
-      gerry_26 %in% c("D", "F") ~ "High"
-    )
-  ) |>
-  select(district, gerry_26, gerry_26_cat) |>
-  group_by(gerry_26) |> # group by grade
-  slice_head(n = 1) # show top row per group
-```
-
-Grades that don't match any condition, including missing grades, get `NA`.
-
-## `mutate()` and store {.smaller}
-
-If you want to keep your changes, you need to store the data frame after `mutate()`:
-
-::: {.columns}
-::: {.column}
-
-```{r}
-#| error: true
-gerrymander_24 |>
-  mutate(dem_flip_22_24 = flip_22_24 == "Flip R to D") |>
-  select(district, dem_flip_22_24) |>
-  slice_head(n = 3) # show top 3 rows
-
-gerrymander_24 |>
-  select(district, dem_flip_22_24)
-```
-
-:::
-::: {.column .fragment}
-
-```{r}
-gerrymander_24 <- gerrymander_24 |>
-  mutate(dem_flip_22_24 = flip_22_24 == "Flip R to D")
-
-gerrymander_24 |>
-  select(district, dem_flip_22_24) |>
-  slice_head(n = 3) # show top 3 rows
-```
-
-:::
-:::
