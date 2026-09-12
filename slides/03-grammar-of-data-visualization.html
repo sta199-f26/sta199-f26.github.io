@@ -750,7 +750,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-1.png" class="img-fluid figure-img" width="864"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="img-fluid figure-img" width="864"></a></p>
 </figure>
 </div>
 </div>
@@ -784,7 +784,7 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></a></p>
 </figure>
 </div>
 </div>
@@ -862,7 +862,7 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-simplified-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-simplified-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -879,7 +879,7 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -893,7 +893,7 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-setting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-setting-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -934,7 +934,42 @@ Tip
 </div>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
