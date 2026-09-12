@@ -73,6 +73,7 @@ library(tidyverse)
 For this question, you will work with the following dataset called `scores`, containing paleontology and theater studies scores for the six students.
 
 ```{r}
+#| label: scores
 #| eval: true
 scores <- tribble(
   ~student_id , ~student_name , ~paleontology , ~theater ,
@@ -115,6 +116,7 @@ Make sure to commit and push all changed files so that your source control pane 
 [Dr. Drake Ramoray](https://friends.fandom.com/wiki/Dr._Drake_Ramoray) is reviewing patient charts before morning rounds. For this question, you will help him reshape the following dataset called `patients`.
 
 ```{r}
+#| label: patients
 #| eval: true
 patients <- tribble(
   ~patient_id , ~measurement_time_ , ~systolic_bp ,
@@ -150,6 +152,7 @@ Make sure to commit and push all changed files so that your source control pane 
 For this question, you will work with a portion of [Dr. Ross Geller](https://friends.fandom.com/wiki/Ross_Geller)'s grade roster, stored in the following dataset called `quiz_scores`.
 
 ```{r}
+#| label: quiz-scores
 #| eval: true
 quiz_scores <- tribble(
   ~student_id , ~student_name , ~week_1 , ~week_2 , ~week_3 ,
