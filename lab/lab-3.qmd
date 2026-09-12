@@ -107,14 +107,13 @@ For this question, you will work with the following dataset called `patients`.
 
 ```{r}
 #| eval: true
-# fmt: skip
 patients <- tribble(
-  ~patient_id, ~measurement_time_, ~systolic_bp,
-  "P1",        "Morning",          120,
-  "P1",        "Noon",             115,
-  "P1",        "Evening",          123,
-  "P2",        "Morning",          118,
-  "P2",        "Evening",          121
+  ~patient_id , ~measurement_time_ , ~systolic_bp ,
+  "P1"        , "Morning"          ,          120 ,
+  "P1"        , "Noon"             ,          115 ,
+  "P1"        , "Evening"          ,          123 ,
+  "P2"        , "Morning"          ,          118 ,
+  "P2"        , "Evening"          ,          121
 )
 
 patients
@@ -132,6 +131,52 @@ Before writing any code, answer the following questions:
   - how many columns would the resulting data frame have and what would the column names be?
 
 Then, write the code to reshape the data frame as described above. What does the `NA` value mean in the resulting data frame?
+
+::: source-control
+Preview, commit, and push your changes to GitHub with a meaningful commit message.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+:::
+
+## Question 3
+
+For this question, you will work with the following dataset called `quiz_scores`.
+
+```{r}
+#| eval: true
+quiz_scores <- tribble(
+  ~student_id , ~week_1 , ~week_2 , ~week_3 ,
+  "S1"        , "80"    , "85"    , "90"    ,
+  "S2"        , "75"    , NA      , "88"    ,
+  "S3"        , "92"    , "90"    , "95"
+)
+
+quiz_scores
+```
+
+It has one row per student and one column for each week's quiz score.
+Notice that the scores are stored as character strings (in quotation marks), and one score is missing.
+
+You want to reshape this data frame to have one row per student per week and three columns: `student_id`, `week`, and `score`.
+The `week` column should contain the integers `1`, `2`, and `3`, and `score` should be numeric.
+Keep the row corresponding to the missing score.
+
+a. Before writing any code, answer the following questions:
+
+  - What function would you use to reshape the data, and how many rows would the resulting data frame have?
+  - If you only specified which columns to pivot and the new column names, what values and data type would you expect in `week`? What data type would you expect in `score`?
+
+Then, complete the following steps:
+
+b. Read about `names_prefix`, `names_transform`, and `values_transform` in the documentation for `pivot_longer()`. Reshape `quiz_scores` as described above using these arguments within a single `pivot_longer()` call, and save the result as `quiz_scores_long`.
+
+::: callout-tip
+Hint: `as.integer()` converts values to integers, and `as.numeric()` converts values to numbers. Supply transformation functions without parentheses, using the form `list(column_name = function_name)`.
+:::
+
+c. Display `quiz_scores_long` and use `glimpse()` to check the column types.Explain what each of the three new arguments does and why removing the prefix alone is not enough to make `week` an integer.
+
+d. Reshape `quiz_scores_long` back to one row per student, with columns named `week_1`, `week_2`, and `week_3`. Use `names_prefix` in `pivot_wider()` to restore the prefix. How does the role of `names_prefix` differ between the two pivot functions? How do the score column types in this result compare with those in the original `quiz_scores`?
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with a meaningful commit message.
