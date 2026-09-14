@@ -1012,7 +1012,7 @@
     "href": "slides/06-exploratory-data-analysis-II-slides.html#announcements",
     "title": "Exploratory data analysis II",
     "section": "Announcements",
-    "text": "Announcements\nTO DO: Add announcements."
+    "text": "Announcements\nHW 2 is due Wednesday, Sep 16 at 11:59 pm:\n\nPush all work to GitHub.\nSubmit a PDF of your hw-2.pdf file to Gradescope and mark your pages."
   },
   {
     "objectID": "slides/06-exploratory-data-analysis-II-slides.html#ae-02",
@@ -1159,7 +1159,7 @@
     "href": "slides/06-exploratory-data-analysis-II.html",
     "title": "Exploratory data analysis II",
     "section": "",
-    "text": "If you haven’t done so at the end of last class:\n\n\nGo to your ae project in Positron.\nMake sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.\nClick sync to get today’s application exercise file. You can also click on the three dots next to CHANGES and click Pull.\n\n\n\n\nHi, I’m Josh\n3rd Year PhD in Statistical Science\nFrom the Bay Area, California\nGraduated from UCLA in 2024\nFun Fact: I actually got to teach this course in the summer (like just over a month ago!)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTO DO: Add announcements."
+    "text": "If you haven’t done so at the end of last class:\n\n\nGo to your ae project in Positron.\nMake sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.\nClick sync to get today’s application exercise file. You can also click on the three dots next to CHANGES and click Pull.\n\n\n\n\nHi, I’m Josh\n3rd Year PhD in Statistical Science\nFrom the Bay Area, California\nGraduated from UCLA in 2024\nFun Fact: I actually got to teach this course in the summer (like just over a month ago!)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHW 2 is due Wednesday, Sep 16 at 11:59 pm:\n\nPush all work to GitHub.\nSubmit a PDF of your hw-2.pdf file to Gradescope and mark your pages."
   },
   {
     "objectID": "slides/06-exploratory-data-analysis-II.html#while-you-wait-get-your-application-exercise",
@@ -1180,7 +1180,7 @@
     "href": "slides/06-exploratory-data-analysis-II.html#announcements",
     "title": "Exploratory data analysis II",
     "section": "",
-    "text": "TO DO: Add announcements."
+    "text": "HW 2 is due Wednesday, Sep 16 at 11:59 pm:\n\nPush all work to GitHub.\nSubmit a PDF of your hw-2.pdf file to Gradescope and mark your pages."
   },
   {
     "objectID": "slides/06-exploratory-data-analysis-II.html#ae-02",
@@ -1941,28 +1941,28 @@
   {
     "objectID": "ae/ae-02-gerrymander-explore-I-A.html",
     "href": "ae/ae-02-gerrymander-explore-I-A.html",
-    "title": "AE 03: Gerrymandering + data exploration I",
+    "title": "AE 02: Gerrymandering + data exploration I",
     "section": "",
     "text": "Important\n\n\n\nThese are suggested answers. This document should be used as a reference only; it’s not designed to be an exhaustive key."
   },
   {
     "objectID": "ae/ae-02-gerrymander-explore-I-A.html#getting-started",
     "href": "ae/ae-02-gerrymander-explore-I-A.html#getting-started",
-    "title": "AE 03: Gerrymandering + data exploration I",
+    "title": "AE 02: Gerrymandering + data exploration I",
     "section": "Getting started",
     "text": "Getting started\nPackages\nWe’ll use the tidyverse package for this analysis.\n\nlibrary(tidyverse)\n\nData\n\ngerrymander &lt;- read_csv(\"data/gerrymander.csv\")\n\n\nglimpse(gerrymander)\n\nRows: 443\nColumns: 14\n$ district       &lt;chr&gt; \"AK-00\", \"AL-01\", \"AL-02\", \"AL-03\", \"AL-04\", \"AL-05\", \"…\n$ state_abb      &lt;chr&gt; \"AK\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AL\", \"AR\", \"…\n$ state          &lt;chr&gt; \"Alaska\", \"Alabama\", \"Alabama\", \"Alabama\", \"Alabama\", \"…\n$ house_rep_20   &lt;chr&gt; \"Don Young\", \"Jerry Carl\", \"Barry Moore\", \"Mike Rogers\"…\n$ house_party_20 &lt;chr&gt; \"Republican\", \"Republican\", \"Republican\", \"Republican\",…\n$ house_rep_22   &lt;chr&gt; \"Mary Sattler Peltola\", \"Jerry L Carl\", \"Barry Moore\", …\n$ house_party_22 &lt;chr&gt; \"Democrat\", \"Republican\", \"Republican\", \"Republican\", \"…\n$ house_rep_24   &lt;chr&gt; \"Nick Begich\", \"Barry Moore\", \"Shomari Figures\", \"Mike …\n$ house_party_24 &lt;chr&gt; \"Republican\", \"Republican\", \"Democrat\", \"Republican\", \"…\n$ harris_24      &lt;dbl&gt; 41.41, 21.89, 53.52, 26.18, 15.96, 34.20, 29.68, 61.45,…\n$ trump_24       &lt;dbl&gt; 54.54, 76.94, 45.31, 72.71, 83.02, 64.02, 68.47, 37.50,…\n$ gerry_22       &lt;chr&gt; NA, \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"C\", \"C\", \"C\", \"…\n$ gerry_24       &lt;chr&gt; NA, \"B\", \"B\", \"B\", \"B\", \"B\", \"B\", \"B\", \"C\", \"C\", \"C\", \"…\n$ gerry_26       &lt;chr&gt; NA, \"B\", \"B\", \"B\", \"B\", \"B\", \"B\", \"B\", \"C\", \"C\", \"C\", \"…"
   },
   {
     "objectID": "ae/ae-02-gerrymander-explore-I-A.html#districts-at-the-tails",
     "href": "ae/ae-02-gerrymander-explore-I-A.html#districts-at-the-tails",
-    "title": "AE 03: Gerrymandering + data exploration I",
+    "title": "AE 02: Gerrymandering + data exploration I",
     "section": "Districts at the tails",
     "text": "Districts at the tails\nMake side-by-side box plots of percent of vote received by Trump in 2024 Presidential Election by prevalence of gerrymandering. Identify any Congressional Districts that are potential outliers. Are they different from the rest of the Congressional Districts within the given gerrymandering level due to high support or low support for Trump in the 2024 Presidential Election? Which state are they in? Which city are they in?\n\nggplot(gerrymander, aes(x = trump_24, y = gerry_24)) +\n  geom_boxplot()\n\nWarning: Removed 8 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\n\n\n\n\n\ngerrymander |&gt;\n  filter(gerry_24 == \"F\", trump_24 &lt; 20) |&gt;\n  select(state, district, trump_24, gerry_24)\n\n# A tibble: 2 × 4\n  state    district trump_24 gerry_24\n  &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   \n1 Georgia  GA-05        13.5 F       \n2 Illinois IL-07        16.7 F       \n\ngerrymander |&gt;\n  filter(gerry_24 == \"C\", trump_24 &lt; 40) |&gt;\n  select(state, district, trump_24, gerry_24)\n\n# A tibble: 1 × 4\n  state       district trump_24 gerry_24\n  &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   \n1 Mississippi MS-02        39.3 C       \n\ngerrymander |&gt;\n  filter(gerry_24 == \"B\", trump_24 &gt; 80) |&gt;\n  select(state, district, trump_24, gerry_24)\n\n# A tibble: 1 × 4\n  state   district trump_24 gerry_24\n  &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   \n1 Alabama AL-04        83.0 B"
   },
   {
     "objectID": "ae/ae-02-gerrymander-explore-I-A.html#flips",
     "href": "ae/ae-02-gerrymander-explore-I-A.html#flips",
-    "title": "AE 03: Gerrymandering + data exploration I",
+    "title": "AE 02: Gerrymandering + data exploration I",
     "section": "Flips",
     "text": "Flips\nHow does the prevalence of various levels of gerrymandering for the 2026 election vary among Congressional Districts that flipped from Republican to Democrat in the 2024 election compared to the 2022 election? Support your answer with a visualization as well as summary statistics. Hint: Calculate the conditional distribution of prevalance of various levels of gerrymandering based on whether a Democrat flipped the seat in the 2024 election compared to the 2022 election.\n\ngerrymander &lt;- gerrymander |&gt;\n  mutate(\n    flip_22_24 = case_when(\n      house_party_22 == \"Republican\" &\n        house_party_24 == \"Democrat\" ~ \"Flip R to D\",\n      house_party_22 == \"Democrat\" &\n        house_party_24 == \"Republican\" ~ \"Flip D to R\",\n      .default = \"No Flip\"\n    )\n  ) |&gt;\n  relocate(house_party_22, house_party_24, flip_22_24, gerry_26, .after = state)\n\n\ngerrymander |&gt;\n  filter(!is.na(gerry_26)) |&gt;\n  ggplot(aes(y = flip_22_24, fill = gerry_26)) +\n  geom_bar(position = \"fill\")\n\n\n\n\n\n\n\n\ngerrymander |&gt;\n  filter(!is.na(gerry_26)) |&gt;\n  count(flip_22_24, gerry_26) |&gt;\n  group_by(flip_22_24) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 13 × 4\n# Groups:   flip_22_24 [3]\n   flip_22_24  gerry_26     n   prop\n   &lt;chr&gt;       &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;\n 1 Flip D to R A            3 0.333 \n 2 Flip D to R B            2 0.222 \n 3 Flip D to R F            4 0.444 \n 4 Flip R to D A            2 0.222 \n 5 Flip R to D B            4 0.444 \n 6 Flip R to D C            1 0.111 \n 7 Flip R to D D            1 0.111 \n 8 Flip R to D F            1 0.111 \n 9 No Flip     A          142 0.342 \n10 No Flip     B           84 0.202 \n11 No Flip     C           18 0.0434\n12 No Flip     D            8 0.0193\n13 No Flip     F          163 0.393"
   },
@@ -2086,7 +2086,7 @@
     "href": "ae.html",
     "title": "Application exercises",
     "section": "",
-    "text": "More AEs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\nSubtitle\n\n\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\nSuggested answers\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\n \n\n\n\n\n\n\nAE 02: Gerrymandering + data exploration I\n\n\n \n\n\n\n\n\n\nAE 03: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\n\n\nNo matching items",
+    "text": "More AEs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\nSubtitle\n\n\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\nSuggested answers\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\n \n\n\n\n\n\n\nAE 02: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\n\n\nAE 02: Gerrymandering + data exploration I\n\n\n \n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Application exercises"
     ]
