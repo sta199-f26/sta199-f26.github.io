@@ -92,9 +92,9 @@ scores
 The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read row-by-row layout.
 :::
 
-It has four variables (`student_id`, `student_name`, `paleontology`, and `drama`) and six rows (one for each student).
+It has four variables (`student_id`, `student_name`, `paleontology`, and `theater`) and six rows (one for each student).
 
-You want to reshape `scores` so that each student has one row for paleontology and one row for drama.
+You want to reshape `scores` so that each student has one row for paleontology and one row for theater.
 Keep both `student_id` and `student_name`, and store the subject names in a column called `subject` and the scores in a column called `score`.
 
 a. Before writing any code, answer the following questions:
@@ -134,10 +134,10 @@ It has three variables (`patient_id`, `measurement_time_`, and `systolic_bp` -- 
 
 a. Before writing any code, answer the following questions:
    - Suppose you want to reshape the data frame so that there is one row per patient and measurements at different times of the day are recorded in different columns.
-  What function would you use to do this?
-  - If you reshaped the data to have one row per patient, 
-    - how many rows would the resulting data frame have?
-    - how many columns would the resulting data frame have and what would the column names be?
+     What function would you use to do this?
+   - If you reshaped the data to have one row per patient,
+     - how many rows would the resulting data frame have?
+     - how many columns would the resulting data frame have and what would the column names be?
 
 b. Then, write the code to reshape the data frame as described above. What does the `NA` value mean in the resulting data frame?
 
@@ -173,10 +173,9 @@ The `week` column should contain the integers `1`, `2`, and `3`, and `score` sho
 Keep both student identifiers and the row corresponding to Burt's missing score.
 
 a. Before writing any code, answer the following questions:
-
-  - What function would you use to reshape the data, and how many rows would the resulting data frame have?
-  - Which columns should be pivoted, and which should remain as identifiers for each student?
-  - If you only specified which columns to pivot and the new column names, what values and data type would you expect in `week`? What data type would you expect in `score`?
+   - What function would you use to reshape the data, and how many rows would the resulting data frame have?
+   - Which columns should be pivoted, and which should remain as identifiers for each student?
+   - If you only specified which columns to pivot and the new column names, what values and data type would you expect in `week`? What data type would you expect in `score`?
 
 Then, complete the following steps:
 
