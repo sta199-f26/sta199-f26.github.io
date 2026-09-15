@@ -662,8 +662,8 @@ Note
 <p>The <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code> function is helpful for creating small data frames (<code>tibble</code>s) with an easier to read row-by-row layout.</p>
 </div>
 </div>
-<p>It has four variables (<code>student_id</code>, <code>student_name</code>, <code>paleontology</code>, and <code>drama</code>) and six rows (one for each student).</p>
-<p>You want to reshape <code>scores</code> so that each student has one row for paleontology and one row for drama. Keep both <code>student_id</code> and <code>student_name</code>, and store the subject names in a column called <code>subject</code> and the scores in a column called <code>score</code>.</p>
+<p>It has four variables (<code>student_id</code>, <code>student_name</code>, <code>paleontology</code>, and <code>theater</code>) and six rows (one for each student).</p>
+<p>You want to reshape <code>scores</code> so that each student has one row for paleontology and one row for theater. Keep both <code>student_id</code> and <code>student_name</code>, and store the subject names in a column called <code>subject</code> and the scores in a column called <code>score</code>.</p>
 <ol type="a">
 <li>Before writing any code, answer the following questions:
 <ul>
@@ -708,10 +708,6 @@ Note
 <li>Before writing any code, answer the following questions:
 <ul>
 <li>Suppose you want to reshape the data frame so that there is one row per patient and measurements at different times of the day are recorded in different columns. What function would you use to do this?</li>
-</ul>
-</li>
-</ol>
-<ul>
 <li>If you reshaped the data to have one row per patient,
 <ul>
 <li>how many rows would the resulting data frame have?</li>
@@ -719,7 +715,7 @@ Note
 </ul>
 </li>
 </ul>
-<ol start="2" type="a">
+</li>
 <li>Then, write the code to reshape the data frame as described above. What does the <code>NA</code> value mean in the resulting data frame?</li>
 </ol>
 <div class="source-control">
@@ -751,13 +747,14 @@ Note
 <p>It has four rows (one per student) and five columns: two identifying each student (<code>student_id</code> and <code>student_name</code>) and three containing weekly quiz scores (<code>week_1</code>, <code>week_2</code>, and <code>week_3</code>). Notice that the scores are stored as character strings (in quotation marks), and Burt’s score for week 2 is missing.</p>
 <p>You want to reshape this data frame to have one row per student per week and four columns: <code>student_id</code>, <code>student_name</code>, <code>week</code>, and <code>score</code>. The <code>week</code> column should contain the integers <code>1</code>, <code>2</code>, and <code>3</code>, and <code>score</code> should be numeric. Keep both student identifiers and the row corresponding to Burt’s missing score.</p>
 <ol type="a">
-<li>Before writing any code, answer the following questions:</li>
-</ol>
+<li>Before writing any code, answer the following questions:
 <ul>
 <li>What function would you use to reshape the data, and how many rows would the resulting data frame have?</li>
 <li>Which columns should be pivoted, and which should remain as identifiers for each student?</li>
 <li>If you only specified which columns to pivot and the new column names, what values and data type would you expect in <code>week</code>? What data type would you expect in <code>score</code>?</li>
 </ul>
+</li>
+</ol>
 <p>Then, complete the following steps:</p>
 <ol start="2" type="a">
 <li>Read about <code>names_prefix</code>, <code>names_transform</code>, and <code>values_transform</code> in the documentation for <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>. Reshape <code>quiz_scores</code> as described above using these arguments within a single <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> call, and save the result as <code>quiz_scores_long</code>.</li>
