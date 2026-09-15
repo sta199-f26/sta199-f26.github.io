@@ -193,7 +193,7 @@ Go back and correct your work.
 
 c\.
 Using your data frame from the previous question, create a plot of annual inflation vs. year for these countries.
-Then, in a few sentences, describe the patterns you observe in the plot, particularly focusing on anything you find surprising or not surprising, based on your knowledge (or lack thereof) of these countries economies.
+Then, in a few sentences, describe the patterns you observe in the plot, particularly focusing on anything you find surprising or not surprising, based on your knowledge (or lack thereof) of these countries' economies.
 
 ::: callout-warning
 ## Requirements
@@ -250,7 +250,7 @@ What are the variables in it?
 Write a brief (1-2 sentences) narrative summarizing this information.
 
 c\.
-Create a new dataset by joining the `us_inflation` dataset with the `cpi_expenditure_id` dataset.
+Create a new dataset by joining the `us_inflation` dataset with the `cpi_expenditures` dataset.
 
 -   Determine which type of join is the most appropriate one and use that.
 
@@ -323,14 +323,14 @@ This would be a good time to get feedback from AI if you haven't yet done so! Ju
 
 ### Question 10
 
-In class, we worked with the `sales_taxes` dataset and joined it to another dataset called `us_regions` so that we ended up with a data frame containing information on each state (plus DC), salex tax rate in that state, and the region the state is in. While DC was in our first dataset, it was not in the second, resulting in an `NA` value for the `region` variable in the joined dataset. We discussed that there are three approaches we could take to address this issue before calculating the average average sales tax of states in each region.
+In class, we worked with the `sales_taxes` dataset and joined it to another dataset called `us_regions` so that we ended up with a data frame containing information on each state (plus DC), sales tax rate in that state, and the region the state is in. While DC was in our first dataset, it was not in the second, resulting in an `NA` value for the `region` variable in the joined dataset. We discussed that there are three approaches we could take to address this issue before calculating the average sales tax of states in each region.
 
 a\.
 Read in the two datasets, `sales-taxes-25.csv` and `us-regions.csv`, which are both in your `data` folder.
 Then, join the two datasets using the appropriate type of join to be able to calculate the average sales tax rate by region, not overwriting either data frame that goes into the join.
 
 b\. 
-Apply the three approaches we discussed in class to address the issue that DC has an `NA` value for `region` in the joined dataset, and then calculate the average average sales tax of states in each region.
+Apply the three approaches we discussed in class to address the issue that DC has an `NA` value for `region` in the joined dataset, and then calculate the average sales tax of states in each region.
 
 c\.
 Choose one of the three approaches as the "most appropriate" approach and provide a brief (1-2 sentences) rationale for your choice.
