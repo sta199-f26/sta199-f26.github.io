@@ -8,6 +8,16 @@ editor_options:
 
 This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.
 
+::: {.materials-legend}
+
+| Lectures and labs | Application exercises | Homework |
+|:--|:--|:--|
+| <i class="fa-solid fa-file-powerpoint materials-icon materials-icon-slides" aria-hidden="true"></i> Lecture slides | <i class="fa-solid fa-file-code materials-icon materials-icon-ae" aria-hidden="true"></i> Exercises | <i class="fa-solid fa-file-code materials-icon materials-icon-homework" aria-hidden="true"></i> Questions |
+| <i class="fa-solid fa-file-lines materials-icon materials-icon-notes" aria-hidden="true"></i> Lecture notes | <i class="fa-solid fa-file-circle-check materials-icon materials-icon-ae-key" aria-hidden="true"></i> Suggested answers | <i class="fa-solid fa-file-circle-check materials-icon materials-icon-homework" aria-hidden="true"></i> Model answers |
+| <i class="fa-solid fa-file-code materials-icon materials-icon-lab" aria-hidden="true"></i> Labs | | |
+
+:::
+
 ```{r}
 #| echo: false
 #| message: false
@@ -77,8 +87,7 @@ d_prepared <- d |>
               return(entry)
             }
             # Application exercise keys are posted as ae-<something>-A.html;
-            # they get their own icon and a non-brand color so they stand out
-            # from the regular application exercise links.
+            # they get their own icon with the same green as exercises.
             is_ae_key <- str_detect(
               url,
               regex("ae-.*-A\\.html", ignore_case = TRUE)
