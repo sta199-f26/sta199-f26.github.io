@@ -130,6 +130,23 @@ details summary {
 
 /* Schedule "Materials" column icons (see index.qmd): gray outline while
    unposted, then a filled icon in a color keyed to the material type. */
+.materials-legend {
+  font-size: 0.8em;
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    white-space: nowrap;
+  }
+
+  th:nth-child(1), td:nth-child(1) { width: 30%; }
+  th:nth-child(2), td:nth-child(2) { width: 40%; }
+  th:nth-child(3), td:nth-child(3) { width: 30%; }
+}
+
 .materials-links {
   display: inline-flex;
   gap: 0.4em;
@@ -149,12 +166,10 @@ details summary {
 /* Slides retain the course navy; notes use a lighter blue. */
 .materials-icon-slides { color: #133955; }
 .materials-icon-notes { color: #5C97CB; }
-.materials-icon-ae { color: #7FBB9E; }
-/* Application exercise keys: deliberately off-brand purple so they read as
-   distinct from every other material type. */
-.materials-icon-ae-key { color: #7A5FA6; }
+.materials-icon-ae,
+.materials-icon-ae-key { color: #7FBB9E; }
 .materials-icon-lab { color: #A19436; }
-.materials-icon-homework { color: #B98391; }
+.materials-icon-homework { color: #7A5FA6; }
 .materials-icon-other { color: #D29380; }
 
 a:hover .materials-icon {
