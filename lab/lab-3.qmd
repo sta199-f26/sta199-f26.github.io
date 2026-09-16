@@ -183,7 +183,7 @@ b. Read about `names_prefix` in the documentation for `pivot_longer()`. Reshape 
 
 c. Display `quiz_scores_long` and use `glimpse()` to check the variable types. Check that both student identifiers are retained and that Burt still has a row for week 2 with a missing score. What data types are `week` and `score`? 
 
-d. Read about `names_transform` and `values_transform` in the documentation for `pivot_longer()`. Reshape `quiz_scores` again using these arguments within a single `pivot_longer()` call, and save the result as `quiz_scores_long`. Use the appropriate transformation for each variable. What data types are `week` and `score`? Explain why these data types are appropriate for these variables.
+d. Read about `names_transform` and `values_transform` in the documentation for `pivot_longer()`. Reshape `quiz_scores` again using these arguments within a single `pivot_longer()` call, and save the result as `quiz_scores_long`. Use the appropriate transformation for each variable. Display `quiz_scores_long`. What data types are `week` and `score`? Explain why these data types are appropriate for these variables.
 
 ::: callout-tip
 Hint: `as.integer()` converts values to integers, and `as.numeric()` converts values to numbers. Supply transformation functions without parentheses, using the form `list(column_name = function_name)`.
