@@ -181,15 +181,15 @@ Then, complete the following steps:
 
 b. Read about `names_prefix` in the documentation for `pivot_longer()`. Reshape `quiz_scores` as described above using `names_prefix` within a single `pivot_longer()` call, and save the result as `quiz_scores_long`.
 
-c. Display `quiz_scores_long` and use `glimpse()` to check the variable types. Check that both student identifiers are retained and that Burt still has a row for week 2 with a missing score. What data types are `week` and `score`? 
+c. Display `quiz_scores_long` and use `glimpse()` to check the variable types. How many rows and columns does `quiz_scores_long` have? What data types are `student_id`, `student_name`, `week`, and `score`? Explain what the `names_prefix` argument does.
 
-d. Read about `names_transform` and `values_transform` in the documentation for `pivot_longer()`. Reshape `quiz_scores` again using these arguments within a single `pivot_longer()` call, and save the result as `quiz_scores_long`. Use the appropriate transformation for each variable. Display `quiz_scores_long`. What data types are `week` and `score`? Explain why these data types are appropriate for these variables.
+d. Read about `names_transform` and `values_transform` in the documentation for `pivot_longer()`. Reshape `quiz_scores` again using these arguments within a single `pivot_longer()` call, and save the result as `quiz_scores_long`. Use the appropriate transformation for each variable. Display `quiz_scores_long`. Did the data types of `student_id`, `student_name`, `week`, or `score` change? Explain what changed and why these new data types are appropriate for these variables.
 
 ::: callout-tip
 Hint: `as.integer()` converts values to integers, and `as.numeric()` converts values to numbers. Supply transformation functions without parentheses, using the form `list(column_name = function_name)`.
 :::
 
-e. Reshape `quiz_scores_long` back to one row per student, retaining `student_id` and `student_name` and restoring the score columns `week_1`, `week_2`, and `week_3`. Use `names_prefix` in `pivot_wider()` to restore the prefix. Check that the result has the same dimensions and column names as Dr. Geller's original roster. How does the role of `names_prefix` differ between the two pivot functions? How do the score column types in this result compare with those in the original `quiz_scores`?
+e. Reshape `quiz_scores_long` back to one row per student, retaining `student_id` and `student_name` and restoring the score columns `week_1`, `week_2`, and `week_3`. Use `names_prefix` in `pivot_wider()` to restore the prefix. Check that the result has the same dimensions and column names as Dr. Geller's original roster. How does the role of `names_prefix` differ between the `pivot_longer` and `pivot_wider`? How do the score column types in this result compare with those in the original `quiz_scores`?
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with a meaningful commit message.
