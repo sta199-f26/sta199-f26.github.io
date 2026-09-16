@@ -183,7 +183,7 @@ b. Read about `names_prefix` in the documentation for `pivot_longer()`. Reshape 
 
 c. Display `quiz_scores_long` and use `glimpse()` to check the variable types. How many rows and columns does `quiz_scores_long` have? What data types are `student_id`, `student_name`, `week`, and `score`? Explain what the `names_prefix` argument does.
 
-d. Read about `names_transform` and `values_transform` in the documentation for `pivot_longer()`. Reshape `quiz_scores` again using these arguments within a single `pivot_longer()` call, and save the result as `quiz_scores_long`. Use the appropriate transformation for each variable. Display `quiz_scores_long`. Did the data types of `student_id`, `student_name`, `week`, or `score` change? Explain what changed and why these new data types are appropriate for these variables.
+d. Read about `names_transform` and `values_transform` in the documentation for `pivot_longer()`. Reshape `quiz_scores` as you did in part b, this time also using the `names_transform` and `values_transform` arguments within a single `pivot_longer()` call. Save the result as `quiz_scores_long`. Use the appropriate transformation for each variable. Display `quiz_scores_long`. Which variables have different data types than they did in part c? Explain what changed and why the new data types are appropriate for these variables.
 
 ::: callout-tip
 Hint: `as.integer()` converts values to integers, and `as.numeric()` converts values to numbers. Supply transformation functions without parentheses, using the form `list(column_name = function_name)`.
