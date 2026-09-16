@@ -92,8 +92,10 @@ d_prepared <- d |>
               url,
               regex("ae-.*-A\\.html", ignore_case = TRUE)
             )
+            # Homework model answers are posted on Canvas.
+            is_hw_key <- str_detect(url, regex("canvas", ignore_case = TRUE))
             icon <- case_when(
-              is_ae_key ~ "fa-file-circle-check",
+              is_ae_key | is_hw_key ~ "fa-file-circle-check",
               str_detect(label, regex("slides", ignore_case = TRUE)) ~
                 "fa-file-powerpoint",
               str_detect(label, regex("notes", ignore_case = TRUE)) ~
@@ -102,6 +104,7 @@ d_prepared <- d |>
             )
             material_type <- case_when(
               is_ae_key ~ "ae-key",
+              is_hw_key ~ "homework",
               str_detect(label, regex("slides", ignore_case = TRUE)) ~ "slides",
               str_detect(label, regex("notes", ignore_case = TRUE)) ~ "notes",
               str_detect(
