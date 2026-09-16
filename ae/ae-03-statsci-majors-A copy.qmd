@@ -1,0 +1,126 @@
+---
+title: "AE 03: Tidying Stat Sci majors"
+subtitle: "Suggested answers"
+categories: 
+  - Application exercise
+  - Answers
+---
+
+::: callout-important
+These are suggested answers.
+This document should be used as reference only, it's not designed to be an exhaustive key.
+:::
+
+## Data
+
+The data come from the [Office of the University Registrar](https://registrar.duke.edu/registration/enrollment-statistics).
+
+```{r}
+#| label: load-packages-data
+#| message: false
+
+library(tidyverse)
+
+majors <- read_csv("data/majors.csv")
+
+statsci_majors <- majors |>
+  filter(
+    department == "Statistical Science",
+    academic_plan != "Minor"
+  )
+```
+
+And let's take a look at the data.
+
+```{r}
+statsci_majors
+```
+
+## Pivoting
+
+-   **Demo:** Pivot the `statsci` data frame *longer* such that:
+
+    -   Each row represents a degree type / year combination
+    -   `year` and `n`umber of graduates for that year are columns in the data frame
+    -   The resulting `year` column is numeric
+
+```{r}
+#| label: pivot
+# add code here
+```
+
+-   **Your Turn:** Now, repeat your code from above, but this time **save the result** to a **new** variable name.
+
+```{r}
+#| label: pivot-with-transform-name
+# add code here
+```
+
+## Plotting
+
+-   **Your turn:** Now we will start making our plot, but let's not get too fancy right away. Just get the geoms right for now and use default colors for different academic plans.
+
+```{r}
+#| label: plot-draft
+# add code here
+```
+
+-   **Question**: Why was the pivot necessary in order to create this plot?
+
+*Add your response here!*
+
+-   **Question:** What aspects of the plot need to be updated still?
+
+*Add your response here.*
+
+-  **Demo:** Update `statsci_majors_longer` to fix the discontinuities.
+
+```{r}
+#| label: pivot-again
+statsci_majors_longer <- statsci_majors_longer |>
+  mutate(n = if_else(is.na(n), 0, n))
+```
+
+-   **Demo:** Update x-axis scale such that the years displayed go from 2012 to 2026 in increments of 2 years. Do this by adding on to your pipeline from earlier.
+
+```{r}
+#| label: plot-improve-1
+# add code here
+```
+
+-   **Demo:** Update line colors using the following level / color assignments. Once again, do this by adding on to your pipeline from earlier.
+    -   "BS" = "cadetblue4"
+
+    -   "BS2" = "cadetblue3"
+
+    -   "BA" = "lightgoldenrod4"
+
+    -   "BA2" = "lightgoldenrod3"
+
+```{r}
+#| label: plot-improve-2
+# add code here
+```
+
+-   **Your turn:** Update the plot labels (`title`, `subtitle`, `x`, `y`, and `caption`) and use `theme_minimal()`. Once again, do this by adding on to your pipeline from earlier.
+
+```{r}
+#| label: plot-improve-3
+# add code here
+```
+
+-   **Demo:** Move the legend into the plot, make its background white, and its border gray.
+
+```{r}
+#| label: plot-improve-4
+# add code here
+```
+
+-   **Demo:** Finally, set `fig-width: 8` and `fig-height: 5` for your plot in the chunk options.
+
+```{r}
+#| label: plot-improve-5
+#| fig-width: 8
+#| fig-height: 5
+# add code here
+```
