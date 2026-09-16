@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
+  <meta name="dcterms.date" content="2026-09-14">
+  <title>STA 199CCL – Tidying data</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2a98be325e299d6b794465a705fa6e0e.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta property="og:title" content="Tidying data – STA 199CCL">
+<meta property="og:description" content="Lecture 7">
+<meta property="og:site_name" content="STA 199CCL">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Tidying data</h1>
+  <p class="subtitle">Lecture 7</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Mine Çetinkaya-Rundel 
+</div>
+        <p class="quarto-title-affiliation">
+            Duke University <br> STA 199 - Fall 2026
+          </p>
+    </div>
+</div>
+
+  <p class="date">September 14, 2026</p>
+</section>
+<section>
+<section id="warm-up" class="title-slide slide level1 center">
+<h1>Warm-up</h1>
+
+</section>
+<section id="while-you-wait-participate" class="slide level2 xsmall">
+<h2>While you wait: Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:85%;">
+<div class="wooclap">
+<p>Which of the following plots does this code produce?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
+<span id="cb1-3"><a></a>  <span class="fu">geom_beeswarm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-4-1.png" width="576"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-4-2.png" width="576"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-4-3.png" width="576"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-4-4.png" width="576"></p>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:15%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/07/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/ICNGKSL">wooclap.com</a> and use the code ICNGKSL.</p>
+</div></div>
+</section>
+<section id="pause" class="slide level2 smaller">
+<h2>Pause</h2>
+<div class="question">
+<p>Any questions before we get started?</p>
+</div>
+</section>
+<section id="recap-layering-geoms" class="slide level2 scrollable smaller">
+<h2>Recap: layering geoms</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="question">
+<p>Update the following code to create the visualization on the right.</p>
+</div>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/07/gerrymander-recreate.png"></p>
+</div></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
+<span id="cb2-3"><a></a>  <span class="fu">geom_beeswarm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="recap-layering-geoms-1" class="slide level2 smaller">
+<h2>Recap: layering geoms</h2>
+<ol start="0" type="1">
+<li>Original Code:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
+<span id="cb3-3"><a></a>  <span class="fu">geom_beeswarm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- small Venn diagram in the bottom-right -->
+<div style="
+  position: absolute;
+  bottom: 500px;
+  right: -15px;
+  width: 413px;           /* adjust to taste */
+  pointer-events: none;  /* so it never steals clicks */
+">
+<p><img src="images/07/gerrymander-recreate.png" style="width: 100%; height: auto;"></p>
+</div>
+</section>
+<section id="recap-layering-geoms-2" class="slide level2 smaller">
+<h2>Recap: layering geoms</h2>
+<ol type="1">
+<li>Swap the order of the two geoms.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb4-2"><a></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- small Venn diagram in the bottom-right -->
+<div style="
+  position: absolute;
+  bottom: 500px;
+  right: -15px;
+  width: 413px;           /* adjust to taste */
+  pointer-events: none;  /* so it never steals clicks */
+">
+<p><img src="images/07/gerrymander-recreate.png" style="width: 100%; height: auto;"></p>
+</div>
+</section>
+<section id="recap-layering-geoms-3" class="slide level2 smaller">
+<h2>Recap: layering geoms</h2>
+<ol start="2" type="1">
+<li>Make the boxplots semi-transparent.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- small Venn diagram in the bottom-right -->
+<div style="
+  position: absolute;
+  bottom: 500px;
+  right: -15px;
+  width: 413px;           /* adjust to taste */
+  pointer-events: none;  /* so it never steals clicks */
+">
+<p><img src="images/07/gerrymander-recreate.png" style="width: 100%; height: auto;"></p>
+</div>
+</section>
+<section id="recap-layering-geoms-4" class="slide level2 smaller">
+<h2>Recap: layering geoms</h2>
+<ol start="3" type="1">
+<li>Remove the legend.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- small Venn diagram in the bottom-right -->
+<div style="
+  position: absolute;
+  bottom: 500px;
+  right: -15px;
+  width: 413px;           /* adjust to taste */
+  pointer-events: none;  /* so it never steals clicks */
+">
+<p><img src="images/07/gerrymander-recreate.png" style="width: 100%; height: auto;"></p>
+</div>
+</section>
+<section id="recap-logical-operators" class="slide level2 smaller">
+<h2>Recap: logical operators</h2>
+<p>Generally useful in a <code>filter()</code> but will come up in various other places as well…</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">operator</th>
+<th style="text-align: left;">definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt;</code></td>
+<td style="text-align: left;"><span class="fragment">is less than?</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;</code></td>
+<td style="text-align: left;"><span class="fragment">is greater than?</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="recap-participate" class="slide level2 xsmall">
+<h2>Recap: Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Match the following logical operators to their definitions.</p>
+<div class="wooclap-choices">
+<ul>
+<li><code>&lt;=</code></li>
+<li><code>&gt;=</code></li>
+<li><code>==</code></li>
+<li><code>!=</code></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/07/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/ICNGKSL">wooclap.com</a> and use the code ICNGKSL.</p>
+</div></div>
+</section>
+<section id="recap-participate-1" class="slide level2 xsmall">
+<h2>Recap: Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Match the following definitions to their logical operators.</p>
+<div class="wooclap-choices">
+<ul>
+<li>is x AND y?</li>
+<li>is x OR y?</li>
+<li>is x NA?</li>
+<li>is x not NA?</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/07/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/ICNGKSL">wooclap.com</a> and use the code ICNGKSL.</p>
+</div></div>
+</section>
+<section id="recap-logical-operators-cont." class="slide level2 smaller">
+<h2>Recap: logical operators (cont.)</h2>
+<p>Other useful logical operators:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">operator</th>
+<th style="text-align: left;">definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>x %in% y</code></td>
+<td style="text-align: left;"><span class="fragment">is x in y?</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!(x %in% y)</code></td>
+<td style="text-align: left;"><span class="fragment">is x not in y?</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>!x</code></td>
+<td style="text-align: left;"><span class="fragment">is not x? (only makes sense if <code>x</code> is <code>TRUE</code> or <code>FALSE</code>)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="recap-logical-operators-cont.-1" class="slide level2 smaller">
+<h2>Recap: logical operators (cont.)</h2>
+<div class="task">
+<p>For which rows are the following true?</p>
+</div>
+<div class="columns">
+<div class="column" style="width:30%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Col1</th>
+<th>Col2</th>
+<th>Col3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>B</td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>C</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:60%;">
+<ul>
+<li class="fragment"><p><code>Col1 &lt; 3 | Col3 &lt; 20</code></p></li>
+<li class="fragment"><p><code>Col2 == "C"</code></p></li>
+<li class="fragment"><p><code>Col2 %in% c("C", "A")</code></p></li>
+<li class="fragment"><p><code>is.na(Col3)</code></p></li>
+<li class="fragment"><p><code>!is.na(Col3)</code></p></li>
+</ul>
+</div></div>
+</section></section>
+<section>
+<section id="data-tidying" class="title-slide slide level1 center">
+<h1>Data tidying</h1>
+
+</section>
+<section id="tidy-data" class="slide level2">
+<h2>Tidy data</h2>
+<blockquote>
+<p>“Tidy datasets are easy to manipulate, model and visualise, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table.”</p>
+<p>Tidy Data, <a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a></p>
+</blockquote>
+<div class="fragment">
+<p><strong>Note:</strong> “easy to manipulate” = “straightforward to manipulate”</p>
+</div>
+</section>
+<section id="goal" class="slide level2">
+<h2>Goal</h2>
+<p>Visualize Statistical Science majors over the years!</p>
+
+<img data-src="images/07/statsci-majors-sketch.png" class="r-stretch"></section>
+<section id="read-data" class="slide level2 smaller">
+<h2>Read data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>majors <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/majors.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 33 Columns: 17
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (2): department, academic_plan
+dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="question">
+<p>What does the message that prints when we read a CSV file in with <code>read_csv()</code> say? How carefully do you need to review this message before moving on?</p>
+</div>
+</section>
+<section id="view-data" class="slide level2 smaller">
+<h2>View data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>majors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 33 × 17
+   department     academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+   &lt;chr&gt;          &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Biology        BS               151    151    147    146    141    159    147
+ 2 Biology        BS2               13     13     11     11      5     11      4
+ 3 Biology        BA                10      5     11     11      6      6      8
+ 4 Biology        BA2                1      4      2      1      8      1      3
+ 5 Biology        Minor             54     59     51     65     70     68     50
+ 6 Computer Scie… BS               238    209    247    213    190    187    170
+ 7 Computer Scie… BS2              150    125    105     76     43     38     33
+ 8 Computer Scie… BA                24     29     27     36     20     32     45
+ 9 Computer Scie… BA2               44     30     43     34     27     32     21
+10 Computer Scie… Minor             53     78     72     75     62     58     57
+# ℹ 23 more rows
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="data-dictionary" class="slide level2 smaller">
+<h2>Data dictionary</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>department</code></td>
+<td style="text-align: left;">Academic department offering the major or minor.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>academic_plan</code></td>
+<td style="text-align: left;">BS: Bachelor of Science; BS2: Bachelor of Science, second major; BA: Bachelor of Arts; BA2: Bachelor of Arts, second major; Minor: a minor in the department.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>2026</code>:<code>2012</code></td>
+<td style="text-align: left;">Each column gives the number of graduates completing that academic plan in the corresponding academic year. <code>NA</code> indicates no count recorded.</td>
+</tr>
+</tbody>
+</table>
+<div class="task fragment">
+<p>What does each row in <code>majors</code> represent?</p>
+</div>
+<p><span class="fragment">Each row represents a department and academic plan combination.</span></p>
+</section>
+<section id="lets-plan" class="slide level2 smaller">
+<h2>Let’s plan!</h2>
+<div class="question">
+<p>Review the goal plot and sketch the data frame needed to create it. What would go inside <code>aes</code> when we call <code>ggplot</code>?</p>
+</div>
+
+<img data-src="images/07/statsci-majors-sketch.png" class="r-stretch"></section>
+<section id="first-filter" class="slide level2">
+<h2>First: <code>filter()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>statsci_majors <span class="ot">&lt;-</span> majors <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb11-3"><a></a>    department <span class="sc">==</span> <span class="st">"Statistical Science"</span>,</span>
+<span id="cb11-4"><a></a>    academic_plan <span class="sc">!=</span> <span class="st">"Minor"</span></span>
+<span id="cb11-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="fragment small">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>statsci_majors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="the-goal" class="slide level2 smaller nostretch">
+<h2>The Goal</h2>
+<p>We want to write code that starts something like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(statsci_majors, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">color =</span> academic_plan)) <span class="sc">+</span></span>
+<span id="cb14-2"><a></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<p>But the data are not organized in the appropriate columns :(</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>statsci_majors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="the-challenge" class="slide level2 smaller">
+<h2>The challenge</h2>
+<div class="small">
+<p><strong><em>How do we go from this ….</em></strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="small fragment">
+<p><strong><em>…. to this??</em></strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan  year     n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+ 1 Statistical Science BS             2026    49
+ 2 Statistical Science BS             2025    45
+ 3 Statistical Science BS             2024    39
+ 4 Statistical Science BS             2023    54
+ 5 Statistical Science BS             2022    32
+ 6 Statistical Science BS             2021    35
+ 7 Statistical Science BS             2020    27
+ 8 Statistical Science BS             2019    26
+ 9 Statistical Science BS             2018    21
+10 Statistical Science BS             2017    24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="pivot" class="title-slide slide level1 center">
+<h1>Pivot</h1>
+
+</section>
+<section id="pivot_longer" class="slide level2 smaller scrollable">
+<h2><code>pivot_longer()</code></h2>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="task">
+<div class="columns">
+<div class="column" style="width:5%;">
+<p><br></p>
+<p>⬇️</p>
+</div><div class="column fragment" style="width:95%;">
+<p>Pivot the <code>statsci_majors</code> data frame <em>longer</em> such that each row represents a degree type / year combination. The new columns should be called <code>year</code> and <code>n</code> (for number of graduates for that year).</p>
+</div></div>
+</div>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan  year     n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+ 1 Statistical Science BS             2026    49
+ 2 Statistical Science BS             2025    45
+ 3 Statistical Science BS             2024    39
+ 4 Statistical Science BS             2023    54
+ 5 Statistical Science BS             2022    32
+ 6 Statistical Science BS             2021    35
+ 7 Statistical Science BS             2020    27
+ 8 Statistical Science BS             2019    26
+ 9 Statistical Science BS             2018    21
+10 Statistical Science BS             2017    24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="pivot_longer-1" class="slide level2 smaller scrollable">
+<h2><code>pivot_longer()</code></h2>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="task">
+<div class="columns">
+<div class="column" style="width:5%;">
+<p><br><br></p>
+<p>⬇️</p>
+</div><div class="column fragment" style="width:95%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb22-3"><a></a>    <span class="at">cols =</span> ___________________,</span>
+<span id="cb22-4"><a></a></span>
+<span id="cb22-5"><a></a>    <span class="at">names_to =</span> _______________,</span>
+<span id="cb22-6"><a></a></span>
+<span id="cb22-7"><a></a>    <span class="at">values_to =</span> ______________</span>
+<span id="cb22-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</div>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan  year     n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+ 1 Statistical Science BS             2026    49
+ 2 Statistical Science BS             2025    45
+ 3 Statistical Science BS             2024    39
+ 4 Statistical Science BS             2023    54
+ 5 Statistical Science BS             2022    32
+ 6 Statistical Science BS             2021    35
+ 7 Statistical Science BS             2020    27
+ 8 Statistical Science BS             2019    26
+ 9 Statistical Science BS             2018    21
+10 Statistical Science BS             2017    24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="pivot_longer-2" class="slide level2 smaller">
+<h2><code>pivot_longer()</code></h2>
+<div class="question">
+<p>What goes in each of the blanks?</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb24-3"><a></a>    <span class="at">cols =</span> ___________________, <span class="co"># columns to pivot</span></span>
+<span id="cb24-4"><a></a></span>
+<span id="cb24-5"><a></a>    <span class="at">names_to =</span> _______________, <span class="co"># what the new variable name should be</span></span>
+<span id="cb24-6"><a></a></span>
+<span id="cb24-7"><a></a>    <span class="at">values_to =</span> ______________  <span class="co"># where the new variable name should come from</span></span>
+<span id="cb24-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="how-did-it-go" class="slide level2 smaller">
+<h2>How did it go?</h2>
+<p>We started with:</p>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<p><span class="fragment">⬇️ Then we pivoted</span></p>
+<div class="columns">
+<div class="column fragment" style="width:41%;">
+<p>We wanted:</p>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan  year     n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+ 1 Statistical Science BS             2026    49
+ 2 Statistical Science BS             2025    45
+ 3 Statistical Science BS             2024    39
+ 4 Statistical Science BS             2023    54
+ 5 Statistical Science BS             2022    32
+ 6 Statistical Science BS             2021    35
+ 7 Statistical Science BS             2020    27
+ 8 Statistical Science BS             2019    26
+ 9 Statistical Science BS             2018    21
+10 Statistical Science BS             2017    24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</div>
+</div><div class="column fragment" style="width:41%;">
+<p>But we got:</p>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan year      n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt;
+ 1 Statistical Science BS            2026     49
+ 2 Statistical Science BS            2025     45
+ 3 Statistical Science BS            2024     39
+ 4 Statistical Science BS            2023     54
+ 5 Statistical Science BS            2022     32
+ 6 Statistical Science BS            2021     35
+ 7 Statistical Science BS            2020     27
+ 8 Statistical Science BS            2019     26
+ 9 Statistical Science BS            2018     21
+10 Statistical Science BS            2017     24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</div>
+</div><div class="column fragment" style="width:18%;">
+<div class="question">
+<p>Can you spot the difference?</p>
+</div>
+</div></div>
+</section>
+<section id="year" class="slide level2 smaller">
+<h2><code>year</code></h2>
+<div class="question">
+<p>What is the type of the <code>year</code> variable? Why? What should it be?</p>
+</div>
+<div class="columns">
+<div class="column small" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb28-3"><a></a>    <span class="at">cols =</span> <span class="sc">!</span><span class="fu">c</span>(department, academic_plan),</span>
+<span id="cb28-4"><a></a>    <span class="at">values_to =</span> <span class="st">"n"</span>,</span>
+<span id="cb28-5"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span></span>
+<span id="cb28-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan year      n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt;
+ 1 Statistical Science BS            2026     49
+ 2 Statistical Science BS            2025     45
+ 3 Statistical Science BS            2024     39
+ 4 Statistical Science BS            2023     54
+ 5 Statistical Science BS            2022     32
+ 6 Statistical Science BS            2021     35
+ 7 Statistical Science BS            2020     27
+ 8 Statistical Science BS            2019     26
+ 9 Statistical Science BS            2018     21
+10 Statistical Science BS            2017     24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<ul>
+<li class="fragment"><p>It’s a character (<code>chr</code>) variable since the information came from the column names of the original data frame.</p></li>
+<li class="fragment"><p>R cannot know that these character strings represent years.</p></li>
+<li class="fragment"><p>We need to tell R that the variable type of <code>year</code> should be numeric.</p></li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="pivot_longer-again" class="slide level2 smaller scrollable">
+<h2><code>pivot_longer()</code> again</h2>
+<p>Let’s pivot again, this time making sure also that <code>year</code> is a numerical variable in the resulting data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb30-3"><a></a>    <span class="at">cols =</span> <span class="sc">!</span><span class="fu">c</span>(department, academic_plan),</span>
+<span id="cb30-4"><a></a>    <span class="at">values_to =</span> <span class="st">"n"</span>,</span>
+<span id="cb30-5"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb30-6"><a></a>    <span class="at">names_transform =</span> as.numeric</span>
+<span id="cb30-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan  year     n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+ 1 Statistical Science BS             2026    49
+ 2 Statistical Science BS             2025    45
+ 3 Statistical Science BS             2024    39
+ 4 Statistical Science BS             2023    54
+ 5 Statistical Science BS             2022    32
+ 6 Statistical Science BS             2021    35
+ 7 Statistical Science BS             2020    27
+ 8 Statistical Science BS             2019    26
+ 9 Statistical Science BS             2018    21
+10 Statistical Science BS             2017    24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="application-exercise" class="title-slide slide level1 center">
+<h1>Application exercise</h1>
+
+</section>
+<section id="goal-make-this-plot" class="slide level2 smaller">
+<h2>Goal: Make this plot</h2>
+
+<img data-src="images/07/statsci-majors-sketch.png" class="r-stretch"></section>
+<section id="ae-03-statsci-majors" class="slide level2 smaller">
+<h2><code>ae-03: StatSci majors</code></h2>
+<div class="appex">
+<ul>
+<li><p>Go to your ae project in Positron.</p></li>
+<li><p>If you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.</p></li>
+<li><p>Pull to get today’s application exercise file: <code>ae-03-statsci-majors.qmd</code>.</p></li>
+<li><p>Work through the application exercise in class, and render, commit, and push your edits by the end of class.</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="pivot-wider" class="title-slide slide level1 center">
+<h1>Pivot wider</h1>
+
+</section>
+<section id="we-pivotted-longer-what-about-wider" class="slide level2 smaller">
+<h2>We pivotted longer… what about wider?</h2>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="task">
+<div class="columns">
+<div class="column" style="width:5%;">
+<p>⬆️</p>
+</div><div class="column fragment" style="width:95%;">
+<p>Can we go the other direction?</p>
+</div></div>
+</div>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan  year     n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+ 1 Statistical Science BS             2026    49
+ 2 Statistical Science BS             2025    45
+ 3 Statistical Science BS             2024    39
+ 4 Statistical Science BS             2023    54
+ 5 Statistical Science BS             2022    32
+ 6 Statistical Science BS             2021    35
+ 7 Statistical Science BS             2020    27
+ 8 Statistical Science BS             2019    26
+ 9 Statistical Science BS             2018    21
+10 Statistical Science BS             2017    24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="we-pivotted-longer-what-about-wider-1" class="slide level2 smaller">
+<h2>We pivotted longer… what about wider?</h2>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="task">
+<div class="columns">
+<div class="column" style="width:5%;">
+<p><br></p>
+<p>⬆️</p>
+</div><div class="column fragment" style="width:95%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>statsci_majors_longer <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb35-3"><a></a>    <span class="at">names_from =</span> _______,</span>
+<span id="cb35-4"><a></a></span>
+<span id="cb35-5"><a></a>    <span class="at">values_from =</span> ______________</span>
+<span id="cb35-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</div>
+<div class="small">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 4
+   department          academic_plan  year     n
+   &lt;chr&gt;               &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+ 1 Statistical Science BS             2026    49
+ 2 Statistical Science BS             2025    45
+ 3 Statistical Science BS             2024    39
+ 4 Statistical Science BS             2023    54
+ 5 Statistical Science BS             2022    32
+ 6 Statistical Science BS             2021    35
+ 7 Statistical Science BS             2020    27
+ 8 Statistical Science BS             2019    26
+ 9 Statistical Science BS             2018    21
+10 Statistical Science BS             2017    24
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="pivot_wider" class="slide level2 smaller">
+<h2><code>pivot_wider()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>statsci_majors_longer <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb37-3"><a></a>    <span class="at">names_from =</span> year,</span>
+<span id="cb37-4"><a></a>    <span class="at">values_from =</span> n</span>
+<span id="cb37-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Statistical Sc… BS                49     45     39     54     32     35     27
+2 Statistical Sc… BS2               28     23     20     27     16     17     17
+3 Statistical Sc… BA                 2     NA      1      2     NA     NA      1
+4 Statistical Sc… BA2                1     NA     NA     NA     NA      2      1
+# ℹ 8 more variables: `2019` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+#   `2015` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2012` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="recap-pivoting" class="slide level2 smaller">
+<h2>Recap: Pivoting</h2>
+<ul>
+<li class="fragment"><p><strong><em>When should you pivot?</em></strong> If all of the data you need is in your data frame, but the data are not organized in the columns you need, there is a good chance you need to pivot!</p></li>
+<li class="fragment"><p><strong><em>Wide and long:</em></strong> Data sets can’t be labeled as <em>wide</em> or <em>long</em> but they can be made <em>wider</em> or <em>longer</em> for a certain analysis that requires a certain shape.</p></li>
+<li class="fragment"><p><strong><em>Pivot longer - data type:</em></strong> When pivoting longer, variable names that turn into values are characters by default. If you need them to be in another format, you need to explicitly make that transformation, which you can do so within the <code>pivot_longer()</code> function.</p></li>
+</ul>
+</section>
+<section id="recap-plotting" class="slide level2">
+<h2>Recap: Plotting</h2>
+<ul>
+<li class="fragment"><p>You can tweak a plot forever, but at some point the tweaks are likely not very productive.</p></li>
+<li class="fragment"><p>However, you should always be critical of defaultsand see if you can improve the plot to better portray your data / results / what you want to communicate.</p></li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="slides/images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/sta199-f26\.github\.io\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
