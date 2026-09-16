@@ -673,7 +673,7 @@ Note
 <li>What would the two rows for Ross look like?</li>
 </ul>
 </li>
-<li>Write the code to reshape the data frame as described above and save the result as <code>scores_long</code>. Display <code>scores_long</code> and check that it matches your predictions.</li>
+<li>Write the code to reshape the data frame as described above and save the result as <code>scores_longer</code>. Display <code>scores_longer</code> and check that it matches your predictions.</li>
 </ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with a succinct and informative commit message.</p>
@@ -757,8 +757,8 @@ Note
 </ol>
 <p>Then, complete the following steps:</p>
 <ol start="2" type="a">
-<li><p>Read about <code>names_prefix</code> in the documentation for <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>. Reshape <code>quiz_scores</code> as described above using <code>names_prefix</code> within a single <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> call, and save the result as <code>quiz_scores_long</code>.</p></li>
-<li><p>Display <code>quiz_scores_long</code> and use <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> to check the variable types. How many rows and columns does <code>quiz_scores_long</code> have? What data types are <code>student_id</code>, <code>student_name</code>, <code>week</code>, and <code>score</code>? Explain what the <code>names_prefix</code> argument does.</p></li>
+<li><p>Read about <code>names_prefix</code> in the documentation for <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>. Reshape <code>quiz_scores</code> as described above using <code>names_prefix</code> within a single <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> call, and save the result as <code>quiz_scores_longer</code>.</p></li>
+<li><p>Display <code>quiz_scores_longer</code> and use <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> to check the variable types. How many rows and columns does <code>quiz_scores_longer</code> have? What data types are <code>student_id</code>, <code>student_name</code>, <code>week</code>, and <code>score</code>? Explain what the <code>names_prefix</code> argument does.</p></li>
 <li><p>Read about <code>names_transform</code> and <code>values_transform</code> in the documentation for <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>. Reshape <code>quiz_scores</code> as you did in part b, this time also using the <code>names_transform</code> and <code>values_transform</code> arguments within a single <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> call. Save the result as <code>quiz_scores_longer</code>. Use the appropriate transformation for each variable. Display <code>quiz_scores_longer</code>. Which variables have different data types than they did in part c? Explain what changed and why the new data types are appropriate for these variables.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
