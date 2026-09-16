@@ -1,0 +1,229 @@
+---
+title: "AE 03: Tidying Stat Sci majors"
+categories: 
+  - Application exercise
+  - Answers
+---
+
+::: callout-important
+These are suggested answers.
+This document should be used as reference only, it's not designed to be an exhaustive key.
+:::
+
+## Data
+
+The data come from the [Office of the University Registrar](https://registrar.duke.edu/registration/enrollment-statistics).
+
+```{r}
+#| label: load-packages-data
+#| message: false
+
+library(tidyverse)
+
+majors <- read_csv("data/majors.csv")
+
+statsci_majors <- majors |>
+  filter(
+    department == "Statistical Science",
+    academic_plan != "Minor"
+  )
+```
+
+And let's take a look at the data.
+
+```{r}
+statsci_majors
+```
+
+## Pivoting
+
+-   **Demo:** Pivot the `statsci` data frame *longer* such that:
+
+    -   Each row represents a degree type / year combination
+    -   `year` and `n`umber of graduates for that year are columns in the data frame
+    -   The resulting `year` column is numeric
+
+```{r}
+#| label: pivot
+statsci_majors |>
+  pivot_longer(
+    cols = !c(department, academic_plan),
+    names_to = "year",
+    values_to = "n",
+    names_transform = as.numeric
+  )
+```
+
+-   **Your Turn:** Now, repeat your code from above, but this time **save the result** to a **new** variable name.
+
+```{r}
+#| label: pivot-with-transform-name
+statsci_majors_longer <- statsci_majors |>
+  pivot_longer(
+    cols = !c(department, academic_plan),
+    names_to = "year",
+    names_transform = as.numeric,
+    values_to = "n"
+  )
+```
+
+## Plotting
+
+-   **Your turn:** Now we will start making our plot, but let's not get too fancy right away. Just get the geoms right for now and use default colors for different academic plans.
+
+```{r}
+#| label: plot-draft
+statsci_majors_longer |>
+  ggplot(aes(x = year, y = n, color = academic_plan)) +
+  geom_point() +
+  geom_line()
+```
+
+-   **Question**: Why was the pivot necessary in order to create this plot?
+
+*Add your response here!*
+
+-   **Question:** What aspects of the plot need to be updated still?
+
+*Add your response here.*
+
+-  **Demo:** Update `statsci_majors_longer` to fix the discontinuities.
+
+```{r}
+#| label: pivot-again
+statsci_majors_longer <- statsci_majors_longer |>
+  mutate(n = if_else(is.na(n), 0, n))
+```
+
+-   **Demo:** Update x-axis scale such that the years displayed go from 2011 to 2025 in increments of 2 years. Do this by adding on to your pipeline from earlier.
+
+```{r}
+#| label: plot-improve-1
+statsci_majors_longer |>
+  ggplot(aes(x = year, y = n, color = academic_plan)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(breaks = seq(2011, 2025, 2))
+```
+
+-   **Demo:** Update line colors using the following level / color assignments. Once again, do this by adding on to your pipeline from earlier.
+    -   "BS" = "cadetblue4"
+
+    -   "BS2" = "cadetblue3"
+
+    -   "BA" = "lightgoldenrod4"
+
+    -   "BA2" = "lightgoldenrod3"
+
+```{r}
+#| label: plot-improve-2
+statsci_majors_longer |>
+  ggplot(aes(x = year, y = n, color = academic_plan)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(breaks = seq(2011, 2025, 2)) +
+  scale_color_manual(
+    values = c(
+      "BS" = "cadetblue4",
+      "BS2" = "cadetblue3",
+      "BA" = "lightgoldenrod4",
+      "BA2" = "lightgoldenrod3"
+    )
+  )
+```
+
+-   **Your turn:** Update the plot labels (`title`, `subtitle`, `x`, `y`, and `caption`) and use `theme_minimal()`. Once again, do this by adding on to your pipeline from earlier.
+
+```{r}
+#| label: plot-improve-3
+statsci_majors_longer |>
+  ggplot(aes(x = year, y = n, color = academic_plan)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(breaks = seq(2011, 2025, 2)) +
+  scale_color_manual(
+    values = c(
+      "BS" = "cadetblue4",
+      "BS2" = "cadetblue3",
+      "BA" = "lightgoldenrod4",
+      "BA2" = "lightgoldenrod3"
+    )
+  ) +
+  labs(
+    x = "Graduation year",
+    y = "Number of majors graduating",
+    color = "Degree type",
+    title = "Statistical Science majors over the years",
+    subtitle = "Academic years 2012 - 2026",
+    caption = "Source: Office of the University Registrar\nhttps://registrar.duke.edu/registration/enrollment-statistics"
+  ) +
+  theme_minimal()
+```
+
+-   **Demo:** Move the legend into the plot, make its background white, and its border gray.
+
+```{r}
+#| label: plot-improve-4
+statsci_majors_longer |>
+  ggplot(aes(x = year, y = n, color = academic_plan)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(breaks = seq(2011, 2025, 2)) +
+  scale_color_manual(
+    values = c(
+      "BS" = "cadetblue4",
+      "BS2" = "cadetblue3",
+      "BA" = "lightgoldenrod4",
+      "BA2" = "lightgoldenrod3"
+    )
+  ) +
+  labs(
+    x = "Graduation year",
+    y = "Number of majors graduating",
+    color = "Degree type",
+    title = "Statistical Science majors over the years",
+    subtitle = "Academic years 2012 - 2026",
+    caption = "Source: Office of the University Registrar\nhttps://registrar.duke.edu/registration/enrollment-statistics"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.1, 0.7),
+    legend.background = element_rect(fill = "white", color = "grey")
+  )
+```
+
+-   **Demo:** Finally, set `fig-width: 8` and `fig-height: 5` for your plot in the chunk options.
+
+```{r}
+#| label: plot-improve-5
+#| fig-width: 8
+#| fig-height: 5
+statsci_majors_longer |>
+  ggplot(aes(x = year, y = n, color = academic_plan)) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(breaks = seq(2011, 2025, 2)) +
+  scale_color_manual(
+    values = c(
+      "BS" = "cadetblue4",
+      "BS2" = "cadetblue3",
+      "BA" = "lightgoldenrod4",
+      "BA2" = "lightgoldenrod3"
+    )
+  ) +
+  labs(
+    x = "Graduation year",
+    y = "Number of majors graduating",
+    color = "Degree type",
+    title = "Statistical Science majors over the years",
+    subtitle = "Academic years 2012 - 2026",
+    caption = "Source: Office of the University Registrar\nhttps://registrar.duke.edu/registration/enrollment-statistics"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.1, 0.7),
+    legend.background = element_rect(fill = "white", color = "grey")
+  )
+```

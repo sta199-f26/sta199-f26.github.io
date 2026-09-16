@@ -1,5 +1,6 @@
 ---
 title: "AE 03: Tidying Stat Sci majors"
+subtitle: "Suggested answers"
 categories: 
   - Application exercise
   - Answers
@@ -45,26 +46,14 @@ statsci_majors
 
 ```{r}
 #| label: pivot
-statsci_majors |>
-  pivot_longer(
-    cols = !c(department, academic_plan),
-    names_to = "year",
-    values_to = "n",
-    names_transform = as.numeric
-  )
+# add code here
 ```
 
 -   **Your Turn:** Now, repeat your code from above, but this time **save the result** to a **new** variable name.
 
 ```{r}
 #| label: pivot-with-transform-name
-statsci_majors_longer <- statsci_majors |>
-  pivot_longer(
-    cols = !c(department, academic_plan),
-    names_to = "year",
-    names_transform = as.numeric,
-    values_to = "n"
-  )
+# add code here
 ```
 
 ## Plotting
@@ -73,10 +62,7 @@ statsci_majors_longer <- statsci_majors |>
 
 ```{r}
 #| label: plot-draft
-statsci_majors_longer |>
-  ggplot(aes(x = year, y = n, color = academic_plan)) +
-  geom_point() +
-  geom_line()
+# add code here
 ```
 
 -   **Question**: Why was the pivot necessary in order to create this plot?
@@ -91,19 +77,14 @@ statsci_majors_longer |>
 
 ```{r}
 #| label: pivot-again
-statsci_majors_longer <- statsci_majors_longer |>
-  mutate(n = if_else(is.na(n), 0, n))
+# add code here
 ```
 
--   **Demo:** Update x-axis scale such that the years displayed go from 2011 to 2025 in increments of 2 years. Do this by adding on to your pipeline from earlier.
+-   **Demo:** Update x-axis scale such that the years displayed go from 2012 to 2026 in increments of 2 years. Do this by adding on to your pipeline from earlier.
 
 ```{r}
 #| label: plot-improve-1
-statsci_majors_longer |>
-  ggplot(aes(x = year, y = n, color = academic_plan)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous(breaks = seq(2011, 2025, 2))
+# add code here
 ```
 
 -   **Demo:** Update line colors using the following level / color assignments. Once again, do this by adding on to your pipeline from earlier.
@@ -117,80 +98,21 @@ statsci_majors_longer |>
 
 ```{r}
 #| label: plot-improve-2
-statsci_majors_longer |>
-  ggplot(aes(x = year, y = n, color = academic_plan)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous(breaks = seq(2011, 2025, 2)) +
-  scale_color_manual(
-    values = c(
-      "BS" = "cadetblue4",
-      "BS2" = "cadetblue3",
-      "BA" = "lightgoldenrod4",
-      "BA2" = "lightgoldenrod3"
-    )
-  )
+# add code here
 ```
 
 -   **Your turn:** Update the plot labels (`title`, `subtitle`, `x`, `y`, and `caption`) and use `theme_minimal()`. Once again, do this by adding on to your pipeline from earlier.
 
 ```{r}
 #| label: plot-improve-3
-statsci_majors_longer |>
-  ggplot(aes(x = year, y = n, color = academic_plan)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous(breaks = seq(2011, 2025, 2)) +
-  scale_color_manual(
-    values = c(
-      "BS" = "cadetblue4",
-      "BS2" = "cadetblue3",
-      "BA" = "lightgoldenrod4",
-      "BA2" = "lightgoldenrod3"
-    )
-  ) +
-  labs(
-    x = "Graduation year",
-    y = "Number of majors graduating",
-    color = "Degree type",
-    title = "Statistical Science majors over the years",
-    subtitle = "Academic years 2012 - 2026",
-    caption = "Source: Office of the University Registrar\nhttps://registrar.duke.edu/registration/enrollment-statistics"
-  ) +
-  theme_minimal()
+# add code here
 ```
 
 -   **Demo:** Move the legend into the plot, make its background white, and its border gray.
 
 ```{r}
 #| label: plot-improve-4
-statsci_majors_longer |>
-  ggplot(aes(x = year, y = n, color = academic_plan)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous(breaks = seq(2011, 2025, 2)) +
-  scale_color_manual(
-    values = c(
-      "BS" = "cadetblue4",
-      "BS2" = "cadetblue3",
-      "BA" = "lightgoldenrod4",
-      "BA2" = "lightgoldenrod3"
-    )
-  ) +
-  labs(
-    x = "Graduation year",
-    y = "Number of majors graduating",
-    color = "Degree type",
-    title = "Statistical Science majors over the years",
-    subtitle = "Academic years 2012 - 2026",
-    caption = "Source: Office of the University Registrar\nhttps://registrar.duke.edu/registration/enrollment-statistics"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "inside",
-    legend.position.inside = c(0.1, 0.7),
-    legend.background = element_rect(fill = "white", color = "grey")
-  )
+# add code here
 ```
 
 -   **Demo:** Finally, set `fig-width: 8` and `fig-height: 5` for your plot in the chunk options.
@@ -199,31 +121,5 @@ statsci_majors_longer |>
 #| label: plot-improve-5
 #| fig-width: 8
 #| fig-height: 5
-statsci_majors_longer |>
-  ggplot(aes(x = year, y = n, color = academic_plan)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous(breaks = seq(2011, 2025, 2)) +
-  scale_color_manual(
-    values = c(
-      "BS" = "cadetblue4",
-      "BS2" = "cadetblue3",
-      "BA" = "lightgoldenrod4",
-      "BA2" = "lightgoldenrod3"
-    )
-  ) +
-  labs(
-    x = "Graduation year",
-    y = "Number of majors graduating",
-    color = "Degree type",
-    title = "Statistical Science majors over the years",
-    subtitle = "Academic years 2012 - 2026",
-    caption = "Source: Office of the University Registrar\nhttps://registrar.duke.edu/registration/enrollment-statistics"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "inside",
-    legend.position.inside = c(0.1, 0.7),
-    legend.background = element_rect(fill = "white", color = "grey")
-  )
+# add code here
 ```
