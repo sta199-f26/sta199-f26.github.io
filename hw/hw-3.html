@@ -575,11 +575,11 @@ window.Quarto = {
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
 <p>Inflation makes headlines, but a single number can hide differences across countries, years, and the goods and services people buy. In this homework, you will explore these differences using inflation data from the Organisation for Economic Co-operation and Development (OECD).</p>
 <p>You will begin with annual inflation rates for countries around the world from 1993 to 2025, comparing countries and examining how their inflation rates have changed over time. Then, you will focus on the United States, using annual inflation rates for 12 Consumer Price Index (CPI) expenditure categories, such as food, housing, and health. These data let you explore whether different types of household expenses have followed similar patterns over time.</p>
-<p>Along the way, you will reshape and join data, and create time series plots to communicate your findings.</p>
+<p>Along the way, you will reshape and join data and create time series plots to communicate your findings.</p>
 <section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <p>By the end of this homework, you will:</p>
 <ul>
-<li>use transform and summarize data while accounting for missing values;</li>
+<li>transform and summarize data while accounting for missing values;</li>
 <li>reshape data;</li>
 <li>join data frames using keys with different column names;</li>
 <li>create and customize time series plots; and</li>
@@ -630,7 +630,7 @@ Note
 <p>You may choose to load other packages as needed, particularly for improving your plots. If you do so, add the functions to load these packages in the code cell labeled <code>load-packages</code>.</p>
 </section><section id="questions" class="level1"><h1>Questions</h1>
 <section id="part-1-inflation-around-the-world" class="level2"><h2 class="anchored" data-anchor-id="part-1-inflation-around-the-world">Part 1: Inflation around the world</h2>
-<p>For this part of the analysis you will work with inflation data from various countries in the world over 30 years.</p>
+<p>For this part of the analysis, you will work with inflation data from countries around the world spanning more than 30 years.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country_inflation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/country-inflation.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -663,10 +663,10 @@ Tip
 <p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”. Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-2" class="level3"><h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
-<p>2024 is the last year for which we have data on United States inflation, so we’ll focus on that year for this question.</p>
+<p>2024 is the last year for which we have data on inflation in the United States, so we’ll focus on that year for this question.</p>
 <ol type="a">
-<li><p>Which countries had the top three highest inflation rates in 2024? Your output must be a data frame with two columns, <code>country</code> and <code>2024</code>, with inflation rates in descending order, and three rows for the top three countries.</p></li>
-<li><p>Briefly comment on how the inflation rates for these countries compare to the inflation rate for United States in that year.</p></li>
+<li><p>Which countries had the three highest inflation rates in 2024? Your output must be a data frame with two columns, <code>country</code> and <code>2024</code>, with inflation rates in descending order, and three rows for the top three countries.</p></li>
+<li><p>Briefly comment on how the inflation rates for these countries compare to the inflation rate for the United States in that year.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -678,20 +678,20 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Column names that are numbers are not considered “proper” in R, therefore to select them you’ll need to surround them with backticks (`).</p>
+<p>Column names that are numbers are not considered “proper” in R, so you’ll need to surround them with backticks (`) to select them.</p>
 </div>
 </div>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-3" class="level3"><h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
-<p>Let’s next focus on years 1993 and 2025, which are the first and last years in the dataset.</p>
+<p>Let’s next focus on the years 1993 and 2025, which are the first and last years in the dataset.</p>
 <ol type="a">
 <li>
 <p>In a single pipeline,</p>
 <ul>
 <li>filter the <code>country_inflation</code> data frame to include only the countries that have inflation data for both 1993 and 2025,</li>
-<li>then, calculate the ratio of the inflation in 2025 and inflation in 1993 for each country and store this information in a new column called <code>inf_ratio</code>,</li>
+<li>then, calculate the ratio of the inflation rate in 2025 to the inflation rate in 1993 for each country and store this information in a new column called <code>inf_ratio</code>,</li>
 <li>then, select the variables <code>country</code> and <code>inf_ratio</code>, and</li>
 <li>store the result in a new data frame called <code>country_inflation_ratios</code>.</li>
 </ul>
@@ -732,7 +732,7 @@ Requirements
 <p>This would be a good time to get feedback from AI if you haven’t yet done so! Just launch Codex in Positron and ask it to review your answer for Question 4, or any earlier question(s).</p>
 </div>
 </section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
-<p>Use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4 to answer this questions.</p>
+<p>Use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4 to answer this question.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -752,20 +752,20 @@ Requirements
 <ol type="a">
 <li><p>What is the highest inflation rate observed between 1993 and 2025? The output of the pipeline must be a data frame with one row and three columns. In addition to code and output, your response must include a single sentence stating the country and year.</p></li>
 <li><p>What is the lowest inflation rate observed between 1993 and 2025? The output of the pipeline must be a data frame with one row and three columns. In addition to code and output, your response must include a single sentence stating the country and year.</p></li>
-<li><p>Putting (a) and (b) together: What are the highest and the lowest inflation rates observed between 1993 and 2025? The output of the pipeline must be a data frame with two rows and three columns, with the first rows corresponding to the highest and lowest inflation rates you identified in parts (a) and (b).</p></li>
+<li><p>Putting (a) and (b) together: What are the highest and the lowest inflation rates observed between 1993 and 2025? The output of the pipeline must be a data frame with two rows and three columns, with the rows corresponding to the highest and lowest inflation rates you identified in parts (a) and (b).</p></li>
 </ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
 </section><section id="question-6" class="level3"><h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
-<p>Once again, use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4 to answer this questions.</p>
+<p>Once again, use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4 to answer this question.</p>
 <ol type="a">
-<li>Create a vector called <code>countries_of_interest</code> which contains the names of up to five countries you want to visualize the inflation rates for over the years. For example, if these countries are Türkiye and United States, you can express this as follows:</li>
+<li>Create a vector called <code>countries_of_interest</code> which contains the names of up to five countries you want to visualize the inflation rates for over the years. For example, if these countries are Türkiye and the United States, you can express this as follows:</li>
 </ol>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If they are Türkiye, United States, and Chile, you can express this as follows:</p>
+<p>If they are Türkiye, the United States, and Chile, you can express this as follows:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span>, <span class="st">"Chile"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -780,7 +780,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Your <code>countries_of_interest</code> must consist of no more than five countries. Make sure that the spelling of your countries matches how they appear in the dataset.</p>
+<p>Your <code>countries_of_interest</code> must consist of no more than five countries. Make sure that the country names are spelled exactly as they appear in the dataset.</p>
 </div>
 </div>
 <ol start="2" type="a">
@@ -815,10 +815,10 @@ Requirements
 <p>In your plot:</p>
 <ul>
 <li>Data must be represented with points as well as lines connecting the points for each country.</li>
-<li>Each country must be represented by a different color line and different color and shape points.</li>
-<li>Axes and legend must be properly labeled.</li>
+<li>Each country must be represented by a distinct line color and by points with a matching color and a distinct shape.</li>
+<li>The axes and legend must be properly labeled.</li>
 <li>The plot must have an appropriate title (and optionally a subtitle).</li>
-<li>Plot must be customized in at least one way – you could use a different than default color scale, or different than default theme, or some other customization(s).</li>
+<li>The plot must be customized in at least one way – you could change the default color scale or theme, or make other customizations.</li>
 </ul>
 </div>
 </div>
@@ -835,8 +835,8 @@ Requirements
 <p>The main measure of inflation is the annual inflation rate which is the movement of the Consumer Price Index (CPI) from one month/period to the same month/period of the previous year expressed as percentage over time.</p>
 <p>Source: <a href="https://www.oecd.org/sdd/prices-ppp/consumerpriceindices-frequentlyaskedquestionsfaqs.htm#1">OECD CPI FAQ</a></p>
 </blockquote>
-<p>CPI is broken down into 12 expenditures such as food, housing, health, etc. Your goal in this part is to create another time series plot of annual inflation, this time for US only.</p>
-<p>The data you will need to create this visualization is spread across two files:</p>
+<p>CPI is broken down into 12 expenditure categories, such as food, housing, and health. Your goal in this part is to create another time series plot of annual inflation, this time for the US only.</p>
+<p>The data you will need to create this visualization are spread across two files:</p>
 <ul>
 <li>
 <code>us-inflation.csv</code>: Annual inflation rate for the US for 12 CPI expenditures. Each expenditure is identified by an ID number.</li>
@@ -850,8 +850,8 @@ Requirements
 </div>
 <section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
 <ol type="a">
-<li><p>How many columns and how many rows does the <code>us_inflation</code> dataset have? What are the variables in it? Which years do these data span? Write a brief (1-2 sentences) narrative summarizing this information.</p></li>
-<li><p>How many columns and how many rows does the <code>cpi_expenditures</code> dataset have? What are the variables in it? Write a brief (1-2 sentences) narrative summarizing this information.</p></li>
+<li><p>How many columns and how many rows does the <code>us_inflation</code> dataset have? What are the variables in it? Which years do these data span? Write a brief narrative (1-2 sentences) summarizing this information.</p></li>
+<li><p>How many columns and how many rows does the <code>cpi_expenditures</code> dataset have? What are the variables in it? Write a brief narrative (1-2 sentences) summarizing this information.</p></li>
 <li><p>Create a new dataset by joining the <code>us_inflation</code> dataset with the <code>cpi_expenditures</code> dataset.</p></li>
 </ol>
 <ul>
@@ -859,13 +859,13 @@ Requirements
 <li><p>Note that the two datasets don’t have a variable with a common name, though they do have variables that contain common information but are named differently. You will need to first figure out which variables those are, and then define the <code>by</code> argument and use the <code><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by()</a></code> function to indicate these variables to join the datasets by.</p></li>
 <li><p>Use a short but informative name for the joined dataset, and do not overwrite either of the datasets that go into creating it.</p></li>
 </ul>
-<p>Then, find the number of rows and columns of the resulting dataset and report the names of its columns. Add a brief (1-2 sentences) narrative summarizing this information.</p>
+<p>Then, find the number of rows and columns of the resulting dataset and report the names of its columns. Add a brief narrative (1-2 sentences) summarizing this information.</p>
 <div class="source-control">
 <p>You know what to do!</p>
 </div>
 </section><section id="question-8" class="level3"><h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
 <ol type="a">
-<li>Create a vector called <code>expenditures_of_interest</code> which contains the descriptions or IDs of CPI expenditures you want to visualize. Your <code>expenditures_of_interest</code> must consist of no more than five expenditures. If you’re using descriptions, make sure that the spelling of your expenditures matches how they appear in the dataset. Then, in 1-2 sentences, state why you chose these expenditures.</li>
+<li>Create a vector called <code>expenditures_of_interest</code> which contains the descriptions or IDs of CPI expenditures you want to visualize. Your <code>expenditures_of_interest</code> must consist of no more than five expenditures. If you’re using descriptions, make sure that the expenditure descriptions are spelled exactly as they appear in the dataset. Then, in 1-2 sentences, state why you chose these expenditures.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -901,11 +901,11 @@ Requirements
 <p>In your plot:</p>
 <ul>
 <li>Data must be represented with points as well as lines connecting the points for each expenditure.</li>
-<li>Each expenditure must be represented by a different color line and different color and shape points.</li>
-<li>Axes and legend must be properly labeled.</li>
+<li>Each expenditure must be represented by a distinct line color and by points with a matching color and a distinct shape.</li>
+<li>The axes and legend must be properly labeled.</li>
 <li>The plot must have an appropriate title (and optionally a subtitle).</li>
-<li>Plot must be customized in at least one way – you could use a different than default color scale, or different than default theme, or some other customization.</li>
-<li>If your legend has labels that are too long, you can try moving the legend to the bottom and stack the labels vertically. <em>Hint:</em> The <code>legend.position</code> and <code>legend.direction</code> arguments of the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> functions will be useful.</li>
+<li>The plot must be customized in at least one way – you could change the default color scale or theme, or make other customizations.</li>
+<li>If your legend has labels that are too long, you can try moving the legend to the bottom and stacking the labels vertically. <em>Hint:</em> The <code>legend.position</code> and <code>legend.direction</code> arguments of the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function will be useful.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
