@@ -1,0 +1,199 @@
+---
+title: HW 3 Rubric
+subtitle: Rubric
+search: false
+---
+
+This is the rubric for AI feedback, not necessarily the rubric for grading.
+
+# Part 1
+
+## Question 1
+
+1.  Part a - Code uses `glimpse()` to inspect `country_inflation`.
+
+2.  Part a - Narrative reports 38 rows and 34 columns.
+
+3.  Part a - Narrative states that each row represents a country.
+
+4.  Part a - Narrative explains that `country` contains country names and the remaining columns contain annual inflation rates for 1993 through 2025.
+
+5.  Part b - Code identifies distinct countries with `distinct()` or an equivalent approach.
+
+6.  Part b - Output displays all 38 country names without truncation.
+
+7.  Part b - Narrative reports 38 distinct countries.
+
+8.  Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 2
+
+1.  Part a - Code selects the `country` and `2024` columns.
+
+2.  Part a - Code arranges inflation rates in descending order and retains the top three countries.
+
+3.  Part a - Output has three rows and two columns, showing Türkiye, Colombia, and Iceland with their correct 2024 inflation rates.
+
+4.  Part b - Response correctly identifies the US inflation rate as approximately 2.95%.
+
+5.  Part b - Narrative compares the inflation rates of all three countries to the US rate, correctly describing Türkiye’s rate as about 20 times, Colombia’s as over twice, and Iceland’s as almost twice the US rate.
+    Equivalent accurate comparisons are acceptable.
+
+6.  Narrative consistently refers to 2024 and correctly names the countries.
+
+7.  Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 3
+
+1.  Part a - Code uses a single pipeline starting with `country_inflation`.
+
+2.  Part a - Code retains only countries with nonmissing inflation data for both 1993 and 2025.
+
+3.  Part a - Code creates `inf_ratio` as `2025` divided by `1993`.
+
+4.  Part a - Code selects only `country` and `inf_ratio`, in that order.
+
+5.  Part a - Code saves the result as `country_inflation_ratios`.
+
+6.  Part b - A separate pipeline displays the data in ascending order of `inf_ratio`.
+
+7.  Part b - A separate pipeline displays the data in descending order of `inf_ratio`.
+
+8.  Part c - Narrative identifies New Zealand and correctly describes its ratio of approximately 2.20 or increase of about 120%.
+
+9.  Part d - Narrative identifies Lithuania and correctly describes its ratio of approximately 0.00924 or decrease of about 99.1%.
+
+10. Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 4
+
+1.  Code uses `pivot_longer()` to reshape the year columns while retaining `country` as an identifier.
+
+2.  The resulting data frame has one row per country/year combination, with separate columns for country, year, and annual inflation.
+
+3.  The pivoting function converts the year variable to numeric.
+
+4.  Code saves the result with a new, short, informative name without overwriting `country_inflation`.
+
+5.  Code displays the resulting data frame.
+
+6.  Narrative correctly reports 1,254 rows and 3 columns and names the resulting columns.
+
+7.  Narrative states that each row represents a country/year combination.
+
+8.  Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 5
+
+1.  Each part uses a separate, single pipeline starting with the pivoted dataset.
+
+2.  Part a - Code uses `filter()` with `max()` to identify the highest inflation rate.
+
+3.  Part a - Output has one row and three columns, and the narrative identifies Lithuania in 1993 with an inflation rate of approximately 410%.
+
+4.  Part b - Code uses `filter()` with `min()` to identify the lowest inflation rate.
+
+5.  Part b - Output has one row and three columns, and the narrative identifies Ireland in 2009 with an inflation rate of approximately -4.45%.
+
+6.  Code handles missing inflation values appropriately when calculating the minimum and maximum.
+
+7.  Part c - Code uses `filter()` to retain both extremes, producing two rows and three columns.
+
+8.  Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 6
+
+1.  Part a - Code creates `countries_of_interest` with one to five country names that match the dataset.
+
+2.  Part a - Narrative explains why these countries were selected.
+
+3.  Part b - A single pipeline correctly filters the pivoted data for the selected countries and saves the result with a new, short, informative name.
+
+4.  Part b - A separate pipeline uses `distinct()` to display the selected countries, matching the vector from Part a.
+
+5.  Part c - Plot uses the filtered data, with year on the x-axis and annual inflation on the y-axis.
+
+6.  Part c - Plot displays points and lines connecting observations for each country.
+
+7.  Part c - Countries have distinct colors for both lines and points and distinct point shapes.
+
+8.  Part c - Plot has an informative title and human-readable axis and legend labels, including inflation units.
+
+9.  Part c - Plot includes at least one customization, and the narrative explains how it was customized.
+
+10. Part d - Narrative accurately compares patterns across countries and discusses what is surprising or unsurprising in light of the student’s knowledge.
+
+11. Code style and readability: line breaks after each |> and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+# Part 2
+
+## Question 7
+
+1.  Part a - Narrative reports 168 rows and 4 columns.
+
+2.  Part a - Narrative names `country`, `cpi_expenditure_id`, `year`, and `annual_inflation`.
+
+3.  Part a - Narrative states that the data span 2011–2024.
+
+4.  Part b - Narrative reports 12 rows and 2 columns and names `id` and `description`.
+
+5.  Part c - Code uses an appropriate join to attach expenditure descriptions to the inflation observations.
+
+6.  Part c - Code specifies the matching keys using `join_by(cpi_expenditure_id == id)` or the equivalent with reversed table order.
+
+7.  Part c - Code saves the joined dataset with a new, short, informative name without overwriting either input.
+
+8.  Part c - Narrative reports 168 rows and 5 columns.
+
+9.  Part c - Narrative correctly names the joined dataset’s five columns.
+
+10. Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 8
+
+1.  Part a - Code creates `expenditures_of_interest` containing one to five valid expenditure IDs or descriptions.
+
+2.  Part a - Narrative explains why these expenditures were selected.
+
+3.  Part b - Code uses a single pipeline starting with the joined dataset.
+
+4.  Part b - Code correctly filters for all selected expenditures using `%in%` or an equivalent approach.
+
+5.  Part b - Code saves the filtered dataset with a new, short, informative name without overwriting the joined dataset.
+
+6.  Part b - A separate pipeline uses `distinct()` to display the expenditures in the filtered dataset.
+
+7.  Part b - The displayed expenditures match those selected in Part a.
+
+8.  Code style and readability: line breaks after each |>, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 9
+
+1.  Plot uses the filtered dataset from Question 8.
+
+2.  Code maps `year` to the x-axis and `annual_inflation` to the y-axis.
+
+3.  Plot displays points and lines connecting observations for each expenditure.
+
+4.  Expenditures have distinct colors for both lines and points.
+
+5.  Expenditures have distinct point shapes.
+
+6.  Plot has human-readable axis and legend labels, including inflation units.
+
+7.  Plot has an informative title and/or subtitle.
+
+8.  Plot includes at least one customization, such as a nondefault theme, color scale, or legend placement.
+
+9.  Narrative accurately compares patterns across expenditures and discusses what is surprising or unsurprising in light of the student’s knowledge.
+
+10. Code style and readability: line breaks after each |> and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
