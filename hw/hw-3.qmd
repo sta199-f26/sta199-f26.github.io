@@ -75,7 +75,8 @@ Let's first get to know the data.
 a.  `glimpse()` at the `country_inflation` data frame and answer the following questions based on the output.
     - How many rows does `country_inflation` have and what does each row represent?
     - How many columns does `country_inflation` have and what does each column represent?
-b.  Display the names of the countries included in the dataset. How many distinct countries are there?
+b.  Display the names of the countries included in the dataset.
+    How many distinct countries are there?
 
 ::: callout-tip
 Find distinct countries with `distinct()` and print all countries with `print(n = ___)` added to your pipeline, where the blank is the number of distinct countries.
@@ -137,9 +138,11 @@ Then, display the resulting data frame and write a sentence describing it, inclu
 ::: callout-warning
 ## Requirements
 
-- Your code must use a pivoting function. There are other ways you can do this reshaping move in R, but this question requires solving this problem by pivoting.
+- Your code must use a pivoting function.
+  There are other ways you can do this reshaping move in R, but this question requires solving this problem by pivoting.
 - Your pivoting function must also ensure that in the resulting data frame the year variable is numeric.
-- The resulting data frame must be saved as something other than `country_inflation` so you (1) can refer to this data frame later in your analysis and (2) do not overwrite `country_inflation`. You should choose a short but informative name.
+- The resulting data frame must be saved as something other than `country_inflation` so you (1) can refer to this data frame later in your analysis and (2) do not overwrite `country_inflation`.
+  You should choose a short but informative name.
 :::
 
 ::: openai
@@ -177,7 +180,8 @@ Preview, commit, and push your changes to GitHub with an informative and concise
 
 Once again, use the pivoted version of the `country_inflation` dataset that you created in Question 4 to answer this questions.
 
-a.  Create a vector called `countries_of_interest` which contains the names of up to five countries you want to visualize the inflation rates for over the years. For example, if these countries are Türkiye and United States, you can express this as follows:
+a.  Create a vector called `countries_of_interest` which contains the names of up to five countries you want to visualize the inflation rates for over the years.
+    For example, if these countries are Türkiye and United States, you can express this as follows:
 
 ```{r}
 countries_of_interest <- c("Türkiye", "United States")
@@ -198,7 +202,9 @@ Your `countries_of_interest` must consist of no more than five countries.
 Make sure that the spelling of your countries matches how they appear in the dataset.
 :::
 
-b.  In a single pipeline, filter your pivoted dataset to include only the `countries_of_interest` from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you're starting with. Use a short but informative name. Then, in a new pipeline, find the `distinct()` countries in the data frame you created.
+b.  In a single pipeline, filter your pivoted dataset to include only the `countries_of_interest` from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you're starting with.
+    Use a short but informative name.
+    Then, in a new pipeline, find the `distinct()` countries in the data frame you created.
 
 ::: callout-tip
 The number of distinct countries in the filtered data frame you created in part (b) must equal the number of countries you chose in part (a).
@@ -206,7 +212,8 @@ If it doesn't, you might have misspelled a country name or made a mistake in fil
 Go back and correct your work.
 :::
 
-c.  Using your data frame from part (b), create a plot of annual inflation vs. year for these countries. Then, in 1-2 sentences, state how you customized your plot.
+c.  Using your data frame from part (b), create a plot of annual inflation vs. year for these countries.
+    Then, in 1-2 sentences, state how you customized your plot.
 
 ::: callout-warning
 ## Requirements
@@ -242,7 +249,8 @@ Your goal in this part is to create another time series plot of annual inflation
 
 The data you will need to create this visualization is spread across two files:
 
-- `us-inflation.csv`: Annual inflation rate for the US for 12 CPI expenditures. Each expenditure is identified by an ID number.
+- `us-inflation.csv`: Annual inflation rate for the US for 12 CPI expenditures.
+  Each expenditure is identified by an ID number.
 - `cpi-expenditures.csv`: A "lookup table" of CPI expenditure ID numbers and their descriptions.
 
 Let's load both of these files.
@@ -281,13 +289,18 @@ You know what to do!
 
 ### Question 8
 
-a.  Create a vector called `expenditures_of_interest` which contains the descriptions or IDs of CPI expenditures you want to visualize. Your `expenditures_of_interest` must consist of no more than five expenditures. If you're using descriptions, make sure that the spelling of your expenditures matches how they appear in the dataset. Then, in 1-2 sentences, state why you chose these expenditures.
+a.  Create a vector called `expenditures_of_interest` which contains the descriptions or IDs of CPI expenditures you want to visualize.
+    Your `expenditures_of_interest` must consist of no more than five expenditures.
+    If you're using descriptions, make sure that the spelling of your expenditures matches how they appear in the dataset.
+    Then, in 1-2 sentences, state why you chose these expenditures.
 
 ::: callout-tip
 Refer back to the guidance provided in [Question 6] if you're not sure how to create this vector.
 :::
 
-b.  In a single pipeline, filter your joined dataset to include only the `expenditures_of_interest` from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you're starting with. Use a short but informative name. Then, in a new pipeline, find the `distinct()` expenditures in the data frame you created.
+b.  In a single pipeline, filter your joined dataset to include only the `expenditures_of_interest` from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you're starting with.
+    Use a short but informative name.
+    Then, in a new pipeline, find the `distinct()` expenditures in the data frame you created.
 
 ::: source-control
 You know what to do!
@@ -308,7 +321,8 @@ In your plot:
 - Axes and legend must be properly labeled.
 - The plot must have an appropriate title (and optionally a subtitle).
 - Plot must be customized in at least one way – you could use a different than default color scale, or different than default theme, or some other customization.
-- If your legend has labels that are too long, you can try moving the legend to the bottom and stack the labels vertically. *Hint:* The `legend.position` and `legend.direction` arguments of the `theme()` functions will be useful.
+- If your legend has labels that are too long, you can try moving the legend to the bottom and stack the labels vertically.
+  *Hint:* The `legend.position` and `legend.direction` arguments of the `theme()` functions will be useful.
 
 ```{r}
 ggplot(...) +
