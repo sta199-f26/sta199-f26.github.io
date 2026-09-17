@@ -65,6 +65,7 @@ If you do so, add the functions to load these packages in the code cell labeled 
 For this part of the analysis, you will work with inflation data from countries around the world spanning more than 30 years.
 
 ```{r}
+#| label: read-country-inflation
 country_inflation <- read_csv("data/country-inflation.csv")
 ```
 
@@ -256,6 +257,7 @@ The data you will need to create this visualization are spread across two files:
 Let's load both of these files.
 
 ```{r}
+#| label: read-us-inflation-cpi
 us_inflation <- read_csv("data/us-inflation.csv")
 cpi_expenditures <- read_csv("data/cpi-expenditures.csv")
 ```
