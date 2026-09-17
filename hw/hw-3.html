@@ -102,8 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><meta name="quarto:status" content="draft">
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -298,7 +297,7 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -536,12 +535,6 @@ window.Quarto = {
   <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
   </ul>
 </li>
-  <li>
-<a href="#part-3-handling-missing-values-after-joins" id="toc-part-3-handling-missing-values-after-joins" class="nav-link" data-scroll-target="#part-3-handling-missing-values-after-joins">Part 3: Handling missing values after joins</a>
-  <ul class="collapse">
-<li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
-  </ul>
-</li>
   </ul>
 </li>
   <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI use disclosure</a></li>
@@ -580,11 +573,18 @@ window.Quarto = {
 
 
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
-<p>TO DO: Add</p>
+<p>Inflation makes headlines, but a single number can hide differences across countries, years, and the goods and services people buy. In this homework, you will explore these differences using inflation data from the Organisation for Economic Co-operation and Development (OECD).</p>
+<p>You will begin with annual inflation rates for countries around the world from 1993 to 2025, comparing countries and examining how their inflation rates have changed over time. Then, you will focus on the United States, using annual inflation rates for 12 Consumer Price Index (CPI) expenditure categories, such as food, housing, and health. These data let you explore whether different types of household expenses have followed similar patterns over time.</p>
+<p>Along the way, you will reshape and join data, and create time series plots to communicate your findings.</p>
 <section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <p>By the end of this homework, you will:</p>
-<p>TO DO: Add</p>
-</section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<ul>
+<li>use transform and summarize data while accounting for missing values;</li>
+<li>reshape data;</li>
+<li>join data frames using keys with different column names;</li>
+<li>create and customize time series plots; and</li>
+<li>compare and interpret inflation trends across countries and CPI expenditure categories.</li>
+</ul></section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 </section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
 <p>The guidelines should feel familiar, as they are the same ones from earlier assignments. They are included below as a reminder.</p>
 <section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
@@ -635,7 +635,7 @@ Note
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country_inflation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/country-inflation.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="question-1" class="level3"><h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
-<p>Get to know the data.</p>
+<p>Let’s first get to know the data.</p>
 <ol type="a">
 <li>
 <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> at the <code>country_inflation</code> data frame and answer the following questions based on the output.
@@ -663,7 +663,11 @@ Tip
 <p>Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”. Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-2" class="level3"><h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
-<p>Which countries had the top three highest inflation rates in 2023? Your output must be a data frame with two columns, <code>country</code> and <code>2023</code>, with inflation rates in descending order, and three rows for the top three countries. Briefly comment on how the inflation rates for these countries compare to the inflation rate for United States in that year.</p>
+<p>2024 is the last year for which we have data on United States inflation, so we’ll focus on that year for this question.</p>
+<ol type="a">
+<li><p>Which countries had the top three highest inflation rates in 2024? Your output must be a data frame with two columns, <code>country</code> and <code>2024</code>, with inflation rates in descending order, and three rows for the top three countries.</p></li>
+<li><p>Briefly comment on how the inflation rates for these countries compare to the inflation rate for United States in that year.</p></li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -681,23 +685,32 @@ Tip
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-3" class="level3"><h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>Let’s next focus on years 1993 and 2025, which are the first and last years in the dataset.</p>
+<ol type="a">
+<li>
 <p>In a single pipeline,</p>
 <ul>
-<li>calculate the ratio of the inflation in 2023 and inflation in 1993 for each country and store this information in a new column called <code>inf_ratio</code>,</li>
-<li>select the variables <code>country</code> and <code>inf_ratio</code>, and</li>
+<li>filter the <code>country_inflation</code> data frame to include only the countries that have inflation data for both 1993 and 2025,</li>
+<li>then, calculate the ratio of the inflation in 2025 and inflation in 1993 for each country and store this information in a new column called <code>inf_ratio</code>,</li>
+<li>then, select the variables <code>country</code> and <code>inf_ratio</code>, and</li>
 <li>store the result in a new data frame called <code>country_inflation_ratios</code>.</li>
 </ul>
+</li>
+<li>
 <p>Then, in two separate pipelines,</p>
 <ul>
 <li>arrange <code>country_inflation_ratios</code> in increasing order of <code>inf_ratio</code> and</li>
 <li>arrange <code>country_inflation_ratios</code> in decreasing order of <code>inf_ratio</code>.</li>
 </ul>
-<p>Which country’s inflation increase is the largest over this time period and by how much? Which country’s inflation decrease is the largest over this time period and by how much?</p>
+</li>
+<li><p>Which country’s inflation increase is the largest over this time period and by how much?</p></li>
+<li><p>Which country’s inflation decrease is the largest over this time period and by how much?</p></li>
+</ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section><section id="question-4" class="level3"><h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
-<p>Reshape (pivot) <code>country_inflation</code> such that each row represents a country/year combination. Then, display the resulting data frame and state how many rows and columns it has and write a sentence stating the number of rows and columns as well as the names of the columns of the resulting data frame.</p>
+<p>Reshape (pivot) <code>country_inflation</code> such that each row represents a country/year combination. Then, display the resulting data frame and write a sentence describing it, including its dimensions (number of rows and columns) and the names of the columns.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -709,9 +722,9 @@ Requirements
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Your code must use one of <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> or <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>. There are other ways you can do this reshaping move in R, but this question requires solving this problem by pivoting.</li>
-<li>In your <code>pivot_*()</code> function, you must use <code>names_transform = as.numeric</code> as an argument to transform the variable type to numeric as you pivot the data so that in the resulting data frame the year variable is numeric.</li>
-<li>The resulting data frame must be saved as something other than <code>country_inflation</code> so you (1) can refer to this data frame later in your analysis and (2) do not overwrite <code>country_inflation</code>. Use a short but informative name.</li>
+<li>Your code must use a pivoting function. There are other ways you can do this reshaping move in R, but this question requires solving this problem by pivoting.</li>
+<li>Your pivoting function must also ensure that in the resulting data frame the year variable is numeric.</li>
+<li>The resulting data frame must be saved as something other than <code>country_inflation</code> so you (1) can refer to this data frame later in your analysis and (2) do not overwrite <code>country_inflation</code>. You should choose a short but informative name.</li>
 </ul>
 </div>
 </div>
@@ -719,28 +732,42 @@ Requirements
 <p>This would be a good time to get feedback from AI if you haven’t yet done so! Just launch Codex in Positron and ask it to review your answer for Question 4, or any earlier question(s).</p>
 </div>
 </section><section id="question-5" class="level3"><h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
-<p>Use a separate, single pipeline to answer each of the following questions.</p>
-<p>Requirement: Your code must use the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function for each part, not <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>.</p>
+<p>Use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4 to answer this questions.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Requirements
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>For each part, use a separate, single pipeline.</li>
+<li>Your code must use the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function for each part, not <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>.</li>
+</ul>
+</div>
+</div>
 <ol type="a">
-<li><p>What is the highest inflation rate observed between 1993 and 2023? The output of the pipeline must be a data frame with one row and three columns. In addition to code and output, your response must include a single sentence stating the country and year.</p></li>
-<li><p>What is the lowest inflation rate observed between 1993 and 2023? The output of the pipeline must be a data frame with one row and three columns. In addition to code and output, your response must include a single sentence stating the country and year.</p></li>
-<li><p>Putting (a) and (b) together: What are the highest and the lowest inflation rates observed between 1993 and 2023? The output of the pipeline must be a data frame with two rows and three columns.</p></li>
+<li><p>What is the highest inflation rate observed between 1993 and 2025? The output of the pipeline must be a data frame with one row and three columns. In addition to code and output, your response must include a single sentence stating the country and year.</p></li>
+<li><p>What is the lowest inflation rate observed between 1993 and 2025? The output of the pipeline must be a data frame with one row and three columns. In addition to code and output, your response must include a single sentence stating the country and year.</p></li>
+<li><p>Putting (a) and (b) together: What are the highest and the lowest inflation rates observed between 1993 and 2025? The output of the pipeline must be a data frame with two rows and three columns, with the first row corresponding to the highest inflation rate and the second row corresponding to the lowest inflation rate you identified in parts (a) and (b).</p></li>
 </ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
 </section><section id="question-6" class="level3"><h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
-<p>For this question you will use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4 of Part 1. Load this dataset from the CSV file you created at the end of Part 1. To do so, you can use the following code, which is already in your <code>hw-3-part-2.qmd</code> file. However, you’ll need to set <code>eval</code> to <code>true</code> in the code cell options so that this code runs when you render your Quarto document. And, before you can do that, you must have completed Question 4 of Part 1 and saved the pivoted data frame as a CSV file in your <code>data</code> folder as described in the previous section.</p>
+<p>Once again, use the pivoted version of the <code>country_inflation</code> dataset that you created in Question 4 to answer this questions.</p>
+<ol type="a">
+<li>Create a vector called <code>countries_of_interest</code> which contains the names of up to five countries you want to visualize the inflation rates for over the years. For example, if these countries are Türkiye and United States, you can express this as follows:</li>
+</ol>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">country_inflation_pivoted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/country-inflation-pivoted.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>a. Create a vector called <code>countries_of_interest</code> which contains the names of up to five countries you want to visualize the inflation rates for over the years. For example, if these countries are Türkiye and United States, you can express this as follows:</p>
-<div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If they are Türkiye, United States, and Chile, you can express this as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span>, <span class="st">"Chile"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">countries_of_interest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Türkiye"</span>, <span class="st">"United States"</span>, <span class="st">"Chile"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So on and so forth… Then, in 1-2 sentences, state why you chose these countries.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -756,7 +783,9 @@ Note
 <p>Your <code>countries_of_interest</code> must consist of no more than five countries. Make sure that the spelling of your countries matches how they appear in the dataset.</p>
 </div>
 </div>
-<p>b. In a single pipeline, filter your pivoted dataset to include only the <code>countries_of_interest</code> from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you’re starting with. Use a short but informative name. Then, in a new pipeline, find the <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> countries in the data frame you created.</p>
+<ol start="2" type="a">
+<li>In a single pipeline, filter your pivoted dataset to include only the <code>countries_of_interest</code> from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you’re starting with. Use a short but informative name. Then, in a new pipeline, find the <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> countries in the data frame you created.</li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -770,7 +799,9 @@ Tip
 <p>The number of distinct countries in the filtered data frame you created in part (b) must equal the number of countries you chose in part (a). If it doesn’t, you might have misspelled a country name or made a mistake in filtering for these countries. Go back and correct your work.</p>
 </div>
 </div>
-<p>c. Using your data frame from the previous question, create a plot of annual inflation vs.&nbsp;year for these countries. Then, in a few sentences, describe the patterns you observe in the plot, particularly focusing on anything you find surprising or not surprising, based on your knowledge (or lack thereof) of these countries’ economies.</p>
+<ol start="3" type="a">
+<li>Using your data frame from part (b), create a plot of annual inflation vs.&nbsp;year for these countries. Then, in 1-2 sentences, state how you customized your plot.</li>
+</ol>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -787,10 +818,13 @@ Requirements
 <li>Each country must be represented by a different color line and different color and shape points.</li>
 <li>Axes and legend must be properly labeled.</li>
 <li>The plot must have an appropriate title (and optionally a subtitle).</li>
-<li>Plot must be customized in at least one way – you could use a different than default color scale, or different than default theme, or some other customization.</li>
+<li>Plot must be customized in at least one way – you could use a different than default color scale, or different than default theme, or some other customization(s).</li>
 </ul>
 </div>
 </div>
+<ol start="4" type="a">
+<li>In a few sentences, describe the patterns you observe in your plot from part (c), particularly focusing on anything you find surprising or not surprising, based on your knowledge (or lack thereof) of these countries’ economies.</li>
+</ol>
 <div class="source-control">
 <p>You know what to do: Preview, commit, and push your changes to GitHub with an informative and concise commit message. Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
@@ -811,13 +845,15 @@ Requirements
 </ul>
 <p>Let’s load both of these files.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_inflation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/us-inflation.csv"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_inflation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/us-inflation.csv"</span><span class="op">)</span></span>
 <span><span class="va">cpi_expenditures</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/cpi-expenditures.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="question-7" class="level3"><h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
-<p>a. How many columns and how many rows does the <code>us_inflation</code> dataset have? What are the variables in it? Which years do these data span? Write a brief (1-2 sentences) narrative summarizing this information.</p>
-<p>b. How many columns and how many rows does the <code>cpi_expenditures</code> dataset have? What are the variables in it? Write a brief (1-2 sentences) narrative summarizing this information.</p>
-<p>c. Create a new dataset by joining the <code>us_inflation</code> dataset with the <code>cpi_expenditures</code> dataset.</p>
+<ol type="a">
+<li><p>How many columns and how many rows does the <code>us_inflation</code> dataset have? What are the variables in it? Which years do these data span? Write a brief (1-2 sentences) narrative summarizing this information.</p></li>
+<li><p>How many columns and how many rows does the <code>cpi_expenditures</code> dataset have? What are the variables in it? Write a brief (1-2 sentences) narrative summarizing this information.</p></li>
+<li><p>Create a new dataset by joining the <code>us_inflation</code> dataset with the <code>cpi_expenditures</code> dataset.</p></li>
+</ol>
 <ul>
 <li><p>Determine which type of join is the most appropriate one and use that.</p></li>
 <li><p>Note that the two datasets don’t have a variable with a common name, though they do have variables that contain common information but are named differently. You will need to first figure out which variables those are, and then define the <code>by</code> argument and use the <code><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by()</a></code> function to indicate these variables to join the datasets by.</p></li>
@@ -828,7 +864,9 @@ Requirements
 <p>You know what to do!</p>
 </div>
 </section><section id="question-8" class="level3"><h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
-<p>a. Create a vector called <code>expenditures_of_interest</code> which contains the descriptions or IDs of CPI expenditures you want to visualize. Your <code>expenditures_of_interest</code> must consist of no more than five expenditures. If you’re using descriptions, make sure that the spelling of your expenditures matches how they appear in the dataset. Then, in 1-2 sentences, state why you chose these expenditures.</p>
+<ol type="a">
+<li>Create a vector called <code>expenditures_of_interest</code> which contains the descriptions or IDs of CPI expenditures you want to visualize. Your <code>expenditures_of_interest</code> must consist of no more than five expenditures. If you’re using descriptions, make sure that the spelling of your expenditures matches how they appear in the dataset. Then, in 1-2 sentences, state why you chose these expenditures.</li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -842,7 +880,9 @@ Tip
 <p>Refer back to the guidance provided in <a href="#question-6">Question 6</a> if you’re not sure how to create this vector.</p>
 </div>
 </div>
-<p>b. In a single pipeline, filter your joined dataset to include only the <code>expenditures_of_interest</code> from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you’re starting with. Use a short but informative name. Then, in a new pipeline, find the <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> expenditures in the data frame you created.</p>
+<ol start="2" type="a">
+<li>In a single pipeline, filter your joined dataset to include only the <code>expenditures_of_interest</code> from part (a), and save the resulting data frame with a new name so you (1) can refer to this data frame later in your analysis and (2) do not overwrite the data frame you’re starting with. Use a short but informative name. Then, in a new pipeline, find the <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> expenditures in the data frame you created.</li>
+</ol>
 <div class="source-control">
 <p>You know what to do!</p>
 </div>
@@ -868,7 +908,7 @@ Requirements
 <li>If your legend has labels that are too long, you can try moving the legend to the bottom and stack the labels vertically. <em>Hint:</em> The <code>legend.position</code> and <code>legend.direction</code> arguments of the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> functions will be useful.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">...</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
 <span>    legend.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
@@ -879,25 +919,6 @@ Requirements
 </div>
 <div class="openai">
 <p>This would be a good time to get feedback from AI if you haven’t yet done so! Just launch Codex in Positron and ask it to review your answer for Question 9, or any earlier question(s).</p>
-</div>
-</section></section><section id="part-3-handling-missing-values-after-joins" class="level2"><h2 class="anchored" data-anchor-id="part-3-handling-missing-values-after-joins">Part 3: Handling missing values after joins</h2>
-<section id="question-10" class="level3"><h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
-<p>In class, we worked with the <code>sales_taxes</code> dataset and joined it to another dataset called <code>us_regions</code> so that we ended up with a data frame containing information on each state (plus DC), sales tax rate in that state, and the region the state is in. While DC was in our first dataset, it was not in the second, resulting in an <code>NA</code> value for the <code>region</code> variable in the joined dataset. We discussed that there are three approaches we could take to address this issue before calculating the average sales tax of states in each region.</p>
-<p>a. Read in the two datasets, <code>sales-taxes-25.csv</code> and <code>us-regions.csv</code>, which are both in your <code>data</code> folder. Then, join the two datasets using the appropriate type of join to be able to calculate the average sales tax rate by region, not overwriting either data frame that goes into the join.</p>
-<p>b. Apply the three approaches we discussed in class to address the issue that DC has an <code>NA</code> value for <code>region</code> in the joined dataset, and then calculate the average sales tax of states in each region.</p>
-<p>c. Choose one of the three approaches as the “most appropriate” approach and provide a brief (1-2 sentences) rationale for your choice.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can refer back to <a href="../ae/ae-06-taxes-join-A.qmd">AE 06: Sales taxes + data joining</a> if you need a reminder of these data and how to join them.</p>
-</div>
 </div>
 <div class="source-control">
 <p>You know what to do!</p>
