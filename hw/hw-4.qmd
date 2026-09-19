@@ -1,9 +1,200 @@
 ---
 title: HW 4
-subtitle: To be posted 
+subtitle: Slam dunks and shaken trust
 description: "Due: Wed, Sep 30, 11:59 pm"
 categories: HW
 filters:
   - ../remove-fmt-skip.lua
 draft: true
 ---
+
+# Packages
+
+In addition to the [**tidyverse**](https://www.tidyverse.org/packages) package, you will also need the [**readxl**](https://readxl.tidyverse.org/) and the [**janitor**](https://sfirke.github.io/janitor/) packages.
+Your analysis must use these packages.
+
+```{r}
+#| message: false
+library(tidyverse)
+library(readxl)
+library(janitor)
+```
+
+# Part 1 - Slam dunks
+
+The [NBA Draft Combine](https://en.wikipedia.org/wiki/NBA_draft_combine) is a multiple day event that takes place every May before the NBA draft in June.
+At the combine, college basketball players take medical tests, are interviewed, perform various athletic tests and shooting drills, and play in five-on-five drills for an audience of National Basketball Association (NBA) coaches, general managers, and scouts.
+How an athlete measures and performs during the combine can affect perception, draft status, salary, and the player's future career.
+These stats are posted annually at <https://www.nba.com/stats/draft/combine-anthro>, which is where the data you'll be using comes from.
+
+## Data
+
+The data are stored in two sheets of a single Excel file called `nba-draft-combine-2627.xlsx`, which is in your `data` folder.
+The two sheets and their contents are as follows:
+
+**Sheet 1: `2026 Draft Player Stats`**
+
+Player names, positions, and anthropometric measurements (i.e., measurements of the player's body dimensions and shape), and strength and agility statistics.
+
+-   position: If you're curious, you can read more about basketball positions [on Wikipedia](https://en.wikipedia.org/wiki/Basketball_positions). However, you don't need to know anything about basketball to successfully complete the homework. Possible positions are:
+
+    -   C: Center
+    -   PF: Power Forward
+    -   PG: Point Guard
+    -   SF: Small Forward
+    -   SG: Shooting Guard
+
+
+-   hand length (in inches)
+-   hand width (in inches)
+-   height without shoes (in feet and inches, e.g., 6' 10.50'' = 6 feet 10.5 inches)
+-   height with shoes (in feet and inches)
+-   standing reach (in feet and inches)
+-   weight (in pounds)
+-   wingspan (in feet and inches)
+-   lane agility time (in seconds, lower the better)
+-   shuttle run (in seconds, lower the better)
+-   three quarter sprint (in seconds, lower the better)
+-   standing vertical leap (in inches, higher the better)
+-   max vertical leap (in inches, higher the better)
+-   max bench press (number of repetitions of 185 pounds)
+
+**Sheet 2: `2026 Draft Picks`**
+
+Player names and draft information for the first 50 picks:
+
+-   team drafted to
+-   prior affiliation (e.g. undergraduate institution)
+-   draft year (all 2026 in this case)
+-   round number - which round they were drafted in; 1 for first round pick, 2 for second round pick.
+-   round pick - within a round, order in which a player was picked; 1 to 30
+-   overall pick - overall order in which a player was drafted; 1 to 50 in the supplied data
+
+## Question 1 - Import
+
+Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.
+
+**Requirements:**
+
+- Extraneous rows on top of the sheet(s) should be excluded.
+- All variable names should use `snake_case` (lowercase, with underscores instead of spaces).
+- All missing values should be coded as `NA`.
+
+    **Note:** For full credit, use only `read_excel()` and `clean_names()` to import and clean each sheet. You may use other functions to display the first ten rows. If you're unable to achieve the goals listed above with just these two functions, you can still get partial credit by using other functions to clean the data after reading it in.
+
+## Question 2 - Inspect
+
+Find the mismatches between the two data frames:
+
+-   Determine which, if any, players are in the stats data frame but not in the picks data frame. These are players present in the combine data but absent from the supplied draft-picks data; their absence does not necessarily mean they went undrafted. Display your output.
+
+-   Determine which, if any, players are in the picks data frame but not in the stats data frame. These are the players who were picked in the draft but we do not have stats for. Display your output.
+
+In a single sentence, briefly summarize the number of each type of mismatch.
+
+## Question 3 - Explore
+
+a. Using the stats data frame, create a single pipeline that summarizes the mean and median weight (in pounds) for players in each position.
+
+**Requirements:**
+
+- Players with missing position information should be excluded.
+- Exclude missing weights when calculating the mean and median. Count all players with a recorded position in `n`, including those with missing weights.
+- Resulting data frame should have four columns: `pos` (position), `n` (number of players), `mean_weight` (average weight in pounds), and `median_weight` (median weight in pounds).
+- Resulting data frame should have five rows.
+- Results should be displayed in descending order of mean weight.
+
+b. Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then, create the visualization you selected, making sure to employ good visualization practices.
+
+c. Briefly, at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).
+
+## Question 4 - Recreate
+
+Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University.
+Then, improve it by giving it a title and better axis labels.
+
+**Requirements:**
+
+- The plot should only include players that are in both data frames and have non-missing values for both weight and three-quarter sprint time.
+- Players from Duke should be colored in Duke blue (the HEX code for this color is `#00539B`) and players not from Duke should be light gray (the name for this color is `gray70`).
+- Players from Duke should be labeled with their names and the labels should not overlap with their points, though they can overlap with non-Duke players' points and they do not have to be in the exact same position as the labels shown in the plot below.
+- Use `theme_minimal()` for the plot theme.
+
+```{r}
+#| label: import-reference-data
+#| include: false
+nba_draft_stats <- read_excel(
+  "../_data/nba-draft-combine-2627/nba-draft-combine-2627.xlsx",
+  sheet = "2026 Draft Player Stats",
+  skip = 3,
+  na = c("", "-", "-%")
+) |>
+  clean_names()
+
+nba_draft_picks <- read_excel(
+  "../_data/nba-draft-combine-2627/nba-draft-combine-2627.xlsx",
+  sheet = "2026 Draft Picks",
+  na = c("", "-", "-%")
+) |>
+  clean_names()
+```
+
+```{r}
+#| label: plot-to-recreate
+#| fig-width: 8
+#| fig-asp: 0.5
+#| echo: false
+draft_26 <- nba_draft_picks |>
+  inner_join(nba_draft_stats, by = join_by(player)) |>
+  mutate(duke = if_else(affiliation == "Duke", "Duke", "not Duke")) |>
+  filter(!is.na(weight_lbs) & !is.na(three_quarter_sprint_sec))
+
+ggplot(
+  draft_26,
+  aes(x = weight_lbs, y = three_quarter_sprint_sec, color = duke)
+) +
+  geom_point() +
+  geom_label(
+    data = draft_26 |> filter(duke == "Duke"),
+    aes(label = player),
+    vjust = -0.25,
+    hjust = 0.5,
+  ) +
+  scale_color_manual(values = c("#00539B", "gray70")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+**Tips:**
+
+- First, make the scatterplot, without colors or text labels/annotations.
+- Then, add the colors for the Duke players.
+- Then, work on your improvements (title and axis labels).
+- Finally, add the player names. Labels are required for full credit but are worth only a small portion of the points. If you are spending too much time on them, finish the rest of your homework first, then revisit this task.
+
+# Part 2 - Shaken trust
+
+On September 2, 2026, [Gallup](https://www.gallup.com/) reported "Record-High 89% in U.S. Say Government Corruption Widespread".
+
+## Question 5 - Learn
+
+Read the article at <https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx> and, in 2–3 sentences, summarize the main finding and one comparison across political groups or over time. Explain whether the survey measures corruption itself or perceptions of corruption.
+
+## Question 6 - Recreate
+
+The goal of this question is to recreate the following visualization from the article with ggplot2.
+
+![](images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png){alt="Perceived Government Corruption Spans Political Spectrum"}
+
+a. In the linked Gallup article, find the interactive chart titled "Perceived Government Corruption Spans Political Spectrum" and download its data using the "Get the data" link. Save or upload the downloaded file to your `data` folder.
+
+b. Read the data with the appropriate function and tidy and transform it as needed to recreate the plot.
+
+c. Recreate the visualization with ggplot2. Match the data, group colors, lines and points, axis scales, and labels. Approximate fonts and spacing are acceptable.
+
+   - For non-default features you match, briefly explain what you changed and how, e.g., "I matched the background color by using `theme(panel.background = element_rect(fill = "#F2F8F1"))`."
+   - For any required features you cannot match, briefly explain what you tried and what did not work.
+
+::: callout-note
+The original plot is interactive -- if you hover on a point, it will show the exact percentage for that point. You do not need to make your plot interactive.
+:::
