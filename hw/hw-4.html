@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="description" content="Due: Wed, Sep 30, 11:59 pm">
-
 <title>HW 4 – STA 199CCL</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -46,7 +77,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-08171728d92e762a4769231040ded7e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -72,15 +105,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<meta name="quarto:status" content="draft">
-
-
+}</script><meta name="quarto:status" content="draft">
 <meta property="og:title" content="HW 4 – STA 199CCL">
 <meta property="og:description" content="Due: Wed, Sep 30, 11:59 pm">
+<meta property="og:image" content="https://sta199-f26.github.io/hw/images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png">
 <meta property="og:site_name" content="STA 199CCL">
+<meta property="og:image:alt" content="Perceived Government Corruption Spans Political Spectrum">
 </head>
-
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -246,9 +277,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -259,23 +288,18 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
     <div class="dropdown">
       <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
               <i class="bi bi-person-raised-hand pe-1"></i>
             Office hours
@@ -288,11 +312,11 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
     <div class="dropdown">
       <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
               <i class="bi bi-megaphone-fill pe-1"></i>
             Announcements
@@ -311,7 +335,7 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div>
@@ -322,7 +346,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
@@ -330,8 +354,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
@@ -374,7 +398,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -383,8 +407,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Access</span></a>
@@ -409,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -418,9 +442,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-      </ul>
-  </li>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 "></ul>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lab.html" class="sidebar-item-text sidebar-link">
@@ -446,21 +469,37 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li>
+<a href="#part-1---slam-dunks" id="toc-part-1---slam-dunks" class="nav-link" data-scroll-target="#part-1---slam-dunks">Part 1 - Slam dunks</a>
+  <ul class="collapse">
+<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#question-1---import" id="toc-question-1---import" class="nav-link" data-scroll-target="#question-1---import">Question 1 - Import</a></li>
+  <li><a href="#question-2---inspect" id="toc-question-2---inspect" class="nav-link" data-scroll-target="#question-2---inspect">Question 2 - Inspect</a></li>
+  <li><a href="#question-3---explore" id="toc-question-3---explore" class="nav-link" data-scroll-target="#question-3---explore">Question 3 - Explore</a></li>
+  <li><a href="#question-4---recreate" id="toc-question-4---recreate" class="nav-link" data-scroll-target="#question-4---recreate">Question 4 - Recreate</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#part-2---shaken-trust" id="toc-part-2---shaken-trust" class="nav-link" data-scroll-target="#part-2---shaken-trust">Part 2 - Shaken trust</a>
+  <ul class="collapse">
+<li><a href="#question-5---learn" id="toc-question-5---learn" class="nav-link" data-scroll-target="#question-5---learn">Question 5 - Learn</a></li>
+  <li><a href="#question-6---recreate" id="toc-question-6---recreate" class="nav-link" data-scroll-target="#question-6---recreate">Question 6 - Recreate</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">HW 4</h1>
-<p class="subtitle lead">To be posted</p>
+<p class="subtitle lead">Slam dunks and shaken trust</p>
   <div class="quarto-categories">
     <div class="quarto-category">HW</div>
   </div>
@@ -482,14 +521,134 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><section id="packages" class="level1"><h1>Packages</h1>
+<p>In addition to the <a href="https://www.tidyverse.org/packages"><strong>tidyverse</strong></a> package, you will also need the <a href="https://readxl.tidyverse.org/"><strong>readxl</strong></a> and the <a href="https://sfirke.github.io/janitor/"><strong>janitor</strong></a> packages. Your analysis must use these packages.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="part-1---slam-dunks" class="level1"><h1>Part 1 - Slam dunks</h1>
+<p>The <a href="https://en.wikipedia.org/wiki/NBA_draft_combine">NBA Draft Combine</a> is a multiple day event that takes place every May before the NBA draft in June. At the combine, college basketball players take medical tests, are interviewed, perform various athletic tests and shooting drills, and play in five-on-five drills for an audience of National Basketball Association (NBA) coaches, general managers, and scouts. How an athlete measures and performs during the combine can affect perception, draft status, salary, and the player’s future career. These stats are posted annually at <a href="https://www.nba.com/stats/draft/combine-anthro" class="uri">https://www.nba.com/stats/draft/combine-anthro</a>, which is where the data you’ll be using comes from.</p>
+<section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The data are stored in two sheets of a single Excel file called <code>nba-draft-combine-2627.xlsx</code>, which is in your <code>data</code> folder. The two sheets and their contents are as follows:</p>
+<p><strong>Sheet 1: <code>2026 Draft Player Stats</code></strong></p>
+<p>Player names, positions, and anthropometric measurements (i.e., measurements of the player’s body dimensions and shape), and strength and agility statistics.</p>
+<ul>
+<li>
+<p>position: If you’re curious, you can read more about basketball positions <a href="https://en.wikipedia.org/wiki/Basketball_positions">on Wikipedia</a>. However, you don’t need to know anything about basketball to successfully complete the homework. Possible positions are:</p>
+<ul>
+<li>C: Center</li>
+<li>PF: Power Forward</li>
+<li>PG: Point Guard</li>
+<li>SF: Small Forward</li>
+<li>SG: Shooting Guard</li>
+</ul>
+</li>
+<li><p>hand length (in inches)</p></li>
+<li><p>hand width (in inches)</p></li>
+<li><p>height without shoes (in feet and inches, e.g., 6’ 10.50’’ = 6 feet 10.5 inches)</p></li>
+<li><p>height with shoes (in feet and inches)</p></li>
+<li><p>standing reach (in feet and inches)</p></li>
+<li><p>weight (in pounds)</p></li>
+<li><p>wingspan (in feet and inches)</p></li>
+<li><p>lane agility time (in seconds, lower the better)</p></li>
+<li><p>shuttle run (in seconds, lower the better)</p></li>
+<li><p>three quarter sprint (in seconds, lower the better)</p></li>
+<li><p>standing vertical leap (in inches, higher the better)</p></li>
+<li><p>max vertical leap (in inches, higher the better)</p></li>
+<li><p>max bench press (number of repetitions of 185 pounds)</p></li>
+</ul>
+<p><strong>Sheet 2: <code>2026 Draft Picks</code></strong></p>
+<p>Player names and draft information for the first 50 picks:</p>
+<ul>
+<li>team drafted to</li>
+<li>prior affiliation (e.g.&nbsp;undergraduate institution)</li>
+<li>draft year (all 2026 in this case)</li>
+<li>round number - which round they were drafted in; 1 for first round pick, 2 for second round pick.</li>
+<li>round pick - within a round, order in which a player was picked; 1 to 30</li>
+<li>overall pick - overall order in which a player was drafted; 1 to 50 in the supplied data</li>
+</ul></section><section id="question-1---import" class="level2"><h2 class="anchored" data-anchor-id="question-1---import">Question 1 - Import</h2>
+<p>Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li><p>Extraneous rows on top of the sheet(s) should be excluded.</p></li>
+<li><p>All variable names should use <code>snake_case</code> (lowercase, with underscores instead of spaces).</p></li>
+<li>
+<p>All missing values should be coded as <code>NA</code>.</p>
+<p><strong>Note:</strong> For full credit, use only <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> and <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names()</a></code> to import and clean each sheet. You may use other functions to display the first ten rows. If you’re unable to achieve the goals listed above with just these two functions, you can still get partial credit by using other functions to clean the data after reading it in.</p>
+</li>
+</ul></section><section id="question-2---inspect" class="level2"><h2 class="anchored" data-anchor-id="question-2---inspect">Question 2 - Inspect</h2>
+<p>Find the mismatches between the two data frames:</p>
+<ul>
+<li><p>Determine which, if any, players are in the stats data frame but not in the picks data frame. These are players present in the combine data but absent from the supplied draft-picks data; their absence does not necessarily mean they went undrafted. Display your output.</p></li>
+<li><p>Determine which, if any, players are in the picks data frame but not in the stats data frame. These are the players who were picked in the draft but we do not have stats for. Display your output.</p></li>
+</ul>
+<p>In a single sentence, briefly summarize the number of each type of mismatch.</p>
+</section><section id="question-3---explore" class="level2"><h2 class="anchored" data-anchor-id="question-3---explore">Question 3 - Explore</h2>
+<ol type="a">
+<li>Using the stats data frame, create a single pipeline that summarizes the mean and median weight (in pounds) for players in each position.</li>
+</ol>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>Players with missing position information should be excluded.</li>
+<li>Exclude missing weights when calculating the mean and median. Count all players with a recorded position in <code>n</code>, including those with missing weights.</li>
+<li>Resulting data frame should have four columns: <code>pos</code> (position), <code>n</code> (number of players), <code>mean_weight</code> (average weight in pounds), and <code>median_weight</code> (median weight in pounds).</li>
+<li>Resulting data frame should have five rows.</li>
+<li>Results should be displayed in descending order of mean weight.</li>
+</ul>
+<ol start="2" type="a">
+<li><p>Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then, create the visualization you selected, making sure to employ good visualization practices.</p></li>
+<li><p>Briefly, at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).</p></li>
+</ol></section><section id="question-4---recreate" class="level2"><h2 class="anchored" data-anchor-id="question-4---recreate">Question 4 - Recreate</h2>
+<p>Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University. Then, improve it by giving it a title and better axis labels.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>The plot should only include players that are in both data frames and have non-missing values for both weight and three-quarter sprint time.</li>
+<li>Players from Duke should be colored in Duke blue (the HEX code for this color is <code>#00539B</code>) and players not from Duke should be light gray (the name for this color is <code>gray70</code>).</li>
+<li>Players from Duke should be labeled with their names and the labels should not overlap with their points, though they can overlap with non-Duke players’ points and they do not have to be in the exact same position as the labels shown in the plot below.</li>
+<li>Use <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> for the plot theme.</li>
+</ul>
+<p><strong>Tips:</strong></p>
+<ul>
+<li>First, make the scatterplot, without colors or text labels/annotations.</li>
+<li>Then, add the colors for the Duke players.</li>
+<li>Then, work on your improvements (title and axis labels).</li>
+<li>Finally, add the player names. Labels are required for full credit but are worth only a small portion of the points. If you are spending too much time on them, finish the rest of your homework first, then revisit this task.</li>
+</ul></section></section><section id="part-2---shaken-trust" class="level1"><h1>Part 2 - Shaken trust</h1>
+<p>On September 2, 2026, <a href="https://www.gallup.com/">Gallup</a> reported “Record-High 89% in U.S. Say Government Corruption Widespread”.</p>
+<section id="question-5---learn" class="level2"><h2 class="anchored" data-anchor-id="question-5---learn">Question 5 - Learn</h2>
+<p>Read the article at <a href="https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx" class="uri">https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx</a> and, in 2–3 sentences, summarize the main finding and one comparison across political groups or over time. Explain whether the survey measures corruption itself or perceptions of corruption.</p>
+</section><section id="question-6---recreate" class="level2"><h2 class="anchored" data-anchor-id="question-6---recreate">Question 6 - Recreate</h2>
+<p>The goal of this question is to recreate the following visualization from the article with ggplot2.</p>
+<p><a href="images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png" class="img-fluid" alt="Perceived Government Corruption Spans Political Spectrum"></a></p>
+<ol type="a">
+<li><p>In the linked Gallup article, find the interactive chart titled “Perceived Government Corruption Spans Political Spectrum” and download its data using the “Get the data” link. Save or upload the downloaded file to your <code>data</code> folder.</p></li>
+<li><p>Read the data with the appropriate function and tidy and transform it as needed to recreate the plot.</p></li>
+<li>
+<p>Recreate the visualization with ggplot2. Match the data, group colors, lines and points, axis scales, and labels. Approximate fonts and spacing are acceptable.</p>
+<ul>
+<li>For non-default features you match, briefly explain what you changed and how, e.g., “I matched the background color by using <code>theme(panel.background = element_rect(fill = "#F2F8F1"))</code>.”</li>
+<li>For any required features you cannot match, briefly explain what you tried and what did not work.</li>
+</ul>
+</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The original plot is interactive – if you hover on a point, it will show the exact percentage for that point. You do not need to make your plot interactive.</p>
+</div>
+</div>
 
 
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -902,21 +1061,49 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
-</footer>
-
-
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 </body></html>
