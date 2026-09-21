@@ -1,9 +1,306 @@
 ---
 title: Lab 4
-subtitle: To be posted
+subtitle: JOINing the Olympic Gymnastics Committee
 description: "Due: End of lab on Thurs, Sep 24"
-categories: "Lab" 
-draft: true
+categories: "Lab"
+draft: false
 execute:
   eval: false
 ---
+
+::: {.callout-important}
+## Find your teammates
+... and sit with them!
+:::
+
+# Introduction
+
+In honor of National Gymnastics Day this past week, you will work with real gymnastics data from the 2024 Paris Olympics! You will first work through a small section on factors, then practice bringing two data frames together with join functions.
+
+Make sure to upload your completed lab to Gradescope **by the end of your lab session** and commit and push your final version to GitHub.
+
+## Learning objectives
+
+By the end of this lab, you will:
+
+- Convert a character variable to a factor and reorder its levels with `fct_relevel()`.
+- Distinguish between the underlying type and the class of a factor.
+- Combine two data frames with `left_join()`, `right_join()`, `inner_join()`, `full_join()`, and `anti_join()`.
+- Specify join keys with `join_by()` when the key columns have different names.
+- Predict how many rows and columns a join will produce, and explain why.
+
+# Getting started
+
+Clone your **lab-4** repository using the same process used in Lab 0.
+
+1. Go to the course GitHub organization at [github.com/sta199-f26](https://github.com/sta199-f26) and click on the repository with the prefix `lab-4`.
+2. Select the green **Code** button and choose **HTTPS** under **Clone**. Click on the clipboard icon to copy the repo URL.
+3. In Positron's Welcome window, click on *New Folder From Git...*.
+4. Paste the repository URL into the dialog box labeled *Git repository URL* and select **OK**.
+5. Open `lab-4.qmd` in the Explorer pane.
+
+Then, click *lab-4.qmd* to open the template Quarto file and update the `authors` field to add your name first (first and last) and then your teammates' names (first and last).
+Render the document.
+If you get a popup window error, click "Try again".
+Examine the rendered document and make sure your name is updated in the document.
+Commit and push your changes with a meaningful commit message and push to GitHub.
+
+## Guidelines
+
+{{< include _guidelines.qmd >}}
+
+# Packages
+
+In this lab we will work with the **tidyverse** package.
+
+```{r}
+#| label: load-packages
+#| eval: true
+#| message: false
+library(tidyverse)
+```
+
+-   **Run** the code cell by clicking on the green triangle (play) button for the code cell labeled `load-packages`. This loads the package to make its features (the functions and datasets in it) accessible from your *Console*.
+-   Then, **preview** the document, which loads this package to make its features (the functions and datasets in it) available for other code cells in your Quarto document.
+
+# Data
+
+For Questions 1 and 2, you will analyze routines from the women's artistic gymnastics competition at the 2024 Paris Olympics.
+**Each row of `gymnastics` represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
+
+Read the data into R with:
+
+```{r}
+#| label: load-gymnastics
+#| eval: true
+#| message: false
+gymnastics <- read_csv("data/gymnastics.csv")
+```
+
+```{r}
+#| label: glimpse-gymnastics
+#| eval: true
+glimpse(gymnastics)
+```
+
+The variables are:
+
+| Variable | Description |
+|:---------------|:-------------------------------------------------------|
+| `name` | Gymnast's name, in "Given Surname" order |
+| `country` | Country name |
+| `country_code` | 3-letter NOC code |
+| `event` | Apparatus: Vault, Uneven Bars, Balance Beam, Floor Exercise |
+| `competition` | Which round: Qualification, Team Final, All-Around Final, Event Final |
+| `d_score` | Difficulty score (a number greater than zero, in increments of 0.1) |
+| `e_score` | Execution score (a number between 0 and 10) |
+| `penalty` | Neutral deduction |
+| `score` | Routine total = `d_score` + `e_score` - `penalty` |
+| `rank` | Placement for that row's competition |
+
+You also have access to a small data frame of countries and the continent each one is in.
+
+```{r}
+#| label: load-continents
+#| eval: true
+#| message: false
+continents <- read_csv("data/continents.csv")
+```
+
+```{r}
+#| label: glimpse-continents
+#| eval: true
+glimpse(continents)
+```
+
+The variables are:
+
+| Variable | Description |
+|:------------|:-----------------------------------------------------------|
+| `entity` | Country name |
+| `code` | 3-letter country code |
+| `year` | Year the continent assignment was recorded |
+| `continent` | Continent the country is in |
+
+# Questions
+
+## Question 1
+
+**Olympic order.**
+
+Olympic order is the specific order in which gymnasts compete the apparatus. Read about Olympic order in [this NBC Olympics explainer](https://www.nbcolympics.com/news/gymnastics-101-olympic-competition-format).
+
+a. Based on the article, provide the Olympic order of the events in women's artistic gymnastics.
+
+b. Run the following code cell and analyze the result. Explain what the code does, and state why the events are listed in this order in the output.
+
+```{r}
+#| label: event-levels
+#| eval: true
+gymnastics$event |>
+  as.factor() |>
+  levels()
+```
+
+c. Write code to change the `event` variable so that its levels reflect Olympic order. Write (or copy from above) code to display the new ordering.
+
+```{r}
+#| label: relevel-event
+#| eval: true
+gymnastics <- gymnastics |>
+  mutate(
+    event = fct_relevel(
+      event,
+      c("Vault", "Uneven Bars", "Balance Beam", "Floor Exercise")
+    )
+  )
+
+gymnastics$event |>
+  as.factor() |>
+  levels()
+```
+
+d. Before running any code, predict what each of the following two commands will return. Then run the code cell and check your predictions. Explain in a sentence or two why `typeof()` and `class()` return different things for a factor.
+
+```{r}
+#| label: type-vs-class
+typeof(gymnastics$event)
+class(gymnastics$event)
+```
+
+::: source-control
+Preview, commit, and push your changes to GitHub with a succinct and informative commit message.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+:::
+
+## Question 2
+
+**The Continental Championships.**
+
+To qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships.
+One question of interest, then, is whether gymnasts from different continents score differently.
+
+::: callout-note
+The Pan American Games features athletes from both North and South American countries.
+For this analysis, you don't have to combine the two continents.
+:::
+
+The `gymnastics` data frame doesn't have information about continents, but the `continents` data frame does:
+
+```{r}
+#| label: continent-levels
+#| eval: true
+continents |>
+  select(continent) |>
+  distinct()
+```
+
+a. The country names live in `country` in `gymnastics` and in `entity` in `continents`. Read about `join_by()` in the documentation for `left_join()`. Then join the two data frames together, treating `gymnastics` as the left data frame and `continents` as the right, using `left_join()`. Display the first six rows.
+
+b. In a single pipeline (utilizing your code from part a), produce a summary of the average vault score by continent.
+
+::: callout-tip
+Your pipeline will need to join the two data frames, keep only the vault routines, group by continent, and then summarize.
+:::
+
+c. How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
+
+d. Your summary has a row where `continent` is `NA`. Using `anti_join()`, write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fix it.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with a meaningful commit message.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+:::
+
+## Question 3
+
+**Joins.**
+
+For this question, you will work with two small data frames and join them with various join functions.
+
+The first, `paris_scores`, contains team final balance beam and floor exercise scores for four gymnasts.
+
+```{r}
+#| label: paris-scores
+#| eval: true
+paris_scores <- tribble(
+  ~gymnast         , ~balance_beam , ~floor_exercise ,
+  "Simone Biles"   ,         14.40 ,           14.70 ,
+  "Sunisa Lee"     ,         14.60 ,           13.50 ,
+  "Rebeca Andrade" ,         14.10 ,           14.20 ,
+  "Jordan Chiles"  ,         12.70 ,           14.00
+)
+
+paris_scores
+```
+
+::: callout-note
+The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read row-by-row layout.
+:::
+
+The second, `noc_codes`, contains the 3-letter NOC code of the country each of four gymnasts competed for.
+
+```{r}
+#| label: noc-codes
+#| eval: true
+noc_codes <- tribble(
+  ~gymnast_name    , ~country_code ,
+  "Simone Biles"   , "USA"         ,
+  "Rebeca Andrade" , "BRA"         ,
+  "Kaylia Nemour"  , "ALG"         ,
+  "Qiyuan Qiu"     , "CHN"
+)
+
+noc_codes
+```
+
+a. Your friend writes the following code to join the `paris_scores` and `noc_codes` data frames and gets an error message:
+
+```{r}
+#| label: failed-join
+#| eval: true
+#| error: true
+paris_scores |>
+  left_join(noc_codes)
+```
+
+What does the error message mean and why does it occur? How would you fix the code?
+
+b. How many rows and columns does the resulting data frame from part (a) have? Explain why.
+
+c. Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with a `right_join()`, in that order. How many rows and columns would the resulting data frame have? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+
+d. Start with the code this time. Join the two data frames, `paris_scores` and `noc_codes`, with an `inner_join()`, in that order. How many rows and columns does the resulting data frame have? Explain why.
+
+e. Don't write any code yet: Suppose you join the two data frames with an `inner_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`). Would you expect the resulting data frame to have the same number of rows as the previous part or a different number of rows? Explain your reasoning. Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+
+f. Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with an `anti_join()`. Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+
+g. Don't write any code yet: Suppose you join the two data frames with an `anti_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`). Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+
+h. Start with the code this time. Join the two data frames, `paris_scores` and `noc_codes`, with a `full_join()`, in that order. How many rows and columns does the resulting data frame have? Explain why.
+
+i. Your ultimate goal is to construct a dataset where you have all gymnasts who are in the `paris_scores` data frame along with their event scores and the country they competed for. In order to accomplish this, you will need to look up some gymnasts' NOC codes in an alternate resource, since they're not all in the `noc_codes` data frame. Which join function would you use to find out whose NOC codes you need to look up in an alternate resource? Write the code to perform the join to confirm your answer.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with a meaningful commit message.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+:::
+
+# Wrap-up
+
+## Submission
+
+{{< include _submission.qmd >}}
+
+## Grading and feedback
+
+This lab is worth 30 points:
+
+- 10 points for attending lab and submitting work by the end of lab; and
+- 20 points for correct and complete answers, clear presentation, and following the required workflow.
+
+The workflow portion includes making at least three meaningful commits, pushing the final `.qmd` and rendered PDF to GitHub, and keeping your work organized.
