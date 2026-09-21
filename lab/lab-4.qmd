@@ -3,7 +3,7 @@ title: Lab 4
 subtitle: JOINing the Olympic Gymnastics Committee
 description: "Due: End of lab on Thurs, Sep 24"
 categories: "Lab"
-draft: false
+draft: true
 execute:
   eval: false
 ---
@@ -227,10 +227,10 @@ The first, `paris_scores`, contains team final balance beam and floor exercise s
 #| eval: true
 paris_scores <- tribble(
   ~gymnast         , ~balance_beam , ~floor_exercise ,
-  "Simone Biles"   ,         14.40 ,           14.70 ,
-  "Sunisa Lee"     ,         14.60 ,           13.50 ,
-  "Rebeca Andrade" ,         14.10 ,           14.20 ,
-  "Jordan Chiles"  ,         12.70 ,           14.00
+  "Simone Biles"   , 14.40         , 14.70           ,
+  "Sunisa Lee"     , 14.60         , 13.50           ,
+  "Rebeca Andrade" , 14.10         , 14.20           ,
+  "Jordan Chiles"  , 12.70         , 14.00
 )
 
 paris_scores
