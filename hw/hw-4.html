@@ -111,6 +111,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta property="og:image" content="https://sta199-f26.github.io/hw/images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png">
 <meta property="og:site_name" content="STA 199CCL">
 <meta property="og:image:alt" content="Perceived Government Corruption Spans Political Spectrum">
+<meta property="og:image:height" content="1174">
+<meta property="og:image:width" content="1220">
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -535,8 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Sheet 1: <code>2026 Draft Player Stats</code></strong></p>
 <p>Player names, positions, and anthropometric measurements (i.e., measurements of the player’s body dimensions and shape), and strength and agility statistics.</p>
 <ul>
-<li>
-<p>position: If you’re curious, you can read more about basketball positions <a href="https://en.wikipedia.org/wiki/Basketball_positions">on Wikipedia</a>. However, you don’t need to know anything about basketball to successfully complete the homework. Possible positions are:</p>
+<li>position: If you’re curious, you can read more about basketball positions <a href="https://en.wikipedia.org/wiki/Basketball_positions">on Wikipedia</a>. However, you don’t need to know anything about basketball to successfully complete the homework. Possible positions are:
 <ul>
 <li>C: Center</li>
 <li>PF: Power Forward</li>
@@ -545,19 +546,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>SG: Shooting Guard</li>
 </ul>
 </li>
-<li><p>hand length (in inches)</p></li>
-<li><p>hand width (in inches)</p></li>
-<li><p>height without shoes (in feet and inches, e.g., 6’ 10.50’’ = 6 feet 10.5 inches)</p></li>
-<li><p>height with shoes (in feet and inches)</p></li>
-<li><p>standing reach (in feet and inches)</p></li>
-<li><p>weight (in pounds)</p></li>
-<li><p>wingspan (in feet and inches)</p></li>
-<li><p>lane agility time (in seconds, lower the better)</p></li>
-<li><p>shuttle run (in seconds, lower the better)</p></li>
-<li><p>three quarter sprint (in seconds, lower the better)</p></li>
-<li><p>standing vertical leap (in inches, higher the better)</p></li>
-<li><p>max vertical leap (in inches, higher the better)</p></li>
-<li><p>max bench press (number of repetitions of 185 pounds)</p></li>
+<li>hand length (in inches)</li>
+<li>hand width (in inches)</li>
+<li>height without shoes (in feet and inches, e.g., 6’ 10.50’’ = 6 feet 10.5 inches)</li>
+<li>height with shoes (in feet and inches)</li>
+<li>standing reach (in feet and inches)</li>
+<li>weight (in pounds)</li>
+<li>wingspan (in feet and inches)</li>
+<li>lane agility time (in seconds, lower the better)</li>
+<li>shuttle run (in seconds, lower the better)</li>
+<li>three quarter sprint (in seconds, lower the better)</li>
+<li>standing vertical leap (in inches, higher the better)</li>
+<li>max vertical leap (in inches, higher the better)</li>
+<li>max bench press (number of repetitions of 185 pounds)</li>
 </ul>
 <p><strong>Sheet 2: <code>2026 Draft Picks</code></strong></p>
 <p>Player names and draft information for the first 50 picks:</p>
@@ -570,26 +571,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>overall pick - overall order in which a player was drafted; 1 to 50 in the supplied data</li>
 </ul></section><section id="question-1---import" class="level2"><h2 class="anchored" data-anchor-id="question-1---import">Question 1 - Import</h2>
 <p>Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.</p>
-<p><strong>Requirements:</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Requirements
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li><p>Extraneous rows on top of the sheet(s) should be excluded.</p></li>
-<li><p>All variable names should use <code>snake_case</code> (lowercase, with underscores instead of spaces).</p></li>
-<li>
-<p>All missing values should be coded as <code>NA</code>.</p>
-<p><strong>Note:</strong> For full credit, use only <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> and <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names()</a></code> to import and clean each sheet. You may use other functions to display the first ten rows. If you’re unable to achieve the goals listed above with just these two functions, you can still get partial credit by using other functions to clean the data after reading it in.</p>
-</li>
-</ul></section><section id="question-2---inspect" class="level2"><h2 class="anchored" data-anchor-id="question-2---inspect">Question 2 - Inspect</h2>
+<li>Extraneous rows on top of the sheet(s) should be excluded.</li>
+<li>All variable names should use <code>snake_case</code> (lowercase, with underscores instead of spaces).</li>
+<li>All missing values should be coded as <code>NA</code>.</li>
+</ul>
+</div>
+</div>
+</section><section id="question-2---inspect" class="level2"><h2 class="anchored" data-anchor-id="question-2---inspect">Question 2 - Inspect</h2>
 <p>Find the mismatches between the two data frames:</p>
-<ul>
+<ol type="a">
 <li><p>Determine which, if any, players are in the stats data frame but not in the picks data frame. These are players present in the combine data but absent from the supplied draft-picks data; their absence does not necessarily mean they went undrafted. Display your output.</p></li>
 <li><p>Determine which, if any, players are in the picks data frame but not in the stats data frame. These are the players who were picked in the draft but we do not have stats for. Display your output.</p></li>
-</ul>
-<p>In a single sentence, briefly summarize the number of each type of mismatch.</p>
-</section><section id="question-3---explore" class="level2"><h2 class="anchored" data-anchor-id="question-3---explore">Question 3 - Explore</h2>
+<li><p>In a single sentence, briefly summarize the number of each type of mismatch.</p></li>
+</ol></section><section id="question-3---explore" class="level2"><h2 class="anchored" data-anchor-id="question-3---explore">Question 3 - Explore</h2>
 <ol type="a">
-<li>Using the stats data frame, create a single pipeline that summarizes the mean and median weight (in pounds) for players in each position.</li>
-</ol>
-<p><strong>Requirements:</strong></p>
+<li>
+<p>Using the stats data frame, create a single pipeline that summarizes the mean and median weight (in pounds) for players in each position.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Requirements
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li>Players with missing position information should be excluded.</li>
 <li>Exclude missing weights when calculating the mean and median. Count all players with a recorded position in <code>n</code>, including those with missing weights.</li>
@@ -597,25 +615,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Resulting data frame should have five rows.</li>
 <li>Results should be displayed in descending order of mean weight.</li>
 </ul>
-<ol start="2" type="a">
+</div>
+</div>
+</li>
 <li><p>Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then, create the visualization you selected, making sure to employ good visualization practices.</p></li>
 <li><p>Briefly, at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).</p></li>
 </ol></section><section id="question-4---recreate" class="level2"><h2 class="anchored" data-anchor-id="question-4---recreate">Question 4 - Recreate</h2>
 <p>Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University. Then, improve it by giving it a title and better axis labels.</p>
-<p><strong>Requirements:</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Requirements
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li>The plot should only include players that are in both data frames and have non-missing values for both weight and three-quarter sprint time.</li>
 <li>Players from Duke should be colored in Duke blue (the HEX code for this color is <code>#00539B</code>) and players not from Duke should be light gray (the name for this color is <code>gray70</code>).</li>
 <li>Players from Duke should be labeled with their names and the labels should not overlap with their points, though they can overlap with non-Duke players’ points and they do not have to be in the exact same position as the labels shown in the plot below.</li>
 <li>Use <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> for the plot theme.</li>
 </ul>
-<p><strong>Tips:</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li>First, make the scatterplot, without colors or text labels/annotations.</li>
 <li>Then, add the colors for the Duke players.</li>
 <li>Then, work on your improvements (title and axis labels).</li>
 <li>Finally, add the player names. Labels are required for full credit but are worth only a small portion of the points. If you are spending too much time on them, finish the rest of your homework first, then revisit this task.</li>
-</ul></section></section><section id="part-2---shaken-trust" class="level1"><h1>Part 2 - Shaken trust</h1>
+</ul>
+</div>
+</div>
+</section></section><section id="part-2---shaken-trust" class="level1"><h1>Part 2 - Shaken trust</h1>
 <p>On September 2, 2026, <a href="https://www.gallup.com/">Gallup</a> reported “Record-High 89% in U.S. Say Government Corruption Widespread”.</p>
 <section id="question-5---learn" class="level2"><h2 class="anchored" data-anchor-id="question-5---learn">Question 5 - Learn</h2>
 <p>Read the article at <a href="https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx" class="uri">https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx</a> and, in 2–3 sentences, summarize the main finding and one comparison across political groups or over time. Explain whether the survey measures corruption itself or perceptions of corruption.</p>

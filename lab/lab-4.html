@@ -102,7 +102,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><meta name="quarto:status" content="draft">
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -297,7 +298,7 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -854,10 +855,10 @@ Tip
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">paris_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">gymnast</span>         , <span class="op">~</span><span class="va">balance_beam</span> , <span class="op">~</span><span class="va">floor_exercise</span> ,</span>
-<span>  <span class="st">"Simone Biles"</span>   ,         <span class="fl">14.40</span> ,           <span class="fl">14.70</span> ,</span>
-<span>  <span class="st">"Sunisa Lee"</span>     ,         <span class="fl">14.60</span> ,           <span class="fl">13.50</span> ,</span>
-<span>  <span class="st">"Rebeca Andrade"</span> ,         <span class="fl">14.10</span> ,           <span class="fl">14.20</span> ,</span>
-<span>  <span class="st">"Jordan Chiles"</span>  ,         <span class="fl">12.70</span> ,           <span class="fl">14.00</span></span>
+<span>  <span class="st">"Simone Biles"</span>   , <span class="fl">14.40</span>         , <span class="fl">14.70</span>           ,</span>
+<span>  <span class="st">"Sunisa Lee"</span>     , <span class="fl">14.60</span>         , <span class="fl">13.50</span>           ,</span>
+<span>  <span class="st">"Rebeca Andrade"</span> , <span class="fl">14.10</span>         , <span class="fl">14.20</span>           ,</span>
+<span>  <span class="st">"Jordan Chiles"</span>  , <span class="fl">12.70</span>         , <span class="fl">14.00</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">paris_scores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
-  <meta name="dcterms.date" content="2026-09-14">
+  <meta name="dcterms.date" content="2026-09-16">
   <title>STA 199CCL – Tidying data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -211,7 +211,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
     </div>
 </div>
 
-  <p class="date">September 14, 2026</p>
+  <p class="date">September 16, 2026</p>
 </section>
 <section>
 <section id="warm-up" class="title-slide slide level1 center">
@@ -232,18 +232,18 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-4-1.png" width="576"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-4-2.png" width="576"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-4-2.png" width="576"></p>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-4-3.png" width="576"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-4-3.png" width="576"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-4-4.png" width="576"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-4-4.png" width="576"></p>
 </div>
 </div>
 </div>
@@ -280,7 +280,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -298,7 +298,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -326,7 +326,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -354,7 +354,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -382,7 +382,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="07-tidying-data_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+<p><img data-src="07-tidying-data_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -953,7 +953,7 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <p>What is the type of the <code>year</code> variable? Why? What should it be?</p>
 </div>
 <div class="columns">
-<div class="column small" style="width:50%;">
+<div class="column small">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
 <span id="cb28-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
@@ -978,7 +978,7 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 # ℹ 50 more rows</code></pre>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
+</div><div class="column">
 <div class="fragment">
 <ul>
 <li class="fragment"><p>It’s a character (<code>chr</code>) variable since the information came from the column names of the original data frame.</p></li>
@@ -1398,44 +1398,6 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
