@@ -486,14 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a>
   <ul class="collapse">
-<li>
-<a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
-  <ul class="collapse">
-<li><a href="#gymnastics" id="toc-gymnastics" class="nav-link" data-scroll-target="#gymnastics"><code>gymnastics</code></a></li>
-  <li><a href="#continents" id="toc-continents" class="nav-link" data-scroll-target="#continents"><code>continents</code></a></li>
-  </ul>
-</li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   </ul>
 </li>
@@ -501,6 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a>
   <ul class="collapse">
 <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   </ul>
 </li>
   <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
@@ -565,16 +559,110 @@ Find your teammates
 </div>
 <p>Run the code cell to load the packages.</p>
 </section></section><section id="part-1" class="level1"><h1>Part 1</h1>
-<section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>For Part 1 of this lab, you’ll work with two datasets: <code>gymnastics</code> and <code>continents</code>.</p>
-<section id="gymnastics" class="level3"><h3 class="anchored" data-anchor-id="gymnastics"><code>gymnastics</code></h3>
-<p>This dataset contains information about the routines performed by gymnasts in the women’s artistic gymnastics competition at the 2024 Paris Olympics. <strong>Each row represents a single routine</strong>, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.</p>
+<p>For Part 1 of this lab, you will work with two small data frames (<code>paris_scores</code> and <code>noc_codes</code>) and join them with various join functions.</p>
+<ul>
+<li>
+<p><code>paris_scores</code>: Team final balance beam and floor exercise scores for four gymnasts.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">paris_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
+<span>  <span class="op">~</span><span class="va">gymnast</span>         , <span class="op">~</span><span class="va">balance_beam</span> , <span class="op">~</span><span class="va">floor_exercise</span> ,</span>
+<span>  <span class="st">"Simone Biles"</span>   , <span class="fl">14.40</span>         , <span class="fl">14.70</span>           ,</span>
+<span>  <span class="st">"Sunisa Lee"</span>     , <span class="fl">14.60</span>         , <span class="fl">13.50</span>           ,</span>
+<span>  <span class="st">"Rebeca Andrade"</span> , <span class="fl">14.10</span>         , <span class="fl">14.20</span>           ,</span>
+<span>  <span class="st">"Jordan Chiles"</span>  , <span class="fl">12.70</span>         , <span class="fl">14.00</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">paris_scores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  gymnast        balance_beam floor_exercise
+  &lt;chr&gt;                 &lt;dbl&gt;          &lt;dbl&gt;
+1 Simone Biles           14.4           14.7
+2 Sunisa Lee             14.6           13.5
+3 Rebeca Andrade         14.1           14.2
+4 Jordan Chiles          12.7           14  </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code> function is helpful for creating small data frames (<code>tibble</code>s) with an easier to read row-by-row layout.</p>
+</div>
+</div>
+</li>
+<li>
+<p><code>noc_codes</code>: 3-letter National Olympic Committee (NOC) code of the country each of four gymnasts competed for.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">noc_codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
+<span>  <span class="op">~</span><span class="va">gymnast_name</span>    , <span class="op">~</span><span class="va">country_code</span> ,</span>
+<span>  <span class="st">"Simone Biles"</span>   , <span class="st">"USA"</span>         ,</span>
+<span>  <span class="st">"Rebeca Andrade"</span> , <span class="st">"BRA"</span>         ,</span>
+<span>  <span class="st">"Kaylia Nemour"</span>  , <span class="st">"ALG"</span>         ,</span>
+<span>  <span class="st">"Qiyuan Qiu"</span>     , <span class="st">"CHN"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">noc_codes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  gymnast_name   country_code
+  &lt;chr&gt;          &lt;chr&gt;       
+1 Simone Biles   USA         
+2 Rebeca Andrade BRA         
+3 Kaylia Nemour  ALG         
+4 Qiyuan Qiu     CHN         </code></pre>
+</div>
+</div>
+</li>
+</ul>
+<section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<ol type="a">
+<li>
+<p>Your friend writes the following code to join the <code>paris_scores</code> and <code>noc_codes</code> data frames and gets an error message:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">paris_scores</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">noc_codes</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `left_join()`:
+! `by` must be supplied when `x` and `y` have no common variables.
+ℹ Use `cross_join()` to perform a cross-join.</code></pre>
+</div>
+</div>
+<p>What does the error message mean and why does it occur? How would you fix the code?</p>
+</li>
+<li><p>How many rows and columns does the resulting data frame from part (a) have? Explain why.</p></li>
+</ol></section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<ol type="a">
+<li><p>Don’t write any code yet: Suppose you join the two data frames, <code>paris_scores</code> and <code>noc_codes</code>, with a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code>, in that order. How many rows and columns would the resulting data frame have? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.</p></li>
+<li><p>Start with the code this time. Join the two data frames, <code>paris_scores</code> and <code>noc_codes</code>, with an <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, in that order. How many rows and columns does the resulting data frame have? Explain why.</p></li>
+<li><p>Don’t write any code yet: Suppose you join the two data frames with an <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> again, but in the reverse order (<code>noc_codes</code> first, then <code>paris_scores</code>). Would you expect the resulting data frame to have the same number of rows as the previous part or a different number of rows? Explain your reasoning. Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.</p></li>
+<li><p>Don’t write any code yet: Suppose you join the two data frames, <code>paris_scores</code> and <code>noc_codes</code>, with an <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>. Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.</p></li>
+<li><p>Don’t write any code yet: Suppose you join the two data frames with an <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> again, but in the reverse order (<code>noc_codes</code> first, then <code>paris_scores</code>). Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.</p></li>
+<li><p>Start with the code this time. Join the two data frames, <code>paris_scores</code> and <code>noc_codes</code>, with a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>, in that order. How many rows and columns does the resulting data frame have? Explain why.</p></li>
+<li><p>Your ultimate goal is to construct a dataset where you have all gymnasts who are in the <code>paris_scores</code> data frame along with their event scores and the country they competed for. In order to accomplish this, you will need to look up some gymnasts’ NOC codes in an alternate resource, since they’re not all in the <code>noc_codes</code> data frame. Which join function would you use to find out whose NOC codes you need to look up in an alternate resource? Write the code to perform the join to confirm your answer.</p></li>
+</ol>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with a meaningful commit message.</p>
+<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
+</div>
+</section></section><section id="part-2" class="level1"><h1>Part 2</h1>
+<p>For Part 2 of this lab, you’ll work with new two datasets: <code>gymnastics</code> and <code>continents</code>.</p>
+<ul>
+<li>
+<code>gymnastics</code>: Information about the routines performed by gymnasts in the women’s artistic gymnastics competition at the 2024 Paris Olympics. <strong>Each row represents a single routine</strong>, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.</li>
+</ul>
 <p>Read the data into R with:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gymnastics.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gymnastics.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gymnastics</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gymnastics</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 561
 Columns: 10
@@ -643,13 +731,16 @@ $ rank         &lt;dbl&gt; 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,
 <td style="text-align: left;">Placement for that row’s competition</td>
 </tr>
 </tbody>
-</table></section><section id="continents" class="level3"><h3 class="anchored" data-anchor-id="continents"><code>continents</code></h3>
-<p>You also have access to a small data frame of countries and the continent each one is in.</p>
+</table>
+<ul>
+<li>
+<code>continents</code>: A small data frame of countries and the continent each one is in.</li>
+</ul>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/continents.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/continents.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">continents</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">continents</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 285
 Columns: 4
@@ -687,15 +778,15 @@ $ continent &lt;chr&gt; "Asia", "Asia", "Asia", "Europe", "Europe", "Africa", "O
 <td style="text-align: left;">Continent the country is in</td>
 </tr>
 </tbody>
-</table></section></section><section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p><strong>Olympic order.</strong></p>
+</table>
+<section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <p>Olympic order is the specific order in which gymnasts compete the apparatus. Read about Olympic order in <a href="https://www.nbcolympics.com/news/gymnastics-101-olympic-competition-format">this NBC Olympics explainer</a>.</p>
 <ol type="a">
 <li><p>Based on the article, provide the Olympic order of the events in women’s artistic gymnastics.</p></li>
 <li><p>Run the following code cell and analyze the result. Explain what the code does, and state why the events are listed in this order in the output.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">event</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -707,7 +798,7 @@ $ continent &lt;chr&gt; "Asia", "Asia", "Asia", "Europe", "Europe", "Africa", "O
 <li>Write code to change the <code>event</code> variable so that its levels reflect Olympic order. Write (or copy from above) code to display the new ordering.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">&lt;-</span> <span class="va">gymnastics</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">&lt;-</span> <span class="va">gymnastics</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    event <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span></span>
 <span>      <span class="va">event</span>,</span>
@@ -727,15 +818,14 @@ $ continent &lt;chr&gt; "Asia", "Asia", "Asia", "Europe", "Europe", "Africa", "O
 <li>Before running any code, predict what each of the following two commands will return. Then run the code cell and check your predictions. Explain in a sentence or two why <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> and <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> return different things for a factor.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">gymnastics</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">gymnastics</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gymnastics</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with a succinct and informative commit message.</p>
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
-</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p><strong>The Continental Championships.</strong></p>
+</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
 <p>To qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships. One question of interest, then, is whether gymnasts from different continents score differently.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -752,7 +842,7 @@ Note
 </div>
 <p>The <code>gymnastics</code> data frame doesn’t have information about continents, but the <code>continents</code> data frame does:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continents</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continents</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 1
@@ -772,92 +862,6 @@ Note
 <li><p>In a single pipeline, produce a summary of the average vault score by continent.</p></li>
 <li><p>How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?</p></li>
 <li><p>Your summary has a row where <code>continent</code> is <code>NA</code>. Using <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>, write code to identify which countries in <code>gymnastics</code> have no match in <code>continents</code>. For each one, explain why it failed to match, and describe what you would need to do to fix it.</p></li>
-</ol>
-<div class="source-control">
-<p>Preview, commit, and push your changes to GitHub with a meaningful commit message.</p>
-<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
-</div>
-</section></section><section id="part-2" class="level1"><h1>Part 2</h1>
-<section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
-<p><strong>Joins.</strong></p>
-<p>For this question, you will work with two small data frames and join them with various join functions.</p>
-<p>The first, <code>paris_scores</code>, contains team final balance beam and floor exercise scores for four gymnasts.</p>
-<div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">paris_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">gymnast</span>         , <span class="op">~</span><span class="va">balance_beam</span> , <span class="op">~</span><span class="va">floor_exercise</span> ,</span>
-<span>  <span class="st">"Simone Biles"</span>   , <span class="fl">14.40</span>         , <span class="fl">14.70</span>           ,</span>
-<span>  <span class="st">"Sunisa Lee"</span>     , <span class="fl">14.60</span>         , <span class="fl">13.50</span>           ,</span>
-<span>  <span class="st">"Rebeca Andrade"</span> , <span class="fl">14.10</span>         , <span class="fl">14.20</span>           ,</span>
-<span>  <span class="st">"Jordan Chiles"</span>  , <span class="fl">12.70</span>         , <span class="fl">14.00</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">paris_scores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  gymnast        balance_beam floor_exercise
-  &lt;chr&gt;                 &lt;dbl&gt;          &lt;dbl&gt;
-1 Simone Biles           14.4           14.7
-2 Sunisa Lee             14.6           13.5
-3 Rebeca Andrade         14.1           14.2
-4 Jordan Chiles          12.7           14  </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <code><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble()</a></code> function is helpful for creating small data frames (<code>tibble</code>s) with an easier to read row-by-row layout.</p>
-</div>
-</div>
-<p>The second, <code>noc_codes</code>, contains the 3-letter National Olympic Committee (NOC) code of the country each of four gymnasts competed for.</p>
-<div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">noc_codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">gymnast_name</span>    , <span class="op">~</span><span class="va">country_code</span> ,</span>
-<span>  <span class="st">"Simone Biles"</span>   , <span class="st">"USA"</span>         ,</span>
-<span>  <span class="st">"Rebeca Andrade"</span> , <span class="st">"BRA"</span>         ,</span>
-<span>  <span class="st">"Kaylia Nemour"</span>  , <span class="st">"ALG"</span>         ,</span>
-<span>  <span class="st">"Qiyuan Qiu"</span>     , <span class="st">"CHN"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">noc_codes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  gymnast_name   country_code
-  &lt;chr&gt;          &lt;chr&gt;       
-1 Simone Biles   USA         
-2 Rebeca Andrade BRA         
-3 Kaylia Nemour  ALG         
-4 Qiyuan Qiu     CHN         </code></pre>
-</div>
-</div>
-<ol type="a">
-<li>
-<p>Your friend writes the following code to join the <code>paris_scores</code> and <code>noc_codes</code> data frames and gets an error message:</p>
-<div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">paris_scores</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">noc_codes</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in `left_join()`:
-! `by` must be supplied when `x` and `y` have no common variables.
-ℹ Use `cross_join()` to perform a cross-join.</code></pre>
-</div>
-</div>
-<p>What does the error message mean and why does it occur? How would you fix the code?</p>
-</li>
-<li><p>How many rows and columns does the resulting data frame from part (a) have? Explain why.</p></li>
-<li><p>Don’t write any code yet: Suppose you join the two data frames, <code>paris_scores</code> and <code>noc_codes</code>, with a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code>, in that order. How many rows and columns would the resulting data frame have? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.</p></li>
-<li><p>Start with the code this time. Join the two data frames, <code>paris_scores</code> and <code>noc_codes</code>, with an <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, in that order. How many rows and columns does the resulting data frame have? Explain why.</p></li>
-<li><p>Don’t write any code yet: Suppose you join the two data frames with an <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> again, but in the reverse order (<code>noc_codes</code> first, then <code>paris_scores</code>). Would you expect the resulting data frame to have the same number of rows as the previous part or a different number of rows? Explain your reasoning. Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.</p></li>
-<li><p>Don’t write any code yet: Suppose you join the two data frames, <code>paris_scores</code> and <code>noc_codes</code>, with an <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>. Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.</p></li>
-<li><p>Don’t write any code yet: Suppose you join the two data frames with an <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> again, but in the reverse order (<code>noc_codes</code> first, then <code>paris_scores</code>). Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.</p></li>
-<li><p>Start with the code this time. Join the two data frames, <code>paris_scores</code> and <code>noc_codes</code>, with a <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>, in that order. How many rows and columns does the resulting data frame have? Explain why.</p></li>
-<li><p>Your ultimate goal is to construct a dataset where you have all gymnasts who are in the <code>paris_scores</code> data frame along with their event scores and the country they competed for. In order to accomplish this, you will need to look up some gymnasts’ NOC codes in an alternate resource, since they’re not all in the <code>noc_codes</code> data frame. Which join function would you use to find out whose NOC codes you need to look up in an alternate resource? Write the code to perform the join to confirm your answer.</p></li>
 </ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with a meaningful commit message.</p>
