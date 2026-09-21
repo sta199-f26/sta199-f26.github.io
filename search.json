@@ -224,6 +224,69 @@
     "text": "Footnotes\n\nSource: Wikipedia.↩︎\nYes, it’s too many steps. I don’t know why! But it works, and you’ll get used to it. Trust me, it beats downloading and installing everything you need on your computers!↩︎\nWell, a more accurate statement would be that we will be reaching out to you to get things right during the first few weeks of classes. But, it’s best if you can get it right today!↩︎"
   },
   {
+    "objectID": "lab/lab-4.html",
+    "href": "lab/lab-4.html",
+    "title": "Lab 4",
+    "section": "",
+    "text": "Find your teammates\n\n\n\n… and sit with them!"
+  },
+  {
+    "objectID": "lab/lab-4.html#learning-objectives",
+    "href": "lab/lab-4.html#learning-objectives",
+    "title": "Lab 4",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lab, you will:\n\nConvert a character variable to a factor and reorder its levels with fct_relevel().\nDistinguish between the underlying type and the class of a factor.\nCombine two data frames with left_join(), right_join(), inner_join(), full_join(), and anti_join().\nSpecify join keys with join_by() when the key columns have different names.\nPredict how many rows and columns a join will produce, and explain why."
+  },
+  {
+    "objectID": "lab/lab-4.html#guidelines",
+    "href": "lab/lab-4.html#guidelines",
+    "title": "Lab 4",
+    "section": "Guidelines",
+    "text": "Guidelines\nCode\nCode should follow the tidyverse style. Particularly,\n\nthere should be spaces before and line breaks after each + when building a ggplot,\nthere should also be spaces before and line breaks after each |&gt; in a data transformation pipeline,\ncode should be properly indented,\nthere should be spaces around = signs and spaces after commas.\n\nAdditionally, all code should be visible in the PDF output, i.e., should not run off the page on the PDF. Long lines that run off the page should be split across multiple lines with line breaks.1\nPlots\n\nPlots should have an informative title and, if needed, also a subtitle.\nAxes and legends should be labeled with both the variable name and its units (if applicable).\nCareful consideration should be given to aesthetic choices.\nWorkflow\nContinuing to develop a sound workflow for reproducible data analysis is important as you complete the lab and other assignments in this course.\n\nYou should have at least 3 commits with meaningful commit messages by the end of the assignment.\nFinal versions of both your .qmd file and the rendered PDF should be pushed to GitHub."
+  },
+  {
+    "objectID": "lab/lab-4.html#question-1",
+    "href": "lab/lab-4.html#question-1",
+    "title": "Lab 4",
+    "section": "Question 1",
+    "text": "Question 1\nOlympic order.\nOlympic order is the specific order in which gymnasts compete the apparatus. Read about Olympic order in this NBC Olympics explainer.\n\nBased on the article, provide the Olympic order of the events in women’s artistic gymnastics.\nRun the following code cell and analyze the result. Explain what the code does, and state why the events are listed in this order in the output.\n\n\ngymnastics$event |&gt;\n  as.factor() |&gt;\n  levels()\n\n[1] \"Balance Beam\"   \"Floor Exercise\" \"Uneven Bars\"    \"Vault\"         \n\n\n\nWrite code to change the event variable so that its levels reflect Olympic order. Write (or copy from above) code to display the new ordering.\n\n\ngymnastics &lt;- gymnastics |&gt;\n  mutate(\n    event = fct_relevel(\n      event,\n      c(\"Vault\", \"Uneven Bars\", \"Balance Beam\", \"Floor Exercise\")\n    )\n  )\n\ngymnastics$event |&gt;\n  as.factor() |&gt;\n  levels()\n\n[1] \"Vault\"          \"Uneven Bars\"    \"Balance Beam\"   \"Floor Exercise\"\n\n\n\nBefore running any code, predict what each of the following two commands will return. Then run the code cell and check your predictions. Explain in a sentence or two why typeof() and class() return different things for a factor.\n\n\ntypeof(gymnastics$event)\nclass(gymnastics$event)\n\n\nPreview, commit, and push your changes to GitHub with a succinct and informative commit message.\nMake sure to commit and push all changed files so that your source control pane is empty afterward."
+  },
+  {
+    "objectID": "lab/lab-4.html#question-2",
+    "href": "lab/lab-4.html#question-2",
+    "title": "Lab 4",
+    "section": "Question 2",
+    "text": "Question 2\nThe Continental Championships.\nTo qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships. One question of interest, then, is whether gymnasts from different continents score differently.\n\n\n\n\n\n\nNote\n\n\n\nThe Pan American Games features athletes from both North and South American countries. For this analysis, you don’t have to combine the two continents.\n\n\nThe gymnastics data frame doesn’t have information about continents, but the continents data frame does:\n\ncontinents |&gt;\n  select(continent) |&gt;\n  distinct()\n\n# A tibble: 7 × 1\n  continent    \n  &lt;chr&gt;        \n1 Asia         \n2 Europe       \n3 Africa       \n4 Oceania      \n5 North America\n6 Antarctica   \n7 South America\n\n\n\nThe country names live in country in gymnastics and in entity in continents. Read about join_by() in the documentation for left_join(). Then join the two data frames together, treating gymnastics as the left data frame and continents as the right, using left_join(). Display the first six rows.\nIn a single pipeline (utilizing your code from part a), produce a summary of the average vault score by continent.\n\n\n\n\n\n\n\nTip\n\n\n\nYour pipeline will need to join the two data frames, keep only the vault routines, group by continent, and then summarize.\n\n\n\nHow many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?\nYour summary has a row where continent is NA. Using anti_join(), write code to identify which countries in gymnastics have no match in continents. For each one, explain why it failed to match, and describe what you would need to do to fix it.\n\n\nPreview, commit, and push your changes to GitHub with a meaningful commit message.\nMake sure to commit and push all changed files so that your source control pane is empty afterward."
+  },
+  {
+    "objectID": "lab/lab-4.html#question-3",
+    "href": "lab/lab-4.html#question-3",
+    "title": "Lab 4",
+    "section": "Question 3",
+    "text": "Question 3\nJoins.\nFor this question, you will work with two small data frames and join them with various join functions.\nThe first, paris_scores, contains team final balance beam and floor exercise scores for four gymnasts.\n\nparis_scores &lt;- tribble(\n  ~gymnast         , ~balance_beam , ~floor_exercise ,\n  \"Simone Biles\"   ,         14.40 ,           14.70 ,\n  \"Sunisa Lee\"     ,         14.60 ,           13.50 ,\n  \"Rebeca Andrade\" ,         14.10 ,           14.20 ,\n  \"Jordan Chiles\"  ,         12.70 ,           14.00\n)\n\nparis_scores\n\n# A tibble: 4 × 3\n  gymnast        balance_beam floor_exercise\n  &lt;chr&gt;                 &lt;dbl&gt;          &lt;dbl&gt;\n1 Simone Biles           14.4           14.7\n2 Sunisa Lee             14.6           13.5\n3 Rebeca Andrade         14.1           14.2\n4 Jordan Chiles          12.7           14  \n\n\n\n\n\n\n\n\nNote\n\n\n\nThe tribble() function is helpful for creating small data frames (tibbles) with an easier to read row-by-row layout.\n\n\nThe second, noc_codes, contains the 3-letter NOC code of the country each of four gymnasts competed for.\n\nnoc_codes &lt;- tribble(\n  ~gymnast_name    , ~country_code ,\n  \"Simone Biles\"   , \"USA\"         ,\n  \"Rebeca Andrade\" , \"BRA\"         ,\n  \"Kaylia Nemour\"  , \"ALG\"         ,\n  \"Qiyuan Qiu\"     , \"CHN\"\n)\n\nnoc_codes\n\n# A tibble: 4 × 2\n  gymnast_name   country_code\n  &lt;chr&gt;          &lt;chr&gt;       \n1 Simone Biles   USA         \n2 Rebeca Andrade BRA         \n3 Kaylia Nemour  ALG         \n4 Qiyuan Qiu     CHN         \n\n\n\nYour friend writes the following code to join the paris_scores and noc_codes data frames and gets an error message:\n\n\nparis_scores |&gt;\n  left_join(noc_codes)\n\nError in `left_join()`:\n! `by` must be supplied when `x` and `y` have no common variables.\nℹ Use `cross_join()` to perform a cross-join.\n\n\nWhat does the error message mean and why does it occur? How would you fix the code?\n\nHow many rows and columns does the resulting data frame from part (a) have? Explain why.\nDon’t write any code yet: Suppose you join the two data frames, paris_scores and noc_codes, with a right_join(), in that order. How many rows and columns would the resulting data frame have? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.\nStart with the code this time. Join the two data frames, paris_scores and noc_codes, with an inner_join(), in that order. How many rows and columns does the resulting data frame have? Explain why.\nDon’t write any code yet: Suppose you join the two data frames with an inner_join() again, but in the reverse order (noc_codes first, then paris_scores). Would you expect the resulting data frame to have the same number of rows as the previous part or a different number of rows? Explain your reasoning. Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.\nDon’t write any code yet: Suppose you join the two data frames, paris_scores and noc_codes, with an anti_join(). Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.\nDon’t write any code yet: Suppose you join the two data frames with an anti_join() again, but in the reverse order (noc_codes first, then paris_scores). Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn’t correct, discuss with your teammates before proceeding.\nStart with the code this time. Join the two data frames, paris_scores and noc_codes, with a full_join(), in that order. How many rows and columns does the resulting data frame have? Explain why.\nYour ultimate goal is to construct a dataset where you have all gymnasts who are in the paris_scores data frame along with their event scores and the country they competed for. In order to accomplish this, you will need to look up some gymnasts’ NOC codes in an alternate resource, since they’re not all in the noc_codes data frame. Which join function would you use to find out whose NOC codes you need to look up in an alternate resource? Write the code to perform the join to confirm your answer.\n\n\nPreview, commit, and push your changes to GitHub with a meaningful commit message.\nMake sure to commit and push all changed files so that your source control pane is empty afterward."
+  },
+  {
+    "objectID": "lab/lab-4.html#submission",
+    "href": "lab/lab-4.html#submission",
+    "title": "Lab 4",
+    "section": "Submission",
+    "text": "Submission\nSubmit your PDF document to Gradescope by the end of the lab to be considered “on time”:\n\nGo to http://www.gradescope.com and click Log in in the top right corner.\nClick School Credentials \\(\\rightarrow\\) Duke NetID and log in using your NetID credentials.\nClick on your STA 199 course.\nClick on the assignment, and you’ll be prompted to submit it.\nMark all the pages associated with question. All the pages of your lab should be associated with at least one question (i.e., should be “checked”).\n\n\n\n\n\n\n\nChecklist\n\n\n\nMake sure you have:\n\nattempted every question;\npreviewed your Quarto document;\ncommitted and pushed all final changes to GitHub, ending with no pending or staged changes in the Source Control pane; and\nsubmitted your rendered PDF to Gradescope."
+  },
+  {
+    "objectID": "lab/lab-4.html#grading-and-feedback",
+    "href": "lab/lab-4.html#grading-and-feedback",
+    "title": "Lab 4",
+    "section": "Grading and feedback",
+    "text": "Grading and feedback\nThis lab is worth 30 points:\n\n10 points for attending lab and submitting work by the end of lab; and\n20 points for correct and complete answers, clear presentation, and following the required workflow.\n\nThe workflow portion includes making at least three meaningful commits, pushing the final .qmd and rendered PDF to GitHub, and keeping your work organized."
+  },
+  {
+    "objectID": "lab/lab-4.html#footnotes",
+    "href": "lab/lab-4.html#footnotes",
+    "title": "Lab 4",
+    "section": "Footnotes",
+    "text": "Footnotes\n\nRemember, haikus not novellas when writing code!↩︎"
+  },
+  {
     "objectID": "lab/lab-1.html",
     "href": "lab/lab-1.html",
     "title": "Lab 1",
@@ -2192,7 +2255,7 @@
     "href": "lab.html",
     "title": "Labs",
     "section": "",
-    "text": "More labs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nNo.\n\n\n\nTitle\n\n\n\nDue date\n\n\n\n\n\n\n\n\nLab 0\n\n\nMise en place\n\n\nDue: End of lab on Thurs, Aug 27\n\n\n\n\n\n\nLab 1\n\n\nWhat’s streaming around the world?\n\n\nDue: End of lab on Thurs, Sep 3\n\n\n\n\n\n\nLab 2\n\n\nGet in teams, then group_by()\n\n\nDue: End of lab on Thurs, Sep 10\n\n\n\n\n\n\nLab 3\n\n\nThe one with all the pivoting\n\n\nDue: End of lab on Thurs, Sep 17\n\n\n\n\n\n\nNo matching items",
+    "text": "More labs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nNo.\n\n\n\nTitle\n\n\n\nDue date\n\n\n\n\n\n\n\n\nLab 0\n\n\nMise en place\n\n\nDue: End of lab on Thurs, Aug 27\n\n\n\n\n\n\nLab 1\n\n\nWhat’s streaming around the world?\n\n\nDue: End of lab on Thurs, Sep 3\n\n\n\n\n\n\nLab 2\n\n\nGet in teams, then group_by()\n\n\nDue: End of lab on Thurs, Sep 10\n\n\n\n\n\n\nLab 3\n\n\nThe one with all the pivoting\n\n\nDue: End of lab on Thurs, Sep 17\n\n\n\n\n\n\nLab 4\n\n\nJOINing the Olympic Gymnastics Committee\n\n\nDue: End of lab on Thurs, Sep 24\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Labs"
     ]
