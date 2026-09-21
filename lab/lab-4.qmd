@@ -52,13 +52,87 @@ Run the code cell to load the packages.
 
 # Part 1
 
-## Data
+For Part 1 of this lab, you will work with two small data frames (`paris_scores` and `noc_codes`) and join them with various join functions.
 
-For Part 1 of this lab, you'll work with two datasets: `gymnastics` and `continents`.
+- `paris_scores`: Team final balance beam and floor exercise scores for four gymnasts.
 
-### `gymnastics`
+  ```{r}
+  #| label: paris-scores
+  #| eval: true
+  paris_scores <- tribble(
+    ~gymnast         , ~balance_beam , ~floor_exercise ,
+    "Simone Biles"   , 14.40         , 14.70           ,
+    "Sunisa Lee"     , 14.60         , 13.50           ,
+    "Rebeca Andrade" , 14.10         , 14.20           ,
+    "Jordan Chiles"  , 12.70         , 14.00
+  )
+  
+  paris_scores
+  ```
+  
+  ::: callout-note
+  The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read   row-by-row layout.
+  :::
 
-This dataset contains information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. **Each row represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
+- `noc_codes`: 3-letter National Olympic Committee (NOC) code of the country each of four gymnasts competed for.
+
+  ```{r}
+  #| label: noc-codes
+  #| eval: true
+  noc_codes <- tribble(
+    ~gymnast_name    , ~country_code ,
+    "Simone Biles"   , "USA"         ,
+    "Rebeca Andrade" , "BRA"         ,
+    "Kaylia Nemour"  , "ALG"         ,
+    "Qiyuan Qiu"     , "CHN"
+  )
+  
+  noc_codes
+  ```
+
+## Question 1
+
+a. Your friend writes the following code to join the `paris_scores` and `noc_codes` data frames and gets an error message:
+
+   ```{r}
+   #| label: failed-join
+   #| eval: true
+   #| error: true
+   paris_scores |>
+     left_join(noc_codes)
+   ```
+   
+   What does the error message mean and why does it occur? How would you fix the code?
+
+b. How many rows and columns does the resulting data frame from part (a) have? Explain why.
+
+## Question 2
+
+a. Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with a `right_join()`, in that order. How many rows and columns would the resulting data frame have? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+
+b. Start with the code this time. Join the two data frames, `paris_scores` and `noc_codes`, with an `inner_join()`, in that order. How many rows and columns does the resulting data frame have? Explain why.
+
+c. Don't write any code yet: Suppose you join the two data frames with an `inner_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`). Would you expect the resulting data frame to have the same number of rows as the previous part or a different number of rows? Explain your reasoning. Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+
+d. Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with an `anti_join()`. Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+
+e. Don't write any code yet: Suppose you join the two data frames with an `anti_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`). Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+
+f. Start with the code this time. Join the two data frames, `paris_scores` and `noc_codes`, with a `full_join()`, in that order. How many rows and columns does the resulting data frame have? Explain why.
+
+g. Your ultimate goal is to construct a dataset where you have all gymnasts who are in the `paris_scores` data frame along with their event scores and the country they competed for. In order to accomplish this, you will need to look up some gymnasts' NOC codes in an alternate resource, since they're not all in the `noc_codes` data frame. Which join function would you use to find out whose NOC codes you need to look up in an alternate resource? Write the code to perform the join to confirm your answer.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with a meaningful commit message.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+:::
+
+# Part 2
+
+For Part 2 of this lab, you'll work with new two datasets: `gymnastics` and `continents`.
+
+- `gymnastics`: Information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. **Each row represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
 
 Read the data into R with:
 
@@ -90,9 +164,7 @@ The variables in this dataset are:
 | `score` | Routine total = `d_score` + `e_score` - `penalty` |
 | `rank` | Placement for that row's competition |
 
-### `continents`
-
-You also have access to a small data frame of countries and the continent each one is in.
+- `continents`: A small data frame of countries and the continent each one is in.
 
 ```{r}
 #| label: load-continents
@@ -116,9 +188,7 @@ The variables in this dataset are:
 | `year` | Year the continent assignment was recorded |
 | `continent` | Continent the country is in |
 
-## Question 1
-
-**Olympic order.**
+## Question 3
 
 Olympic order is the specific order in which gymnasts compete the apparatus. Read about Olympic order in [this NBC Olympics explainer](https://www.nbcolympics.com/news/gymnastics-101-olympic-competition-format).
 
@@ -168,9 +238,7 @@ Preview, commit, and push your changes to GitHub with a succinct and informative
 Make sure to commit and push all changed files so that your source control pane is empty afterward.
 :::
 
-## Question 2
-
-**The Continental Championships.**
+## Question 4
 
 To qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships.
 One question of interest, then, is whether gymnasts from different continents score differently.
@@ -196,84 +264,6 @@ b. In a single pipeline, produce a summary of the average vault score by contine
 c. How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
 
 d. Your summary has a row where `continent` is `NA`. Using `anti_join()`, write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fix it.
-
-::: source-control
-Preview, commit, and push your changes to GitHub with a meaningful commit message.
-
-Make sure to commit and push all changed files so that your source control pane is empty afterward.
-:::
-
-# Part 2
-
-## Question 3
-
-**Joins.**
-
-For this question, you will work with two small data frames and join them with various join functions.
-
-The first, `paris_scores`, contains team final balance beam and floor exercise scores for four gymnasts.
-
-```{r}
-#| label: paris-scores
-#| eval: true
-paris_scores <- tribble(
-  ~gymnast         , ~balance_beam , ~floor_exercise ,
-  "Simone Biles"   , 14.40         , 14.70           ,
-  "Sunisa Lee"     , 14.60         , 13.50           ,
-  "Rebeca Andrade" , 14.10         , 14.20           ,
-  "Jordan Chiles"  , 12.70         , 14.00
-)
-
-paris_scores
-```
-
-::: callout-note
-The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read row-by-row layout.
-:::
-
-The second, `noc_codes`, contains the 3-letter National Olympic Committee (NOC) code of the country each of four gymnasts competed for.
-
-```{r}
-#| label: noc-codes
-#| eval: true
-noc_codes <- tribble(
-  ~gymnast_name    , ~country_code ,
-  "Simone Biles"   , "USA"         ,
-  "Rebeca Andrade" , "BRA"         ,
-  "Kaylia Nemour"  , "ALG"         ,
-  "Qiyuan Qiu"     , "CHN"
-)
-
-noc_codes
-```
-
-a. Your friend writes the following code to join the `paris_scores` and `noc_codes` data frames and gets an error message:
-
-   ```{r}
-   #| label: failed-join
-   #| eval: true
-   #| error: true
-   paris_scores |>
-     left_join(noc_codes)
-   ```
-   
-   What does the error message mean and why does it occur? How would you fix the code?
-
-b. How many rows and columns does the resulting data frame from part (a) have? Explain why.
-
-c. Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with a `right_join()`, in that order. How many rows and columns would the resulting data frame have? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
-
-d. Start with the code this time. Join the two data frames, `paris_scores` and `noc_codes`, with an `inner_join()`, in that order. How many rows and columns does the resulting data frame have? Explain why.
-
-e. Don't write any code yet: Suppose you join the two data frames with an `inner_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`). Would you expect the resulting data frame to have the same number of rows as the previous part or a different number of rows? Explain your reasoning. Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
-
-f. Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with an `anti_join()`. Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
-
-g. Don't write any code yet: Suppose you join the two data frames with an `anti_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`). Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
-
-h. Start with the code this time. Join the two data frames, `paris_scores` and `noc_codes`, with a `full_join()`, in that order. How many rows and columns does the resulting data frame have? Explain why.
-
-i. Your ultimate goal is to construct a dataset where you have all gymnasts who are in the `paris_scores` data frame along with their event scores and the country they competed for. In order to accomplish this, you will need to look up some gymnasts' NOC codes in an alternate resource, since they're not all in the `noc_codes` data frame. Which join function would you use to find out whose NOC codes you need to look up in an alternate resource? Write the code to perform the join to confirm your answer.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with a meaningful commit message.
