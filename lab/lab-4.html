@@ -503,19 +503,7 @@ window.Quarto = {
 <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   </ul>
 </li>
-  <li>
-<a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a>
-  <ul class="collapse">
-<li>
-<a href="#guidelines" id="toc-guidelines" class="nav-link" data-scroll-target="#guidelines">Guidelines</a>
-  <ul class="collapse">
-<li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">Plots</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  </ul>
-</li>
-  </ul>
-</li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li>
@@ -574,7 +562,7 @@ Find your teammates
 </div>
 </div>
 <section id="introduction" class="level1"><h1>Introduction</h1>
-<p>In honor of National Gymnastics Day this past week, you will work with real gymnastics data from the 2024 Paris Olympics! You will first work through a small section on factors, then practice bringing two data frames together with join functions.</p>
+<p>In honor of <a href="https://usagym.org/ngd/">National Gymnastics Day</a> this past week, you will work with real gymnastics data from the 2024 Paris Olympics! You will first work through a small section on factors, then practice bringing two data frames together with join functions.</p>
 <p>Make sure to upload your completed lab to Gradescope <strong>by the end of your lab session</strong> and commit and push your final version to GitHub.</p>
 <section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <p>By the end of this lab, you will:</p>
@@ -585,36 +573,9 @@ Find your teammates
 <li>Specify join keys with <code><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by()</a></code> when the key columns have different names.</li>
 <li>Predict how many rows and columns a join will produce, and explain why.</li>
 </ul></section></section><section id="getting-started" class="level1"><h1>Getting started</h1>
-<p>Clone your <strong>lab-4</strong> repository using the same process used in Lab 0.</p>
-<ol type="1">
-<li>Go to the course GitHub organization at <a href="https://github.com/sta199-f26">github.com/sta199-f26</a> and click on the repository with the prefix <code>lab-4</code>.</li>
-<li>Select the green <strong>Code</strong> button and choose <strong>HTTPS</strong> under <strong>Clone</strong>. Click on the clipboard icon to copy the repo URL.</li>
-<li>In Positron’s Welcome window, click on <em>New Folder From Git…</em>.</li>
-<li>Paste the repository URL into the dialog box labeled <em>Git repository URL</em> and select <strong>OK</strong>.</li>
-<li>Open <code>lab-4.qmd</code> in the Explorer pane.</li>
-</ol>
-<p>Then, click <em>lab-4.qmd</em> to open the template Quarto file and update the <code>authors</code> field to add your name first (first and last) and then your teammates’ names (first and last). Render the document. If you get a popup window error, click “Try again”. Examine the rendered document and make sure your name is updated in the document. Commit and push your changes with a meaningful commit message and push to GitHub.</p>
-<section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
-<section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
-<p>Code should follow the <a href="https://style.tidyverse.org/">tidyverse style</a>. Particularly,</p>
-<ul>
-<li>there should be spaces before and line breaks after each <code>+</code> when building a <code>ggplot</code>,</li>
-<li>there should also be spaces before and line breaks after each <code>|&gt;</code> in a data transformation pipeline,</li>
-<li>code should be properly indented,</li>
-<li>there should be spaces around <code>=</code> signs and spaces after commas.</li>
-</ul>
-<p>Additionally, all code should be visible in the PDF output, i.e., should not run off the page on the PDF. Long lines that run off the page should be split across multiple lines with line breaks.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-</section><section id="plots" class="level3"><h3 class="anchored" data-anchor-id="plots">Plots</h3>
-<ul>
-<li>Plots should have an informative title and, if needed, also a subtitle.</li>
-<li>Axes and legends should be labeled with both the variable name and its units (if applicable).</li>
-<li>Careful consideration should be given to aesthetic choices.</li>
-</ul></section><section id="workflow" class="level3"><h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
-<p>Continuing to develop a sound workflow for reproducible data analysis is important as you complete the lab and other assignments in this course.</p>
-<ul>
-<li>You should have at least 3 commits with meaningful commit messages by the end of the assignment.</li>
-<li>Final versions of both your <code>.qmd</code> file and the rendered PDF should be pushed to GitHub.</li>
-</ul></section></section></section><section id="packages" class="level1"><h1>Packages</h1>
+<p>Clone your <strong>lab-4</strong> repository using the same process used in Lab 0. By now you should now the drill, so we won’t repeat it here again. If you have any trouble, ask your instructor or TA for help.</p>
+<p>We also won’t repeat the guidelines, but you can refer to a previous lab to review them.</p>
+</section><section id="packages" class="level1"><h1>Packages</h1>
 <p>In this lab we will work with the <strong>tidyverse</strong> package.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -971,10 +932,7 @@ Checklist
 <p>The workflow portion includes making at least three meaningful commits, pushing the final <code>.qmd</code> and rendered PDF to GitHub, and keeping your work organized.</p>
 
 
-</section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-<ol>
-<li id="fn1"><p>Remember, haikus not novellas when writing code!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
