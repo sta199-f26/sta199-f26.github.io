@@ -33,11 +33,11 @@ By the end of this lab, you will:
 
 Clone your **lab-4** repository using the same process used in Lab 0. 
 By now you should now the drill, so we won't repeat it here again. 
-If you have any trouble, ask your instructor or TA for help.
+If you have any trouble, please ask your TA for help.
 
-We also won't repeat the guidelines, but you can refer to a previous lab to review them.
+We also won't repeat the guidelines, but you can refer to a [previous lab](/lab/lab-3.html#guidelines) to review them.
 
-# Packages
+## Packages
 
 In this lab we will work with the **tidyverse** package.
 
@@ -48,13 +48,17 @@ In this lab we will work with the **tidyverse** package.
 library(tidyverse)
 ```
 
--   **Run** the code cell by clicking on the green triangle (play) button for the code cell labeled `load-packages`. This loads the package to make its features (the functions and datasets in it) accessible from your *Console*.
--   Then, **preview** the document, which loads this package to make its features (the functions and datasets in it) available for other code cells in your Quarto document.
+Run the code cell to load the packages.
 
-# Data
+# Part 1
 
-For Questions 1 and 2, you will analyze routines from the women's artistic gymnastics competition at the 2024 Paris Olympics.
-**Each row of `gymnastics` represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
+## Data
+
+For Part 1 of this lab, you'll work with two datasets: `gymnastics` and `continents`.
+
+### `gymnastics`
+
+This dataset contains information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. **Each row represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
 
 Read the data into R with:
 
@@ -71,13 +75,13 @@ gymnastics <- read_csv("data/gymnastics.csv")
 glimpse(gymnastics)
 ```
 
-The variables are:
+The variables in this dataset are:
 
 | Variable | Description |
 |:---------------|:-------------------------------------------------------|
 | `name` | Gymnast's name, in "Given Surname" order |
 | `country` | Country name |
-| `country_code` | 3-letter NOC code |
+| `country_code` | 3-letter National Olympic Committee (NOC) code |
 | `event` | Apparatus: Vault, Uneven Bars, Balance Beam, Floor Exercise |
 | `competition` | Which round: Qualification, Team Final, All-Around Final, Event Final |
 | `d_score` | Difficulty score (a number greater than zero, in increments of 0.1) |
@@ -85,6 +89,8 @@ The variables are:
 | `penalty` | Neutral deduction |
 | `score` | Routine total = `d_score` + `e_score` - `penalty` |
 | `rank` | Placement for that row's competition |
+
+### `continents`
 
 You also have access to a small data frame of countries and the continent each one is in.
 
@@ -101,7 +107,7 @@ continents <- read_csv("data/continents.csv")
 glimpse(continents)
 ```
 
-The variables are:
+The variables in this dataset are:
 
 | Variable | Description |
 |:------------|:-----------------------------------------------------------|
@@ -109,8 +115,6 @@ The variables are:
 | `code` | 3-letter country code |
 | `year` | Year the continent assignment was recorded |
 | `continent` | Continent the country is in |
-
-# Questions
 
 ## Question 1
 
@@ -125,7 +129,8 @@ b. Run the following code cell and analyze the result. Explain what the code doe
 ```{r}
 #| label: event-levels
 #| eval: true
-gymnastics$event |>
+gymnastics |>
+  pull(event) |>
   as.factor() |>
   levels()
 ```
@@ -143,7 +148,8 @@ gymnastics <- gymnastics |>
     )
   )
 
-gymnastics$event |>
+gymnastics |>
+  pull(event) |>
   as.factor() |>
   levels()
 ```
@@ -180,17 +186,12 @@ The `gymnastics` data frame doesn't have information about continents, but the `
 #| label: continent-levels
 #| eval: true
 continents |>
-  select(continent) |>
-  distinct()
+  distinct(continent)
 ```
 
-a. The country names live in `country` in `gymnastics` and in `entity` in `continents`. Read about `join_by()` in the documentation for `left_join()`. Then join the two data frames together, treating `gymnastics` as the left data frame and `continents` as the right, using `left_join()`. Display the first six rows.
+a. The country names live in the `country` column in the `gymnastics` data frame and in the `entity` column in the `continents` data frame. Read about `join_by()` in the documentation for `left_join()`. Then join the two data frames together, treating `gymnastics` as the left data frame and `continents` as the right, using `left_join()`. Save the resulting data frame as a new data frame and give it a short but evocative name. Display the first ten rows of the new data frame.
 
-b. In a single pipeline (utilizing your code from part a), produce a summary of the average vault score by continent.
-
-::: callout-tip
-Your pipeline will need to join the two data frames, keep only the vault routines, group by continent, and then summarize.
-:::
+b. In a single pipeline, produce a summary of the average vault score by continent.
 
 c. How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
 
@@ -201,6 +202,8 @@ Preview, commit, and push your changes to GitHub with a meaningful commit messag
 
 Make sure to commit and push all changed files so that your source control pane is empty afterward.
 :::
+
+# Part 2
 
 ## Question 3
 
@@ -228,7 +231,7 @@ paris_scores
 The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read row-by-row layout.
 :::
 
-The second, `noc_codes`, contains the 3-letter NOC code of the country each of four gymnasts competed for.
+The second, `noc_codes`, contains the 3-letter National Olympic Committee (NOC) code of the country each of four gymnasts competed for.
 
 ```{r}
 #| label: noc-codes
@@ -246,15 +249,15 @@ noc_codes
 
 a. Your friend writes the following code to join the `paris_scores` and `noc_codes` data frames and gets an error message:
 
-```{r}
-#| label: failed-join
-#| eval: true
-#| error: true
-paris_scores |>
-  left_join(noc_codes)
-```
-
-What does the error message mean and why does it occur? How would you fix the code?
+   ```{r}
+   #| label: failed-join
+   #| eval: true
+   #| error: true
+   paris_scores |>
+     left_join(noc_codes)
+   ```
+   
+   What does the error message mean and why does it occur? How would you fix the code?
 
 b. How many rows and columns does the resulting data frame from part (a) have? Explain why.
 
@@ -280,15 +283,17 @@ Make sure to commit and push all changed files so that your source control pane 
 
 # Wrap-up
 
-## Submission
+At this point, you should know the deal! 
+If you don't know how to submit your lab and how it will be graded, review a previous lab and/or ask your TA for help.
+And before then, make sure to run through the following checklist one last time.
 
-{{< include _submission.qmd >}}
+::: callout-important
+## Checklist
 
-## Grading and feedback
+Make sure you have:
 
-This lab is worth 30 points:
-
-- 10 points for attending lab and submitting work by the end of lab; and
-- 20 points for correct and complete answers, clear presentation, and following the required workflow.
-
-The workflow portion includes making at least three meaningful commits, pushing the final `.qmd` and rendered PDF to GitHub, and keeping your work organized.
+- attempted every question;
+- previewed your Quarto document;
+- committed and pushed all final changes to GitHub, ending with no pending or staged changes in the Source Control pane; and
+- submitted your rendered PDF to Gradescope.
+:::
