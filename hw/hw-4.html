@@ -478,22 +478,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+<li>
+<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+<li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#guidelines" id="toc-guidelines" class="nav-link" data-scroll-target="#guidelines">Guidelines</a></li>
+  <li><a href="#ai-support-and-feedback" id="toc-ai-support-and-feedback" class="nav-link" data-scroll-target="#ai-support-and-feedback">AI support and feedback</a></li>
+  </ul>
+</li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li>
 <a href="#part-1---slam-dunks" id="toc-part-1---slam-dunks" class="nav-link" data-scroll-target="#part-1---slam-dunks">Part 1 - Slam dunks</a>
   <ul class="collapse">
 <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#question-1---import" id="toc-question-1---import" class="nav-link" data-scroll-target="#question-1---import">Question 1 - Import</a></li>
-  <li><a href="#question-2---inspect" id="toc-question-2---inspect" class="nav-link" data-scroll-target="#question-2---inspect">Question 2 - Inspect</a></li>
-  <li><a href="#question-3---explore" id="toc-question-3---explore" class="nav-link" data-scroll-target="#question-3---explore">Question 3 - Explore</a></li>
-  <li><a href="#question-4---recreate" id="toc-question-4---recreate" class="nav-link" data-scroll-target="#question-4---recreate">Question 4 - Recreate</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   </ul>
 </li>
   <li>
 <a href="#part-2---shaken-trust" id="toc-part-2---shaken-trust" class="nav-link" data-scroll-target="#part-2---shaken-trust">Part 2 - Shaken trust</a>
   <ul class="collapse">
-<li><a href="#question-5---learn" id="toc-question-5---learn" class="nav-link" data-scroll-target="#question-5---learn">Question 5 - Learn</a></li>
-  <li><a href="#question-6---recreate" id="toc-question-6---recreate" class="nav-link" data-scroll-target="#question-6---recreate">Question 6 - Recreate</a></li>
+<li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -523,7 +531,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="packages" class="level1"><h1>Packages</h1>
+</header><section id="introduction" class="level1"><h1>Introduction</h1>
+<p>In this homework, you will explore two very different topics: basketball prospects and public perceptions of government corruption. First, you will combine NBA Draft Combine measurements with draft picks to explore player characteristics and highlight players from Duke. Then, you will examine Gallup survey results on perceived government corruption across political groups and over time.</p>
+<p>Along the way, you will practice importing and cleaning data, identifying mismatches between datasets, joining and summarizing data, and creating and customizing visualizations with ggplot2.</p>
+<section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>By the end of this homework, you will:</p>
+<ul>
+<li>import data from Excel sheets and clean variable names and missing values;</li>
+<li>identify unmatched observations and join related datasets;</li>
+<li>summarize and visualize relationships between variables while accounting for missing values; and</li>
+<li>recreate and customize visualizations with ggplot2, including colors, labels, and annotations.</li>
+</ul></section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
+<p>By now you should be familiar with guidelines for homework assignments. If not, please refer to an earlier homework assignment for details.</p>
+</section><section id="ai-support-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="ai-support-and-feedback">AI support and feedback</h2>
+<p>You can get immediate support as well as feedback on all of the questions with AI, based on rubrics designed by the course instructor, via the Codex extension in Positron, and using AI access provided by Duke University.</p>
+<p>When working on your assignment, feel free to ask Codex for help, but don’t ask it to do your work for you. After completing a question, ask Codex to provide feedback on your answer, e.g., “Review my answer for Question 1.”</p>
+</section></section><section id="packages" class="level1"><h1>Packages</h1>
 <p>In addition to the <a href="https://www.tidyverse.org/packages"><strong>tidyverse</strong></a> package, you will also need the <a href="https://readxl.tidyverse.org/"><strong>readxl</strong></a> and the <a href="https://sfirke.github.io/janitor/"><strong>janitor</strong></a> packages. Your analysis must use these packages.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -569,8 +592,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>round number - which round they were drafted in; 1 for first round pick, 2 for second round pick.</li>
 <li>round pick - within a round, order in which a player was picked; 1 to 30</li>
 <li>overall pick - overall order in which a player was drafted; 1 to 50 in the supplied data</li>
-</ul></section><section id="question-1---import" class="level2"><h2 class="anchored" data-anchor-id="question-1---import">Question 1 - Import</h2>
-<p>Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.</p>
+</ul></section><section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p><strong>Import.</strong> Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -588,13 +611,14 @@ Requirements
 </ul>
 </div>
 </div>
-</section><section id="question-2---inspect" class="level2"><h2 class="anchored" data-anchor-id="question-2---inspect">Question 2 - Inspect</h2>
-<p>Find the mismatches between the two data frames:</p>
+</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p><strong>Inspect.</strong> Find the mismatches between the two data frames:</p>
 <ol type="a">
 <li><p>Determine which, if any, players are in the stats data frame but not in the picks data frame. These are players present in the combine data but absent from the supplied draft-picks data; their absence does not necessarily mean they went undrafted. Display your output.</p></li>
 <li><p>Determine which, if any, players are in the picks data frame but not in the stats data frame. These are the players who were picked in the draft but we do not have stats for. Display your output.</p></li>
 <li><p>In a single sentence, briefly summarize the number of each type of mismatch.</p></li>
-</ol></section><section id="question-3---explore" class="level2"><h2 class="anchored" data-anchor-id="question-3---explore">Question 3 - Explore</h2>
+</ol></section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p><strong>Explore.</strong></p>
 <ol type="a">
 <li>
 <p>Using the stats data frame, create a single pipeline that summarizes the mean and median weight (in pounds) for players in each position.</p>
@@ -620,8 +644,8 @@ Requirements
 </li>
 <li><p>Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then, create the visualization you selected, making sure to employ good visualization practices.</p></li>
 <li><p>Briefly, at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).</p></li>
-</ol></section><section id="question-4---recreate" class="level2"><h2 class="anchored" data-anchor-id="question-4---recreate">Question 4 - Recreate</h2>
-<p>Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University. Then, improve it by giving it a title and better axis labels.</p>
+</ol></section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p><strong>Recreate.</strong> Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University. Then, improve it by giving it a title and better axis labels.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -660,10 +684,10 @@ Tip
 </div>
 </section></section><section id="part-2---shaken-trust" class="level1"><h1>Part 2 - Shaken trust</h1>
 <p>On September 2, 2026, <a href="https://www.gallup.com/">Gallup</a> reported “Record-High 89% in U.S. Say Government Corruption Widespread”.</p>
-<section id="question-5---learn" class="level2"><h2 class="anchored" data-anchor-id="question-5---learn">Question 5 - Learn</h2>
-<p>Read the article at <a href="https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx" class="uri">https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx</a> and, in 2–3 sentences, summarize the main finding and one comparison across political groups or over time. Explain whether the survey measures corruption itself or perceptions of corruption.</p>
-</section><section id="question-6---recreate" class="level2"><h2 class="anchored" data-anchor-id="question-6---recreate">Question 6 - Recreate</h2>
-<p>The goal of this question is to recreate the following visualization from the article with ggplot2.</p>
+<section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p><strong>Learn.</strong> Read the article at <a href="https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx" class="uri">https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx</a> and, in 2–3 sentences, summarize the main finding and one comparison across political groups or over time. Explain whether the survey measures corruption itself or perceptions of corruption.</p>
+</section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p><strong>Recreate.</strong> The goal of this question is to recreate the following visualization from the article with ggplot2.</p>
 <p><a href="images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png" class="img-fluid" alt="Perceived Government Corruption Spans Political Spectrum"></a></p>
 <ol type="a">
 <li><p>In the linked Gallup article, find the interactive chart titled “Perceived Government Corruption Spans Political Spectrum” and download its data using the “Get the data” link. Save or upload the downloaded file to your <code>data</code> folder.</p></li>
