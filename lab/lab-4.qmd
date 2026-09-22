@@ -8,14 +8,17 @@ execute:
   eval: false
 ---
 
-::: {.callout-important}
+::: callout-important
 ## Find your teammates
-... and sit with them!
+
+...
+and sit with them!
 :::
 
 # Introduction
 
-In honor of [National Gymnastics Day](https://usagym.org/ngd/) this past week, you will work with real gymnastics data from the 2024 Paris Olympics! You will first practice bringing two data frames together with join functions, then work through a small exercise on factors.
+In honor of [National Gymnastics Day](https://usagym.org/ngd/) this past week, you will work with real gymnastics data from the 2024 Paris Olympics!
+You will first practice bringing two data frames together with join functions, then work through a small exercise on factors.
 
 Make sure to upload your completed lab to Gradescope **by the end of your lab session** and commit and push your final version to GitHub.
 
@@ -31,8 +34,8 @@ By the end of this lab, you will:
 
 # Getting started
 
-Clone your **lab-4** repository using the same process used in Lab 0. 
-By now you should know the drill, so we won't repeat it here again. 
+Clone your **lab-4** repository using the same process used in Lab 0.
+By now you should know the drill, so we won't repeat it here again.
 If you have any trouble, please ask your TA for help.
 
 We also won't repeat the guidelines, but you can refer to a [previous lab](/lab/lab-3.html#guidelines) to review them.
@@ -66,10 +69,10 @@ For Part 1 of this lab, you will work with two small data frames (`paris_scores`
     "Rebeca Andrade" , 14.10         , 14.20           ,
     "Jordan Chiles"  , 12.70         , 14.00
   )
-  
+
   paris_scores
   ```
-  
+
   ::: callout-note
   The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read row-by-row layout.
   :::
@@ -86,41 +89,65 @@ For Part 1 of this lab, you will work with two small data frames (`paris_scores`
     "Kaylia Nemour"  , "ALG"         ,
     "Qiyuan Qiu"     , "CHN"
   )
-  
+
   noc_codes
   ```
 
 ## Question 1
 
-a. Your friend writes the following code to join the `paris_scores` and `noc_codes` data frames and gets an error message:
+a.  Your friend writes the following code to join the `paris_scores` and `noc_codes` data frames and gets an error message:
 
-   ```{r}
-   #| label: failed-join
-   #| eval: true
-   #| error: true
-   paris_scores |>
-     left_join(noc_codes)
-   ```
-   
-   What does the error message mean and why does it occur? How would you fix the code?
+    ```{r}
+    #| label: failed-join
+    #| eval: true
+    #| error: true
+    paris_scores |>
+      left_join(noc_codes)
+    ```
 
-b. How many rows and columns does the resulting data frame from part (a) have? Explain why.
+    What does the error message mean and why does it occur?
+    How would you fix the code?
+
+b.  How many rows and columns does the resulting data frame from part (a) have?
+    Explain why.
 
 ## Question 2
 
-a. Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with a `right_join()`, in that order. How many rows and columns would the resulting data frame have? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+a.  Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with a `right_join()`, in that order.
+    How many rows and columns would the resulting data frame have?
+    Then, write the code to perform the join.
+    If your guess wasn't correct, discuss with your teammates before proceeding.
 
-b. Start with the code this time. Join the two data frames, `paris_scores` and `noc_codes`, with an `inner_join()`, in that order. How many rows and columns does the resulting data frame have? Explain why.
+b.  Start with the code this time.
+    Join the two data frames, `paris_scores` and `noc_codes`, with an `inner_join()`, in that order.
+    How many rows and columns does the resulting data frame have?
+    Explain why.
 
-c. Don't write any code yet: Suppose you join the two data frames with an `inner_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`). Would you expect the resulting data frame to have the same number of rows as the previous part or a different number of rows? Explain your reasoning. Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+c.  Don't write any code yet: Suppose you join the two data frames with an `inner_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`).
+    Would you expect the resulting data frame to have the same number of rows as the previous part or a different number of rows?
+    Explain your reasoning.
+    Then, write the code to perform the join.
+    If your guess wasn't correct, discuss with your teammates before proceeding.
 
-d. Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with an `anti_join()`. Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+d.  Don't write any code yet: Suppose you join the two data frames, `paris_scores` and `noc_codes`, with an `anti_join()`.
+    Which gymnast(s) would be in the resulting data frame?
+    Then, write the code to perform the join.
+    If your guess wasn't correct, discuss with your teammates before proceeding.
 
-e. Don't write any code yet: Suppose you join the two data frames with an `anti_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`). Which gymnast(s) would be in the resulting data frame? Then, write the code to perform the join. If your guess wasn't correct, discuss with your teammates before proceeding.
+e.  Don't write any code yet: Suppose you join the two data frames with an `anti_join()` again, but in the reverse order (`noc_codes` first, then `paris_scores`).
+    Which gymnast(s) would be in the resulting data frame?
+    Then, write the code to perform the join.
+    If your guess wasn't correct, discuss with your teammates before proceeding.
 
-f. Start with the code this time. Join the two data frames, `paris_scores` and `noc_codes`, with a `full_join()`, in that order. How many rows and columns does the resulting data frame have? Explain why.
+f.  Start with the code this time.
+    Join the two data frames, `paris_scores` and `noc_codes`, with a `full_join()`, in that order.
+    How many rows and columns does the resulting data frame have?
+    Explain why.
 
-g. Your ultimate goal is to construct a dataset where you have all gymnasts who are in the `paris_scores` data frame along with their event scores and the country they competed for. In order to accomplish this, you will need to look up some gymnasts' NOC codes in an alternate resource, since they're not all in the `noc_codes` data frame. Which join function would you use to find out whose NOC codes you need to look up in an alternate resource? Write the code to perform the join to confirm your answer.
+g.  Your ultimate goal is to construct a dataset where you have all gymnasts who are in the `paris_scores` data frame along with their event scores and the country they competed for.
+    In order to accomplish this, you will need to look up some gymnasts' NOC codes in an alternate resource, since they're not all in the `noc_codes` data frame.
+    Which join function would you use to find out whose NOC codes you need to look up in an alternate resource?
+    Write the code to perform the join to confirm your answer.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with a meaningful commit message.
@@ -130,9 +157,8 @@ Make sure to commit and push all changed files so that your source control pane 
 
 # Part 2
 
-For Part 2 of this lab, you'll work with two new datasets: `gymnastics` and `continents`.
-
-- `gymnastics`: Information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. **Each row represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
+For Part 2 of this lab, you'll work with two new datasets: `gymnastics`, which contains information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics.
+**Each row represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
 
 Read the data into R with:
 
@@ -152,7 +178,7 @@ glimpse(gymnastics)
 The variables in this dataset are:
 
 | Variable | Description |
-|:---------------|:-------------------------------------------------------|
+|:-----------------|:-----------------------------------------------------|
 | `name` | Gymnast's name, in "Given Surname" order |
 | `country` | Country name |
 | `country_code` | 3-letter National Olympic Committee (NOC) code |
@@ -164,37 +190,15 @@ The variables in this dataset are:
 | `score` | Routine total = `d_score` + `e_score` - `penalty` |
 | `rank` | Placement for that row's competition |
 
-- `continents`: A small data frame of countries and the continent each one is in.
-
-```{r}
-#| label: load-continents
-#| eval: true
-#| message: false
-continents <- read_csv("data/continents.csv")
-```
-
-```{r}
-#| label: glimpse-continents
-#| eval: true
-glimpse(continents)
-```
-
-The variables in this dataset are:
-
-| Variable | Description |
-|:------------|:-----------------------------------------------------------|
-| `entity` | Country name |
-| `code` | Country code (3-letter ISO code for most countries) |
-| `year` | Year the continent assignment was recorded |
-| `continent` | Continent the country is in |
-
 ## Question 3
 
-Olympic order is the specific order in which gymnasts compete the apparatus. Read about Olympic order in [this NBC Olympics explainer](https://www.nbcolympics.com/news/gymnastics-101-olympic-competition-format).
+Olympic order is the specific order in which gymnasts compete the apparatus.
+Read about Olympic order in [this NBC Olympics explainer](https://www.nbcolympics.com/news/gymnastics-101-olympic-competition-format).
 
-a. Based on the article, provide the Olympic order of the events in women's artistic gymnastics.
+a.  Based on the article, provide the Olympic order of the events in women's artistic gymnastics.
 
-b. Run the following code cell and analyze the result. Explain what the code does, and state why the events are listed in this order in the output.
+b.  Run the following code cell and analyze the result.
+    Explain what the code does, and state why the events are listed in this order in the output.
 
 ```{r}
 #| label: event-levels
@@ -205,48 +209,18 @@ gymnastics |>
   levels()
 ```
 
-c. Write code to change the `event` variable so that its levels reflect Olympic order. Write (or copy from above) code to display the new ordering.
+c.  Write code to change the `event` variable so that its levels reflect Olympic order and save the new variable, with the same name, in the `gymnastics` data frame, i.e., overwrite the `gymnastics` data frame with the new version of the `event` variable.
+    Then, write (or copy from above) code to display the new ordering.
 
-d. Before running any code, predict what each of the following two commands will return. Then run the code cell and check your predictions. Explain in a sentence or two why `typeof()` and `class()` return different things for a factor.
+d.  Before running any code, predict what each of the following two commands will return.
+    Then run the code cell and check your predictions.
+    Explain in a sentence or two why `typeof()` and `class()` return different things for a factor.
 
 ```{r}
 #| label: type-vs-class
 typeof(gymnastics$event)
 class(gymnastics$event)
 ```
-
-::: source-control
-Preview, commit, and push your changes to GitHub with a succinct and informative commit message.
-
-Make sure to commit and push all changed files so that your source control pane is empty afterward.
-:::
-
-## Question 4
-
-To qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships.
-One question of interest, then, is whether gymnasts from different continents score differently.
-
-::: callout-note
-The Pan American Games features athletes from both North and South American countries.
-For this analysis, you don't have to combine the two continents.
-:::
-
-The `gymnastics` data frame doesn't have information about continents, but the `continents` data frame does:
-
-```{r}
-#| label: continent-levels
-#| eval: true
-continents |>
-  distinct(continent)
-```
-
-a. The country names live in the `country` column in the `gymnastics` data frame and in the `entity` column in the `continents` data frame. Read about `join_by()` in the documentation for `left_join()`. Then join the two data frames together, treating `gymnastics` as the left data frame and `continents` as the right, using `left_join()`. Save the resulting data frame as a new data frame and give it a short but evocative name. Display the first ten rows of the new data frame.
-
-b. In a single pipeline, produce a summary of the average vault score by continent.
-
-c. How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
-
-d. Your summary has a row where `continent` is `NA`. Using `anti_join()`, write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fix it.
 
 ::: source-control
 Preview, commit, and push your changes to GitHub with a meaningful commit message.
@@ -256,7 +230,7 @@ Make sure to commit and push all changed files so that your source control pane 
 
 # Wrap-up
 
-At this point, you should know the deal! 
+At this point, you should know the deal!
 If you don't know how to submit your lab and how it will be graded, review a previous lab and/or ask your TA for help.
 And before then, make sure to run through the following checklist one last time.
 

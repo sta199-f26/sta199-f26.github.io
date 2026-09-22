@@ -228,3 +228,76 @@ c. Recreate the visualization with ggplot2. Match the data, group colors, lines 
 ::: callout-note
 The original plot is interactive -- if you hover on a point, it will show the exact percentage for that point. You do not need to make your plot interactive.
 :::
+
+# Part 3 - Gymnastics
+
+For Part 2 of this lab, you'll work with two new datasets: `gymnastics` and `continents`.
+
+- `gymnastics`: Information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. **Each row represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
+
+Read the data into R with:
+
+```{r}
+#| label: load-gymnastics
+#| message: false
+gymnastics <- read_csv("data/gymnastics.csv")
+```
+
+The variables in this dataset are:
+
+| Variable | Description |
+|:---------------|:-------------------------------------------------------|
+| `name` | Gymnast's name, in "Given Surname" order |
+| `country` | Country name |
+| `country_code` | 3-letter National Olympic Committee (NOC) code |
+| `event` | Apparatus: Vault, Uneven Bars, Balance Beam, Floor Exercise |
+| `competition` | Which round: Qualification, Team Final, All-Around Final, Event Final |
+| `d_score` | Difficulty score (a number greater than zero, in increments of 0.1) |
+| `e_score` | Execution score (a number between 0 and 10) |
+| `penalty` | Neutral deduction |
+| `score` | Routine total = `d_score` + `e_score` - `penalty` |
+| `rank` | Placement for that row's competition |
+
+- `continents`: A small data frame of countries and the continent each one is in.
+
+```{r}
+#| label: load-continents
+#| message: false
+continents <- read_csv("data/continents.csv")
+```
+
+The variables in this dataset are:
+
+| Variable | Description |
+|:------------|:-----------------------------------------------------------|
+| `entity` | Country name |
+| `code` | Country code (3-letter ISO code for most countries) |
+| `year` | Year the continent assignment was recorded |
+| `continent` | Continent the country is in |
+
+## Question 4
+
+To qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships.
+One question of interest, then, is whether gymnasts from different continents score differently.
+
+::: callout-note
+The Pan American Games features athletes from both North and South American countries.
+For this analysis, you don't have to combine the two continents.
+:::
+
+The `gymnastics` data frame doesn't have information about continents, but the `continents` data frame does:
+
+```{r}
+#| label: continent-levels
+#| eval: false
+continents |>
+  distinct(continent)
+```
+
+a. The country names live in the `country` column in the `gymnastics` data frame and in the `entity` column in the `continents` data frame. Read about `join_by()` in the documentation for `left_join()`. Then join the two data frames together, treating `gymnastics` as the left data frame and `continents` as the right, using `left_join()`. Save the resulting data frame as a new data frame and give it a short but evocative name. Display the first ten rows of the new data frame.
+
+b. In a single pipeline, produce a summary of the average vault score by continent.
+
+c. How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
+
+d. Your summary has a row where `continent` is `NA`. Using `anti_join()`, write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fix it.
