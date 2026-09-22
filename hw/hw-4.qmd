@@ -8,6 +8,32 @@ filters:
 draft: true
 ---
 
+# Introduction
+
+In this homework, you will explore two very different topics: basketball prospects and public perceptions of government corruption.
+First, you will combine NBA Draft Combine measurements with draft picks to explore player characteristics and highlight players from Duke.
+Then, you will examine Gallup survey results on perceived government corruption across political groups and over time.
+
+Along the way, you will practice importing and cleaning data, identifying mismatches between datasets, joining and summarizing data, and creating and customizing visualizations with ggplot2.
+
+## Learning objectives
+
+By the end of this homework, you will:
+
+- import data from Excel sheets and clean variable names and missing values;
+- identify unmatched observations and join related datasets;
+- summarize and visualize relationships between variables while accounting for missing values; and
+- recreate and customize visualizations with ggplot2, including colors, labels, and annotations.
+
+## Guidelines
+
+By now you should be familiar with guidelines for homework assignments.
+If not, please refer to an earlier homework assignment for details.
+
+## AI support and feedback
+
+{{< include _ai-support-feedback.qmd >}}
+
 # Packages
 
 In addition to the [**tidyverse**](https://www.tidyverse.org/packages) package, you will also need the [**readxl**](https://readxl.tidyverse.org/) and the [**janitor**](https://sfirke.github.io/janitor/) packages.
@@ -68,9 +94,9 @@ Player names and draft information for the first 50 picks:
 -   round pick - within a round, order in which a player was picked; 1 to 30
 -   overall pick - overall order in which a player was drafted; 1 to 50 in the supplied data
 
-## Question 1 - Import
+## Question 1
 
-Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.
+**Import.** Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.
 
 ::: callout-important
 ## Requirements
@@ -80,9 +106,9 @@ Using only the packages mentioned above, read each of the sheets in and save the
 - All missing values should be coded as `NA`.
 :::
 
-## Question 2 - Inspect
+## Question 2
 
-Find the mismatches between the two data frames:
+**Inspect.** Find the mismatches between the two data frames:
 
 a. Determine which, if any, players are in the stats data frame but not in the picks data frame. These are players present in the combine data but absent from the supplied draft-picks data; their absence does not necessarily mean they went undrafted. Display your output.
 
@@ -90,7 +116,9 @@ b. Determine which, if any, players are in the picks data frame but not in the s
 
 c. In a single sentence, briefly summarize the number of each type of mismatch.
 
-## Question 3 - Explore
+## Question 3
+
+**Explore.**
 
 a. Using the stats data frame, create a single pipeline that summarizes the mean and median weight (in pounds) for players in each position.
 
@@ -108,9 +136,9 @@ b. Using the stats data frame and excluding players with missing positions or we
 
 c. Briefly, at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).
 
-## Question 4 - Recreate
+## Question 4
 
-Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University.
+**Recreate.** Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University.
 Then, improve it by giving it a title and better axis labels.
 
 ::: callout-important
@@ -178,13 +206,13 @@ ggplot(
 
 On September 2, 2026, [Gallup](https://www.gallup.com/) reported "Record-High 89% in U.S. Say Government Corruption Widespread".
 
-## Question 5 - Learn
+## Question 5
 
-Read the article at <https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx> and, in 2–3 sentences, summarize the main finding and one comparison across political groups or over time. Explain whether the survey measures corruption itself or perceptions of corruption.
+**Learn.** Read the article at <https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx> and, in 2–3 sentences, summarize the main finding and one comparison across political groups or over time. Explain whether the survey measures corruption itself or perceptions of corruption.
 
-## Question 6 - Recreate
+## Question 6
 
-The goal of this question is to recreate the following visualization from the article with ggplot2.
+**Recreate.** The goal of this question is to recreate the following visualization from the article with ggplot2.
 
 ![](images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png){alt="Perceived Government Corruption Spans Political Spectrum"}
 
