@@ -15,7 +15,7 @@ execute:
 
 # Introduction
 
-In honor of [National Gymnastics Day](https://usagym.org/ngd/) this past week, you will work with real gymnastics data from the 2024 Paris Olympics! You will first practice bringing two data frames together with join functions, then work through a small excercise on factors.
+In honor of [National Gymnastics Day](https://usagym.org/ngd/) this past week, you will work with real gymnastics data from the 2024 Paris Olympics! You will first practice bringing two data frames together with join functions, then work through a small exercise on factors.
 
 Make sure to upload your completed lab to Gradescope **by the end of your lab session** and commit and push your final version to GitHub.
 
@@ -32,7 +32,7 @@ By the end of this lab, you will:
 # Getting started
 
 Clone your **lab-4** repository using the same process used in Lab 0. 
-By now you should now the drill, so we won't repeat it here again. 
+By now you should know the drill, so we won't repeat it here again. 
 If you have any trouble, please ask your TA for help.
 
 We also won't repeat the guidelines, but you can refer to a [previous lab](/lab/lab-3.html#guidelines) to review them.
@@ -71,7 +71,7 @@ For Part 1 of this lab, you will work with two small data frames (`paris_scores`
   ```
   
   ::: callout-note
-  The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read   row-by-row layout.
+  The `tribble()` function is helpful for creating small data frames (`tibble`s) with an easier to read row-by-row layout.
   :::
 
 - `noc_codes`: 3-letter National Olympic Committee (NOC) code of the country each of four gymnasts competed for.
@@ -130,7 +130,7 @@ Make sure to commit and push all changed files so that your source control pane 
 
 # Part 2
 
-For Part 2 of this lab, you'll work with new two datasets: `gymnastics` and `continents`.
+For Part 2 of this lab, you'll work with two new datasets: `gymnastics` and `continents`.
 
 - `gymnastics`: Information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. **Each row represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
 
@@ -184,7 +184,7 @@ The variables in this dataset are:
 | Variable | Description |
 |:------------|:-----------------------------------------------------------|
 | `entity` | Country name |
-| `code` | 3-letter country code |
+| `code` | Country code (3-letter ISO code for most countries) |
 | `year` | Year the continent assignment was recorded |
 | `continent` | Continent the country is in |
 
@@ -206,23 +206,6 @@ gymnastics |>
 ```
 
 c. Write code to change the `event` variable so that its levels reflect Olympic order. Write (or copy from above) code to display the new ordering.
-
-```{r}
-#| label: relevel-event
-#| eval: true
-gymnastics <- gymnastics |>
-  mutate(
-    event = fct_relevel(
-      event,
-      c("Vault", "Uneven Bars", "Balance Beam", "Floor Exercise")
-    )
-  )
-
-gymnastics |>
-  pull(event) |>
-  as.factor() |>
-  levels()
-```
 
 d. Before running any code, predict what each of the following two commands will return. Then run the code cell and check your predictions. Explain in a sentence or two why `typeof()` and `class()` return different things for a factor.
 
