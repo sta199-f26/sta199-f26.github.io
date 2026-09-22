@@ -72,9 +72,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-08171728d92e762a4769231040ded7e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-252df74b8f4b4a8411570608c8b09030.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-08171728d92e762a4769231040ded7e1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e02b5ae353ca98bbdbd673ae67544635.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
@@ -539,16 +539,16 @@ Find your teammates
 </div>
 </div>
 <section id="introduction" class="level1"><h1>Introduction</h1>
-<p>In honor of <a href="https://usagym.org/ngd/">National Gymnastics Day</a> this past week, you will work with real gymnastics data from the 2024 Paris Olympics! You will first work through a small section on factors, then practice bringing two data frames together with join functions.</p>
+<p>In honor of <a href="https://usagym.org/ngd/">National Gymnastics Day</a> this past week, you will work with real gymnastics data from the 2024 Paris Olympics! You will first practice bringing two data frames together with join functions, then work through a small excercise on factors.</p>
 <p>Make sure to upload your completed lab to Gradescope <strong>by the end of your lab session</strong> and commit and push your final version to GitHub.</p>
 <section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <p>By the end of this lab, you will:</p>
 <ul>
-<li>Convert a character variable to a factor and reorder its levels with <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code>.</li>
-<li>Distinguish between the underlying type and the class of a factor.</li>
 <li>Combine two data frames with <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>.</li>
 <li>Specify join keys with <code><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by()</a></code> when the key columns have different names.</li>
 <li>Predict how many rows and columns a join will produce, and explain why.</li>
+<li>Convert a character variable to a factor and reorder its levels with <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code>.</li>
+<li>Distinguish between the underlying type and the class of a factor.</li>
 </ul></section></section><section id="getting-started" class="level1"><h1>Getting started</h1>
 <p>Clone your <strong>lab-4</strong> repository using the same process used in Lab 0. By now you should now the drill, so we won’t repeat it here again. If you have any trouble, please ask your TA for help.</p>
 <p>We also won’t repeat the guidelines, but you can refer to a <a href="../lab/lab-3.html#guidelines">previous lab</a> to review them.</p>
