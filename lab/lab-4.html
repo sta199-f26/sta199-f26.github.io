@@ -494,7 +494,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a>
   <ul class="collapse">
 <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   </ul>
 </li>
   <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
@@ -652,11 +651,7 @@ Note
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
 </div>
 </section></section><section id="part-2" class="level1"><h1>Part 2</h1>
-<p>For Part 2 of this lab, you’ll work with two new datasets: <code>gymnastics</code> and <code>continents</code>.</p>
-<ul>
-<li>
-<code>gymnastics</code>: Information about the routines performed by gymnasts in the women’s artistic gymnastics competition at the 2024 Paris Olympics. <strong>Each row represents a single routine</strong>, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.</li>
-</ul>
+<p>For Part 2 of this lab, you’ll work with two new datasets: <code>gymnastics</code>, which contains information about the routines performed by gymnasts in the women’s artistic gymnastics competition at the 2024 Paris Olympics. <strong>Each row represents a single routine</strong>, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.</p>
 <p>Read the data into R with:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gymnastics.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -681,8 +676,8 @@ $ rank         &lt;dbl&gt; 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,
 <p>The variables in this dataset are:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 22%">
-<col style="width: 77%">
+<col style="width: 25%">
+<col style="width: 75%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: left;">Variable</th>
@@ -732,53 +727,6 @@ $ rank         &lt;dbl&gt; 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,
 </tr>
 </tbody>
 </table>
-<ul>
-<li>
-<code>continents</code>: A small data frame of countries and the continent each one is in.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/continents.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">continents</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 285
-Columns: 4
-$ entity    &lt;chr&gt; "Abkhazia", "Afghanistan", "Akrotiri and Dhekelia", "Aland I…
-$ code      &lt;chr&gt; "OWID_ABK", "AFG", "OWID_AKD", "ALA", "ALB", "DZA", "ASM", "…
-$ year      &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, …
-$ continent &lt;chr&gt; "Asia", "Asia", "Asia", "Europe", "Europe", "Africa", "Ocean…</code></pre>
-</div>
-</div>
-<p>The variables in this dataset are:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 82%">
-</colgroup>
-<thead><tr class="header">
-<th style="text-align: left;">Variable</th>
-<th style="text-align: left;">Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>entity</code></td>
-<td style="text-align: left;">Country name</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>code</code></td>
-<td style="text-align: left;">Country code (3-letter ISO code for most countries)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>year</code></td>
-<td style="text-align: left;">Year the continent assignment was recorded</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>continent</code></td>
-<td style="text-align: left;">Continent the country is in</td>
-</tr>
-</tbody>
-</table>
 <section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <p>Olympic order is the specific order in which gymnasts compete the apparatus. Read about Olympic order in <a href="https://www.nbcolympics.com/news/gymnastics-101-olympic-competition-format">this NBC Olympics explainer</a>.</p>
 <ol type="a">
@@ -786,7 +734,7 @@ $ continent &lt;chr&gt; "Asia", "Asia", "Asia", "Europe", "Europe", "Africa", "O
 <li><p>Run the following code cell and analyze the result. Explain what the code does, and state why the events are listed in this order in the output.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">event</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -795,55 +743,13 @@ $ continent &lt;chr&gt; "Asia", "Asia", "Asia", "Europe", "Europe", "Africa", "O
 </div>
 </div>
 <ol start="3" type="a">
-<li><p>Write code to change the <code>event</code> variable so that its levels reflect Olympic order. Write (or copy from above) code to display the new ordering.</p></li>
+<li><p>Write code to change the <code>event</code> variable so that its levels reflect Olympic order and save the new variable, with the same name, in the <code>gymnastics</code> data frame, i.e., overwrite the <code>gymnastics</code> data frame with the new version of the <code>event</code> variable. Then, write (or copy from above) code to display the new ordering.</p></li>
 <li><p>Before running any code, predict what each of the following two commands will return. Then run the code cell and check your predictions. Explain in a sentence or two why <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> and <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> return different things for a factor.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">gymnastics</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">gymnastics</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gymnastics</span><span class="op">$</span><span class="va">event</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="source-control">
-<p>Preview, commit, and push your changes to GitHub with a succinct and informative commit message.</p>
-<p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>
-</div>
-</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p>To qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships. One question of interest, then, is whether gymnasts from different continents score differently.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The Pan American Games features athletes from both North and South American countries. For this analysis, you don’t have to combine the two continents.</p>
-</div>
-</div>
-<p>The <code>gymnastics</code> data frame doesn’t have information about continents, but the <code>continents</code> data frame does:</p>
-<div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continents</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 1
-  continent    
-  &lt;chr&gt;        
-1 Asia         
-2 Europe       
-3 Africa       
-4 Oceania      
-5 North America
-6 Antarctica   
-7 South America</code></pre>
-</div>
-</div>
-<ol type="a">
-<li><p>The country names live in the <code>country</code> column in the <code>gymnastics</code> data frame and in the <code>entity</code> column in the <code>continents</code> data frame. Read about <code><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by()</a></code> in the documentation for <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>. Then join the two data frames together, treating <code>gymnastics</code> as the left data frame and <code>continents</code> as the right, using <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>. Save the resulting data frame as a new data frame and give it a short but evocative name. Display the first ten rows of the new data frame.</p></li>
-<li><p>In a single pipeline, produce a summary of the average vault score by continent.</p></li>
-<li><p>How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?</p></li>
-<li><p>Your summary has a row where <code>continent</code> is <code>NA</code>. Using <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>, write code to identify which countries in <code>gymnastics</code> have no match in <code>continents</code>. For each one, explain why it failed to match, and describe what you would need to do to fix it.</p></li>
-</ol>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with a meaningful commit message.</p>
 <p>Make sure to commit and push all changed files so that your source control pane is empty afterward.</p>

@@ -504,6 +504,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   </ul>
 </li>
+  <li>
+<a href="#part-3---gymnastics" id="toc-part-3---gymnastics" class="nav-link" data-scroll-target="#part-3---gymnastics">Part 3 - Gymnastics</a>
+  <ul class="collapse">
+<li><a href="#question-4-1" id="toc-question-4-1" class="nav-link" data-scroll-target="#question-4-1">Question 4</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -713,6 +719,132 @@ Note
 <p>The original plot is interactive – if you hover on a point, it will show the exact percentage for that point. You do not need to make your plot interactive.</p>
 </div>
 </div>
+</section></section><section id="part-3---gymnastics" class="level1"><h1>Part 3 - Gymnastics</h1>
+<p>For Part 2 of this lab, you’ll work with two new datasets: <code>gymnastics</code> and <code>continents</code>.</p>
+<ul>
+<li>
+<code>gymnastics</code>: Information about the routines performed by gymnasts in the women’s artistic gymnastics competition at the 2024 Paris Olympics. <strong>Each row represents a single routine</strong>, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.</li>
+</ul>
+<p>Read the data into R with:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gymnastics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gymnastics.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The variables in this dataset are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">Gymnast’s name, in “Given Surname” order</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>country</code></td>
+<td style="text-align: left;">Country name</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>country_code</code></td>
+<td style="text-align: left;">3-letter National Olympic Committee (NOC) code</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>event</code></td>
+<td style="text-align: left;">Apparatus: Vault, Uneven Bars, Balance Beam, Floor Exercise</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>competition</code></td>
+<td style="text-align: left;">Which round: Qualification, Team Final, All-Around Final, Event Final</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>d_score</code></td>
+<td style="text-align: left;">Difficulty score (a number greater than zero, in increments of 0.1)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>e_score</code></td>
+<td style="text-align: left;">Execution score (a number between 0 and 10)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>penalty</code></td>
+<td style="text-align: left;">Neutral deduction</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>score</code></td>
+<td style="text-align: left;">Routine total = <code>d_score</code> + <code>e_score</code> - <code>penalty</code>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>rank</code></td>
+<td style="text-align: left;">Placement for that row’s competition</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<code>continents</code>: A small data frame of countries and the continent each one is in.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/continents.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The variables in this dataset are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>entity</code></td>
+<td style="text-align: left;">Country name</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>code</code></td>
+<td style="text-align: left;">Country code (3-letter ISO code for most countries)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>year</code></td>
+<td style="text-align: left;">Year the continent assignment was recorded</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>continent</code></td>
+<td style="text-align: left;">Continent the country is in</td>
+</tr>
+</tbody>
+</table>
+<section id="question-4-1" class="level2"><h2 class="anchored" data-anchor-id="question-4-1">Question 4</h2>
+<p>To qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships. One question of interest, then, is whether gymnasts from different continents score differently.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Pan American Games features athletes from both North and South American countries. For this analysis, you don’t have to combine the two continents.</p>
+</div>
+</div>
+<p>The <code>gymnastics</code> data frame doesn’t have information about continents, but the <code>continents</code> data frame does:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">continents</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="a">
+<li><p>The country names live in the <code>country</code> column in the <code>gymnastics</code> data frame and in the <code>entity</code> column in the <code>continents</code> data frame. Read about <code><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by()</a></code> in the documentation for <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>. Then join the two data frames together, treating <code>gymnastics</code> as the left data frame and <code>continents</code> as the right, using <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>. Save the resulting data frame as a new data frame and give it a short but evocative name. Display the first ten rows of the new data frame.</p></li>
+<li><p>In a single pipeline, produce a summary of the average vault score by continent.</p></li>
+<li><p>How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?</p></li>
+<li><p>Your summary has a row where <code>continent</code> is <code>NA</code>. Using <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>, write code to identify which countries in <code>gymnastics</code> have no match in <code>continents</code>. For each one, explain why it failed to match, and describe what you would need to do to fix it.</p></li>
+</ol>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
