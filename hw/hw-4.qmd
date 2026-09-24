@@ -231,17 +231,10 @@ The original plot is interactive -- if you hover on a point, it will show the ex
 
 # Part 3 - Gymnastics
 
-For Part 3 of this homework, you'll work with two new datasets: `gymnastics` and `continents`.
+For Part 3 of this homework, you'll work with two datasets -- the first one you'll recognize from lab, `gymnastics`, and the second one is `continents`.
 
-- `gymnastics`: Information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. **Each row represents a single routine**, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
-
-Read the data into R with:
-
-```{r}
-#| label: load-gymnastics
-#| message: false
-gymnastics <- read_csv("data/gymnastics.csv")
-```
+The `gymnastics` dataset contains information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. 
+Each row represents a single routine, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
 
 The variables in this dataset are:
 
@@ -258,13 +251,7 @@ The variables in this dataset are:
 | `score` | Routine total = `d_score` + `e_score` - `penalty` |
 | `rank` | Placement for that row's competition |
 
-- `continents`: A small data frame of countries and the continent each one is in.
-
-```{r}
-#| label: load-continents
-#| message: false
-continents <- read_csv("data/continents.csv")
-```
+The `continents` dataset contains countries and the continent each one is in.
 
 The variables in this dataset are:
 
@@ -274,6 +261,8 @@ The variables in this dataset are:
 | `code` | Country code (3-letter ISO code for most countries) |
 | `year` | Year the continent assignment was recorded |
 | `continent` | Continent the country is in |
+
+Both datasets can be found in the `data` folder, as `gymnastics.csv` and `continents.csv`, respectively.
 
 ## Question 4
 
@@ -285,19 +274,12 @@ The Pan American Games features athletes from both North and South American coun
 For this analysis, you don't have to combine the two continents.
 :::
 
-The `gymnastics` data frame doesn't have information about continents, but the `continents` data frame does:
+a. First, read in the two datasets, save them as `gymnastics` and `continents`, respectively, and display the first ten rows of each.
 
-```{r}
-#| label: continent-levels
-#| eval: false
-continents |>
-  distinct(continent)
-```
+b. Join the two data frames, and save the resulting data frame as a new data frame, giving it a short but evocative name. Display the first ten rows of the new data frame. Make sure that your joined data frame contains all countries in the `gymnastics` data frame.
 
-a. The country names live in the `country` column in the `gymnastics` data frame and in the `entity` column in the `continents` data frame. Read about `join_by()` in the documentation for `left_join()`. Then join the two data frames together, treating `gymnastics` as the left data frame and `continents` as the right, using `left_join()`. Save the resulting data frame as a new data frame and give it a short but evocative name. Display the first ten rows of the new data frame.
+c. In a single pipeline, produce a summary of the average vault score by continent.
 
-b. In a single pipeline, produce a summary of the average vault score by continent.
+d. How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
 
-c. How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
-
-d. Your summary has a row where `continent` is `NA`. Using `anti_join()`, write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fix it.
+e. Your summary has a row where `continent` is `NA`. Using `anti_join()`, write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fix it.
