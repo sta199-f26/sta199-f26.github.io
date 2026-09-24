@@ -593,9 +593,9 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="part-1---slam-dunks" class="level1"><h1>Part 1 - Slam dunks</h1>
-<p>The <a href="https://en.wikipedia.org/wiki/NBA_draft_combine">NBA Draft Combine</a> is a multiple day event that takes place every May before the NBA draft in June. At the combine, college basketball players take medical tests, are interviewed, perform various athletic tests and shooting drills, and play in five-on-five drills for an audience of National Basketball Association (NBA) coaches, general managers, and scouts. How an athlete measures and performs during the combine can affect perception, draft status, salary, and the player’s future career. These stats are posted annually at <a href="https://www.nba.com/stats/draft/combine-anthro" class="uri">https://www.nba.com/stats/draft/combine-anthro</a>, which is where the data you’ll be using comes from.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/NBA_draft_combine">NBA Draft Combine</a> is a multi-day event held every May before the NBA draft in June. At the combine, college basketball players take medical tests, are interviewed, perform various athletic tests and shooting drills, and play in five-on-five drills for an audience of National Basketball Association (NBA) coaches, general managers, and scouts. How an athlete measures and performs during the combine can affect perception, draft status, salary, and the player’s future career. These stats are posted annually at <a href="https://www.nba.com/stats/draft/combine-anthro" class="uri">https://www.nba.com/stats/draft/combine-anthro</a>, which is where the data you’ll be using comes from.</p>
 <section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>The data are stored in two sheets of a single Excel file called <code>nba-draft-combine-2627.xlsx</code>, which is in your <code>data</code> folder. The two sheets and their contents are as follows:</p>
+<p>The data are stored in two sheets in a single Excel file called <code>nba-draft-combine-2627.xlsx</code>, located in your <code>data</code> folder. The two sheets and their contents are as follows:</p>
 <p><strong>Sheet 1: <code>2026 Draft Player Stats</code></strong></p>
 <p>Player names, positions, and anthropometric measurements (i.e., measurements of the player’s body dimensions and shape), and strength and agility statistics.</p>
 <ul>
@@ -617,7 +617,7 @@ window.Quarto = {
 <li>wingspan (in feet and inches)</li>
 <li>lane agility time (in seconds, lower the better)</li>
 <li>shuttle run (in seconds, lower the better)</li>
-<li>three quarter sprint (in seconds, lower the better)</li>
+<li>three-quarter sprint (in seconds, lower the better)</li>
 <li>standing vertical leap (in inches, higher the better)</li>
 <li>max vertical leap (in inches, higher the better)</li>
 <li>max bench press (number of repetitions of 185 pounds)</li>
@@ -626,10 +626,10 @@ window.Quarto = {
 <p>Player names and draft information for the first 50 picks:</p>
 <ul>
 <li>team drafted to</li>
-<li>prior affiliation (e.g.&nbsp;undergraduate institution)</li>
+<li>prior affiliation (e.g., undergraduate institution)</li>
 <li>draft year (all 2026 in this case)</li>
-<li>round number - which round they were drafted in; 1 for first round pick, 2 for second round pick.</li>
-<li>round pick - within a round, order in which a player was picked; 1 to 30</li>
+<li>round number - which round they were drafted in; 1 for a first-round pick, 2 for a second-round pick.</li>
+<li>round pick - within a round, the order in which a player was picked; 1 to 30</li>
 <li>overall pick - overall order in which a player was drafted; 1 to 50 in the supplied data</li>
 </ul></section><section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <p><strong>Import.</strong> Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.</p>
@@ -653,8 +653,8 @@ Requirements
 </section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
 <p><strong>Inspect.</strong> Find the mismatches between the two data frames:</p>
 <ol type="a">
-<li><p>Determine which, if any, players are in the stats data frame but not in the picks data frame. These are players present in the combine data but absent from the supplied draft-picks data; their absence does not necessarily mean they went undrafted. Display your output.</p></li>
-<li><p>Determine which, if any, players are in the picks data frame but not in the stats data frame. These are the players who were picked in the draft but we do not have stats for. Display your output.</p></li>
+<li><p>Determine which, if any, players are in the stats data frame but not in the picks data frame. These are players present in the combine data but absent from the supplied draft-pick data. Their absence does not necessarily mean they went undrafted. Display your output.</p></li>
+<li><p>Determine which, if any, players are in the picks data frame but not in the stats data frame. These are the players who were picked in the draft, but we do not have stats for. Display your output.</p></li>
 <li><p>In a single sentence, briefly summarize the number of each type of mismatch.</p></li>
 </ol></section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <p><strong>Explore.</strong></p>
@@ -674,17 +674,17 @@ Requirements
 <ul>
 <li>Players with missing position information should be excluded.</li>
 <li>Exclude missing weights when calculating the mean and median. Count all players with a recorded position in <code>n</code>, including those with missing weights.</li>
-<li>Resulting data frame should have four columns: <code>pos</code> (position), <code>n</code> (number of players), <code>mean_weight</code> (average weight in pounds), and <code>median_weight</code> (median weight in pounds).</li>
-<li>Resulting data frame should have five rows.</li>
+<li>The resulting data frame should have four columns: <code>pos</code> (position), <code>n</code> (number of players), <code>mean_weight</code> (average weight in pounds), and <code>median_weight</code> (median weight in pounds).</li>
+<li>The resulting data frame should have five rows.</li>
 <li>Results should be displayed in descending order of mean weight.</li>
 </ul>
 </div>
 </div>
 </li>
-<li><p>Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then, create the visualization you selected, making sure to employ good visualization practices.</p></li>
-<li><p>Briefly, at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).</p></li>
+<li><p>Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions, and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then create the visualization you selected, ensuring you follow best practices.</p></li>
+<li><p>Briefly, in at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).</p></li>
 </ol></section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p><strong>Recreate.</strong> Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University. Then, improve it by giving it a title and better axis labels.</p>
+<p><strong>Recreate.</strong> Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University.</p>
 <p><a href="images/hw-4/draft-weight-sprint-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/hw-4/draft-weight-sprint-1.png" class="img-fluid" alt="Draft weight vs. three-quarter sprint time, with Duke players highlighted in blue and labeled with their names."></a></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -699,7 +699,7 @@ Requirements
 <ul>
 <li>The plot should only include players that are in both data frames and have non-missing values for both weight and three-quarter sprint time.</li>
 <li>Players from Duke should be colored in Duke blue (the HEX code for this color is <code>#00539B</code>) and players not from Duke should be light gray (the name for this color is <code>gray70</code>).</li>
-<li>Players from Duke should be labeled with their names and the labels should not overlap with their points, though they can overlap with non-Duke players’ points and they do not have to be in the exact same position as the labels shown in the plot below.</li>
+<li>Players from Duke should be labeled with their names, and the labels should not overlap with their points, though they can overlap with non-Duke players’ points, and they do not have to be in the exact same position as the labels shown in the plot below.</li>
 <li>Use <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> for the plot theme.</li>
 </ul>
 </div>
@@ -715,7 +715,7 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>First, make the scatterplot, without colors or text labels/annotations.</li>
+<li>First, make the scatterplot without colors or text labels/annotations.</li>
 <li>Then, add the colors for the Duke players.</li>
 <li>Then, work on your improvements (title and axis labels).</li>
 <li>Finally, add the player names. Labels are required for full credit but are worth only a small portion of the points. If you are spending too much time on them, finish the rest of your homework first, then revisit this task.</li>
@@ -723,7 +723,7 @@ Tip
 </div>
 </div>
 <div class="openai">
-<p>This would be a good time to get feedback from AI if you haven’t yet done so! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed.</p>
+<p>This would be a good time to get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed.</p>
 </div>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
@@ -756,14 +756,14 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The original plot is interactive – if you hover on a point, it will show the exact percentage for that point. You do not need to make your plot interactive.</p>
+<p>The original plot is interactive—if you hover over a point, it shows the exact percentage for that point. You do not need to make your plot interactive.</p>
 </div>
 </div>
 <div class="source-control">
 <p>You know what to do!</p>
 </div>
 </section></section><section id="part-3---stuck-landings" class="level1"><h1>Part 3 - Stuck landings</h1>
-<p>For Part 3 of this homework, you’ll work with two datasets – the first one you’ll recognize from lab, <code>gymnastics</code>, and the second one is <code>continents</code>.</p>
+<p>For Part 3 of this homework, you’ll work with two datasets — the first one you’ll recognize from lab, <code>gymnastics</code>, and the second one is <code>continents</code>.</p>
 <p>The <code>gymnastics</code> dataset contains information about the routines performed by gymnasts in the women’s artistic gymnastics competition at the 2024 Paris Olympics. Each row represents a single routine, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.</p>
 <p>The variables in the <code>gymnastics</code> dataset are as follows.</p>
 <table class="caption-top table">
@@ -862,7 +862,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The Pan American Games features athletes from both North and South American countries. For this analysis, you don’t have to combine the two continents.</p>
+<p>The Pan American Games feature athletes from both North and South American countries. For this analysis, you don’t have to combine the two continents.</p>
 </div>
 </div>
 <ol type="a">
@@ -911,7 +911,7 @@ Note
 <li>Example 2: I used ChatGPT GPT-5.5 for Questions 5 and 7. Prompt: “Why did my code have an error?” (pasted code).</li>
 </ul></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
 <div class="source-control">
-<p>Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your <code>.qmd</code> file and the rendered PDF are pushed to GitHub and your source control pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.</p>
+<p>Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your <code>.qmd</code> file and the rendered PDF are pushed to GitHub, and your source control pane is empty. We will be checking these to make sure you have been practicing committing and pushing changes.</p>
 </div>
 <section id="submission" class="level2"><h2 class="anchored" data-anchor-id="submission">Submission</h2>
 <p>Submit your PDF document to Gradescope by the deadline to be considered “on time”:</p>
