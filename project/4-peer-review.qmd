@@ -1,7 +1,7 @@
 ---
-title: "Peer review"
-subtitle: "Milestone 4"
-categories: "Project"
+title: Peer review
+subtitle: Milestone 4
+categories: Project
 execute:
   echo: false
 draft: true  
@@ -82,13 +82,15 @@ gs4_deauth()
 
 make_pairing_table <- function(df) {
   df |>
-    mutate(team_to_review_1 = paste0("[", team_to_review_1, "](", url_1, ")")) |>
+    mutate(
+      team_to_review_1 = paste0("[", team_to_review_1, "](", url_1, ")")
+    ) |>
     #mutate(team_to_review_2 = paste0("[", team_to_review_2, "](", url_2, ")")) |>
-    select(-url_1)  |>
+    select(-url_1) |>
     #select(-url_1, -url_2)  |>
     gt() |>
     fmt_markdown(
-      columns = everything() 
+      columns = everything()
     ) |>
     cols_label(
       your_team_name = "Your team name",
@@ -103,7 +105,10 @@ make_pairing_table <- function(df) {
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 1))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 1)
+)
 make_pairing_table(teams)
 ```
 
@@ -111,7 +116,10 @@ make_pairing_table(teams)
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 3))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 3)
+)
 make_pairing_table(teams)
 ```
 
@@ -119,7 +127,10 @@ make_pairing_table(teams)
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 4))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 4)
+)
 make_pairing_table(teams)
 ```
 
@@ -127,7 +138,10 @@ make_pairing_table(teams)
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 5))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 5)
+)
 make_pairing_table(teams)
 ```
 
@@ -135,7 +149,10 @@ make_pairing_table(teams)
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 6))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 6)
+)
 make_pairing_table(teams)
 ```
 
@@ -143,7 +160,10 @@ make_pairing_table(teams)
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 7))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 7)
+)
 make_pairing_table(teams)
 ```
 
@@ -151,7 +171,10 @@ make_pairing_table(teams)
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 8))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 8)
+)
 make_pairing_table(teams)
 ```
 
@@ -159,7 +182,10 @@ make_pairing_table(teams)
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 9))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 9)
+)
 make_pairing_table(teams)
 ```
 
@@ -167,7 +193,10 @@ make_pairing_table(teams)
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing", sheet = paste0("lab_", 11))
+teams <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1EFjL1GgiOGEbR79JrDoNoUwoeJi6y3Wjn8XjHCa10mE/edit?usp=sharing",
+  sheet = paste0("lab_", 11)
+)
 make_pairing_table(teams)
 ```
 :::
