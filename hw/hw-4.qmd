@@ -47,14 +47,14 @@ library(janitor)
 
 # Part 1 - Slam dunks
 
-The [NBA Draft Combine](https://en.wikipedia.org/wiki/NBA_draft_combine) is a multiple day event that takes place every May before the NBA draft in June.
+The [NBA Draft Combine](https://en.wikipedia.org/wiki/NBA_draft_combine) is a multi-day event that takes place every May before the NBA draft in June.
 At the combine, college basketball players take medical tests, are interviewed, perform various athletic tests and shooting drills, and play in five-on-five drills for an audience of National Basketball Association (NBA) coaches, general managers, and scouts.
 How an athlete measures and performs during the combine can affect perception, draft status, salary, and the player's future career.
 These stats are posted annually at <https://www.nba.com/stats/draft/combine-anthro>, which is where the data you'll be using comes from.
 
 ## Data
 
-The data are stored in two sheets of a single Excel file called `nba-draft-combine-2627.xlsx`, which is in your `data` folder.
+The data are stored in two sheets in a single Excel file called `nba-draft-combine-2627.xlsx`, located in your `data` folder.
 The two sheets and their contents are as follows:
 
 **Sheet 1: `2026 Draft Player Stats`**
@@ -77,7 +77,7 @@ Player names, positions, and anthropometric measurements (i.e., measurements of 
 -   wingspan (in feet and inches)
 -   lane agility time (in seconds, lower the better)
 -   shuttle run (in seconds, lower the better)
--   three quarter sprint (in seconds, lower the better)
+-   three-quarter sprint (in seconds, lower the better)
 -   standing vertical leap (in inches, higher the better)
 -   max vertical leap (in inches, higher the better)
 -   max bench press (number of repetitions of 185 pounds)
@@ -87,10 +87,10 @@ Player names, positions, and anthropometric measurements (i.e., measurements of 
 Player names and draft information for the first 50 picks:
 
 -   team drafted to
--   prior affiliation (e.g. undergraduate institution)
+-   prior affiliation (e.g., undergraduate institution)
 -   draft year (all 2026 in this case)
--   round number - which round they were drafted in; 1 for first round pick, 2 for second round pick.
--   round pick - within a round, order in which a player was picked; 1 to 30
+-   round number - which round they were drafted in; 1 for first-round pick, 2 for second-round pick.
+-   round pick - within a round, the order in which a player was picked; 1 to 30
 -   overall pick - overall order in which a player was drafted; 1 to 50 in the supplied data
 
 ## Question 1
@@ -126,19 +126,18 @@ a. Using the stats data frame, create a single pipeline that summarizes the mean
    
    - Players with missing position information should be excluded.
    - Exclude missing weights when calculating the mean and median. Count all players with a recorded position in `n`, including those with missing weights.
-   - Resulting data frame should have four columns: `pos` (position), `n` (number of players), `mean_weight` (average weight in pounds), and `median_weight` (median weight in pounds).
-   - Resulting data frame should have five rows.
+   - The resulting data frame should have four columns: `pos` (position), `n` (number of players), `mean_weight` (average weight in pounds), and `median_weight` (median weight in pounds).
+   - The resulting data frame should have five rows.
    - Results should be displayed in descending order of mean weight.
    :::
 
-b. Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then, create the visualization you selected, making sure to employ good visualization practices.
+b. Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions, and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then create the visualization you selected, ensuring you follow best practices.
 
-c. Briefly, at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).
+c. Briefly, in at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).
 
 ## Question 4
 
 **Recreate.** Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University.
-Then, improve it by giving it a title and better axis labels.
 
 ![](images/hw-4/draft-weight-sprint-1.png){alt="Draft weight vs. three-quarter sprint time, with Duke players highlighted in blue and labeled with their names."}
 
@@ -147,64 +146,19 @@ Then, improve it by giving it a title and better axis labels.
 
 - The plot should only include players that are in both data frames and have non-missing values for both weight and three-quarter sprint time.
 - Players from Duke should be colored in Duke blue (the HEX code for this color is `#00539B`) and players not from Duke should be light gray (the name for this color is `gray70`).
-- Players from Duke should be labeled with their names and the labels should not overlap with their points, though they can overlap with non-Duke players' points and they do not have to be in the exact same position as the labels shown in the plot below.
+- Players from Duke should be labeled with their names, and the labels should not overlap with their points, though they can overlap with non-Duke players' points, and they do not have to be in the exact same position as the labels shown in the plot below.
 - Use `theme_minimal()` for the plot theme.
 :::
 
-```{r}
-#| label: import-reference-data
-#| include: false
-nba_draft_stats <- read_excel(
-  "../_data/nba-draft-combine-2627/nba-draft-combine-2627.xlsx",
-  sheet = "2026 Draft Player Stats",
-  skip = 3,
-  na = c("", "-", "-%")
-) |>
-  clean_names()
-
-nba_draft_picks <- read_excel(
-  "../_data/nba-draft-combine-2627/nba-draft-combine-2627.xlsx",
-  sheet = "2026 Draft Picks",
-  na = c("", "-", "-%")
-) |>
-  clean_names()
-```
-
-```{r}
-#| label: plot-to-recreate
-#| fig-width: 8
-#| fig-asp: 0.5
-#| echo: false
-draft_26 <- nba_draft_picks |>
-  inner_join(nba_draft_stats, by = join_by(player)) |>
-  mutate(duke = if_else(affiliation == "Duke", "Duke", "not Duke")) |>
-  filter(!is.na(weight_lbs) & !is.na(three_quarter_sprint_sec))
-
-ggplot(
-  draft_26,
-  aes(x = weight_lbs, y = three_quarter_sprint_sec, color = duke)
-) +
-  geom_point() +
-  geom_label(
-    data = draft_26 |> filter(duke == "Duke"),
-    aes(label = player),
-    vjust = -0.25,
-    hjust = 0.5,
-  ) +
-  scale_color_manual(values = c("#00539B", "gray70")) +
-  theme_minimal() +
-  theme(legend.position = "none")
-```
-
 ::: callout-tip
-- First, make the scatterplot, without colors or text labels/annotations.
+- First, make the scatterplot without colors or text labels/annotations.
 - Then, add the colors for the Duke players.
 - Then, work on your improvements (title and axis labels).
 - Finally, add the player names. Labels are required for full credit but are worth only a small portion of the points. If you are spending too much time on them, finish the rest of your homework first, then revisit this task.
 :::
 
 ::: openai
-This would be a good time to get feedback from AI if you haven't yet done so!
+This would be a good time to get feedback from AI if you haven't already!
 Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
 :::
 
@@ -236,7 +190,7 @@ c. Recreate the visualization with ggplot2. Match the data, group colors, lines 
    - For any required features you cannot match, briefly explain what you tried and what did not work.
 
 ::: callout-note
-The original plot is interactive -- if you hover on a point, it will show the exact percentage for that point. You do not need to make your plot interactive.
+The original plot is interactive—if you hover over a point, it shows the exact percentage for that point. You do not need to make your plot interactive.
 :::
 
 ::: source-control
@@ -245,7 +199,7 @@ You know what to do!
 
 # Part 3 - Stuck landings
 
-For Part 3 of this homework, you'll work with two datasets -- the first one you'll recognize from lab, `gymnastics`, and the second one is `continents`.
+For Part 3 of this homework, you'll work with two datasets — the first one you'll recognize from lab, `gymnastics`, and the second one is `continents`.
 
 The `gymnastics` dataset contains information about the routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics. 
 Each row represents a single routine, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
@@ -284,7 +238,7 @@ To qualify for major competitions such as the Olympics, gymnasts must compete in
 One question of interest, then, is whether gymnasts from different continents score differently.
 
 ::: callout-note
-The Pan American Games features athletes from both North and South American countries.
+The Pan American Games feature athletes from both North and South American countries.
 For this analysis, you don't have to combine the two continents.
 :::
 
@@ -296,7 +250,7 @@ c. In a single pipeline, produce a summary of the average vault score by contine
 
 d. How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
 
-e. Your summary has a row where `continent` is `NA`. Using `anti_join()`, write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fix it.
+e. Your summary has a row where `continent` is `NA`. Using `anti_join()`, write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fthe ix it.
 
 ::: openai
 This would be a good time to get feedback from AI if you haven't yet done so!
@@ -315,7 +269,7 @@ You know what to do!
 
 ::: source-control
 Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub and your source control pane is empty.
-We will be checking these to make sure you have been practicing how to commit and push changes.
+We will be checking these to make sure you have been practicing committing and pushing changes.
 :::
 
 ## Submission
