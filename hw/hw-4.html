@@ -866,7 +866,7 @@ Note
 </div>
 <ol type="a">
 <li><p>First, read in the two datasets, save them as <code>gymnastics</code> and <code>continents</code>, respectively, and display the first ten rows of each.</p></li>
-<li><p>Join the two data frames, and save the resulting data frame as a new data frame, giving it a short but evocative name. Display the first ten rows of the new data frame. Make sure that your joined data frame contains all countries in the <code>gymnastics</code> data frame.</p></li>
+<li><p>Join the two data frames based on <code>country</code> and <code>entity</code> variables in their respective datasets, and save the resulting data frame as a new data frame, giving it a short but evocative name. Display the first ten rows of the new data frame. Make sure that your joined data frame contains all countries in the <code>gymnastics</code> data frame.</p></li>
 <li><p>In a single pipeline, produce a summary of the average vault score by continent.</p></li>
 <li><p>How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?</p></li>
 <li><p>Your summary has a row where <code>continent</code> is <code>NA</code>. Using <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>, write code to identify which countries in <code>gymnastics</code> have no match in <code>continents</code>. For each one, explain why it failed to match, and describe what you would need to do to fix it.</p></li>
