@@ -1,0 +1,266 @@
+---
+title: HW 4 Rubric
+subtitle: Rubric
+search: false
+---
+
+This is the rubric for AI feedback, not necessarily the rubric for grading.
+
+# Part 1 - Slam dunks
+
+## Question 1
+
+1.  Code reads the `2026 Draft Player Stats` sheet from `nba-draft-combine-2627.xlsx` with `read_excel()` or an equivalent readxl function.
+
+2.  Code reads the `2026 Draft Picks` sheet from the same workbook.
+
+3.  Code excludes the three extraneous rows above the stats header and uses the correct column headings for both sheets.
+    - Note: `skip = 3` is appropriate for the stats sheet.
+      The picks sheet does not need rows skipped.
+      Equivalent approaches are acceptable if they preserve the headers and player records.
+
+4.  Missing values are represented as `NA`, including blank cells and the `-` and `-%` placeholders.
+    - Note: The `na` argument in `read_excel()` is the simplest approach.
+      Correct recoding after import is also acceptable.
+
+5.  All variable names in both data frames use snake_case, for example through `clean_names()`.
+    - Note: Cleaning names in a separate pipeline is acceptable.
+
+6.  Code saves the two complete datasets as separate data frames without overwriting one with the other.
+    - Note: Names do not have to match the key.
+
+7.  The imported stats data frame has 78 rows and 16 columns, and the picks data frame has 50 rows and 7 columns.
+    - Note: These are checks on the saved data, not a requirement to write code reporting dimensions.
+      Do not repeat feedback if an earlier import error explains a mismatch.
+
+8.  Output displays the first ten rows of the stats data frame.
+
+9.  Output displays the first ten rows of the picks data frame.
+    - Note for items 8–9: Direct tibble display, `print(n = 10)`, `slice_head(n = 10)`, or an equivalent approach is acceptable.
+      Only columns that fit on the page need to be shown.
+      Displaying a preview should not truncate the saved data frame.
+
+10. Code style and readability: line breaks after each `|>`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 2
+
+1.  Part a. Code identifies players in the stats data but absent from the supplied picks data.
+    - Note: Use `anti_join()` with stats on the left and picks on the right, or an equivalent approach.
+
+2.  Part b. Code identifies players in the supplied picks data but absent from the stats data.
+    - Note: Use `anti_join()` with picks on the left and stats on the right, or an equivalent approach.
+
+3.  Both comparisons match records by `player`.
+    - Note: `by = join_by(player)`, `by = "player"`, or an equivalent comparison is acceptable.
+
+4.  Part a. Output is displayed and contains 33 unmatched stats records.
+    - Note: A tibble preview showing the total row count is acceptable; displaying all 33 rows is not required.
+
+5.  Part b. Output is displayed and contains the five unmatched picks: AJ Dybantsa, Mikel Brown Jr., Nate Ament, Sergio de Larrea, and Chris Cenac Jr.
+
+6.  Part c. Narrative reports both counts correctly: 33 stats-only records and 5 picks-only records.
+    - Note: If an earlier import or comparison error changes the counts, identify the underlying error and check whether the narrative matches the student's output.
+      Avoid repeating feedback for the same error.
+
+7.  Part c. The summary is a single, concise sentence that makes clear which count refers to each type of mismatch.
+
+8.  The response describes mismatches in the supplied data without concluding that all unmatched stats players went undrafted.
+    - Note: The picks data contain only the first 50 picks.
+      Name differences can also cause mismatches, such as "AJ Dybantsa" versus "Anicet Dybantsa".
+      Identifying or fixing these name differences is not required for this question.
+
+9.  Code style and readability: line breaks after each `|>`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+## Question 3
+
+1.  Part a. Code uses a single pipeline starting with the stats data, excludes players with missing positions, and groups by `pos`.
+
+2.  Part a. Code calculates `n` as the number of players in each position, including players with missing weights.
+    - Note: Do not filter out missing weights before counting.
+      PG should have 19 players and SF should have 8; each includes one player with a missing weight.
+
+3.  Part a. Code calculates `mean_weight` as the mean weight in pounds, excluding missing weights.
+    - Note: `mean(weight_lbs, na.rm = TRUE)` is appropriate.
+      Without missing-value handling, PG and SF have `NA` means.
+
+4.  Part a. Code calculates `median_weight` as the median weight in pounds, excluding missing weights.
+    - Note: `median(weight_lbs, na.rm = TRUE)` is appropriate.
+      The median is required.
+
+5.  Part a. Output is displayed with five rows and exactly four columns: `pos`, `n`, `mean_weight`, and `median_weight`.
+
+6.  Part a. Results are ordered by descending mean weight: C, PF, SF, SG, PG.
+
+7.  Part b. A one-sentence justification explains why the selected plot type is useful for comparing weight distributions across positions.
+    - Note: Boxplots, violin plots, jittered or dodged dot plots, and appropriately grouped density plots or histograms are acceptable.
+
+8.  Part b. Code creates the selected plot using only players with nonmissing positions and weights.
+    - Note: Filtering missing weights here is appropriate; filtering them before counting in Part a is not.
+
+9.  Part b. The plot has an informative title and readable axis labels, including weight units.
+
+10. Part c. In at most three sentences, the narrative interprets the relationship between position and weight using both the summary statistics and visualization.
+    - Note: Centers tend to be heaviest and point guards lightest, with PF, SF, and SG in between.
+      Accept other accurate comparisons supported by the results.
+      If an earlier error affects the results, distinguish that error from the student's interpretation rather than repeating the same feedback.
+
+11. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+      An explicit `.groups = "drop"` in `summarize()` is also acceptable.
+
+## Question 4
+
+1.  Code joins the two datasets by `player` and retains only players present in both.
+    - Note: `inner_join()` with `by = join_by(player)`, `by = "player"`, or an equivalent approach is acceptable.
+
+2.  The plot excludes players with missing `weight_lbs`.
+
+3.  The plot excludes players with missing `three_quarter_sprint_sec`.
+    - Note for items 2–3: Filtering before or after the join is acceptable.
+      Deliberately handling missing values in the plotting code is also acceptable; unexplained warnings should receive feedback.
+      With correct imports and matching, the plot contains 41 players.
+
+4.  Code produces a scatterplot with `weight_lbs` on the x-axis and `three_quarter_sprint_sec` on the y-axis.
+
+5.  The plot has an informative, readable title.
+
+6.  Axis labels are human-readable and identify weight in pounds and sprint time in seconds.
+
+7.  Players whose `affiliation` is `"Duke"` are colored Duke blue (`#00539B`).
+
+8.  Players not from Duke are colored light gray (`gray70`).
+
+9.  All three Duke players are labeled with their names: Cameron Boozer, Isaiah Evans, and Maliq Brown.
+    - Note: `geom_label()`, `geom_text()`, or an equivalent labeling approach is acceptable.
+
+10. Duke player labels do not overlap their own points.
+    - Note: Overlap with non-Duke points is allowed, and label positions need not exactly match the reference.
+      Repelled labels are also acceptable.
+
+11. The plot uses `theme_minimal()`.
+
+12. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+      If an earlier error affects multiple checks, identify the underlying error rather than repeating the same feedback.
+
+# Part 2 - Shaken trusts
+
+## Question 5
+
+1.  In a 2–3 sentence response, the narrative identifies the main finding: 89% of U.S. adults in 2026 perceive government corruption as widespread, the highest percentage in Gallup's 20-year series.
+
+2.  The narrative includes one accurate comparison across political groups or over time.
+    - Note: For example, 91% of Democrats versus 83% of Republicans, or an increase from 79% in 2025 to 89% in 2026.
+      Other comparisons supported by the article are acceptable.
+
+3.  The narrative explains that the survey measures perceptions of corruption, not the actual extent of corruption.
+
+## Question 6
+
+1.  Part a. The downloaded data are from the chart "Perceived Government Corruption Spans Political Spectrum" and are saved in the `data` folder.
+    - Note: The filename need not match the key.
+      If the repository is unavailable, file location cannot be verified from the rendered answer alone.
+
+2.  Part b. Code reads the downloaded file with a function appropriate for its delimiter and correctly identifies the columns.
+    - Note: The source file used in the key is tab-delimited despite its `.csv` extension, so `read_tsv()` is appropriate.
+      Other download formats may require a different reader.
+
+3.  Part b. Code tidies the data into one observation per political group and year.
+    - Note: The resulting data should contain nine observations: three groups for each of 2024, 2025, and 2026.
+      Equivalent tidy structures and variable names are acceptable.
+
+4.  Part b. Code converts the percentage values to numeric without losing observations or changing their meaning.
+    - Note: Removing `%` with `str_remove()` and then using `as.numeric()`, or using `parse_number()`, are acceptable.
+      Either a 0–100 or 0–1 scale is fine if the plot labels are consistent.
+
+5.  Part c. Each group's line connects its correct values in chronological order.
+    - Note: For 2024, 2025, and 2026, respectively: Republicans 87%, 81%, 83%; Democrats 57%, 76%, 91%; independents 78%, 85%, 90%.
+
+6.  Part c. Group colors match the reference: red for Republicans, dark blue for Democrats, and muted teal for independents.
+    - Note: The reference colors are `#F32735`, `#002169`, and `#6A8C89`, respectively.
+      Visually close colors are acceptable.
+
+7.  Part c. Republican and Democratic lines are solid, and the independent line uses a dotted or short-dashed pattern matching the reference.
+
+8.  Part c. Points appear at the 2024 and 2026 endpoints for each group, with no point markers at 2025.
+
+9.  Part c. The x-axis displays 2024, 2025, and 2026 at equally spaced positions.
+
+10. Part c. The y-axis spans 40% to 100%, with ticks every 10 percentage points.
+    - Note: Percent signs may appear on every tick or only the top tick, as in the reference.
+      Watch for accidental labels such as 8,700% when the data already use a 0–100 scale.
+
+11. Part c. The plot includes the title, survey question, `% Yes` label, and note that party identification data are available only from 2024 onward.
+    - Note: Equivalent wording, line breaks, fonts, and spacing are acceptable.
+      Reproducing the Gallup logo is not required.
+
+12. Part c. A readable legend above the plot identifies Republicans, Democrats, and independents in that order.
+
+13. Part c. The 2026 endpoints are labeled 83, 91, and 90 for Republicans, Democrats, and independents, respectively.
+    - Note: Labels should be readable and associated with the correct lines; the 91 and 90 labels should not overlap.
+
+14. Part c. The narrative explains which non-default features were matched and how the code produced them.
+    - Note: Examples include manual colors and line types, endpoint labels, axis scales, legend placement, a pale green background, and horizontal gridlines.
+      Explanations should agree with the submitted code.
+
+15. Part c. For any required feature that was not matched, the narrative describes what was tried and what did not work.
+    - Note: No such explanation is needed if all required features are matched.
+      The plot does not need to be interactive.
+
+16. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+      If one import or transformation error affects several plot features, identify that underlying error rather than repeating the same feedback.
+
+# Part 3 - Stuck landings
+
+## Question 7
+
+1.  Part a. Code reads the two datasets and saves them as `gymnastics` and `continents`.
+
+2.  Part a. Output displays the first ten rows of each data frame.
+    - Note for parts a–b: Direct tibble display, `print(n = 10)`, `head(10)`, `slice_head(n = 10)`, or an equivalent approach is acceptable.
+
+3.  Part b. Code uses `left_join()` with `gymnastics` as the left data frame and `continents` as the right, with `by = join_by(country == entity)`, or an equivalent join that preserves all gymnastics records.
+
+4.  Part b. Code saves the result as a new, reasonably named data frame.
+    - Note: Any short but informative name is acceptable, such as `gymnastics_continents` or `gym_cont`.
+
+5.  Part b. Output displays the first ten rows of the joined data frame.
+
+6.  Part c. Code filters for vault routines (`filter(event == "Vault")`).
+
+7.  Part c. Code groups by `continent` and summarizes the mean `score` in a single pipeline.
+    - Note: Performing the join within the same summary pipeline is also acceptable.
+
+8.  Part d. Narrative states the summary has 7 rows: six continents and an `NA` group for unmatched countries, each summarizing vault routines.
+
+9.  Part d. Narrative identifies South America as highest and Africa as lowest.
+
+10. Part e. Code uses `anti_join()` correctly to identify unmatched countries (Great Britain, AUT, Chinese Taipei).
+
+11. Part e. Narrative explains why each country failed to match and describes a reasonable fix for each.
+    - Note: Any reasonable fix, such as recoding names with `mutate()` and `case_when()` / `if_else()`, or explicitly assigning the correct continents to unmatched records, is acceptable.
+      Implementing the fix is not required.
+
+12. Code style and readability: Line breaks after each |>, line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present.
+
+# Overall
+
+These rubric items are not tied to a specific question but apply to the entire homework.
+Check for these if explicitly asked to provide overall feedback or if you notice them while reviewing the homework or as the student is finishing up working on the last question.
+
+## Rubric
+
+-   Final .qmd and rendered PDF files exist in the remote GitHub repository.
+
+-   At least three commits were made and pushed to the GitHub repository, and the submission is reasonably organized.
+
+-   An AI-use disclosure states whether an LLM or generative AI tool was used (Yes or No).
+
+-   If AI was used, the disclosure describes all the ways it was used.
+
+-   If AI was used, the disclosure lists all tools used, including model names and versions if known.
+
+-   Any non-AI sources used are cited, with the question(s) for which each source was used.
