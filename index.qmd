@@ -36,6 +36,12 @@ prepare_cutoff_date <- as.Date("2026-09-29")
 ```{r}
 #| echo: false
 #| column: screen-right
+# Match the linked homework icons generated below so they can move to Due.
+homework_icon_pattern <- paste0(
+  '<a [^>]*><i class="[^"]*materials-icon-homework" ',
+  '[^>]*></i></a>'
+)
+
 d_prepared <- d |>
   filter(session != "None") |>
   mutate(
@@ -157,6 +163,30 @@ d_prepared <- d |>
       ),
       TRUE ~ materials
     ),
+    # Place homework question and model-answer icons beside the linked due item.
+    due = map2_chr(due, materials, function(cell, links) {
+      if (is.na(cell) || is.na(links)) {
+        return(cell)
+      }
+      icons <- str_extract_all(links, homework_icon_pattern)[[1]] |>
+        str_c(collapse = "")
+      if (icons == "") {
+        return(cell)
+      }
+      str_replace(
+        cell,
+        regex("\\[(?:homework|hw)\\b[^]]*\\]\\([^)]*\\)", ignore_case = TRUE),
+        function(link) {
+          paste0(
+            '<span class="materials-links">',
+            icons,
+            '</span>&nbsp; ',
+            link
+          )
+        }
+      )
+    }),
+    materials = str_remove_all(materials, homework_icon_pattern),
     # Prefix each reading entry with a FontAwesome book icon: green for r4ds,
     # blue for ims. Cells can hold several <br>-separated entries of mixed
     # sources, so prepend per entry rather than once per cell.
