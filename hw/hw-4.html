@@ -105,7 +105,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 <meta property="og:title" content="HW 4 – STA 199CCL">
 <meta property="og:description" content="Due: Wed, Sep 30, 11:59 pm">
 <meta property="og:image" content="https://sta199-f26.github.io/hw/images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png">
@@ -510,6 +535,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
   </ul>
 </li>
+  <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI use disclosure</a></li>
+  <li>
+<a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
+  <ul class="collapse">
+<li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#grading-and-feedback" id="toc-grading-and-feedback" class="nav-link" data-scroll-target="#grading-and-feedback">Grading and feedback</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -688,6 +721,12 @@ Tip
 </ul>
 </div>
 </div>
+<div class="openai">
+<p>This would be a good time to get feedback from AI if you haven’t yet done so! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed.</p>
+</div>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+</div>
 </section></section><section id="part-2---shaken-trusts" class="level1"><h1>Part 2 - Shaken trusts</h1>
 <p>On September 2, 2026, <a href="https://www.gallup.com/">Gallup</a> reported “Record-High 89% in U.S. Say Government Corruption Widespread”.</p>
 <section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
@@ -718,6 +757,9 @@ Note
 <div class="callout-body-container callout-body">
 <p>The original plot is interactive – if you hover on a point, it will show the exact percentage for that point. You do not need to make your plot interactive.</p>
 </div>
+</div>
+<div class="source-control">
+<p>You know what to do!</p>
 </div>
 </section></section><section id="part-3---stuck-landings" class="level1"><h1>Part 3 - Stuck landings</h1>
 <p>For Part 3 of this homework, you’ll work with two datasets – the first one you’ll recognize from lab, <code>gymnastics</code>, and the second one is <code>continents</code>.</p>
@@ -829,6 +871,87 @@ Note
 <li><p>How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?</p></li>
 <li><p>Your summary has a row where <code>continent</code> is <code>NA</code>. Using <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code>, write code to identify which countries in <code>gymnastics</code> have no match in <code>continents</code>. For each one, explain why it failed to match, and describe what you would need to do to fix it.</p></li>
 </ol>
+<div class="openai">
+<p>This would be a good time to get feedback from AI if you haven’t yet done so! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed.</p>
+</div>
+<div class="source-control">
+<p>You know what to do!</p>
+</div>
+</section></section><section id="ai-use-disclosure" class="level1"><h1>AI use disclosure</h1>
+<p>The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.</p>
+<ul>
+<li><p>Did you use an LLM / generative AI tool when completing this assignment? (Yes or No)</p></li>
+<li>
+<p>If Yes, list all of the ways you used it from the list below.</p>
+<ul>
+<li>I used it to clarify the question(s).</li>
+<li>I used it to better understand concept(s).</li>
+<li>I asked it to help write code.</li>
+<li>I gave it my code and asked it to help fix it.</li>
+<li>I asked it about an error or unexpected code behavior.</li>
+<li>I used it to get feedback on my answer(s).</li>
+<li>I pasted the question prompt in and asked for help, but wrote my own answer.</li>
+<li>I pasted the question prompt in and copied at least part of its response into my Quarto document.</li>
+<li>Other (please specify)</li>
+</ul>
+</li>
+<li>
+<p>If Yes, list all the AI tools you used.</p>
+<ul>
+<li>Include the model name and version (if known). For example, “ChatGPT GPT-5.5” or “Claude Sonnet 4”.</li>
+<li>Include the tool as well. For example, “Codex extension in Positron”, “ChatGPT in a web browser”, etc.</li>
+</ul>
+</li>
+</ul>
+<p>Additionally, cite any other non-AI sources you used to help you complete the assignment, along with the question(s) for which you used each source.</p>
+<p><strong>Sample citations:</strong></p>
+<ul>
+<li>Example 1: All questions: 5.6 Luna Light, in Codex in Positron.</li>
+<li>Example 2: I used ChatGPT GPT-5.5 for Questions 5 and 7. Prompt: “Why did my code have an error?” (pasted code).</li>
+</ul></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
+<div class="source-control">
+<p>Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your <code>.qmd</code> file and the rendered PDF are pushed to GitHub and your source control pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.</p>
+</div>
+<section id="submission" class="level2"><h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>Submit your PDF document to Gradescope by the deadline to be considered “on time”:</p>
+<ul>
+<li>Go to <a href="http://www.gradescope.com" class="uri">http://www.gradescope.com</a> and click <em>Log in</em> in the top right corner.</li>
+<li>Click <em>School Credentials</em> <span class="math inline">\(\rightarrow\)</span> <em>Duke NetID</em> and log in using your NetID credentials.</li>
+<li>Click on your <em>STA 199</em> course.</li>
+<li>Click on the assignment, and you’ll be prompted to submit it.</li>
+<li>Mark all the pages associated with question. All the pages of your homework should be associated with at least one question (i.e., should be “checked”).</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checklist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you have:</p>
+<ul>
+<li>attempted all questions</li>
+<li>included an AI use disclosure</li>
+<li>rendered your Quarto document</li>
+<li>committed and pushed everything to your GitHub repository such that the Git pane in Positron is empty</li>
+<li>uploaded your PDF to Gradescope</li>
+<li>selected your pages on Gradescope for each question</li>
+</ul>
+</div>
+</div>
+</section><section id="grading-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="grading-and-feedback">Grading and feedback</h2>
+<p>You can get immediate feedback on all of the questions with AI.</p>
+<p>Submit your final version of <code>hw-4.pdf</code> to Gradescope. Be sure to select the pages associated with each question.</p>
+<p>A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.</p>
+<p>There are also workflow points for:</p>
+<ul>
+<li>committing at least three times as you work through your homework,</li>
+<li>having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and</li>
+<li>overall organization.</li>
+</ul>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
