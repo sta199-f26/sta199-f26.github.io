@@ -36,7 +36,7 @@ This is the rubric for AI feedback, not necessarily the rubric for grading.
 8.  Output displays the first ten rows of the stats data frame.
 
 9.  Output displays the first ten rows of the picks data frame.
-    - Note for items 8–9: Direct tibble display, `print(n = 10)`, `slice_head(n = 10)`, or an equivalent approach is acceptable.
+    - Note for items 8–9: Direct tibble display or `slice_head(n = 10)`, or an equivalent approach is acceptable.
       Only columns that fit on the page need to be shown.
       Displaying a preview should not truncate the saved data frame.
 
@@ -220,7 +220,7 @@ This is the rubric for AI feedback, not necessarily the rubric for grading.
 1.  Part a. Code reads the two datasets and saves them as `gymnastics` and `continents`.
 
 2.  Part a. Output displays the first ten rows of each data frame.
-    - Note for parts a–b: Direct tibble display, `print(n = 10)`, `head(10)`, `slice_head(n = 10)`, or an equivalent approach is acceptable.
+    - Note for parts a–b: Direct tibble display or `slice_head(n = 10)`, or an equivalent approach is acceptable.
 
 3.  Part b. Code uses `left_join()` with `gymnastics` as the left data frame and `continents` as the right, with `by = join_by(country == entity)`, or an equivalent join that preserves all gymnastics records.
 
