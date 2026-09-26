@@ -19,14 +19,14 @@ First, a bit of Git review:
 
 Git will put conflict markers in your code that look like:
 
-```       
-<<<<<<< HEAD 
+``` text
+<<<<<<< HEAD
 
-See also: [dplyr documentation](https://dplyr.tidyverse.org/)   
+See also: [dplyr documentation](https://dplyr.tidyverse.org/)
 
-======= 
+=======
 
-See also [ggplot2 documentation](https://ggplot2.tidyverse.org/)  
+See also [ggplot2 documentation](https://ggplot2.tidyverse.org/)
 
 >>>>>>> some1alpha2numeric3string4
 ```
@@ -40,4 +40,5 @@ And at the bottom you see `some1alpha2numeric3string4` (well, it probably looks 
 This is the **hash** (a unique identifier) of the commit your collaborator made with the conflicting change.
 
 Your job is to *reconcile* the changes: edit the file so that it incorporates the best of both versions and delete the lines beginning with `<<<<<<<`, `=======`, and `>>>>>>>`.
-Then you can render the project, stage the changed files, and commit the result.
+In Positron, a three-way merge editor may open to help you choose or edit the result; either way, check the final text before completing the merge.
+Then you can render the project with *Quarto: Render Project* from the Command Palette, stage the changed files in the *Source Control* pane, commit the result, and push.
