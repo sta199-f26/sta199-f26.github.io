@@ -26,7 +26,7 @@ Sometimes things will go swimmingly, and sometimes you'll run into **merge confl
 ::: callout-note
 The word "conflict" has a negative connotation.
 And, indeed, merge conflicts can be frustrating.
-But they serve to make sure no team member inadvertently writes another team member's work.
+But they serve to make sure no team member inadvertently overwrites another team member's work.
 All changes that are in "conflict" with each other need to get resolved explicitly, with a commit message, which helps avoid haphazard overwriting.
 :::
 
@@ -54,12 +54,12 @@ Once everyone's team names are in, your project repos will be created (give your
 
 ## Let's cause a merge conflict!
 
-Our goal is to see two different types of merges: first we'll see a type of merge that git can't figure out on its own how to do on its own (a **merge conflict**) and requires human intervention, then another type of where that git can figure out how to do without human intervention.
+Our goal is to see two different types of merges: first, a merge that Git cannot resolve automatically (a **merge conflict**) and that requires human intervention; then, a merge that Git can resolve automatically.
 
 Doing this will require some tight choreography, so pay attention!
 
-Take turns in completing the exercise, only one member at a time.
-**Others should just watch, not doing anything on their own projects (this includes not even pulling changes!)** until they are instructed to.
+Take turns completing the exercise, with only one member working at a time.
+**Others should just watch and not do anything in their own projects (this includes not even pulling changes!)** until they are instructed to.
 If you feel like you won't be able to resist the urge to touch your computer when it's not your turn, we recommend putting your hands in your pockets or sitting on them!
 
 ### Before starting
@@ -117,7 +117,7 @@ Role 2 tries to push the changes, but gets an error because Role 1 has already p
 
 ![](images/role-2-merge-conflict.png){ width="400px" }
 
-Role 2 tries to pulls from the remote repo as the error instructed and views the merge conflict.
+Role 2 tries to pull from the remote repo as the error instructed and views the merge conflict.
 :::
 
 -   Resolve the merge conflict by editing the document to choose the correct/preferred change.
@@ -127,13 +127,13 @@ Role 2 tries to pulls from the remote repo as the error instructed and views the
 
 ![](images/role-2-resolve-merge-conflict.png){ width="400px" }
 
-Role resolves the merge conflict by editing the `about.qmd` document to remove the merge conflict decorators (`<<<<<< HEAD`, `======`, and `>>>>>>> 97e290f39f197467b5563ea8f81187b760c95aa2`, the commit hash). Since the team name is "Team Royal Blue", Role 2 deletes Role 1's edit and keeps their own. Then, Role 2 renders the project.
+Role 2 resolves the merge conflict by editing the `about.qmd` document to remove the merge conflict markers (`<<<<<<< HEAD`, `=======`, and `>>>>>>> 97e290f39f197467b5563ea8f81187b760c95aa2`, where the final string is the commit hash). Since the team name is "Team Royal Blue", Role 2 deletes Role 1's edit and keeps their own. Then, Role 2 renders the project.
 ::: 
 
 -   **Click the Stage checkbox** for all files in your Git tab.
     Make sure they all have check marks, not filled-in boxes.
 
-::: {#fig-role-2-4}
+::: {#fig-role-2-commit}
 
 ![](images/role-2-commit-after-resolve-merge-conflict.png){ width="400px" }
 
