@@ -49,8 +49,24 @@ Once everyone's team names are in, your project repos will be created (give your
 
 ## Setup
 
--   Clone the `project` repo and open the `about.qmd` file.
+-   Copy the HTTPS URL of your team's project repo from GitHub. In Positron, select *New* ➛ *New Folder From Git...*, paste the URL, and open the cloned repo as your workspace.
+-   Open `about.qmd` from the *Explorer* pane.
 -   Assign the numbers 1, 2, 3, and 4 to each of the team members. If your team has fewer than 4 people, some people will need to have multiple numbers. Make sure that no team member is assigned consecutive numbers.
+
+### Workflow in Positron
+
+Use these steps whenever the activity asks you to render, stage, commit, push, or pull:
+
+-   **Render and preview:** Save your edits and click *Preview* at the top of the `.qmd` editor to inspect the rendered page in the *Viewer*. To render the entire project website, run `quarto render` in Positron's *Terminal*, from the project folder containing `_quarto.yml`.
+-   **Stage:** Open the *Source Control* pane from the Activity bar. Review the changed files, then click the `+` next to each file to stage it. Include the rendered website files as well as the source files. Staged files appear under *Staged Changes*.
+-   **Commit:** Enter an informative message in the *Message* box and click *Commit*.
+-   **Push:** Open the Command Palette (*View* ➛ *Command Palette...*), search for `Git: Push`, and select it.
+-   **Pull:** Open the Command Palette, search for `Git: Pull`, and select it.
+
+::: callout-important
+For this exercise, use *Commit*, *Push*, and *Pull* as separate actions, in the order specified below.
+Do not use *Sync Changes* or *Commit & Sync*: syncing pulls and pushes together, which would change the sequence of the exercise.
+:::
 
 ## Let's cause a merge conflict!
 
@@ -69,16 +85,8 @@ Everyone should have the repo cloned and know which role number(s) they are.
 ### Role 1
 
 -   Go to `about.qmd` in your project repo. Change the `[team name]` to your actual team name.
--   Render the project by clicking on Render in the Build tab, commit (all changed files), and push.
-
-::: {#fig-role-1 layout-ncol=2}
-
-![](images/role-1-edit.png){ width="400px" }
-
-![](images/role-1-commit.png){ width="400px" }
-
-Role 1 changes the team name to "Team Dialectic Blue" and renders the project, then commits and pushes the changes.
-:::
+-   Save and click *Preview* to check the page, then render the website with `quarto render` in the *Terminal*.
+-   In *Source Control*, stage all changed files and commit them. Then run *Git: Push* from the Command Palette.
 
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
@@ -87,66 +95,44 @@ Make sure the previous role has finished before moving on to the next step.
 ### Role 2
 
 -   Change the team name to some other word.
-    Then, render the project by clicking on Render in the Build tab and commit all changed files.
+    Save and click *Preview*, then run `quarto render` in the *Terminal*.
+    Stage all changed files in *Source Control* and commit them.
 
-::: {#fig-role-2-1 layout-ncol=2}
+-   Run *Git: Push* from the Command Palette.
+    You should get an error because Role 1 has already pushed changes that you do not yet have locally.
 
-![](images/role-2-edit.png){ width="400px" }
+-   Run *Git: Pull* from the Command Palette.
+    In *Source Control*, look for `about.qmd` under *Merge Changes* and open it in the text editor to inspect the conflict.
 
-![](images/role-2-commit.png){ width="400px" }
+    For example, if Role 1 chose "Team Dialectic Blue" and Role 2 changed it to "Team Royal Blue", the conflicting section might look like this:
 
-Role 2 changes the team name to "Team Royal Blue" and renders the project, then commits the changes.
-:::
+    ```text
+    <<<<<<< HEAD
+    This project was developed by Team Royal Blue.
+    =======
+    This project was developed by Team Dialectic Blue.
+    >>>>>>> 97e290f39f197467b5563ea8f81187b760c95aa2
+    ```
 
--   Now try to push your changes.
-    You should get an error.
+    The top section contains your local changes; the bottom section contains the changes you pulled from GitHub.
+    The string after `>>>>>>>` identifies the incoming commit.
 
-::: {#fig-role-2-2 layout-ncol=2}
+-   Resolve the conflict by editing `about.qmd` to keep the team's preferred name and removing all conflict markers (`<<<<<<<`, `=======`, and `>>>>>>>`).
+    Save the file.
+    If Positron opens the three-way merge editor, you can choose or edit the result there instead; check the final text before completing the merge.
 
-![](images/role-2-push-error.png){ width="400px" }
+-   Resolve any conflicts in other source files, then click *Preview* to check the result and run `quarto render` in the *Terminal*.
+    If rendered website files also have conflicts, rendering regenerates them from the resolved source files.
 
-Role 2 tries to push the changes, but gets an error because Role 1 has already pushed changes to the remote repo.
-:::
+-   In *Source Control*, click the `+` next to each resolved file under *Merge Changes*, and stage any remaining changed files under *Changes*.
+    Check that *Merge Changes* is empty and that all files you intend to commit appear under *Staged Changes*.
 
--   Pull.
-    Take a look at the document (`about.qmd`) with the merge conflict.
+-   Commit with a message describing the resolution, then run *Git: Push* from the Command Palette.
+    This time, the push should succeed.
 
-::: {#fig-role-2-3 layout-ncol=2}
-
-![](images/role-2-pull.png){ width="400px" }
-
-![](images/role-2-merge-conflict.png){ width="400px" }
-
-Role 2 tries to pull from the remote repo as the error instructed and views the merge conflict.
-:::
-
--   Resolve the merge conflict by editing the document to choose the correct/preferred change.
-    Then, render the project by clicking on Render in the Build tab.
-
-::: {#fig-role-2-4}
-
-![](images/role-2-resolve-merge-conflict.png){ width="400px" }
-
-Role 2 resolves the merge conflict by editing the `about.qmd` document to remove the merge conflict markers (`<<<<<<< HEAD`, `=======`, and `>>>>>>> 97e290f39f197467b5563ea8f81187b760c95aa2`, where the final string is the commit hash). Since the team name is "Team Royal Blue", Role 2 deletes Role 1's edit and keeps their own. Then, Role 2 renders the project.
-::: 
-
--   **Click the Stage checkbox** for all files in your Git tab.
-    Make sure they all have check marks, not filled-in boxes.
-
-::: {#fig-role-2-commit}
-
-![](images/role-2-commit-after-resolve-merge-conflict.png){ width="400px" }
-
-Role 2 stages all changed files and commits them with a message indicating that they resolved the merge conflict.
-:::
-
--   Commit and push.
-
-::: {#fig-role-2-5}
-
-![](images/role-2-push.png){ width="400px" }
-
-Role 2 successfully pushes their changes after resolving the merge conflict.
+::: callout-tip
+If pulling stops with a message about reconciling divergent branches, run `git pull --no-rebase` in Positron's *Terminal* to use a merge for this exercise.
+Ask your TA for help if you see a different error or are unsure how to resolve a conflict.
 :::
 
 ::: callout-important
@@ -156,9 +142,9 @@ Make sure the previous role has finished before moving on to the next step.
 ### Role 3
 
 -   Change the name of the first team member.
--   Render the project by clicking on Render in the Build tab, commit, and push. You should get an error.
--   Pull. No merge conflicts should occur, but you should see a message about merging.
--   Now push.
+-   Save and click *Preview*, then run `quarto render` in the *Terminal*. Stage all changed files in *Source Control*, commit, and run *Git: Push*. You should get an error.
+-   Run *Git: Pull*. Since you edited a different part of `about.qmd`, Git should merge that file automatically. If rendered files have conflicts, regenerate them with `quarto render`, stage them, and commit the merge as in Role 2.
+-   If *Source Control* still shows a merge waiting to be committed, complete that commit. Then run *Git: Push*.
 
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
@@ -167,8 +153,8 @@ Make sure the previous role has finished before moving on to the next step.
 ### Role 4
 
 -   Change the name of the first team member to something other than what the previous team member did.
--   Render the project by clicking on Render in the Build tab, commit, and push. You should get an error.
--   Pull. Take a look at the document with the merge conflict. Clear the merge conflict by choosing the correct/preferred change. Render the project by clicking on Render in the Build tab, commit, and push.
+-   Save and click *Preview*, then run `quarto render` in the *Terminal*. Stage all changed files in *Source Control*, commit, and run *Git: Push*. You should get an error.
+-   Run *Git: Pull*. Resolve the conflicts using the same steps as Role 2: edit and save the source files, preview, render the website, stage the resolved and changed files, commit, and run *Git: Push*.
 
 TO DO: Discuss interests and write down lists of types.
 TO DO: Agents file.
@@ -181,28 +167,29 @@ Make sure the previous role has finished before moving on to the next step.
 
 This role is optional, in case your team has 5 members.
 
--   Pull all changes from the remote repo.
+-   Run *Git: Pull* to get all changes from the remote repo.
 -   Change the name of the second team member.
--   Render the project by clicking on Render in the Build tab, commit, and push. You should not get an error because you pulled first.
+-   Save and click *Preview*, then run `quarto render` in the *Terminal*. Stage all changed files in *Source Control*, commit, and run *Git: Push*. You should not get an error because you pulled first.
 This models "good" collaborative behavior -- start with pulling before doing any work.
 
 ### Everyone
 
-Pull, and observe the changes in your project.
+Run *Git: Pull*, open `about.qmd`, and click *Preview* to observe the changes in your project.
 
 # Tips for collaborating via GitHub
 
 -   **Always pull first before you start working.**
--   Resolve a merge conflict (render and push) *before* continuing your work. Never do new work while resolving a merge conflict.
--   Preview, commit, and push often to minimize merge conflicts and/or to make merge conflicts easier to resolve.
+-   Resolve a merge conflict (edit, save, render, stage, commit, and push) *before* continuing your work. Never do new work while resolving a merge conflict.
+-   Preview, stage, commit, and push often to minimize merge conflicts and/or to make merge conflicts easier to resolve.
 -   If you find yourself in a situation that is difficult to resolve, ask questions ASAP. Don't let it linger and get bigger.
 
 # Team contract
 
-Go to your project repository and open `contract.qmd`.
+In Positron, run *Git: Pull* to get the latest changes, then open `contract.qmd` from the *Explorer* pane.
 As the instructions suggest, pick a teammate to be the scribe.
 Discuss the prompts and write up your answers.
-Once done, click *Render* in the build tab, commit, and push.
+Once done, save and click *Preview*, then run `quarto render` in the *Terminal*.
+Stage all changed files in *Source Control*, commit, and run *Git: Push*.
 
 # Grading
 
