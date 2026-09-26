@@ -508,6 +508,204 @@
     ]
   },
   {
+    "objectID": "project/2-proposal.html",
+    "href": "project/2-proposal.html",
+    "title": "Proposal",
+    "section": "",
+    "text": "Note\n\n\n\nYou will start working on this milestone in lab, but you will need to finish it outside of lab. Before the end of lab, make sure you have at least one team meeting scheduled to continue working on this milestone.",
+    "crumbs": [
+      "Project",
+      "Milestone 2"
+    ]
+  },
+  {
+    "objectID": "project/2-proposal.html#criteria-for-datasets",
+    "href": "project/2-proposal.html#criteria-for-datasets",
+    "title": "Proposal",
+    "section": "Criteria for datasets",
+    "text": "Criteria for datasets\nThe datasets should meet the following criteria:\n\nAt least 200 observations.\nAt least 8 columns.\nAt least 6 of the columns must be useful and unique explanatory variables.\n\nIdentifier variables such as “name”, “social security number”, etc. are not useful explanatory variables.\nIf you have multiple columns with the same information (e.g., “state abbreviation” and “state name”), then they are not unique explanatory variables.\n\nYou may not use data that has previously been used in any course materials, or any derivation of data that has been used in course materials.\nYou can curate one of your datasets via web scraping.\n\nPlease ask a member of the teaching team if you’re unsure whether your dataset meets the criteria.\nIf you have your hearts set on a dataset that has fewer observations or variables than what’s suggested here, that might still be okay; but you must check with a member of the teaching team first.",
+    "crumbs": [
+      "Project",
+      "Milestone 2"
+    ]
+  },
+  {
+    "objectID": "project/2-proposal.html#resources-for-datasets",
+    "href": "project/2-proposal.html#resources-for-datasets",
+    "title": "Proposal",
+    "section": "Resources for datasets",
+    "text": "Resources for datasets\nYou can find data wherever you like, but here are some recommendations to get you started. You shouldn’t feel constrained to datasets that are already in a tidy format: you can start with data that needs cleaning and tidying, scrape data off the web, or collect your own data.\n\nUNICEF Data\nYouth Risk Behavior Surveillance System (YRBSS)\nGoogle Dataset Search\nData is Plural\nElection Studies\nUS Census Data\nWorld Bank Data\nCDC\nEuropean Statistics\nCORGIS: The Collection of Really Great, Interesting, Situated Datasets\nGeneral Social Survey\nHarvard Dataverse\nInternational Monetary Fund\nIPUMS survey data from around the world\nLos Angeles Open Data\nNHS Scotland Open Data\nNYC OpenData\nOpen access to Scotland’s official statistics\nPew Research\nPRISM Data Archive Project\nResponsible Datasets in Context\nStatistics Canada\nTidyTuesday\nThe National Bureau of Economic Research\nUCI Machine Learning Repository\nUK Government Data\nUnited Nations Data\nUnited Nations Statistics Division\nUS Government Data\nFRED Economic Data\nData.gov\nAwesome public datasets\nDurham Open Data Portal\nEdinburgh Open Data\nFiveThirtyEight",
+    "crumbs": [
+      "Project",
+      "Milestone 2"
+    ]
+  },
+  {
+    "objectID": "project/2-proposal.html#introduction-of-data",
+    "href": "project/2-proposal.html#introduction-of-data",
+    "title": "Proposal",
+    "section": "Introduction of data",
+    "text": "Introduction of data\nFor each dataset:\n\nIdentify the source of the data.\nState when and how it was originally collected (by the original data curator, not necessarily how you found the data).\nAddress ethical concerns about the data, if any.",
+    "crumbs": [
+      "Project",
+      "Milestone 2"
+    ]
+  },
+  {
+    "objectID": "project/2-proposal.html#research-question",
+    "href": "project/2-proposal.html#research-question",
+    "title": "Proposal",
+    "section": "Research question",
+    "text": "Research question\nYour research question should involve at least three variables, including a mix of categorical and numerical variables. When writing a research question, please think about the following:\n\nWhat is your target population?\nIs the question original?\nCan the question be answered?\n\nFor each dataset, include the following:\n\nA well-formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per dataset is required.)\nA statement on why this question is important.\nA description of the research topic along with a concise statement of your hypotheses on this topic.\nIdentify the types of variables in your research question. Categorical? Numerical?",
+    "crumbs": [
+      "Project",
+      "Milestone 2"
+    ]
+  },
+  {
+    "objectID": "project/2-proposal.html#data",
+    "href": "project/2-proposal.html#data",
+    "title": "Proposal",
+    "section": "Data",
+    "text": "Data\nFor each dataset:\n\nPlace the file containing your data in the data folder of the project repo.\nUse the glimpse() function to provide a glimpse of the dataset.\nWrite a brief description of the observations.\nState the number of observations and variables in the dataset.\nDescribe the variables that are most relevant to your proposed analysis.",
+    "crumbs": [
+      "Project",
+      "Milestone 2"
+    ]
+  },
+  {
+    "objectID": "project/2-proposal.html#quarto.yml-file",
+    "href": "project/2-proposal.html#quarto.yml-file",
+    "title": "Proposal",
+    "section": "_quarto.yml file",
+    "text": "_quarto.yml file\nUpdate your _quarto.yml file, specifically:\n\n\n_quarto.yml\n\nproject:\n  type: website\n  output-dir: docs\n  resources:\n    - presentation.pdf\n\nauthor: # Replace with team member names\n  - name: Name of team member 1 \n  - name: Name of team member 2\n  - name: Name of team member 3\n  - name: Name of team member 4\n  - name: ...\n\nwebsite:\n  # Replace with team name\n  title: Team name \n  navbar:\n    left:\n      - text: Home\n        href: index.qmd\n      - text: Presentation\n        href: presentation.pdf  \n      - text: Proposal\n        href: proposal.qmd\n      - text: About\n        href: about.qmd\n      - text: Contract\n        href: contract.qmd\n    right:\n      - icon: github\n        # Replace with link to GitHub repo\n        href: \"https://github.com/sta199-f26/\" \n\nformat:\n  html:\n    theme: \n      light: flatly\n      dark: darkly",
+    "crumbs": [
+      "Project",
+      "Milestone 2"
+    ]
+  },
+  {
+    "objectID": "project/tips-resources.html",
+    "href": "project/tips-resources.html",
+    "title": "Project tips + resources",
+    "section": "",
+    "text": "The project is very open ended. For instance, when creating compelling visualizations of your data in R, there is no limit on what tools or packages you may use. You do not need to visualize all of the data at once. A single high-quality visualization will receive a much higher grade than a large number of poor-quality visualizations.\nBefore you finalize your write-up, hide the code with the option echo: false. Suppress warnings and messages with the options warning: false and message: false.\nFinally, pay attention to details in your write-up and presentation. Neatness, coherence, and clarity will count.",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project/tips-resources.html#suppress-code-and-warnings",
+    "href": "project/tips-resources.html#suppress-code-and-warnings",
+    "title": "Project tips + resources",
+    "section": "Suppress code and warnings",
+    "text": "Suppress code and warnings\n\nInclude the following in the YAML of your index.qmd to suppress all code, warnings, and other messages.\n\nexecute:\n  echo: false\n  warning: false\n  message: false",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project/tips-resources.html#headers",
+    "href": "project/tips-resources.html#headers",
+    "title": "Project tips + resources",
+    "section": "Headers",
+    "text": "Headers\nUse headers to clearly label each section. Make sure there is a blank line before each header. Use appropriate header levels.",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project/tips-resources.html#references",
+    "href": "project/tips-resources.html#references",
+    "title": "Project tips + resources",
+    "section": "References",
+    "text": "References\nInclude all references in a section called “References” at the end of the report. This course does not have specific requirements for formatting citations and references. Optional: Use Quarto’s citation support for generating your references. See Citations & Footnotes on the Quarto documentation for more on that.",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project/tips-resources.html#appendix",
+    "href": "project/tips-resources.html#appendix",
+    "title": "Project tips + resources",
+    "section": "Appendix",
+    "text": "Appendix\nIf you have additional work that does not fit or does not belong in the body of the report, you may put it at the end of the document in a section called “Appendix”. The items in the appendix should be properly labeled. The appendix should only be for additional material. The reader should be able to fully understand your report without viewing content in the appendix. We will not grade your appendix.",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project/tips-resources.html#resize-figures",
+    "href": "project/tips-resources.html#resize-figures",
+    "title": "Project tips + resources",
+    "section": "Resize figures",
+    "text": "Resize figures\nResize plots and figures, so you have more space for the narrative. Resize individual figures: Set fig-width and fig-asp in chunk options, e.g.,\n#| echo: fenced\n#| label: code-cell-label\n#| fig-width: 5\n#| fig-asp: 0.628\nReplace code-cell-label with a meaningful label and the width and aspect ratio with values appropriate for your write-up.\nResize all figures: Include the fig-width and fig-asp options in the YAML header as shown below:\nexecute:\n  fig-width: 5\n  fig-asp: 0.628\nReplace the width and aspect ratio values with values appropriate for your write-up.",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project/tips-resources.html#arranging-plots",
+    "href": "project/tips-resources.html#arranging-plots",
+    "title": "Project tips + resources",
+    "section": "Arranging plots",
+    "text": "Arranging plots\nArrange plots in a grid, instead of one after the other. This is especially useful when displaying plots for exploratory data analysis and to check assumptions.\nThe patchwork package makes it easy to arrange plots in a grid.",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project/1-working-collaboratively.html",
+    "href": "project/1-working-collaboratively.html",
+    "title": "Working collaboratively",
+    "section": "",
+    "text": "Warning\n\n\n\nYou should have completed the pre-read before starting this milestone.\nData science is a collaborative discipline. Pretty much no data scientist works alone, so neither should you! In this course you’ll collaborate with teammates on the project.\nThe first milestone of the project, today’s activity, will introduce you to the technical aspects of collaborating on a reproducible data science project that is version controlled by Git and hosted on GitHub in a repository shared by all teammates.\nYes, this means you and all of your teammates will be pushing to the same repository! Sometimes things will go swimmingly, and sometimes you’ll run into merge conflicts.",
+    "crumbs": [
+      "Project",
+      "Milestone 1"
+    ]
+  },
+  {
+    "objectID": "project/1-working-collaboratively.html#setup",
+    "href": "project/1-working-collaboratively.html#setup",
+    "title": "Working collaboratively",
+    "section": "Setup",
+    "text": "Setup\n\nCopy the HTTPS URL of your team’s project repo from GitHub. In Positron, select New ➛ New Folder From Git…, paste the URL, and open the cloned repo as your workspace.\nOpen about.qmd from the Explorer pane.\nAssign the numbers 1, 2, 3, and 4 to each of the team members. If your team has fewer than 4 people, some people will need to have multiple numbers. Make sure that no team member is assigned consecutive numbers, so the same person never acts twice in a row.\n\n\nWorkflow in Positron\nUse these steps whenever the activity asks you to render, stage, commit, push, or pull:\n\nRender and preview: Save your edits and click Preview at the top of the .qmd editor to inspect the rendered page in the Viewer. To render the entire project website, open the Command Palette (View ➛ Command Palette…), search for Quarto: Render Project, and select it.\nStage: Open the Source Control pane from the Activity bar. Review the changed files, then click the + next to each file to stage it. Include the rendered website files as well as the source files. Staged files appear under Staged Changes.\nCommit: Enter an informative message in the Message box and click Commit.\nPush: In the Source Control pane, click the ... (Views and More Actions) icon at the top of the pane and select Pull, Push ➛ Push.\nPull: In the Source Control pane, click the ... (Views and More Actions) icon at the top of the pane and select Pull, Push ➛ Pull.\n\nNote where each action lives: Git actions (stage, commit, push, pull) are in the Source Control pane, while Quarto actions (preview, render project) are launched from the editor toolbar or the Command Palette.\n\n\n\n\n\n\nImportant\n\n\n\nFor this exercise, use Commit, Push, and Pull as separate actions, in the order specified below. Do not use Sync Changes or Commit & Sync: syncing pulls and pushes together, which would change the sequence of the exercise.",
+    "crumbs": [
+      "Project",
+      "Milestone 1"
+    ]
+  },
+  {
+    "objectID": "project/1-working-collaboratively.html#lets-cause-a-merge-conflict",
+    "href": "project/1-working-collaboratively.html#lets-cause-a-merge-conflict",
+    "title": "Working collaboratively",
+    "section": "Let’s cause a merge conflict!",
+    "text": "Let’s cause a merge conflict!\nOur goal is to see two different types of merges: first, a merge that Git cannot resolve automatically (a merge conflict) and that requires human intervention; then, a merge that Git can resolve automatically.\nDoing this will require some tight choreography, so pay attention!\nTake turns completing the exercise, with only one member working at a time. Others should just watch and not do anything in their own projects (this includes not even pulling changes!) until they are instructed to. If you feel like you won’t be able to resist the urge to touch your computer when it’s not your turn, we recommend putting your hands in your pockets or sitting on them!\n\nBefore starting\nEveryone should have the repo cloned and know which role number(s) they are.\n\n\nRole 1\n\nGo to about.qmd in your project repo. Change the [team name] to your actual team name.\nSave and click Preview to check the page, then render the website with Quarto: Render Project from the Command Palette.\nIn Source Control, stage all changed files and commit them. Then Push from the Source Control pane.\n\n\n\n\n\n\n\nImportant\n\n\n\nMake sure the previous role has finished before moving on to the next step.\n\n\n\n\nRole 2\n\nChange the team name to some other word. Save and click Preview, then run Quarto: Render Project from the Command Palette. Stage all changed files in Source Control and commit them.\nPush from the Source Control pane. You should get an error because Role 1 has already pushed changes that you do not yet have locally.\nPull from the Source Control pane. In Source Control, look for about.qmd under Merge Changes and open it in the text editor to inspect the conflict.\nFor example, if Role 1 chose “Team Dialectic Blue” and Role 2 changed it to “Team Royal Blue”, the conflicting section might look like this:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nThis project was developed by Team Royal Blue.\n=======\nThis project was developed by Team Dialectic Blue.\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; 97e290f39f197467b5563ea8f81187b760c95aa2\nThe top section contains your local changes; the bottom section contains the changes you pulled from GitHub. The string after &gt;&gt;&gt;&gt;&gt;&gt;&gt; identifies the incoming commit.\nResolve the conflict by editing about.qmd to keep the team’s preferred name and removing all conflict markers (&lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, and &gt;&gt;&gt;&gt;&gt;&gt;&gt;). Save the file. If Positron opens the three-way merge editor, you can choose or edit the result there instead; check the final text before completing the merge.\nResolve any conflicts in other source files, then click Preview to check the result and run Quarto: Render Project from the Command Palette. If rendered website files also have conflicts, rendering with Quarto: Render Project regenerates them from the resolved source files.\nIn Source Control, click the + next to each resolved file under Merge Changes, and stage any remaining changed files under Changes. Check that Merge Changes is empty and that all files you intend to commit appear under Staged Changes.\nCommit with a message describing the resolution, then Push from the Source Control pane. This time, the push should succeed.\n\n\n\n\n\n\n\nTip\n\n\n\nIf pulling stops with a message about reconciling divergent branches, ask your TA for help, and they will configure the pull to use a merge for this exercise. Also ask your TA for help if you see a different error or are unsure how to resolve a conflict.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nMake sure the previous role has finished before moving on to the next step.\n\n\n\n\nRole 3\n\nChange the name of the first team member.\nSave and click Preview, then run Quarto: Render Project from the Command Palette. Stage all changed files in Source Control, commit, and Push. You should get an error.\nPull from the Source Control pane. Since you edited a different part of about.qmd than Role 2 (who changed the team name), Git should merge that file automatically. If rendered files have conflicts, regenerate them with Quarto: Render Project, stage them, and commit the merge as in Role 2.\nIf Source Control still shows a merge waiting to be committed, complete that commit. Then Push.\n\n\n\n\n\n\n\nImportant\n\n\n\nMake sure the previous role has finished before moving on to the next step.\n\n\n\n\nRole 4\n\nChange the name of the first team member to something other than what the previous team member did.\nSave and click Preview, then run Quarto: Render Project from the Command Palette. Stage all changed files in Source Control, commit, and Push. You should get an error.\nPull from the Source Control pane. Resolve the conflicts using the same steps as Role 2: edit and save the source files, preview, render the website, stage the resolved and changed files, commit, and Push.\n\n\n\n\n\n\n\nImportant\n\n\n\nMake sure the previous role has finished before moving on to the next step.\n\n\n\n\nBack to Role 1 (for teams of 4 or fewer) or Role 5 (for 5-person teams)\n\nPull from the Source Control pane to get all changes from the remote repo.\nUpdate all requested pieces of information about all team members.\nSave and click Preview, then run Quarto: Render Project from the Command Palette. Stage all changed files in Source Control, commit, and Push. You should not get an error because you pulled first. This models “good” collaborative behavior – start with pulling before doing any work.\n\n\n\nEveryone\nPull from the Source Control pane, open about.qmd, and click Preview to observe the changes in your project.",
+    "crumbs": [
+      "Project",
+      "Milestone 1"
+    ]
+  },
+  {
+    "objectID": "project/4-peer-review.html",
+    "href": "project/4-peer-review.html",
+    "title": "Peer review",
+    "section": "",
+    "text": "Important\n\n\n\nYou must attend this lab in person and participate in the peer review in person to be eligible for the points for this milestone. Team members who are not in lab in person for this milestone will not be eligible for these points, regardless of their contribution throughout the rest of the project.\n\n\nDuring the peer feedback process, you will be provided read-only access to your partner team’s GitHub repo. You will provide your feedback in the form of GitHub issues in your partner team’s GitHub repo.\nGoals\nThe goals of this milestone are as follows:\n\nReview others’ project drafts as a team and provide feedback\nPost issues on GitHub using an issue template\nLearn from others’ projects and improve your own project based on their strengths and weaknesses\nInstructions\nReview one other team’s project. As a team, you should spend ~30 minutes on the review.\n\nFind the names of the team whose project you’re reviewing below. You should already have access to this team’s repo.\nEach team member should go to the repo of the team you’re reviewing.\n\nThen,\n\n1-2 team members clone the team’s project and render it to check for reproducibility.\nAll team members open the team’s project in their browser and start reading through the project draft.\n1 team member opens an issue on the team’s repo using the peer review template.\nAll team members discuss the project based on the prompts on the issue template and one team member records the feedback and submits the issue.\n\n\n\nTo open an issue in the repo you’re reviewing, click on New issue, and click on Get started for the Peer review issue. Fill out this issue, answering the following questions:\n\nPeer review by: [NAME OF TEAM DOING THE REVIEW]\nNames of team members that participated in this review: [FULL NAMES OF TEAM MEMBERS DOING THE REVIEW]\nDescribe the goal of the project.\nDescribe the data used or collected, if any. If the proposal does not include the use of a specific dataset, comment on whether the project would be strengthened by the inclusion of a dataset.\nDescribe the approaches, tools, and methods that will be used.\nProvide constructive feedback on how the team might be able to improve their project. Make sure your feedback includes at least one comment on the statistical reasoning aspect of the project, but do feel free to comment on aspects beyond the reasoning as well.\nWhat aspect of this project are you most interested in and would like to see highlighted in the presentation?\nWere you able to reproduce the project by clicking on Render Website once you cloned it? Were there any issues with reproducibility?\nProvide constructive feedback on any issues with file and/or code organization.\nWhat have you learned from this team’s project that you are considering implementing in your own project?\n(Optional) Any further comments or feedback?\n\n\nReview pairings\n\n\nL1 - 8:30 am\nL3 - 10:05 am\nL4 - 10:05 am\nL5 - 11:45 am\nL6 - 11:45 am\nL7 - 1:25 pm\nL8 - 1:25 pm\nL9 - 3:05 pm\nL11 - 4:40 pm\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\nseniors\nthe-outliers\n\n\nthe-outliers\nteam-e\n\n\nteam-e\njuniors\n\n\njuniors\nteam-c1\n\n\nteam-c1\nnico-val-rian\n\n\nnico-val-rian\nglam\n\n\nglam\nseniors\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\nsighted\njava\n\n\njava\nlegitness67\n\n\nlegitness67\nlamp\n\n\nlamp\nmaak\n\n\nmaak\npan\n\n\npan\ngitpush\n\n\ngitpush\nsighted\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\nthe-rchitects\nteam-awesome\n\n\nteam-awesome\nsomething-down\n\n\nsomething-down\nstandard-deviants\n\n\nstandard-deviants\nmerge-conflict\n\n\nmerge-conflict\nthe-outliars\n\n\nthe-outliars\nthree-of-a-kind\n\n\nthree-of-a-kind\nstat-legends\n\n\nstat-legends\nthe-rchitects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\nr-squad\nmdc\n\n\nmdc\nforkball\n\n\nforkball\nrender-me-that\n\n\nrender-me-that\nall-in\n\n\nall-in\nstats-stars\n\n\nstats-stars\nmatcha\n\n\nmatcha\nr-warriors\n\n\nr-warriors\ndata-dudes\n\n\ndata-dudes\nr-squad\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\ns-tier\npushing-n-praying\n\n\npushing-n-praying\nae-cc\n\n\nae-cc\ndejjp\n\n\ndejjp\njacksons-mommys\n\n\njacksons-mommys\npumpkin-rolls\n\n\npumpkin-rolls\nlebronisticians\n\n\nlebronisticians\ns-tier\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\ndata-devils\ngit-kat\n\n\ngit-kat\nteam-purple-f1\n\n\nteam-purple-f1\njacz\n\n\njacz\n404-found\n\n\n404-found\nthree-musketeers\n\n\nthree-musketeers\ndata-devils\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\nplz-give-an-a\nwe-r-4-real\n\n\nwe-r-4-real\ngit-hubbards\n\n\ngit-hubbards\ngeom-jitters\n\n\ngeom-jitters\nr-u-serious\n\n\nr-u-serious\nr-chitects\n\n\nr-chitects\nplz-give-an-a\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\nalexa\njjc-studio\n\n\njjc-studio\ncharisma\n\n\ncharisma\nmap-b\n\n\nmap-b\nmean-machine\n\n\nmean-machine\nwatermelon\n\n\nwatermelon\nrender-commit-push\n\n\nrender-commit-push\nbeegees\n\n\nbeegees\nalexa\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\nthe-pipe-operators\nvisionaries\n\n\nvisionaries\ndataframe\n\n\ndataframe\nthe-dolphins\n\n\nthe-dolphins\ndwl\n\n\ndwl\nthe-a-team\n\n\nthe-a-team\n11f\n\n\n11f\nthe-pipe-operators\n\n\n\n\n\n\n\n\n\nGrading\nPeer reviews will be graded on the extent to which they comprehensively and constructively address the components of the reviewed team’s report.\nOnly the team members participating in the review during the lab session are eligible for points for the peer review.\n\n0 points: No peer review\n1 point: Feedback provided is not constructive or actionable\n2-4 points: Feedback provided is not sufficiently thorough\n5 points: Peer review is constructive, actionable, and sufficiently thorough\n\n\n\n\n\n\n\nNote\n\n\n\nThe feedback issue will come from one team member on GitHub since you can’t collectively edit an issue. However, it must represent the opinions of the entire team. It is not a single team member’s responsibility to provide feedback; they’re just the record keeper for the team.",
+    "crumbs": [
+      "Project",
+      "Milestone 4"
+    ]
+  },
+  {
     "objectID": "project/description.html",
     "href": "project/description.html",
     "title": "Project description",
@@ -5503,6 +5701,134 @@
     "crumbs": [
       "Computing",
       "Code alongs"
+    ]
+  },
+  {
+    "objectID": "project/3-improvement-progress-I.html",
+    "href": "project/3-improvement-progress-I.html",
+    "title": "Improvement and progress I: from proposal to project",
+    "section": "",
+    "text": "Important\n\n\n\nYou must attend this lab in person and participate in the teamwork in person to be eligible for the points for this milestone. Team members who are not in lab in person for this milestone will not be eligible for these points, regardless of their contribution throughout the rest of the project.\nBy this point, you’ve received feedback on your proposal and should be incorporating that feedback and making further progress on your project. This milestone helps you stay on track with that work.",
+    "crumbs": [
+      "Project",
+      "Milestone 3"
+    ]
+  },
+  {
+    "objectID": "project/3-improvement-progress-I.html#data-dictionary",
+    "href": "project/3-improvement-progress-I.html#data-dictionary",
+    "title": "Improvement and progress I: from proposal to project",
+    "section": "Data dictionary",
+    "text": "Data dictionary\nAdd a data dictionary to the README.md file in the data folder describing each variable in your chosen dataset.",
+    "crumbs": [
+      "Project",
+      "Milestone 3"
+    ]
+  },
+  {
+    "objectID": "project/1-working-collaboratively-preread.html",
+    "href": "project/1-working-collaboratively-preread.html",
+    "title": "Pre-read: Merge conflicts",
+    "section": "",
+    "text": "When you and your teammates work on the same lines of code within a document and try to push your changes, you may run into issues. Merge conflicts happen when you merge branches that have competing changes, and Git needs your help to decide which changes to incorporate in the final merge.\nOur first task today is to walk you through a merge conflict! First, a bit of Git review:\n\nPushing to a repo uploads your local commits to GitHub.\nIf a collaborator has made a change to your repo and pushed it to your collaborative GitHub repository, GitHub will stop you from pushing your changes to the repo because this could overwrite your collaborator’s work!\nSo you need to explicitly “merge” your collaborator’s work before you can push.\nIf your changes and your collaborator’s changes are in different files or in different parts of the same file, Git usually merges the work for you automatically when you pull.\nIf you both changed the same part of a file, Git may produce a merge conflict because it doesn’t know which change you want to keep and which change you want to overwrite.\n\nGit will put conflict markers in your code that look like:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n\nSee also: [dplyr documentation](https://dplyr.tidyverse.org/)\n\n=======\n\nSee also [ggplot2 documentation](https://ggplot2.tidyverse.org/)\n\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; some1alpha2numeric3string4\nThe ======= line separates your changes (top) from their changes (bottom).\nNote that on top you see the word HEAD, which indicates that these are your changes.\nAnd at the bottom you see some1alpha2numeric3string4 (well, it probably looks more like 28e7b2ceb39972085a0860892062810fb812a08f).\nThis is the hash (a unique identifier) of the commit your collaborator made with the conflicting change.\nYour job is to reconcile the changes: edit the file so that it incorporates the best of both versions and delete the lines beginning with &lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, and &gt;&gt;&gt;&gt;&gt;&gt;&gt;. In Positron, a three-way merge editor may open to help you choose or edit the result; either way, check the final text before completing the merge. Then you can render the project with Quarto: Render Project from the Command Palette, stage the changed files in the Source Control pane, commit the result, and push."
+  },
+  {
+    "objectID": "project/5-improvement-progress-II.html",
+    "href": "project/5-improvement-progress-II.html",
+    "title": "Improvement and progress II: polishing the project",
+    "section": "",
+    "text": "Important\n\n\n\nYou must attend this lab in person and participate in the teamwork in person to be eligible for the points for this milestone. Team members who are not in lab in person for this milestone will not be eligible for these points, regardless of their contribution throughout the rest of the project.\n\n\nBy this point, you’ve received peer feedback on your project and should be incorporating that feedback and making further progress on your project. This milestone helps you stay on track with that work.\n\nGoals\nThe goals of this milestone are as follows:\n\nIncorporate feedback from your peers\nPolish your project prior to your presentation and final write-up next week!\n\n\n\nInstructions\nMake some progress, evidenced by commits to your repo since project milestone 4. These commits should\n\nexplicitly close issues opened as peer feedback, and\nmake further progress on the project.\n\n\n\nGrading\nThis milestone will be graded for completion, not accuracy. We will check to see if the team has made commits to their repo since project milestone 4 and closed all issues that were opened as part of peer or instructor feedback.\n\n0 points: No commits since project milestone 4\n1 point: Only a single commit since project milestone 4, regardless of how many issues are closed\n2-4 points: More than 1 commit since project milestone 4, but not all issues are closed\n5 points: More than 1 commit since project milestone 4 and all issues closed",
+    "crumbs": [
+      "Project",
+      "Milestone 5"
+    ]
+  },
+  {
+    "objectID": "project/6-presentation.html",
+    "href": "project/6-presentation.html",
+    "title": "Presentation",
+    "section": "",
+    "text": "In addition to the written report, your team will also create presentation slides and deliver a presentation that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.\nYou can create your slides with any software you like (Keynote, PowerPoint, Google Slides, etc.). We recommend choosing an option that’s easy to collaborate with, e.g., Google Slides. If you choose this option, save the slides as a PDF and upload it to your repo as presentation.pdf.\nYou can also use Quarto to make your slides! While we won’t be covering making slides with Quarto in the class, we would be happy to help you with it in office hours. It’s no different than writing other documents with Quarto, so the learning curve will not be steep!\nThe slide deck should be roughly 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the 6 slides.\n\nTitle Slide\nSlide 1: Introduce the topic and motivation\nSlide 2: Introduce the data\nSlides 3-5: Highlights from EDA\nSlide 6: Conclusions + discussion + critique\n\n\n\n\nPresentations will be in person in lab. All team members must participate in the presentation. The presentation must be no longer than 5 minutes.\n\n\n\nThe presentation is worth 25 points, broken down as follows:\n\n\n\nTotal\n25 pts\n\n\n\n\nSlides\n10 pts\n\n\nPresentation\n15 pts\n\n\n\n\n\nAre the slides well organized and readable, with concise text and figures that have legible labels, legends, etc.?\n\n\n\n\nTime management: Did the team divide the time well among themselves and finish within the time limit?\nProfessionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?\nTeamwork: Did the team present a unified story, or did it seem like independent pieces of work patched together?\nCreativity and critical thought: Is the project carefully thought out? Does it appear that time and effort went into the planning and implementation of the project?\nContent: Including, but not limited to the following:\n\nIs the question well articulated in the presentation?\nCan the question be answered with the data?\nDoes the analysis answer the question?\nAre the conclusion(s) made based on the analysis justifiable?\nAre the limitations carefully considered and articulated?",
+    "crumbs": [
+      "Project",
+      "Milestone 6"
+    ]
+  },
+  {
+    "objectID": "project/6-presentation.html#slides",
+    "href": "project/6-presentation.html#slides",
+    "title": "Presentation",
+    "section": "",
+    "text": "In addition to the written report, your team will also create presentation slides and deliver a presentation that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.\nYou can create your slides with any software you like (Keynote, PowerPoint, Google Slides, etc.). We recommend choosing an option that’s easy to collaborate with, e.g., Google Slides. If you choose this option, save the slides as a PDF and upload it to your repo as presentation.pdf.\nYou can also use Quarto to make your slides! While we won’t be covering making slides with Quarto in the class, we would be happy to help you with it in office hours. It’s no different than writing other documents with Quarto, so the learning curve will not be steep!\nThe slide deck should be roughly 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the 6 slides.\n\nTitle Slide\nSlide 1: Introduce the topic and motivation\nSlide 2: Introduce the data\nSlides 3-5: Highlights from EDA\nSlide 6: Conclusions + discussion + critique",
+    "crumbs": [
+      "Project",
+      "Milestone 6"
+    ]
+  },
+  {
+    "objectID": "project/6-presentation.html#presentation",
+    "href": "project/6-presentation.html#presentation",
+    "title": "Presentation",
+    "section": "",
+    "text": "Presentations will be in person in lab. All team members must participate in the presentation. The presentation must be no longer than 5 minutes.",
+    "crumbs": [
+      "Project",
+      "Milestone 6"
+    ]
+  },
+  {
+    "objectID": "project/6-presentation.html#grading",
+    "href": "project/6-presentation.html#grading",
+    "title": "Presentation",
+    "section": "",
+    "text": "The presentation is worth 25 points, broken down as follows:\n\n\n\nTotal\n25 pts\n\n\n\n\nSlides\n10 pts\n\n\nPresentation\n15 pts\n\n\n\n\n\nAre the slides well organized and readable, with concise text and figures that have legible labels, legends, etc.?\n\n\n\n\nTime management: Did the team divide the time well among themselves and finish within the time limit?\nProfessionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?\nTeamwork: Did the team present a unified story, or did it seem like independent pieces of work patched together?\nCreativity and critical thought: Is the project carefully thought out? Does it appear that time and effort went into the planning and implementation of the project?\nContent: Including, but not limited to the following:\n\nIs the question well articulated in the presentation?\nCan the question be answered with the data?\nDoes the analysis answer the question?\nAre the conclusion(s) made based on the analysis justifiable?\nAre the limitations carefully considered and articulated?",
+    "crumbs": [
+      "Project",
+      "Milestone 6"
+    ]
+  },
+  {
+    "objectID": "project/7-writeup.html",
+    "href": "project/7-writeup.html",
+    "title": "Write-up",
+    "section": "",
+    "text": "Your written report must be completed in the index.qmd file and must be reproducible. All team members should contribute to the GitHub repository, with regular meaningful commits.\nBefore you finalize your write-up, hide the code with the option echo: false in the YAML.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long (if it were to be printed). There is no minimum page requirement; however, you should comprehensively address all of the analysis in your report.\nTo check how many pages your report is, open it in your browser and go to File &gt; Print &gt; Save as PDF and review the number of pages.\nBe selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis.\nYou are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will not see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the 10-page limit.\n\n\n\n\n\nThis section includes an introduction to the project motivation and research question.\nGrading criteria: The research question and motivation are clearly stated in the introduction, including citations for the data source and any external research.\n\n\n\nThis section includes a description of the data. Describe the data and definitions of key variables. Also include a description of any data cleaning steps you took to prepare the data for analysis.\nGrading criteria: The data are clearly described, including a description of how the data were originally collected and concise definitions of the variables relevant to understanding the report. The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.). The exploratory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables.\n\n\n\nThis is where you will discuss your findings and describe the key results from your analysis. The goal is not to interpret every single element of a visualization or output shown, but instead to address the research questions, using the interpretations to support your conclusions. Focus on the variables that help you answer the research question and that provide relevant context for the reader.\nGrading criteria: The analysis steps are appropriate for the data and research question. A thorough and careful approach is used to choose analysis methods, and any concerns about the appropriateness of the chosen methods are addressed. The analysis results are clearly assessed, and interesting findings from the analysis are described. Interpretations support the key findings and conclusions, rather than merely explaining every summary statistic.\n\n\n\nIn this section you’ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should also be discussed here. Lastly, you might choose to include ideas for future work, but do this only if you have realistic ideas that are relevant to your project.\nGrading criteria: Overall conclusions from the analysis are clearly described, and the analysis results are put into the larger context of the subject matter and original research question. There is thoughtful consideration of potential limitations of the data and/or analysis. If ideas for future work are described, these are realistic and relevant to the project.\n\n\n\nThis is an assessment of the overall presentation and formatting of the written report.\nGrading criteria: The report is neatly written and organized with clear section headers and appropriately sized figures with informative labels. Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted. All citations and links are properly formatted. If there is an appendix, it is reasonably organized and easy for the reader to find relevant information. All code, warnings, and messages are suppressed. The main body of the written report (not including the appendix) is no longer than 10 pages.\n\n\n\nThis is an assessment of the quality and readability of the code in your source documents.\nGrading criteria: Code follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation. Lines of code are kept to a reasonable length, and long pipelines and ggplot calls are broken across multiple lines. Code is not repetitive, and there is no unused or dead code left in the document. Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout.\n\n\n\n\nThe write-up is due on Thursday, November 13 at 11:59 pm.\nIt is worth 30 points, broken down as follows:\n\n\n\nTotal\n30 pts\n\n\n\n\nIntroduction\n2 pts\n\n\nData\n3 pts\n\n\nAnalysis\n15 pts\n\n\nDiscussion\n3 pts\n\n\nOrganization + formatting\n2 pts\n\n\nCode style + smell\n5 pts",
+    "crumbs": [
+      "Project",
+      "Milestone 7"
+    ]
+  },
+  {
+    "objectID": "project/7-writeup.html#expectations",
+    "href": "project/7-writeup.html#expectations",
+    "title": "Write-up",
+    "section": "",
+    "text": "Your written report must be completed in the index.qmd file and must be reproducible. All team members should contribute to the GitHub repository, with regular meaningful commits.\nBefore you finalize your write-up, hide the code with the option echo: false in the YAML.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long (if it were to be printed). There is no minimum page requirement; however, you should comprehensively address all of the analysis in your report.\nTo check how many pages your report is, open it in your browser and go to File &gt; Print &gt; Save as PDF and review the number of pages.\nBe selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis.\nYou are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will not see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the 10-page limit.",
+    "crumbs": [
+      "Project",
+      "Milestone 7"
+    ]
+  },
+  {
+    "objectID": "project/7-writeup.html#components",
+    "href": "project/7-writeup.html#components",
+    "title": "Write-up",
+    "section": "",
+    "text": "This section includes an introduction to the project motivation and research question.\nGrading criteria: The research question and motivation are clearly stated in the introduction, including citations for the data source and any external research.\n\n\n\nThis section includes a description of the data. Describe the data and definitions of key variables. Also include a description of any data cleaning steps you took to prepare the data for analysis.\nGrading criteria: The data are clearly described, including a description of how the data were originally collected and concise definitions of the variables relevant to understanding the report. The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.). The exploratory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables.\n\n\n\nThis is where you will discuss your findings and describe the key results from your analysis. The goal is not to interpret every single element of a visualization or output shown, but instead to address the research questions, using the interpretations to support your conclusions. Focus on the variables that help you answer the research question and that provide relevant context for the reader.\nGrading criteria: The analysis steps are appropriate for the data and research question. A thorough and careful approach is used to choose analysis methods, and any concerns about the appropriateness of the chosen methods are addressed. The analysis results are clearly assessed, and interesting findings from the analysis are described. Interpretations support the key findings and conclusions, rather than merely explaining every summary statistic.\n\n\n\nIn this section you’ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should also be discussed here. Lastly, you might choose to include ideas for future work, but do this only if you have realistic ideas that are relevant to your project.\nGrading criteria: Overall conclusions from the analysis are clearly described, and the analysis results are put into the larger context of the subject matter and original research question. There is thoughtful consideration of potential limitations of the data and/or analysis. If ideas for future work are described, these are realistic and relevant to the project.\n\n\n\nThis is an assessment of the overall presentation and formatting of the written report.\nGrading criteria: The report is neatly written and organized with clear section headers and appropriately sized figures with informative labels. Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted. All citations and links are properly formatted. If there is an appendix, it is reasonably organized and easy for the reader to find relevant information. All code, warnings, and messages are suppressed. The main body of the written report (not including the appendix) is no longer than 10 pages.\n\n\n\nThis is an assessment of the quality and readability of the code in your source documents.\nGrading criteria: Code follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation. Lines of code are kept to a reasonable length, and long pipelines and ggplot calls are broken across multiple lines. Code is not repetitive, and there is no unused or dead code left in the document. Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout.",
+    "crumbs": [
+      "Project",
+      "Milestone 7"
+    ]
+  },
+  {
+    "objectID": "project/7-writeup.html#grading",
+    "href": "project/7-writeup.html#grading",
+    "title": "Write-up",
+    "section": "",
+    "text": "The write-up is due on Thursday, November 13 at 11:59 pm.\nIt is worth 30 points, broken down as follows:\n\n\n\nTotal\n30 pts\n\n\n\n\nIntroduction\n2 pts\n\n\nData\n3 pts\n\n\nAnalysis\n15 pts\n\n\nDiscussion\n3 pts\n\n\nOrganization + formatting\n2 pts\n\n\nCode style + smell\n5 pts",
+    "crumbs": [
+      "Project",
+      "Milestone 7"
     ]
   },
   {

@@ -72,7 +72,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<meta name="quarto:status" content="draft">
 
 
 <meta property="og:title" content="Pre-read: Merge conflicts – STA 199CCL">
@@ -245,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
+  <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -424,6 +423,54 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Description</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/1-working-collaboratively.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/2-proposal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/3-improvement-progress-I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/4-peer-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/5-improvement-progress-II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/6-presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/7-writeup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/tips-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips + resources</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -495,20 +542,20 @@ ul.task-list li input[type="checkbox"] {
 <li>If you both changed the same part of a file, Git may produce a <strong>merge conflict</strong> because it doesn’t know which change you want to keep and which change you want to overwrite.</li>
 </ul>
 <p>Git will put conflict markers in your code that look like:</p>
-<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD 
+<pre class="text"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
-See also: [dplyr documentation](https://dplyr.tidyverse.org/)   
+See also: [dplyr documentation](https://dplyr.tidyverse.org/)
 
-======= 
+=======
 
-See also [ggplot2 documentation](https://ggplot2.tidyverse.org/)  
+See also [ggplot2 documentation](https://ggplot2.tidyverse.org/)
 
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; some1alpha2numeric3string4</code></pre>
 <p>The <code>=======</code> line separates <em>your</em> changes (top) from <em>their</em> changes (bottom).</p>
 <p>Note that on top you see the word <code>HEAD</code>, which indicates that these are your changes.</p>
 <p>And at the bottom you see <code>some1alpha2numeric3string4</code> (well, it probably looks more like <code>28e7b2ceb39972085a0860892062810fb812a08f</code>).</p>
 <p>This is the <strong>hash</strong> (a unique identifier) of the commit your collaborator made with the conflicting change.</p>
-<p>Your job is to <em>reconcile</em> the changes: edit the file so that it incorporates the best of both versions and delete the lines beginning with <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>. Then you can render the project, stage the changed files, and commit the result.</p>
+<p>Your job is to <em>reconcile</em> the changes: edit the file so that it incorporates the best of both versions and delete the lines beginning with <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>. In Positron, a three-way merge editor may open to help you choose or edit the result; either way, check the final text before completing the merge. Then you can render the project with <em>Quarto: Render Project</em> from the Command Palette, stage the changed files in the <em>Source Control</em> pane, commit the result, and push.</p>
 
 
 
