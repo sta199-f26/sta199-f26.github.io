@@ -156,19 +156,14 @@ Make sure the previous role has finished before moving on to the next step.
 -   Save and click *Preview*, then run `quarto render` in the *Terminal*. Stage all changed files in *Source Control*, commit, and run *Git: Push*. You should get an error.
 -   Run *Git: Pull*. Resolve the conflicts using the same steps as Role 2: edit and save the source files, preview, render the website, stage the resolved and changed files, commit, and run *Git: Push*.
 
-TO DO: Discuss interests and write down lists of types.
-TO DO: Agents file.
-
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
 :::
 
-### Role 5
-
-This role is optional, in case your team has 5 members.
+### Back to Role 1 (for 4-person teams) or Role 5 (for 5-person teams)
 
 -   Run *Git: Pull* to get all changes from the remote repo.
--   Change the name of the second team member.
+-   Update all requested pieces of information about all team members.
 -   Save and click *Preview*, then run `quarto render` in the *Terminal*. Stage all changed files in *Source Control*, commit, and run *Git: Push*. You should not get an error because you pulled first.
 This models "good" collaborative behavior -- start with pulling before doing any work.
 
@@ -185,9 +180,20 @@ Run *Git: Pull*, open `about.qmd`, and click *Preview* to observe the changes in
 
 # Team contract
 
+Team member with Role 2 is the scribe (note taker).
+
 In Positron, run *Git: Pull* to get the latest changes, then open `contract.qmd` from the *Explorer* pane.
-As the instructions suggest, pick a teammate to be the scribe.
 Discuss the prompts and write up your answers.
+Once done, save and click *Preview*, then run `quarto render` in the *Terminal*.
+Stage all changed files in *Source Control*, commit, and run *Git: Push*.
+
+# Team interests
+
+Team member with Role 3 is the scribe now.
+
+In Positron, run *Git: Pull* to get the latest changes, then open `proposal.qmd` from the *Explorer* pane.
+Discuss data science topics that interest your team and you might want to pursue finding datasets on.
+Briefly summarize your discussion in the appropriate portion of the `proposal.qmd`. document.
 Once done, save and click *Preview*, then run `quarto render` in the *Terminal*.
 Stage all changed files in *Source Control*, commit, and run *Git: Push*.
 
