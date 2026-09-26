@@ -42,7 +42,7 @@ The goals of this milestone are as follows:
 
 Pick a team name.
 It can be straightforward, or it can be cheeky, but it must be [SFW](https://www.merriam-webster.com/dictionary/SFW).
-Let your TA know your team name asap.
+Let your TA know your team name as soon as possible.
 Once everyone's team names are in, your project repos will be created (give your TA a couple of minutes), and then you can continue with the rest of your task.
 
 # Activity
@@ -51,17 +51,19 @@ Once everyone's team names are in, your project repos will be created (give your
 
 -   Copy the HTTPS URL of your team's project repo from GitHub. In Positron, select *New* ➛ *New Folder From Git...*, paste the URL, and open the cloned repo as your workspace.
 -   Open `about.qmd` from the *Explorer* pane.
--   Assign the numbers 1, 2, 3, and 4 to each of the team members. If your team has fewer than 4 people, some people will need to have multiple numbers. Make sure that no team member is assigned consecutive numbers.
+-   Assign the numbers 1, 2, 3, and 4 to each of the team members. If your team has fewer than 4 people, some people will need to have multiple numbers. Make sure that no team member is assigned consecutive numbers, so the same person never acts twice in a row.
 
 ### Workflow in Positron
 
 Use these steps whenever the activity asks you to render, stage, commit, push, or pull:
 
--   **Render and preview:** Save your edits and click *Preview* at the top of the `.qmd` editor to inspect the rendered page in the *Viewer*. To render the entire project website, run `quarto render` in Positron's *Terminal*, from the project folder containing `_quarto.yml`.
+-   **Render and preview:** Save your edits and click *Preview* at the top of the `.qmd` editor to inspect the rendered page in the *Viewer*. To render the entire project website, open the Command Palette (*View* ➛ *Command Palette...*), search for `Quarto: Render Project`, and select it.
 -   **Stage:** Open the *Source Control* pane from the Activity bar. Review the changed files, then click the `+` next to each file to stage it. Include the rendered website files as well as the source files. Staged files appear under *Staged Changes*.
 -   **Commit:** Enter an informative message in the *Message* box and click *Commit*.
--   **Push:** Open the Command Palette (*View* ➛ *Command Palette...*), search for `Git: Push`, and select it.
--   **Pull:** Open the Command Palette, search for `Git: Pull`, and select it.
+-   **Push:** In the *Source Control* pane, click the `...` (*Views and More Actions*) icon at the top of the pane and select *Pull, Push* ➛ *Push*.
+-   **Pull:** In the *Source Control* pane, click the `...` (*Views and More Actions*) icon at the top of the pane and select *Pull, Push* ➛ *Pull*.
+
+Note where each action lives: Git actions (stage, commit, push, pull) are in the *Source Control* pane, while Quarto actions (preview, render project) are launched from the editor toolbar or the Command Palette.
 
 ::: callout-important
 For this exercise, use *Commit*, *Push*, and *Pull* as separate actions, in the order specified below.
@@ -85,8 +87,8 @@ Everyone should have the repo cloned and know which role number(s) they are.
 ### Role 1
 
 -   Go to `about.qmd` in your project repo. Change the `[team name]` to your actual team name.
--   Save and click *Preview* to check the page, then render the website with `quarto render` in the *Terminal*.
--   In *Source Control*, stage all changed files and commit them. Then run *Git: Push* from the Command Palette.
+-   Save and click *Preview* to check the page, then render the website with *Quarto: Render Project* from the Command Palette.
+-   In *Source Control*, stage all changed files and commit them. Then *Push* from the *Source Control* pane.
 
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
@@ -95,13 +97,13 @@ Make sure the previous role has finished before moving on to the next step.
 ### Role 2
 
 -   Change the team name to some other word.
-    Save and click *Preview*, then run `quarto render` in the *Terminal*.
+    Save and click *Preview*, then run *Quarto: Render Project* from the Command Palette.
     Stage all changed files in *Source Control* and commit them.
 
--   Run *Git: Push* from the Command Palette.
+-   *Push* from the *Source Control* pane.
     You should get an error because Role 1 has already pushed changes that you do not yet have locally.
 
--   Run *Git: Pull* from the Command Palette.
+-   *Pull* from the *Source Control* pane.
     In *Source Control*, look for `about.qmd` under *Merge Changes* and open it in the text editor to inspect the conflict.
 
     For example, if Role 1 chose "Team Dialectic Blue" and Role 2 changed it to "Team Royal Blue", the conflicting section might look like this:
@@ -121,18 +123,18 @@ Make sure the previous role has finished before moving on to the next step.
     Save the file.
     If Positron opens the three-way merge editor, you can choose or edit the result there instead; check the final text before completing the merge.
 
--   Resolve any conflicts in other source files, then click *Preview* to check the result and run `quarto render` in the *Terminal*.
-    If rendered website files also have conflicts, rendering regenerates them from the resolved source files.
+-   Resolve any conflicts in other source files, then click *Preview* to check the result and run *Quarto: Render Project* from the Command Palette.
+    If rendered website files also have conflicts, rendering with *Quarto: Render Project* regenerates them from the resolved source files.
 
 -   In *Source Control*, click the `+` next to each resolved file under *Merge Changes*, and stage any remaining changed files under *Changes*.
     Check that *Merge Changes* is empty and that all files you intend to commit appear under *Staged Changes*.
 
--   Commit with a message describing the resolution, then run *Git: Push* from the Command Palette.
+-   Commit with a message describing the resolution, then *Push* from the *Source Control* pane.
     This time, the push should succeed.
 
 ::: callout-tip
-If pulling stops with a message about reconciling divergent branches, run `git pull --no-rebase` in Positron's *Terminal* to use a merge for this exercise.
-Ask your TA for help if you see a different error or are unsure how to resolve a conflict.
+If pulling stops with a message about reconciling divergent branches, ask your TA for help, and they will configure the pull to use a merge for this exercise.
+Also ask your TA for help if you see a different error or are unsure how to resolve a conflict.
 :::
 
 ::: callout-important
@@ -142,9 +144,9 @@ Make sure the previous role has finished before moving on to the next step.
 ### Role 3
 
 -   Change the name of the first team member.
--   Save and click *Preview*, then run `quarto render` in the *Terminal*. Stage all changed files in *Source Control*, commit, and run *Git: Push*. You should get an error.
--   Run *Git: Pull*. Since you edited a different part of `about.qmd`, Git should merge that file automatically. If rendered files have conflicts, regenerate them with `quarto render`, stage them, and commit the merge as in Role 2.
--   If *Source Control* still shows a merge waiting to be committed, complete that commit. Then run *Git: Push*.
+-   Save and click *Preview*, then run *Quarto: Render Project* from the Command Palette. Stage all changed files in *Source Control*, commit, and *Push*. You should get an error.
+-   *Pull* from the *Source Control* pane. Since you edited a different part of `about.qmd` than Role 2 (who changed the team name), Git should merge that file automatically. If rendered files have conflicts, regenerate them with *Quarto: Render Project*, stage them, and commit the merge as in Role 2.
+-   If *Source Control* still shows a merge waiting to be committed, complete that commit. Then *Push*.
 
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
@@ -153,23 +155,23 @@ Make sure the previous role has finished before moving on to the next step.
 ### Role 4
 
 -   Change the name of the first team member to something other than what the previous team member did.
--   Save and click *Preview*, then run `quarto render` in the *Terminal*. Stage all changed files in *Source Control*, commit, and run *Git: Push*. You should get an error.
--   Run *Git: Pull*. Resolve the conflicts using the same steps as Role 2: edit and save the source files, preview, render the website, stage the resolved and changed files, commit, and run *Git: Push*.
+-   Save and click *Preview*, then run *Quarto: Render Project* from the Command Palette. Stage all changed files in *Source Control*, commit, and *Push*. You should get an error.
+-   *Pull* from the *Source Control* pane. Resolve the conflicts using the same steps as Role 2: edit and save the source files, preview, render the website, stage the resolved and changed files, commit, and *Push*.
 
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
 :::
 
-### Back to Role 1 (for 4-person teams) or Role 5 (for 5-person teams)
+### Back to Role 1 (for teams of 4 or fewer) or Role 5 (for 5-person teams)
 
--   Run *Git: Pull* to get all changes from the remote repo.
+-   *Pull* from the *Source Control* pane to get all changes from the remote repo.
 -   Update all requested pieces of information about all team members.
--   Save and click *Preview*, then run `quarto render` in the *Terminal*. Stage all changed files in *Source Control*, commit, and run *Git: Push*. You should not get an error because you pulled first.
+-   Save and click *Preview*, then run *Quarto: Render Project* from the Command Palette. Stage all changed files in *Source Control*, commit, and *Push*. You should not get an error because you pulled first.
 This models "good" collaborative behavior -- start with pulling before doing any work.
 
 ### Everyone
 
-Run *Git: Pull*, open `about.qmd`, and click *Preview* to observe the changes in your project.
+*Pull* from the *Source Control* pane, open `about.qmd`, and click *Preview* to observe the changes in your project.
 
 # Tips for collaborating via GitHub
 
@@ -182,20 +184,20 @@ Run *Git: Pull*, open `about.qmd`, and click *Preview* to observe the changes in
 
 Team member with Role 2 is the scribe (note taker).
 
-In Positron, run *Git: Pull* to get the latest changes, then open `contract.qmd` from the *Explorer* pane.
+In Positron, *Pull* from the *Source Control* pane to get the latest changes, then open `contract.qmd` from the *Explorer* pane.
 Discuss the prompts and write up your answers.
-Once done, save and click *Preview*, then run `quarto render` in the *Terminal*.
-Stage all changed files in *Source Control*, commit, and run *Git: Push*.
+Once done, save and click *Preview*, then run *Quarto: Render Project* from the Command Palette.
+Stage all changed files in *Source Control*, commit, and *Push*.
 
 # Team interests
 
 Team member with Role 3 is the scribe now.
 
-In Positron, run *Git: Pull* to get the latest changes, then open `proposal.qmd` from the *Explorer* pane.
+In Positron, *Pull* from the *Source Control* pane to get the latest changes, then open `proposal.qmd` from the *Explorer* pane.
 Discuss data science topics that interest your team and you might want to pursue finding datasets on.
-Briefly summarize your discussion in the appropriate portion of the `proposal.qmd`. document.
-Once done, save and click *Preview*, then run `quarto render` in the *Terminal*.
-Stage all changed files in *Source Control*, commit, and run *Git: Push*.
+Briefly summarize your discussion in the appropriate portion of the `proposal.qmd` document.
+Once done, save and click *Preview*, then run *Quarto: Render Project* from the Command Palette.
+Stage all changed files in *Source Control*, commit, and *Push*.
 
 # Grading
 
