@@ -47,9 +47,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -82,10 +79,7 @@ ul.task-list li input[type="checkbox"] {
 
 <meta property="og:title" content="Working collaboratively – STA 199CCL">
 <meta property="og:description" content="Milestone 1">
-<meta property="og:image" content="https://sta199-f26.github.io/project/images/role-1-edit.png">
 <meta property="og:site_name" content="STA 199CCL">
-<meta property="og:image:height" content="2012">
-<meta property="og:image:width" content="3248">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -426,6 +420,12 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Description</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -466,7 +466,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#team-name" id="toc-team-name" class="nav-link" data-scroll-target="#team-name">Team name</a></li>
   <li><a href="#activity" id="toc-activity" class="nav-link" data-scroll-target="#activity">Activity</a>
   <ul class="collapse">
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#workflow-in-positron" id="toc-workflow-in-positron" class="nav-link" data-scroll-target="#workflow-in-positron">Workflow in Positron</a></li>
+  </ul></li>
   <li><a href="#lets-cause-a-merge-conflict" id="toc-lets-cause-a-merge-conflict" class="nav-link" data-scroll-target="#lets-cause-a-merge-conflict">Let’s cause a merge conflict!</a>
   <ul class="collapse">
   <li><a href="#before-starting" id="toc-before-starting" class="nav-link" data-scroll-target="#before-starting">Before starting</a></li>
@@ -474,12 +477,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#role-2" id="toc-role-2" class="nav-link" data-scroll-target="#role-2">Role 2</a></li>
   <li><a href="#role-3" id="toc-role-3" class="nav-link" data-scroll-target="#role-3">Role 3</a></li>
   <li><a href="#role-4" id="toc-role-4" class="nav-link" data-scroll-target="#role-4">Role 4</a></li>
-  <li><a href="#role-5" id="toc-role-5" class="nav-link" data-scroll-target="#role-5">Role 5</a></li>
+  <li><a href="#back-to-role-1-for-teams-of-4-or-fewer-or-role-5-for-5-person-teams" id="toc-back-to-role-1-for-teams-of-4-or-fewer-or-role-5-for-5-person-teams" class="nav-link" data-scroll-target="#back-to-role-1-for-teams-of-4-or-fewer-or-role-5-for-5-person-teams">Back to Role 1 (for teams of 4 or fewer) or Role 5 (for 5-person teams)</a></li>
   <li><a href="#everyone" id="toc-everyone" class="nav-link" data-scroll-target="#everyone">Everyone</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#tips-for-collaborating-via-github" id="toc-tips-for-collaborating-via-github" class="nav-link" data-scroll-target="#tips-for-collaborating-via-github">Tips for collaborating via GitHub</a></li>
   <li><a href="#team-contract" id="toc-team-contract" class="nav-link" data-scroll-target="#team-contract">Team contract</a></li>
+  <li><a href="#team-interests" id="toc-team-interests" class="nav-link" data-scroll-target="#team-interests">Team interests</a></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/project/1-working-collaboratively.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -550,7 +554,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The word “conflict” has a negative connotation. And, indeed, merge conflicts can be frustrating. But they serve to make sure no team member inadvertently writes another team member’s work. All changes that are in “conflict” with each other need to get resolved explicitly, with a commit message, which helps avoid haphazard overwriting.</p>
+<p>The word “conflict” has a negative connotation. And, indeed, merge conflicts can be frustrating. But they serve to make sure no team member inadvertently overwrites another team member’s work. All changes that are in “conflict” with each other need to get resolved explicitly, with a commit message, which helps avoid haphazard overwriting.</p>
 </div>
 </div>
 <section id="goals" class="level1">
@@ -564,22 +568,48 @@ Note
 </section>
 <section id="team-name" class="level1">
 <h1>Team name</h1>
-<p>Pick a team name. It can be straightforward, or it can be cheeky, but it must be <a href="https://www.merriam-webster.com/dictionary/SFW">SFW</a>. Let your TA know your team name asap. Once everyone’s team names are in, your project repos will be created (give your TA a couple of minutes), and then you can continue with the rest of your task.</p>
+<p>Pick a team name. It can be straightforward, or it can be cheeky, but it must be <a href="https://www.merriam-webster.com/dictionary/SFW">SFW</a>. Let your TA know your team name as soon as possible. Once everyone’s team names are in, your project repos will be created (give your TA a couple of minutes), and then you can continue with the rest of your task.</p>
 </section>
 <section id="activity" class="level1">
 <h1>Activity</h1>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <ul>
-<li>Clone the <code>project</code> repo and open the <code>about.qmd</code> file.</li>
-<li>Assign the numbers 1, 2, 3, and 4 to each of the team members. If your team has fewer than 4 people, some people will need to have multiple numbers. Make sure that no team member is assigned consecutive numbers.</li>
+<li>Copy the HTTPS URL of your team’s project repo from GitHub. In Positron, select <em>New</em> ➛ <em>New Folder From Git…</em>, paste the URL, and open the cloned repo as your workspace.</li>
+<li>Open <code>about.qmd</code> from the <em>Explorer</em> pane.</li>
+<li>Assign the numbers 1, 2, 3, and 4 to each of the team members. If your team has fewer than 4 people, some people will need to have multiple numbers. Make sure that no team member is assigned consecutive numbers, so the same person never acts twice in a row.</li>
 </ul>
+<section id="workflow-in-positron" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-in-positron">Workflow in Positron</h3>
+<p>Use these steps whenever the activity asks you to render, stage, commit, push, or pull:</p>
+<ul>
+<li><strong>Render and preview:</strong> Save your edits and click <em>Preview</em> at the top of the <code>.qmd</code> editor to inspect the rendered page in the <em>Viewer</em>. To render the entire project website, open the Command Palette (<em>View</em> ➛ <em>Command Palette…</em>), search for <code>Quarto: Render Project</code>, and select it.</li>
+<li><strong>Stage:</strong> Open the <em>Source Control</em> pane from the Activity bar. Review the changed files, then click the <code>+</code> next to each file to stage it. Include the rendered website files as well as the source files. Staged files appear under <em>Staged Changes</em>.</li>
+<li><strong>Commit:</strong> Enter an informative message in the <em>Message</em> box and click <em>Commit</em>.</li>
+<li><strong>Push:</strong> In the <em>Source Control</em> pane, click the <code>...</code> (<em>Views and More Actions</em>) icon at the top of the pane and select <em>Pull, Push</em> ➛ <em>Push</em>.</li>
+<li><strong>Pull:</strong> In the <em>Source Control</em> pane, click the <code>...</code> (<em>Views and More Actions</em>) icon at the top of the pane and select <em>Pull, Push</em> ➛ <em>Pull</em>.</li>
+</ul>
+<p>Note where each action lives: Git actions (stage, commit, push, pull) are in the <em>Source Control</em> pane, while Quarto actions (preview, render project) are launched from the editor toolbar or the Command Palette.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this exercise, use <em>Commit</em>, <em>Push</em>, and <em>Pull</em> as separate actions, in the order specified below. Do not use <em>Sync Changes</em> or <em>Commit &amp; Sync</em>: syncing pulls and pushes together, which would change the sequence of the exercise.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="lets-cause-a-merge-conflict" class="level2">
 <h2 class="anchored" data-anchor-id="lets-cause-a-merge-conflict">Let’s cause a merge conflict!</h2>
-<p>Our goal is to see two different types of merges: first we’ll see a type of merge that git can’t figure out on its own how to do on its own (a <strong>merge conflict</strong>) and requires human intervention, then another type of where that git can figure out how to do without human intervention.</p>
+<p>Our goal is to see two different types of merges: first, a merge that Git cannot resolve automatically (a <strong>merge conflict</strong>) and that requires human intervention; then, a merge that Git can resolve automatically.</p>
 <p>Doing this will require some tight choreography, so pay attention!</p>
-<p>Take turns in completing the exercise, only one member at a time. <strong>Others should just watch, not doing anything on their own projects (this includes not even pulling changes!)</strong> until they are instructed to. If you feel like you won’t be able to resist the urge to touch your computer when it’s not your turn, we recommend putting your hands in your pockets or sitting on them!</p>
+<p>Take turns completing the exercise, with only one member working at a time. <strong>Others should just watch and not do anything in their own projects (this includes not even pulling changes!)</strong> until they are instructed to. If you feel like you won’t be able to resist the urge to touch your computer when it’s not your turn, we recommend putting your hands in your pockets or sitting on them!</p>
 <section id="before-starting" class="level3">
 <h3 class="anchored" data-anchor-id="before-starting">Before starting</h3>
 <p>Everyone should have the repo cloned and know which role number(s) they are.</p>
@@ -588,25 +618,9 @@ Note
 <h3 class="anchored" data-anchor-id="role-1">Role 1</h3>
 <ul>
 <li>Go to <code>about.qmd</code> in your project repo. Change the <code>[team name]</code> to your actual team name.</li>
-<li>Render the project by clicking on Render in the Build tab, commit (all changed files), and push.</li>
+<li>Save and click <em>Preview</em> to check the page, then render the website with <em>Quarto: Render Project</em> from the Command Palette.</li>
+<li>In <em>Source Control</em>, stage all changed files and commit them. Then <em>Push</em> from the <em>Source Control</em> pane.</li>
 </ul>
-<div id="fig-role-1" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-role-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="images/role-1-edit.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Role 1 changes the team name to “Team Dialectic Blue” and renders the project, then commits and pushes the changes."><img src="images/role-1-edit.png" class="img-fluid figure-img" width="400"></a></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="images/role-1-commit.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: Role 1 changes the team name to “Team Dialectic Blue” and renders the project, then commits and pushes the changes."><img src="images/role-1-commit.png" class="img-fluid figure-img" width="400"></a></p>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-role-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Role 1 changes the team name to “Team Dialectic Blue” and renders the project, then commits and pushes the changes.
-</figcaption>
-</figure>
-</div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -624,100 +638,33 @@ Important
 <section id="role-2" class="level3">
 <h3 class="anchored" data-anchor-id="role-2">Role 2</h3>
 <ul>
-<li>Change the team name to some other word. Then, render the project by clicking on Render in the Build tab and commit all changed files.</li>
+<li><p>Change the team name to some other word. Save and click <em>Preview</em>, then run <em>Quarto: Render Project</em> from the Command Palette. Stage all changed files in <em>Source Control</em> and commit them.</p></li>
+<li><p><em>Push</em> from the <em>Source Control</em> pane. You should get an error because Role 1 has already pushed changes that you do not yet have locally.</p></li>
+<li><p><em>Pull</em> from the <em>Source Control</em> pane. In <em>Source Control</em>, look for <code>about.qmd</code> under <em>Merge Changes</em> and open it in the text editor to inspect the conflict.</p>
+<p>For example, if Role 1 chose “Team Dialectic Blue” and Role 2 changed it to “Team Royal Blue”, the conflicting section might look like this:</p>
+<pre class="text"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+This project was developed by Team Royal Blue.
+=======
+This project was developed by Team Dialectic Blue.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 97e290f39f197467b5563ea8f81187b760c95aa2</code></pre>
+<p>The top section contains your local changes; the bottom section contains the changes you pulled from GitHub. The string after <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> identifies the incoming commit.</p></li>
+<li><p>Resolve the conflict by editing <code>about.qmd</code> to keep the team’s preferred name and removing all conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>). Save the file. If Positron opens the three-way merge editor, you can choose or edit the result there instead; check the final text before completing the merge.</p></li>
+<li><p>Resolve any conflicts in other source files, then click <em>Preview</em> to check the result and run <em>Quarto: Render Project</em> from the Command Palette. If rendered website files also have conflicts, rendering with <em>Quarto: Render Project</em> regenerates them from the resolved source files.</p></li>
+<li><p>In <em>Source Control</em>, click the <code>+</code> next to each resolved file under <em>Merge Changes</em>, and stage any remaining changed files under <em>Changes</em>. Check that <em>Merge Changes</em> is empty and that all files you intend to commit appear under <em>Staged Changes</em>.</p></li>
+<li><p>Commit with a message describing the resolution, then <em>Push</em> from the <em>Source Control</em> pane. This time, the push should succeed.</p></li>
 </ul>
-<div id="fig-role-2-1" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-role-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="images/role-2-edit.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2: Role 2 changes the team name to “Team Royal Blue” and renders the project, then commits the changes."><img src="images/role-2-edit.png" class="img-fluid figure-img" width="400"></a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="images/role-2-commit.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2: Role 2 changes the team name to “Team Royal Blue” and renders the project, then commits the changes."><img src="images/role-2-commit.png" class="img-fluid figure-img" width="400"></a></p>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>If pulling stops with a message about reconciling divergent branches, ask your TA for help, and they will configure the pull to use a merge for this exercise. Also ask your TA for help if you see a different error or are unsure how to resolve a conflict.</p>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-role-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Role 2 changes the team name to “Team Royal Blue” and renders the project, then commits the changes.
-</figcaption>
-</figure>
-</div>
-<ul>
-<li>Now try to push your changes. You should get an error.</li>
-</ul>
-<div id="fig-role-2-2" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-role-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<a href="images/role-2-push-error.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;3: Role 2 tries to push the changes, but gets an error because Role 1 has already pushed changes to the remote repo."><img src="images/role-2-push-error.png" class="img-fluid figure-img" width="400"></a>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-role-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Role 2 tries to push the changes, but gets an error because Role 1 has already pushed changes to the remote repo.
-</figcaption>
-</figure>
-</div>
-<ul>
-<li>Pull. Take a look at the document (<code>about.qmd</code>) with the merge conflict.</li>
-</ul>
-<div id="fig-role-2-3" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-role-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="images/role-2-pull.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;4: Role 2 tries to pulls from the remote repo as the error instructed and views the merge conflict."><img src="images/role-2-pull.png" class="img-fluid figure-img" width="400"></a></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="images/role-2-merge-conflict.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;4: Role 2 tries to pulls from the remote repo as the error instructed and views the merge conflict."><img src="images/role-2-merge-conflict.png" class="img-fluid figure-img" width="400"></a></p>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-role-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Role 2 tries to pulls from the remote repo as the error instructed and views the merge conflict.
-</figcaption>
-</figure>
-</div>
-<ul>
-<li>Resolve the merge conflict by editing the document to choose the correct/preferred change. Then, render the project by clicking on Render in the Build tab.</li>
-</ul>
-<div id="fig-role-2-4" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-role-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/role-2-resolve-merge-conflict.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;5: Role resolves the merge conflict by editing the about.qmd document to remove the merge conflict decorators (<<<<<< HEAD, ======, and >>>>>>> 97e290f39f197467b5563ea8f81187b760c95aa2, the commit hash). Since the team name is “Team Royal Blue”, Role 2 deletes Role 1’s edit and keeps their own. Then, Role 2 renders the project."><img src="images/role-2-resolve-merge-conflict.png" class="img-fluid figure-img" width="400"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-role-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Role resolves the merge conflict by editing the <code>about.qmd</code> document to remove the merge conflict decorators (<code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, <code>======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 97e290f39f197467b5563ea8f81187b760c95aa2</code>, the commit hash). Since the team name is “Team Royal Blue”, Role 2 deletes Role 1’s edit and keeps their own. Then, Role 2 renders the project.
-</figcaption>
-</figure>
-</div>
-<ul>
-<li><strong>Click the Stage checkbox</strong> for all files in your Git tab. Make sure they all have check marks, not filled-in boxes.</li>
-</ul>
-<div id="fig-role-2-4" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-role-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/role-2-commit-after-resolve-merge-conflict.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;6: Role 2 stages all changed files and commits them with a message indicating that they resolved the merge conflict."><img src="images/role-2-commit-after-resolve-merge-conflict.png" class="img-fluid figure-img" width="400"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-role-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Role 2 stages all changed files and commits them with a message indicating that they resolved the merge conflict.
-</figcaption>
-</figure>
-</div>
-<ul>
-<li>Commit and push.</li>
-</ul>
-<div id="fig-role-2-5" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-role-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/role-2-push.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;7: Role 2 successfully pushes their changes after resolving the merge conflict."><img src="images/role-2-push.png" class="img-fluid figure-img" width="400"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-role-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Role 2 successfully pushes their changes after resolving the merge conflict.
-</figcaption>
-</figure>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -737,9 +684,9 @@ Important
 <h3 class="anchored" data-anchor-id="role-3">Role 3</h3>
 <ul>
 <li>Change the name of the first team member.</li>
-<li>Render the project by clicking on Render in the Build tab, commit, and push. You should get an error.</li>
-<li>Pull. No merge conflicts should occur, but you should see a message about merging.</li>
-<li>Now push.</li>
+<li>Save and click <em>Preview</em>, then run <em>Quarto: Render Project</em> from the Command Palette. Stage all changed files in <em>Source Control</em>, commit, and <em>Push</em>. You should get an error.</li>
+<li><em>Pull</em> from the <em>Source Control</em> pane. Since you edited a different part of <code>about.qmd</code> than Role 2 (who changed the team name), Git should merge that file automatically. If rendered files have conflicts, regenerate them with <em>Quarto: Render Project</em>, stage them, and commit the merge as in Role 2.</li>
+<li>If <em>Source Control</em> still shows a merge waiting to be committed, complete that commit. Then <em>Push</em>.</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -759,10 +706,9 @@ Important
 <h3 class="anchored" data-anchor-id="role-4">Role 4</h3>
 <ul>
 <li>Change the name of the first team member to something other than what the previous team member did.</li>
-<li>Render the project by clicking on Render in the Build tab, commit, and push. You should get an error.</li>
-<li>Pull. Take a look at the document with the merge conflict. Clear the merge conflict by choosing the correct/preferred change. Render the project by clicking on Render in the Build tab, commit, and push.</li>
+<li>Save and click <em>Preview</em>, then run <em>Quarto: Render Project</em> from the Command Palette. Stage all changed files in <em>Source Control</em>, commit, and <em>Push</em>. You should get an error.</li>
+<li><em>Pull</em> from the <em>Source Control</em> pane. Resolve the conflicts using the same steps as Role 2: edit and save the source files, preview, render the website, stage the resolved and changed files, commit, and <em>Push</em>.</li>
 </ul>
-<p>TO DO: Discuss interests and write down lists of types. TO DO: Agents file.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -777,18 +723,17 @@ Important
 </div>
 </div>
 </section>
-<section id="role-5" class="level3">
-<h3 class="anchored" data-anchor-id="role-5">Role 5</h3>
-<p>This role is optional, in case your team has 5 members.</p>
+<section id="back-to-role-1-for-teams-of-4-or-fewer-or-role-5-for-5-person-teams" class="level3">
+<h3 class="anchored" data-anchor-id="back-to-role-1-for-teams-of-4-or-fewer-or-role-5-for-5-person-teams">Back to Role 1 (for teams of 4 or fewer) or Role 5 (for 5-person teams)</h3>
 <ul>
-<li>Pull all changes from the remote repo.</li>
-<li>Change the name of the second team member.</li>
-<li>Render the project by clicking on Render in the Build tab, commit, and push. You should not get an error because you pulled first. This models “good” collaborative behavior – start with pulling before doing any work.</li>
+<li><em>Pull</em> from the <em>Source Control</em> pane to get all changes from the remote repo.</li>
+<li>Update all requested pieces of information about all team members.</li>
+<li>Save and click <em>Preview</em>, then run <em>Quarto: Render Project</em> from the Command Palette. Stage all changed files in <em>Source Control</em>, commit, and <em>Push</em>. You should not get an error because you pulled first. This models “good” collaborative behavior – start with pulling before doing any work.</li>
 </ul>
 </section>
 <section id="everyone" class="level3">
 <h3 class="anchored" data-anchor-id="everyone">Everyone</h3>
-<p>Pull, and observe the changes in your project.</p>
+<p><em>Pull</em> from the <em>Source Control</em> pane, open <code>about.qmd</code>, and click <em>Preview</em> to observe the changes in your project.</p>
 </section>
 </section>
 </section>
@@ -796,14 +741,20 @@ Important
 <h1>Tips for collaborating via GitHub</h1>
 <ul>
 <li><strong>Always pull first before you start working.</strong></li>
-<li>Resolve a merge conflict (render and push) <em>before</em> continuing your work. Never do new work while resolving a merge conflict.</li>
-<li>Preview, commit, and push often to minimize merge conflicts and/or to make merge conflicts easier to resolve.</li>
+<li>Resolve a merge conflict (edit, save, render, stage, commit, and push) <em>before</em> continuing your work. Never do new work while resolving a merge conflict.</li>
+<li>Preview, stage, commit, and push often to minimize merge conflicts and/or to make merge conflicts easier to resolve.</li>
 <li>If you find yourself in a situation that is difficult to resolve, ask questions ASAP. Don’t let it linger and get bigger.</li>
 </ul>
 </section>
 <section id="team-contract" class="level1">
 <h1>Team contract</h1>
-<p>Go to your project repository and open <code>contract.qmd</code>. As the instructions suggest, pick a teammate to be the scribe. Discuss the prompts and write up your answers. Once done, click <em>Render</em> in the build tab, commit, and push.</p>
+<p>Team member with Role 2 is the scribe (note taker).</p>
+<p>In Positron, <em>Pull</em> from the <em>Source Control</em> pane to get the latest changes, then open <code>contract.qmd</code> from the <em>Explorer</em> pane. Discuss the prompts and write up your answers. Once done, save and click <em>Preview</em>, then run <em>Quarto: Render Project</em> from the Command Palette. Stage all changed files in <em>Source Control</em>, commit, and <em>Push</em>.</p>
+</section>
+<section id="team-interests" class="level1">
+<h1>Team interests</h1>
+<p>Team member with Role 3 is the scribe now.</p>
+<p>In Positron, <em>Pull</em> from the <em>Source Control</em> pane to get the latest changes, then open <code>proposal.qmd</code> from the <em>Explorer</em> pane. Discuss data science topics that interest your team and you might want to pursue finding datasets on. Briefly summarize your discussion in the appropriate portion of the <code>proposal.qmd</code> document. Once done, save and click <em>Preview</em>, then run <em>Quarto: Render Project</em> from the Command Palette. Stage all changed files in <em>Source Control</em>, commit, and <em>Push</em>.</p>
 </section>
 <section id="grading" class="level1">
 <h1>Grading</h1>
@@ -1264,38 +1215,6 @@ Note
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

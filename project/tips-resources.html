@@ -455,6 +455,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Description</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -527,21 +533,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The project is very open ended. For instance, in creating a compelling visualization(s) of your data in R, there is no limit on what tools or packages you may use. You do not need to visualize all of the data at once. A single high quality visualization will receive a much higher grade than a large number of poor quality visualizations.</p>
-<p>Before you finalize your write up, make sure the printing of code chunks is turned off with the option <code>echo: false</code>. In addition to code chunks, ensure all messages are turned off with the options <code>warning: false</code> and <code>message: false</code>.</p>
-<p>Finally, pay attention to details in your write-up and presentation. Neatness, coherency, and clarity will count.</p>
+<p>The project is very open ended. For instance, when creating compelling visualizations of your data in R, there is no limit on what tools or packages you may use. You do not need to visualize all of the data at once. A single high-quality visualization will receive a much higher grade than a large number of poor-quality visualizations.</p>
+<p>Before you finalize your write-up, hide the code with the option <code>echo: false</code>. Suppress warnings and messages with the options <code>warning: false</code> and <code>message: false</code>.</p>
+<p>Finally, pay attention to details in your write-up and presentation. Neatness, coherence, and clarity will count.</p>
 <section id="tips" class="level1">
 <h1>Tips</h1>
 <ul>
 <li><p>Ask questions if any of the expectations are unclear.</p></li>
-<li><p><em>Code</em>: In your write up your code should be hidden (<code>echo: false</code>) so that your document is neat and easy to read. However your document should include all your code such that if I re-render your qmd file I should be able to obtain the results you presented.</p>
+<li><p><em>Code</em>: In your write-up, your code should be hidden (<code>echo: false</code>) so that your document is neat and easy to read. However, your source document should include all your code so that I can reproduce the results you presented by rendering your <code>.qmd</code> file.</p>
 <ul>
 <li><strong>Exception:</strong> If you want to highlight something specific about a piece of code, you’re welcome to show that portion.</li>
 </ul></li>
 <li><p>Merge conflicts will happen, issues will arise, and that’s fine! Commit and push often, and ask questions when stuck.</p></li>
 <li><p>Make sure each team member is contributing, both in terms of quality and quantity of contribution (we will be reviewing commits from different team members).</p>
 <ul>
-<li>All team members are expected to contribute equally to the completion of this assignment and group assessments will be given at its completion - anyone judged to not have sufficient contributed to the final product will have their grade penalized. While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in the assignment works.</li>
+<li>All team members are expected to contribute equally to the completion of this assignment, and group assessments will be given at its completion. Anyone judged not to have contributed sufficiently to the final product will have their grade penalized. While team members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in the assignment work.</li>
 </ul></li>
 </ul>
 </section>
@@ -554,33 +560,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="headers" class="level2">
 <h2 class="anchored" data-anchor-id="headers">Headers</h2>
-<p>Use headers to clearly label each section. Make sure there is a space between the previous line and the header. Use appropriate header levels.</p>
+<p>Use headers to clearly label each section. Make sure there is a blank line before each header. Use appropriate header levels.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Include all references in a section called “References” at the end of the report. This course does not have specific requirements for formatting citations and references. Optional: Use Quarto’s citation support for generating your reference. See <a href="https://quarto.org/docs/authoring/footnotes-and-citations.html">Citations &amp; Footnotes</a> on the Quarto documentation for more on that.</p>
+<p>Include all references in a section called “References” at the end of the report. This course does not have specific requirements for formatting citations and references. Optional: Use Quarto’s citation support for generating your references. See <a href="https://quarto.org/docs/authoring/footnotes-and-citations.html">Citations &amp; Footnotes</a> on the Quarto documentation for more on that.</p>
 </section>
 <section id="appendix" class="level2">
 <h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
-<p>If you have additional work that does not fit or does not belong in the body of the report, you may put it at the end of the document in section called “Appendix”. The items in the appendix should be properly labeled. The appendix should only be for additional material. The reader should be able to fully understand your report without viewing content in the appendix. We will not grade your appendix.</p>
+<p>If you have additional work that does not fit or does not belong in the body of the report, you may put it at the end of the document in a section called “Appendix”. The items in the appendix should be properly labeled. The appendix should only be for additional material. The reader should be able to fully understand your report without viewing content in the appendix. We will not grade your appendix.</p>
 </section>
 <section id="resize-figures" class="level2">
 <h2 class="anchored" data-anchor-id="resize-figures">Resize figures</h2>
-<p>Resize plots and figures, so you have more space for the narrative. Resize individual figures: Set <code>fig-width</code> and <code>fig-height</code> in chunk options, e.g.,</p>
+<p>Resize plots and figures, so you have more space for the narrative. Resize individual figures: Set <code>fig-width</code> and <code>fig-asp</code> in chunk options, e.g.,</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: fenced</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: code-cell-label</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 5</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.628</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>replacing <code>code-cell-label</code> with a meaningful label and the height and width with values appropriate for your write up.</p>
+<p>Replace <code>code-cell-label</code> with a meaningful label and the width and aspect ratio with values appropriate for your write-up.</p>
 <p>Resize all figures: Include the <code>fig-width</code> and <code>fig-asp</code> options in the YAML header as shown below:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fig-width</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fig-asp</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.628</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Replace the height and width values with values appropriate for your write up.</p>
+<p>Replace the width and aspect ratio values with values appropriate for your write-up.</p>
 </section>
 <section id="arranging-plots" class="level2">
 <h2 class="anchored" data-anchor-id="arranging-plots">Arranging plots</h2>

@@ -418,6 +418,12 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Description</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -479,14 +485,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>When you and your teammates work on the lines of code within a document and both try to push your changes, you will run into issues. Merge conflicts happen when you merge branches that have competing changes, and Git needs your help to decide which changes to incorporate in the final merge.</p>
+<p>When you and your teammates work on the same lines of code within a document and try to push your changes, you may run into issues. Merge conflicts happen when you merge branches that have competing changes, and Git needs your help to decide which changes to incorporate in the final merge.</p>
 <p>Our first task today is to walk you through a merge conflict! First, a bit of Git review:</p>
 <ul>
-<li>Pushing to a repo replaces the code on GitHub with the code you have on your computer.</li>
+<li>Pushing to a repo uploads your local commits to GitHub.</li>
 <li>If a collaborator has made a change to your repo and pushed it to your collaborative GitHub repository, GitHub will stop you from pushing your changes to the repo because this could overwrite your collaborator’s work!</li>
 <li>So you need to explicitly “merge” your collaborator’s work before you can <strong>push</strong>.</li>
-<li>If your and your collaborator’s changes are in different files or in different parts of the same file, git merges the work for you automatically when you <strong>pull</strong>.</li>
-<li>If you both changed the same part of a file, git will produce a <strong>merge conflict</strong> because it doesn’t know how which change you want to keep and which change you want to overwrite.</li>
+<li>If your changes and your collaborator’s changes are in different files or in different parts of the same file, Git usually merges the work for you automatically when you <strong>pull</strong>.</li>
+<li>If you both changed the same part of a file, Git may produce a <strong>merge conflict</strong> because it doesn’t know which change you want to keep and which change you want to overwrite.</li>
 </ul>
 <p>Git will put conflict markers in your code that look like:</p>
 <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD 
@@ -498,11 +504,11 @@ See also: [dplyr documentation](https://dplyr.tidyverse.org/)
 See also [ggplot2 documentation](https://ggplot2.tidyverse.org/)  
 
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; some1alpha2numeric3string4</code></pre>
-<p>The <code>===</code>s separate <em>your</em> changes (top) from <em>their</em> changes (bottom).</p>
+<p>The <code>=======</code> line separates <em>your</em> changes (top) from <em>their</em> changes (bottom).</p>
 <p>Note that on top you see the word <code>HEAD</code>, which indicates that these are your changes.</p>
 <p>And at the bottom you see <code>some1alpha2numeric3string4</code> (well, it probably looks more like <code>28e7b2ceb39972085a0860892062810fb812a08f</code>).</p>
-<p>This is the <strong>hash</strong> (a unique identifier) of the render your collaborator made with the conflicting change.</p>
-<p>Your job is to <em>reconcile</em> the changes: edit the file so that it incorporates the best of both versions and delete the <code>&lt;&lt;&lt;</code>, <code>===</code>, and <code>&gt;&gt;&gt;</code> lines. Then you can stage and render the result.</p>
+<p>This is the <strong>hash</strong> (a unique identifier) of the commit your collaborator made with the conflicting change.</p>
+<p>Your job is to <em>reconcile</em> the changes: edit the file so that it incorporates the best of both versions and delete the lines beginning with <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>. Then you can render the project, stage the changed files, and commit the result.</p>
 
 
 
