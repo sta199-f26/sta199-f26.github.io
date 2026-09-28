@@ -1,0 +1,402 @@
+---
+title: Importing and recoding data
+subtitle: Lecture 9
+author: Prof. Mine Çetinkaya-Rundel
+date: 2026-09-23
+format: 
+  revealjs: 
+    output-file: 10-importing-recoding-data-slides.html
+    footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    logo: "images/logo.png" 
+    toc: false
+  html: 
+    code-link: true
+filters:
+  - ../remove-fmt-skip.lua
+---
+
+```{r}
+#| label: setup
+#| include: false
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+```
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+# Warm-up
+
+## While you wait: Participate 📱💻 
+
+::: columns
+
+::: {.column width="70%"}
+
+::: wooclap
+
+Did you get my Week 5 nudge email?
+
+::: wooclap-choices
+- Yes, I did! And I don’t have any questions.
+- Yes, I did! And I have questions.
+- I haven’t checked my email today yet, I will do so after class.
+- What, you email us?!
+:::
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/10/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/IQYBPOT) and use the code IQYBPOT.
+
+:::
+
+:::
+
+## Announcements
+
+- HW 4 due Wednesday -- last homework before the exam
+
+- Exam 1 covers everything up to and including the material in next Monday's lecture, but Monday's lecture is catch-up + review (so effectively up to and including the material in this Wednesday's lecture)
+
+# From last time
+
+## `ae-05-survey-types` {.smaller}
+
+::: appex
+-   Go to your ae project in Positron.
+
+-   Continue working in last week's application exercise file: `ae-05-survey-types.qmd`.
+
+-   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
+:::
+
+# Reading data into R
+
+## Reading rectangular data
+
+-   Using [**readr**](https://readr.tidyverse.org/):
+    -   Most commonly: `read_csv()`
+    -   Maybe also: `read_tsv()`, `read_delim()`, etc.
+
+. . .
+
+-   Using [**readxl**](https://readxl.tidyverse.org/): `read_excel()`
+
+. . .
+
+-   Using [**googlesheets4**](https://googlesheets4.tidyverse.org/): `read_sheet()` -- We haven't covered this in the videos, but might be useful for your projects
+
+## Close look at `read_csv()`
+
+```{r}
+#| eval: false
+read_csv(
+  file,
+  na = c("", "NA"),
+  quote = "\"",
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique"
+)
+```
+
+## Close look at `read_csv()` - `file`
+
+::: {.columns}
+
+::: {.column}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "2"
+read_csv(
+  file,
+  na = c("", "NA"),
+  quote = "\"",
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique"
+)
+```
+
+:::
+
+::: {.column .medium}
+
+-   Specifies where to read the CSV data from.
+-   Use a quoted file path, e.g., `file = "data/survey.csv"`, or a URL.
+-   Relative paths start from your working directory.
+-   Required: no default value.
+
+:::
+
+:::
+
+## Close look at `read_csv()` - `na`
+
+::: {.columns}
+
+::: {.column}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "3"
+read_csv(
+  file,
+  na = c("", "NA"),
+  quote = "\"",
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique"
+)
+```
+
+:::
+
+::: {.column .medium}
+
+-   Specifies which strings represent missing values.
+-   Default: `c("", "NA")` treats empty fields and `"NA"` as missing.
+-   Example: `na = c("", "NA", "N/A")` also recognizes `"N/A"`.
+
+:::
+
+:::
+
+## Close look at `read_csv()` - `quote`
+
+::: {.columns}
+
+::: {.column}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "4"
+read_csv(
+  file,
+  na = c("", "NA"),
+  quote = "\"",
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique"
+)
+```
+
+:::
+
+::: {.column .medium}
+
+-   Sets the character used to enclose fields.
+-   Default: a double quote (`"`), written as `"\""` in R.
+-   Quoting keeps a comma inside a field: `"Durham, NC"` is one value.
+
+:::
+
+:::
+
+## Close look at `read_csv()` - `skip`
+
+::: {.columns}
+
+::: {.column}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "5"
+read_csv(
+  file,
+  na = c("", "NA"),
+  quote = "\"",
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique"
+)
+```
+
+:::
+
+::: {.column .medium}
+
+-   Skips lines at the beginning of the file.
+-   Default: `0` skips none.
+-   Example: `skip = 2` skips two introductory lines; the next line supplies column names by default.
+
+:::
+
+:::
+
+## To `skip` or not to `skip`?
+
+For example, `temperatures.csv` has a **metadata block** before the table:
+
+```text
+Weather station: Durham, NC
+Temperature units: Celsius
+date,temperature
+2026-09-21,24
+2026-09-22,22
+```
+
+## To `skip` or not to `skip`? {.smaller}
+
+```{r}
+read_csv("data/durham-temps.csv")
+```
+
+## To `skip` or not to `skip`? {.smaller}
+
+```{r}
+read_csv("data/durham-temps.csv", skip = 2)
+```
+
+## Close look at `read_csv()` - `n_max`
+
+::: {.columns}
+
+::: {.column}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "6"
+read_csv(
+  file,
+  na = c("", "NA"),
+  quote = "\"",
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique"
+)
+```
+
+:::
+
+::: {.column .medium}
+
+-   Maximum number of data rows to use for guessing column types.
+-   Default: `Inf` -- reads all rows.
+-   Example: `n_max = 100` imports up to 100 data rows, excluding the header.
+
+:::
+
+:::
+
+## Close look at `read_csv()` - `guess_max`
+
+::: {.columns}
+
+::: {.column width="55%"}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "7"
+read_csv(
+  file,
+  na = c("", "NA"),
+  quote = "\"",
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique"
+)
+```
+
+:::
+
+::: {.column .medium width="45%"}
+
+-   Limits the rows sampled to infer column types.
+-   Default: up to 1,000 rows.
+-   Increase it if types are guessed incorrectly, e.g., `guess_max = 10000`.
+
+:::
+
+:::
+
+## Close look at `read_csv()` - `name_repair`
+
+::: {.columns}
+
+::: {.column}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "8"
+read_csv(
+  file,
+  na = c("", "NA"),
+  quote = "\"",
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique"
+)
+```
+
+:::
+
+::: {.column .medium}
+
+-   Controls how column names are repaired.
+-   Default: `"unique"` fixes empty or duplicated names.
+-   Example: two columns named `age` become `age...1` and `age...2`.
+-   `"universal"` also makes names valid without backticks.
+
+:::
+
+:::
+
+# Application exercise
+
+## Reading Excel files
+
+-   Read an Excel file, with all its Excel-ness
+
+-   Split it into subsets based on features of the data
+
+-   Write out subsets as CSV files
+
+## Age gap in Hollywood relationships {.smaller}
+
+::: columns
+
+::: {.column width="25%"}
+
+::: question
+Identify and articulate one feature of the data based on this visualization.
+:::
+
+:::
+
+::: {.column width="75%"}
+![](images/10/hollywood-ages.jpeg){fig-align="center" width="600"}
+:::
+
+:::
+
+## `ae-06-age-gaps-import` {.smaller}
+
+::: appex
+-   Go to your ae project in Positron.
+
+-   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your source control pane.
+
+-   If you haven't yet done so, pull to get today's application exercise file: `ae-06-age-gaps-import.qmd`.
+
+-   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
+:::
