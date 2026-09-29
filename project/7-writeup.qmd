@@ -12,7 +12,7 @@ draft: false
 Your written report must be completed in the `index.qmd` file and must be reproducible.
 All team members should contribute to the GitHub repository, with regular meaningful commits.
 
-Before you finalize your write-up, hide the code with the option `echo: false` in the YAML.
+Before you finalize your write-up, hide the code, warnings, and messages by setting `echo: false`, `warning: false`, and `message: false` under `execute` in the YAML.
 
 The mandatory components of the report are below.
 You are free to add additional sections as necessary.
@@ -30,6 +30,12 @@ It is not included in the 10-page limit.
 
 ## Components
 
+### Abstract
+
+Provide a brief summary of the project, including the research question, data, approach, and main findings.
+
+**Grading criteria:** The abstract concisely summarizes the project and its main conclusions and can be understood on its own.
+
 ### Introduction
 
 This section includes an introduction to the project motivation and research question.
@@ -46,12 +52,11 @@ Also include a description of any data cleaning steps you took to prepare the da
 The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.).
 The exploratory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables.
 
-### Analysis
+### Results
 
 This is where you will discuss your findings and describe the key results from your analysis.
 The goal is not to interpret every single element of a visualization or output shown, but instead to address the research questions, using the interpretations to support your conclusions.
 Focus on the variables that help you answer the research question and that provide relevant context for the reader.
-
 
 **Grading criteria:** The analysis steps are appropriate for the data and research question.
 A thorough and careful approach is used to choose analysis methods, and any concerns about the appropriateness of the chosen methods are addressed.
@@ -69,31 +74,41 @@ Lastly, you might choose to include ideas for future work, but do this only if y
 There is thoughtful consideration of potential limitations of the data and/or analysis.
 If ideas for future work are described, these are realistic and relevant to the project.
 
+### Reflection
+
+Reflect on what your team learned from carrying out the project, including delivering your presentation and listening to others' presentations.
+Discuss what worked well in your collaboration and workflow, challenges you encountered and how you addressed them, and what you would do differently in a future project.
+
+**Grading criteria:** The reflection uses specific examples from the project to explain what the team learned, assesses the team's process thoughtfully, and identifies concrete improvements for future work.
+
+## Organization, formatting, and code expectations
+
+These expectations apply throughout the report and its source documents; they are not additional report sections.
+
 ### Organization + formatting
 
-This is an assessment of the overall presentation and formatting of the written report.
-
-**Grading criteria:** The report is neatly written and organized with clear section headers and appropriately sized figures with informative labels.
+The report is neatly written and organized with clear section headers and appropriately sized figures with informative labels.
 Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted.
 All citations and links are properly formatted.
 If there is an appendix, it is reasonably organized and easy for the reader to find relevant information.
 All code, warnings, and messages are suppressed.
 The main body of the written report (not including the appendix) is no longer than 10 pages.
 
-### Code style + smell
+### Code style, smell, and complexity
 
-This is an assessment of the quality and readability of the code in your source documents.
+These code expectations contribute to the separate 10-point [computational quality assessment](description.qmd#computational-quality), which also includes reproducibility and organization.
 
-**Grading criteria:** Code follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation.
+Code follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation.
 Lines of code are kept to a reasonable length, and long pipelines and `ggplot` calls are broken across multiple lines.
 Code is not repetitive, and there is no unused or dead code left in the document.
 Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout.
+Code uses clear, appropriately simple solutions, avoids unnecessary steps or complicated logic, and follows the tidyverse approach used in the course.
 
 ## Grading
 
 The write-up is due on Thursday, November 13 at 11:59 pm. 
 
-It is worth 30 points, broken down as follows:
+It is worth 20 points, broken down as follows:
 
 | Total              | 20 pts |
 |--------------------|--------|
