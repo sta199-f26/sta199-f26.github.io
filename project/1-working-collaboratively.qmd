@@ -87,8 +87,8 @@ Everyone should have the repo cloned and know which role number(s) they are.
 ### Role 1
 
 -   Go to `about.qmd` in your project repo. Change the `[team name]` to your actual team name.
--   Save and click *Preview* to check the page, then render the website with *Quarto: Render Project* from the Command Palette.
--   In *Source Control*, stage all changed files and commit them. Then *Push* from the *Source Control* pane.
+-   Click *Preview* to view the page.
+-   In *Source Control*, stage all changed files, write a commit message, and click *Commit*. Then click *Sync Changes*.
 
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
@@ -97,16 +97,14 @@ Make sure the previous role has finished before moving on to the next step.
 ### Role 2
 
 -   Change the team name to some other word.
-    Save and click *Preview*, then run *Quarto: Render Project* from the Command Palette.
-    Stage all changed files in *Source Control* and commit them.
+    Click *Preview*.
+    In *Source Control*, stage all changed files, write a commit message, and click *Commit*.
 
--   *Push* from the *Source Control* pane.
-    You should get an error because Role 1 has already pushed changes that you do not yet have locally.
+-   In *Source Control*, click *Sync Changes*.
+    You should see something new because Role 1 has already pushed changes you don't have locally.
 
--   *Pull* from the *Source Control* pane.
-    In *Source Control*, look for `about.qmd` under *Merge Changes* and open it in the text editor to inspect the conflict.
-
-    For example, if Role 1 chose "Team Dialectic Blue" and Role 2 changed it to "Team Royal Blue", the conflicting section might look like this:
+    - In the *Source Control* pane, in the commit message box, you will see a message starting with "Merge branch 'main'..."
+    - In the *Editor* pane, you will see your change and the change from Role 1, and a button *Resolve in Merge Editor*. Click this button.
 
     ```text
     <<<<<<< HEAD
@@ -119,22 +117,16 @@ Make sure the previous role has finished before moving on to the next step.
     The top section contains your local changes; the bottom section contains the changes you pulled from GitHub.
     The string after `>>>>>>>` identifies the incoming commit.
 
--   Resolve the conflict by editing `about.qmd` to keep the team's preferred name and removing all conflict markers (`<<<<<<<`, `=======`, and `>>>>>>>`).
-    Save the file.
-    If Positron opens the three-way merge editor, you can choose or edit the result there instead; check the final text before completing the merge.
+-   Decide which one you want to accept -- your changes or Role 1's changes.
+    Click on *Accept Incoming* or *Accept Current* accordingly.
+    This will move the change you accepted to the bottom of the Editor pane.
+    If you're happy with the state of affairs, click on *Complete Merge*.
 
--   Resolve any conflicts in other source files, then click *Preview* to check the result and run *Quarto: Render Project* from the Command Palette.
-    If rendered website files also have conflicts, rendering with *Quarto: Render Project* regenerates them from the resolved source files.
-
--   In *Source Control*, click the `+` next to each resolved file under *Merge Changes*, and stage any remaining changed files under *Changes*.
-    Check that *Merge Changes* is empty and that all files you intend to commit appear under *Staged Changes*.
-
--   Commit with a message describing the resolution, then *Push* from the *Source Control* pane.
-    This time, the push should succeed.
+-   Then, in *Source Control*, click *Continue*.
+    Finally, click *Sync Changes*.
 
 ::: callout-tip
-If pulling stops with a message about reconciling divergent branches, ask your TA for help, and they will configure the pull to use a merge for this exercise.
-Also ask your TA for help if you see a different error or are unsure how to resolve a conflict.
+Ask your TA for help if you see a different error or are unsure how to resolve a conflict.
 :::
 
 ::: callout-important
@@ -143,10 +135,12 @@ Make sure the previous role has finished before moving on to the next step.
 
 ### Role 3
 
--   Change the name of the first team member.
--   Save and click *Preview*, then run *Quarto: Render Project* from the Command Palette. Stage all changed files in *Source Control*, commit, and *Push*. You should get an error.
--   *Pull* from the *Source Control* pane. Since you edited a different part of `about.qmd` than Role 2 (who changed the team name), Git should merge that file automatically. If rendered files have conflicts, regenerate them with *Quarto: Render Project*, stage them, and commit the merge as in Role 2.
--   If *Source Control* still shows a merge waiting to be committed, complete that commit. Then *Push*.
+-   In `about.qmd`, put your name as the first team member. 
+    Do not touch the team name, only update your name.
+    Click *Preview*. 
+
+-   In *Source Control*, stage all changed files, write a commit message, and click *Commit*. Then click *Sync Changes*.
+    Since you edited a different part of `about.qmd` than Role 2 (who changed the team name), Git should merge that file automatically.
 
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
@@ -154,50 +148,80 @@ Make sure the previous role has finished before moving on to the next step.
 
 ### Role 4
 
--   Change the name of the first team member to something other than what the previous team member did.
--   Save and click *Preview*, then run *Quarto: Render Project* from the Command Palette. Stage all changed files in *Source Control*, commit, and *Push*. You should get an error.
--   *Pull* from the *Source Control* pane. Resolve the conflicts using the same steps as Role 2: edit and save the source files, preview, render the website, stage the resolved and changed files, commit, and *Push*.
+::: callout-note
+For three-person teams, the person who assumed Role 1 will also assume Role 4.
+:::
+
+-   In `about.qmd`, put your name as the first team member. 
+    Yes, just put your name in, even though Role 3 already did that. This is to create a merge conflict.
+    Do not touch anything else.
+    Click *Preview*. 
+
+-   In *Source Control*, stage all changed files, write a commit message, and click *Commit*. Then click *Sync Changes*.
+    You should see something similar to what Role 2 encountered because you and Role 3 edited the same part of the file.
+
+-   Decide which one you want to accept -- your changes or Role 3's changes.
+    Click on *Accept Incoming* or *Accept Current* accordingly.
+    This will move the change you accepted to the bottom of the Editor pane.
+    If you're happy with the state of affairs, click on *Complete Merge*.
+
+-   Then, in *Source Control*, click *Continue*.
+    Finally, click *Sync Changes*.
 
 ::: callout-important
 Make sure the previous role has finished before moving on to the next step.
 :::
 
-### Back to Role 1 (for teams of 4 or fewer) or Role 5 (for 5-person teams)
+### Role 5
 
--   *Pull* from the *Source Control* pane to get all changes from the remote repo.
--   Update all requested pieces of information about all team members.
--   Save and click *Preview*, then run *Quarto: Render Project* from the Command Palette. Stage all changed files in *Source Control*, commit, and *Push*. You should not get an error because you pulled first.
-This models "good" collaborative behavior -- start with pulling before doing any work.
+::: callout-note
+For three-person teams, the person who assumed Role 2 will also assume Role 5.
+For four-person teams, the person who assumed Role 1 will also assume Role 5.
+:::
+
+-   Before touching anything in the *Editor*, go to *Source Control* and click *Sync Changes*.
+    This should update your local project with all the changes made by your teammates so far that have been pushed to GitHub.
+
+-   Update all requested pieces of information about all team members, then click *Preview*.
+
+-   In *Source Control*, stage all changed files, write a commit message, and click *Commit*. 
+    Then click *Sync Changes*.
+    You should not get an error because you pulled first.
+    This models "good" collaborative behavior -- start by pulling before doing any work.
 
 ### Everyone
 
-*Pull* from the *Source Control* pane, open `about.qmd`, and click *Preview* to observe the changes in your project.
+Go to the *Source Control* pane and click *Sync Changes* to make sure you have the latest version of the project.
+Open `about.qmd` and click *Preview* to observe the changes in your project.
 
 # Tips for collaborating via GitHub
 
--   **Always pull first before you start working.**
--   Resolve a merge conflict (edit, save, render, stage, commit, and push) *before* continuing your work. Never do new work while resolving a merge conflict.
--   Preview, stage, commit, and push often to minimize merge conflicts and/or to make merge conflicts easier to resolve.
--   If you find yourself in a situation that is difficult to resolve, ask questions ASAP. Don't let it linger and get bigger.
+-   **Always Sync Changes first before you start working.**
+-   Resolve a merge conflict (edit, save, preview, stage, sync changes) **before** continuing your work. 
+    Never do new work while resolving a merge conflict.
+-   Preview, stage, commit, and sync changes often to minimize merge conflicts and/or to make merge conflicts easier to resolve.
+-   If you find yourself in a situation that is difficult to resolve, ask questions ASAP. 
+    Don't let it linger and get bigger.
 
 # Team contract
 
-Team member with Role 2 is the scribe (note taker).
+Select one team member to be the scribe, i.e., the note taker.
 
-In Positron, *Pull* from the *Source Control* pane to get the latest changes, then open `contract.qmd` from the *Explorer* pane.
+Open `contract.qmd` from the *Explorer* pane.
 Discuss the prompts and write up your answers.
-Once done, save and click *Preview*, then run *Quarto: Render Project* from the Command Palette.
-Stage all changed files in *Source Control*, commit, and *Push*.
+Once done, click *Preview*.
+Stage all changed files in *Source Control*, commit, and *Sync Changes*.
 
 # Team interests
 
-Team member with Role 3 is the scribe now.
+Select another team member to be the scribe.
 
-In Positron, *Pull* from the *Source Control* pane to get the latest changes, then open `proposal.qmd` from the *Explorer* pane.
-Discuss data science topics that interest your team and you might want to pursue finding datasets on.
-Briefly summarize your discussion in the appropriate portion of the `proposal.qmd` document.
-Once done, save and click *Preview*, then run *Quarto: Render Project* from the Command Palette.
-Stage all changed files in *Source Control*, commit, and *Push*.
+In *Source Control*, click *Sync Changes* to make sure you have the latest version of the project.
+Then open `proposal.qmd` from the *Explorer* pane.
+Discuss common topics that interest your team that you might want to explore in your project.
+In 1-4 sentences, summarize your discussion in the appropriate portion of the `proposal.qmd` document.
+Once done, click *Preview*.
+Stage all changed files in *Source Control*, commit, and *Sync Changes*.
 
 # Grading
 
