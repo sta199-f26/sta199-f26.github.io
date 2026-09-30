@@ -1,0 +1,15 @@
+{
+  "hash": "4d904c30e3ddcec6753106034c257022",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"AE 07: Most recent opinion articles in The Chronicle\"\nsubtitle: \"Suggested answers\"\ncategories: \n  - Application exercise\n  - Answers\n---\n\n::: callout-important\nThese are suggested answers.\nThis document should be used as reference only, it's not designed to be an exhaustive key.\n:::\n\n## Part 1 - Data scraping\n\nFill in `chronicle-scrape.R`for suggested scraping code.\n\n## Part 2 - Data analysis\n\nLet's start by loading the packages we will need:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n:::\n\n\n-   Load the data you saved into the `data` folder and name it `chronicle`.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nchronicle20 <- read_csv(\"data/chronicle20.csv\")\n```\n:::\n\n\n-   How many opinion articles were published in The Chronicle since the beginning of the semester?\n\n\n::: {.cell}\n\n```{.r .cell-code}\nchronicle20 |>\n  filter(date >= ymd(\"2026-08-24\")) |>\n  nrow()\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 10\n```\n\n\n:::\n:::\n\n\n-   How many unique authors have published opinion articles in The Chronicle since the beginning of the semester and how many articles did they each publish?\n\n\n::: {.cell}\n\n```{.r .cell-code}\nchronicle20 |>\n  filter(date >= ymd(\"2026-08-24\")) |>\n  count(author, sort = TRUE)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 7 × 2\n  author                                    n\n  <chr>                                 <int>\n1 Luke A. Powery                            3\n2 Remembrances                              2\n3 Arnav Jain                                1\n4 Charles D. Piot                           1\n5 Duke Student Publishing Company Board     1\n6 Monday Monday                             1\n7 Robert Wallace                            1\n```\n\n\n:::\n:::\n\n\n-   Display the date, title, and author of any article(s) that mention AI in their title.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nchronicle20 |>\n  filter(str_detect(title, \"AI\")) |>\n  select(date, title, author)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 1 × 3\n  date       title                                               author         \n  <date>     <chr>                                               <chr>          \n1 2026-06-19 Scott Dyreng’s AI classroom: Actually, we liked it. The Students o…\n```\n\n\n:::\n:::\n\n\n-   Come up with another question and try to answer it using the data.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# add code here\n```\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

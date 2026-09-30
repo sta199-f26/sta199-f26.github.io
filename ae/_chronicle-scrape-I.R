@@ -1,5 +1,3 @@
-# fmt: skip
-
 # load packages ----------------------------------------------------------------
 
 library(tidyverse)
@@ -14,7 +12,7 @@ bow("https://www.dukechronicle.com/section/opinion?page=1&per_page=500")
 # read from local copy of the site
 
 page <- read_html(
-  "https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion-paged/www.dukechronicle.com/section/opinion-page-1.html"
+  "https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com/section/opinionabc4.html"
 )
 
 # parse components -------------------------------------------------------------

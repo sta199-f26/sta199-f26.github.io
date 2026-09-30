@@ -1,0 +1,67 @@
+---
+title: "AE 07: 500 recent opinion articles in The Chronicle"
+subtitle: "Suggested answers"
+categories: 
+  - Application exercise
+  - Answers
+---
+
+::: callout-important
+These are suggested answers.
+This document should be used as reference only, it's not designed to be an exhaustive key.
+:::
+
+## Part 1 - Data scraping
+
+Fill in `chronicle-scrape.R`for suggested scraping code.
+
+## Part 2 - Data analysis
+
+Let's start by loading the packages we will need:
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse)
+```
+
+-   Load the data you saved into the `data` folder and name it `chronicle`.
+
+```{r}
+#| label: load-data
+#| message: false
+chronicle <- read_csv("data/chronicle-2026-09-29.csv")
+```
+
+-   How many opinion articles were published in The Chronicle since the beginning of the semester?
+
+```{r}
+#| label: count-semester-articles
+chronicle |>
+  filter(date >= ymd("2026-08-24")) |>
+  nrow()
+```
+
+-   Who are the top 10 most prolific authors among the 500 most recent opinion articles and how many articles have they each published?
+
+```{r}
+#| label: count-authors-articles
+chronicle |>
+  count(author, sort = TRUE)
+```
+
+-   Display the date, title, and author of any article(s) that mention AI in their title.
+
+```{r}
+#| label: ai-title
+chronicle |>
+  filter(str_detect(title, "AI")) |>
+  select(date, title, author)
+```
+
+-   Come up with another question and try to answer it using the data.
+
+```{r}
+#| label: add-label
+# add code here
+```
