@@ -47,9 +47,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -81,10 +78,7 @@ ul.task-list li input[type="checkbox"] {
 
 <meta property="og:title" content="Project description – STA 199CCL">
 <meta property="og:description" content="Homepage for STA 199CCL - Introduction to Data Science at Duke University, Fall 2026.">
-<meta property="og:image" content="https://sta199-f26.github.io/project/images/quarto-project.png">
 <meta property="og:site_name" content="STA 199CCL">
-<meta property="og:image:height" content="2012">
-<meta property="og:image:width" content="3248">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -572,7 +566,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="structure" class="level1">
 <h1>Structure</h1>
 <p>Your project is organized as a Quarto website, with a GitHub repository shared by all team members.</p>
-<p><a href="images/quarto-project.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/quarto-project.png" class="img-fluid"></a></p>
+<!-- TO DO: Update for Positron
+![](images/quarto-project.png)
+-->
 </section>
 <section id="milestones" class="level1">
 <h1>Milestones</h1>
@@ -586,11 +582,11 @@ ul.task-list li input[type="checkbox"] {
 <li>Milestone 6 - Presentation</li>
 <li>Milestone 7 - Write-up</li>
 </ol>
-<p>You will not be submitting anything on Gradescope for the project. Submission of these deliverables will happen on GitHub, and feedback will be provided as GitHub issues that you need to engage with and close. The collection of the documents in your GitHub repo will create a webpage for your project. To create the webpage, render the project website in Positron (e.g., by running <code>quarto render</code> in the Terminal).</p>
+<p>You will not be submitting anything on Gradescope for the project. Submission of these deliverables will happen on GitHub, and feedback will be provided as GitHub issues that you need to engage with and close. The collection of the documents in your GitHub repo will create a webpage for your project. To create the webpage, open the project in Positron, open the Command Palette (View ➛ Command Palette…), search for <code>Quarto: Render Project</code>, and select it to render the entire project website.</p>
 <section id="milestone-1---working-collaboratively" class="level2">
 <h2 class="anchored" data-anchor-id="milestone-1---working-collaboratively">Milestone 1 - Working collaboratively</h2>
 <p>For the first milestone of your project, you’ll practice a collaborative Git workflow with your team members. Choose a team name, update the team information in <code>about.qmd</code>, complete your team contract in <code>contract.qmd</code>, and summarize your team’s project interests in <code>proposal.qmd</code>. Render, commit, and push your work to the shared repository.</p>
-<p>Instructions are outlined in <a href="../project/1-working-collaboratively.html">Milestone 1: Working collaboratively</a>. Each team member taking part in the collaborative working activity will get 5 points towards their project.</p>
+<p>Instructions are outlined in <a href="../project/1-working-collaboratively.html">Milestone 1: Working collaboratively</a>. Each team member taking part in the collaborative working activity will get 5 points towards their project. In-person attendance and participation in the lab activity are required for full credit.</p>
 </section>
 <section id="project-proposal" class="level2">
 <h2 class="anchored" data-anchor-id="project-proposal">Milestone 2 - Proposal</h2>
@@ -611,7 +607,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="peer-review" class="level2">
 <h2 class="anchored" data-anchor-id="peer-review">Milestone 4 - Peer review</h2>
 <p>Critically reviewing others’ work is a crucial part of the scientific process, and STA 199 is no exception. You will be assigned one team to review. This feedback is intended to help you create a high-quality final project, as well as give you experience reading and constructively critiquing the work of others.</p>
-<p>Read the assigned team’s project draft and have one or two team members clone and render it to check reproducibility. Discuss the review prompts together, then have one team member submit your team’s constructive, actionable feedback as a GitHub issue in the reviewed team’s repository using the peer review template. Include the names of all participating team members and address statistical reasoning, reproducibility, and file and code organization.</p>
+<p>Read the assigned team’s project draft and have one or two team members clone and render it to check reproducibility. Discuss the review prompts together, then have one team member submit your team’s constructive, actionable feedback as a GitHub issue in the reviewed team’s repository using the peer review template. Include the names of all participating team members and address statistical reasoning, reproducibility, and file and code organization. In-person attendance and participation in the peer review during lab are required for full credit.</p>
 <p>Instructions and grading criteria for this milestone are outlined in <a href="../project/4-peer-review.html">Milestone 4: Peer review</a>.</p>
 </section>
 <section id="improvement-progress-II" class="level2">
@@ -1161,38 +1157,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
