@@ -48,7 +48,6 @@ blizzard_salary <- blizzard_salary |>
 ::: callout-note
 Suggested answers can be found [here](/exam-review/exam-1-review-A.qmd), but resist the urge to peek before you go through it yourself.
 
-**Still to be added:** A couple of open-ended questions.
 :::
 
 ## Blizzard salaries
@@ -695,8 +694,8 @@ flights |>
 #| echo: false
 #| message: false
 
-population_raw <- read_csv("data/world-pop-2022.csv")
-continents_raw <- read_csv("data/continents.csv")
+population_raw <- read_csv(here::here("exam-review", "data/world-pop-2022.csv"))
+continents_raw <- read_csv(here::here("exam-review", "data/continents.csv"))
 ```
 
 ```{r}
@@ -853,7 +852,7 @@ You will work with data on average ratings for each season of three series from 
 ```{r}
 #| echo: false
 #| message: false
-tv <- read_csv("data/tv.csv")
+tv <- read_csv(here::here("exam-review", "data/tv.csv"))
 law_and_order <- tv |>
   filter(str_detect(title, "Law & Order"))
 ```
@@ -1009,7 +1008,7 @@ The data for the next few questions come from the Internet Movie Database (IMDB)
 ```{r}
 #| label: load-data
 #| message: false
-movies <- read_csv("data/movies.csv")
+movies <- read_csv(here::here("exam-review", "data/movies.csv"))
 ```
 
 The name of the data frame used for this analysis is `movies`, and it contains the variables shown in @tbl-data-dictionary.
@@ -1229,6 +1228,211 @@ c.  Each row of the output is a movie.
 d.  The output shows that there are six distinct ratings in the dataset.
 
 e.  The code reduces the number of variables and observations in the `movies` data frame to six.
+
+```{r}
+#| label: load-hw-data
+#| message: false
+gymnastics <- read_csv(here::here("exam-review", "data/gymnastics.csv")) |>
+  select(name, country, event, competition, score)
+country_inflation <- read_csv(here::here(
+  "exam-review",
+  "data/country-inflation.csv"
+))
+continents <- continents_raw |>
+  select(entity, continent)
+```
+
+## Gymnastics
+
+The `gymnastics` dataset contains information about routines performed by gymnasts in the women's artistic gymnastics competition at the 2024 Paris Olympics.
+Each row represents a single routine, so a gymnast who competed on all four apparatus appears in at least four rows.
+Variables include the gymnast's `name`, `country`, `event` (apparatus), `competition` (round), and `score` (routine total).
+
+```{r}
+glimpse(gymnastics)
+```
+
+The `continents` dataset contains countries (`entity`) and the `continent` each one is in.
+
+```{r}
+glimpse(continents)
+```
+
+A student joins the two datasets and summarizes average vault score by continent with the following pipeline:
+
+```{r}
+#| label: gymnastics-join-summarize
+#| echo: true
+gymnastics |>
+  left_join(continents, join_by(country == entity)) |>
+  filter(event == "Vault") |>
+  group_by(continent) |>
+  summarize(mean_vault_score = mean(score, na.rm = TRUE)) |>
+  arrange(desc(mean_vault_score))
+```
+
+### Question 30
+
+Part 1: The resulting summary has a row where `continent` is `NA`.
+Explain what this row represents — i.e., what is happening in the join that produces it?
+
+::: {.content-visible when-format="pdf"}
+$\vspace{3cm}$
+:::
+
+Part 2: The student then runs the following code and gets the output shown:
+
+```{r}
+#| label: gymnastics-anti-join
+#| echo: true
+gymnastics |>
+  anti_join(continents, join_by(country == entity)) |>
+  distinct(country)
+```
+
+What is the `mean_vault_score` of athletes from the Great Britain, Austria, and Chinese Taipei?
+Provide a justification for how you arrived at this number.
+
+::: {.content-visible when-format="pdf"}
+$\vspace{4cm}$
+:::
+
+{{< pagebreak >}}
+
+## Inflation around the world
+
+The `country_inflation` dataset contains annual inflation rates for countries around the world from 1993 to 2025.
+The first five rows and a handful of the columns are shown below:
+
+```{r}
+#| label: inflation-peek
+country_inflation |>
+  select(country, `1993`, `2000`, `2010`, `2020`, `2025`) |>
+  slice_head(n = 5)
+```
+
+A student reshapes the data with the following code:
+
+```{r}
+#| label: inflation-pivot
+#| echo: true
+country_inflation_long <- country_inflation |>
+  pivot_longer(
+    cols = !country,
+    names_to = "year",
+    names_transform = as.numeric,
+    values_to = "inflation_rate"
+  )
+```
+
+and then uses `country_inflation_long` to make the following plot:
+
+```{r}
+#| label: fig-inflation
+#| fig-width: 8
+#| fig-asp: 0.45
+#| fig-cap: Annual inflation rate for selected countries, 1993-2025
+countries_of_interest <- c("Türkiye", "United States", "Argentina", "Germany")
+
+country_inflation_long |>
+  filter(country %in% countries_of_interest) |>
+  ggplot(aes(x = year, y = inflation_rate, color = country, shape = country)) +
+  geom_line(linewidth = 0.3) +
+  geom_point(size = 1.5) +
+  labs(
+    x = "Year",
+    y = "Annual inflation rate (%)",
+    color = "Country",
+    shape = "Country",
+    title = "Annual inflation rate, 1993-2025"
+  )
+```
+
+### Question 31
+
+The original `country_inflation` dataset has 38 rows and 34 columns.
+How would you calculate the number of rows and columns `country_inflation_long` has, and what does each row represent?
+Explain, in your own words, what `pivot_longer()` did to the data, including what the `names_transform = as.numeric` argument accomplished.
+
+::: {.content-visible when-format="pdf"}
+$\vspace{4cm}$
+:::
+
+::: {.content-visible when-format="pdf"}
+$\vspace{4cm}$
+:::
+
+### Question 32
+
+A student wants to compare each country's inflation rate in 2025 to its rate in 1993 (the first and last years in the `country_inflation` dataset).
+They write the following pipeline:
+
+```{r}
+#| label: inflation-ratio-pipeline
+#| echo: true
+country_inflation |>
+  filter(!is.na(`1993`), !is.na(`2025`)) |>
+  mutate(inf_ratio = `2025` / `1993`) |>
+  select(country, inf_ratio) |>
+  arrange(desc(inf_ratio)) |>
+  slice_head(n = 5)
+```
+
+Part 1: In 1-2 sentences, describe what the resulting data frame represents and how to interpret the values in `inf_ratio` (e.g., what does an `inf_ratio` of 2.20 mean for New Zealand?).
+
+::: {.content-visible when-format="pdf"}
+$\vspace{3cm}$
+:::
+
+Part 2: A teammate says the `filter()` step is unnecessary because "`mutate()` works fine with missing values."
+Explain what would be different about the resulting data frame if the `filter()` step were removed, and why that could be misleading.
+
+::: {.content-visible when-format="pdf"}
+$\vspace{3cm}$
+:::
+
+Part 3: Another teammate suggests replacing `mutate()` with `summarize()` in this pipeline, keeping everything else the same.
+Explain why that would not accomplish the student's goal.
+
+::: {.content-visible when-format="pdf"}
+$\vspace{3cm}$
+:::
+
+Part 4: That teammate is dead set on using `summarize()` instead of `mutate()`. 
+What other modification would they need to make to the code to get the same result?
+
+::: {.content-visible when-format="pdf"}
+$\vspace{3cm}$
+:::
+
+Part 5: The student then removes `slice_head(n = 5)` from their pipeline so the result contains all countries, saves it as `inflation_ratios`, and makes the following plot:
+
+```{r}
+#| label: fig-inflation-ratios
+#| fig-width: 7
+#| fig-asp: 0.4
+#| fig-cap: Ratio of 2025 to 1993 inflation rates
+inflation_ratios <- country_inflation |>
+  filter(!is.na(`1993`), !is.na(`2025`)) |>
+  mutate(inf_ratio = `2025` / `1993`) |>
+  select(country, inf_ratio)
+
+ggplot(inflation_ratios, aes(x = inf_ratio)) +
+  geom_histogram(binwidth = 0.25, color = "white") +
+  geom_vline(xintercept = 1, linetype = "dashed") +
+  labs(
+    x = "Ratio of 2025 to 1993 inflation rate",
+    y = "Number of countries"
+  )
+```
+
+In a few sentences, describe the distribution shown in @fig-inflation-ratios, explain what the dashed vertical line at 1 represents, and state what it means for the countries to the left vs. the right of that line.
+
+::: {.content-visible when-format="pdf"}
+$\vspace{4cm}$
+:::
+
+{{< pagebreak >}}
 
 ## Bonus
 
