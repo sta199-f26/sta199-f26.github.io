@@ -1,0 +1,439 @@
+---
+title: Exam 1 Review
+subtitle: Lecture 12
+author: Prof. Mine Çetinkaya-Rundel
+date: 2026-09-30
+format: 
+  revealjs: 
+    output-file: 12-exam-I-review-slides.html
+    footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    logo: "/slides/images/logo.png"
+    toc: false
+  html: 
+    code-link: true
+filters:
+  - ../remove-fmt-skip.lua
+---
+
+```{r}
+#| label: setup
+#| include: false
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+```
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+```{r}
+#| label: review-data
+#| include: false
+
+# Match the preparation in exam-review/exam-1-review.qmd.
+blizzard_salary <- openintro::blizzard_salary |>
+  mutate(
+    annual_salary = case_when(
+      salary_type == "week" ~ current_salary * 52,
+      salary_type == "hour" ~ current_salary * 40 * 52,
+      TRUE ~ current_salary
+    ),
+    performance_rating = if_else(
+      performance_rating == "Developing",
+      "Poor",
+      performance_rating
+    )
+  ) |>
+  filter(salary_type != "week") |>
+  mutate(salary_type = if_else(salary_type == "hour", "Hourly", "Salaried")) |>
+  filter(!is.na(annual_salary)) |>
+  select(percent_incr, salary_type, annual_salary, performance_rating)
+
+penguins <- palmerpenguins::penguins
+flights <- nycflights13::flights
+
+tv <- read_csv(here::here("exam-review", "data", "tv.csv"))
+romance_shows <- tv |>
+  filter(genre_1 == "Romance" | genre_2 == "Romance" | genre_3 == "Romance") |>
+  distinct(title) |>
+  pull(title)
+comedy_shows <- tv |>
+  filter(genre_1 == "Comedy" | genre_2 == "Comedy" | genre_3 == "Comedy") |>
+  distinct(title) |>
+  pull(title)
+
+# Preserve the review's plotted labels so Q25 matches the question and key.
+# The source reverses the genre labels; see the instructor note on Q25.
+romance_comedy_means <- tv |>
+  filter(title %in% c(romance_shows, comedy_shows)) |>
+  filter(!(title %in% romance_shows & title %in% comedy_shows)) |>
+  mutate(genre = if_else(title %in% romance_shows, "Comedy", "Romance")) |>
+  group_by(genre, title) |>
+  summarize(mean_av_rating = mean(av_rating), .groups = "drop")
+
+movies <- read_csv(here::here("exam-review", "data", "movies.csv")) |>
+  mutate(
+    rating = case_when(
+      rating == "TV-PG" ~ "PG",
+      rating == "Unrated" ~ "Not Rated",
+      is.na(rating) ~ "Not Rated",
+      .default = rating
+    ),
+    rating = fct_relevel(rating, "G", "PG", "PG-13", "R", "NC-17", "Not Rated"),
+    genre = fct_other(genre, keep = c("Action", "Comedy", "Drama", "Horror")),
+    genre = fct_relevel(genre, "Other", "Horror", "Drama", "Action", "Comedy")
+  )
+
+country_inflation <- read_csv(here::here(
+  "exam-review",
+  "data",
+  "country-inflation.csv"
+))
+country_inflation_long <- country_inflation |>
+  pivot_longer(
+    cols = !country,
+    names_to = "year",
+    names_transform = as.numeric,
+    values_to = "inflation_rate"
+  )
+inflation_ratios <- country_inflation |>
+  filter(!is.na(`1993`), !is.na(`2025`)) |>
+  mutate(inf_ratio = `2025` / `1993`) |>
+  select(country, inf_ratio) |>
+  arrange(desc(inf_ratio))
+```
+
+# Warm-up
+
+## While you wait: Participate 📱💻 {.xsmall}
+
+- Check your email (and your spam folder) for an email from TEAMMATES
+
+- Fill out your peer evaluation for your team members
+
+::: caution-warning
+If you fail to submit your feedback, you're not eligible to receive the points they give you.
+:::
+
+## From last time {.smaller}
+
+::: appex
+-   Go to your ae project in Positron.
+
+-   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your source control pane.
+
+-   If you haven't yet done so, pull to get today's application exercise file: `ae-07-chronicle-scrape-I.qmd`.
+
+-   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
+:::
+
+# Exam 1 review
+
+## Exam 1 {.smaller}
+
+Exam 1 is on Wednesday, starts promptly at 1:25 pm!
+
+- Covers all material up to and including today's lecture
+
+- Sample exam + model solutions for select HW questions are posted
+
+- Exam will be in class, closed book, no calculators, no computers, just 1 notes sheet
+
+- Notes sheet: 8.5x11, both sides, hand written or typed, any content you want, must be prepared by you
+
+- We'll direct you to your seat so get here early to allow time to get settled and read the instructions
+
+## Types of questions {.smaller}
+
+- Multiple-choice:
+  - Some will be single best answer, no partial credit
+  - Some will be *at least one* correct answer, with partial credit, and clearly identified with "Select all that apply"
+
+- Open-ended: 
+  - Short answer, show your work, justify your reasoning
+  - With partial credit
+
+## Q1: Variable types {.xsmall}
+
+`blizzard_salary` has **409 rows and 4 columns**. Each row is a worker who completed the spreadsheet. Which statements are correct? **Select all that apply.**
+
+a. The dataset has 399 rows.
+b. The dataset has 4 columns. [**Correct**]{.fragment}
+c. Each row represents a Blizzard Entertainment worker who filled out the spreadsheet. [**Correct**]{.fragment}
+d. `percent_incr` is numerical and discrete.
+e. `salary_type` is numerical.
+f. `annual_salary` is numerical. [**Correct**]{.fragment}
+g. `performance_rating` is categorical and ordinal. [**Correct**]{.fragment}
+
+## Q9: Where did the observations go? — question {.xsmall}
+
+A friend notices that the total number of observations in this plot seems lower than the total in `blizzard_salary` (**409 workers**). What might be going on here? Explain your reasoning.
+
+```{r}
+#| label: q9-question-plot
+#| echo: false
+#| fig-width: 6
+#| fig-height: 3.8
+#| out-width: 100%
+#| fig-alt: Stacked counts of workers by salary type and performance rating; both bars together contain fewer than 409 workers.
+salary_rating_plot <- blizzard_salary |>
+  drop_na(salary_type, performance_rating) |>
+  ggplot(aes(x = salary_type, fill = fct_rev(performance_rating))) +
+  geom_bar() +
+  scale_fill_viridis_d() +
+  labs(x = "Salary type", y = "Count", fill = "Performance\nrating")
+salary_rating_plot
+```
+
+[**Observations with missing values for both variables won't be represented on the plot.**]{.fragment}
+
+## Q13: Reviewing an interpretation — question {.xsmall}
+
+
+
+::: columns
+
+::: {.column width="75%"}
+
+For **Top performers**, a team writes: “The relationship is positive, having a higher salary results in a higher percent increase. There is one clear outlier.” Which peer review notes are accurate and helpful? **Select all that apply.**
+
+:::
+
+::: {.column width="25%"}
+
+```{r}
+#| label: q13-top-plot
+#| echo: false
+#| fig-width: 5.2
+#| fig-height: 4.2
+#| out-width: 100%
+#| fig-alt: Salary versus percent increase for Top performers, showing a positive roughly linear association with substantial scatter.
+top_performers_plot <- blizzard_salary |>
+  filter(performance_rating == "Top") |>
+  ggplot(aes(x = annual_salary, y = percent_incr)) +
+  geom_point(na.rm = TRUE) +
+  scale_x_continuous(
+    labels = scales::label_dollar(scale = 1 / 1000, suffix = "K")
+  ) +
+  labs(x = "Annual salary", y = "Percent increase", title = "Top performers")
+top_performers_plot
+```
+
+:::
+
+:::
+
+a. The interpretation is complete and perfect.
+b. It doesn't mention the direction.
+c. It doesn't mention the form, which is linear. [**Correct.**]{.fragment}
+d. It doesn't mention the strength, which is somewhat strong. [**Correct.**]{.fragment}
+e. There isn't a clear outlier; identify any potential outlier by its salary and/or percent increase. [**Correct.**]{.fragment}
+f. The interpretation is causal; observational data do not establish which variable causes the other or rule out other explanations. [**Correct.**]{.fragment}
+
+## Q16: Which bar plot? {.xsmall}
+
+Which plot is produced by this code? [**Correct: D.**]{.fragment}
+
+```{r}
+#| eval: false
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar()
+```
+
+```{r}
+#| label: q16-options
+#| echo: false
+#| fig-width: 12
+#| fig-height: 5.4
+#| out-width: 95%
+#| fig-alt: "Five options: A island proportions filled by species; B species proportions filled by island; C horizontal species proportions; D island counts filled by species; E horizontal species counts filled by island."
+q16_options <- list(
+  ggplot(penguins, aes(x = island, fill = species)) +
+    geom_bar(position = "fill", color = "black") +
+    labs(title = "A", x = "Island", y = "Proportion", fill = "Species"),
+  ggplot(penguins, aes(x = species, fill = island)) +
+    geom_bar(position = "fill", color = "black") +
+    labs(title = "B", x = "Species", y = "Proportion", fill = "Island"),
+  ggplot(penguins, aes(y = species, fill = island)) +
+    geom_bar(position = "fill", color = "black") +
+    labs(title = "C", y = "Species", x = "Proportion", fill = "Island"),
+  ggplot(penguins, aes(x = island, fill = species)) +
+    geom_bar(color = "black") +
+    labs(title = "D", x = "Island", y = "Count", fill = "Species"),
+  ggplot(penguins, aes(y = species, fill = island)) +
+    geom_bar(color = "black") +
+    labs(title = "E", y = "Species", x = "Count", fill = "Island")
+)
+q16_options <- map(
+  q16_options,
+  ~ .x +
+    scale_fill_grey(start = 0.8, end = 0) +
+    theme_gray(base_size = 12) +
+    theme(
+      legend.position = "bottom",
+      legend.title = element_blank(),
+      legend.text = element_text(size = 8),
+      legend.key.size = unit(0.25, "cm")
+    )
+)
+patchwork::wrap_plots(q16_options, ncol = 3)
+```
+
+## Q17: Reading a tibble {.xsmall}
+
+Based on this output, which statements **must be true**? **Select all that apply.**
+
+::: columns
+::: {.column width="60%"}
+
+```{r}
+#| label: q17-flights-peek
+#| echo: false
+print(
+  flights |> relocate(year, month, day, arr_delay, carrier),
+  n = 10,
+  width = 65
+)
+```
+
+:::
+::: {.column width="40%"}
+
+a. `flights` is a tibble. [**Correct.**]{.fragment}
+b. `flights` has 10 rows.
+c. `flights` has 8 columns.
+d. `carrier` is a character variable. [**Correct.**]{.fragment}
+e. There are no missing data in `flights`.
+
+:::
+:::
+
+## Q27: Summing a condition {.xsmall}
+
+Which statements about the code and its result are true? **Select all that apply.**
+
+```{r}
+#| label: q27-original-summary
+movies |>
+  summarize(sum(release_country == "United States"))
+```
+
+a. It evaluates whether each `release_country` equals `"United States"`, resulting in logical values. [**Correct.**]{.fragment}
+b. It filters out rows where `release_country` is not `"United States"` and counts the remaining rows.
+c. It sums the logical values, treating each `TRUE` as 1 and each `FALSE` as 0. [**Correct.**]{.fragment}
+d. It results in a character vector.
+e. The result shows 435 movies released in the United States. [**Correct.**]{.fragment}
+
+## Q29: A 6 × 6 result {.xsmall}
+
+```{r}
+#| label: q29-wide-result
+movies |>
+  count(rating, genre) |>
+  pivot_wider(names_from = genre, values_from = n, values_fill = 0)
+```
+
+Which statements are true? **Select all that apply.**
+
+a. The code counts movies in each rating and genre combination. [**Correct.**]{.fragment}
+b. The code sorts the results in descending order.
+c. Each row of the output is a movie.
+d. The output shows six distinct ratings in the dataset. [**Correct.**]{.fragment}
+e. The code reduces the number of variables and observations in the `movies` data frame to six.
+
+## Q31: Reshaping inflation data — question {.xsmall}
+
+`country_inflation` has **38 rows and 34 columns**: one row per country, a `country` column, and annual inflation columns for **1993–2025**.
+
+```{r}
+#| eval: false
+country_inflation_long <- country_inflation |>
+  pivot_longer(
+    cols = !country,
+    names_to = "year",
+    names_transform = as.numeric,
+    values_to = "inflation_rate"
+  )
+```
+
+::: question
+How many rows and columns does the result have? **Show where each number comes from.** What does each row represent, what did `pivot_longer()` do, and what does `names_transform = as.numeric` accomplish?
+:::
+
+## Q31: Reshaping inflation data — answer {.xsmall}
+
+**Rows: 1,254. Columns: 3.** Each row represents **one country in one year**.
+
+1. **38** is the number of countries (the original rows).
+2. **34 − 1 = 33** columns are year columns: exclude the one `country` column. Equivalently, **2025 − 1993 + 1 = 33** years.
+3. Each country becomes **33 rows**, so the total is:
+
+$$38 \times 33 = 38 \times 30 + 38 \times 3 = 1{,}140 + 114 = 1{,}254$$
+
+The output columns are **`country` + `year` + `inflation_rate` = 3**:
+
+- `country` is retained and repeated for each year.
+- The 33 old column **names** become values in `year`.
+- Their cell **values** become values in `inflation_rate`.
+
+Missing inflation values still get rows; this code does not drop them.
+
+## Q32: Ratios and the top five — question {.xsmall}
+
+```{r}
+#| label: q32-original-pipeline
+country_inflation |>
+  filter(!is.na(`1993`), !is.na(`2025`)) |>
+  mutate(inf_ratio = `2025` / `1993`) |>
+  select(country, inf_ratio) |>
+  arrange(desc(inf_ratio)) |>
+  slice_head(n = 5)
+```
+
+**Part 1:** What does the resulting data frame represent? What does New Zealand's `inf_ratio` of 2.20 mean?
+
+**Part 2:** What would change if the `filter()` step were removed? Why could that be misleading?
+
+## Q32: Ratios and the top five — answer {.xsmall}
+
+**Part 1:** These are the **five countries with the largest 2025-to-1993 inflation ratios**, in descending order.
+
+- A ratio of **2.20** means New Zealand's 2025 inflation rate was **2.20 times its 1993 rate** (120% higher). It does not mean the 2025 inflation rate was 2.20%.
+- `arrange(desc(inf_ratio))` puts the largest ratios first. **`slice_head(n = 5)` keeps the first five rows in that order.**
+
+**Part 2:** Without `filter()`, six countries would have `NA` ratios because at least one of their two rates is missing.
+
+- `arrange()` puts these `NA`s last. **For these data, the same five countries would still be returned.**
+- The top-five table cannot reveal whether an absent country has a smaller ratio or lacks data. Filtering makes the exclusion explicit; report that the ranking uses **32 of 38 countries**.
+
+## Q32: What exactly does `slice_head()` do? {.xsmall}
+
+**It selects rows by their current positions. It does not sort or calculate a summary.**
+
+| Stage | Rows | What happened? |
+|:--|--:|:--|
+| Start | 38 | One row per country |
+| `filter(...)` | 32 | Keep countries with both endpoint rates |
+| `mutate(...)` | 32 | Add one ratio to each row |
+| `select(...)` | 32 | Keep two columns |
+| `arrange(desc(inf_ratio))` | 32 | Put largest ratios first |
+| `slice_head(n = 5)` | 5 | Keep rows 1–5 |
+
+Removing **only `slice_head(n = 5)`** keeps all **32 eligible countries**. It does not restore the six countries excluded by `filter()`.
+
+## Other questions {.smaller}
+
+- [Q2](/exam-review/exam-1-review.qmd#question-2)
+- [Q4](/exam-review/exam-1-review.qmd#question-4)
+- [Q7](/exam-review/exam-1-review.qmd#questions-6-and-7)
+- [Q8](/exam-review/exam-1-review.qmd#questions-8---10)
+- [Q14](/exam-review/exam-1-review.qmd#question-14)
+- [Q23](/exam-review/exam-1-review.qmd#question-23)
+- [Q24](/exam-review/exam-1-review.qmd#question-24)
+- [Q28](/exam-review/exam-1-review.qmd#question-28)
+- [Q30](/exam-review/exam-1-review.qmd#question-30)
+
+[Exam review answers](/exam-review/exam-1-review-A.qmd)
