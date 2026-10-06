@@ -287,7 +287,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <h2>Q9: Where did the observations go? — question</h2>
 <p>A friend notices that the total number of observations in this plot seems lower than the total in <code>blizzard_salary</code> (<strong>409 workers</strong>). What might be going on here? Explain your reasoning.</p>
 
-<img data-src="12-exam-I-review_files/figure-html/q9-question-plot-1.png" style="width:100.0%" alt="Stacked counts of workers by salary type and performance rating; both bars together contain fewer than 409 workers." class="r-stretch"><p><span class="fragment"><strong>Observations with missing values for both variables won’t be represented on the plot.</strong></span></p>
+<img data-src="12-exam-I-review_files/figure-revealjs/q9-question-plot-1.png" style="width:100.0%" alt="Stacked counts of workers by salary type and performance rating; both bars together contain fewer than 409 workers." class="r-stretch"><p><span class="fragment"><strong>Observations with missing values for both variables won’t be represented on the plot.</strong></span></p>
 </section>
 <section id="q13-reviewing-an-interpretation-question" class="slide level2 xsmall">
 <h2>Q13: Reviewing an interpretation — question</h2>
@@ -299,7 +299,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="12-exam-I-review_files/figure-html/q13-top-plot-1.png" style="width:100.0%" alt="Salary versus percent increase for Top performers, showing a positive roughly linear association with substantial scatter."></p>
+<p><img data-src="12-exam-I-review_files/figure-revealjs/q13-top-plot-1.png" style="width:100.0%" alt="Salary versus percent increase for Top performers, showing a positive roughly linear association with substantial scatter."></p>
 </figure>
 </div>
 </div>
@@ -322,7 +322,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <span id="cb1-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="12-exam-I-review_files/figure-html/q16-options-1.png" style="width:95.0%" alt="Five options: A island proportions filled by species; B species proportions filled by island; C horizontal species proportions; D island counts filled by species; E horizontal species counts filled by island." class="r-stretch"></section>
+<img data-src="12-exam-I-review_files/figure-revealjs/q16-options-1.png" style="width:95.0%" alt="Five options: A island proportions filled by species; B species proportions filled by island; C horizontal species proportions; D island counts filled by species; E horizontal species counts filled by island." class="r-stretch"></section>
 <section id="q17-reading-a-tibble" class="slide level2 xsmall">
 <h2>Q17: Reading a tibble</h2>
 <p>Based on this output, which statements <strong>must be true</strong>? <strong>Select all that apply.</strong></p>
@@ -756,6 +756,44 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

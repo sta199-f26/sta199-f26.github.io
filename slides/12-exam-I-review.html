@@ -134,7 +134,7 @@ window.Quarto = {
 </script>
 <meta property="og:title" content="Exam 1 Review – STA 199CCL">
 <meta property="og:description" content="Lecture 12">
-<meta property="og:image" content="https://sta199-f26.github.io/slides/12-exam-I-review_files/figure-html/q9-question-plot-1.png">
+<meta property="og:image" content="https://sta199-f26.github.io/slides/12-exam-I-review_files/figure-revealjs/q9-question-plot-1.png">
 <meta property="og:site_name" content="STA 199CCL">
 <meta property="og:image:alt" content="Stacked counts of workers by salary type and performance rating; both bars together contain fewer than 409 workers.">
 <meta property="og:image:height" content="729">
@@ -688,7 +688,7 @@ window.Quarto = {
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="12-exam-I-review_files/figure-html/q9-question-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="12-exam-I-review_files/figure-html/q9-question-plot-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Stacked counts of workers by salary type and performance rating; both bars together contain fewer than 409 workers."></a></p>
+<figure class="figure"><p><a href="12-exam-I-review_files/figure-revealjs/q9-question-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="12-exam-I-review_files/figure-revealjs/q9-question-plot-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Stacked counts of workers by salary type and performance rating; both bars together contain fewer than 409 workers."></a></p>
 </figure>
 </div>
 </div>
@@ -702,7 +702,7 @@ window.Quarto = {
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="12-exam-I-review_files/figure-html/q13-top-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="12-exam-I-review_files/figure-html/q13-top-plot-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Salary versus percent increase for Top performers, showing a positive roughly linear association with substantial scatter."></a></p>
+<figure class="figure"><p><a href="12-exam-I-review_files/figure-revealjs/q13-top-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="12-exam-I-review_files/figure-revealjs/q13-top-plot-1.png" class="img-fluid figure-img" style="width:100.0%" alt="Salary versus percent increase for Top performers, showing a positive roughly linear association with substantial scatter."></a></p>
 </figure>
 </div>
 </div>
@@ -729,7 +729,7 @@ window.Quarto = {
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="12-exam-I-review_files/figure-html/q16-options-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="12-exam-I-review_files/figure-html/q16-options-1.png" class="img-fluid figure-img" style="width:95.0%" alt="Five options: A island proportions filled by species; B species proportions filled by island; C horizontal species proportions; D island counts filled by species; E horizontal species counts filled by island."></a></p>
+<figure class="figure"><p><a href="12-exam-I-review_files/figure-revealjs/q16-options-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="12-exam-I-review_files/figure-revealjs/q16-options-1.png" class="img-fluid figure-img" style="width:95.0%" alt="Five options: A island proportions filled by species; B species proportions filled by island; C horizontal species proportions; D island counts filled by species; E horizontal species counts filled by island."></a></p>
 </figure>
 </div>
 </div>
@@ -947,7 +947,42 @@ window.Quarto = {
 <p><a href="../exam-review/exam-1-review-A.html">Exam review answers</a></p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
