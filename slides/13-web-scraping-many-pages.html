@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Prof.&nbsp;Mine Çetinkaya-Rundel">
+<meta name="dcterms.date" content="2026-10-14">
+<title>Web scraping many pages (and coding with AI!) – STA 199CCL</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e02b5ae353ca98bbdbd673ae67544635.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+<meta property="og:title" content="Web scraping many pages (and coding with AI!) – STA 199CCL">
+<meta property="og:description" content="Lecture 13">
+<meta property="og:image" content="https://sta199-f26.github.io/slides/images/13/wooclap-qr.png">
+<meta property="og:site_name" content="STA 199CCL">
+<meta property="og:image:alt" content="QR code for Wooclap">
+<meta property="og:image:height" content="544">
+<meta property="og:image:width" content="544">
+</head>
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Web scraping many pages (and coding with AI!)</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
+    <div class="dropdown">
+      <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
+              <i class="bi bi-person-raised-hand pe-1"></i>
+            Office hours
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://edstem.org/us/courses/101308/discussion">
+              <i class="bi bi-people-fill pe-1"></i>
+            Help from humans (Ed Discussion)
+            </a>
+          </li>
+      </ul>
+</div>
+    <div class="dropdown">
+      <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
+              <i class="bi bi-megaphone-fill pe-1"></i>
+            Announcements
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.gradescope.com/courses/1350518">
+              <i class="bi bi-file-arrow-up-fill pe-1"></i>
+            Gradescope
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/gradebook">
+              <i class="bi bi-alphabet-uppercase pe-1"></i>
+            Gradebook
+            </a>
+          </li>
+      </ul>
+</div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-support.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Support</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-team.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Team</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Useful links</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-code-alongs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code alongs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Description</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/1-working-collaboratively.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/2-proposal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/3-improvement-progress-I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/4-peer-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/5-improvement-progress-II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/6-presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/7-writeup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/tips-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips + resources</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homeworks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exam-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam reviews</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a>
+  <ul class="collapse">
+<li><a href="#while-you-wait-participate" id="toc-while-you-wait-participate" class="nav-link" data-scroll-target="#while-you-wait-participate">While you wait: Participate 📱💻</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 📱💻</a></li>
+  <li><a href="#a-new-r-workflow" id="toc-a-new-r-workflow" class="nav-link" data-scroll-target="#a-new-r-workflow">A new R workflow</a></li>
+  <li><a href="#where-we-left-off" id="toc-where-we-left-off" class="nav-link" data-scroll-target="#where-we-left-off">Where we left off…</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#data-cleaning-review" id="toc-data-cleaning-review" class="nav-link" data-scroll-target="#data-cleaning-review">Data cleaning review</a>
+  <ul class="collapse">
+<li><a href="#chronicle_raw" id="toc-chronicle_raw" class="nav-link" data-scroll-target="#chronicle_raw"><code>chronicle_raw</code></a></li>
+  <li><a href="#author_date_time" id="toc-author_date_time" class="nav-link" data-scroll-target="#author_date_time"><code>author_date_time</code></a></li>
+  <li><a href="#author-and-date_time" id="toc-author-and-date_time" class="nav-link" data-scroll-target="#author-and-date_time"><code>author</code> and <code>date_time</code></a></li>
+  <li><a href="#date_time" id="toc-date_time" class="nav-link" data-scroll-target="#date_time"><code>date_time</code></a></li>
+  <li><a href="#date-and-time-columns" id="toc-date-and-time-columns" class="nav-link" data-scroll-target="#date-and-time-columns">Date and time columns</a></li>
+  <li><a href="#column" id="toc-column" class="nav-link" data-scroll-target="#column"><code>column</code></a></li>
+  <li><a href="#column-1" id="toc-column-1" class="nav-link" data-scroll-target="#column-1"><code>column</code></a></li>
+  <li><a href="#column-2" id="toc-column-2" class="nav-link" data-scroll-target="#column-2"><code>column</code></a></li>
+  <li><a href="#url" id="toc-url" class="nav-link" data-scroll-target="#url"><code>url</code></a></li>
+  <li><a href="#url-1" id="toc-url-1" class="nav-link" data-scroll-target="#url-1"><code>url</code></a></li>
+  <li><a href="#select-relevant-columns" id="toc-select-relevant-columns" class="nav-link" data-scroll-target="#select-relevant-columns">Select relevant columns</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#next-step-article-text" id="toc-next-step-article-text" class="nav-link" data-scroll-target="#next-step-article-text">Next step:<br>Article text</a>
+  <ul class="collapse">
+<li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan">Plan</a></li>
+  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#the-in-the-room" id="toc-the-in-the-room" class="nav-link" data-scroll-target="#the-in-the-room">The 🐘 in the room</a>
+  <ul class="collapse">
+<li><a href="#go-for-it" id="toc-go-for-it" class="nav-link" data-scroll-target="#go-for-it">Go for it</a></li>
+  <li><a href="#another-demo" id="toc-another-demo" class="nav-link" data-scroll-target="#another-demo">Another demo</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#working-with-ai" id="toc-working-with-ai" class="nav-link" data-scroll-target="#working-with-ai">Working with AI</a>
+  <ul class="collapse">
+<li><a href="#codex-as-a-coding-collaborator" id="toc-codex-as-a-coding-collaborator" class="nav-link" data-scroll-target="#codex-as-a-coding-collaborator">Codex as a coding collaborator</a></li>
+  <li><a href="#give-it-a-concrete-task" id="toc-give-it-a-concrete-task" class="nav-link" data-scroll-target="#give-it-a-concrete-task">Give it a concrete task</a></li>
+  <li><a href="#inspect-the-generated-code" id="toc-inspect-the-generated-code" class="nav-link" data-scroll-target="#inspect-the-generated-code">Inspect the generated code</a></li>
+  <li><a href="#writing-code-neq-verifying-code" id="toc-writing-code-neq-verifying-code" class="nav-link" data-scroll-target="#writing-code-neq-verifying-code">Writing code <span class="math inline">\(\neq\)</span> verifying code</a></li>
+  <li><a href="#test-small-before-scaling-up" id="toc-test-small-before-scaling-up" class="nav-link" data-scroll-target="#test-small-before-scaling-up">Test small before scaling up</a></li>
+  <li><a href="#ask-for-evidence-in-the-prompt" id="toc-ask-for-evidence-in-the-prompt" class="nav-link" data-scroll-target="#ask-for-evidence-in-the-prompt">Ask for evidence in the prompt</a></li>
+  <li><a href="#the-human-remains-responsible" id="toc-the-human-remains-responsible" class="nav-link" data-scroll-target="#the-human-remains-responsible">The human remains responsible</a></li>
+  <li><a href="#how-does-codex-know-how-to-work" id="toc-how-does-codex-know-how-to-work" class="nav-link" data-scroll-target="#how-does-codex-know-how-to-work">How does Codex know how to work?</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/13-web-scraping-many-pages.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="13-web-scraping-many-pages-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Web scraping many pages (and coding with AI!)</h1>
+<p class="subtitle lead">Lecture 13</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Prof.&nbsp;Mine Çetinkaya-Rundel </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Duke University <br> STA 199 - Fall 2026
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 14, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header><section id="warm-up" class="level1"><h1>Warm-up</h1>
+<section id="while-you-wait-participate" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="while-you-wait-participate">While you wait: Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>The following code in <code>chronicle-scrape.R</code> extracts titles of an opinion article from The Chronicle website:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">&lt;-</span> <span class="fu">read_html</span><span class="op">(</span></span>
+<span>  <span class="st">"https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com/section/opinionabc4.html"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">titles</span> <span class="op">&lt;-</span> <span class="va">page</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">html_elements</span><span class="op">(</span><span class="st">"#__snw-main-content .text-xl"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">html_text</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Which of the following needs to change to extract column titles instead?</p>
+<div class="wooclap-choices">
+<ul>
+<li>Change the URL in <code>read_html()</code>
+</li>
+<li>Change the function <code>html_elements()</code> to <code>html_element()</code>
+</li>
+<li>Change the CSS selector <code>#__snw-main-content .text-xl</code> to <code>.space-y-4 .text-brand</code>
+</li>
+<li>Change the function <code>html_text()</code> to <code>html_attr()</code>
+</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/13/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/13/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/OKZKXCY">wooclap.com</a> and use the code OKZKXCY.</p>
+</div>
+</div>
+</section><section id="announcements" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="announcements">Announcements</h2>
+<ul>
+<li><p>(Optional) Midsemester course feedback form due tomorrow at 11:59pm</p></li>
+<li><p>Read Project milestone 3 instructions before lab tomorrow</p></li>
+</ul></section><section id="participate" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="participate">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Put the following tasks in order to scrape data from a website:</p>
+<div class="wooclap-choices">
+<ul>
+<li>Use the SelectorGadget identify tags for elements you want to grab</li>
+<li>Use <code>read_html()</code> to read the page’s source code into R</li>
+<li>Use other functions from the <strong>rvest</strong> package to parse the elements you’re interested in</li>
+<li>Put the components together in a data frame (a tibble) and analyze it like you analyze any other data</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/13/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/13/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/OKZKXCY">wooclap.com</a> and use the code OKZKXCY.</p>
+</div>
+</div>
+</section><section id="a-new-r-workflow" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="a-new-r-workflow">A new R workflow</h2>
+<ul>
+<li><p>When working in a Quarto document, your analysis is re-run each time you knit</p></li>
+<li><p>If web scraping in a Quarto document, you’d be re-scraping the data each time you knit, which is undesirable (and not <em>nice</em>)!</p></li>
+<li>
+<p>An alternative workflow:</p>
+<ul>
+<li>Use an R script to save your code</li>
+<li>Saving interim data scraped using the code in the script as CSV or RDS files</li>
+<li>Use the saved data in your analysis in your Quarto document</li>
+</ul>
+</li>
+</ul></section><section id="where-we-left-off" class="level2"><h2 class="anchored" data-anchor-id="where-we-left-off">Where we left off…</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># load packages ----------------------------------------------------------------</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">library</span>(polite)</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># check that we can scrape data from the chronicle -----------------------------</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="fu">bow</span>(<span class="st">"https://www.dukechronicle.com/section/opinion?page=1&amp;per_page=500"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># read page --------------------------------------------------------------------</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># read from local copy of the site</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(</span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="st">"https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com/section/opinionabc4.html"</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>)</span>
+<span id="cb2-17"><a href="#cb2-17"></a></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># parse components -------------------------------------------------------------</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a>titles <span class="ot">&lt;-</span> page <span class="sc">|&gt;</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="fu">html_elements</span>(<span class="st">"#__snw-main-content .text-xl"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="fu">html_text</span>()</span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a>columns <span class="ot">&lt;-</span> page <span class="sc">|&gt;</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">html_elements</span>(<span class="st">".space-y-4 .text-brand"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="fu">html_text</span>()</span>
+<span id="cb2-27"><a href="#cb2-27"></a></span>
+<span id="cb2-28"><a href="#cb2-28"></a>authors_dates_times <span class="ot">&lt;-</span> page <span class="sc">|&gt;</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>  <span class="fu">html_elements</span>(<span class="st">".space-y-4 .font-semibold"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>  <span class="fu">html_text2</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>  <span class="fu">str_remove</span>(<span class="st">"By "</span>)</span>
+<span id="cb2-32"><a href="#cb2-32"></a></span>
+<span id="cb2-33"><a href="#cb2-33"></a>urls <span class="ot">&lt;-</span> page <span class="sc">|&gt;</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>  <span class="fu">html_elements</span>(<span class="st">"#__snw-main-content .text-xl"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>  <span class="fu">html_attr</span>(<span class="at">name =</span> <span class="st">"href"</span>)</span>
+<span id="cb2-36"><a href="#cb2-36"></a></span>
+<span id="cb2-37"><a href="#cb2-37"></a><span class="co"># create a data frame ----------------------------------------------------------</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a></span>
+<span id="cb2-39"><a href="#cb2-39"></a>chronicle_raw <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-40"><a href="#cb2-40"></a>  <span class="co"># var name  = vector name</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a>  <span class="at">title =</span> titles,</span>
+<span id="cb2-42"><a href="#cb2-42"></a>  <span class="at">author_date_time =</span> authors_dates_times,</span>
+<span id="cb2-43"><a href="#cb2-43"></a>  <span class="at">column =</span> columns,</span>
+<span id="cb2-44"><a href="#cb2-44"></a>  <span class="at">url =</span> urls</span>
+<span id="cb2-45"><a href="#cb2-45"></a>)</span>
+<span id="cb2-46"><a href="#cb2-46"></a></span>
+<span id="cb2-47"><a href="#cb2-47"></a><span class="co"># clean up data ----------------------------------------------------------------</span></span>
+<span id="cb2-48"><a href="#cb2-48"></a></span>
+<span id="cb2-49"><a href="#cb2-49"></a>chronicle <span class="ot">&lt;-</span> chronicle_raw <span class="sc">|&gt;</span></span>
+<span id="cb2-50"><a href="#cb2-50"></a>  <span class="fu">separate_wider_delim</span>(</span>
+<span id="cb2-51"><a href="#cb2-51"></a>    author_date_time,</span>
+<span id="cb2-52"><a href="#cb2-52"></a>    <span class="at">delim =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">|</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb2-53"><a href="#cb2-53"></a>    <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"author"</span>, <span class="st">"date_time"</span>),</span>
+<span id="cb2-54"><a href="#cb2-54"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-55"><a href="#cb2-55"></a>  <span class="fu">separate_wider_delim</span>(</span>
+<span id="cb2-56"><a href="#cb2-56"></a>    column,</span>
+<span id="cb2-57"><a href="#cb2-57"></a>    <span class="at">delim =</span> <span class="st">" | "</span>,</span>
+<span id="cb2-58"><a href="#cb2-58"></a>    <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"column_1"</span>, <span class="st">"column_2"</span>),</span>
+<span id="cb2-59"><a href="#cb2-59"></a>    <span class="at">too_few =</span> <span class="st">"align_start"</span></span>
+<span id="cb2-60"><a href="#cb2-60"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-61"><a href="#cb2-61"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-62"><a href="#cb2-62"></a>    <span class="at">column =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(column_2), column_1, column_2),</span>
+<span id="cb2-63"><a href="#cb2-63"></a>    <span class="at">date_time =</span> <span class="fu">mdy_hm</span>(date_time),</span>
+<span id="cb2-64"><a href="#cb2-64"></a>    <span class="at">month =</span> <span class="fu">month</span>(date_time, <span class="at">label =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-65"><a href="#cb2-65"></a>    <span class="at">day =</span> <span class="fu">day</span>(date_time),</span>
+<span id="cb2-66"><a href="#cb2-66"></a>    <span class="at">year =</span> <span class="fu">year</span>(date_time),</span>
+<span id="cb2-67"><a href="#cb2-67"></a>    <span class="at">date =</span> <span class="fu">make_date</span>(year, month, day),</span>
+<span id="cb2-68"><a href="#cb2-68"></a>    <span class="at">url =</span> <span class="fu">str_remove</span>(url, <span class="st">".."</span>),</span>
+<span id="cb2-69"><a href="#cb2-69"></a>    <span class="at">url =</span> <span class="fu">paste0</span>(</span>
+<span id="cb2-70"><a href="#cb2-70"></a>      <span class="st">"https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com"</span>,</span>
+<span id="cb2-71"><a href="#cb2-71"></a>      url</span>
+<span id="cb2-72"><a href="#cb2-72"></a>    )</span>
+<span id="cb2-73"><a href="#cb2-73"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-74"><a href="#cb2-74"></a>  <span class="fu">select</span>(title, author, date_time, date, month, day, column, url)</span>
+<span id="cb2-75"><a href="#cb2-75"></a></span>
+<span id="cb2-76"><a href="#cb2-76"></a><span class="co"># write data -------------------------------------------------------------------</span></span>
+<span id="cb2-77"><a href="#cb2-77"></a></span>
+<span id="cb2-78"><a href="#cb2-78"></a><span class="fu">write_csv</span>(chronicle, <span class="at">file =</span> <span class="st">"data/chronicle-2026-09-29.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="data-cleaning-review" class="level1"><h1>Data cleaning review</h1>
+<section id="chronicle_raw" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="chronicle_raw"><code>chronicle_raw</code></h2>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_raw</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 4
+   title                                           author_date_time column url  
+   &lt;chr&gt;                                           &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;
+ 1 Find your tree                                  "Arnav Jain\n|\… Opini… ../a…
+ 2 ‘I hate Barack Obama’: Mitt Romney encourages … "Monday Monday\… Opini… ../a…
+ 3 Duke’s Roots of Faith                           "Luke A. Powery… Opini… ../a…
+ 4 Music’s connection to the self and the past     "Robert Wallace… Opini… ../a…
+ 5 Response to the DukeEngage Ghana Revelations    "Charles D. Pio… Opini… ../a…
+ 6 Sacrality of the University                     "Luke A. Powery… Opini… ../a…
+ 7 The Chronicle’s Board of Directors supports st… "Duke Student P… Opini… ../a…
+ 8 Do you                                          "Luke A. Powery… Opini… ../a…
+ 9 Community members share remembrances for Alex … "Remembrances\n… Opini… ../a…
+10 The Chronicle is accepting remembrances for Al… "Remembrances\n… Opini… ../a…
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+</section><section id="author_date_time" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="author_date_time"><code>author_date_time</code></h2>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_raw</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">author_date_time</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 1
+   author_date_time                                                 
+   &lt;chr&gt;                                                            
+ 1 "Arnav Jain\n|\nSep 29, 2026, 12:00 PM"                          
+ 2 "Monday Monday\n|\nSep 28, 2026, 9:42 PM"                        
+ 3 "Luke A. Powery\n|\nSep 28, 2026, 2:36 PM"                       
+ 4 "Robert Wallace\n|\nSep 24, 2026, 10:00 AM"                      
+ 5 "Charles D. Piot\n|\nSep 23, 2026, 8:27 PM"                      
+ 6 "Luke A. Powery\n|\nSep 15, 2026, 2:19 AM"                       
+ 7 "Duke Student Publishing Company Board\n|\nSep 5, 2026, 12:37 AM"
+ 8 "Luke A. Powery\n|\nAug 31, 2026, 1:57 PM"                       
+ 9 "Remembrances\n|\nAug 30, 2026, 4:29 PM"                         
+10 "Remembrances\n|\nAug 28, 2026, 12:00 PM"                        
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+</section><section id="author-and-date_time" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="author-and-date_time">
+<code>author</code> and <code>date_time</code>
+</h2>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_1</span> <span class="op">&lt;-</span> <span class="va">chronicle_raw</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">separate_wider_delim</span><span class="op">(</span></span>
+<span>    <span class="va">author_date_time</span>,</span>
+<span>    delim <span class="op">=</span> <span class="st">"\n|\n"</span>,</span>
+<span>    names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"author"</span>, <span class="st">"date_time"</span><span class="op">)</span>,</span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">author</span>, <span class="va">date_time</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chronicle_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 5
+   author                                date_time            title column url  
+   &lt;chr&gt;                                 &lt;chr&gt;                &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
+ 1 Arnav Jain                            Sep 29, 2026, 12:00… Find… Opini… ../a…
+ 2 Monday Monday                         Sep 28, 2026, 9:42 … ‘I h… Opini… ../a…
+ 3 Luke A. Powery                        Sep 28, 2026, 2:36 … Duke… Opini… ../a…
+ 4 Robert Wallace                        Sep 24, 2026, 10:00… Musi… Opini… ../a…
+ 5 Charles D. Piot                       Sep 23, 2026, 8:27 … Resp… Opini… ../a…
+ 6 Luke A. Powery                        Sep 15, 2026, 2:19 … Sacr… Opini… ../a…
+ 7 Duke Student Publishing Company Board Sep 5, 2026, 12:37 … The … Opini… ../a…
+ 8 Luke A. Powery                        Aug 31, 2026, 1:57 … Do y… Opini… ../a…
+ 9 Remembrances                          Aug 30, 2026, 4:29 … Comm… Opini… ../a…
+10 Remembrances                          Aug 28, 2026, 12:00… The … Opini… ../a…
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+</section><section id="date_time" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="date_time"><code>date_time</code></h2>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_2</span> <span class="op">&lt;-</span> <span class="va">chronicle_1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>date_time <span class="op">=</span> <span class="fu">mdy_hm</span><span class="op">(</span><span class="va">date_time</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">date_time</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chronicle_2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 5
+   date_time           author                                title  column url  
+   &lt;dttm&gt;              &lt;chr&gt;                                 &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;
+ 1 2026-09-29 12:00:00 Arnav Jain                            Find … Opini… ../a…
+ 2 2026-09-28 21:42:00 Monday Monday                         ‘I ha… Opini… ../a…
+ 3 2026-09-28 14:36:00 Luke A. Powery                        Duke’… Opini… ../a…
+ 4 2026-09-24 10:00:00 Robert Wallace                        Music… Opini… ../a…
+ 5 2026-09-23 20:27:00 Charles D. Piot                       Respo… Opini… ../a…
+ 6 2026-09-15 02:19:00 Luke A. Powery                        Sacra… Opini… ../a…
+ 7 2026-09-05 00:37:00 Duke Student Publishing Company Board The C… Opini… ../a…
+ 8 2026-08-31 13:57:00 Luke A. Powery                        Do you Opini… ../a…
+ 9 2026-08-30 16:29:00 Remembrances                          Commu… Opini… ../a…
+10 2026-08-28 12:00:00 Remembrances                          The C… Opini… ../a…
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+</section><section id="date-and-time-columns" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="date-and-time-columns">Date and time columns</h2>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_3</span> <span class="op">&lt;-</span> <span class="va">chronicle_2</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span></span>
+<span>    month <span class="op">=</span> <span class="fu">month</span><span class="op">(</span><span class="va">date_time</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    day <span class="op">=</span> <span class="fu">day</span><span class="op">(</span><span class="va">date_time</span><span class="op">)</span>,</span>
+<span>    year <span class="op">=</span> <span class="fu">year</span><span class="op">(</span><span class="va">date_time</span><span class="op">)</span>,</span>
+<span>    date <span class="op">=</span> <span class="fu">make_date</span><span class="op">(</span><span class="va">year</span>, <span class="va">month</span>, <span class="va">day</span><span class="op">)</span>,</span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">month</span>, <span class="va">day</span>, <span class="va">year</span>, <span class="va">date</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chronicle_3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 9
+   month   day  year date       date_time           author    title column url  
+   &lt;ord&gt; &lt;int&gt; &lt;dbl&gt; &lt;date&gt;     &lt;dttm&gt;              &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
+ 1 Sep      29  2026 2026-09-29 2026-09-29 12:00:00 Arnav Ja… Find… Opini… ../a…
+ 2 Sep      28  2026 2026-09-28 2026-09-28 21:42:00 Monday M… ‘I h… Opini… ../a…
+ 3 Sep      28  2026 2026-09-28 2026-09-28 14:36:00 Luke A. … Duke… Opini… ../a…
+ 4 Sep      24  2026 2026-09-24 2026-09-24 10:00:00 Robert W… Musi… Opini… ../a…
+ 5 Sep      23  2026 2026-09-23 2026-09-23 20:27:00 Charles … Resp… Opini… ../a…
+ 6 Sep      15  2026 2026-09-15 2026-09-15 02:19:00 Luke A. … Sacr… Opini… ../a…
+ 7 Sep       5  2026 2026-09-05 2026-09-05 00:37:00 Duke Stu… The … Opini… ../a…
+ 8 Aug      31  2026 2026-08-31 2026-08-31 13:57:00 Luke A. … Do y… Opini… ../a…
+ 9 Aug      30  2026 2026-08-30 2026-08-30 16:29:00 Remembra… Comm… Opini… ../a…
+10 Aug      28  2026 2026-08-28 2026-08-28 12:00:00 Remembra… The … Opini… ../a…
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+</section><section id="column" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="column"><code>column</code></h2>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">column</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 1
+   column                 
+   &lt;chr&gt;                  
+ 1 Opinion                
+ 2 Opinion | Campus Voices
+ 3 Opinion | Campus Voices
+ 4 Opinion | Campus Voices
+ 5 Opinion                
+ 6 Opinion | Campus Voices
+ 7 Opinion                
+ 8 Opinion | Campus Voices
+ 9 Opinion | Campus Voices
+10 Opinion | Campus Voices
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+</section><section id="column-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="column-1"><code>column</code></h2>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_4</span> <span class="op">&lt;-</span> <span class="va">chronicle_3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">separate_wider_delim</span><span class="op">(</span></span>
+<span>    <span class="va">column</span>,</span>
+<span>    delim <span class="op">=</span> <span class="st">" | "</span>,</span>
+<span>    names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"column_1"</span>, <span class="st">"column_2"</span><span class="op">)</span>,</span>
+<span>    too_few <span class="op">=</span> <span class="st">"align_start"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">column_1</span>, <span class="va">column_2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chronicle_4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 10
+   column_1 column_2     month   day  year date       date_time           author
+   &lt;chr&gt;    &lt;chr&gt;        &lt;ord&gt; &lt;int&gt; &lt;dbl&gt; &lt;date&gt;     &lt;dttm&gt;              &lt;chr&gt; 
+ 1 Opinion  &lt;NA&gt;         Sep      29  2026 2026-09-29 2026-09-29 12:00:00 Arnav…
+ 2 Opinion  Campus Voic… Sep      28  2026 2026-09-28 2026-09-28 21:42:00 Monda…
+ 3 Opinion  Campus Voic… Sep      28  2026 2026-09-28 2026-09-28 14:36:00 Luke …
+ 4 Opinion  Campus Voic… Sep      24  2026 2026-09-24 2026-09-24 10:00:00 Rober…
+ 5 Opinion  &lt;NA&gt;         Sep      23  2026 2026-09-23 2026-09-23 20:27:00 Charl…
+ 6 Opinion  Campus Voic… Sep      15  2026 2026-09-15 2026-09-15 02:19:00 Luke …
+ 7 Opinion  &lt;NA&gt;         Sep       5  2026 2026-09-05 2026-09-05 00:37:00 Duke …
+ 8 Opinion  Campus Voic… Aug      31  2026 2026-08-31 2026-08-31 13:57:00 Luke …
+ 9 Opinion  Campus Voic… Aug      30  2026 2026-08-30 2026-08-30 16:29:00 Remem…
+10 Opinion  Campus Voic… Aug      28  2026 2026-08-28 2026-08-28 12:00:00 Remem…
+# ℹ 490 more rows
+# ℹ 2 more variables: title &lt;chr&gt;, url &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section><section id="column-2" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="column-2"><code>column</code></h2>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_5</span> <span class="op">&lt;-</span> <span class="va">chronicle_4</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>column <span class="op">=</span> <span class="fu">if_else</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">column_2</span><span class="op">)</span>, <span class="va">column_1</span>, <span class="va">column_2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"column"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chronicle_5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 11
+   column_1 column_2     column month   day  year date       date_time          
+   &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;  &lt;ord&gt; &lt;int&gt; &lt;dbl&gt; &lt;date&gt;     &lt;dttm&gt;             
+ 1 Opinion  &lt;NA&gt;         Opini… Sep      29  2026 2026-09-29 2026-09-29 12:00:00
+ 2 Opinion  Campus Voic… Campu… Sep      28  2026 2026-09-28 2026-09-28 21:42:00
+ 3 Opinion  Campus Voic… Campu… Sep      28  2026 2026-09-28 2026-09-28 14:36:00
+ 4 Opinion  Campus Voic… Campu… Sep      24  2026 2026-09-24 2026-09-24 10:00:00
+ 5 Opinion  &lt;NA&gt;         Opini… Sep      23  2026 2026-09-23 2026-09-23 20:27:00
+ 6 Opinion  Campus Voic… Campu… Sep      15  2026 2026-09-15 2026-09-15 02:19:00
+ 7 Opinion  &lt;NA&gt;         Opini… Sep       5  2026 2026-09-05 2026-09-05 00:37:00
+ 8 Opinion  Campus Voic… Campu… Aug      31  2026 2026-08-31 2026-08-31 13:57:00
+ 9 Opinion  Campus Voic… Campu… Aug      30  2026 2026-08-30 2026-08-30 16:29:00
+10 Opinion  Campus Voic… Campu… Aug      28  2026 2026-08-28 2026-08-28 12:00:00
+# ℹ 490 more rows
+# ℹ 3 more variables: author &lt;chr&gt;, title &lt;chr&gt;, url &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section><section id="url" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="url"><code>url</code></h2>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_5</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 1
+   url                                                                
+   &lt;chr&gt;                                                              
+ 1 ../article/find-your-tree-20260929.html                            
+ 2 ../article/20260928-mondaymonday-20260928.html                     
+ 3 ../article/20260928-lukepowery-20260928.html                       
+ 4 ../article/musics-connection-to-the-self-and-the-past-20260924.html
+ 5 ../article/response-dukeengage-ghana-20260923.html                 
+ 6 ../article/20260914-lukepowery-20260915.html                       
+ 7 ../article/20260409-dukestudentboard-20260905.html                 
+ 8 ../article/lukepowery-doyou-20260831.html                          
+ 9 ../article/20260830-alexdittarcommunity-20260830.html              
+10 ../article/20260827-remembrances-alex-dittmar-20260828.html        
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+</section><section id="url-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="url-1"><code>url</code></h2>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_6</span> <span class="op">&lt;-</span> <span class="va">chronicle_5</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span></span>
+<span>    url <span class="op">=</span> <span class="fu">str_replace</span><span class="op">(</span></span>
+<span>      <span class="va">url</span>,</span>
+<span>      <span class="st">".."</span>,</span>
+<span>      <span class="st">"https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chronicle_6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 11
+   url                     column_1 column_2 column month   day  year date      
+   &lt;chr&gt;                   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  &lt;ord&gt; &lt;int&gt; &lt;dbl&gt; &lt;date&gt;    
+ 1 https://www2.stat.duke… Opinion  &lt;NA&gt;     Opini… Sep      29  2026 2026-09-29
+ 2 https://www2.stat.duke… Opinion  Campus … Campu… Sep      28  2026 2026-09-28
+ 3 https://www2.stat.duke… Opinion  Campus … Campu… Sep      28  2026 2026-09-28
+ 4 https://www2.stat.duke… Opinion  Campus … Campu… Sep      24  2026 2026-09-24
+ 5 https://www2.stat.duke… Opinion  &lt;NA&gt;     Opini… Sep      23  2026 2026-09-23
+ 6 https://www2.stat.duke… Opinion  Campus … Campu… Sep      15  2026 2026-09-15
+ 7 https://www2.stat.duke… Opinion  &lt;NA&gt;     Opini… Sep       5  2026 2026-09-05
+ 8 https://www2.stat.duke… Opinion  Campus … Campu… Aug      31  2026 2026-08-31
+ 9 https://www2.stat.duke… Opinion  Campus … Campu… Aug      30  2026 2026-08-30
+10 https://www2.stat.duke… Opinion  Campus … Campu… Aug      28  2026 2026-08-28
+# ℹ 490 more rows
+# ℹ 3 more variables: date_time &lt;dttm&gt;, author &lt;chr&gt;, title &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section><section id="select-relevant-columns" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="select-relevant-columns">Select relevant columns</h2>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle</span> <span class="op">&lt;-</span> <span class="va">chronicle_6</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">title</span>, <span class="va">author</span>, <span class="va">date_time</span>, <span class="va">date</span>, <span class="va">month</span>, <span class="va">day</span>, <span class="va">column</span>, <span class="va">url</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chronicle</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 8
+   title          author date_time           date       month   day column url  
+   &lt;chr&gt;          &lt;chr&gt;  &lt;dttm&gt;              &lt;date&gt;     &lt;ord&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;
+ 1 Find your tree Arnav… 2026-09-29 12:00:00 2026-09-29 Sep      29 Opini… http…
+ 2 ‘I hate Barac… Monda… 2026-09-28 21:42:00 2026-09-28 Sep      28 Campu… http…
+ 3 Duke’s Roots … Luke … 2026-09-28 14:36:00 2026-09-28 Sep      28 Campu… http…
+ 4 Music’s conne… Rober… 2026-09-24 10:00:00 2026-09-24 Sep      24 Campu… http…
+ 5 Response to t… Charl… 2026-09-23 20:27:00 2026-09-23 Sep      23 Opini… http…
+ 6 Sacrality of … Luke … 2026-09-15 02:19:00 2026-09-15 Sep      15 Campu… http…
+ 7 The Chronicle… Duke … 2026-09-05 00:37:00 2026-09-05 Sep       5 Opini… http…
+ 8 Do you         Luke … 2026-08-31 13:57:00 2026-08-31 Aug      31 Campu… http…
+ 9 Community mem… Remem… 2026-08-30 16:29:00 2026-08-30 Aug      30 Campu… http…
+10 The Chronicle… Remem… 2026-08-28 12:00:00 2026-08-28 Aug      28 Campu… http…
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+</section></section><section id="next-step-article-text" class="level1"><h1>Next step:<br>Article text</h1>
+<section id="plan" class="level2"><h2 class="anchored" data-anchor-id="plan">Plan</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Write a function that takes a URL and returns the article text on that page (then test it on a page)</p></li>
+<li><p>Run the function on each page in the <code>chronicle</code> data frame (but start by testing it on a few pages)</p></li>
+<li><p>Save the results in a new column in the <code>chronicle</code> data frame</p></li>
+</ul>
+</div>
+</section><section id="demo" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="demo">Demo</h2>
+<div class="demo">
+<ul>
+<li><p>Go to your ae project in Positron.</p></li>
+<li><p>If you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.</p></li>
+<li><p>Pull to get today’s application exercise file: <code>ae-08-chronicle-scrape-II.R</code>.</p></li>
+<li><p>Then, close your laptop, and watch me demo the next few step.</p></li>
+</ul>
+</div>
+</section></section><section id="the-in-the-room" class="level1"><h1>The 🐘 in the room</h1>
+<section id="go-for-it" class="level2"><h2 class="anchored" data-anchor-id="go-for-it">Go for it</h2>
+<p>ask the question you want to ask!</p>
+<p><br></p>
+<div class="question fragment">
+<p>If AI can do all of this, why do I need to learn how to do it myself?</p>
+</div>
+</section><section id="another-demo" class="level2"><h2 class="anchored" data-anchor-id="another-demo">Another demo</h2>
+<div class="demo">
+<p>Let’s try something simple…</p>
+<ul>
+<li><p>Create a scatterplot of miles per gallon vs.&nbsp;displacement in mtcars, and overlay the best fit line for predicting mpg from displacement.</p></li>
+<li><p>Now limit to cars with displacement below 200.</p></li>
+</ul>
+</div>
+</section></section><section id="working-with-ai" class="level1"><h1>Working with AI</h1>
+<section id="codex-as-a-coding-collaborator" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="codex-as-a-coding-collaborator">Codex as a coding collaborator</h2>
+<p>Codex can…</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Read the active file and related project files</p></li>
+<li><p>Use existing functions and coding conventions</p></li>
+<li><p>Edit files directly</p></li>
+<li><p>Run code and report results</p></li>
+<li><p>Revise its work after feedback</p></li>
+</ul>
+</div>
+<div class="question fragment">
+<p>Codex can take actions, but <strong>you</strong> define success and decide what evidence is sufficient.</p>
+</div>
+</section><section id="give-it-a-concrete-task" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="give-it-a-concrete-task">Give it a concrete task</h2>
+<blockquote class="blockquote">
+<p>Use the <code>scrape_article()</code> function in <code>ae-08-chronicle-scrape-II.R</code> and tidyverse to add a column to the <code>chronicle</code> data frame called article content with the content of the articles from each page.</p>
+</blockquote>
+<p>. . .</p>
+<p>Why is this a useful prompt?</p>
+<div class="incremental">
+<ul class="incremental">
+<li>Names the file and existing function</li>
+<li>Names the preferred syntax</li>
+<li>Names the data frame</li>
+<li>Describes the desired output</li>
+<li>Provides enough context to inspect the project</li>
+</ul>
+</div>
+</section><section id="inspect-the-generated-code" class="level2"><h2 class="anchored" data-anchor-id="inspect-the-generated-code">Inspect the generated code</h2>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle</span> <span class="op">&lt;-</span> <span class="va">chronicle</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>article_content <span class="op">=</span> <span class="fu">map_chr</span><span class="op">(</span><span class="va">url</span>, <span class="va">scrape_article</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>. . .</p>
+<p><code>map_chr()</code> applies <code>scrape_article()</code> to every URL and requires the function to return one character value per row.</p>
+<div class="question fragment">
+<p>Is generating syntactically valid code enough?</p>
+</div>
+</section><section id="writing-code-neq-verifying-code" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="writing-code-neq-verifying-code">Writing code <span class="math inline">\(\neq\)</span> verifying code</h2>
+<blockquote class="blockquote">
+<p><strong>Human:</strong> Did you run this code to confirm it works?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Codex:</strong> No.&nbsp;I only confirmed that the script parses without syntax errors.</p>
+</blockquote>
+<p>. . .</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Parsing</strong></p>
+<p>Is the syntax valid?</p>
+</div><div class="column" style="width:33%;">
+<p><strong>Execution</strong></p>
+<p>Does the code run?</p>
+</div><div class="column" style="width:33%;">
+<p><strong>Validation</strong></p>
+<p>Is the output correct?</p>
+</div>
+</div>
+</section><section id="test-small-before-scaling-up" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="test-small-before-scaling-up">Test small before scaling up</h2>
+<blockquote class="blockquote">
+<p>Try it with the first three rows of the data frame to test if it works.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle_test</span> <span class="op">&lt;-</span> <span class="va">chronicle</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">slice_head</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span></span>
+<span>    article_content <span class="op">=</span> <span class="fu">map_chr</span><span class="op">(</span><span class="va">url</span>, <span class="va">scrape_article</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="ask-for-evidence-in-the-prompt" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="ask-for-evidence-in-the-prompt">Ask for evidence in the prompt</h2>
+<p><strong>Basic:</strong></p>
+<blockquote class="blockquote">
+<p>Add the article content column.</p>
+</blockquote>
+<p>. . .</p>
+<p><strong>Better:</strong></p>
+<blockquote class="blockquote">
+<p>Use <code>scrape_article()</code> and tidyverse to add an <code>article_content</code> column to <code>chronicle</code>. Test it on the first three rows before running it on the complete data. Confirm that the results are non-missing and non-empty. Do not overwrite the input data frame or the CSV during the test.</p>
+</blockquote>
+<p>. . .</p>
+<div class="question">
+<p><strong>Context + task + constraints + verification + reporting</strong></p>
+</div>
+</section><section id="the-human-remains-responsible" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="the-human-remains-responsible">The human remains responsible</h2>
+<p>You need enough knowledge to…</p>
+<div class="incremental">
+<ul class="incremental">
+<li>Describe the intended computation</li>
+<li>Understand and inspect the generated code</li>
+<li>Design a meaningful test</li>
+<li>Recognize implausible output</li>
+<li>Diagnose failures</li>
+<li>Consider responsible scraping practices</li>
+<li>Decide when the evidence is strong enough to proceed</li>
+</ul>
+</div>
+<div class="question fragment">
+<p>AI can produce code quickly. Statistical and computational knowledge lets you decide whether that code answers the right question – and whether it actually works.</p>
+</div>
+</section><section id="how-does-codex-know-how-to-work" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="how-does-codex-know-how-to-work">How does Codex know how to work?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="agents.md" class="level3"><h3 class="anchored" data-anchor-id="agents.md"><code>AGENTS.md</code></h3>
+<ul>
+<li>Persistent instructions for a repository</li>
+<li>Describes project conventions, expectations, and checks</li>
+<li>Read by Codex before it begins working</li>
+</ul>
+<p><strong>How to work in this project</strong></p>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="skills" class="level3"><h3 class="anchored" data-anchor-id="skills">Skills</h3>
+<ul>
+<li>Reusable instructions for a particular kind of task</li>
+<li>Loaded when requested or when the task matches</li>
+<li>Can include scripts, references, and assets</li>
+</ul>
+<p><strong>How to do this kind of task</strong></p>
+</section>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Homework and lab repositories in this class, as well as the course project, use <code>AGENTS.md</code> files. Codex reads them – and you should too!</p>
+</div>
+</div>
+<p><small><a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md"><code>AGENTS.md</code> documentation</a> · <a href="https://learn.chatgpt.com/docs/build-skills">Skills documentation</a></small></p>
+
+
+</section></section></main><!-- /main --><script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sta199-f26\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/13-web-scraping-many-pages.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+</body></html>
