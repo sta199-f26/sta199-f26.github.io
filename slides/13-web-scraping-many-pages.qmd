@@ -1,0 +1,500 @@
+---
+title: "Web scraping many pages (and coding with AI!)"
+subtitle: Lecture 13
+author: Prof. Mine Çetinkaya-Rundel
+date: 2026-10-14
+format: 
+  revealjs: 
+    output-file: 13-web-scraping-many-pages-slides.html
+    footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    logo: "images/logo.png" 
+    toc: false
+  html: 
+    code-link: true
+filters:
+  - ../remove-fmt-skip.lua
+---
+
+```{r}
+#| label: setup
+#| include: false
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+```
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+# Warm-up
+
+## While you wait: Participate 📱💻 {.xsmall}
+
+::: columns
+
+::: {.column width="70%"}
+
+::: wooclap
+
+The following code in `chronicle-scrape.R` extracts titles of an opinion article from The Chronicle website:
+
+```{r}
+#| eval: false
+page <- read_html(
+  "https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com/section/opinionabc4.html"
+)
+
+titles <- page |>
+  html_elements("#__snw-main-content .text-xl") |>
+  html_text()
+```
+
+Which of the following needs to change to extract column titles instead?
+
+::: wooclap-choices
+- Change the URL in `read_html()`
+- Change the function `html_elements()` to `html_element()`
+- Change the CSS selector `#__snw-main-content .text-xl` to `.space-y-4 .text-brand`
+- Change the function `html_text()` to `html_attr()`
+:::
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/13/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/OKZKXCY) and use the code OKZKXCY.
+
+:::
+
+:::
+
+## Announcements {.smaller}
+
+- (Optional) Midsemester course feedback form due tomorrow at 11:59pm
+
+- Read Project milestone 3 instructions before lab tomorrow
+
+## Participate 📱💻 {.xsmall}
+
+::: columns
+
+::: {.column width="70%"}
+
+::: wooclap
+
+Put the following tasks in order to scrape data from a website:
+
+::: wooclap-choices
+- Use the SelectorGadget identify tags for elements you want to grab
+- Use `read_html()` to read the page's source code into R
+- Use other functions from the **rvest** package to parse the elements you're interested in
+- Put the components together in a data frame (a tibble) and analyze it like you analyze any other data
+:::
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/13/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/OKZKXCY) and use the code OKZKXCY.
+
+:::
+
+:::
+
+## A new R workflow {.smaller}
+
+-   When working in a Quarto document, your analysis is re-run each time you knit
+
+-   If web scraping in a Quarto document, you'd be re-scraping the data each time you knit, which is undesirable (and not *nice*)!
+
+-   An alternative workflow:
+
+    -   Use an R script to save your code
+    -   Saving interim data scraped using the code in the script as CSV or RDS files
+    -   Use the saved data in your analysis in your Quarto document
+
+## Where we left off...
+
+```{r}
+#| file: ../ae/_ae-07-chronicle-scrape-I-A.R
+#| eval: false
+#| code-line-numbers: "|1-5|7-9|11-16|18-22|24-26|28-31|33-35|37-45|47-74|76-78"
+```
+
+# Data cleaning review
+
+## `chronicle_raw` {.smaller}
+
+```{r}
+#| include: false
+chronicle_raw <- read_rds("data/chronicle-raw.rds")
+```
+
+```{r}
+chronicle_raw
+```
+
+## `author_date_time` {.smaller}
+
+```{r}
+chronicle_raw |>
+  select(author_date_time)
+```
+
+## `author` and `date_time` {.smaller}
+
+```{r}
+chronicle_1 <- chronicle_raw |>
+  separate_wider_delim(
+    author_date_time,
+    delim = "\n|\n",
+    names = c("author", "date_time"),
+  ) |>
+  relocate(author, date_time)
+
+chronicle_1
+```
+
+## `date_time` {.smaller}
+
+```{r}
+chronicle_2 <- chronicle_1 |>
+  mutate(date_time = mdy_hm(date_time)) |>
+  relocate(date_time)
+
+chronicle_2
+```
+
+## Date and time columns {.smaller}
+
+```{r}
+chronicle_3 <- chronicle_2 |>
+  mutate(
+    month = month(date_time, label = TRUE),
+    day = day(date_time),
+    year = year(date_time),
+    date = make_date(year, month, day),
+  ) |>
+  relocate(month, day, year, date)
+
+chronicle_3
+```
+
+## `column` {.smaller}
+
+```{r}
+chronicle_3 |>
+  select(column)
+```
+
+## `column` {.smaller}
+
+```{r}
+chronicle_4 <- chronicle_3 |>
+  separate_wider_delim(
+    column,
+    delim = " | ",
+    names = c("column_1", "column_2"),
+    too_few = "align_start"
+  ) |>
+  relocate(column_1, column_2)
+
+chronicle_4
+```
+
+## `column` {.smaller}
+
+```{r}
+chronicle_5 <- chronicle_4 |>
+  mutate(column = if_else(is.na(column_2), column_1, column_2)) |>
+  relocate(starts_with("column"))
+
+chronicle_5
+```
+
+## `url` {.smaller}
+
+```{r}
+chronicle_5 |>
+  select(url)
+```
+
+## `url` {.smaller}
+
+```{r}
+chronicle_6 <- chronicle_5 |>
+  mutate(
+    url = str_replace(
+      url,
+      "..",
+      "https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com"
+    )
+  ) |>
+  relocate(url)
+
+chronicle_6
+```
+
+## Select relevant columns {.smaller}
+
+```{r}
+chronicle <- chronicle_6 |>
+  select(title, author, date_time, date, month, day, column, url)
+
+chronicle
+```
+
+# Next step:<br>Article text
+
+## Plan
+
+::: incremental
+
+- Write a function that takes a URL and returns the article text on that page (then test it on a page)
+
+- Run the function on each page in the `chronicle` data frame (but start by testing it on a few pages)
+
+- Save the results in a new column in the `chronicle` data frame
+
+:::
+
+## Demo {.smaller}
+
+::: demo
+
+-   Go to your ae project in Positron.
+
+-   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your source control pane.
+
+-   Pull to get today's application exercise file: `ae-08-chronicle-scrape-II.R`.
+
+-   Then, close your laptop, and watch me demo the next few step.
+
+:::
+
+# The 🐘 in the room
+
+## Go for it
+
+ask the question you want to ask!
+
+<br>
+
+::: {.question .fragment}
+
+If AI can do all of this, why do I need to learn how to do it myself?
+
+:::
+
+## Another demo
+
+::: demo
+
+Let's try something simple...
+
+-   Create a scatterplot of miles per gallon vs. displacement in mtcars, and overlay the best fit line for predicting mpg from displacement.
+
+-   Now limit to cars with displacement below 200.
+:::
+
+# Working with AI
+
+## Codex as a coding collaborator {.smaller}
+
+Codex can...
+
+::: incremental
+
+- Read the active file and related project files
+
+- Use existing functions and coding conventions
+
+- Edit files directly
+
+- Run code and report results
+
+- Revise its work after feedback
+
+:::
+
+::: {.question .fragment}
+
+Codex can take actions, but **you** define success and decide what evidence is sufficient.
+
+:::
+
+## Give it a concrete task {.smaller}
+
+> Use the `scrape_article()` function in `ae-08-chronicle-scrape-II.R` and tidyverse to add a column to the `chronicle` data frame called article content with the content of the articles from each page.
+
+. . .
+
+Why is this a useful prompt?
+
+::: incremental
+
+- Names the file and existing function
+- Names the preferred syntax
+- Names the data frame
+- Describes the desired output
+- Provides enough context to inspect the project
+
+:::
+
+## Inspect the generated code
+
+```{r}
+#| eval: false
+chronicle <- chronicle |>
+  mutate(article_content = map_chr(url, scrape_article))
+```
+
+. . .
+
+`map_chr()` applies `scrape_article()` to every URL and requires the function to return one character value per row.
+
+::: {.question .fragment}
+
+Is generating syntactically valid code enough?
+
+:::
+
+## Writing code $\neq$ verifying code {.smaller}
+
+> **Human:** Did you run this code to confirm it works?
+
+> **Codex:** No. I only confirmed that the script parses without syntax errors.
+
+. . .
+
+::: columns
+
+::: {.column width="33%"}
+
+**Parsing**
+
+Is the syntax valid?
+
+:::
+
+::: {.column width="33%"}
+
+**Execution**
+
+Does the code run?
+
+:::
+
+::: {.column width="33%"}
+
+**Validation**
+
+Is the output correct?
+
+:::
+
+:::
+
+## Test small before scaling up {.smaller}
+
+> Try it with the first three rows of the data frame to test if it works.
+
+```{r}
+#| eval: false
+chronicle_test <- chronicle |>
+  slice_head(n = 3) |>
+  mutate(
+    article_content = map_chr(url, scrape_article)
+  )
+```
+
+## Ask for evidence in the prompt {.smaller}
+
+**Basic:**
+
+> Add the article content column.
+
+. . .
+
+**Better:**
+
+> Use `scrape_article()` and tidyverse to add an `article_content` column to `chronicle`. Test it on the first three rows before running it on the complete data. Confirm that the results are non-missing and non-empty. Do not overwrite the input data frame or the CSV during the test.
+
+. . .
+
+::: {.question}
+
+**Context + task + constraints + verification + reporting**
+
+:::
+
+## The human remains responsible {.smaller}
+
+You need enough knowledge to...
+
+::: incremental
+
+- Describe the intended computation
+- Understand and inspect the generated code
+- Design a meaningful test
+- Recognize implausible output
+- Diagnose failures
+- Consider responsible scraping practices
+- Decide when the evidence is strong enough to proceed
+
+:::
+
+::: {.question .fragment}
+
+AI can produce code quickly. Statistical and computational knowledge lets you decide whether that code answers the right question -- and whether it actually works.
+
+:::
+
+## How does Codex know how to work? {.smaller}
+
+::: columns
+
+::: {.column width="50%"}
+
+### `AGENTS.md`
+
+- Persistent instructions for a repository
+- Describes project conventions, expectations, and checks
+- Read by Codex before it begins working
+
+**How to work in this project**
+
+:::
+
+::: {.column width="50%"}
+
+### Skills
+
+- Reusable instructions for a particular kind of task
+- Loaded when requested or when the task matches
+- Can include scripts, references, and assets
+
+**How to do this kind of task**
+
+:::
+
+:::
+
+::: {.callout-important}
+
+Homework and lab repositories in this class, as well as the course project, use `AGENTS.md` files. Codex reads them -- and you should too!
+
+:::
+
+<small>[`AGENTS.md` documentation](https://learn.chatgpt.com/docs/agent-configuration/agents-md) · [Skills documentation](https://learn.chatgpt.com/docs/build-skills)</small>
