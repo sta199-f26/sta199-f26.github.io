@@ -65,10 +65,10 @@ chronicle <- chronicle_raw |>
     day = day(date_time),
     year = year(date_time),
     date = make_date(year, month, day),
-    url = str_remove(url, ".."),
-    url = paste0(
-      "https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com",
-      url
+    url = str_replace(
+      url,
+      "..",
+      "https://www2.stat.duke.edu/~cr173/data/dukechronicle-opinion/www.dukechronicle.com"
     )
   ) |>
   select(title, author, date_time, date, month, day, column, url)
