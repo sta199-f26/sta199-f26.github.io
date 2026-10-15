@@ -75,4 +75,4 @@ chronicle <- chronicle_raw |>
 
 # write data -------------------------------------------------------------------
 
-write_csv(chronicle, file = here::here("ae", "data/chronicle-2026-09-29.csv"))
+write_csv(chronicle, file = "data/chronicle-2026-09-29.csv")
