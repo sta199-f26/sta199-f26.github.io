@@ -35,14 +35,32 @@ library(tidyverse)
 
 ::: columns
 
-::: {.column width="70%"}
+::: {.column width="25%"}
+
+::: task
+
+1️⃣ First, fill out peer evaluations for your teammates on TEAMMATES.
+Check your email for a link to the survey.
+It's due tonight at 11:59 pm.
+
+:::
+
+:::
+
+::: {.column width="45%"}
 
 ::: wooclap
 
-Blah blah...
+2️⃣ Then, fill in the blank below:
+
+> We will meet (or already met) as a team to make progress on our projects ______.
 
 ::: wooclap-choices
-- Blah...
+- earlier this morning
+- later today
+- tomorrow
+- on Wednesday
+- um... 🤷‍♀️ -- I am messaging/emailing my teammates right now to set up a meeting before Thursday's lab
 :::
 
 :::
@@ -53,7 +71,7 @@ Blah blah...
 
 ![](images/14/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
 
-Go to [wooclap.com](https://app.wooclap.com/CODECODE) and use the code CODECODE.
+Go to [wooclap.com](https://app.wooclap.com/UDHRUEH) and use the code UDHRUEH.
 
 :::
 
@@ -63,17 +81,271 @@ Go to [wooclap.com](https://app.wooclap.com/CODECODE) and use the code CODECODE.
 
 - Do not forget to fill out peer evaluations for your teammates on TEAMMATES!
 
+- Make LOTS of progress on your project before Thursday's lab, where you'll provide (and receive) peer review to (from) another team in your lab.
+
 - **Office hours change:** For this week only, my office hours will be on Friday, 2 - 3:30 pm (at my office -- Old Chem 211C -- as usual).
+
+# Mid-semester course feedback {background-color="#F3ECE0"}
+
+Thank you to the 66 of you who provided feedback! ♥️
+
+## Course pace {background-color="#F3ECE0"}
+
+![](images/14/midsemester-feedback/figures/course-pace.png){width="90%" fig-align="center"}
+
+## Lecture pace {background-color="#F3ECE0"}
+
+![](images/14/midsemester-feedback/figures/lecture-pace.png){width="90%" fig-align="center"}
+
+## Course engagement {background-color="#F3ECE0"}
+
+![](images/14/midsemester-feedback/figures/course-engagement.png){width="90%" fig-align="center"}
+
+## Learning resources {background-color="#F3ECE0"}
+
+![](images/14/midsemester-feedback/figures/learning-resources.png){width="90%" fig-align="center"}
+
+## Best learning {background-color="#F3ECE0"}
+
+![](images/14/midsemester-feedback/figures/best-learning.png){width="90%" fig-align="center"}
+
+## Project teammates {background-color="#F3ECE0"}
+
+![](images/14/midsemester-feedback/figures/project-teammates.png){width="90%" fig-align="center"}
+
+## Lecture format {background-color="#F3ECE0"}
+
+![](images/14/midsemester-feedback/figures/lecture-format.png){width="90%" fig-align="center"}
+
+## Course difficulty {background-color="#F3ECE0"}
+
+![](images/14/midsemester-feedback/figures/course-difficulty.png){width="90%" fig-align="center"}
+
+## Instructor feedback {.xsmall background-color="#F3ECE0"}
+
+```{r}
+#| echo: false
+#| results: asis
+cat(
+  readLines("images/14/midsemester-feedback/summaries/instructor-feedback.md")[
+    -1
+  ],
+  sep = "\n"
+)
+```
+
+## TA feedback {.xsmall background-color="#F3ECE0"}
+
+```{r}
+#| echo: false
+#| results: asis
+cat(
+  readLines("images/14/midsemester-feedback/summaries/ta-feedback.md")[-1],
+  sep = "\n"
+)
+```
+
+## Confusing topics {background-color="#F3ECE0" .smaller}
+
+![](images/14/midsemester-feedback/figures/confusing-topics.png){width="90%" fig-align="center"}
+
+Several students said they were not confused about a particular topic.
+
+## Engagement and stimulation {.xsmall background-color="#F3ECE0"}
+
+```{r}
+#| echo: false
+#| results: asis
+cat(
+  readLines("images/14/midsemester-feedback/summaries/course-stimulation.md")[
+    -1
+  ],
+  sep = "\n"
+)
+```
+
+## Suggestions {.xsmall background-color="#F3ECE0"}
+
+```{r}
+#| echo: false
+#| results: asis
+cat(
+  readLines("images/14/midsemester-feedback/summaries/course-suggestions.md")[
+    -1
+  ],
+  sep = "\n"
+)
+```
+
+# Data science ethics
+
+## Data science ethics
+
+- Data do not speak for themselves. They require an interpretive lens, not all of which are created equal.
+
+- The practice of data science is not ethically neutral or value-free.
 
 # Privacy
 
-## Web scraping: "Can you?" vs "Should you?" {.smaller}
+## Pause... {.center}
 
-![](images/14/ok-cupid-1.png){fig-align="center" width="700" fig-alt="Screenshot of a Vox article reporting that researchers released identifiable profile data from nearly 70,000 OkCupid users without permission."}
+::: question
+
+What is your username on... GitHub, LinkedIn, Reddit, Instagram, TikTok, other social media platforms, online dating services, etc.?
+
+:::
+
+## Pause... {.center}
+
+::: question
+Suppose you create a profile on a social media site and share your personal information on your profile.
+Who else gets to use that data -- [companies the social media company has a connection to?]{.fragment} [companies the social media company sells your data to?]{.fragment} [researchers?]{.fragment}
+:::
+
+## OkCupid {.xsmall}
+
+::: columns
+
+::: {.column width="48%"}
+![](images/14/privacy-ok-cupid-vox.png){width="78%" fig-align="center" fig-alt="Screenshot of a Vox article reporting that researchers released identifiable profile data from nearly 70,000 OkCupid users without permission."}
+:::
+
+::: {.column width="52%"}
+- In 2016, researchers published data from roughly **70,000 OkCupid profiles**, including usernames, political views, drug use, and intimate sexual details.
+
+- Names and photos were excluded, but usernames and other details made re-identification possible.
+
+:::
+
+:::
+
+::: columns
+
+::: {.column width="48%" .fragment}
+
+![](images/14/privacy-okcupid-tweet.png){width="92%" fig-align="center" fig-alt="Tweet exchange in which Ethan Jewett asks whether the highly re-identifiable dataset was anonymized and Emil Kirkegaard replies that it was not because the data was already public."}
+:::
+
+::: {.column width="52%" .fragment}
+
+::: question
+Does public availability imply consent to collect and republish data at scale?
+:::
+
+:::
+
+:::
 
 ::: aside
-Source: Brian Resnick, [Researchers just released profile data on 70,000 OkCupid users without permission](https://www.vox.com/2016/5/14/11666116/70000-okcupid-users-data-release), Vox.
+Source: Brian Resnick, [Researchers just released profile data on 70,000 OkCupid users without permission](https://www.vox.com/2016/5/14/11666116/70000-okcupid-users-data-release). Vox. May 12, 2016.
 :::
+
+## Pause... {.center}
+
+::: question
+
+What are some things you know about how car insurance rates are set?
+
+:::
+
+## Pause... {.center}
+
+::: question
+
+Do you drive a car with "smart" features?
+
+:::
+
+## GM OnStar {.smaller}
+
+![](images/14/privacy-gm-onstar.png){width="90%" fig-align="center" fig-alt="Screenshot of a news article reporting that GM and OnStar collected precise location and driving behavior data from millions of vehicles without consent."}
+
+::: aside
+
+Source: Kashmir Hill, [Automakers Are Sharing Consumers’ Driving Behavior With Insurance Companies](https://www.nytimes.com/2024/03/11/technology/carmakers-driver-tracking-insurance.html).
+New York Times. March 11, 2024.
+
+:::
+
+## GM OnStar {.smaller}
+
+::: incremental
+- According to an FTC complaint, GM and OnStar collected precise location and driving behavior data from millions of vehicles—sometimes as often as every three seconds.
+
+- The data included hard braking, late-night driving, and speeding.
+
+- GM sold the data to consumer reporting agencies, where insurers used it to deny coverage or set rates.
+
+- The proposed order required affirmative consent, access and deletion rights, and an option to limit collection.
+:::
+
+::: {.question .fragment}
+You activate a feature marketed as helping you assess your driving habits.
+What other uses of those data would require new consent?
+:::
+
+::: aside
+Federal Trade Commission.
+[FTC Takes Action Against General Motors for Sharing Drivers’ Precise Location and Driving Behavior Data Without Consent](https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-takes-action-against-general-motors-sharing-drivers-precise-location-driving-behavior-data).
+16 January 2025.
+:::
+
+## Pause... {.center}
+
+::: question
+
+Have you ever done a direct-to-consumer DNA testing like 23andMe or AncestryDNA?
+
+:::
+
+## 23andMe {.smaller}
+
+- In 2023, attackers used credential stuffing—trying usernames and passwords stolen in unrelated breaches—to log into about 14,000 23andMe accounts. Since accounts were connected to many other users through DNA Relatives and Family Tree, the attackers could access profile information associated with approximately 6.9 million people. 
+
+- Exposed information varied but could include names, birth years, locations, ancestry or ethnicity, genetic relationships, family trees, and, for some users, health reports or raw genetic data.
+
+- Genetic data is unusually sensitive, permanent, and shared: exposing one person’s information can also reveal information about relatives who never consented to the service.
+
+::: aside
+NY Attorney General. [Attorney General James Secures $18 Million From 23andMe for Failing to Protect Customers’ Genetic Data](https://ag.ny.gov/press-release/2026/attorney-general-james-secures-18-million-23andme-failing-protect-customers). July 14, 2026.
+:::
+
+## NIH {.smaller}
+ 
+::: {.columns}
+
+::: {.column width="40%"}
+
+![](images/14/privacy-nih.png){width="90%" fig-align="center" fig-alt="Screenshot of a news article reporting that NIH failed to protect brain scans that an international group of fringe researchers used to argue for the intellectual superiority of white people."}
+
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+
+- Genetic, cognitive, and brain-imaging data from >20,000 children enrolled in the federally funded Adolescent Brain Cognitive Development Study was obtained and misused by researchers promoting "race science".
+
+- They published at least 16 papers claiming biological differences in intelligence among racial groups -- mainstream geneticists reject this work as biased and methodologically unsound.
+
+:::
+
+:::
+
+:::
+
+
+::: aside
+Mike McIntire. [Genetic Data From Over 20,000 U.S. Children Misused for ‘Race Science’](https://www.nytimes.com/2026/01/24/us/children-genetics-race-science.html). New York Times. Jan. 24, 2026.
+:::
+
+## Definition of "privacy" {.smaller}
+
+- Removing names from a dataset, alone, does not prevent harm. 
+
+- Research can stigmatize entire communities even when no individual is reidentified, raising questions about informed consent, researcher vetting, monitoring secondary data use, participant notification, and whether institutions have obligations to prevent both individual and group-level harms.
+
+- This is especially of concern since social media and AI systems can amplify claims based on pseudoscience.
 
 ## "Your" data
 
@@ -81,9 +353,7 @@ Source: Brian Resnick, [Researchers just released profile data on 70,000 OkCupid
 
 -   More importantly, decisions are made by law enforcement, financial institutions, and governments based on data that directly affect the lives of people.
 
-## Privacy of your data {.smaller}
-
-Participate 📱💻 {.xsmall}
+## Participate 📱💻 {.small}
 
 ::: columns
 
@@ -92,6 +362,7 @@ Participate 📱💻 {.xsmall}
 ::: wooclap
 
 What pieces of data have you left on the internet today?
+
 Think through everything you've logged into, clicked on, checked in, either actively or automatically, that might be tracking you.
 Submit as many as you can think of.
 
@@ -100,12 +371,16 @@ Submit as many as you can think of.
 :::
 
 ::: {.column width="30%"}
-{{< include _wooclap-column.qmd >}}
-:::
+
+![](images/14/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/UDHRUEH) and use the code UDHRUEH.
 
 :::
 
-## Privacy of your data {.smaller}
+:::
+
+## Pause {.center}
 
 ::: question
 Do you know where that data is stored?
@@ -161,35 +436,6 @@ Which of the following are you OK with your browsing history to be used towards?
 -   To score you as a candidate for a job
 :::
 
-## Who else gets to use your data?
-
-::: question
-Suppose you create a profile on a social media site and share your personal information on your profile.
-Who else gets to use that data?
-:::
-
-::: incremental
--   Companies the social media company has a connection to?
--   Companies the social media company sells your data to?
--   Researchers?
-:::
-
-## Unauthorized OkCupid data release
-
-- In 2016, researchers published data of 70,000 OkCupid users—including usernames, political leanings, drug usage, and intimate sexual details
-
-- Researchers didn't release the real names and pictures of OkCupid users, but their identities could easily be uncovered from the details provided, e.g. usernames
-
-## Unauthorized OkCupid data release
-
-![](images/14/okcupid-tweet.png){fig-alt="Tweet exchange in which Ethan Jewett asks whether the highly re-identifiable dataset was anonymized and Emil Kirkegaard replies that it was not because the data was already public."}
-
-## Unauthorized OkCupid data release
-
->Some may object to the ethics of gathering and releasing this data. However, all the data found in the dataset are or were already publicly available, so releasing this dataset merely presents it in a more useful form. 
->
->Researchers Emil Kirkegaard and Julius Daugbjerg Bjerrekær
-
 # Misrepresentation
 
 ## Misrepresenting data science results {.smaller}
@@ -199,71 +445,68 @@ Some common ways people do this, either intentionally or unintentionally, includ
 ::: incremental
 -   Claiming **causality** where it's not in the scope of inference of the underlying study
 
--   Distorting **axes and scales** to make the data tell a different story
+-   Distorting **axes and scales** or using selective **annotations** to make the data tell a different story
 
 -   Visualizing **spatial areas instead of human density** for issues that depend on and affect humans
 
 -   Omitting **uncertainty** in reporting
 :::
 
-## Causality - TIME coverage
+## Causality: Intermittent fasting {.smaller}
 
 ::: question
-How plausible is the statement in the title of this article?
-:::
+What conclusion might a reader draw from this headline?
 
-![](images/14/exercise-cancer-time.png){fig-alt="Screenshot of a TIME article headlined 'Exercise Can Lower Risk of Some Cancers By 20%.'"}
+> **8-hour time-restricted eating linked to a 91% higher risk of cardiovascular death**
+
+What does **91% higher risk** mean?
+:::
 
 ::: aside
-Alice Park.
-[Exercise Can Lower Risk of Some Cancers By 20%](https://time.com/4330041/reduce-cancer-risk-exercise/).
-Time Magazine.
-16 May 2016.
+American Heart Association. [8-hour time-restricted eating linked to a 91% higher risk of cardiovascular death](https://newsroom.heart.org/news/8-hour-time-restricted-eating-linked-to-a-91-higher-risk-of-cardiovascular-death). March 18, 2024.
 :::
 
-## Causality - LA Times coverage
+## Causality: Intermittent fasting {.smaller}
 
-::: question
-What does "research shows" mean?
+The result came from a preliminary observational analysis of more than 20,000 US adults.
+
+::: incremental
+- Eating duration was estimated from two self-reported 24-hour dietary recalls.
+
+- Participants were not randomly assigned to eating schedules.
+
+- Diet quality and other possible explanations were not fully accounted for.
+
+- The conference abstract had not undergone peer review.
+
+- The American Heart Association explicitly cautioned that the association did **not** show that time-restricted eating caused cardiovascular death.
 :::
-
-![](images/14/exercise-cancer-latimes.png){fig-alt="Screenshot of a Los Angeles Times article headlined 'Exercising drives down risk for 13 cancers, research shows.'"}
 
 ::: aside
-Melissa Healy.
-[Exercising drives down risk for 13 cancers, research shows](https://www.latimes.com/science/sciencenow/la-sci-sn-exercising-cancer-20160516-story.html).\
-Los Angeles Times.
-16 May 2016.
+Sources: [American Heart Association news release and study limitations](https://newsroom.heart.org/news/8-hour-time-restricted-eating-linked-to-a-91-higher-risk-of-cardiovascular-death); British Heart Foundation, [The truth behind reports that intermittent fasting is bad for your heart](https://www.bhf.org.uk/informationsupport/heart-matters-magazine/news/behind-the-headlines/intermittent-fasting).
 :::
 
-## Causality - Original study {.smaller}
+## Causality: Intermittent fasting {.smaller}
 
-Moore, Steven C., et al. [**"Association of leisure-time physical activity with risk of 26 types of cancer in 1.44 million adults."**](https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2521826) JAMA internal medicine 176.6 (2016): 816-825.
+Important questions to ask:
 
--   **Volunteers** were **asked** about their physical activity level over the preceding year.
--   Half exercised less than about 150 minutes per week, half exercised more.
--   Compared to the bottom 10% of exercisers, the top 10% had lower rates of esophageal, liver, lung, endometrial, colon, and breast cancer.
--   Higher reported physical activity was associated with lower risks of 13 cancers.
--   It was also associated with higher risks of malignant melanoma and nonadvanced prostate cancer; researchers found no statistically significant association with the remaining 11 cancer types.
+- 91% higher than what absolute risk?
 
-::: notes
-Carl Bergstrom and Jevin West.
-[Calling Bullshit: The art of skepticism in a data-driven world](https://www.callingbullshit.org/).\
-Random House, 2020.\
-Sharon Begley.
-["Does exercise prevent cancer?"](https://www.statnews.com/2016/05/16/exercise-prevent-cancer/).
-StatNews.
-16 May 2016.
-:::
+- Was eating duration assigned or observed?
 
-## Axes and scales - Tax cuts {.smaller}
+- How was eating duration measured?
+
+- What other differences between the groups might explain the association?
+
+
+## Axes and scales: Tax cuts {.smaller}
 
 ::: question
 What is the difference between these two pictures?
 Which presents a better way to represent these data?
 :::
 
-![](images/14/axis-start-at-0.png){fig-alt="Two bar charts compare top tax rates of 35% and 39.6%. A truncated axis from 34% to 40% exaggerates the change, while an axis starting at zero shows the smaller relative difference."}
+![](images/14/misrepresentation-tax-cuts.png){fig-alt="Two bar charts compare top tax rates of 35% and 39.6%. A truncated axis from 34% to 40% exaggerates the change, while an axis starting at zero shows the smaller relative difference."}
 
 ::: aside
 Christopher Ingraham.
@@ -272,21 +515,29 @@ The Washington Post.
 14 October 2019.
 :::
 
-## Axes and scales - Cost of gas {.smaller}
+## Axes and scales: Cost of gas {.smaller}
 
 ::: question
 What is wrong with this picture?
 How would you correct it?
 :::
 
-![](images/14/cost-of-gas.png){fig-alt="Fox News line chart of national average gas prices at $3.17 last year, $3.51 last week, and $3.57 currently, with all three observations equally spaced on the horizontal axis."}
+![](images/14/misrepresentation-cost-of-gas.png){fig-alt="Fox News line chart of national average gas prices at $3.17 last year, $3.51 last week, and $3.57 currently, with all three observations equally spaced on the horizontal axis."}
 
-## Axes and scales - Cost of gas {.scrollable}
+## Axes and scales: Cost of gas {.smaller}
+
+::: {.callout-important appearance="minimal"}
+
+This redraw fixes spacing only; it does not show prices between observations.
+
+:::
 
 ```{r}
+#| label: gas-prices
 #| out-width: 100%
 #| echo: false
 #| message: false
+#| warning: false
 #| fig-asp: 0.5
 library(scales)
 
@@ -303,7 +554,7 @@ ggplot(df, aes(x = date, y = cost, group = 1)) +
     subtitle = "Three selected observations; time spacing corrected",
     x = NULL,
     y = NULL,
-    caption = "This redraw fixes spacing only; it does not show prices between observations.\nSource: AAA Fuel Gauge Report"
+    caption = "Source: AAA Fuel Gauge Report"
   ) +
   scale_x_date(
     breaks = ymd(c("2011-02-20", "2012-02-13", "2012-02-20")),
@@ -312,32 +563,59 @@ ggplot(df, aes(x = date, y = cost, group = 1)) +
     limits = ymd(c("2011-02-20", "2012-03-19")),
     minor_breaks = NULL
   ) +
-  scale_y_continuous(labels = label_dollar())
+  scale_y_continuous(labels = label_dollar()) +
+  theme(axis.text.x = element_text(hjust = c(0.5, 1, 0)))
 ```
 
-## Axes and scales - PP services {.smaller}
+## Annotations: Immigration {.smaller}
 
 ::: columns
-::: {.column width="40%"}
+
+::: {.column width="60%"}
+![](images/14/misrepresentation-immigration.png){fig-alt="Campaign chart of monthly southwest border apprehensions from 2012 through 2024. An arrow labeled Trump leaves office points to the pandemic-era low in April 2020, nine months before Trump left office."}
+:::
+
+::: {.column width="40%" .xsmall}
+
+- Trump often campaigned in 2024 with a chart on border encounters.
+
+- The data values are accurate, but the annotation is not.
+
+- The arrow labeled "Trump leaves office, lowest illegal immigration in recorded history" points to April 2020, during the pandemic—not January 2021.
+
 ::: question
-What is wrong with this picture?
-How would you correct it?
+Which part creates the misleading story: the data, the annotation, the selected time point—or all three together?
 :::
 
 :::
-::: {.column width="60%"}
-![](images/14/pp-misleading.png){fig-alt="Misleading Planned Parenthood chart that draws the point for 327,000 abortions above the point for 935,573 cancer screening and prevention services in 2013."}
-:::
+
 :::
 
 ::: aside
-Timothy B. Lee.
-[Whatever you think of Planned Parenthood, this is a terrible and dishonest chart](https://www.vox.com/2015/9/29/9417845/planned-parenthood-terrible-chart).
-Vox.
-29 September 2015.
+Robert Farley, D'Angelo Gore, and Lori Robertson.
+[Donald Trump's Closing Arguments](https://www.factcheck.org/2024/10/donald-trumps-closing-arguments/#immigration), FactCheck.org.
+31 October 2024.
 :::
 
-## Axes and scales - PP services {.scrollable}
+## Axes and scales: Planned Parenthood {.smaller}
+
+::: question
+What is this plot telling us?
+:::
+
+![](images/14/misrepresentation-pp.png){width="580px" fig-align="center" fig-alt="Misleading Planned Parenthood chart that draws the point for 327,000 abortions above the point for 935,573 cancer screening and prevention services in 2013."}
+
+::: aside
+Timothy B. Lee. [Whatever you think of Planned Parenthood, this is a terrible and dishonest chart](https://www.vox.com/2015/9/29/9417845/planned-parenthood-terrible-chart). Vox. September 29, 2015.
+:::
+
+## Axes and scales: PP services {.smaller}
+
+::: {.callout-important appearance="minimal"}
+
+This redraw fixes axes and scales only; it does not show counts between observations.
+
+:::
 
 ```{r}
 #| echo: false
@@ -386,144 +664,261 @@ ggplot(pp, aes(x = year, y = n, color = service)) +
   theme(legend.position = "none")
 ```
 
-## Maps and areas - Voting map
+
+## Pause... {.center .smaller}
 
 ::: question
-Do you recognize this map?
-What does it show?
+
+What does this map show?
+
 :::
 
-![](images/14/election-2016-county.png){fig-alt="County-level map of the 2016 US presidential election, with Republican-voting counties in red and Democratic-voting counties in blue. Most of the geographic area is red."}
+![](images/14/misrepresentation-2024-county-presidential.png){width="400px" fig-align="center" fig-alt="2024 presidential election results by county."}
+
+::: fragment
+
+2024 presidential election results by county: red = Trump, blue = Harris, gray = no data. Source: [BallotWire](https://www.ballotwire.com/electiondatavisualizations/2024-presidential-election-county-level-results-map).
+
+:::
+
+## Maps and areas {.smaller}
+
+::: task
+
+[Let's explore!](https://engaging-data.com/county-electoral-map-land-vs-population/)
+
+:::
 
 ::: aside
-Lazaro Gamio.
-["Election maps are telling you big lies about small things"](https://www.washingtonpost.com/graphics/politics/2016-election/how-election-maps-lie/).
-The Washington Post.
-1 Nov 2016.
+
+Source: [US County Electoral Map – Land Area vs Population](https://engaging-data.com/county-electoral-map-land-vs-population/).
+
 :::
 
-## Maps and areas - Two alternate tales
+## Maps and areas {.smaller}
 
-::::: columns
-::: column
-![](images/14/citizens-for-trump.png){width="350" fig-alt="Mock book cover labeled 'Wrong' and titled 'Citizens for Trump,' illustrated with a county-level election map."}
+::: question
+What information disappears when every county is assigned one color?
 :::
 
-::: column
-![](images/14/counties-for-trump.png){width="350" fig-alt="Revised mock book cover labeled 'Right' and titled 'Counties for Trump,' emphasizing that Trump received 46% of the popular vote."}
-:::
-:::::
-
-::: aside
-Alberto Cairo.
-[Visual Trumpery talk](https://visualtrumperytour.wordpress.com/).
+::: columns
+::: {.column width="46%"}
+![](images/14/misrepresentation-2024-county-presidential.png){width="400px" fig-align="center" fig-alt="2024 presidential election results by county."}
 :::
 
-## Maps and areas - Voting percentages
+::: {.column width="54%"}
+::: incremental
+- A voting split of 50.1%–49.9% looks the same as a 90%–10% split.
 
-![](images/14/cairo-vote-percentages.png){width="800" fig-alt="Comparison of a county map that is 80% red by land area with 2016 election results: Clinton received 48.2% of the popular vote and Trump received 46.1%; among eligible voters, 40% did not vote."}
+- People who voted for the losing candidate disappear from the color encoding.
 
-::: aside
-Alberto Cairo.
-[Visual Trumpery talk](https://visualtrumperytour.wordpress.com/).
+- Differences in turnout within counties also disappear.
+
+- The apparent balance depends on whether area represents land, population, or something else.
+:::
+:::
 :::
 
-## Maps and areas - Voting percentages
+## Pause... {.smaller}
 
-![](images/14/cairo-what-matters.png){fig-alt="2016 election graphic comparing Trump's 306 electoral votes with Clinton's 232, a conventional state map, and a cartogram that sizes states by their electoral votes."}
+::: question
 
-::: aside
-Alberto Cairo.
-[Visual Trumpery talk](https://visualtrumperytour.wordpress.com/).
+Based on a poll by Cook Political Report, BSG, and GS Strategy Group conducted in July-August 2024, which candidate was ahead in seven swing states combined?
+
 :::
-
-## Uncertainty - Catalan independence {.smaller}
-
-On December 19, 2014, the front page of Spanish national newspaper El País read *"Catalan public opinion swings toward 'no' for independence, says survey"*.
 
 ```{r}
-#| label: catalan-misleading
+#| label: swing-state-poll-without-me
 #| echo: false
-#| fig-asp: 0.4
-#| out-width: 100%
-catalan <- tibble(
-  response = c("No", "Yes", "No answer"),
-  rate = c(45.3, 44.5, 10.2)
+#| out-width: 90%
+#| fig-asp: 0.3
+swing_poll <- tibble(
+  candidate = c("Harris", "Trump"),
+  estimate = c(48, 47)
 ) |>
-  mutate(response = fct_relevel(response, "No", "Yes", "No answer"))
+  mutate(candidate = fct_relevel(candidate, "Harris", "Trump"))
 
 ggplot(
-  catalan,
-  aes(y = fct_rev(response), x = rate, color = response, group = response)
+  swing_poll,
+  aes(y = fct_rev(candidate), x = estimate, color = candidate)
 ) +
-  geom_point(size = 3) +
   geom_segment(
-    aes(
-      x = 0,
-      xend = rate,
-      y = fct_rev(response),
-      yend = fct_rev(response)
-    ),
-    linewidth = 2
+    aes(x = 0, xend = estimate, yend = fct_rev(candidate)),
+    linewidth = 1.5
   ) +
-  scale_color_manual(values = c("#5C8AA9", "#9D303A", "gray")) +
-  scale_x_continuous(labels = label_percent(scale = 1)) +
+  geom_point(size = 5) +
+  geom_text(
+    aes(label = label_percent(scale = 1)(estimate)),
+    nudge_y = 0.18,
+    show.legend = FALSE
+  ) +
+  scale_color_manual(values = c("#2F6BBD", "#C83E4D")) +
+  scale_x_continuous(
+    limits = c(0, 50),
+    breaks = seq(0, 50, 10),
+    labels = label_percent(scale = 1)
+  ) +
   guides(color = "none") +
   theme_minimal(base_size = 16) +
   labs(
-    title = "Do you want Catalonia to become an independent state?",
-    caption = "Margin of error: +/-2.95% at 95% confidence level",
+    title = "Harris 48%, Trump 47%",
     x = NULL,
     y = NULL
   )
 ```
 
 ::: aside
-Alberto Cairo.
-[The truthful art: Data, charts, and maps for communication](http://www.thefunctionalart.com/p/the-truthful-art-book.html).
-New Riders, 2016.
+Cook Political Report, BSG, and GS Strategy Group. [2024 Swing State Project - August 2024 Toplines](https://www.cookpolitical.com/survey-research/2024-swing-state-project). Survey of 2,867 likely voters, 26 July–2 August 2024.
 :::
 
-## Uncertainty - Catalan independence {.smaller}
+## Uncertainty: 2024 swing-state poll {.smaller}
+
+::: question
+In seven swing states combined, is either candidate clearly ahead?
+:::
 
 ```{r}
-#| label: catalan-corrected
+#| label: swing-state-poll-with-me
 #| echo: false
 #| out-width: 100%
 #| fig-asp: 0.4
-catalan <- catalan |>
-  mutate(
-    low = rate - 2.95,
-    high = rate + 2.95
-  )
+swing_poll <- tibble(
+  candidate = c("Harris", "Trump"),
+  estimate = c(48, 47),
+  low = estimate - 1.83,
+  high = estimate + 1.83
+) |>
+  mutate(candidate = fct_relevel(candidate, "Harris", "Trump"))
+
 ggplot(
-  catalan,
-  aes(y = fct_rev(response), x = rate, color = response, group = response)
+  swing_poll,
+  aes(y = fct_rev(candidate), x = estimate, color = candidate)
 ) +
   geom_segment(
-    aes(
-      x = low,
-      xend = high,
-      y = fct_rev(response),
-      yend = fct_rev(response)
-    ),
-    linewidth = 0.8,
+    aes(x = low, xend = high, yend = fct_rev(candidate)),
+    linewidth = 1,
     color = "black"
   ) +
-  geom_point(size = 4) +
-  scale_color_manual(values = c("#5C8AA9", "#9D303A", "gray")) +
-  scale_x_continuous(labels = label_percent(scale = 1)) +
+  geom_point(size = 5) +
+  geom_text(
+    aes(label = label_percent(scale = 1)(estimate)),
+    nudge_y = 0.18,
+    show.legend = FALSE
+  ) +
+  scale_color_manual(values = c("#2F6BBD", "#C83E4D")) +
+  scale_x_continuous(
+    limits = c(44, 51),
+    breaks = 44:51,
+    labels = label_percent(scale = 1)
+  ) +
   guides(color = "none") +
   theme_minimal(base_size = 16) +
   labs(
-    title = "Do you want Catalonia to become an independent state?",
-    caption = "The survey does not provide convincing evidence that\n'No' was ahead of 'Yes'.",
+    title = "Harris 48%, Trump 47%",
+    subtitle = "Published aggregate margin of sampling error: ±1.83 percentage points",
     x = NULL,
     y = NULL
   )
 ```
 
 ::: aside
-Alberto Cairo.
-["Uncertainty and Graphicacy: How Should Statisticians Journalists and Designers Reveal Uncertainty in Graphics for Public Consumption?"](https://ec.europa.eu/eurostat/cros/powerfromstatistics/OR/PfS-OutlookReport-Cairo.pdf), Power from Statistics: Data Information and Knowledge, 2017.
+Cook Political Report, BSG, and GS Strategy Group. [2024 Swing State Project - Methodology: August 2024](https://www.cookpolitical.com/survey-research/2024-swing-state-project/14Aug2024-methodology). Survey of 2,867 likely voters, 26 July–2 August 2024.
+:::
+
+# Algorithmic bias
+
+## Garbage in, garbage out
+
+- In statistical modeling and inference we talk about "garbage in, garbage out" – if you don’t have good (random, representative) data, results of your analysis will not be reliable or generalizable.
+
+- Corollary: Bias in, bias out.
+
+## Pause... {.center}
+
+::: question
+
+For speakers of languages with grammatical gender (e.g., French, Spanish. etc.), what gender is a table?
+
+::: fragment
+
+What about a doctor?
+
+:::
+
+:::
+
+## Google Translate {.smaller}
+
+::: question
+What might be the reason for Google’s gendered translation? How do ethics play into this situation?
+:::
+
+![](images/14/google-translate.png){fig-align="center" fig-alt="Google Translate interface showing gendered translation options"}
+
+::: aside
+Source: Mallory Locklear. [Google is working to remove gender bias in its translations](https://www.engadget.com/2018-12-07-google-remove-gender-bias-translations.html). Engadget. December 7, 2018.
+:::
+
+## Machine Bias {.smaller}
+
+2016 ProPublica article on algorithm used for rating a defendant's risk of future crime:
+
+> In forecasting who would re-offend, the algorithm made mistakes with black and white defendants at roughly the same rate but in very different ways.
+>
+> -   The formula was particularly likely to falsely flag black defendants as future criminals, wrongly labeling them this way at almost twice the rate as white defendants.
+>
+> -   White defendants were mislabeled as low risk more often than black defendants.
+
+::: aside
+Source: Julia Angwin, Jeff Larson, Surya Mattu and Lauren Kirchner. [Machine Bias](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing). ProPublica. May 23, 2016.
+:::
+
+## Risk score errors
+
+::: columns
+::: {.column width="35%"}
+::: question
+What is common among the defendants who were assigned a high/low risk score for reoffending?
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+![](images/14/machine-bias-petty-theft-1.png){fig-align="center" width="300" height="250"} ![](images/14/machine-bias-petty-theft-2.png){fig-align="center" width="300" height="180"}
+:::
+
+::: {.column width="30%"}
+![](images/14/machine-bias-drug-posession-1.png){fig-align="center" width="300" height="250"} ![](images/14/machine-bias-drug-posession-2.png){fig-align="center" width="300" height="180"}
+:::
+:::
+
+## Risk scores
+
+::: columns
+::: {.column width="35%"}
+::: question
+How can an algorithm that doesn't use race as input data be racist?
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="60%"}
+![](images/14/machine-bias-risk-scores.png){fig-align="center" width="480"}
+:::
+:::
+
+## Parting thoughts
+
+- At some point during your data science learning journey you will learn tools that can be used unethically.
+
+- You might also be tempted to use your knowledge in a way that is ethically questionable either because of business goals or for the pursuit of further knowledge (or because your boss told you to do so).
+
+::: question
+
+How do you train yourself to make the right decisions (or reduce the likelihood of accidentally making the wrong decisions) at those points?
+
 :::
