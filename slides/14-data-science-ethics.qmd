@@ -419,9 +419,17 @@ What are you OK with sharing?
 ## What does Google think/know about you?
 
 ::: question
+
 Have you ever thought about why you're seeing an ad on Google?
-Google it!
-Try to figure out if you have ad personalization on and how your ads are personalized.
+
+:::
+
+<br>
+
+::: {.task .fragment}
+
+**Homework:** Try to figure out if you have ad personalization on and how your ads are personalized.
+
 :::
 
 ## Your browsing history
@@ -859,27 +867,52 @@ What might be the reason for Google’s gendered translation? How do ethics play
 Source: Mallory Locklear. [Google is working to remove gender bias in its translations](https://www.engadget.com/2018-12-07-google-remove-gender-bias-translations.html). Engadget. December 7, 2018.
 :::
 
-## Machine Bias {.smaller}
+## COMPAS: What did ProPublica test? {.smaller}
 
-2016 ProPublica article on algorithm used for rating a defendant's risk of future crime:
+::: incremental
 
-> In forecasting who would re-offend, the algorithm made mistakes with black and white defendants at roughly the same rate but in very different ways.
->
-> -   The formula was particularly likely to falsely flag black defendants as future criminals, wrongly labeling them this way at almost twice the rate as white defendants.
->
-> -   White defendants were mislabeled as low risk more often than black defendants.
+- Correctional Offender Management Profiling for Alternative Sanctions (COMPAS)is a proprietary system used to estimate a defendant's risk of being arrested again.
+
+- ProPublica examined more than 7,000 people arrested in Broward County, Florida, and tracked new arrests over the following two years.
+
+- COMPAS classified defendants as low, medium, or high risk using criminal records and answers to 137 questions. Race was not one of the questions.
+
+- Broward County primarily used the scores for pretrial-release decisions; similar assessments were also used elsewhere for probation, parole, and sentencing.
+
+:::
 
 ::: aside
 Source: Julia Angwin, Jeff Larson, Surya Mattu and Lauren Kirchner. [Machine Bias](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing). ProPublica. May 23, 2016.
 :::
 
-## Risk score errors
+## Similar performance, different errors {.smaller}
+
+The scores performed similarly overall for Black and white defendants, but the errors fell differently:
+
+|  | Black defendants | White defendants |
+|---|---:|---:|
+| Labeled Higher Risk, But Didn’t Re-Offend | **44.9%** | 23.5% |
+| Labeled Lower Risk, Yet Did Re-Offend | 28.0% | **47.7%** |
+
+::: xsmall
+
+"Rearrested" means a new arrest within two years, not necessarily a conviction.
+
+:::
+
+<br>
+
+Northpointe, the company that created COMPAS, disputed ProPublica's analysis and defended the tool's accuracy.
+
+## Individual errors {.smaller}
 
 ::: columns
 ::: {.column width="35%"}
 ::: question
-What is common among the defendants who were assigned a high/low risk score for reoffending?
+What pattern do you notice in who was assigned a high or low risk score?
 :::
+
+These cases illustrate classification errors; the aggregate data provide evidence of group-level disparity.
 :::
 
 ::: {.column width="5%"}
@@ -894,21 +927,30 @@ What is common among the defendants who were assigned a high/low risk score for 
 :::
 :::
 
-## Risk scores
+## Race is not an input, is the model neutral? {.xsmall}
 
 ::: columns
-::: {.column width="35%"}
+::: {.column width="44%"}
 ::: question
-How can an algorithm that doesn't use race as input data be racist?
+How can an algorithm produce racially unequal outcomes when race is not an input?
+:::
+
+::: incremental
+- Other variables can reflect structural inequalities and act as proxies.
+
+- The target is a new arrest, which measures contact with the criminal-justice system—not crime directly.
+
+- A proprietary model is difficult for defendants and the public to examine or challenge.
 :::
 :::
 
-::: {.column width="5%"}
+::: {.column width="56%"}
+![](images/14/machine-bias-risk-scores.png){fig-align="center" width="360"}
+:::
 :::
 
-::: {.column width="60%"}
-![](images/14/machine-bias-risk-scores.png){fig-align="center" width="480"}
-:::
+::: {.question .fragment}
+A false positive can restrict someone's freedom; a false negative can create a public-safety risk. Who should decide how these errors are valued—and who bears them?
 :::
 
 ## Parting thoughts
