@@ -181,7 +181,14 @@ Sources: [CDC PLACES release notes](https://www.cdc.gov/places/current-release-n
 1. Start with the CDC PLACES 2025 county release.
 2. Filter to North Carolina and age-adjusted prevalence estimates.
 3. Reshape to one row per county.
-4. Write to a CSV file: `nc-places.csv`.
+4. Add 2026 development tier, geographic region, and Appalachian status.
+5. Write to a CSV file: `nc-places.csv`.
+
+::: aside
+
+Classification sources: [NC Department of Commerce county tiers](https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers), [NC Office of State Archaeology regions](https://archaeology.ncdcr.gov/programs/education/climatechange/risks), and [Appalachian Regional Commission counties](https://www.arc.gov/appalachian-counties-served-by-arc/). The two Coastal Plain categories are combined.
+
+:::
 
 ## Packages
 
@@ -210,6 +217,9 @@ nc_places <- read_csv(
 
 - `food_insecurity` - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.
 - `mental_distress` - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.
+
+The full dataset also includes `development_tier`, `region`, and `appalachian`
+for later modeling lessons.
 
 ```{r}
 #| echo: false
