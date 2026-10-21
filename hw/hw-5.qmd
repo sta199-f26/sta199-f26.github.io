@@ -11,18 +11,18 @@ bibliography: references.bib
 
 # Introduction
 
-In this homework, you will investigate relationships between variables in three settings: infant crawling, diet and life expectancy, and minimum wage and employment.
+In this homework, you will investigate relationships between variables in three settings: infant crawling, diet and life expectancy, and health and demographic characteristics of North Carolina counties.
 You will begin by using visualizations and correlation to study how temperature relates to the age at which babies begin crawling, including what happens when the variables are converted to different units.
 Next, you will use simple linear regression to examine how meat and carbohydrate consumption relate to life expectancy across countries.
-Finally, you will analyze data from a natural experiment on minimum wage policy by summarizing and reshaping the data, modeling changes in employment, and considering whether the results support a causal conclusion.
+Finally, you will combine two datasets about North Carolina counties, choose an outcome and predictors, and fit models with quantitative and categorical predictors.
 
 ## Learning objectives
 
 By the end of this homework, you will:
 
-- create and interpret scatterplots, density plots, and boxplots for relationships between variables;
+- create and interpret scatterplots for relationships between quantitative variables;
 - calculate and interpret correlation coefficients and explain how linear unit conversions affect correlations and visualizations;
-- prepare data for analysis by setting factor reference levels, computing grouped summaries, reshaping data, handling missing values, and creating derived variables;
+- join related datasets and select appropriate outcome and predictor variables;
 - fit and interpret simple linear regression models with quantitative and categorical predictors, including predictions, residuals, and $R^2$;
 - use residual plots to assess whether a linear model is appropriate; and
 - distinguish association from causation.
@@ -73,11 +73,13 @@ a. Create a new variable `temperature_C` that converts the temperature from F to
 
 b. Create a new variable `avg_crawling_age_months` that converts the average crawling age from weeks to months using the formula $months = weeks / 4.345$.
 
-c. How would you expect the answers to Question 1 and Question 2 to change after converting the variables to C and months, respectively?
+c. How would you expect the scatterplot and correlation from Question 1 to change after converting temperature to C and crawling age to months?
 
-d. Create a new scatterplot displaying the relationship between `temperature_C` and `avg_crawling_age_months`. Does the visualization support your expectations from part c?
+d. Create a new scatterplot displaying the relationship between `temperature_C` and `avg_crawling_age_months`.
+   Does the visualization support your expectations from part c?
 
-e. Calculate the correlation between `temperature_C` and `avg_crawling_age_months`. Does the correlation support your expectations from part c?
+e. Calculate the correlation between `temperature_C` and `avg_crawling_age_months`.
+   Does the correlation support your expectations from part c?
 
 # Part 2 - Life expectancy
 
@@ -85,7 +87,7 @@ e. Calculate the correlation between `temperature_C` and `avg_crawling_age_month
 Meat consumption is measured in kg per capita per year (averaged over 2011 to 2013).
 Carbohydrate consumption is measured as carbohydrate crops (e.g., cereals, root, sugar, etc.) in kg per capita per year (averaged over 2011 and 2013).
 
-The data from this study is available in `you-2022.csv` in your `data` folder.
+The dataset from this study is available in `you-2022.csv` in your `data` folder.
 From this dataset, you will work with the following variables:
 
 -  `country`: country name
@@ -95,13 +97,15 @@ From this dataset, you will work with the following variables:
 
 ## Question 3
 
-a. Create a scatterplot displaying the relationship between life expectancy vs. meat consumption and describe the relationship.
+a. Create a scatterplot displaying the relationship between meat consumption and life expectancy, and describe the relationship.
 
-b. Create a scatterplot displaying the relationship between life expectancy vs. carbohydrate consumption and describe the relationship.
+b. Create a scatterplot displaying the relationship between carbohydrate consumption and life expectancy, and describe the relationship.
 
-c. Before you calculate a correlation, which plot shows a stronger correlation? Explain your reasoning.
+c. Before you calculate a correlation, which plot appears to show a stronger correlation?
+   Explain your reasoning.
 
-d. Calculate the correlation coefficients for the relationships visualized in parts a and b. Comment on whether the correlation coefficients support your reasoning in part c.
+d. Calculate the correlation coefficients for the relationships visualized in parts a and b.
+   Comment on whether the correlation coefficients support your reasoning in part c.
 
 ## Question 4
 
@@ -109,17 +113,22 @@ a. Fit a linear model that predicts life expectancy from meat consumption and di
 
 b. Interpret the slope in the context of the data.
 
-c. Interpret the intercept in the context of the data. Is it meaningful? Why or why not?
+c. Interpret the intercept in the context of the data.
+   Is it meaningful?
+   Why or why not?
 
-d. Pick a country of your choice from the dataset and use the model to predict its life expectancy based on its meat consumption and calculate the residual. Comment on whether the model over- or under-predicts life expectancy for this country.
+d. Pick a country of your choice from the dataset, use the model to predict its life expectancy based on its meat consumption, and calculate the residual.
+   Comment on whether the model over- or under-predicts life expectancy for this country.
 
 ## Question 5
 
-b. Fit a linear model that predicts life expectancy from carbohydrate consumption and display the tidy model summary.
+a. Fit a linear model that predicts life expectancy from carbohydrate consumption and display the tidy model summary.
 
 b. Interpret the slope in the context of the data.
 
-c. Interpret the intercept in the context of the data. Is it meaningful? Why or why not?
+c. Interpret the intercept in the context of the data.
+   Is it meaningful?
+   Why or why not?
 
 d. Calculate the R-squared value for the model and interpret it in context of the data.
 
@@ -133,44 +142,65 @@ Comment on whether the results from the two models support causal conclusions be
 
 For this part of the homework you will return to working with data on North Carolina counties.
 
-- Dataset 1: `nc-places.csv` -- See [Lecture 15](https://sta199-f26.github.io/slides/15-linear-regression-single-predictor.html#cdc-places) for a description of this dataset. The full data dictionary can be found [here](https://github.com/sta199-f26/sta199-f26.github.io/blob/main/_data/nc-places/README.md#variables).
+- Dataset 1: `nc-places.csv` -- See [Lecture 15](https://sta199-f26.github.io/slides/15-linear-regression-single-predictor.html#cdc-places) for a description of this dataset.
+  The full data dictionary can be found [here](https://github.com/sta199-f26/sta199-f26.github.io/blob/main/_data/nc-places/README.md#variables).
 
-- Dataset 2: `nc-counties.csv` -- See [Homework 2](hw-2.html) for a description of this dataset. The full data dictionary can be found [here](https://github.com/sta199-f26/sta199-f26.github.io/blob/main/_data/nc-county/README.md#variables).
+- Dataset 2: `nc-county.csv` -- See [Homework 2](hw-2.html) for a description of this dataset.
+  The full data dictionary can be found [here](https://github.com/sta199-f26/sta199-f26.github.io/blob/main/_data/nc-county/README.md#variables).
 
 Both datasets are in your `data` folder.
 
 ## Question 7
 
-Read the two datasets and then join them together by county name to create a new data frame called `nc_counties_places`.
-Join the two datasets together by county name and create a new data frame called `nc_counties_places`.
+Read `nc-places.csv` into a data frame called `nc_places` and `nc-county.csv` into a data frame called `nc_counties`.
+Join the two data frames by county name and save the result as `nc_counties_places`.
 Report the number of rows and columns of this data frame.
 
 ## Question 8
 
 Choose three variables from `nc_counties_places` for the following purposes:
 
-- Variable 1: Outcome variable -- This should be a numeric variable that you want to predict and that might make sense to predict from other variables in the dataset. State which data frame it was originally included in: `nc_places` or `nc_counties`. Describe why you chose this variable as your outcome variable and why it might be interesting to predict.
+- Variable 1: Outcome variable -- This should be a numeric variable that you want to predict and that might make sense to predict from other variables in the dataset.
+  State which data frame it was originally included in: `nc_places` or `nc_counties`.
+  Describe why you chose this variable as your outcome variable and why it might be interesting to predict.
 
-- Variable 2: Predictor variable 1 -- This should be a numeric variable that you think might be related to your outcome variable. State which data frame it was originally included in: `nc_places` or `nc_counties`. Describe why you chose this variable as your predictor variable and why it might be interesting to use it to predict your outcome variable.
+- Variable 2: Predictor variable 1 -- This should be a numeric variable that you think might be related to your outcome variable.
+  State which data frame it was originally included in: `nc_places` or `nc_counties`.
+  Describe why you chose this variable as your predictor variable and why it might be interesting to use it to predict your outcome variable.
 
-- Variable 3: Predictor variable 2 -- This should be a categorical variable that you think might be related to your outcome variable. State which data frame it was originally included in: `nc_places` or `nc_counties`. Describe why you chose this variable as your predictor variable and why it might be interesting to use it to predict your outcome variable. Additionally, state the reference (baseline) level, and optionally, change the level order if you think a different level should be the reference level.
+- Variable 3: Predictor variable 2 -- This should be a categorical variable that you think might be related to your outcome variable.
+  State which data frame it was originally included in: `nc_places` or `nc_counties`.
+  Describe why you chose this variable as your predictor variable and why it might be interesting to use it to predict your outcome variable.
+  Additionally, state the reference (baseline) level and, optionally, change the level order if you think a different level should be the reference level.
 
 Two of these variables must come from one of the datasets (`nc_places` or `nc_counties`) and the third variable must come from the other dataset.
 
 ## Question 9
 
-a. Fit a linear regression model predicting your outcome variable from Question 8 from Variable 1.
+a. Fit a linear regression model predicting your outcome variable from Question 8 using the numeric predictor, Variable 2.
+
 b. Display the tidy model summary.
+
 c. Interpret the slope in the context of the data.
-d. Interpret the intercept in the context of the data. Is it meaningful? Why or why not?
+
+d. Interpret the intercept in the context of the data.
+   Is it meaningful?
+   Why or why not?
+
 e. Calculate the R-squared value for the model and interpret it in context of the data.
 
 ## Question 10
 
-a. Fit a linear regression model predicting your outcome variable from Question 8 from Variable 2.
+a. Fit a linear regression model predicting your outcome variable from Question 8 using the categorical predictor, Variable 3.
+
 b. Display the tidy model summary.
-c. Interpret the slope(s) in the context of the data.
-d. Interpret the intercept in the context of the data. Is it meaningful? Why or why not?
+
+c. Interpret the coefficient(s) for Variable 3 in the context of the data.
+
+d. Interpret the intercept in the context of the data.
+   Is it meaningful?
+   Why or why not?
+
 e. Calculate the R-squared value for the model and interpret it in context of the data.
 
 # AI use disclosure
