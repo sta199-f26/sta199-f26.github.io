@@ -24,6 +24,7 @@ filters:
 library(tidyverse)
 library(tidymodels)
 library(gt)
+library(patchwork)
 
 ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
 
@@ -102,7 +103,22 @@ Go to [wooclap.com](https://app.wooclap.com/BSAFXJG) and use the code BSAFXJG.
 
 ## Announcements {.smaller}
 
-- ...
+- Projects:
+  - Peer review tomorrow: Make as much progress as you can before your 
+  - New project component: AI disclosure to be added overnight, pull when you get to lab
+
+. . .
+
+- HW 5 due next Wednesday at 11:59 pm
+
+. . .
+
+- My office hours this week: Friday 2-3:30 pm in Old Chem 211, come by if you
+  - have questions on the homework
+  - want to review your exam
+  - want to discuss your project (and come with your teammates!)
+  - can't usually make it to my Wednesday OH and I haven't yet had a chance to meet you 
+  
 
 ## Learning goals
 
@@ -176,7 +192,7 @@ Sources: [CDC PLACES release notes](https://www.cdc.gov/places/current-release-n
 
 :::
 
-## How the data were put together
+## How the data were put together {.smaller}
 
 1. Start with the CDC PLACES 2025 county release.
 2. Filter to North Carolina and age-adjusted prevalence estimates.
@@ -198,11 +214,14 @@ Classification sources: [NC Department of Commerce county tiers](https://www.com
 
 - **tidymodels** for modeling with tidyverse principles
 
+- **maps** for county boundaries
+
 ```{r}
 #| message: false
 library(tidyverse)
 library(scales)
 library(tidymodels)
+library(maps)
 ```
 
 ## Load the data {.smaller}
@@ -229,6 +248,89 @@ nc_places |>
   opt_interactive() |>
   fmt_number(columns = where(is.numeric), decimals = 1) |>
   tab_options(table.font.size = px(20))
+```
+
+## Geographic patterns {.smaller}
+
+```{r}
+#| echo: false
+#| fig-height: 4.8
+#| fig-width: 5.5
+#| layout-ncol: 2
+nc_county_map <- map_data("county") |>
+  filter(region == "north carolina") |>
+  mutate(county_key = subregion) |>
+  left_join(
+    nc_places |>
+      transmute(
+        county_key = str_to_lower(county),
+        food_insecurity,
+        mental_distress
+      ),
+    by = "county_key"
+  )
+
+ggplot(
+  nc_county_map,
+  aes(x = long, y = lat, group = group, fill = food_insecurity)
+) +
+  geom_polygon(color = "white", linewidth = 0.15) +
+  coord_quickmap() +
+  scale_fill_gradient(
+    low = "#eef3f6",
+    high = "#884332",
+    breaks = function(limits) {
+      seq(limits[1], limits[2], length.out = 3)
+    },
+    labels = percent_label(accuracy = 1)
+  ) +
+  labs(title = "Food insecurity", fill = "Estimated percentage") +
+  guides(
+    fill = guide_colorbar(
+      title.position = "top",
+      title.hjust = 0.5,
+      barwidth = grid::unit(2.8, "in"),
+      barheight = grid::unit(0.15, "in")
+    )
+  ) +
+  theme_void(base_size = 18) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+
+ggplot(
+  nc_county_map,
+  aes(x = long, y = lat, group = group, fill = mental_distress)
+) +
+  geom_polygon(color = "white", linewidth = 0.15) +
+  coord_quickmap() +
+  scale_fill_gradient(
+    low = "#eef3f6",
+    high = "#133955",
+    breaks = function(limits) {
+      seq(limits[1], limits[2], length.out = 3)
+    },
+    labels = percent_label(accuracy = 1)
+  ) +
+  labs(title = "Frequent mental distress", fill = "Estimated percentage") +
+  guides(
+    fill = guide_colorbar(
+      title.position = "top",
+      title.hjust = 0.5,
+      barwidth = grid::unit(2.8, "in"),
+      barheight = grid::unit(0.15, "in")
+    )
+  ) +
+  theme_void(base_size = 18) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
 ```
 
 # Language of models
@@ -1026,6 +1128,90 @@ Learn more: [CDC PLACES methodology](https://www.cdc.gov/places/methodology/)
 :::
 
 # Application exercise
+
+## Dental visits and health
+
+```{r}
+#| echo: false
+#| fig-height: 4.8
+#| fig-width: 5.5
+#| layout-ncol: 2
+nc_county_map_2 <- map_data("county") |>
+  filter(region == "north carolina") |>
+  mutate(county_key = subregion) |>
+  left_join(
+    nc_places |>
+      transmute(
+        county_key = str_to_lower(county),
+        dental_visit,
+        fair_or_poor_health
+      ),
+    by = "county_key"
+  )
+
+ggplot(
+  nc_county_map_2,
+  aes(x = long, y = lat, group = group, fill = dental_visit)
+) +
+  geom_polygon(color = "white", linewidth = 0.15) +
+  coord_quickmap() +
+  scale_fill_gradient(
+    low = "#eef3f6",
+    high = "#A19436",
+    breaks = function(limits) {
+      seq(limits[1], limits[2], length.out = 3)
+    },
+    labels = percent_label(accuracy = 1)
+  ) +
+  labs(title = "Dental visits", fill = "Estimated percentage") +
+  guides(
+    fill = guide_colorbar(
+      title.position = "top",
+      title.hjust = 0.5,
+      barwidth = grid::unit(2.8, "in"),
+      barheight = grid::unit(0.15, "in")
+    )
+  ) +
+  theme_void(base_size = 18) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+
+ggplot(
+  nc_county_map_2,
+  aes(x = long, y = lat, group = group, fill = fair_or_poor_health)
+) +
+  geom_polygon(color = "white", linewidth = 0.15) +
+  coord_quickmap() +
+  scale_fill_gradient(
+    low = "#eef3f6",
+    high = "#9E2C6A",
+    breaks = function(limits) {
+      seq(limits[1], limits[2], length.out = 3)
+    },
+    labels = percent_label(accuracy = 1)
+  ) +
+  labs(title = "Fair or poor health", fill = "Estimated percentage") +
+  guides(
+    fill = guide_colorbar(
+      title.position = "top",
+      title.hjust = 0.5,
+      barwidth = grid::unit(2.8, "in"),
+      barheight = grid::unit(0.15, "in")
+    )
+  ) +
+  theme_void(base_size = 18) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+```
+
 
 ## Application exercise {.smaller}
 
