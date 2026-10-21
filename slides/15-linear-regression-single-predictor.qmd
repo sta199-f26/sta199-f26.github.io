@@ -211,7 +211,7 @@ nc_places |>
   tab_options(table.font.size = px(20))
 ```
 
-# Modeling
+# Language of models
 
 ## Modeling North Carolina counties {.smaller}
 
@@ -649,6 +649,21 @@ ggplot(
 
 # Linear regression with a single predictor
 
+## A regression model
+
+A regression model separates an observed outcome into a systematic part and an unexplained part:
+
+$$
+\begin{aligned}
+Y &= \text{Model} + \text{Error} \\
+  &= f(X) + \epsilon \\
+  &= \mu_{Y \mid X} + \epsilon
+\end{aligned}
+$$
+
+- $\mu_{Y \mid X}$ is the mean outcome for observations with predictor value $X$.
+- $\epsilon$ is the deviation of an observed outcome from that mean.
+
 ## A linear regression model
 
 A linear regression model describes the relationship between a quantitative outcome, $Y$, and a quantitative predictor, $X$:
@@ -674,6 +689,10 @@ $$
 - $\widehat{Y}$: predicted value of the outcome
 - $b_0$: estimated intercept
 - $b_1$: estimated slope
+
+::: {.callout-note .fragment}
+There is **no error term** in the fitted line: $\widehat{Y}$ is the model's prediction, not an observed outcome.
+:::
 
 ## Fit the model with tidymodels
 
@@ -913,6 +932,25 @@ e_1^2 + e_2^2 + \cdots + e_n^2
 $$
 
 - The **least squares regression line** is the line that minimizes this sum.
+
+## Properties of least-squares regression {.smaller}
+
+For a least-squares line with one quantitative predictor and an intercept:
+
+::: incremental
+
+- The line passes through the point of means, $(\bar{x}, \bar{y})$:
+  $$b_0 = \bar{y} - b_1\bar{x}$$
+
+- The slope and correlation have the same sign:
+  $$b_1 = r\frac{s_y}{s_x}$$
+
+- The residuals sum to zero:
+  $$\sum_{i=1}^{n} e_i = 0$$
+
+- The residuals and predictor values are uncorrelated.
+
+:::
 
 # Interpreting responsibly
 
