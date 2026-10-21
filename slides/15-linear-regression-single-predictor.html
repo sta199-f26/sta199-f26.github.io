@@ -135,10 +135,10 @@ window.Quarto = {
 </script>
 <meta property="og:title" content="Linear regression with a single predictor – STA 199CCL">
 <meta property="og:description" content="Lecture 15">
-<meta property="og:image" content="https://sta199-f26.github.io/slides/15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-1-1.png">
+<meta property="og:image" content="https://sta199-f26.github.io/slides/15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-1-1.png">
 <meta property="og:site_name" content="STA 199CCL">
 <meta property="og:image:height" content="960">
-<meta property="og:image:width" content="1344">
+<meta property="og:image:width" content="1920">
 </head>
 <body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -691,7 +691,7 @@ window.Quarto = {
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -700,12 +700,10 @@ window.Quarto = {
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
-</div>
+<p>Go to <a href="https://app.wooclap.com/BSAFXJG">wooclap.com</a> and use the code BSAFXJG.</p>
 </div>
 </div>
 </section><section id="announcements" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="announcements">Announcements</h2>
@@ -810,23 +808,23 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fyiqesgfgg" class=".gt_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fyiqesgfgg table {
+<div id="kzwqdpfsmq" class=".gt_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kzwqdpfsmq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fyiqesgfgg thead, #fyiqesgfgg tbody, #fyiqesgfgg tfoot, #fyiqesgfgg tr, #fyiqesgfgg td, #fyiqesgfgg th {
+#kzwqdpfsmq thead, #kzwqdpfsmq tbody, #kzwqdpfsmq tfoot, #kzwqdpfsmq tr, #kzwqdpfsmq td, #kzwqdpfsmq th {
   border-style: none;
 }
 
-#fyiqesgfgg p {
+#kzwqdpfsmq p {
   margin: 0;
   padding: 0;
 }
 
-#fyiqesgfgg .gt_table {
+#kzwqdpfsmq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -852,12 +850,12 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-left-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_caption {
+#kzwqdpfsmq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fyiqesgfgg .gt_title {
+#kzwqdpfsmq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -869,7 +867,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-width: 0;
 }
 
-#fyiqesgfgg .gt_subtitle {
+#kzwqdpfsmq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -881,7 +879,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-top-width: 0;
 }
 
-#fyiqesgfgg .gt_heading {
+#kzwqdpfsmq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -893,13 +891,13 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_bottom_border {
+#kzwqdpfsmq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_col_headings {
+#kzwqdpfsmq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -914,7 +912,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_col_heading {
+#kzwqdpfsmq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -934,7 +932,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   overflow-x: hidden;
 }
 
-#fyiqesgfgg .gt_column_spanner_outer {
+#kzwqdpfsmq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -946,15 +944,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 4px;
 }
 
-#fyiqesgfgg .gt_column_spanner_outer:first-child {
+#kzwqdpfsmq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fyiqesgfgg .gt_column_spanner_outer:last-child {
+#kzwqdpfsmq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fyiqesgfgg .gt_column_spanner {
+#kzwqdpfsmq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -966,11 +964,11 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   width: 100%;
 }
 
-#fyiqesgfgg .gt_spanner_row {
+#kzwqdpfsmq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fyiqesgfgg .gt_group_heading {
+#kzwqdpfsmq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -996,7 +994,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   text-align: left;
 }
 
-#fyiqesgfgg .gt_empty_group_heading {
+#kzwqdpfsmq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1011,15 +1009,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   vertical-align: middle;
 }
 
-#fyiqesgfgg .gt_from_md > :first-child {
+#kzwqdpfsmq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fyiqesgfgg .gt_from_md > :last-child {
+#kzwqdpfsmq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fyiqesgfgg .gt_row {
+#kzwqdpfsmq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1038,7 +1036,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   overflow-x: hidden;
 }
 
-#fyiqesgfgg .gt_stub {
+#kzwqdpfsmq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1051,7 +1049,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#fyiqesgfgg .gt_stub_row_group {
+#kzwqdpfsmq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1065,15 +1063,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   vertical-align: top;
 }
 
-#fyiqesgfgg .gt_row_group_first td {
+#kzwqdpfsmq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fyiqesgfgg .gt_row_group_first th {
+#kzwqdpfsmq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fyiqesgfgg .gt_summary_row {
+#kzwqdpfsmq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1083,16 +1081,16 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#fyiqesgfgg .gt_first_summary_row {
+#kzwqdpfsmq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_first_summary_row.thick {
+#kzwqdpfsmq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fyiqesgfgg .gt_last_summary_row {
+#kzwqdpfsmq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1102,7 +1100,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_grand_summary_row {
+#kzwqdpfsmq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1112,7 +1110,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#fyiqesgfgg .gt_first_grand_summary_row {
+#kzwqdpfsmq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1122,7 +1120,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-top-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_last_grand_summary_row_top {
+#kzwqdpfsmq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1132,11 +1130,11 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_striped {
+#kzwqdpfsmq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fyiqesgfgg .gt_table_body {
+#kzwqdpfsmq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1145,7 +1143,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_footnotes {
+#kzwqdpfsmq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1159,7 +1157,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_footnote {
+#kzwqdpfsmq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1168,7 +1166,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#fyiqesgfgg .gt_sourcenotes {
+#kzwqdpfsmq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1182,7 +1180,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#fyiqesgfgg .gt_sourcenote {
+#kzwqdpfsmq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1190,77 +1188,77 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#fyiqesgfgg .gt_left {
+#kzwqdpfsmq .gt_left {
   text-align: left;
 }
 
-#fyiqesgfgg .gt_center {
+#kzwqdpfsmq .gt_center {
   text-align: center;
 }
 
-#fyiqesgfgg .gt_right {
+#kzwqdpfsmq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fyiqesgfgg .gt_font_normal {
+#kzwqdpfsmq .gt_font_normal {
   font-weight: normal;
 }
 
-#fyiqesgfgg .gt_font_bold {
+#kzwqdpfsmq .gt_font_bold {
   font-weight: bold;
 }
 
-#fyiqesgfgg .gt_font_italic {
+#kzwqdpfsmq .gt_font_italic {
   font-style: italic;
 }
 
-#fyiqesgfgg .gt_super {
+#kzwqdpfsmq .gt_super {
   font-size: 65%;
 }
 
-#fyiqesgfgg .gt_footnote_marks {
+#kzwqdpfsmq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fyiqesgfgg .gt_asterisk {
+#kzwqdpfsmq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fyiqesgfgg .gt_indent_1 {
+#kzwqdpfsmq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fyiqesgfgg .gt_indent_2 {
+#kzwqdpfsmq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fyiqesgfgg .gt_indent_3 {
+#kzwqdpfsmq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fyiqesgfgg .gt_indent_4 {
+#kzwqdpfsmq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fyiqesgfgg .gt_indent_5 {
+#kzwqdpfsmq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fyiqesgfgg .katex-display {
+#kzwqdpfsmq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fyiqesgfgg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kzwqdpfsmq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<div id="fyiqesgfgg" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="fyiqesgfgg">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"county":["Alamance","Alexander","Alleghany","Anson","Ashe","Avery","Beaufort","Bertie","Bladen","Brunswick","Buncombe","Burke","Cabarrus","Caldwell","Camden","Carteret","Caswell","Catawba","Chatham","Cherokee","Chowan","Clay","Cleveland","Columbus","Craven","Cumberland","Currituck","Dare","Davidson","Davie","Duplin","Durham","Edgecombe","Forsyth","Franklin","Gaston","Gates","Graham","Granville","Greene","Guilford","Halifax","Harnett","Haywood","Henderson","Hertford","Hoke","Hyde","Iredell","Jackson","Johnston","Jones","Lee","Lenoir","Lincoln","Macon","Madison","Martin","McDowell","Mecklenburg","Mitchell","Montgomery","Moore","Nash","New Hanover","Northampton","Onslow","Orange","Pamlico","Pasquotank","Pender","Perquimans","Person","Pitt","Polk","Randolph","Richmond","Robeson","Rockingham","Rowan","Rutherford","Sampson","Scotland","Stanly","Stokes","Surry","Swain","Transylvania","Tyrrell","Union","Vance","Wake","Warren","Washington","Watauga","Wayne","Wilkes","Wilson","Yadkin","Yancey"],"food_insecurity":[17.2,15.8,18.5,28.2,14.6,15.1,19.3,28.7,22.5,11.9,12.1,17.4,13.7,16.6,11,11.4,20.3,15.2,12.7,14.9,21.4,12.8,18.5,22.7,15.9,20.5,10.7,9.6,16.5,12.8,22.8,14.3,27.8,16.7,17,16.7,19.1,14.6,18.9,26.7,17.5,30.9,17.4,12.8,12.8,28.7,22.4,23.3,12.6,15.7,15.4,22.3,19.1,27.1,12.6,15.1,12.3,23.9,16,14.5,12.8,20.5,11.4,21.2,11.8,26.7,15.8,10.4,15.6,17.3,13.4,16.9,18.9,18.9,12.9,17.9,26,31.2,19,17.4,18.1,23.3,29.4,16.2,14.5,18,21.9,11.4,23.6,12.3,26.3,10.4,28.3,28.9,14.1,21.7,17.5,26.2,16.4,14.9],"mental_distress":[18,19.1,19.3,20.2,18.9,18.4,18.9,19.6,19.5,17.2,16.6,19,16.6,19.3,17.2,17.2,19.1,17.9,15.9,19.1,19.3,18.2,19.1,19.8,18,18.2,17.1,16.3,18.9,17.6,18.8,15.2,19.9,17.1,17.9,18.3,19.5,19.2,18.1,19.3,17.3,20.4,18.3,18.1,17.2,19.9,18.9,19,16.9,19,17.4,19.9,18.5,20.3,17.6,18.6,18,20.1,19.1,15.6,18.4,18.9,16.6,18.6,17.1,19.8,17.8,15.3,18,18,17.8,18.8,19,18,17.8,19.1,20.3,20.9,19.7,18.6,19.7,19.3,20.7,18.8,19,19.4,20.7,17.4,19.2,16.4,19.5,14.9,19.8,20.7,18.3,18.7,19.5,19.4,19,19]},"columns":[{"id":"county","name":"county","type":"character","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","html":true,"align":"left"},{"id":"food_insecurity","name":"food_insecurity","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["17.2","15.8","18.5","28.2","14.6","15.1","19.3","28.7","22.5","11.9","12.1","17.4","13.7","16.6","11.0","11.4","20.3","15.2","12.7","14.9","21.4","12.8","18.5","22.7","15.9","20.5","10.7","9.6","16.5","12.8","22.8","14.3","27.8","16.7","17.0","16.7","19.1","14.6","18.9","26.7","17.5","30.9","17.4","12.8","12.8","28.7","22.4","23.3","12.6","15.7","15.4","22.3","19.1","27.1","12.6","15.1","12.3","23.9","16.0","14.5","12.8","20.5","11.4","21.2","11.8","26.7","15.8","10.4","15.6","17.3","13.4","16.9","18.9","18.9","12.9","17.9","26.0","31.2","19.0","17.4","18.1","23.3","29.4","16.2","14.5","18.0","21.9","11.4","23.6","12.3","26.3","10.4","28.3","28.9","14.1","21.7","17.5","26.2","16.4","14.9"],"html":true,"align":"right"},{"id":"mental_distress","name":"mental_distress","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["18.0","19.1","19.3","20.2","18.9","18.4","18.9","19.6","19.5","17.2","16.6","19.0","16.6","19.3","17.2","17.2","19.1","17.9","15.9","19.1","19.3","18.2","19.1","19.8","18.0","18.2","17.1","16.3","18.9","17.6","18.8","15.2","19.9","17.1","17.9","18.3","19.5","19.2","18.1","19.3","17.3","20.4","18.3","18.1","17.2","19.9","18.9","19.0","16.9","19.0","17.4","19.9","18.5","20.3","17.6","18.6","18.0","20.1","19.1","15.6","18.4","18.9","16.6","18.6","17.1","19.8","17.8","15.3","18.0","18.0","17.8","18.8","19.0","18.0","17.8","19.1","20.3","20.9","19.7","18.6","19.7","19.3","20.7","18.8","19.0","19.4","20.7","17.4","19.2","16.4","19.5","14.9","19.8","20.7","18.3","18.7","19.5","19.4","19.0","19.0"],"html":true,"align":"right"}],"defaultPageSize":10,"showPageSizeOptions":false,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPagination":true,"showPageInfo":true,"minRows":1,"height":"auto","theme":{"color":"#333333","backgroundColor":"#FFFFFF","stripedColor":"rgba(128,128,128,0.05)","style":{"font-family":"system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif","fontSize":"20px"},"tableStyle":{"borderTopStyle":"solid","borderTopWidth":"2px","borderTopColor":"#D3D3D3"},"headerStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"groupHeaderStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"cellStyle":{"fontWeight":"normal"}},"elementId":"fyiqesgfgg","dataKey":"71d0444451344449297fea69bd940396"},"children":[]},"class":"reactR_markup"},"evals":["tag.attribs.columns.0.style","tag.attribs.columns.1.style","tag.attribs.columns.2.style"],"jsHooks":[]}</script>
+<div id="kzwqdpfsmq" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="kzwqdpfsmq">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"county":["Alamance","Alexander","Alleghany","Anson","Ashe","Avery","Beaufort","Bertie","Bladen","Brunswick","Buncombe","Burke","Cabarrus","Caldwell","Camden","Carteret","Caswell","Catawba","Chatham","Cherokee","Chowan","Clay","Cleveland","Columbus","Craven","Cumberland","Currituck","Dare","Davidson","Davie","Duplin","Durham","Edgecombe","Forsyth","Franklin","Gaston","Gates","Graham","Granville","Greene","Guilford","Halifax","Harnett","Haywood","Henderson","Hertford","Hoke","Hyde","Iredell","Jackson","Johnston","Jones","Lee","Lenoir","Lincoln","Macon","Madison","Martin","McDowell","Mecklenburg","Mitchell","Montgomery","Moore","Nash","New Hanover","Northampton","Onslow","Orange","Pamlico","Pasquotank","Pender","Perquimans","Person","Pitt","Polk","Randolph","Richmond","Robeson","Rockingham","Rowan","Rutherford","Sampson","Scotland","Stanly","Stokes","Surry","Swain","Transylvania","Tyrrell","Union","Vance","Wake","Warren","Washington","Watauga","Wayne","Wilkes","Wilson","Yadkin","Yancey"],"food_insecurity":[17.2,15.8,18.5,28.2,14.6,15.1,19.3,28.7,22.5,11.9,12.1,17.4,13.7,16.6,11,11.4,20.3,15.2,12.7,14.9,21.4,12.8,18.5,22.7,15.9,20.5,10.7,9.6,16.5,12.8,22.8,14.3,27.8,16.7,17,16.7,19.1,14.6,18.9,26.7,17.5,30.9,17.4,12.8,12.8,28.7,22.4,23.3,12.6,15.7,15.4,22.3,19.1,27.1,12.6,15.1,12.3,23.9,16,14.5,12.8,20.5,11.4,21.2,11.8,26.7,15.8,10.4,15.6,17.3,13.4,16.9,18.9,18.9,12.9,17.9,26,31.2,19,17.4,18.1,23.3,29.4,16.2,14.5,18,21.9,11.4,23.6,12.3,26.3,10.4,28.3,28.9,14.1,21.7,17.5,26.2,16.4,14.9],"mental_distress":[18,19.1,19.3,20.2,18.9,18.4,18.9,19.6,19.5,17.2,16.6,19,16.6,19.3,17.2,17.2,19.1,17.9,15.9,19.1,19.3,18.2,19.1,19.8,18,18.2,17.1,16.3,18.9,17.6,18.8,15.2,19.9,17.1,17.9,18.3,19.5,19.2,18.1,19.3,17.3,20.4,18.3,18.1,17.2,19.9,18.9,19,16.9,19,17.4,19.9,18.5,20.3,17.6,18.6,18,20.1,19.1,15.6,18.4,18.9,16.6,18.6,17.1,19.8,17.8,15.3,18,18,17.8,18.8,19,18,17.8,19.1,20.3,20.9,19.7,18.6,19.7,19.3,20.7,18.8,19,19.4,20.7,17.4,19.2,16.4,19.5,14.9,19.8,20.7,18.3,18.7,19.5,19.4,19,19]},"columns":[{"id":"county","name":"county","type":"character","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","html":true,"align":"left"},{"id":"food_insecurity","name":"food_insecurity","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["17.2","15.8","18.5","28.2","14.6","15.1","19.3","28.7","22.5","11.9","12.1","17.4","13.7","16.6","11.0","11.4","20.3","15.2","12.7","14.9","21.4","12.8","18.5","22.7","15.9","20.5","10.7","9.6","16.5","12.8","22.8","14.3","27.8","16.7","17.0","16.7","19.1","14.6","18.9","26.7","17.5","30.9","17.4","12.8","12.8","28.7","22.4","23.3","12.6","15.7","15.4","22.3","19.1","27.1","12.6","15.1","12.3","23.9","16.0","14.5","12.8","20.5","11.4","21.2","11.8","26.7","15.8","10.4","15.6","17.3","13.4","16.9","18.9","18.9","12.9","17.9","26.0","31.2","19.0","17.4","18.1","23.3","29.4","16.2","14.5","18.0","21.9","11.4","23.6","12.3","26.3","10.4","28.3","28.9","14.1","21.7","17.5","26.2","16.4","14.9"],"html":true,"align":"right"},{"id":"mental_distress","name":"mental_distress","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["18.0","19.1","19.3","20.2","18.9","18.4","18.9","19.6","19.5","17.2","16.6","19.0","16.6","19.3","17.2","17.2","19.1","17.9","15.9","19.1","19.3","18.2","19.1","19.8","18.0","18.2","17.1","16.3","18.9","17.6","18.8","15.2","19.9","17.1","17.9","18.3","19.5","19.2","18.1","19.3","17.3","20.4","18.3","18.1","17.2","19.9","18.9","19.0","16.9","19.0","17.4","19.9","18.5","20.3","17.6","18.6","18.0","20.1","19.1","15.6","18.4","18.9","16.6","18.6","17.1","19.8","17.8","15.3","18.0","18.0","17.8","18.8","19.0","18.0","17.8","19.1","20.3","20.9","19.7","18.6","19.7","19.3","20.7","18.8","19.0","19.4","20.7","17.4","19.2","16.4","19.5","14.9","19.8","20.7","18.3","18.7","19.5","19.4","19.0","19.0"],"html":true,"align":"right"}],"defaultPageSize":10,"showPageSizeOptions":false,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPagination":true,"showPageInfo":true,"minRows":1,"height":"auto","theme":{"color":"#333333","backgroundColor":"#FFFFFF","stripedColor":"rgba(128,128,128,0.05)","style":{"font-family":"system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif","fontSize":"20px"},"tableStyle":{"borderTopStyle":"solid","borderTopWidth":"2px","borderTopColor":"#D3D3D3"},"headerStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"groupHeaderStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"cellStyle":{"fontWeight":"normal"}},"elementId":"kzwqdpfsmq","dataKey":"71d0444451344449297fea69bd940396"},"children":[]},"class":"reactR_markup"},"evals":["tag.attribs.columns.0.style","tag.attribs.columns.1.style","tag.attribs.columns.2.style"],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1275,7 +1273,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1287,7 +1285,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1299,7 +1297,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1315,7 +1313,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1340,23 +1338,23 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="column" style="width:40%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="lgcrfbstea" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lgcrfbstea table {
+<div id="tfjubbsznf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tfjubbsznf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lgcrfbstea thead, #lgcrfbstea tbody, #lgcrfbstea tfoot, #lgcrfbstea tr, #lgcrfbstea td, #lgcrfbstea th {
+#tfjubbsznf thead, #tfjubbsznf tbody, #tfjubbsznf tfoot, #tfjubbsznf tr, #tfjubbsznf td, #tfjubbsznf th {
   border-style: none;
 }
 
-#lgcrfbstea p {
+#tfjubbsznf p {
   margin: 0;
   padding: 0;
 }
 
-#lgcrfbstea .gt_table {
+#tfjubbsznf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1382,12 +1380,12 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-left-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_caption {
+#tfjubbsznf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lgcrfbstea .gt_title {
+#tfjubbsznf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1399,7 +1397,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-width: 0;
 }
 
-#lgcrfbstea .gt_subtitle {
+#tfjubbsznf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1411,7 +1409,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-top-width: 0;
 }
 
-#lgcrfbstea .gt_heading {
+#tfjubbsznf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1423,13 +1421,13 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_bottom_border {
+#tfjubbsznf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_col_headings {
+#tfjubbsznf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1444,7 +1442,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_col_heading {
+#tfjubbsznf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1464,7 +1462,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   overflow-x: hidden;
 }
 
-#lgcrfbstea .gt_column_spanner_outer {
+#tfjubbsznf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1476,15 +1474,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 4px;
 }
 
-#lgcrfbstea .gt_column_spanner_outer:first-child {
+#tfjubbsznf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lgcrfbstea .gt_column_spanner_outer:last-child {
+#tfjubbsznf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lgcrfbstea .gt_column_spanner {
+#tfjubbsznf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1496,11 +1494,11 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   width: 100%;
 }
 
-#lgcrfbstea .gt_spanner_row {
+#tfjubbsznf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lgcrfbstea .gt_group_heading {
+#tfjubbsznf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1526,7 +1524,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   text-align: left;
 }
 
-#lgcrfbstea .gt_empty_group_heading {
+#tfjubbsznf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1541,15 +1539,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   vertical-align: middle;
 }
 
-#lgcrfbstea .gt_from_md > :first-child {
+#tfjubbsznf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lgcrfbstea .gt_from_md > :last-child {
+#tfjubbsznf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lgcrfbstea .gt_row {
+#tfjubbsznf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1568,7 +1566,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   overflow-x: hidden;
 }
 
-#lgcrfbstea .gt_stub {
+#tfjubbsznf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1581,7 +1579,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#lgcrfbstea .gt_stub_row_group {
+#tfjubbsznf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1595,15 +1593,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   vertical-align: top;
 }
 
-#lgcrfbstea .gt_row_group_first td {
+#tfjubbsznf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lgcrfbstea .gt_row_group_first th {
+#tfjubbsznf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lgcrfbstea .gt_summary_row {
+#tfjubbsznf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1613,16 +1611,16 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#lgcrfbstea .gt_first_summary_row {
+#tfjubbsznf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_first_summary_row.thick {
+#tfjubbsznf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lgcrfbstea .gt_last_summary_row {
+#tfjubbsznf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1632,7 +1630,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_grand_summary_row {
+#tfjubbsznf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1642,7 +1640,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#lgcrfbstea .gt_first_grand_summary_row {
+#tfjubbsznf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1652,7 +1650,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-top-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_last_grand_summary_row_top {
+#tfjubbsznf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1662,11 +1660,11 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_striped {
+#tfjubbsznf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lgcrfbstea .gt_table_body {
+#tfjubbsznf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1675,7 +1673,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_footnotes {
+#tfjubbsznf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1689,7 +1687,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_footnote {
+#tfjubbsznf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1698,7 +1696,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#lgcrfbstea .gt_sourcenotes {
+#tfjubbsznf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1712,7 +1710,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#lgcrfbstea .gt_sourcenote {
+#tfjubbsznf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1720,72 +1718,72 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#lgcrfbstea .gt_left {
+#tfjubbsznf .gt_left {
   text-align: left;
 }
 
-#lgcrfbstea .gt_center {
+#tfjubbsznf .gt_center {
   text-align: center;
 }
 
-#lgcrfbstea .gt_right {
+#tfjubbsznf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lgcrfbstea .gt_font_normal {
+#tfjubbsznf .gt_font_normal {
   font-weight: normal;
 }
 
-#lgcrfbstea .gt_font_bold {
+#tfjubbsznf .gt_font_bold {
   font-weight: bold;
 }
 
-#lgcrfbstea .gt_font_italic {
+#tfjubbsznf .gt_font_italic {
   font-style: italic;
 }
 
-#lgcrfbstea .gt_super {
+#tfjubbsznf .gt_super {
   font-size: 65%;
 }
 
-#lgcrfbstea .gt_footnote_marks {
+#tfjubbsznf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lgcrfbstea .gt_asterisk {
+#tfjubbsznf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lgcrfbstea .gt_indent_1 {
+#tfjubbsznf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lgcrfbstea .gt_indent_2 {
+#tfjubbsznf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lgcrfbstea .gt_indent_3 {
+#tfjubbsznf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lgcrfbstea .gt_indent_4 {
+#tfjubbsznf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lgcrfbstea .gt_indent_5 {
+#tfjubbsznf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lgcrfbstea .katex-display {
+#tfjubbsznf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lgcrfbstea div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tfjubbsznf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1840,7 +1838,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1852,23 +1850,23 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="column" style="width:38%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="greedzszfo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#greedzszfo table {
+<div id="kncbdvssrm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kncbdvssrm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#greedzszfo thead, #greedzszfo tbody, #greedzszfo tfoot, #greedzszfo tr, #greedzszfo td, #greedzszfo th {
+#kncbdvssrm thead, #kncbdvssrm tbody, #kncbdvssrm tfoot, #kncbdvssrm tr, #kncbdvssrm td, #kncbdvssrm th {
   border-style: none;
 }
 
-#greedzszfo p {
+#kncbdvssrm p {
   margin: 0;
   padding: 0;
 }
 
-#greedzszfo .gt_table {
+#kncbdvssrm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1894,12 +1892,12 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-left-color: #D3D3D3;
 }
 
-#greedzszfo .gt_caption {
+#kncbdvssrm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#greedzszfo .gt_title {
+#kncbdvssrm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1911,7 +1909,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-width: 0;
 }
 
-#greedzszfo .gt_subtitle {
+#kncbdvssrm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1923,7 +1921,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-top-width: 0;
 }
 
-#greedzszfo .gt_heading {
+#kncbdvssrm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1935,13 +1933,13 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#greedzszfo .gt_bottom_border {
+#kncbdvssrm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#greedzszfo .gt_col_headings {
+#kncbdvssrm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1956,7 +1954,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#greedzszfo .gt_col_heading {
+#kncbdvssrm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1976,7 +1974,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   overflow-x: hidden;
 }
 
-#greedzszfo .gt_column_spanner_outer {
+#kncbdvssrm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1988,15 +1986,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 4px;
 }
 
-#greedzszfo .gt_column_spanner_outer:first-child {
+#kncbdvssrm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#greedzszfo .gt_column_spanner_outer:last-child {
+#kncbdvssrm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#greedzszfo .gt_column_spanner {
+#kncbdvssrm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2008,11 +2006,11 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   width: 100%;
 }
 
-#greedzszfo .gt_spanner_row {
+#kncbdvssrm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#greedzszfo .gt_group_heading {
+#kncbdvssrm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2038,7 +2036,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   text-align: left;
 }
 
-#greedzszfo .gt_empty_group_heading {
+#kncbdvssrm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2053,15 +2051,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   vertical-align: middle;
 }
 
-#greedzszfo .gt_from_md > :first-child {
+#kncbdvssrm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#greedzszfo .gt_from_md > :last-child {
+#kncbdvssrm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#greedzszfo .gt_row {
+#kncbdvssrm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2080,7 +2078,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   overflow-x: hidden;
 }
 
-#greedzszfo .gt_stub {
+#kncbdvssrm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2093,7 +2091,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#greedzszfo .gt_stub_row_group {
+#kncbdvssrm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2107,15 +2105,15 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   vertical-align: top;
 }
 
-#greedzszfo .gt_row_group_first td {
+#kncbdvssrm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#greedzszfo .gt_row_group_first th {
+#kncbdvssrm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#greedzszfo .gt_summary_row {
+#kncbdvssrm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2125,16 +2123,16 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#greedzszfo .gt_first_summary_row {
+#kncbdvssrm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#greedzszfo .gt_first_summary_row.thick {
+#kncbdvssrm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#greedzszfo .gt_last_summary_row {
+#kncbdvssrm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2144,7 +2142,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#greedzszfo .gt_grand_summary_row {
+#kncbdvssrm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2154,7 +2152,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#greedzszfo .gt_first_grand_summary_row {
+#kncbdvssrm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2164,7 +2162,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-top-color: #D3D3D3;
 }
 
-#greedzszfo .gt_last_grand_summary_row_top {
+#kncbdvssrm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2174,11 +2172,11 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#greedzszfo .gt_striped {
+#kncbdvssrm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#greedzszfo .gt_table_body {
+#kncbdvssrm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2187,7 +2185,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-bottom-color: #D3D3D3;
 }
 
-#greedzszfo .gt_footnotes {
+#kncbdvssrm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2201,7 +2199,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#greedzszfo .gt_footnote {
+#kncbdvssrm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2210,7 +2208,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#greedzszfo .gt_sourcenotes {
+#kncbdvssrm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2224,7 +2222,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   border-right-color: #D3D3D3;
 }
 
-#greedzszfo .gt_sourcenote {
+#kncbdvssrm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2232,72 +2230,72 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
   padding-right: 5px;
 }
 
-#greedzszfo .gt_left {
+#kncbdvssrm .gt_left {
   text-align: left;
 }
 
-#greedzszfo .gt_center {
+#kncbdvssrm .gt_center {
   text-align: center;
 }
 
-#greedzszfo .gt_right {
+#kncbdvssrm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#greedzszfo .gt_font_normal {
+#kncbdvssrm .gt_font_normal {
   font-weight: normal;
 }
 
-#greedzszfo .gt_font_bold {
+#kncbdvssrm .gt_font_bold {
   font-weight: bold;
 }
 
-#greedzszfo .gt_font_italic {
+#kncbdvssrm .gt_font_italic {
   font-style: italic;
 }
 
-#greedzszfo .gt_super {
+#kncbdvssrm .gt_super {
   font-size: 65%;
 }
 
-#greedzszfo .gt_footnote_marks {
+#kncbdvssrm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#greedzszfo .gt_asterisk {
+#kncbdvssrm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#greedzszfo .gt_indent_1 {
+#kncbdvssrm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#greedzszfo .gt_indent_2 {
+#kncbdvssrm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#greedzszfo .gt_indent_3 {
+#kncbdvssrm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#greedzszfo .gt_indent_4 {
+#kncbdvssrm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#greedzszfo .gt_indent_5 {
+#kncbdvssrm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#greedzszfo .katex-display {
+#kncbdvssrm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#greedzszfo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kncbdvssrm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2352,7 +2350,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2363,7 +2361,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2372,7 +2370,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2381,7 +2379,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2390,7 +2388,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2405,7 +2403,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2420,7 +2418,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="288"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="288"></a></p>
 </figure>
 </div>
 </div>
@@ -2440,12 +2438,10 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
-</div>
+<p>Go to <a href="https://app.wooclap.com/BSAFXJG">wooclap.com</a> and use the code BSAFXJG.</p>
 </div>
 </div>
 </section><section id="visualizing-the-model" class="level2"><h2 class="anchored" data-anchor-id="visualizing-the-model">Visualizing the model</h2>
@@ -2464,7 +2460,7 @@ dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2579,11 +2575,11 @@ Reading the model equation
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="wooclap">
-<p>The slope of the fitted model is 0.184. Which is the best interpretation?</p>
+<p>The slope of the fitted model is 0.184. Which of the following is the best interpretation?</p>
 <div class="wooclap-choices">
 <ul>
-<li>For each one percentage-point increase in county food-insecurity prevalence, predicted mental-distress prevalence is 0.184 percentage points higher, on average.</li>
 <li>Increasing food insecurity by one percentage point causes mental-distress prevalence to increase by 0.184 percentage points.</li>
+<li>For each percentage-point county food-insecurity prevalence is higher, mental-distress prevaence is expected to be higher, on average, by 0.184 percentage points higher.</li>
 <li>For each one percentage-point increase in mental-distress prevalence, predicted food-insecurity prevalence is 0.184 percentage points higher.</li>
 <li>Every adult experiencing food insecurity has 0.184 additional mentally unhealthy days.</li>
 </ul>
@@ -2591,12 +2587,10 @@ Reading the model equation
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
-</div>
+<p>Go to <a href="https://app.wooclap.com/BSAFXJG">wooclap.com</a> and use the code BSAFXJG.</p>
 </div>
 </div>
 </section><section id="participate-2" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="participate-2">Participate 📱💻</h2>
@@ -2615,12 +2609,10 @@ Reading the model equation
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
-<div class="small">
-<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
-</div>
+<p>Go to <a href="https://app.wooclap.com/BSAFXJG">wooclap.com</a> and use the code BSAFXJG.</p>
 </div>
 </div>
 </section><section id="is-the-intercept-meaningful" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="is-the-intercept-meaningful">Is the intercept meaningful?</h2>
@@ -2734,7 +2726,7 @@ Mathematically vs.&nbsp;practical meaningfullness
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2747,7 +2739,7 @@ Mathematically vs.&nbsp;practical meaningfullness
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2816,7 +2808,42 @@ e_1^2 + e_2^2 + \cdots + e_n^2
 </div>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
