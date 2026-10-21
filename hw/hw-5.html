@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="description" content="Due: Wed, Oct 28, 11:59 pm">
-
 <title>HW 5 – STA 199CCL</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
-
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -41,12 +92,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e02b5ae353ca98bbdbd673ae67544635.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ddf2300b9ea6143e10801c03c556c108.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-c4c413027288de36e119cc1200158b21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ddf2300b9ea6143e10801c03c556c108.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -72,15 +122,37 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<meta name="quarto:status" content="draft">
-
-
+}</script><meta name="quarto:status" content="draft">
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 <meta property="og:title" content="HW 5 – STA 199CCL">
 <meta property="og:description" content="Due: Wed, Oct 28, 11:59 pm">
 <meta property="og:site_name" content="STA 199CCL">
 </head>
-
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -246,9 +318,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -259,23 +329,18 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
     <div class="dropdown">
       <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
               <i class="bi bi-person-raised-hand pe-1"></i>
             Office hours
@@ -288,11 +353,11 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
     <div class="dropdown">
       <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
               <i class="bi bi-megaphone-fill pe-1"></i>
             Announcements
@@ -311,7 +376,7 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div>
@@ -322,7 +387,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
@@ -330,8 +395,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
@@ -374,7 +439,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -383,8 +448,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Access</span></a>
@@ -409,7 +474,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -418,8 +483,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../project/description.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Description</span></a>
@@ -474,7 +539,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lab.html" class="sidebar-item-text sidebar-link">
@@ -500,21 +565,61 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+<li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#guidelines" id="toc-guidelines" class="nav-link" data-scroll-target="#guidelines">Guidelines</a></li>
+  <li><a href="#ai-support-and-feedback" id="toc-ai-support-and-feedback" class="nav-link" data-scroll-target="#ai-support-and-feedback">AI support and feedback</a></li>
+  </ul>
+</li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li>
+<a href="#part-1---crawling-babies" id="toc-part-1---crawling-babies" class="nav-link" data-scroll-target="#part-1---crawling-babies">Part 1 - Crawling babies</a>
+  <ul class="collapse">
+<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#part-2---life-expectancy" id="toc-part-2---life-expectancy" class="nav-link" data-scroll-target="#part-2---life-expectancy">Part 2 - Life expectancy</a>
+  <ul class="collapse">
+<li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#part-3---modeling-the-old-north-state" id="toc-part-3---modeling-the-old-north-state" class="nav-link" data-scroll-target="#part-3---modeling-the-old-north-state">Part 3 - Modeling the Old North State</a>
+  <ul class="collapse">
+<li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
+  </ul>
+</li>
+  <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI use disclosure</a></li>
+  <li>
+<a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
+  <ul class="collapse">
+<li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#grading-and-feedback" id="toc-grading-and-feedback" class="nav-link" data-scroll-target="#grading-and-feedback">Grading and feedback</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-5.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">HW 5</h1>
-<p class="subtitle lead">To be posted</p>
+<p class="subtitle lead">When I move, you move</p>
   <div class="quarto-categories">
     <div class="quarto-category">HW</div>
   </div>
@@ -536,14 +641,203 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><section id="introduction" class="level1"><h1>Introduction</h1>
+<p>In this homework, you will investigate relationships between variables in three settings: infant crawling, diet and life expectancy, and minimum wage and employment. You will begin by using visualizations and correlation to study how temperature relates to the age at which babies begin crawling, including what happens when the variables are converted to different units. Next, you will use simple linear regression to examine how meat and carbohydrate consumption relate to life expectancy across countries. Finally, you will analyze data from a natural experiment on minimum wage policy by summarizing and reshaping the data, modeling changes in employment, and considering whether the results support a causal conclusion.</p>
+<section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>By the end of this homework, you will:</p>
+<ul>
+<li>create and interpret scatterplots, density plots, and boxplots for relationships between variables;</li>
+<li>calculate and interpret correlation coefficients and explain how linear unit conversions affect correlations and visualizations;</li>
+<li>prepare data for analysis by setting factor reference levels, computing grouped summaries, reshaping data, handling missing values, and creating derived variables;</li>
+<li>fit and interpret simple linear regression models with quantitative and categorical predictors, including predictions, residuals, and <span class="math inline">\(R^2\)</span>;</li>
+<li>use residual plots to assess whether a linear model is appropriate; and</li>
+<li>distinguish association from causation.</li>
+</ul></section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
+<p>By now you should be familiar with guidelines for homework assignments. If not, please refer to an earlier homework assignment for details.</p>
+</section><section id="ai-support-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="ai-support-and-feedback">AI support and feedback</h2>
+<p>You can get immediate support as well as feedback on all of the questions with AI, based on rubrics designed by the course instructor, via the Codex extension in Positron, and using AI access provided by Duke University.</p>
+<p>When working on your assignment, feel free to ask Codex for help, but don’t ask it to do your work for you. After completing a question, ask Codex to provide feedback on your answer, e.g., “Review my answer for Question 1.”</p>
+</section></section><section id="packages" class="level1"><h1>Packages</h1>
+<p>You will use the <a href="https://www.tidyverse.org/packages"><strong>tidyverse</strong></a>, <a href="https://www.tidymodels.org/"><strong>tidymodels</strong></a>, and <a href="https://openintro.org/"><strong>openintro</strong></a> packages for this homework, at a minimum.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/">openintro</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="part-1---crawling-babies" class="level1"><h1>Part 1 - Crawling babies</h1>
+<p>A study conducted at the University of Denver, <span class="citation" data-cites="Benson:1993">Benson (<a href="#ref-Benson:1993" role="doc-biblioref">1993</a>)</span>, investigated whether babies take longer to learn to crawl in cold months, when they are often bundled in clothes that restrict their movement, than in warmer months. Infants born during the study year were split into twelve groups, one for each birth month. The data for this study are available in the <code>babies_crawl</code> dataset in the <strong>openintro</strong> package, which contains three variables of interest for this part of the homework:</p>
+<ul>
+<li>
+<code>month</code>: month of birth (1 = January, 2 = February, …, 12 = December)</li>
+<li>
+<code>avg_crawling_age</code>: average age at which babies born in a given month began crawling (in weeks)</li>
+<li>
+<code>temperature</code>: average outdoor temperature at 6 months of age (in degrees Fahrenheit, F)</li>
+</ul>
+<p>We consider the average crawling age of babies in each group against the average temperature when the babies are six months old (that’s when babies often begin trying to crawl).</p>
+<section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<ol type="a">
+<li><p>Create a visualization displaying the relationship between temperature and crawling age.</p></li>
+<li><p>Describe the relationship in context of the data.</p></li>
+<li><p>Calculate the correlation between average crawling age (in weeks) and temperature (in F).</p></li>
+</ol></section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<ol type="a">
+<li><p>Create a new variable <code>temperature_C</code> that converts the temperature from F to C using the formula <span class="math inline">\(C = (F - 32) * 5/9\)</span>.</p></li>
+<li><p>Create a new variable <code>avg_crawling_age_months</code> that converts the average crawling age from weeks to months using the formula <span class="math inline">\(months = weeks / 4.345\)</span>.</p></li>
+<li><p>How would you expect the answers to Question 1 and Question 2 to change after converting the variables to C and months, respectively?</p></li>
+<li><p>Create a new scatterplot displaying the relationship between <code>temperature_C</code> and <code>avg_crawling_age_months</code>. Does the visualization support your expectations from part c?</p></li>
+<li><p>Calculate the correlation between <code>temperature_C</code> and <code>avg_crawling_age_months</code>. Does the correlation support your expectations from part c?</p></li>
+</ol></section></section><section id="part-2---life-expectancy" class="level1"><h1>Part 2 - Life expectancy</h1>
+<p><span class="citation" data-cites="You:2022">You et al. (<a href="#ref-You:2022" role="doc-biblioref">2022</a>)</span> studied the relationship between meat and carbohydrate consumption and life expectancy across 175 countries. Meat consumption is measured in kg per capita per year (averaged over 2011 to 2013). Carbohydrate consumption is measured as carbohydrate crops (e.g., cereals, root, sugar, etc.) in kg per capita per year (averaged over 2011 and 2013).</p>
+<p>The data from this study is available in <code>you-2022.csv</code> in your <code>data</code> folder. From this dataset, you will work with the following variables:</p>
+<ul>
+<li>
+<code>country</code>: country name</li>
+<li>
+<code>meat</code>: meat consumption (in kg per capita per year)</li>
+<li>
+<code>cho_crops</code>: carbohydrate consumption (in kg per capita per year)</li>
+<li>
+<code>life_0</code>: life expectancy at birth (in years)</li>
+</ul>
+<section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<ol type="a">
+<li><p>Create a scatterplot displaying the relationship between life expectancy vs.&nbsp;meat consumption and describe the relationship.</p></li>
+<li><p>Create a scatterplot displaying the relationship between life expectancy vs.&nbsp;carbohydrate consumption and describe the relationship.</p></li>
+<li><p>Before you calculate a correlation, which plot shows a stronger correlation? Explain your reasoning.</p></li>
+<li><p>Calculate the correlation coefficients for the relationships visualized in parts a and b. Comment on whether the correlation coefficients support your reasoning in part c.</p></li>
+</ol></section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<ol type="a">
+<li><p>Fit a linear model that predicts life expectancy from meat consumption and display the tidy model summary.</p></li>
+<li><p>Interpret the slope in the context of the data.</p></li>
+<li><p>Interpret the intercept in the context of the data. Is it meaningful? Why or why not?</p></li>
+<li><p>Pick a country of your choice from the dataset and use the model to predict its life expectancy based on its meat consumption and calculate the residual. Comment on whether the model over- or under-predicts life expectancy for this country.</p></li>
+</ol></section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<ol start="2" type="a">
+<li><p>Fit a linear model that predicts life expectancy from carbohydrate consumption and display the tidy model summary.</p></li>
+<li><p>Interpret the slope in the context of the data.</p></li>
+<li><p>Interpret the intercept in the context of the data. Is it meaningful? Why or why not?</p></li>
+<li><p>Calculate the R-squared value for the model and interpret it in context of the data.</p></li>
+<li><p>Plot residuals vs.&nbsp;the predicted values and comment on what this plot says about whether a linear model is a good fit for the data.</p></li>
+</ol></section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p>Comment on whether the results from the two models support causal conclusions between these three variables.</p>
+</section></section><section id="part-3---modeling-the-old-north-state" class="level1"><h1>Part 3 - Modeling the Old North State</h1>
+<p>For this part of the homework you will return to working with data on North Carolina counties.</p>
+<ul>
+<li><p>Dataset 1: <code>nc-places.csv</code> – See <a href="https://sta199-f26.github.io/slides/15-linear-regression-single-predictor.html#cdc-places">Lecture 15</a> for a description of this dataset. The full data dictionary can be found <a href="https://github.com/sta199-f26/sta199-f26.github.io/blob/main/_data/nc-places/README.md#variables">here</a>.</p></li>
+<li><p>Dataset 2: <code>nc-counties.csv</code> – See <a href="hw-2.html">Homework 2</a> for a description of this dataset. The full data dictionary can be found <a href="https://github.com/sta199-f26/sta199-f26.github.io/blob/main/_data/nc-county/README.md#variables">here</a>.</p></li>
+</ul>
+<p>Both datasets are in your <code>data</code> folder.</p>
+<section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<p>Read the two datasets and then join them together by county name to create a new data frame called <code>nc_counties_places</code>. Join the two datasets together by county name and create a new data frame called <code>nc_counties_places</code>. Report the number of rows and columns of this data frame.</p>
+</section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<p>Choose three variables from <code>nc_counties_places</code> for the following purposes:</p>
+<ul>
+<li><p>Variable 1: Outcome variable – This should be a numeric variable that you want to predict and that might make sense to predict from other variables in the dataset. State which data frame it was originally included in: <code>nc_places</code> or <code>nc_counties</code>. Describe why you chose this variable as your outcome variable and why it might be interesting to predict.</p></li>
+<li><p>Variable 2: Predictor variable 1 – This should be a numeric variable that you think might be related to your outcome variable. State which data frame it was originally included in: <code>nc_places</code> or <code>nc_counties</code>. Describe why you chose this variable as your predictor variable and why it might be interesting to use it to predict your outcome variable.</p></li>
+<li><p>Variable 3: Predictor variable 2 – This should be a categorical variable that you think might be related to your outcome variable. State which data frame it was originally included in: <code>nc_places</code> or <code>nc_counties</code>. Describe why you chose this variable as your predictor variable and why it might be interesting to use it to predict your outcome variable. Additionally, state the reference (baseline) level, and optionally, change the level order if you think a different level should be the reference level.</p></li>
+</ul>
+<p>Two of these variables must come from one of the datasets (<code>nc_places</code> or <code>nc_counties</code>) and the third variable must come from the other dataset.</p>
+</section><section id="question-9" class="level2"><h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+<ol type="a">
+<li>Fit a linear regression model predicting your outcome variable from Question 8 from Variable 1.</li>
+<li>Display the tidy model summary.</li>
+<li>Interpret the slope in the context of the data.</li>
+<li>Interpret the intercept in the context of the data. Is it meaningful? Why or why not?</li>
+<li>Calculate the R-squared value for the model and interpret it in context of the data.</li>
+</ol></section><section id="question-10" class="level2"><h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
+<ol type="a">
+<li>Fit a linear regression model predicting your outcome variable from Question 8 from Variable 2.</li>
+<li>Display the tidy model summary.</li>
+<li>Interpret the slope(s) in the context of the data.</li>
+<li>Interpret the intercept in the context of the data. Is it meaningful? Why or why not?</li>
+<li>Calculate the R-squared value for the model and interpret it in context of the data.</li>
+</ol></section></section><section id="ai-use-disclosure" class="level1"><h1>AI use disclosure</h1>
+<p>The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.</p>
+<ul>
+<li><p>Did you use an LLM / generative AI tool when completing this assignment? (Yes or No)</p></li>
+<li>
+<p>If Yes, list all of the ways you used it from the list below.</p>
+<ul>
+<li>I used it to clarify the question(s).</li>
+<li>I used it to better understand concept(s).</li>
+<li>I asked it to help write code.</li>
+<li>I gave it my code and asked it to help fix it.</li>
+<li>I asked it about an error or unexpected code behavior.</li>
+<li>I used it to get feedback on my answer(s).</li>
+<li>I pasted the question prompt in and asked for help, but wrote my own answer.</li>
+<li>I pasted the question prompt in and copied at least part of its response into my Quarto document.</li>
+<li>Other (please specify)</li>
+</ul>
+</li>
+<li>
+<p>If Yes, list all the AI tools you used.</p>
+<ul>
+<li>Include the model name and version (if known). For example, “ChatGPT GPT-5.5” or “Claude Sonnet 4”.</li>
+<li>Include the tool as well. For example, “Codex extension in Positron”, “ChatGPT in a web browser”, etc.</li>
+</ul>
+</li>
+</ul>
+<p>Additionally, cite any other non-AI sources you used to help you complete the assignment, along with the question(s) for which you used each source.</p>
+<p><strong>Sample citations:</strong></p>
+<ul>
+<li>Example 1: All questions: 5.6 Luna Light, in Codex in Positron.</li>
+<li>Example 2: I used ChatGPT GPT-5.5 for Questions 5 and 7. Prompt: “Why did my code have an error?” (pasted code).</li>
+</ul></section><section id="wrap-up" class="level1"><h1>Wrap-up</h1>
+<div class="source-control">
+<p>Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your <code>.qmd</code> file and the rendered PDF are pushed to GitHub, and your source control pane is empty. We will be checking these to make sure you have been practicing committing and pushing changes.</p>
+</div>
+<section id="submission" class="level2"><h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>Submit your PDF document to Gradescope by the deadline to be considered “on time”:</p>
+<ul>
+<li>Go to <a href="http://www.gradescope.com" class="uri">http://www.gradescope.com</a> and click <em>Log in</em> in the top right corner.</li>
+<li>Click <em>School Credentials</em> <span class="math inline">\(\rightarrow\)</span> <em>Duke NetID</em> and log in using your NetID credentials.</li>
+<li>Click on your <em>STA 199</em> course.</li>
+<li>Click on the assignment, and you’ll be prompted to submit it.</li>
+<li>Mark all the pages associated with question. All the pages of your homework should be associated with at least one question (i.e., should be “checked”).</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checklist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you have:</p>
+<ul>
+<li>attempted all questions</li>
+<li>included an AI use disclosure</li>
+<li>rendered your Quarto document</li>
+<li>committed and pushed everything to your GitHub repository such that the Git pane in Positron is empty</li>
+<li>uploaded your PDF to Gradescope</li>
+<li>selected your pages on Gradescope for each question</li>
+</ul>
+</div>
+</div>
+</section><section id="grading-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="grading-and-feedback">Grading and feedback</h2>
+<p>You can get immediate feedback on all of the questions with AI.</p>
+<p>Submit your final version of <code>hw-5.pdf</code> to Gradescope. Be sure to select the pages associated with each question.</p>
+<p>A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.</p>
+<p>There are also workflow points for:</p>
+<ul>
+<li>committing at least three times as you work through your homework,</li>
+<li>having your final version of <code>.qmd</code> and <code>.pdf</code> files in your GitHub repository, and</li>
+<li>overall organization.</li>
+</ul>
 
 
 
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Benson:1993" class="csl-entry" role="listitem">
+Benson, J. B. 1993. <span>“Season of Birth and Onset of Locomotion: Theoretical and Methodological Implications.”</span> <em>Infant Behavior and Development</em> 16 (1): 69–81. <a href="https://doi.org/10.1016/0163-6383(93)80029-8">https://doi.org/10.1016/0163-6383(93)80029-8</a>.
+</div>
+<div id="ref-You:2022" class="csl-entry" role="listitem">
+You, W., R. Henneberg, A. Saniotis, Y. Ge, and M. Henneberg. 2022. <span>“Total Meat Intake Is Associated with Life Expectancy: A Cross-Sectional Data Analysis of 175 Contemporary Populations.”</span> <em>International Journal of General Medicine</em> 15: 1833–51.
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -956,21 +1250,18 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-5.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/hw-5.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>
