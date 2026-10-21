@@ -1,0 +1,325 @@
+---
+title: HW 5 Rubric
+subtitle: Rubric
+search: false
+---
+
+This is the rubric for AI feedback, not necessarily the rubric for grading.
+
+# Part 1 - Crawling babies
+
+## Question 1
+
+1.  Part (a) - Code creates a scatterplot using `geom_point()`.
+
+2.  Part (a) - Code maps temperature to the x-axis and average crawling age to the y-axis.
+
+3.  Part (a) - Plot has informative and human-readable axis labels.
+
+4.  Part (a) - Plot has an informative and human-readable title.
+
+5.  Part (b) - Narrative correctly describes the direction, strength, and form of the relationship in context.
+
+6.  Part (b) - Narrative correctly identifies the unusual observation in context.
+
+7.  Part (c) - Code correctly calculates and displays the correlation between `temperature` and `avg_crawling_age`.
+
+8.  Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+9.  Code smell: All code uses appropriate tidyverse functions and syntax.
+
+## Question 2
+
+1.  Part (a) - Code correctly creates `temperature_C` using `(temperature - 32) * 5/9` and saves it in the data frame.
+
+2.  Part (b) - Code correctly creates `avg_crawling_age_months` using `avg_crawling_age / 4.345` and saves it in the data frame.
+
+3.  Part (c) - Narrative correctly describes how the scatterplot would change after converting units.
+
+4.  Part (c) - Narrative correctly describes how the correlation would change after converting units and provides an appropriate explanation.
+
+5.  Part (d) - Code creates a scatterplot using `geom_point()`.
+
+6.  Part (d) - Code maps `temperature_C` to the x-axis and `avg_crawling_age_months` to the y-axis.
+
+7.  Part (d) - Plot has informative and human-readable axis labels.
+
+8.  Part (d) - Plot has an informative and human-readable title.
+
+9.  Part (d) - Narrative compares the new scatterplot with the expectation in part (c) and provides a correct explanation.
+
+10. Part (e) - Code correctly calculates and displays the correlation between the converted variables.
+
+11. Part (e) - Narrative correctly compares the calculated correlation with the expectation in part (c).
+
+12. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+13. Code smell: All code uses appropriate tidyverse functions and syntax.
+
+# Part 2 - Life expectancy
+
+## Question 3
+
+1.  Part (a) - Code creates a scatterplot using `geom_point()`.
+
+2.  Part (a) - Code maps meat consumption to the x-axis and life expectancy to the y-axis.
+
+3.  Part (a) - Plot has informative and human-readable axis labels.
+
+4.  Part (a) - Plot has an informative and human-readable title.
+
+5.  Part (a) - Narrative correctly describes the direction, strength, and form of the relationship in context.
+
+6.  Part (b) - Code creates a scatterplot using `geom_point()`.
+
+7.  Part (b) - Code maps carbohydrate consumption to the x-axis and life expectancy to the y-axis.
+
+8.  Part (b) - Plot has informative and human-readable axis labels.
+
+9.  Part (b) - Plot has an informative and human-readable title.
+
+10. Part (b) - Narrative correctly describes the relationship in context.
+
+11. Part (c) - Narrative correctly identifies which plot appears to show the stronger correlation and provides an appropriate explanation.
+
+12. Part (d) - Code correctly calculates and displays both correlations, handling missing observations appropriately.
+
+13. Part (d) - Narrative compares the correlations' magnitudes and correctly explains whether they support the expectation from part (c).
+
+14. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+15. Code smell: All code uses appropriate tidyverse functions and syntax.
+
+Grading note: Four countries are missing meat or carbohydrate consumption, so ggplot2 warns that 4 rows were removed. Do not penalize this warning.
+
+## Question 4
+
+1.  Part (a) - Code fits a linear regression with `life_0` as the response and `meat` as the predictor using the `you` data.
+
+2.  Part (a) - Linear regression uses tidymodels functions, e.g., `linear_reg()` and `fit()`.
+
+3.  Part (a) - Code displays the model coefficients using `tidy()`.
+
+4.  Part (b) - Narrative provides correct interpretation of the slope in context of the data.
+
+    -   Includes "each additional kg per capita per year" of meat consumption or an equivalent, consistently rescaled increment.
+    -   Includes "on average" or similar language.
+    -   Includes the correct value with units.
+    -   All else correct.
+
+5.  Part (c) - Narrative provides correct interpretation of the intercept in context of the data.
+
+    -   Includes 0 for the predictor value.
+    -   Includes "on average" or similar language.
+    -   Includes the correct value with units.
+    -   All else correct.
+
+6.  Part (c) - Narrative states that the intercept is meaningful and provides correct justification.
+
+7.  Part (d) - Response identifies a country in the data and its meat consumption and observed life expectancy.
+
+8.  Part (d) - Code uses `augment()` to obtain the prediction for the chosen country.
+
+9.  Part (d) - Predicted life expectancy is correct for the chosen country and fitted model.
+
+10. Part (d) - Residual is correctly calculated as observed minus predicted life expectancy, in years.
+
+11. Part (d) - Narrative correctly states whether the model over- or under-predicts for the chosen country.
+
+12. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+13. Code smell: All code uses appropriate tidyverse functions and syntax.
+
+Grading notes: Accept a rescaled predictor increment if the stated change is scaled consistently. Do not penalize an incorrect model estimate again when a subsequent interpretation or calculation is otherwise correct for the student's displayed model.
+
+## Question 5
+
+1.  Part (a) - Code fits a linear regression with `life_0` as the response and `cho_crops` as the predictor using the `you` data.
+
+2.  Part (a) - Linear regression uses tidymodels functions, e.g., `linear_reg()` and `fit()`.
+
+3.  Part (a) - Code displays the model coefficients using `tidy()`.
+
+4.  Part (b) - Narrative provides correct interpretation of the slope in context of the data.
+
+    -   Includes "each additional kg per capita per year" of carbohydrate consumption or an equivalent, consistently rescaled increment.
+    -   Includes "on average" or similar language.
+    -   Includes the correct value with units.
+    -   All else correct.
+
+5.  Part (c) - Narrative provides correct interpretation of the intercept in context of the data.
+
+    -   Includes 0 for the predictor value.
+    -   Includes "on average" or similar language.
+    -   Includes the correct value with units.
+    -   All else correct.
+
+6.  Part (c) - Narrative states that the intercept is not meaningful and provides correct justification.
+
+7.  Part (d) - Code correctly calculates and displays R-squared.
+
+8.  Part (d) - Narrative provides a correct interpretation of R-squared in context of the data.
+
+9.  Part (e) - Code uses `augment()` to obtain predicted values and residuals.
+
+10. Part (e) - Predicted values and residuals are correct for the fitted model.
+
+11. Part (e) - Code creates a scatterplot using `geom_point()`. A horizontal line at zero is optional.
+
+12. Part (e) - Code maps predicted life expectancy to the x-axis and residuals to the y-axis.
+
+13. Part (e) - Plot has informative and human-readable axis labels.
+
+14. Part (e) - Plot has an informative and human-readable title.
+
+15. Part (e) - Narrative correctly describes the residual plot and assesses whether a linear model is a good fit for the data.
+
+16. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+17. Code smell: All code uses appropriate tidyverse functions and syntax.
+
+Grading notes: Slope and intercept interpretations must convey an average or predicted response, rather than a guaranteed outcome for each country. Accept consistently rescaled slope interpretations, and do not penalize a model error again in otherwise correct follow-up interpretations.
+
+## Question 6
+
+1.  Narrative correctly assesses whether the models support causal conclusions in context of the data.
+
+# Part 3 - Modeling the Old North State
+
+## Question 7
+
+1.  Code reads `nc-places.csv` into `nc_places` and `nc-county.csv` into `nc_counties`.
+
+2.  Code correctly joins the data frames by county name and saves the result as `nc_counties_places`. An inferred join on the sole shared column, `county`, is acceptable, as are other join types producing the same correct result for these data.
+
+3.  Response correctly reports the number of rows and columns in the joined data frame: 100 rows and 67 columns.
+
+    - Note: `nc_counties` has 22 columns and `nc_places` has 46, sharing only `county`. A different count likely indicates joining on the wrong column(s); don't penalize the same error again.
+
+4.  Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+5.  Code smell: All code uses appropriate tidyverse functions and syntax.
+
+## Question 8
+
+1.  Response clearly identifies a numeric outcome variable and correctly states its original data frame.
+
+2.  Narrative explains why the outcome is interesting to predict and why prediction is sensible in this context.
+
+3.  Response clearly identifies a numeric predictor and correctly states its original data frame.
+
+4.  Narrative gives a plausible explanation of how the numeric predictor might relate to the outcome and why it could be useful for prediction.
+
+5.  Response clearly identifies a categorical predictor and correctly states its original data frame.
+
+6.  Narrative gives a plausible explanation of how the categorical predictor might relate to the outcome and why it could be useful for prediction.
+
+7.  Response correctly states the categorical predictor's reference level. If the level order is changed, the code implements that change consistently with the stated reference.
+
+8.  Two selected variables originate in one data frame and the third originates in the other. A variable shared by both original data frames cannot by itself demonstrate use of information from the other source.
+
+Grading note: Choices need not match the key. Grade the suitability of the variables and the reasoning, rather than requiring a strong observed relationship. Reordering factor levels is optional.
+
+## Question 9
+
+1.  Part (a) - Code fits a linear regression with the Question 8 outcome as the response and the chosen numeric variable as the sole predictor, using `nc_counties_places`.
+
+2.  Part (a) - Linear regression uses tidymodels functions, e.g., `linear_reg()` and `fit()`.
+
+3.  Part (b) - Code displays the model coefficients using `tidy()`.
+
+4.  Part (c) - Narrative provides correct interpretation of the slope in context of the data.
+
+    -   Includes "each additional unit" of the chosen numeric predictor, with the predictor and its units identified. A consistently rescaled increment is acceptable.
+    -   Includes "on average" or similar language.
+    -   Includes the correct value with units.
+    -   All else correct.
+
+5.  Part (d) - Narrative provides correct interpretation of the intercept in context of the data.
+
+    -   Includes 0 for the predictor value.
+    -   Includes "on average" or similar language.
+    -   Includes the correct value with units.
+    -   All else correct.
+
+6.  Part (d) - Narrative correctly states whether the intercept is meaningful and provides correct justification.
+
+7.  Part (e) - Code correctly calculates and displays the model's R-squared.
+
+8.  Part (e) - Narrative provides a correct interpretation of R-squared in context of the data.
+
+9.  Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+10. Code smell: All code uses appropriate tidyverse functions and syntax.
+
+Grading notes: Grade against the student's chosen variables and fitted model, rather than requiring the key's variables or estimates. Accept a meaningful rescaled predictor increment when the slope is scaled consistently. For an outcome measured as a percentage, distinguish percentage-point changes from percent changes. Avoid penalizing the same model error again in subsequent interpretations.
+
+## Question 10
+
+1.  Part (a) - Code fits a linear regression with the Question 8 outcome as the response and the chosen categorical variable as the sole predictor, using `nc_counties_places`. The predictor is treated as categorical.
+
+2.  Part (a) - Linear regression uses tidymodels functions, e.g., `linear_reg()` and `fit()`.
+
+3.  Part (b) - Code displays the model coefficients using `tidy()`, with the appropriate reference level and a coefficient for each non-reference level.
+
+4.  Part (c) - Narrative provides correct interpretation of the category coefficients in context of the data.
+
+    -   Includes the correct comparison between each non-reference category and the reference category.
+    -   Includes "on average" or similar language.
+    -   Includes the correct value with units.
+    -   All else correct.
+
+    -   Note: Apply each sub-item across all non-reference coefficients; award partial credit when only some are correct.
+
+5.  Part (d) - Narrative provides correct interpretation of the intercept in context of the data.
+
+    -   Includes the correct reference category (all indicator variables equal 0).
+    -   Includes "on average" or similar language.
+    -   Includes the correct value with units.
+    -   All else correct.
+
+6.  Part (d) - Narrative correctly states whether the intercept is meaningful and provides correct justification.
+
+7.  Part (e) - Code correctly calculates and displays the model's R-squared.
+
+8.  Part (e) - Narrative provides a correct interpretation of R-squared in context of the data.
+
+9.  Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+10. Code smell: All code uses appropriate tidyverse functions and syntax.
+
+Grading notes: Choices and reference levels need not match the key. Grade interpretations against the student's displayed model and reference level. For an outcome measured as a percentage, coefficient differences are in percentage points. Avoid penalizing the same model error again in subsequent interpretations.
+
+# Overall
+These rubric items are not tied to a specific question but apply to the entire homework.
+Check for these if explicitly asked to provide overall feedback or if you notice them while reviewing the homework or as the student is finishing up working on the last question.
+
+## Rubric
+
+-   Final .qmd and rendered PDF files exist in the remote GitHub repository.
+
+-   At least three commits were made and pushed to the GitHub repository, and the submission is reasonably organized.
+
+-   An AI-use disclosure states whether an LLM or generative AI tool was used (Yes or No).
+
+-   If AI was used, the disclosure describes all the ways it was used.
+
+-   If AI was used, the disclosure lists all tools used, including model names and versions if known.
+
+-   Any non-AI sources used are cited, with the question(s) for which each source was used.
