@@ -1,0 +1,3277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Prof.&nbsp;Mine Çetinkaya-Rundel">
+<meta name="dcterms.date" content="2026-10-21">
+<title>Linear regression with a single predictor – STA 199CCL</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e02b5ae353ca98bbdbd673ae67544635.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="../site_libs/core-js-2.5.3/shim.min.js"></script><script src="../site_libs/react-18.2.0/react.min.js"></script><script src="../site_libs/react-18.2.0/react-dom.min.js"></script><script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script><script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="../site_libs/reactable-0.4.5/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.5/reactable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+<meta property="og:title" content="Linear regression with a single predictor – STA 199CCL">
+<meta property="og:description" content="Lecture 15">
+<meta property="og:image" content="https://sta199-f26.github.io/slides/15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-1-1.png">
+<meta property="og:site_name" content="STA 199CCL">
+<meta property="og:image:height" content="960">
+<meta property="og:image:width" content="1344">
+</head>
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Linear regression with a single predictor</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
+    <div class="dropdown">
+      <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
+              <i class="bi bi-person-raised-hand pe-1"></i>
+            Office hours
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://edstem.org/us/courses/101308/discussion">
+              <i class="bi bi-people-fill pe-1"></i>
+            Help from humans (Ed Discussion)
+            </a>
+          </li>
+      </ul>
+</div>
+    <div class="dropdown">
+      <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
+              <i class="bi bi-megaphone-fill pe-1"></i>
+            Announcements
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.gradescope.com/courses/1350518">
+              <i class="bi bi-file-arrow-up-fill pe-1"></i>
+            Gradescope
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/gradebook">
+              <i class="bi bi-alphabet-uppercase pe-1"></i>
+            Gradebook
+            </a>
+          </li>
+      </ul>
+</div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-support.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Support</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-team.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Team</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Useful links</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-code-alongs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code alongs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Description</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/1-working-collaboratively.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/2-proposal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/3-improvement-progress-I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/4-peer-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/5-improvement-progress-II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/6-presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/7-writeup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Milestone 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project/tips-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips + resources</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homeworks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Application exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exam-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam reviews</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a>
+  <ul class="collapse">
+<li><a href="#while-you-wait-participate" id="toc-while-you-wait-participate" class="nav-link" data-scroll-target="#while-you-wait-participate">While you wait: Participate 📱💻</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link" data-scroll-target="#learning-goals">Learning goals</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a>
+  <ul class="collapse">
+<li><a href="#two-main-uses" id="toc-two-main-uses" class="nav-link" data-scroll-target="#two-main-uses">Two main uses</a></li>
+  <li><a href="#cdc-places" id="toc-cdc-places" class="nav-link" data-scroll-target="#cdc-places">CDC PLACES</a></li>
+  <li><a href="#cdc-places-1" id="toc-cdc-places-1" class="nav-link" data-scroll-target="#cdc-places-1">CDC PLACES</a></li>
+  <li><a href="#county-food-insecurity-and-mental-health" id="toc-county-food-insecurity-and-mental-health" class="nav-link" data-scroll-target="#county-food-insecurity-and-mental-health">County food insecurity and mental health</a></li>
+  <li><a href="#how-the-data-were-put-together" id="toc-how-the-data-were-put-together" class="nav-link" data-scroll-target="#how-the-data-were-put-together">How the data were put together</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#our-focus-for-today" id="toc-our-focus-for-today" class="nav-link" data-scroll-target="#our-focus-for-today">Our focus for today</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#language-of-models" id="toc-language-of-models" class="nav-link" data-scroll-target="#language-of-models">Language of models</a>
+  <ul class="collapse">
+<li><a href="#modeling-north-carolina-counties" id="toc-modeling-north-carolina-counties" class="nav-link" data-scroll-target="#modeling-north-carolina-counties">Modeling North Carolina counties</a></li>
+  <li><a href="#modelling-north-carolina-counties" id="toc-modelling-north-carolina-counties" class="nav-link" data-scroll-target="#modelling-north-carolina-counties">Modelling North Carolina counties</a></li>
+  <li><a href="#modelling-north-carolina-counties-1" id="toc-modelling-north-carolina-counties-1" class="nav-link" data-scroll-target="#modelling-north-carolina-counties-1">Modelling North Carolina counties</a></li>
+  <li><a href="#modelling" id="toc-modelling" class="nav-link" data-scroll-target="#modelling">Modelling</a></li>
+  <li><a href="#modelling-vocabulary" id="toc-modelling-vocabulary" class="nav-link" data-scroll-target="#modelling-vocabulary">Modelling vocabulary</a></li>
+  <li><a href="#predictor-explanatory-variable" id="toc-predictor-explanatory-variable" class="nav-link" data-scroll-target="#predictor-explanatory-variable">Predictor (explanatory variable)</a></li>
+  <li><a href="#outcome-response-variable" id="toc-outcome-response-variable" class="nav-link" data-scroll-target="#outcome-response-variable">Outcome (response variable)</a></li>
+  <li><a href="#regression-line" id="toc-regression-line" class="nav-link" data-scroll-target="#regression-line">Regression line</a></li>
+  <li><a href="#regression-line-slope" id="toc-regression-line-slope" class="nav-link" data-scroll-target="#regression-line-slope">Regression line: slope</a></li>
+  <li><a href="#regression-line-intercept" id="toc-regression-line-intercept" class="nav-link" data-scroll-target="#regression-line-intercept">Regression line: intercept</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a></li>
+  <li><a href="#correlation-1" id="toc-correlation-1" class="nav-link" data-scroll-target="#correlation-1">Correlation</a></li>
+  <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 📱💻</a></li>
+  <li><a href="#visualizing-the-model" id="toc-visualizing-the-model" class="nav-link" data-scroll-target="#visualizing-the-model">Visualizing the model</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#linear-regression-with-a-single-predictor" id="toc-linear-regression-with-a-single-predictor" class="nav-link" data-scroll-target="#linear-regression-with-a-single-predictor">Linear regression with a single predictor</a>
+  <ul class="collapse">
+<li><a href="#a-regression-model" id="toc-a-regression-model" class="nav-link" data-scroll-target="#a-regression-model">A regression model</a></li>
+  <li><a href="#a-linear-regression-model" id="toc-a-linear-regression-model" class="nav-link" data-scroll-target="#a-linear-regression-model">A linear regression model</a></li>
+  <li><a href="#the-fitted-regression-line" id="toc-the-fitted-regression-line" class="nav-link" data-scroll-target="#the-fitted-regression-line">The fitted regression line</a></li>
+  <li><a href="#fit-the-model-with-tidymodels" id="toc-fit-the-model-with-tidymodels" class="nav-link" data-scroll-target="#fit-the-model-with-tidymodels">Fit the model with tidymodels</a></li>
+  <li><a href="#extract-the-coefficients" id="toc-extract-the-coefficients" class="nav-link" data-scroll-target="#extract-the-coefficients">Extract the coefficients</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#slope-and-intercept" id="toc-slope-and-intercept" class="nav-link" data-scroll-target="#slope-and-intercept">Slope and intercept</a>
+  <ul class="collapse">
+<li><a href="#participate-1" id="toc-participate-1" class="nav-link" data-scroll-target="#participate-1">Participate 📱💻</a></li>
+  <li><a href="#participate-2" id="toc-participate-2" class="nav-link" data-scroll-target="#participate-2">Participate 📱💻</a></li>
+  <li><a href="#is-the-intercept-meaningful" id="toc-is-the-intercept-meaningful" class="nav-link" data-scroll-target="#is-the-intercept-meaningful">Is the intercept meaningful?</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#predictions-and-residuals" id="toc-predictions-and-residuals" class="nav-link" data-scroll-target="#predictions-and-residuals">Predictions and residuals</a>
+  <ul class="collapse">
+<li><a href="#make-a-prediction" id="toc-make-a-prediction" class="nav-link" data-scroll-target="#make-a-prediction">Make a prediction</a></li>
+  <li><a href="#make-a-prediction-with-r" id="toc-make-a-prediction-with-r" class="nav-link" data-scroll-target="#make-a-prediction-with-r">Make a prediction with R</a></li>
+  <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals">Residuals</a></li>
+  <li><a href="#calculating-residuals-with-r" id="toc-calculating-residuals-with-r" class="nav-link" data-scroll-target="#calculating-residuals-with-r">Calculating residuals with R</a></li>
+  <li><a href="#durham-residual" id="toc-durham-residual" class="nav-link" data-scroll-target="#durham-residual">Durham residual</a></li>
+  <li><a href="#visualizing-a-residual" id="toc-visualizing-a-residual" class="nav-link" data-scroll-target="#visualizing-a-residual">Visualizing a residual</a></li>
+  <li><a href="#choosing-values-for-b_1-and-b_0" id="toc-choosing-values-for-b_1-and-b_0" class="nav-link" data-scroll-target="#choosing-values-for-b_1-and-b_0">Choosing values for <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_0\)</span></a></li>
+  <li><a href="#least-squares-line" id="toc-least-squares-line" class="nav-link" data-scroll-target="#least-squares-line">Least squares line</a></li>
+  <li><a href="#properties-of-least-squares-regression" id="toc-properties-of-least-squares-regression" class="nav-link" data-scroll-target="#properties-of-least-squares-regression">Properties of least-squares regression</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#interpreting-responsibly" id="toc-interpreting-responsibly" class="nav-link" data-scroll-target="#interpreting-responsibly">Interpreting responsibly</a>
+  <ul class="collapse">
+<li><a href="#association-is-not-causation" id="toc-association-is-not-causation" class="nav-link" data-scroll-target="#association-is-not-causation">Association is not causation</a></li>
+  <li><a href="#counties-are-not-individuals" id="toc-counties-are-not-individuals" class="nav-link" data-scroll-target="#counties-are-not-individuals">Counties are not individuals</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#application-exercise" id="toc-application-exercise" class="nav-link" data-scroll-target="#application-exercise">Application exercise</a>
+  <ul class="collapse">
+<li><a href="#application-exercise-1" id="toc-application-exercise-1" class="nav-link" data-scroll-target="#application-exercise-1">Application exercise</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/15-linear-regression-single-predictor.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="15-linear-regression-single-predictor-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Linear regression with a single predictor</h1>
+<p class="subtitle lead">Lecture 15</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Prof.&nbsp;Mine Çetinkaya-Rundel </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Duke University <br> STA 199 - Fall 2026
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header><section id="warm-up" class="level1"><h1>Warm-up</h1>
+<section id="while-you-wait-participate" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="while-you-wait-participate">While you wait: Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Each point represents one North Carolina county.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What do you notice? What do you wonder?</p>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div>
+</div>
+</section><section id="announcements" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="announcements">Announcements</h2>
+<ul>
+<li>…</li>
+</ul></section><section id="learning-goals" class="level2"><h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
+<p>By the end of today, you should be able to:</p>
+<ul>
+<li>identify the outcome and predictor in a regression model,</li>
+<li>fit a linear regression model with <strong>tidymodels</strong>,</li>
+<li>interpret the slope and intercept in context,</li>
+<li>use a fitted model to calculate predictions and residuals, and</li>
+<li>explain what makes a line the least squares regression line.</li>
+</ul></section></section><section id="modeling" class="level1 page-columns page-full"><h1>Modeling</h1>
+<section id="two-main-uses" class="level2"><h2 class="anchored" data-anchor-id="two-main-uses">Two main uses</h2>
+<ul>
+<li><p><strong>Prediction:</strong> Use known information to estimate an unknown outcome.</p></li>
+<li><p><strong>Description / explanation:</strong> Summarize how an outcome tends to vary with a predictor.</p></li>
+</ul>
+<p><br></p>
+<div class="question">
+<p>What questions could a model help us answer about community health?</p>
+</div>
+</section><section id="cdc-places" class="level2 smaller page-columns page-full"><h2 class="smaller anchored" data-anchor-id="cdc-places">CDC PLACES</h2>
+<p><strong>PLACES: Local Data for Better Health</strong> is a free CDC resource providing consistently defined health and health-related estimates for communities across the US.</p>
+<ul>
+<li>Covers counties, places, census tracts, and ZIP Code Tabulation Areas.</li>
+<li>Includes measures of health outcomes, prevention, disability, health behaviors, health-related social needs, and community factors.</li>
+<li>Uses small area estimation with data from the Behavioral Risk Factor Surveillance System (BRFSS), the Census, and the American Community Survey (ACS).</li>
+<li>Helps communities identify local health concerns, disparities, and overlapping health and social needs.</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Source: <a href="https://www.cdc.gov/places/about/index.html">CDC, About PLACES: Local Data for Better Health</a></p>
+</div></div></section><section id="cdc-places-1" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="cdc-places-1">CDC PLACES</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These are <strong>model-based local estimates</strong>, not direct survey estimates for each county.</p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Source: <a href="https://www.cdc.gov/places/about/index.html">CDC, About PLACES: Local Data for Better Health</a></p>
+</div></div></section><section id="county-food-insecurity-and-mental-health" class="level2 smaller page-columns page-full"><h2 class="smaller anchored" data-anchor-id="county-food-insecurity-and-mental-health">County food insecurity and mental health</h2>
+<p>The <a href="https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb">CDC PLACES 2025 release</a> provides local health estimates for every U.S. county.</p>
+<p>For North Carolina, we will study:</p>
+<ul>
+<li>the estimated percentage of adults who experienced <strong>food insecurity during the previous 12 months</strong>, and</li>
+<li>the estimated percentage of adults who experienced <strong>frequent mental distress</strong>: at least 14 mentally unhealthy days during the previous 30 days.</li>
+</ul>
+<p>Both are age-adjusted, model-based estimates derived from 2023 survey and population data.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Sources: <a href="https://www.cdc.gov/places/current-release-notes/">CDC PLACES release notes</a>, <a href="https://www.cdc.gov/places/measure-definitions/">measure definitions</a></p>
+</div></div></section><section id="how-the-data-were-put-together" class="level2"><h2 class="anchored" data-anchor-id="how-the-data-were-put-together">How the data were put together</h2>
+<ol type="1">
+<li>Start with the CDC PLACES 2025 county release.</li>
+<li>Filter to North Carolina and age-adjusted prevalence estimates.</li>
+<li>Reshape to one row per county.</li>
+<li>Write to a CSV file: <code>nc-places.csv</code>.</li>
+</ol></section><section id="packages" class="level2"><h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<ul>
+<li><p><strong>tidyverse</strong> for data wrangling and visualization</p></li>
+<li><p><strong>scales</strong> for better axis labels</p></li>
+<li><p><strong>tidymodels</strong> for modeling with tidyverse principles</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="load-the-data" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="load-the-data">Load the data</h2>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_places</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span></span>
+<span>  <span class="st">"data/nc-places.csv"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 100 Columns: 43
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): county
+dbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section><section id="our-focus-for-today" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="our-focus-for-today">Our focus for today</h2>
+<ul>
+<li>
+<code>food_insecurity</code> - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.</li>
+<li>
+<code>mental_distress</code> - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fyiqesgfgg" class=".gt_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fyiqesgfgg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#fyiqesgfgg thead, #fyiqesgfgg tbody, #fyiqesgfgg tfoot, #fyiqesgfgg tr, #fyiqesgfgg td, #fyiqesgfgg th {
+  border-style: none;
+}
+
+#fyiqesgfgg p {
+  margin: 0;
+  padding: 0;
+}
+
+#fyiqesgfgg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#fyiqesgfgg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#fyiqesgfgg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#fyiqesgfgg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#fyiqesgfgg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#fyiqesgfgg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#fyiqesgfgg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#fyiqesgfgg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#fyiqesgfgg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#fyiqesgfgg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#fyiqesgfgg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fyiqesgfgg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#fyiqesgfgg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#fyiqesgfgg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#fyiqesgfgg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fyiqesgfgg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#fyiqesgfgg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#fyiqesgfgg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#fyiqesgfgg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fyiqesgfgg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#fyiqesgfgg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fyiqesgfgg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#fyiqesgfgg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fyiqesgfgg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fyiqesgfgg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fyiqesgfgg .gt_left {
+  text-align: left;
+}
+
+#fyiqesgfgg .gt_center {
+  text-align: center;
+}
+
+#fyiqesgfgg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#fyiqesgfgg .gt_font_normal {
+  font-weight: normal;
+}
+
+#fyiqesgfgg .gt_font_bold {
+  font-weight: bold;
+}
+
+#fyiqesgfgg .gt_font_italic {
+  font-style: italic;
+}
+
+#fyiqesgfgg .gt_super {
+  font-size: 65%;
+}
+
+#fyiqesgfgg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#fyiqesgfgg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#fyiqesgfgg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#fyiqesgfgg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#fyiqesgfgg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#fyiqesgfgg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#fyiqesgfgg .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#fyiqesgfgg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#fyiqesgfgg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<div id="fyiqesgfgg" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="fyiqesgfgg">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"county":["Alamance","Alexander","Alleghany","Anson","Ashe","Avery","Beaufort","Bertie","Bladen","Brunswick","Buncombe","Burke","Cabarrus","Caldwell","Camden","Carteret","Caswell","Catawba","Chatham","Cherokee","Chowan","Clay","Cleveland","Columbus","Craven","Cumberland","Currituck","Dare","Davidson","Davie","Duplin","Durham","Edgecombe","Forsyth","Franklin","Gaston","Gates","Graham","Granville","Greene","Guilford","Halifax","Harnett","Haywood","Henderson","Hertford","Hoke","Hyde","Iredell","Jackson","Johnston","Jones","Lee","Lenoir","Lincoln","Macon","Madison","Martin","McDowell","Mecklenburg","Mitchell","Montgomery","Moore","Nash","New Hanover","Northampton","Onslow","Orange","Pamlico","Pasquotank","Pender","Perquimans","Person","Pitt","Polk","Randolph","Richmond","Robeson","Rockingham","Rowan","Rutherford","Sampson","Scotland","Stanly","Stokes","Surry","Swain","Transylvania","Tyrrell","Union","Vance","Wake","Warren","Washington","Watauga","Wayne","Wilkes","Wilson","Yadkin","Yancey"],"food_insecurity":[17.2,15.8,18.5,28.2,14.6,15.1,19.3,28.7,22.5,11.9,12.1,17.4,13.7,16.6,11,11.4,20.3,15.2,12.7,14.9,21.4,12.8,18.5,22.7,15.9,20.5,10.7,9.6,16.5,12.8,22.8,14.3,27.8,16.7,17,16.7,19.1,14.6,18.9,26.7,17.5,30.9,17.4,12.8,12.8,28.7,22.4,23.3,12.6,15.7,15.4,22.3,19.1,27.1,12.6,15.1,12.3,23.9,16,14.5,12.8,20.5,11.4,21.2,11.8,26.7,15.8,10.4,15.6,17.3,13.4,16.9,18.9,18.9,12.9,17.9,26,31.2,19,17.4,18.1,23.3,29.4,16.2,14.5,18,21.9,11.4,23.6,12.3,26.3,10.4,28.3,28.9,14.1,21.7,17.5,26.2,16.4,14.9],"mental_distress":[18,19.1,19.3,20.2,18.9,18.4,18.9,19.6,19.5,17.2,16.6,19,16.6,19.3,17.2,17.2,19.1,17.9,15.9,19.1,19.3,18.2,19.1,19.8,18,18.2,17.1,16.3,18.9,17.6,18.8,15.2,19.9,17.1,17.9,18.3,19.5,19.2,18.1,19.3,17.3,20.4,18.3,18.1,17.2,19.9,18.9,19,16.9,19,17.4,19.9,18.5,20.3,17.6,18.6,18,20.1,19.1,15.6,18.4,18.9,16.6,18.6,17.1,19.8,17.8,15.3,18,18,17.8,18.8,19,18,17.8,19.1,20.3,20.9,19.7,18.6,19.7,19.3,20.7,18.8,19,19.4,20.7,17.4,19.2,16.4,19.5,14.9,19.8,20.7,18.3,18.7,19.5,19.4,19,19]},"columns":[{"id":"county","name":"county","type":"character","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","html":true,"align":"left"},{"id":"food_insecurity","name":"food_insecurity","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["17.2","15.8","18.5","28.2","14.6","15.1","19.3","28.7","22.5","11.9","12.1","17.4","13.7","16.6","11.0","11.4","20.3","15.2","12.7","14.9","21.4","12.8","18.5","22.7","15.9","20.5","10.7","9.6","16.5","12.8","22.8","14.3","27.8","16.7","17.0","16.7","19.1","14.6","18.9","26.7","17.5","30.9","17.4","12.8","12.8","28.7","22.4","23.3","12.6","15.7","15.4","22.3","19.1","27.1","12.6","15.1","12.3","23.9","16.0","14.5","12.8","20.5","11.4","21.2","11.8","26.7","15.8","10.4","15.6","17.3","13.4","16.9","18.9","18.9","12.9","17.9","26.0","31.2","19.0","17.4","18.1","23.3","29.4","16.2","14.5","18.0","21.9","11.4","23.6","12.3","26.3","10.4","28.3","28.9","14.1","21.7","17.5","26.2","16.4","14.9"],"html":true,"align":"right"},{"id":"mental_distress","name":"mental_distress","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["18.0","19.1","19.3","20.2","18.9","18.4","18.9","19.6","19.5","17.2","16.6","19.0","16.6","19.3","17.2","17.2","19.1","17.9","15.9","19.1","19.3","18.2","19.1","19.8","18.0","18.2","17.1","16.3","18.9","17.6","18.8","15.2","19.9","17.1","17.9","18.3","19.5","19.2","18.1","19.3","17.3","20.4","18.3","18.1","17.2","19.9","18.9","19.0","16.9","19.0","17.4","19.9","18.5","20.3","17.6","18.6","18.0","20.1","19.1","15.6","18.4","18.9","16.6","18.6","17.1","19.8","17.8","15.3","18.0","18.0","17.8","18.8","19.0","18.0","17.8","19.1","20.3","20.9","19.7","18.6","19.7","19.3","20.7","18.8","19.0","19.4","20.7","17.4","19.2","16.4","19.5","14.9","19.8","20.7","18.3","18.7","19.5","19.4","19.0","19.0"],"html":true,"align":"right"}],"defaultPageSize":10,"showPageSizeOptions":false,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPagination":true,"showPageInfo":true,"minRows":1,"height":"auto","theme":{"color":"#333333","backgroundColor":"#FFFFFF","stripedColor":"rgba(128,128,128,0.05)","style":{"font-family":"system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif","fontSize":"20px"},"tableStyle":{"borderTopStyle":"solid","borderTopWidth":"2px","borderTopColor":"#D3D3D3"},"headerStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"groupHeaderStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"cellStyle":{"fontWeight":"normal"}},"elementId":"fyiqesgfgg","dataKey":"71d0444451344449297fea69bd940396"},"children":[]},"class":"reactR_markup"},"evals":["tag.attribs.columns.0.style","tag.attribs.columns.1.style","tag.attribs.columns.2.style"],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</section></section><section id="language-of-models" class="level1"><h1>Language of models</h1>
+<section id="modeling-north-carolina-counties" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="modeling-north-carolina-counties">Modeling North Carolina counties</h2>
+<div class="question">
+<ul>
+<li><p><strong>Describe:</strong> How is county-level food insecurity related to frequent mental distress?</p></li>
+<li><p><strong>Predict:</strong> For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?</p></li>
+</ul>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="modelling-north-carolina-counties" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="modelling-north-carolina-counties">Modelling North Carolina counties</h2>
+<div class="question">
+<p><strong>Describe:</strong> How is county-level food insecurity related to frequent mental distress?</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="modelling-north-carolina-counties-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="modelling-north-carolina-counties-1">Modelling North Carolina counties</h2>
+<div class="question">
+<p><strong>Predict:</strong> For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="modelling" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="modelling">Modelling</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<ul>
+<li><p>Use models to describe relationships between variables and to make predictions.</p></li>
+<li><p>For now, we will focus on <strong>linear</strong> models—but there are many other types of models.</p></li>
+</ul>
+</div><div class="column" style="width:65%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>A model is a useful simplification, not a complete description of reality.</li>
+</ul></section><section id="modelling-vocabulary" class="level2"><h2 class="anchored" data-anchor-id="modelling-vocabulary">Modelling vocabulary</h2>
+<ul>
+<li>Predictor (explanatory variable)</li>
+<li>Outcome (response variable)</li>
+<li>Regression line
+<ul>
+<li>Slope</li>
+<li>Intercept</li>
+</ul>
+</li>
+<li>Correlation</li>
+</ul></section><section id="predictor-explanatory-variable" class="level2"><h2 class="anchored" data-anchor-id="predictor-explanatory-variable">Predictor (explanatory variable)</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="lgcrfbstea" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lgcrfbstea table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lgcrfbstea thead, #lgcrfbstea tbody, #lgcrfbstea tfoot, #lgcrfbstea tr, #lgcrfbstea td, #lgcrfbstea th {
+  border-style: none;
+}
+
+#lgcrfbstea p {
+  margin: 0;
+  padding: 0;
+}
+
+#lgcrfbstea .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lgcrfbstea .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lgcrfbstea .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lgcrfbstea .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lgcrfbstea .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lgcrfbstea .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lgcrfbstea .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lgcrfbstea .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lgcrfbstea .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lgcrfbstea .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lgcrfbstea .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lgcrfbstea .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lgcrfbstea .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lgcrfbstea .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lgcrfbstea .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lgcrfbstea .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lgcrfbstea .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lgcrfbstea .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lgcrfbstea .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lgcrfbstea .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lgcrfbstea .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lgcrfbstea .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lgcrfbstea .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lgcrfbstea .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lgcrfbstea .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lgcrfbstea .gt_left {
+  text-align: left;
+}
+
+#lgcrfbstea .gt_center {
+  text-align: center;
+}
+
+#lgcrfbstea .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lgcrfbstea .gt_font_normal {
+  font-weight: normal;
+}
+
+#lgcrfbstea .gt_font_bold {
+  font-weight: bold;
+}
+
+#lgcrfbstea .gt_font_italic {
+  font-style: italic;
+}
+
+#lgcrfbstea .gt_super {
+  font-size: 65%;
+}
+
+#lgcrfbstea .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lgcrfbstea .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lgcrfbstea .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lgcrfbstea .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lgcrfbstea .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lgcrfbstea .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lgcrfbstea .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lgcrfbstea .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lgcrfbstea div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="county" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">county</th>
+<th id="food_insecurity" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">food_insecurity</th>
+<th id="mental_distress" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mental_distress</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="county">Alamance</td>
+<td class="gt_row gt_right" headers="food_insecurity" style="background-color: #9E2C6A; color: #FFFFFF">17.2</td>
+<td class="gt_row gt_right" headers="mental_distress">18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="county">Alexander</td>
+<td class="gt_row gt_right" headers="food_insecurity" style="background-color: #9E2C6A; color: #FFFFFF">15.8</td>
+<td class="gt_row gt_right" headers="mental_distress">19.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="county">Alleghany</td>
+<td class="gt_row gt_right" headers="food_insecurity" style="background-color: #9E2C6A; color: #FFFFFF">18.5</td>
+<td class="gt_row gt_right" headers="mental_distress">19.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="county">Anson</td>
+<td class="gt_row gt_right" headers="food_insecurity" style="background-color: #9E2C6A; color: #FFFFFF">28.2</td>
+<td class="gt_row gt_right" headers="mental_distress">20.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="county">Ashe</td>
+<td class="gt_row gt_right" headers="food_insecurity" style="background-color: #9E2C6A; color: #FFFFFF">14.6</td>
+<td class="gt_row gt_right" headers="mental_distress">18.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="county">Avery</td>
+<td class="gt_row gt_right" headers="food_insecurity" style="background-color: #9E2C6A; color: #FFFFFF">15.1</td>
+<td class="gt_row gt_right" headers="mental_distress">18.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="county">...</td>
+<td class="gt_row gt_right" headers="food_insecurity" style="background-color: #9E2C6A; color: #FFFFFF">...</td>
+<td class="gt_row gt_right" headers="mental_distress">...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="outcome-response-variable" class="level2"><h2 class="anchored" data-anchor-id="outcome-response-variable">Outcome (response variable)</h2>
+<div class="columns">
+<div class="column" style="width:38%;">
+<div class="cell">
+<div class="cell-output-display">
+<div id="greedzszfo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#greedzszfo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#greedzszfo thead, #greedzszfo tbody, #greedzszfo tfoot, #greedzszfo tr, #greedzszfo td, #greedzszfo th {
+  border-style: none;
+}
+
+#greedzszfo p {
+  margin: 0;
+  padding: 0;
+}
+
+#greedzszfo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#greedzszfo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#greedzszfo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#greedzszfo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#greedzszfo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#greedzszfo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#greedzszfo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#greedzszfo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#greedzszfo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#greedzszfo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#greedzszfo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#greedzszfo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#greedzszfo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#greedzszfo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#greedzszfo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#greedzszfo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#greedzszfo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#greedzszfo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#greedzszfo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#greedzszfo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#greedzszfo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#greedzszfo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#greedzszfo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#greedzszfo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#greedzszfo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#greedzszfo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#greedzszfo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#greedzszfo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#greedzszfo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#greedzszfo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#greedzszfo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#greedzszfo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#greedzszfo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#greedzszfo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#greedzszfo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#greedzszfo .gt_left {
+  text-align: left;
+}
+
+#greedzszfo .gt_center {
+  text-align: center;
+}
+
+#greedzszfo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#greedzszfo .gt_font_normal {
+  font-weight: normal;
+}
+
+#greedzszfo .gt_font_bold {
+  font-weight: bold;
+}
+
+#greedzszfo .gt_font_italic {
+  font-style: italic;
+}
+
+#greedzszfo .gt_super {
+  font-size: 65%;
+}
+
+#greedzszfo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#greedzszfo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#greedzszfo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#greedzszfo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#greedzszfo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#greedzszfo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#greedzszfo .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#greedzszfo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#greedzszfo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="county" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">county</th>
+<th id="food_insecurity" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">food_insecurity</th>
+<th id="mental_distress" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mental_distress</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="county">Alamance</td>
+<td class="gt_row gt_right" headers="food_insecurity">17.2</td>
+<td class="gt_row gt_right" headers="mental_distress" style="background-color: #9E2C6A; color: #FFFFFF">18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="county">Alexander</td>
+<td class="gt_row gt_right" headers="food_insecurity">15.8</td>
+<td class="gt_row gt_right" headers="mental_distress" style="background-color: #9E2C6A; color: #FFFFFF">19.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="county">Alleghany</td>
+<td class="gt_row gt_right" headers="food_insecurity">18.5</td>
+<td class="gt_row gt_right" headers="mental_distress" style="background-color: #9E2C6A; color: #FFFFFF">19.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="county">Anson</td>
+<td class="gt_row gt_right" headers="food_insecurity">28.2</td>
+<td class="gt_row gt_right" headers="mental_distress" style="background-color: #9E2C6A; color: #FFFFFF">20.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="county">Ashe</td>
+<td class="gt_row gt_right" headers="food_insecurity">14.6</td>
+<td class="gt_row gt_right" headers="mental_distress" style="background-color: #9E2C6A; color: #FFFFFF">18.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="county">Avery</td>
+<td class="gt_row gt_right" headers="food_insecurity">15.1</td>
+<td class="gt_row gt_right" headers="mental_distress" style="background-color: #9E2C6A; color: #FFFFFF">18.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="county">...</td>
+<td class="gt_row gt_right" headers="food_insecurity">...</td>
+<td class="gt_row gt_right" headers="mental_distress" style="background-color: #9E2C6A; color: #FFFFFF">...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:62%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="regression-line" class="level2"><h2 class="anchored" data-anchor-id="regression-line">Regression line</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="regression-line-slope" class="level2"><h2 class="anchored" data-anchor-id="regression-line-slope">Regression line: slope</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="regression-line-intercept" class="level2"><h2 class="anchored" data-anchor-id="regression-line-intercept">Regression line: intercept</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="correlation" class="level2"><h2 class="anchored" data-anchor-id="correlation">Correlation</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="correlation-1" class="level2"><h2 class="anchored" data-anchor-id="correlation-1">Correlation</h2>
+<ul>
+<li>Measures the <strong>direction</strong> and <strong>strength</strong> of a linear relationship.</li>
+<li>Ranges between -1 and 1.</li>
+<li>Has the same sign as the slope.</li>
+<li>Has no units.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="participate" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="participate">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Which of the following is the best guess for the correlation between the two variables below?</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="288"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="wooclap-choices">
+<ul>
+<li>-0.95</li>
+<li>-0.53</li>
+<li>0.00</li>
+<li>0.25</li>
+<li>0.80</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div>
+</div>
+</section><section id="visualizing-the-model" class="level2"><h2 class="anchored" data-anchor-id="visualizing-the-model">Visualizing the model</h2>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  <span class="va">nc_places</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">food_insecurity</span>, y <span class="op">=</span> <span class="va">mental_distress</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">percent_label</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">percent_label</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Adults experiencing food insecurity (%)"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Adults experiencing\nfrequent mental distress (%)"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="linear-regression-with-a-single-predictor" class="level1"><h1>Linear regression with a single predictor</h1>
+<section id="a-regression-model" class="level2"><h2 class="anchored" data-anchor-id="a-regression-model">A regression model</h2>
+<p>A regression model separates an observed outcome into a systematic part and an unexplained part:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y &amp;= \text{Model} + \text{Error} \\
+  &amp;= f(X) + \epsilon \\
+  &amp;= \mu_{Y \mid X} + \epsilon
+\end{aligned}
+\]</span></p>
+<ul>
+<li>
+<span class="math inline">\(\mu_{Y \mid X}\)</span> is the mean outcome for observations with predictor value <span class="math inline">\(X\)</span>.</li>
+<li>
+<span class="math inline">\(\epsilon\)</span> is the deviation of an observed outcome from that mean.</li>
+</ul></section><section id="a-linear-regression-model" class="level2"><h2 class="anchored" data-anchor-id="a-linear-regression-model">A linear regression model</h2>
+<p>A linear regression model describes the relationship between a quantitative outcome, <span class="math inline">\(Y\)</span>, and a quantitative predictor, <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+Y = \beta_0 + \beta_1 X + \epsilon
+\]</span></p>
+<div class="incremental">
+<ul class="incremental">
+<li>
+<span class="math inline">\(\beta_0\)</span>: population intercept</li>
+<li>
+<span class="math inline">\(\beta_1\)</span>: population slope</li>
+<li>
+<span class="math inline">\(\epsilon\)</span>: unexplained deviation from the line</li>
+</ul>
+</div>
+</section><section id="the-fitted-regression-line" class="level2"><h2 class="anchored" data-anchor-id="the-fitted-regression-line">The fitted regression line</h2>
+<p>We use data to estimate the population relationship:</p>
+<p><span class="math display">\[
+\widehat{Y} = b_0 + b_1 X
+\]</span></p>
+<ul>
+<li>
+<span class="math inline">\(\widehat{Y}\)</span>: predicted value of the outcome</li>
+<li>
+<span class="math inline">\(b_0\)</span>: estimated intercept</li>
+<li>
+<span class="math inline">\(b_1\)</span>: estimated slope</li>
+</ul>
+<div class="fragment callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is <strong>no error term</strong> in the fitted line: <span class="math inline">\(\widehat{Y}\)</span> is the model’s prediction, not an observed outcome.</p>
+</div>
+</div>
+</section><section id="fit-the-model-with-tidymodels" class="level2"><h2 class="anchored" data-anchor-id="fit-the-model-with-tidymodels">Fit the model with tidymodels</h2>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">county_fit</span> <span class="op">&lt;-</span> <span class="fu">linear_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">fit</span><span class="op">(</span></span>
+<span>    <span class="va">mental_distress</span> <span class="op">~</span> <span class="va">food_insecurity</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">nc_places</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">county_fit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>parsnip model object
+
+
+Call:
+stats::lm(formula = mental_distress ~ food_insecurity, data = data)
+
+Coefficients:
+    (Intercept)  food_insecurity  
+        15.1742           0.1837  </code></pre>
+</div>
+</div>
+</section><section id="extract-the-coefficients" class="level2"><h2 class="anchored" data-anchor-id="extract-the-coefficients">Extract the coefficients</h2>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">county_fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term            estimate std.error statistic  p.value
+  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)       15.2      0.278       54.5 3.96e-75
+2 food_insecurity    0.184    0.0147      12.5 5.24e-22</code></pre>
+</div>
+</div>
+<p><span class="math display">\[
+\widehat{\text{mental distress %}}
+= 15.2 + 0.184 \times \text{food insecurity %}
+\]</span></p>
+<div class="small fragment callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reading the model equation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Predicted mental-distress percentage is 15.2 plus 0.184 times the food insecurity percentage.</p>
+</div>
+</div>
+</section></section><section id="slope-and-intercept" class="level1"><h1>Slope and intercept</h1>
+<section id="participate-1" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="participate-1">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>The slope of the fitted model is 0.184. Which is the best interpretation?</p>
+<div class="wooclap-choices">
+<ul>
+<li>For each one percentage-point increase in county food-insecurity prevalence, predicted mental-distress prevalence is 0.184 percentage points higher, on average.</li>
+<li>Increasing food insecurity by one percentage point causes mental-distress prevalence to increase by 0.184 percentage points.</li>
+<li>For each one percentage-point increase in mental-distress prevalence, predicted food-insecurity prevalence is 0.184 percentage points higher.</li>
+<li>Every adult experiencing food insecurity has 0.184 additional mentally unhealthy days.</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div>
+</div>
+</section><section id="participate-2" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="participate-2">Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>The intercept of the fitted model is 15.2. Which is the best interpretation?</p>
+<div class="wooclap-choices">
+<ul>
+<li>For a county with 0% food-insecurity prevalence, the model predicts 15.2% mental-distress prevalence.</li>
+<li>For a county with 0% mental-distress prevalence, the model predicts 15.2% food-insecurity prevalence.</li>
+<li>A one percentage-point increase in food-insecurity prevalence predicts a 15.2 percentage-point increase in mental distress.</li>
+<li>The average North Carolina county has 15.2% mental-distress prevalence.</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="images/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></a></p>
+</figure>
+</div>
+<div class="small">
+<p>Scan the QR code or go to <a href="https://wooclap.com">wooclap.com</a>. Log in with your Duke NetID and enter the code <strong>OQPLQEK</strong>.</p>
+</div>
+</div>
+</div>
+</section><section id="is-the-intercept-meaningful" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="is-the-intercept-meaningful">Is the intercept meaningful?</h2>
+<p>The intercept is meaningful in context if:</p>
+<ul>
+<li>the predictor can feasibly equal or be near zero, and</li>
+<li>zero is reasonably close to the observed predictor values.</li>
+</ul>
+<p>. . .</p>
+<p>Here, observed food-insecurity prevalence ranges from 9.6% to 31.2%.</p>
+<div class="fragment callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mathematically vs.&nbsp;practical meaningfullness
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The intercept is a mathematical part of the line, but it is <strong>not meaningful in context</strong>.</p>
+</div>
+</div>
+</section></section><section id="predictions-and-residuals" class="level1"><h1>Predictions and residuals</h1>
+<section id="make-a-prediction" class="level2"><h2 class="anchored" data-anchor-id="make-a-prediction">Make a prediction</h2>
+<p>For a county where 20% of adults experience food insecurity:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\widehat{\text{mental distress %}}
+&amp;= 15.2 + 0.184 \times 20 \\
+&amp;= 18.9
+\end{aligned}
+\]</span></p>
+<p>We predict that approximately <strong>18.9%</strong> of adults experience frequent mental distress.</p>
+</section><section id="make-a-prediction-with-r" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="make-a-prediction-with-r">Make a prediction with R</h2>
+<ul>
+<li>Step 1: Make a new data frame with the predictor value(s) of interest with <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>food_insecurity <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="va">new_county</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  food_insecurity
+            &lt;dbl&gt;
+1              20</code></pre>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Step 2: Make a prediction for the new dataset using the model with <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">county_fit</span>, new_data <span class="op">=</span> <span class="va">new_county</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  .pred
+  &lt;dbl&gt;
+1  18.8</code></pre>
+</div>
+</div>
+</div>
+</section><section id="residuals" class="level2"><h2 class="anchored" data-anchor-id="residuals">Residuals</h2>
+<p>A <strong>residual</strong> is the difference between an observed and predicted outcome:</p>
+<p><span class="math display">\[
+\text{residual} = \text{observed} - \text{predicted}
+= y - \widehat{y}
+\]</span></p>
+</section><section id="calculating-residuals-with-r" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="calculating-residuals-with-r">Calculating residuals with R</h2>
+<p>Use <code>augment()</code> to add predictions and residuals to the original dataset.</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">county_aug</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">county_fit</span>, new_data <span class="op">=</span> <span class="va">nc_places</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">county_aug</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 45
+   .pred .resid county county_fips population loneliness mental_distress obesity
+   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;
+ 1  18.3 -0.334 Alama…       37001     179165       34.1            18      38.9
+ 2  18.1  1.02  Alexa…       37003      36473       34.1            19.1    36.2
+ 3  18.6  0.728 Alleg…       37005      11342       33.2            19.3    36.6
+ 4  20.4 -0.154 Anson        37007      21897       36.5            20.2    43.4
+ 5  17.9  1.04  Ashe         37009      27063       33.1            18.9    36.3
+ 6  17.9  0.452 Avery        37011      17561       32.2            18.4    37.4
+ 7  18.7  0.181 Beauf…       37013      44481       34.9            18.9    37  
+ 8  20.4 -0.846 Bertie       37015      16922       37.1            19.6    43.4
+ 9  19.3  0.193 Bladen       37017      29484       35.7            19.5    41.3
+10  17.4 -0.160 Bruns…       37019     159964       31.7            17.2    32.9
+# ℹ 90 more rows
+# ℹ 37 more variables: current_asthma &lt;dbl&gt;, cognitive_disability &lt;dbl&gt;,
+#   lack_social_emotional_support &lt;dbl&gt;, short_sleep &lt;dbl&gt;,
+#   independent_living_disability &lt;dbl&gt;, annual_checkup &lt;dbl&gt;,
+#   dental_visit &lt;dbl&gt;, coronary_heart_disease &lt;dbl&gt;,
+#   self_care_disability &lt;dbl&gt;, high_blood_pressure &lt;dbl&gt;, diabetes &lt;dbl&gt;,
+#   high_cholesterol &lt;dbl&gt;, housing_insecurity &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+</section><section id="durham-residual" class="level2"><h2 class="anchored" data-anchor-id="durham-residual">Durham residual</h2>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">county_aug</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">county</span>, <span class="va">mental_distress</span>, <span class="va">.pred</span>, <span class="va">.resid</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">county</span> <span class="op">==</span> <span class="st">"Durham"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  county mental_distress .pred .resid
+  &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1 Durham            15.2  17.8  -2.60</code></pre>
+</div>
+</div>
+</section><section id="visualizing-a-residual" class="level2"><h2 class="anchored" data-anchor-id="visualizing-a-residual">Visualizing a residual</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="choosing-values-for-b_1-and-b_0" class="level2"><h2 class="anchored" data-anchor-id="choosing-values-for-b_1-and-b_0">Choosing values for <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_0\)</span>
+</h2>
+<div class="question">
+<p>Which line fits the points best—and what do we mean by “best”?</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="15-linear-regression-single-predictor_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="least-squares-line" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="least-squares-line">Least squares line</h2>
+<ul>
+<li>The residual for the <span class="math inline">\(i^{th}\)</span> observation is</li>
+</ul>
+<p><span class="math display">\[
+e_i = y_i - \widehat{y}_i
+\]</span></p>
+<ul>
+<li>Square every residual and add them:</li>
+</ul>
+<p><span class="math display">\[
+e_1^2 + e_2^2 + \cdots + e_n^2
+\]</span></p>
+<ul>
+<li>The <strong>least squares regression line</strong> is the line that minimizes this sum.</li>
+</ul></section><section id="properties-of-least-squares-regression" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="properties-of-least-squares-regression">Properties of least-squares regression</h2>
+<p>For a least-squares line with one quantitative predictor and an intercept:</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>The line passes through the point of means, <span class="math inline">\((\bar{x}, \bar{y})\)</span>: <span class="math display">\[b_0 = \bar{y} - b_1\bar{x}\]</span></p></li>
+<li><p>The slope and correlation have the same sign: <span class="math display">\[b_1 = r\frac{s_y}{s_x}\]</span></p></li>
+<li><p>The residuals sum to zero: <span class="math display">\[\sum_{i=1}^{n} e_i = 0\]</span></p></li>
+<li><p>The residuals and predictor values are uncorrelated.</p></li>
+</ul>
+</div>
+</section></section><section id="interpreting-responsibly" class="level1 page-columns page-full"><h1>Interpreting responsibly</h1>
+<section id="association-is-not-causation" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="association-is-not-causation">Association is not causation</h2>
+<p>This model tells us that counties with greater estimated food-insecurity prevalence also tend to have greater estimated mental-distress prevalence.</p>
+<p>It does <strong>not</strong> establish that food insecurity causes mental distress.</p>
+<div class="fragment">
+<p>Possible explanations include:</p>
+<div class="incremental">
+<ul class="incremental">
+<li>food insecurity contributing to chronic stress,</li>
+<li>mental distress affecting employment or income stability,</li>
+<li>shared social or economic conditions, and</li>
+<li>features of how the estimates were constructed.</li>
+</ul>
+</div>
+</div>
+</section><section id="counties-are-not-individuals" class="level2 smaller page-columns page-full"><h2 class="smaller anchored" data-anchor-id="counties-are-not-individuals">Counties are not individuals</h2>
+<p>Each point is a <strong>county</strong>, not a person.</p>
+<p>An association between two county percentages does not, by itself, establish the same relationship among individuals. This is the <strong>ecological fallacy</strong>.</p>
+<p>Also remember:</p>
+<ul>
+<li>PLACES values are model-based small-area estimates.</li>
+<li>The fitted line summarizes the 100 North Carolina counties in this dataset.</li>
+<li>Predictions far outside the observed food-insecurity range are extrapolations.</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Learn more: <a href="https://www.cdc.gov/places/methodology/">CDC PLACES methodology</a></p>
+</div></div></section></section><section id="application-exercise" class="level1"><h1>Application exercise</h1>
+<section id="application-exercise-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="application-exercise-1">Application exercise</h2>
+<div class="appex">
+<ul>
+<li><p>Go to your ae project in Positron.</p></li>
+<li><p>If you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.</p></li>
+<li><p>If you haven’t yet done so, pull to get today’s application exercise file: <code>ae-09-nc-places-model.qmd</code>.</p></li>
+<li><p>Work through the application exercise in class, and render, commit, and push your edits by the end of class.</p></li>
+</ul>
+</div>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sta199-f26\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/15-linear-regression-single-predictor.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+</body></html>

@@ -572,39 +572,74 @@
     "text": "On your own\nDo the following at the end of class or, if you run out of time, some before the next class.\nUse gss to answer one of the following questions with an appropriate plot:\n\nIs self-reported happiness distributed differently across self-rated health groups?\nHow does employment status vary across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\n\nState your question, identify the variable type or types, and explain why your plot answers the question. Give the chart a meaningful title and labels, then describe the patterns using non-causal language.\nOne possible answer: Both health and happiness are categorical. A filled bar chart lets us compare the distribution of happiness within each health group.\n\ngss |&gt;\n  ggplot(aes(x = health, fill = happiness)) +\n  geom_bar(position = \"fill\") +\n  labs(\n    title = \"Happiness responses differ across self-rated health groups\",\n    x = \"Self-rated health\",\n    y = \"Proportion within health group\",\n    fill = \"Happiness\",\n    caption = \"Source: 2024 General Social Survey (GSS), NORC\"\n  )\n\n\n\n\n\n\n\nThe proportion reporting “Very happy” is highest among respondents who rate their health as excellent. The proportion reporting “Not too happy” is highest among those who rate their health as poor. This is an association in the 2024 GSS data, not evidence that health causes happiness or that happiness causes health.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nOnce you’re done, take one last snapshot:\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
   },
   {
-    "objectID": "ae/ae-01-gss-dataviz.html",
-    "href": "ae/ae-01-gss-dataviz.html",
-    "title": "AE 01: GSS + data visualization",
+    "objectID": "ae/ae-09-nc-places-model.html",
+    "href": "ae/ae-09-nc-places-model.html",
+    "title": "AE 09: Dental visits and health in North Carolina",
     "section": "",
-    "text": "In this mini-analysis, we use data from the 2024 General Social Survey (GSS) to get practice with creating and interpreting data visualizations."
+    "text": "The data for this application exercise come from the CDC PLACES 2025 county release. PLACES provides model-based local health estimates for every U.S. county.\nWe will model the relationship between the estimated percentage of adults who visited a dentist during the previous year and the estimated percentage reporting fair or poor health across the 100 North Carolina counties."
   },
   {
-    "objectID": "ae/ae-01-gss-dataviz.html#getting-started",
-    "href": "ae/ae-01-gss-dataviz.html#getting-started",
-    "title": "AE 01: GSS + data visualization",
+    "objectID": "ae/ae-09-nc-places-model.html#getting-started",
+    "href": "ae/ae-09-nc-places-model.html#getting-started",
+    "title": "AE 09: Dental visits and health in North Carolina",
     "section": "Getting started",
-    "text": "Getting started\nPackages\nWe’ll use the tidyverse package for this analysis.\n\nlibrary(tidyverse)\n\nData\nThe data are stored as a CSV (comma-separated values) file in your repository’s data folder. Let’s read the file and save it as an object called gss.\n\ngss &lt;- read_csv(\"data/gss-2024.csv\")\n\nGet to know the data\nWe can use the glimpse() function to get an overview (or “glimpse”) of the data.\n\nglimpse(gss)\n\nRows: 3,294\nColumns: 9\n$ year              &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024…\n$ marital_status    &lt;chr&gt; \"Never married\", \"Never married\", \"Married\", \"Never …\n$ age               &lt;dbl&gt; 33, 64, 69, 19, 70, 53, 48, 30, 60, 25, 23, 68, 43, …\n$ education_years   &lt;dbl&gt; 16, 16, 14, 12, 13, 14, 13, 14, 14, 12, 18, 5, 14, 1…\n$ children          &lt;dbl&gt; 2, 0, 0, 0, 3, 2, 6, 1, 2, 0, 0, 1, 2, 1, 3, 1, 2, N…\n$ happiness         &lt;chr&gt; \"Not too happy\", \"Pretty happy\", \"Pretty happy\", \"Pr…\n$ health            &lt;chr&gt; \"Good\", \"Good\", \"Good\", \"Good\", \"Good\", \"Good\", \"Goo…\n$ employment_status &lt;chr&gt; \"Working full time\", \"Retired\", \"Retired\", \"Working …\n$ party_id          &lt;chr&gt; \"Not very strong democrat\", \"Strong democrat\", \"Stro…\n\n\n\nWhat does each observation (row) in the data set represent?\n\nAdd your response here.\n\nHow many observations (rows) are in the data set?\n\nAdd your response here.\n\nHow many variables (columns) are in the data set?\n\nAdd your response here.\nVariables of interest\nThe variables we’ll focus on are the following:\n\n\nmarital_status: Respondent’s current marital status.\n\nhappiness: Respondent’s self-reported general happiness.\n\nhealth: Respondent’s self-reported general health."
+    "text": "Getting started\nPackages\nWe will use the tidyverse package for data visualization and wrangling and the tidymodels package for modeling.\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(scales)\n\nData\nThe data can be found in the data folder; the file is called nc-places.csv.\n\nnc_places &lt;- read_csv(\"data/nc-places.csv\")\n\nThe variables used in this exercise are:\n\n\n\n\n\n\nVariable name\nDescription\n\n\n\ncounty\nNorth Carolina county name\n\n\ndental_visit\nPercentage of adults who visited a dentist or dental clinic during the previous year\n\n\nfair_or_poor_health\nPercentage of adults reporting fair or poor general health\n\n\n\nThe percentage variables are age-adjusted, model-based estimates."
   },
   {
-    "objectID": "ae/ae-01-gss-dataviz.html#demo-one-categorical-variable",
-    "href": "ae/ae-01-gss-dataviz.html#demo-one-categorical-variable",
-    "title": "AE 01: GSS + data visualization",
-    "section": "Demo: One categorical variable",
-    "text": "Demo: One categorical variable\nWe begin with the question:\n\nWhat self-rated health levels are most common among respondents in the 2024 GSS?\n\n\nWhat type of plot is a good starting point for this question?\n\nBoth the question and the variable type should guide our choice of visualization. Since health is a categorical variable, a bar chart is a useful place to start.\n\n\nggplot() creates the initial base coordinate system. The first argument is the data you’re plotting, gss.\n\n\n# add code here\n\n\n\naes() tells how variables in the data map to visual properties of the graph.\n\n\n# add code here\n\n\nA geom_ function specifies how observations will be represented. geom_bar() creates a bar chart and counts the rows in each category for us.\n\n\n# add code here\n\n\nWhich recorded health response is most common? Which is least common?\n\nAdd your response here.\n\nThe labs() function allows us to give the plot a meaningful title, axis labels, and a source.\n\n\n# add code here\n\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nNow that we’re done with our first task, it’s time to take a snapshot.\n\nPreview your Quarto document and review the output. If all looks good…\nGo to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.\nClick Sync to push your changes to your application exercise repo on GitHub.\nGo to your repo on GitHub and confirm that you can see the updated files – you may need to refresh your browser window. Once your updated files are in your GitHub repo, you’re good to go!"
+    "objectID": "ae/ae-09-nc-places-model.html#visualizing-the-relationship",
+    "href": "ae/ae-09-nc-places-model.html#visualizing-the-relationship",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Visualizing the relationship",
+    "text": "Visualizing the relationship\n\nCreate an appropriate plot to investigate the relationship between dental_visit and fair_or_poor_health. Put the predictor on the (x)-axis and the outcome on the (y)-axis. Add appropriate labels.\n\n\n# add code here\n\n\nDescribe the form, direction, and strength of the relationship. Note any unusual observations.\n\nAdd your response here.\n\nIf you were to draw a straight line that best represents this relationship, where would it go? Why?\n\nAdd your response here.\n\nNow let R draw the line. Use geom_smooth() with method = \"lm\" and set se = FALSE.\n\n\n# add code here\n\n\nWhat types of questions can this plot help answer?\n\nAdd your response here."
   },
   {
-    "objectID": "ae/ae-01-gss-dataviz.html#two-categorical-variables",
-    "href": "ae/ae-01-gss-dataviz.html#two-categorical-variables",
-    "title": "AE 01: GSS + data visualization",
-    "section": "Two categorical variables",
-    "text": "Two categorical variables\nNow we ask:\n\nHow does self-reported happiness vary across marital-status groups?\n\nBoth marital_status and happiness are categorical variables.\nOption 1 - Demo: Stacked bars\nMap happiness to the fill color. By default, geom_bar() stacks the happiness categories within each marital-status bar.\n\n# add code here\n\nThis graph displays counts. It also shows that the marital-status groups have different numbers of respondents, which makes the colored segments difficult to compare directly.\nOption 2 - Your turn: Dodged bars\nModify the stacked bar chart by setting position = \"dodge\" inside geom_bar(). This places the happiness categories side by side.\n\n# add code here\n\nDodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.\nOption 3 - Demo: Filled bars\nSuppose our question is specifically about the distribution of happiness within each marital-status group. Setting position = \"fill\" gives every marital-status bar the same total height and displays proportions instead of counts.\n\n# add code here\n\n\nWhat is the denominator used to calculate the proportions in each bar?\n\nAdd your response here.\n\nWhat patterns do you see?\n\nAdd your response here.\n\nHow do these plots answer the question about how happiness varies across marital-status groups? Which plot is the best?\n\nAdd your response here.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nNow that we’re done with our second task, it’s time to take another snapshot.\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
+    "objectID": "ae/ae-09-nc-places-model.html#model-fit-and-summary",
+    "href": "ae/ae-09-nc-places-model.html#model-fit-and-summary",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Model fit and summary",
+    "text": "Model fit and summary\n\nFit a linear regression model that predicts fair-or-poor-health prevalence from dental-visit prevalence.\n\n\n# add code here\n\n\nDisplay the model summary and extract the slope and intercept estimates.\n\n\n# add code here\n\n\nWrite the fitted model using mathematical notation.\n\nAdd your response here.\n\nInterpret the slope in context.\n\nAdd your response here.\n\nInterpret the intercept in context. Is this interpretation meaningful for these data?\n\nAdd your response here."
   },
   {
-    "objectID": "ae/ae-01-gss-dataviz.html#on-your-own",
-    "href": "ae/ae-01-gss-dataviz.html#on-your-own",
-    "title": "AE 01: GSS + data visualization",
-    "section": "On your own",
-    "text": "On your own\nDo the following at the end of class or, if you run out of time, some before the next class.\nUse gss to answer one of the following questions with an appropriate plot:\n\nIs self-reported happiness distributed differently across self-rated health groups?\nHow does employment status vary across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\n\nState your question, identify the variable type or types, and explain why your plot answers the question. Give the chart a meaningful title and labels, then describe the patterns using non-causal language.\nAdd response here. Insert code cells as needed.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nOnce you’re done, take one last snapshot:\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
+    "objectID": "ae/ae-09-nc-places-model.html#correlation",
+    "href": "ae/ae-09-nc-places-model.html#correlation",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Correlation",
+    "text": "Correlation\n\nCalculate the correlation between dental-visit prevalence and fair-or-poor-health prevalence. Interpret its sign and magnitude.\n\n\n# add code here\n\nAdd your response here."
+  },
+  {
+    "objectID": "ae/ae-09-nc-places-model.html#predictions-and-residuals",
+    "href": "ae/ae-09-nc-places-model.html#predictions-and-residuals",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Predictions and residuals",
+    "text": "Predictions and residuals\n\nUse the model to predict fair-or-poor-health prevalence for a county where 60% of adults visited a dentist during the previous year.\n\n\n# add code here\n\nAdd your response here.\n\nUse augment() to add predictions and residuals to the county data.\n\n\n# add code here\n\nDurham County\n\nDurham County has a dental-visit prevalence of 68.2% and an observed fair-or-poor-health prevalence of 16.5%. Use the augmented data frame to identify the predicted value and residual for Durham County.\n\n\n# add code here\n\nAdd your response here.\n\nVerify this residual by calculating the predicted value using the model and comparing it to the observed value. If your calculation doesn’t exactly match the residual returned by augment(), explain why.\n\nAdd your response here.\nIdentifying potential outliers\n\nIdentify the counties with the five highest absolute residuals. Report their observed values, predicted values, and residuals.\n\n\n# add code here\n\n\nMark these counties on the scatterplot. Do they appear to be outliers?\n\n\n# add code here\n\nAdd your response here."
+  },
+  {
+    "objectID": "ae/ae-09-nc-places-model.html#interpreting-responsibly",
+    "href": "ae/ae-09-nc-places-model.html#interpreting-responsibly",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Interpreting responsibly",
+    "text": "Interpreting responsibly\n\nDoes this analysis establish that increasing dental visits causes better general health? Explain.\n\nAdd your response here."
+  },
+  {
+    "objectID": "ae/ae-04-taxes-join-A.html",
+    "href": "ae/ae-04-taxes-join-A.html",
+    "title": "AE 04: Sales taxes + data joining",
+    "section": "",
+    "text": "Important\n\n\n\nThese are suggested answers. This document should be used as a reference only; it’s not designed to be an exhaustive key."
+  },
+  {
+    "objectID": "ae/ae-04-taxes-join-A.html#packages",
+    "href": "ae/ae-04-taxes-join-A.html#packages",
+    "title": "AE 04: Sales taxes + data joining",
+    "section": "Packages",
+    "text": "Packages\nWe’ll use the tidyverse package for this analysis.\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "ae/ae-04-taxes-join-A.html#data",
+    "href": "ae/ae-04-taxes-join-A.html#data",
+    "title": "AE 04: Sales taxes + data joining",
+    "section": "Data",
+    "text": "Data\nThe data are available in the data folder.\n\nsales_taxes &lt;- read_csv(\"data/sales-taxes-26.csv\")\nus_regions &lt;- read_csv(\"data/us-regions.csv\")\n\nAnd let’s take a look at the data.\n\nglimpse(sales_taxes)\n\nRows: 51\nColumns: 7\n$ state              &lt;chr&gt; \"Alabama\", \"Alaska\", \"Arizona\", \"Arkansas\", \"Califo…\n$ state_tax_rate     &lt;dbl&gt; 4.000, 0.000, 5.600, 6.500, 7.250, 2.900, 6.350, 0.…\n$ state_tax_rank     &lt;dbl&gt; 40, 46, 28, 9, 1, 45, 12, 46, 17, 40, 40, 17, 13, 2…\n$ avg_local_tax_rate &lt;dbl&gt; 5.46, 1.82, 2.92, 2.96, 1.74, 4.99, 0.00, 0.00, 0.9…\n$ max_local          &lt;dbl&gt; 11.000, 7.850, 5.300, 6.125, 5.250, 9.100, 0.000, 0…\n$ combined_tax_rate  &lt;dbl&gt; 9.46, 1.82, 8.52, 9.46, 8.99, 7.89, 6.35, 0.00, 6.9…\n$ combined_rank      &lt;dbl&gt; 5, 46, 11, 4, 7, 16, 33, 47, 28, 18, 45, 37, 8, 24,…\n\nglimpse(us_regions)\n\nRows: 50\nColumns: 2\n$ state_name &lt;chr&gt; \"Maine\", \"New Hampshire\", \"Vermont\", \"Massachusetts\", \"Rhod…\n$ region     &lt;chr&gt; \"Northeast\", \"Northeast\", \"Northeast\", \"Northeast\", \"Northe…"
   },
   {
     "objectID": "ae/ae-03-statsci-majors-A.html",
@@ -681,7 +716,7 @@
     "href": "ae.html",
     "title": "Application exercises",
     "section": "",
-    "text": "More AEs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\nSubtitle\n\n\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\nSuggested answers\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\n \n\n\n\n\n\n\nAE 02: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\n\n\nAE 02: Gerrymandering + data exploration I\n\n\n \n\n\n\n\n\n\nAE 03: Tidying Stat Sci majors\n\n\n \n\n\n\n\n\n\nAE 03: Tidying Stat Sci majors\n\n\n \n\n\n\n\n\n\nAE 04: Sales taxes + data joining\n\n\nSuggested answers\n\n\n\n\n\n\nAE 04: Sales taxes + data joining\n\n\n \n\n\n\n\n\n\nAE 05: Survey types\n\n\n \n\n\n\n\n\n\nAE 07: 500 recent opinion articles in The Chronicle\n\n\nSuggested answers\n\n\n\n\n\n\nAE 07: 500 recent opinion articles in The Chronicle\n\n\n \n\n\n\n\n\n\nAE 08: Age gaps + import\n\n\nSuggested answers\n\n\n\n\n\n\nAE 08: Age gaps + import\n\n\n \n\n\n\n\n\n\nNo matching items",
+    "text": "More AEs to be added as the semester progresses.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\nSubtitle\n\n\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\nSuggested answers\n\n\n\n\n\n\nAE 01: GSS + data visualization\n\n\n \n\n\n\n\n\n\nAE 02: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\n\n\nAE 02: Gerrymandering + data exploration I\n\n\n \n\n\n\n\n\n\nAE 03: Tidying Stat Sci majors\n\n\n \n\n\n\n\n\n\nAE 03: Tidying Stat Sci majors\n\n\n \n\n\n\n\n\n\nAE 04: Sales taxes + data joining\n\n\nSuggested answers\n\n\n\n\n\n\nAE 04: Sales taxes + data joining\n\n\n \n\n\n\n\n\n\nAE 05: Survey types\n\n\n \n\n\n\n\n\n\nAE 07: 500 recent opinion articles in The Chronicle\n\n\nSuggested answers\n\n\n\n\n\n\nAE 07: 500 recent opinion articles in The Chronicle\n\n\n \n\n\n\n\n\n\nAE 08: Age gaps + import\n\n\nSuggested answers\n\n\n\n\n\n\nAE 08: Age gaps + import\n\n\n \n\n\n\n\n\n\nAE 09: Dental visits and health in North Carolina\n\n\nSuggested answers\n\n\n\n\n\n\nAE 09: Dental visits and health in North Carolina\n\n\n \n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Application exercises"
     ]
@@ -4923,6 +4958,643 @@
     "text": "The pipe - Step 7\n\nFind respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.\n\n\ngss |&gt;\n  filter(\n    employment_status == \"Retired\",\n    health == \"Excellent\",\n    happiness == \"Very happy\",\n    age &lt; 50\n  ) |&gt;\n  select(age, employment_status, health, happiness, children)\n\n# A tibble: 1 × 5\n    age employment_status health    happiness  children\n  &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;\n1    47 Retired           Excellent Very happy        3"
   },
   {
+    "objectID": "slides/15-linear-regression-single-predictor.html",
+    "href": "slides/15-linear-regression-single-predictor.html",
+    "title": "Linear regression with a single predictor",
+    "section": "",
+    "text": "Each point represents one North Carolina county.\n\n\n\n\n\n\n\n\nWhat do you notice? What do you wonder?\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK.\n\n\n\n\n\n…\n\nBy the end of today, you should be able to:\n\nidentify the outcome and predictor in a regression model,\nfit a linear regression model with tidymodels,\ninterpret the slope and intercept in context,\nuse a fitted model to calculate predictions and residuals, and\nexplain what makes a line the least squares regression line."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#while-you-wait-participate",
+    "href": "slides/15-linear-regression-single-predictor.html#while-you-wait-participate",
+    "title": "Linear regression with a single predictor",
+    "section": "",
+    "text": "Each point represents one North Carolina county.\n\n\n\n\n\n\n\n\nWhat do you notice? What do you wonder?\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#announcements",
+    "href": "slides/15-linear-regression-single-predictor.html#announcements",
+    "title": "Linear regression with a single predictor",
+    "section": "",
+    "text": "…"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#learning-goals",
+    "href": "slides/15-linear-regression-single-predictor.html#learning-goals",
+    "title": "Linear regression with a single predictor",
+    "section": "",
+    "text": "By the end of today, you should be able to:\n\nidentify the outcome and predictor in a regression model,\nfit a linear regression model with tidymodels,\ninterpret the slope and intercept in context,\nuse a fitted model to calculate predictions and residuals, and\nexplain what makes a line the least squares regression line."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#two-main-uses",
+    "href": "slides/15-linear-regression-single-predictor.html#two-main-uses",
+    "title": "Linear regression with a single predictor",
+    "section": "Two main uses",
+    "text": "Two main uses\n\nPrediction: Use known information to estimate an unknown outcome.\nDescription / explanation: Summarize how an outcome tends to vary with a predictor.\n\n\n\nWhat questions could a model help us answer about community health?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#cdc-places",
+    "href": "slides/15-linear-regression-single-predictor.html#cdc-places",
+    "title": "Linear regression with a single predictor",
+    "section": "CDC PLACES",
+    "text": "CDC PLACES\nPLACES: Local Data for Better Health is a free CDC resource providing consistently defined health and health-related estimates for communities across the US.\n\nCovers counties, places, census tracts, and ZIP Code Tabulation Areas.\nIncludes measures of health outcomes, prevention, disability, health behaviors, health-related social needs, and community factors.\nUses small area estimation with data from the Behavioral Risk Factor Surveillance System (BRFSS), the Census, and the American Community Survey (ACS).\nHelps communities identify local health concerns, disparities, and overlapping health and social needs.\n\n\n\nSource: CDC, About PLACES: Local Data for Better Health"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#cdc-places-1",
+    "href": "slides/15-linear-regression-single-predictor.html#cdc-places-1",
+    "title": "Linear regression with a single predictor",
+    "section": "CDC PLACES",
+    "text": "CDC PLACES\n\n\n\n\n\n\nImportant\n\n\n\nThese are model-based local estimates, not direct survey estimates for each county.\n\n\n\n\nSource: CDC, About PLACES: Local Data for Better Health"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#county-food-insecurity-and-mental-health",
+    "href": "slides/15-linear-regression-single-predictor.html#county-food-insecurity-and-mental-health",
+    "title": "Linear regression with a single predictor",
+    "section": "County food insecurity and mental health",
+    "text": "County food insecurity and mental health\nThe CDC PLACES 2025 release provides local health estimates for every U.S. county.\nFor North Carolina, we will study:\n\nthe estimated percentage of adults who experienced food insecurity during the previous 12 months, and\nthe estimated percentage of adults who experienced frequent mental distress: at least 14 mentally unhealthy days during the previous 30 days.\n\nBoth are age-adjusted, model-based estimates derived from 2023 survey and population data.\n\n\nSources: CDC PLACES release notes, measure definitions"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#how-the-data-were-put-together",
+    "href": "slides/15-linear-regression-single-predictor.html#how-the-data-were-put-together",
+    "title": "Linear regression with a single predictor",
+    "section": "How the data were put together",
+    "text": "How the data were put together\n\nStart with the CDC PLACES 2025 county release.\nFilter to North Carolina and age-adjusted prevalence estimates.\nReshape to one row per county.\nWrite to a CSV file: nc-places.csv."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#packages",
+    "href": "slides/15-linear-regression-single-predictor.html#packages",
+    "title": "Linear regression with a single predictor",
+    "section": "Packages",
+    "text": "Packages\n\ntidyverse for data wrangling and visualization\nscales for better axis labels\ntidymodels for modeling with tidyverse principles\n\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(tidymodels)"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#load-the-data",
+    "href": "slides/15-linear-regression-single-predictor.html#load-the-data",
+    "title": "Linear regression with a single predictor",
+    "section": "Load the data",
+    "text": "Load the data\n\nnc_places &lt;- read_csv(\n  \"data/nc-places.csv\"\n)\n\nRows: 100 Columns: 43\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (1): county\ndbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#our-focus-for-today",
+    "href": "slides/15-linear-regression-single-predictor.html#our-focus-for-today",
+    "title": "Linear regression with a single predictor",
+    "section": "Our focus for today",
+    "text": "Our focus for today\n\n\nfood_insecurity - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.\n\nmental_distress - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#modeling-north-carolina-counties",
+    "href": "slides/15-linear-regression-single-predictor.html#modeling-north-carolina-counties",
+    "title": "Linear regression with a single predictor",
+    "section": "Modeling North Carolina counties",
+    "text": "Modeling North Carolina counties\n\n\nDescribe: How is county-level food insecurity related to frequent mental distress?\nPredict: For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#modelling-north-carolina-counties",
+    "href": "slides/15-linear-regression-single-predictor.html#modelling-north-carolina-counties",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling North Carolina counties",
+    "text": "Modelling North Carolina counties\n\nDescribe: How is county-level food insecurity related to frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#modelling-north-carolina-counties-1",
+    "href": "slides/15-linear-regression-single-predictor.html#modelling-north-carolina-counties-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling North Carolina counties",
+    "text": "Modelling North Carolina counties\n\nPredict: For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#modelling",
+    "href": "slides/15-linear-regression-single-predictor.html#modelling",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling",
+    "text": "Modelling\n\n\n\nUse models to describe relationships between variables and to make predictions.\nFor now, we will focus on linear models—but there are many other types of models.\n\n\n\n\n\n\n\n\n\n\n\n\n\nA model is a useful simplification, not a complete description of reality."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#modelling-vocabulary",
+    "href": "slides/15-linear-regression-single-predictor.html#modelling-vocabulary",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling vocabulary",
+    "text": "Modelling vocabulary\n\nPredictor (explanatory variable)\nOutcome (response variable)\nRegression line\n\nSlope\nIntercept\n\n\nCorrelation"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#predictor-explanatory-variable",
+    "href": "slides/15-linear-regression-single-predictor.html#predictor-explanatory-variable",
+    "title": "Linear regression with a single predictor",
+    "section": "Predictor (explanatory variable)",
+    "text": "Predictor (explanatory variable)\n\n\n\n\n\n\n\n\ncounty\nfood_insecurity\nmental_distress\n\n\n\nAlamance\n17.2\n18\n\n\nAlexander\n15.8\n19.1\n\n\nAlleghany\n18.5\n19.3\n\n\nAnson\n28.2\n20.2\n\n\nAshe\n14.6\n18.9\n\n\nAvery\n15.1\n18.4\n\n\n...\n...\n..."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#outcome-response-variable",
+    "href": "slides/15-linear-regression-single-predictor.html#outcome-response-variable",
+    "title": "Linear regression with a single predictor",
+    "section": "Outcome (response variable)",
+    "text": "Outcome (response variable)\n\n\n\n\n\n\n\n\ncounty\nfood_insecurity\nmental_distress\n\n\n\nAlamance\n17.2\n18\n\n\nAlexander\n15.8\n19.1\n\n\nAlleghany\n18.5\n19.3\n\n\nAnson\n28.2\n20.2\n\n\nAshe\n14.6\n18.9\n\n\nAvery\n15.1\n18.4\n\n\n...\n...\n..."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#regression-line",
+    "href": "slides/15-linear-regression-single-predictor.html#regression-line",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line",
+    "text": "Regression line"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#regression-line-slope",
+    "href": "slides/15-linear-regression-single-predictor.html#regression-line-slope",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line: slope",
+    "text": "Regression line: slope"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#regression-line-intercept",
+    "href": "slides/15-linear-regression-single-predictor.html#regression-line-intercept",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line: intercept",
+    "text": "Regression line: intercept"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#correlation",
+    "href": "slides/15-linear-regression-single-predictor.html#correlation",
+    "title": "Linear regression with a single predictor",
+    "section": "Correlation",
+    "text": "Correlation"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#correlation-1",
+    "href": "slides/15-linear-regression-single-predictor.html#correlation-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Correlation",
+    "text": "Correlation\n\nMeasures the direction and strength of a linear relationship.\nRanges between -1 and 1.\nHas the same sign as the slope.\nHas no units."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#participate",
+    "href": "slides/15-linear-regression-single-predictor.html#participate",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhich of the following is the best guess for the correlation between the two variables below?\n\n\n\n\n\n\n\n\n\n\n\n\n\n-0.95\n-0.53\n0.00\n0.25\n0.80\n\n\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#visualizing-the-model",
+    "href": "slides/15-linear-regression-single-predictor.html#visualizing-the-model",
+    "title": "Linear regression with a single predictor",
+    "section": "Visualizing the model",
+    "text": "Visualizing the model\n\nCodeggplot(\n  nc_places,\n  aes(x = food_insecurity, y = mental_distress)\n) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  scale_x_continuous(labels = percent_label()) +\n  scale_y_continuous(labels = percent_label()) +\n  labs(\n    x = \"Adults experiencing food insecurity (%)\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\"\n  )"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#a-regression-model",
+    "href": "slides/15-linear-regression-single-predictor.html#a-regression-model",
+    "title": "Linear regression with a single predictor",
+    "section": "A regression model",
+    "text": "A regression model\nA regression model separates an observed outcome into a systematic part and an unexplained part:\n\\[\n\\begin{aligned}\nY &= \\text{Model} + \\text{Error} \\\\\n  &= f(X) + \\epsilon \\\\\n  &= \\mu_{Y \\mid X} + \\epsilon\n\\end{aligned}\n\\]\n\n\n\\(\\mu_{Y \\mid X}\\) is the mean outcome for observations with predictor value \\(X\\).\n\n\\(\\epsilon\\) is the deviation of an observed outcome from that mean."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#a-linear-regression-model",
+    "href": "slides/15-linear-regression-single-predictor.html#a-linear-regression-model",
+    "title": "Linear regression with a single predictor",
+    "section": "A linear regression model",
+    "text": "A linear regression model\nA linear regression model describes the relationship between a quantitative outcome, \\(Y\\), and a quantitative predictor, \\(X\\):\n\\[\nY = \\beta_0 + \\beta_1 X + \\epsilon\n\\]\n\n\n\n\\(\\beta_0\\): population intercept\n\n\\(\\beta_1\\): population slope\n\n\\(\\epsilon\\): unexplained deviation from the line"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#the-fitted-regression-line",
+    "href": "slides/15-linear-regression-single-predictor.html#the-fitted-regression-line",
+    "title": "Linear regression with a single predictor",
+    "section": "The fitted regression line",
+    "text": "The fitted regression line\nWe use data to estimate the population relationship:\n\\[\n\\widehat{Y} = b_0 + b_1 X\n\\]\n\n\n\\(\\widehat{Y}\\): predicted value of the outcome\n\n\\(b_0\\): estimated intercept\n\n\\(b_1\\): estimated slope\n\n\n\n\n\n\n\nNote\n\n\n\nThere is no error term in the fitted line: \\(\\widehat{Y}\\) is the model’s prediction, not an observed outcome."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#fit-the-model-with-tidymodels",
+    "href": "slides/15-linear-regression-single-predictor.html#fit-the-model-with-tidymodels",
+    "title": "Linear regression with a single predictor",
+    "section": "Fit the model with tidymodels",
+    "text": "Fit the model with tidymodels\n\ncounty_fit &lt;- linear_reg() |&gt;\n  fit(\n    mental_distress ~ food_insecurity,\n    data = nc_places\n  )\n\ncounty_fit\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = mental_distress ~ food_insecurity, data = data)\n\nCoefficients:\n    (Intercept)  food_insecurity  \n        15.1742           0.1837"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#extract-the-coefficients",
+    "href": "slides/15-linear-regression-single-predictor.html#extract-the-coefficients",
+    "title": "Linear regression with a single predictor",
+    "section": "Extract the coefficients",
+    "text": "Extract the coefficients\n\ntidy(county_fit)\n\n# A tibble: 2 × 5\n  term            estimate std.error statistic  p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)       15.2      0.278       54.5 3.96e-75\n2 food_insecurity    0.184    0.0147      12.5 5.24e-22\n\n\n\\[\n\\widehat{\\text{mental distress %}}\n= 15.2 + 0.184 \\times \\text{food insecurity %}\n\\]\n\n\n\n\n\n\nReading the model equation\n\n\n\nPredicted mental-distress percentage is 15.2 plus 0.184 times the food insecurity percentage."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#participate-1",
+    "href": "slides/15-linear-regression-single-predictor.html#participate-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nThe slope of the fitted model is 0.184. Which is the best interpretation?\n\n\nFor each one percentage-point increase in county food-insecurity prevalence, predicted mental-distress prevalence is 0.184 percentage points higher, on average.\nIncreasing food insecurity by one percentage point causes mental-distress prevalence to increase by 0.184 percentage points.\nFor each one percentage-point increase in mental-distress prevalence, predicted food-insecurity prevalence is 0.184 percentage points higher.\nEvery adult experiencing food insecurity has 0.184 additional mentally unhealthy days.\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#participate-2",
+    "href": "slides/15-linear-regression-single-predictor.html#participate-2",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nThe intercept of the fitted model is 15.2. Which is the best interpretation?\n\n\nFor a county with 0% food-insecurity prevalence, the model predicts 15.2% mental-distress prevalence.\nFor a county with 0% mental-distress prevalence, the model predicts 15.2% food-insecurity prevalence.\nA one percentage-point increase in food-insecurity prevalence predicts a 15.2 percentage-point increase in mental distress.\nThe average North Carolina county has 15.2% mental-distress prevalence.\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#is-the-intercept-meaningful",
+    "href": "slides/15-linear-regression-single-predictor.html#is-the-intercept-meaningful",
+    "title": "Linear regression with a single predictor",
+    "section": "Is the intercept meaningful?",
+    "text": "Is the intercept meaningful?\nThe intercept is meaningful in context if:\n\nthe predictor can feasibly equal or be near zero, and\nzero is reasonably close to the observed predictor values.\n\n. . .\nHere, observed food-insecurity prevalence ranges from 9.6% to 31.2%.\n\n\n\n\n\n\nMathematically vs. practical meaningfullness\n\n\n\nThe intercept is a mathematical part of the line, but it is not meaningful in context."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#make-a-prediction",
+    "href": "slides/15-linear-regression-single-predictor.html#make-a-prediction",
+    "title": "Linear regression with a single predictor",
+    "section": "Make a prediction",
+    "text": "Make a prediction\nFor a county where 20% of adults experience food insecurity:\n\\[\n\\begin{aligned}\n\\widehat{\\text{mental distress %}}\n&= 15.2 + 0.184 \\times 20 \\\\\n&= 18.9\n\\end{aligned}\n\\]\nWe predict that approximately 18.9% of adults experience frequent mental distress."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#make-a-prediction-with-r",
+    "href": "slides/15-linear-regression-single-predictor.html#make-a-prediction-with-r",
+    "title": "Linear regression with a single predictor",
+    "section": "Make a prediction with R",
+    "text": "Make a prediction with R\n\nStep 1: Make a new data frame with the predictor value(s) of interest with tibble():\n\n\nnew_county &lt;- tibble(food_insecurity = 20)\nnew_county\n\n# A tibble: 1 × 1\n  food_insecurity\n            &lt;dbl&gt;\n1              20\n\n\n\n\nStep 2: Make a prediction for the new dataset using the model with predict():\n\n\npredict(county_fit, new_data = new_county)\n\n# A tibble: 1 × 1\n  .pred\n  &lt;dbl&gt;\n1  18.8"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#residuals",
+    "href": "slides/15-linear-regression-single-predictor.html#residuals",
+    "title": "Linear regression with a single predictor",
+    "section": "Residuals",
+    "text": "Residuals\nA residual is the difference between an observed and predicted outcome:\n\\[\n\\text{residual} = \\text{observed} - \\text{predicted}\n= y - \\widehat{y}\n\\]"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#calculating-residuals-with-r",
+    "href": "slides/15-linear-regression-single-predictor.html#calculating-residuals-with-r",
+    "title": "Linear regression with a single predictor",
+    "section": "Calculating residuals with R",
+    "text": "Calculating residuals with R\nUse augment() to add predictions and residuals to the original dataset.\n\ncounty_aug &lt;- augment(county_fit, new_data = nc_places)\n\ncounty_aug\n\n# A tibble: 100 × 45\n   .pred .resid county county_fips population loneliness mental_distress obesity\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;\n 1  18.3 -0.334 Alama…       37001     179165       34.1            18      38.9\n 2  18.1  1.02  Alexa…       37003      36473       34.1            19.1    36.2\n 3  18.6  0.728 Alleg…       37005      11342       33.2            19.3    36.6\n 4  20.4 -0.154 Anson        37007      21897       36.5            20.2    43.4\n 5  17.9  1.04  Ashe         37009      27063       33.1            18.9    36.3\n 6  17.9  0.452 Avery        37011      17561       32.2            18.4    37.4\n 7  18.7  0.181 Beauf…       37013      44481       34.9            18.9    37  \n 8  20.4 -0.846 Bertie       37015      16922       37.1            19.6    43.4\n 9  19.3  0.193 Bladen       37017      29484       35.7            19.5    41.3\n10  17.4 -0.160 Bruns…       37019     159964       31.7            17.2    32.9\n# ℹ 90 more rows\n# ℹ 37 more variables: current_asthma &lt;dbl&gt;, cognitive_disability &lt;dbl&gt;,\n#   lack_social_emotional_support &lt;dbl&gt;, short_sleep &lt;dbl&gt;,\n#   independent_living_disability &lt;dbl&gt;, annual_checkup &lt;dbl&gt;,\n#   dental_visit &lt;dbl&gt;, coronary_heart_disease &lt;dbl&gt;,\n#   self_care_disability &lt;dbl&gt;, high_blood_pressure &lt;dbl&gt;, diabetes &lt;dbl&gt;,\n#   high_cholesterol &lt;dbl&gt;, housing_insecurity &lt;dbl&gt;, …"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#durham-residual",
+    "href": "slides/15-linear-regression-single-predictor.html#durham-residual",
+    "title": "Linear regression with a single predictor",
+    "section": "Durham residual",
+    "text": "Durham residual\n\ncounty_aug |&gt;\n  select(county, mental_distress, .pred, .resid) |&gt;\n  filter(county == \"Durham\")\n\n# A tibble: 1 × 4\n  county mental_distress .pred .resid\n  &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 Durham            15.2  17.8  -2.60"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#visualizing-a-residual",
+    "href": "slides/15-linear-regression-single-predictor.html#visualizing-a-residual",
+    "title": "Linear regression with a single predictor",
+    "section": "Visualizing a residual",
+    "text": "Visualizing a residual"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#choosing-values-for-b_1-and-b_0",
+    "href": "slides/15-linear-regression-single-predictor.html#choosing-values-for-b_1-and-b_0",
+    "title": "Linear regression with a single predictor",
+    "section": "Choosing values for \\(b_1\\) and \\(b_0\\)\n",
+    "text": "Choosing values for \\(b_1\\) and \\(b_0\\)\n\n\nWhich line fits the points best—and what do we mean by “best”?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#least-squares-line",
+    "href": "slides/15-linear-regression-single-predictor.html#least-squares-line",
+    "title": "Linear regression with a single predictor",
+    "section": "Least squares line",
+    "text": "Least squares line\n\nThe residual for the \\(i^{th}\\) observation is\n\n\\[\ne_i = y_i - \\widehat{y}_i\n\\]\n\nSquare every residual and add them:\n\n\\[\ne_1^2 + e_2^2 + \\cdots + e_n^2\n\\]\n\nThe least squares regression line is the line that minimizes this sum."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#properties-of-least-squares-regression",
+    "href": "slides/15-linear-regression-single-predictor.html#properties-of-least-squares-regression",
+    "title": "Linear regression with a single predictor",
+    "section": "Properties of least-squares regression",
+    "text": "Properties of least-squares regression\nFor a least-squares line with one quantitative predictor and an intercept:\n\n\nThe line passes through the point of means, \\((\\bar{x}, \\bar{y})\\): \\[b_0 = \\bar{y} - b_1\\bar{x}\\]\nThe slope and correlation have the same sign: \\[b_1 = r\\frac{s_y}{s_x}\\]\nThe residuals sum to zero: \\[\\sum_{i=1}^{n} e_i = 0\\]\nThe residuals and predictor values are uncorrelated."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#association-is-not-causation",
+    "href": "slides/15-linear-regression-single-predictor.html#association-is-not-causation",
+    "title": "Linear regression with a single predictor",
+    "section": "Association is not causation",
+    "text": "Association is not causation\nThis model tells us that counties with greater estimated food-insecurity prevalence also tend to have greater estimated mental-distress prevalence.\nIt does not establish that food insecurity causes mental distress.\n\nPossible explanations include:\n\n\nfood insecurity contributing to chronic stress,\nmental distress affecting employment or income stability,\nshared social or economic conditions, and\nfeatures of how the estimates were constructed."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#counties-are-not-individuals",
+    "href": "slides/15-linear-regression-single-predictor.html#counties-are-not-individuals",
+    "title": "Linear regression with a single predictor",
+    "section": "Counties are not individuals",
+    "text": "Counties are not individuals\nEach point is a county, not a person.\nAn association between two county percentages does not, by itself, establish the same relationship among individuals. This is the ecological fallacy.\nAlso remember:\n\nPLACES values are model-based small-area estimates.\nThe fitted line summarizes the 100 North Carolina counties in this dataset.\nPredictions far outside the observed food-insecurity range are extrapolations.\n\n\n\nLearn more: CDC PLACES methodology"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#application-exercise-1",
+    "href": "slides/15-linear-regression-single-predictor.html#application-exercise-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Application exercise",
+    "text": "Application exercise\n\n\nGo to your ae project in Positron.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.\nIf you haven’t yet done so, pull to get today’s application exercise file: ae-09-nc-places-model.qmd.\nWork through the application exercise in class, and render, commit, and push your edits by the end of class."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#while-you-wait-participate",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#while-you-wait-participate",
+    "title": "Linear regression with a single predictor",
+    "section": "While you wait: Participate 📱💻",
+    "text": "While you wait: Participate 📱💻\n\n\n\nEach point represents one North Carolina county.\n\n\n\n\n\n\n\n\n\nWhat do you notice? What do you wonder?\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#announcements",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#announcements",
+    "title": "Linear regression with a single predictor",
+    "section": "Announcements",
+    "text": "Announcements\n\n…"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#learning-goals",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#learning-goals",
+    "title": "Linear regression with a single predictor",
+    "section": "Learning goals",
+    "text": "Learning goals\nBy the end of today, you should be able to:\n\nidentify the outcome and predictor in a regression model,\nfit a linear regression model with tidymodels,\ninterpret the slope and intercept in context,\nuse a fitted model to calculate predictions and residuals, and\nexplain what makes a line the least squares regression line."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#two-main-uses",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#two-main-uses",
+    "title": "Linear regression with a single predictor",
+    "section": "Two main uses",
+    "text": "Two main uses\n\nPrediction: Use known information to estimate an unknown outcome.\nDescription / explanation: Summarize how an outcome tends to vary with a predictor.\n\n\n\nWhat questions could a model help us answer about community health?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#cdc-places",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#cdc-places",
+    "title": "Linear regression with a single predictor",
+    "section": "CDC PLACES",
+    "text": "CDC PLACES\nPLACES: Local Data for Better Health is a free CDC resource providing consistently defined health and health-related estimates for communities across the US.\n\nCovers counties, places, census tracts, and ZIP Code Tabulation Areas.\nIncludes measures of health outcomes, prevention, disability, health behaviors, health-related social needs, and community factors.\nUses small area estimation with data from the Behavioral Risk Factor Surveillance System (BRFSS), the Census, and the American Community Survey (ACS).\nHelps communities identify local health concerns, disparities, and overlapping health and social needs.\n\n\n\nSource: CDC, About PLACES: Local Data for Better Health"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#cdc-places-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#cdc-places-1",
+    "title": "Linear regression with a single predictor",
+    "section": "CDC PLACES",
+    "text": "CDC PLACES\n\n\n\n\n\n\nImportant\n\n\nThese are model-based local estimates, not direct survey estimates for each county.\n\n\n\n\n\nSource: CDC, About PLACES: Local Data for Better Health"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#county-food-insecurity-and-mental-health",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#county-food-insecurity-and-mental-health",
+    "title": "Linear regression with a single predictor",
+    "section": "County food insecurity and mental health",
+    "text": "County food insecurity and mental health\nThe CDC PLACES 2025 release provides local health estimates for every U.S. county.\nFor North Carolina, we will study:\n\nthe estimated percentage of adults who experienced food insecurity during the previous 12 months, and\nthe estimated percentage of adults who experienced frequent mental distress: at least 14 mentally unhealthy days during the previous 30 days.\n\nBoth are age-adjusted, model-based estimates derived from 2023 survey and population data.\n\n\nSources: CDC PLACES release notes, measure definitions"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#how-the-data-were-put-together",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#how-the-data-were-put-together",
+    "title": "Linear regression with a single predictor",
+    "section": "How the data were put together",
+    "text": "How the data were put together\n\nStart with the CDC PLACES 2025 county release.\nFilter to North Carolina and age-adjusted prevalence estimates.\nReshape to one row per county.\nWrite to a CSV file: nc-places.csv."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#packages",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#packages",
+    "title": "Linear regression with a single predictor",
+    "section": "Packages",
+    "text": "Packages\n\ntidyverse for data wrangling and visualization\nscales for better axis labels\ntidymodels for modeling with tidyverse principles\n\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(tidymodels)"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#load-the-data",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#load-the-data",
+    "title": "Linear regression with a single predictor",
+    "section": "Load the data",
+    "text": "Load the data\n\nnc_places &lt;- read_csv(\n  \"data/nc-places.csv\"\n)\n\nRows: 100 Columns: 43\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (1): county\ndbl (42): county_fips, population, loneliness, mental_distress, obesity, cur...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#our-focus-for-today",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#our-focus-for-today",
+    "title": "Linear regression with a single predictor",
+    "section": "Our focus for today",
+    "text": "Our focus for today\n\nfood_insecurity - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.\nmental_distress - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modeling-north-carolina-counties",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modeling-north-carolina-counties",
+    "title": "Linear regression with a single predictor",
+    "section": "Modeling North Carolina counties",
+    "text": "Modeling North Carolina counties\n\n\nDescribe: How is county-level food insecurity related to frequent mental distress?\nPredict: For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling North Carolina counties",
+    "text": "Modelling North Carolina counties\n\nDescribe: How is county-level food insecurity related to frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling North Carolina counties",
+    "text": "Modelling North Carolina counties\n\nPredict: For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling",
+    "text": "Modelling\n\n\n\nUse models to describe relationships between variables and to make predictions.\nFor now, we will focus on linear models—but there are many other types of models.\n\n\n\n\n\n\n\n\n\n\n\n\n\nA model is a useful simplification, not a complete description of reality."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-vocabulary",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-vocabulary",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling vocabulary",
+    "text": "Modelling vocabulary\n\nPredictor (explanatory variable)\nOutcome (response variable)\nRegression line\n\nSlope\nIntercept\n\nCorrelation"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#predictor-explanatory-variable",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#predictor-explanatory-variable",
+    "title": "Linear regression with a single predictor",
+    "section": "Predictor (explanatory variable)",
+    "text": "Predictor (explanatory variable)\n\n\n\n\n\n\n\n\n\n\ncounty\nfood_insecurity\nmental_distress\n\n\n\n\nAlamance\n17.2\n18\n\n\nAlexander\n15.8\n19.1\n\n\nAlleghany\n18.5\n19.3\n\n\nAnson\n28.2\n20.2\n\n\nAshe\n14.6\n18.9\n\n\nAvery\n15.1\n18.4\n\n\n...\n...\n..."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#outcome-response-variable",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#outcome-response-variable",
+    "title": "Linear regression with a single predictor",
+    "section": "Outcome (response variable)",
+    "text": "Outcome (response variable)\n\n\n\n\n\n\n\n\n\n\ncounty\nfood_insecurity\nmental_distress\n\n\n\n\nAlamance\n17.2\n18\n\n\nAlexander\n15.8\n19.1\n\n\nAlleghany\n18.5\n19.3\n\n\nAnson\n28.2\n20.2\n\n\nAshe\n14.6\n18.9\n\n\nAvery\n15.1\n18.4\n\n\n...\n...\n..."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line",
+    "text": "Regression line"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line-slope",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line-slope",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line: slope",
+    "text": "Regression line: slope"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line-intercept",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line-intercept",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line: intercept",
+    "text": "Regression line: intercept"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#correlation",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#correlation",
+    "title": "Linear regression with a single predictor",
+    "section": "Correlation",
+    "text": "Correlation"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#correlation-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#correlation-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Correlation",
+    "text": "Correlation\n\nMeasures the direction and strength of a linear relationship.\nRanges between -1 and 1.\nHas the same sign as the slope.\nHas no units."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#participate",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhich of the following is the best guess for the correlation between the two variables below?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n-0.95\n-0.53\n0.00\n0.25\n0.80\n\n\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#visualizing-the-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#visualizing-the-model",
+    "title": "Linear regression with a single predictor",
+    "section": "Visualizing the model",
+    "text": "Visualizing the model\n\n\nCode\nggplot(\n  nc_places,\n  aes(x = food_insecurity, y = mental_distress)\n) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  scale_x_continuous(labels = percent_label()) +\n  scale_y_continuous(labels = percent_label()) +\n  labs(\n    x = \"Adults experiencing food insecurity (%)\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\"\n  )"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#a-regression-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#a-regression-model",
+    "title": "Linear regression with a single predictor",
+    "section": "A regression model",
+    "text": "A regression model\nA regression model separates an observed outcome into a systematic part and an unexplained part:\n\\[\n\\begin{aligned}\nY &= \\text{Model} + \\text{Error} \\\\\n  &= f(X) + \\epsilon \\\\\n  &= \\mu_{Y \\mid X} + \\epsilon\n\\end{aligned}\n\\]\n\n\\(\\mu_{Y \\mid X}\\) is the mean outcome for observations with predictor value \\(X\\).\n\\(\\epsilon\\) is the deviation of an observed outcome from that mean."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#a-linear-regression-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#a-linear-regression-model",
+    "title": "Linear regression with a single predictor",
+    "section": "A linear regression model",
+    "text": "A linear regression model\nA linear regression model describes the relationship between a quantitative outcome, \\(Y\\), and a quantitative predictor, \\(X\\):\n\\[\nY = \\beta_0 + \\beta_1 X + \\epsilon\n\\]\n\n\\(\\beta_0\\): population intercept\n\\(\\beta_1\\): population slope\n\\(\\epsilon\\): unexplained deviation from the line"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#the-fitted-regression-line",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#the-fitted-regression-line",
+    "title": "Linear regression with a single predictor",
+    "section": "The fitted regression line",
+    "text": "The fitted regression line\nWe use data to estimate the population relationship:\n\\[\n\\widehat{Y} = b_0 + b_1 X\n\\]\n\n\\(\\widehat{Y}\\): predicted value of the outcome\n\\(b_0\\): estimated intercept\n\\(b_1\\): estimated slope\n\n\n\n\n\n\n\n\nNote\n\n\nThere is no error term in the fitted line: \\(\\widehat{Y}\\) is the model’s prediction, not an observed outcome."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model-with-tidymodels",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model-with-tidymodels",
+    "title": "Linear regression with a single predictor",
+    "section": "Fit the model with tidymodels",
+    "text": "Fit the model with tidymodels\n\ncounty_fit &lt;- linear_reg() |&gt;\n  fit(\n    mental_distress ~ food_insecurity,\n    data = nc_places\n  )\n\ncounty_fit\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = mental_distress ~ food_insecurity, data = data)\n\nCoefficients:\n    (Intercept)  food_insecurity  \n        15.1742           0.1837"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#extract-the-coefficients",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#extract-the-coefficients",
+    "title": "Linear regression with a single predictor",
+    "section": "Extract the coefficients",
+    "text": "Extract the coefficients\n\ntidy(county_fit)\n\n# A tibble: 2 × 5\n  term            estimate std.error statistic  p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)       15.2      0.278       54.5 3.96e-75\n2 food_insecurity    0.184    0.0147      12.5 5.24e-22\n\n\n\\[\n\\widehat{\\text{mental distress %}}\n= 15.2 + 0.184 \\times \\text{food insecurity %}\n\\]\n\n\n\n\n\n\n\nReading the model equation\n\n\nPredicted mental-distress percentage is 15.2 plus 0.184 times the food insecurity percentage."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#participate-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nThe slope of the fitted model is 0.184. Which is the best interpretation?\n\n\nFor each one percentage-point increase in county food-insecurity prevalence, predicted mental-distress prevalence is 0.184 percentage points higher, on average.\nIncreasing food insecurity by one percentage point causes mental-distress prevalence to increase by 0.184 percentage points.\nFor each one percentage-point increase in mental-distress prevalence, predicted food-insecurity prevalence is 0.184 percentage points higher.\nEvery adult experiencing food insecurity has 0.184 additional mentally unhealthy days.\n\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate-2",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#participate-2",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nThe intercept of the fitted model is 15.2. Which is the best interpretation?\n\n\nFor a county with 0% food-insecurity prevalence, the model predicts 15.2% mental-distress prevalence.\nFor a county with 0% mental-distress prevalence, the model predicts 15.2% food-insecurity prevalence.\nA one percentage-point increase in food-insecurity prevalence predicts a 15.2 percentage-point increase in mental distress.\nThe average North Carolina county has 15.2% mental-distress prevalence.\n\n\n\n\n\n\n\n\n\n\nScan the QR code or go to wooclap.com. Log in with your Duke NetID and enter the code OQPLQEK."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#is-the-intercept-meaningful",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#is-the-intercept-meaningful",
+    "title": "Linear regression with a single predictor",
+    "section": "Is the intercept meaningful?",
+    "text": "Is the intercept meaningful?\nThe intercept is meaningful in context if:\n\nthe predictor can feasibly equal or be near zero, and\nzero is reasonably close to the observed predictor values.\n\n\nHere, observed food-insecurity prevalence ranges from 9.6% to 31.2%.\n\n\n\n\n\n\n\nMathematically vs. practical meaningfullness\n\n\nThe intercept is a mathematical part of the line, but it is not meaningful in context."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction",
+    "title": "Linear regression with a single predictor",
+    "section": "Make a prediction",
+    "text": "Make a prediction\nFor a county where 20% of adults experience food insecurity:\n\\[\n\\begin{aligned}\n\\widehat{\\text{mental distress %}}\n&= 15.2 + 0.184 \\times 20 \\\\\n&= 18.9\n\\end{aligned}\n\\]\nWe predict that approximately 18.9% of adults experience frequent mental distress."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction-with-r",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction-with-r",
+    "title": "Linear regression with a single predictor",
+    "section": "Make a prediction with R",
+    "text": "Make a prediction with R\n\nStep 1: Make a new data frame with the predictor value(s) of interest with tibble():\n\n\nnew_county &lt;- tibble(food_insecurity = 20)\nnew_county\n\n# A tibble: 1 × 1\n  food_insecurity\n            &lt;dbl&gt;\n1              20\n\n\n\n\nStep 2: Make a prediction for the new dataset using the model with predict():\n\n\npredict(county_fit, new_data = new_county)\n\n# A tibble: 1 × 1\n  .pred\n  &lt;dbl&gt;\n1  18.8"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#residuals",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#residuals",
+    "title": "Linear regression with a single predictor",
+    "section": "Residuals",
+    "text": "Residuals\nA residual is the difference between an observed and predicted outcome:\n\\[\n\\text{residual} = \\text{observed} - \\text{predicted}\n= y - \\widehat{y}\n\\]"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#calculating-residuals-with-r",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#calculating-residuals-with-r",
+    "title": "Linear regression with a single predictor",
+    "section": "Calculating residuals with R",
+    "text": "Calculating residuals with R\nUse augment() to add predictions and residuals to the original dataset.\n\ncounty_aug &lt;- augment(county_fit, new_data = nc_places)\n\ncounty_aug\n\n# A tibble: 100 × 45\n   .pred .resid county county_fips population loneliness mental_distress obesity\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;\n 1  18.3 -0.334 Alama…       37001     179165       34.1            18      38.9\n 2  18.1  1.02  Alexa…       37003      36473       34.1            19.1    36.2\n 3  18.6  0.728 Alleg…       37005      11342       33.2            19.3    36.6\n 4  20.4 -0.154 Anson        37007      21897       36.5            20.2    43.4\n 5  17.9  1.04  Ashe         37009      27063       33.1            18.9    36.3\n 6  17.9  0.452 Avery        37011      17561       32.2            18.4    37.4\n 7  18.7  0.181 Beauf…       37013      44481       34.9            18.9    37  \n 8  20.4 -0.846 Bertie       37015      16922       37.1            19.6    43.4\n 9  19.3  0.193 Bladen       37017      29484       35.7            19.5    41.3\n10  17.4 -0.160 Bruns…       37019     159964       31.7            17.2    32.9\n# ℹ 90 more rows\n# ℹ 37 more variables: current_asthma &lt;dbl&gt;, cognitive_disability &lt;dbl&gt;,\n#   lack_social_emotional_support &lt;dbl&gt;, short_sleep &lt;dbl&gt;,\n#   independent_living_disability &lt;dbl&gt;, annual_checkup &lt;dbl&gt;,\n#   dental_visit &lt;dbl&gt;, coronary_heart_disease &lt;dbl&gt;,\n#   self_care_disability &lt;dbl&gt;, high_blood_pressure &lt;dbl&gt;, diabetes &lt;dbl&gt;,\n#   high_cholesterol &lt;dbl&gt;, housing_insecurity &lt;dbl&gt;, …"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#durham-residual",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#durham-residual",
+    "title": "Linear regression with a single predictor",
+    "section": "Durham residual",
+    "text": "Durham residual\n\ncounty_aug |&gt;\n  select(county, mental_distress, .pred, .resid) |&gt;\n  filter(county == \"Durham\")\n\n# A tibble: 1 × 4\n  county mental_distress .pred .resid\n  &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 Durham            15.2  17.8  -2.60"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#visualizing-a-residual",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#visualizing-a-residual",
+    "title": "Linear regression with a single predictor",
+    "section": "Visualizing a residual",
+    "text": "Visualizing a residual"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#choosing-values-for-b_1-and-b_0",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#choosing-values-for-b_1-and-b_0",
+    "title": "Linear regression with a single predictor",
+    "section": "Choosing values for \\(b_1\\) and \\(b_0\\)",
+    "text": "Choosing values for \\(b_1\\) and \\(b_0\\)\n\nWhich line fits the points best—and what do we mean by “best”?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#least-squares-line",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#least-squares-line",
+    "title": "Linear regression with a single predictor",
+    "section": "Least squares line",
+    "text": "Least squares line\n\nThe residual for the \\(i^{th}\\) observation is\n\n\\[\ne_i = y_i - \\widehat{y}_i\n\\]\n\nSquare every residual and add them:\n\n\\[\ne_1^2 + e_2^2 + \\cdots + e_n^2\n\\]\n\nThe least squares regression line is the line that minimizes this sum."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#properties-of-least-squares-regression",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#properties-of-least-squares-regression",
+    "title": "Linear regression with a single predictor",
+    "section": "Properties of least-squares regression",
+    "text": "Properties of least-squares regression\nFor a least-squares line with one quantitative predictor and an intercept:\n\nThe line passes through the point of means, \\((\\bar{x}, \\bar{y})\\): \\[b_0 = \\bar{y} - b_1\\bar{x}\\]\nThe slope and correlation have the same sign: \\[b_1 = r\\frac{s_y}{s_x}\\]\nThe residuals sum to zero: \\[\\sum_{i=1}^{n} e_i = 0\\]\nThe residuals and predictor values are uncorrelated."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#association-is-not-causation",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#association-is-not-causation",
+    "title": "Linear regression with a single predictor",
+    "section": "Association is not causation",
+    "text": "Association is not causation\nThis model tells us that counties with greater estimated food-insecurity prevalence also tend to have greater estimated mental-distress prevalence.\nIt does not establish that food insecurity causes mental distress.\n\nPossible explanations include:\n\nfood insecurity contributing to chronic stress,\nmental distress affecting employment or income stability,\nshared social or economic conditions, and\nfeatures of how the estimates were constructed."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#counties-are-not-individuals",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#counties-are-not-individuals",
+    "title": "Linear regression with a single predictor",
+    "section": "Counties are not individuals",
+    "text": "Counties are not individuals\nEach point is a county, not a person.\nAn association between two county percentages does not, by itself, establish the same relationship among individuals. This is the ecological fallacy.\nAlso remember:\n\nPLACES values are model-based small-area estimates.\nThe fitted line summarizes the 100 North Carolina counties in this dataset.\nPredictions far outside the observed food-insecurity range are extrapolations.\n\n\n\nLearn more: CDC PLACES methodology"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#application-exercise-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#application-exercise-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Application exercise",
+    "text": "Application exercise\n\n\nGo to your ae project in Positron.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.\nIf you haven’t yet done so, pull to get today’s application exercise file: ae-09-nc-places-model.qmd.\nWork through the application exercise in class, and render, commit, and push your edits by the end of class."
+  },
+  {
     "objectID": "slides/06-exploratory-data-analysis-II.html",
     "href": "slides/06-exploratory-data-analysis-II.html",
     "title": "Exploratory data analysis II",
@@ -8223,25 +8895,88 @@
     "text": "The data are available in the data folder.\n\nsales_taxes &lt;- read_csv(\"data/sales-taxes-26.csv\")\nus_regions &lt;- read_csv(\"data/us-regions.csv\")\n\nAnd let’s take a look at the data.\n\n# add code here"
   },
   {
-    "objectID": "ae/ae-04-taxes-join-A.html",
-    "href": "ae/ae-04-taxes-join-A.html",
-    "title": "AE 04: Sales taxes + data joining",
+    "objectID": "ae/ae-09-nc-places-model-A.html",
+    "href": "ae/ae-09-nc-places-model-A.html",
+    "title": "AE 09: Dental visits and health in North Carolina",
     "section": "",
-    "text": "Important\n\n\n\nThese are suggested answers. This document should be used as a reference only; it’s not designed to be an exhaustive key."
+    "text": "Important\n\n\n\nThese are suggested answers. This document should be used as reference only; it is not designed to be an exhaustive key.\nThe data for this application exercise come from the CDC PLACES 2025 county release. PLACES provides model-based local health estimates for every U.S. county.\nWe will model the relationship between the estimated percentage of adults who visited a dentist during the previous year and the estimated percentage reporting fair or poor health across the 100 North Carolina counties."
   },
   {
-    "objectID": "ae/ae-04-taxes-join-A.html#packages",
-    "href": "ae/ae-04-taxes-join-A.html#packages",
-    "title": "AE 04: Sales taxes + data joining",
-    "section": "Packages",
-    "text": "Packages\nWe’ll use the tidyverse package for this analysis.\n\nlibrary(tidyverse)"
+    "objectID": "ae/ae-09-nc-places-model-A.html#getting-started",
+    "href": "ae/ae-09-nc-places-model-A.html#getting-started",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Getting started",
+    "text": "Getting started\nPackages\nWe will use the tidyverse package for data visualization and wrangling and the tidymodels package for modeling.\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(scales)\n\nData\nThe data can be found in the data folder; the file is called nc-places.csv.\n\nnc_places &lt;- read_csv(\"data/nc-places.csv\")\n\nThe variables used in this exercise are:\n\n\n\n\n\n\nVariable name\nDescription\n\n\n\ncounty\nNorth Carolina county name\n\n\ndental_visit\nPercentage of adults who visited a dentist or dental clinic during the previous year\n\n\nfair_or_poor_health\nPercentage of adults reporting fair or poor general health\n\n\n\nThe percentage variables are age-adjusted, model-based estimates."
   },
   {
-    "objectID": "ae/ae-04-taxes-join-A.html#data",
-    "href": "ae/ae-04-taxes-join-A.html#data",
-    "title": "AE 04: Sales taxes + data joining",
-    "section": "Data",
-    "text": "Data\nThe data are available in the data folder.\n\nsales_taxes &lt;- read_csv(\"data/sales-taxes-26.csv\")\nus_regions &lt;- read_csv(\"data/us-regions.csv\")\n\nAnd let’s take a look at the data.\n\nglimpse(sales_taxes)\n\nRows: 51\nColumns: 7\n$ state              &lt;chr&gt; \"Alabama\", \"Alaska\", \"Arizona\", \"Arkansas\", \"Califo…\n$ state_tax_rate     &lt;dbl&gt; 4.000, 0.000, 5.600, 6.500, 7.250, 2.900, 6.350, 0.…\n$ state_tax_rank     &lt;dbl&gt; 40, 46, 28, 9, 1, 45, 12, 46, 17, 40, 40, 17, 13, 2…\n$ avg_local_tax_rate &lt;dbl&gt; 5.46, 1.82, 2.92, 2.96, 1.74, 4.99, 0.00, 0.00, 0.9…\n$ max_local          &lt;dbl&gt; 11.000, 7.850, 5.300, 6.125, 5.250, 9.100, 0.000, 0…\n$ combined_tax_rate  &lt;dbl&gt; 9.46, 1.82, 8.52, 9.46, 8.99, 7.89, 6.35, 0.00, 6.9…\n$ combined_rank      &lt;dbl&gt; 5, 46, 11, 4, 7, 16, 33, 47, 28, 18, 45, 37, 8, 24,…\n\nglimpse(us_regions)\n\nRows: 50\nColumns: 2\n$ state_name &lt;chr&gt; \"Maine\", \"New Hampshire\", \"Vermont\", \"Massachusetts\", \"Rhod…\n$ region     &lt;chr&gt; \"Northeast\", \"Northeast\", \"Northeast\", \"Northeast\", \"Northe…"
+    "objectID": "ae/ae-09-nc-places-model-A.html#visualizing-the-relationship",
+    "href": "ae/ae-09-nc-places-model-A.html#visualizing-the-relationship",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Visualizing the relationship",
+    "text": "Visualizing the relationship\n\nCreate an appropriate plot to investigate the relationship between dental_visit and fair_or_poor_health. Put the predictor on the (x)-axis and the outcome on the (y)-axis. Add appropriate labels.\n\n\nggplot(\n  nc_places,\n  aes(x = dental_visit, y = fair_or_poor_health)\n) +\n  geom_point() +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"% Adults who visited a dentist\",\n    y = \"% Adults reporting fair or poor health\",\n    title = \"Fair or poor health vs. dental visits\",\n    subtitle = \"North Carolina counties\"\n  )\n\n\n\n\n\n\n\n\nDescribe the form, direction, and strength of the relationship. Note any unusual observations.\n\nThe relationship is roughly linear, negative, and strong: counties with higher dental-visit prevalence tend to have lower fair-or-poor-health prevalence. There is at least one point noticeably below the overall trend.\n\nIf you were to draw a straight line that best represents this relationship, where would it go? Why?\n\nThe line would slope downward from the upper left to the lower right and pass through the center of the point cloud, balancing the vertical residuals above and below it.\n\nNow let R draw the line. Use geom_smooth() with method = \"lm\" and set se = FALSE.\n\n\nggplot(\n  nc_places,\n  aes(x = dental_visit, y = fair_or_poor_health)\n) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"% Adults who visited a dentist\",\n    y = \"% Adults reporting fair or poor health\",\n    title = \"Fair or poor health vs. dental visits\",\n    subtitle = \"North Carolina counties\"\n  )\n\n\n\n\n\n\n\n\nWhat types of questions can this plot help answer?\n\nHow does county fair-or-poor-health prevalence tend to change with dental-visit prevalence? What fair-or-poor-health prevalence would we predict for a county with a given dental-visit prevalence?"
+  },
+  {
+    "objectID": "ae/ae-09-nc-places-model-A.html#model-fit-and-summary",
+    "href": "ae/ae-09-nc-places-model-A.html#model-fit-and-summary",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Model fit and summary",
+    "text": "Model fit and summary\n\nFit a linear regression model that predicts fair-or-poor-health prevalence from dental-visit prevalence.\n\n\nhealth_dental_fit &lt;- linear_reg() |&gt;\n  fit(fair_or_poor_health ~ dental_visit, data = nc_places)\n\nhealth_dental_fit\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = fair_or_poor_health ~ dental_visit, data = data)\n\nCoefficients:\n (Intercept)  dental_visit  \n     58.5134       -0.6387  \n\n\n\nDisplay the model summary and extract the slope and intercept estimates.\n\n\ntidy(health_dental_fit)\n\n# A tibble: 2 × 5\n  term         estimate std.error statistic  p.value\n  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    58.5      1.62        36.0 2.41e-58\n2 dental_visit   -0.639    0.0271     -23.6 3.42e-42\n\n\n\nWrite the fitted model using mathematical notation.\n\n\\[\n\\widehat{\\text{fair or poor health}}\n= 58.5 - 0.639 \\times \\text{dental visit}\n\\]\n\nInterpret the slope in context.\n\nFor each one percentage-point increase in counties’ dental-visit prevalences, their predicted fair-or-poor-health prevalences are 0.639 percentage points lower, on average.\n\nInterpret the intercept in context. Is this interpretation meaningful for these data?\n\nFor a county with 0% dental-visit prevalence, the model predicts a fair-or-poor-health prevalence of 58.5%. This is the mathematical interpretation, but it is not practically meaningful: observed dental-visit prevalence ranges from approximately 48% to 72%, so 0% is far outside the data."
+  },
+  {
+    "objectID": "ae/ae-09-nc-places-model-A.html#correlation",
+    "href": "ae/ae-09-nc-places-model-A.html#correlation",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Correlation",
+    "text": "Correlation\n\nCalculate the correlation between dental-visit prevalence and fair-or-poor-health prevalence. Interpret its sign and magnitude.\n\n\nnc_places |&gt;\n  summarize(r = cor(dental_visit, fair_or_poor_health))\n\n# A tibble: 1 × 1\n       r\n   &lt;dbl&gt;\n1 -0.922\n\n\nThe correlation is approximately (-0.922), indicating a strong negative linear relationship."
+  },
+  {
+    "objectID": "ae/ae-09-nc-places-model-A.html#predictions-and-residuals",
+    "href": "ae/ae-09-nc-places-model-A.html#predictions-and-residuals",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Predictions and residuals",
+    "text": "Predictions and residuals\n\nUse the model to predict fair-or-poor-health prevalence for a county where 60% of adults visited a dentist during the previous year.\n\n\nnew_county &lt;- tibble(dental_visit = 60)\n\npredict(health_dental_fit, new_data = new_county)\n\n# A tibble: 1 × 1\n  .pred\n  &lt;dbl&gt;\n1  20.2\n\n\nThe predicted fair-or-poor-health prevalence is approximately 20.2%.\n\nUse augment() to add predictions and residuals to the county data.\n\n\nhealth_dental_aug &lt;- augment(\n  health_dental_fit,\n  new_data = nc_places\n)\n\nDurham County\n\nDurham County has a dental-visit prevalence of 68.2% and an observed fair-or-poor-health prevalence of 16.5%. Use the augmented data frame to identify the predicted value and residual for Durham County.\n\n\nhealth_dental_aug |&gt;\n  filter(county == \"Durham\") |&gt;\n  select(county, dental_visit, fair_or_poor_health, .pred, .resid)\n\n# A tibble: 1 × 5\n  county dental_visit fair_or_poor_health .pred .resid\n  &lt;chr&gt;         &lt;dbl&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 Durham         68.2                16.5  15.0   1.54\n\n\nDurham’s positive residual means its observed fair-or-poor-health prevalence is about 1.54 percentage points higher than the model predicts.\n\nVerify this residual by calculating the predicted value using the model and comparing it to the observed value. If your calculation doesn’t exactly match the residual returned by augment(), explain why.\n\nUsing the rounded fitted model coefficients:\n\\[\n\\begin{aligned}\n\\widehat{y}\n  &= 58.5 - 0.639(68.2) \\\\\n  &= 14.92 \\\\\ne\n  &= y - \\widehat{y} \\\\\n  &= 16.5 - 14.92 \\\\\n  &= 1.58\n\\end{aligned}\n\\]\nUsing the rounded coefficients, Durham’s observed fair-or-poor-health prevalence is approximately 1.58 percentage points higher than its predicted prevalence. The residual returned by augment() is 1.54 because it uses the full-precision coefficient estimates.\nIdentifying potential outliers\n\nIdentify the counties with the five highest absolute residuals. Report their observed values, predicted values, and residuals.\n\n\nhealth_dental_aug &lt;- health_dental_aug |&gt;\n  mutate(abs_resid = abs(.resid)) |&gt;\n  arrange(desc(abs_resid)) |&gt;\n  mutate(abs_resid_rank = row_number())\n\nhealth_dental_aug |&gt;\n  filter(abs_resid_rank &lt;= 5) |&gt;\n  select(\n    abs_resid_rank,\n    county,\n    dental_visit,\n    fair_or_poor_health,\n    .pred,\n    .resid\n  )\n\n# A tibble: 5 × 6\n  abs_resid_rank county    dental_visit fair_or_poor_health .pred .resid\n           &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1              1 McDowell          52.8                19.9  24.8  -4.89\n2              2 Tyrrell           59.1                24.6  20.8   3.83\n3              3 Robeson           48.8                30.6  27.3   3.25\n4              4 Polk              68.6                17.2  14.7   2.50\n5              5 Cleveland         55.2                20.8  23.3  -2.46\n\n\n\nMark these counties on the scatterplot. Do they appear to be outliers?\n\n\nggplot(data = nc_places, aes(x = dental_visit, y = fair_or_poor_health)) +\n  geom_point(color = \"darkgray\") +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"darkgray\") +\n  geom_point(\n    data = health_dental_aug |&gt;\n      filter(abs_resid_rank &lt;= 5)\n  ) +\n  geom_point(\n    data = health_dental_aug |&gt;\n      filter(abs_resid_rank &lt;= 5),\n    color = \"red\",\n    shape = \"circle open\",\n    size = 4\n  ) +\n  geom_label(\n    data = health_dental_aug |&gt;\n      filter(abs_resid_rank &lt;= 5),\n    aes(label = county),\n    color = \"red\",\n    nudge_y = -1,\n    size = 3\n  ) +\n  coord_cartesian(clip = \"off\") +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"% Adults who visited a dentist\",\n    y = \"% Adults reporting fair or poor health\",\n    title = \"Fair or poor health vs. dental visits\",\n    subtitle = \"North Carolina counties, with five counties with largest absolute residuals highlighted\"\n  )\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nThe five counties with the largest absolute residuals are marked in red on the plot. Of these five, only Robeson County stands out from the rest of the data, but it’s in the trajectory of the overall trend."
+  },
+  {
+    "objectID": "ae/ae-09-nc-places-model-A.html#interpreting-responsibly",
+    "href": "ae/ae-09-nc-places-model-A.html#interpreting-responsibly",
+    "title": "AE 09: Dental visits and health in North Carolina",
+    "section": "Interpreting responsibly",
+    "text": "Interpreting responsibly\n\nDoes this analysis establish that increasing dental visits causes better general health? Explain.\n\nNo. The model describes a county-level association. Other county characteristics may be related to both access to dental care and general health, the direction of causation is not established, and county-level relationships do not necessarily hold for individuals."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html",
+    "href": "ae/ae-01-gss-dataviz.html",
+    "title": "AE 01: GSS + data visualization",
+    "section": "",
+    "text": "In this mini-analysis, we use data from the 2024 General Social Survey (GSS) to get practice with creating and interpreting data visualizations."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html#getting-started",
+    "href": "ae/ae-01-gss-dataviz.html#getting-started",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Getting started",
+    "text": "Getting started\nPackages\nWe’ll use the tidyverse package for this analysis.\n\nlibrary(tidyverse)\n\nData\nThe data are stored as a CSV (comma-separated values) file in your repository’s data folder. Let’s read the file and save it as an object called gss.\n\ngss &lt;- read_csv(\"data/gss-2024.csv\")\n\nGet to know the data\nWe can use the glimpse() function to get an overview (or “glimpse”) of the data.\n\nglimpse(gss)\n\nRows: 3,294\nColumns: 9\n$ year              &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024…\n$ marital_status    &lt;chr&gt; \"Never married\", \"Never married\", \"Married\", \"Never …\n$ age               &lt;dbl&gt; 33, 64, 69, 19, 70, 53, 48, 30, 60, 25, 23, 68, 43, …\n$ education_years   &lt;dbl&gt; 16, 16, 14, 12, 13, 14, 13, 14, 14, 12, 18, 5, 14, 1…\n$ children          &lt;dbl&gt; 2, 0, 0, 0, 3, 2, 6, 1, 2, 0, 0, 1, 2, 1, 3, 1, 2, N…\n$ happiness         &lt;chr&gt; \"Not too happy\", \"Pretty happy\", \"Pretty happy\", \"Pr…\n$ health            &lt;chr&gt; \"Good\", \"Good\", \"Good\", \"Good\", \"Good\", \"Good\", \"Goo…\n$ employment_status &lt;chr&gt; \"Working full time\", \"Retired\", \"Retired\", \"Working …\n$ party_id          &lt;chr&gt; \"Not very strong democrat\", \"Strong democrat\", \"Stro…\n\n\n\nWhat does each observation (row) in the data set represent?\n\nAdd your response here.\n\nHow many observations (rows) are in the data set?\n\nAdd your response here.\n\nHow many variables (columns) are in the data set?\n\nAdd your response here.\nVariables of interest\nThe variables we’ll focus on are the following:\n\n\nmarital_status: Respondent’s current marital status.\n\nhappiness: Respondent’s self-reported general happiness.\n\nhealth: Respondent’s self-reported general health."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html#demo-one-categorical-variable",
+    "href": "ae/ae-01-gss-dataviz.html#demo-one-categorical-variable",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Demo: One categorical variable",
+    "text": "Demo: One categorical variable\nWe begin with the question:\n\nWhat self-rated health levels are most common among respondents in the 2024 GSS?\n\n\nWhat type of plot is a good starting point for this question?\n\nBoth the question and the variable type should guide our choice of visualization. Since health is a categorical variable, a bar chart is a useful place to start.\n\n\nggplot() creates the initial base coordinate system. The first argument is the data you’re plotting, gss.\n\n\n# add code here\n\n\n\naes() tells how variables in the data map to visual properties of the graph.\n\n\n# add code here\n\n\nA geom_ function specifies how observations will be represented. geom_bar() creates a bar chart and counts the rows in each category for us.\n\n\n# add code here\n\n\nWhich recorded health response is most common? Which is least common?\n\nAdd your response here.\n\nThe labs() function allows us to give the plot a meaningful title, axis labels, and a source.\n\n\n# add code here\n\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nNow that we’re done with our first task, it’s time to take a snapshot.\n\nPreview your Quarto document and review the output. If all looks good…\nGo to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.\nClick Sync to push your changes to your application exercise repo on GitHub.\nGo to your repo on GitHub and confirm that you can see the updated files – you may need to refresh your browser window. Once your updated files are in your GitHub repo, you’re good to go!"
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html#two-categorical-variables",
+    "href": "ae/ae-01-gss-dataviz.html#two-categorical-variables",
+    "title": "AE 01: GSS + data visualization",
+    "section": "Two categorical variables",
+    "text": "Two categorical variables\nNow we ask:\n\nHow does self-reported happiness vary across marital-status groups?\n\nBoth marital_status and happiness are categorical variables.\nOption 1 - Demo: Stacked bars\nMap happiness to the fill color. By default, geom_bar() stacks the happiness categories within each marital-status bar.\n\n# add code here\n\nThis graph displays counts. It also shows that the marital-status groups have different numbers of respondents, which makes the colored segments difficult to compare directly.\nOption 2 - Your turn: Dodged bars\nModify the stacked bar chart by setting position = \"dodge\" inside geom_bar(). This places the happiness categories side by side.\n\n# add code here\n\nDodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.\nOption 3 - Demo: Filled bars\nSuppose our question is specifically about the distribution of happiness within each marital-status group. Setting position = \"fill\" gives every marital-status bar the same total height and displays proportions instead of counts.\n\n# add code here\n\n\nWhat is the denominator used to calculate the proportions in each bar?\n\nAdd your response here.\n\nWhat patterns do you see?\n\nAdd your response here.\n\nHow do these plots answer the question about how happiness varies across marital-status groups? Which plot is the best?\n\nAdd your response here.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nNow that we’re done with our second task, it’s time to take another snapshot.\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
+  },
+  {
+    "objectID": "ae/ae-01-gss-dataviz.html#on-your-own",
+    "href": "ae/ae-01-gss-dataviz.html#on-your-own",
+    "title": "AE 01: GSS + data visualization",
+    "section": "On your own",
+    "text": "On your own\nDo the following at the end of class or, if you run out of time, some before the next class.\nUse gss to answer one of the following questions with an appropriate plot:\n\nIs self-reported happiness distributed differently across self-rated health groups?\nHow does employment status vary across marital-status groups?\nWhat is the relationship between education years and age? Does it differ by marital status?\n\nState your question, identify the variable type or types, and explain why your plot answers the question. Give the chart a meaningful title and labels, then describe the patterns using non-causal language.\nAdd response here. Insert code cells as needed.\n\n\n\n\n\n\nPreview, commit, push\n\n\n\nOnce you’re done, take one last snapshot:\n\nPreview your Quarto document.\nStage and commit your changes with a simple and informative commit message.\nPush your changes to GitHub and confirm that the updated files appear in your repository."
   },
   {
     "objectID": "ae/ae-03-statsci-majors.html",

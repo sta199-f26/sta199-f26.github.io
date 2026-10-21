@@ -572,7 +572,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div>
 </div>
 
-<img data-src="14-data-science-ethics_files/figure-revealjs/gas-prices-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="14-data-science-ethics_files/figure-html/gas-prices-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="annotations-immigration" class="slide level2 smaller">
 <h2>Annotations: Immigration</h2>
 <div class="columns">
@@ -616,7 +616,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div>
 </div>
 
-<img data-src="14-data-science-ethics_files/figure-revealjs/unnamed-chunk-6-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="14-data-science-ethics_files/figure-html/unnamed-chunk-6-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="pause-6" class="slide level2 center smaller">
 <h2>Pause…</h2>
 <div class="question">
@@ -666,7 +666,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="14-data-science-ethics_files/figure-revealjs/swing-state-poll-without-me-1.png" style="width:90.0%"></p>
+<p><img data-src="14-data-science-ethics_files/figure-html/swing-state-poll-without-me-1.png" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -684,7 +684,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="14-data-science-ethics_files/figure-revealjs/swing-state-poll-with-me-1.png" style="width:100.0%"></p>
+<p><img data-src="14-data-science-ethics_files/figure-html/swing-state-poll-with-me-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1037,44 +1037,6 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
