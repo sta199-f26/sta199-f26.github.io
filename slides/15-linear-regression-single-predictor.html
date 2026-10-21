@@ -106,8 +106,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../site_libs/core-js-2.5.3/shim.min.js"></script><script src="../site_libs/react-18.2.0/react.min.js"></script><script src="../site_libs/react-18.2.0/react-dom.min.js"></script><script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script><script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
-<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="../site_libs/core-js-2.5.3/shim.min.js"></script><script src="../site_libs/react-18.2.0/react.min.js"></script><script src="../site_libs/react-18.2.0/react-dom.min.js"></script><script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script><script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="../site_libs/reactable-0.4.5/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.5/reactable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -578,6 +578,7 @@ window.Quarto = {
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
   <li><a href="#our-focus-for-today" id="toc-our-focus-for-today" class="nav-link" data-scroll-target="#our-focus-for-today">Our focus for today</a></li>
+  <li><a href="#geographic-patterns" id="toc-geographic-patterns" class="nav-link" data-scroll-target="#geographic-patterns">Geographic patterns</a></li>
   </ul>
 </li>
   <li>
@@ -641,7 +642,8 @@ window.Quarto = {
   <li>
 <a href="#application-exercise" id="toc-application-exercise" class="nav-link" data-scroll-target="#application-exercise">Application exercise</a>
   <ul class="collapse">
-<li><a href="#application-exercise-1" id="toc-application-exercise-1" class="nav-link" data-scroll-target="#application-exercise-1">Application exercise</a></li>
+<li><a href="#dental-visits-and-health" id="toc-dental-visits-and-health" class="nav-link" data-scroll-target="#dental-visits-and-health">Dental visits and health</a></li>
+  <li><a href="#application-exercise-1" id="toc-application-exercise-1" class="nav-link" data-scroll-target="#application-exercise-1">Application exercise</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/15-linear-regression-single-predictor.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="15-linear-regression-single-predictor-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -708,7 +710,27 @@ window.Quarto = {
 </div>
 </section><section id="announcements" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="announcements">Announcements</h2>
 <ul>
-<li>…</li>
+<li>Projects:
+<ul>
+<li>Peer review tomorrow: Make as much progress as you can before your</li>
+<li>New project component: AI disclosure to be added overnight, pull when you get to lab</li>
+</ul>
+</li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>HW 5 due next Wednesday at 11:59 pm</li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>My office hours this week: Friday 2-3:30 pm in Old Chem 211, come by if you
+<ul>
+<li>have questions on the homework</li>
+<li>want to review your exam</li>
+<li>want to discuss your project (and come with your teammates!)</li>
+<li>can’t usually make it to my Wednesday OH and I haven’t yet had a chance to meet you</li>
+</ul>
+</li>
 </ul></section><section id="learning-goals" class="level2"><h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
 <p>By the end of today, you should be able to:</p>
 <ul>
@@ -766,7 +788,7 @@ Important
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Sources: <a href="https://www.cdc.gov/places/current-release-notes/">CDC PLACES release notes</a>, <a href="https://www.cdc.gov/places/measure-definitions/">measure definitions</a></p>
-</div></div></section><section id="how-the-data-were-put-together" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="how-the-data-were-put-together">How the data were put together</h2>
+</div></div></section><section id="how-the-data-were-put-together" class="level2 smaller page-columns page-full"><h2 class="smaller anchored" data-anchor-id="how-the-data-were-put-together">How the data were put together</h2>
 <ol type="1">
 <li>Start with the CDC PLACES 2025 county release.</li>
 <li>Filter to North Carolina and age-adjusted prevalence estimates.</li>
@@ -782,11 +804,13 @@ Important
 <li><p><strong>tidyverse</strong> for data wrangling and visualization</p></li>
 <li><p><strong>scales</strong> for better axis labels</p></li>
 <li><p><strong>tidymodels</strong> for modeling with tidyverse principles</p></li>
+<li><p><strong>maps</strong> for county boundaries</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adeckmyn/maps">maps</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="load-the-data" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="load-the-data">Load the data</h2>
 <div class="cell">
@@ -814,23 +838,23 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <p>The full dataset also includes <code>development_tier</code>, <code>region</code>, and <code>appalachian</code> for later modeling lessons.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fiehscfyim" class=".gt_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fiehscfyim table {
+<div id="vqwzyabalv" class=".gt_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vqwzyabalv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fiehscfyim thead, #fiehscfyim tbody, #fiehscfyim tfoot, #fiehscfyim tr, #fiehscfyim td, #fiehscfyim th {
+#vqwzyabalv thead, #vqwzyabalv tbody, #vqwzyabalv tfoot, #vqwzyabalv tr, #vqwzyabalv td, #vqwzyabalv th {
   border-style: none;
 }
 
-#fiehscfyim p {
+#vqwzyabalv p {
   margin: 0;
   padding: 0;
 }
 
-#fiehscfyim .gt_table {
+#vqwzyabalv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -856,12 +880,12 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-left-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_caption {
+#vqwzyabalv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fiehscfyim .gt_title {
+#vqwzyabalv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -873,7 +897,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-width: 0;
 }
 
-#fiehscfyim .gt_subtitle {
+#vqwzyabalv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -885,7 +909,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-width: 0;
 }
 
-#fiehscfyim .gt_heading {
+#vqwzyabalv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -897,13 +921,13 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_bottom_border {
+#vqwzyabalv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_col_headings {
+#vqwzyabalv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -918,7 +942,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_col_heading {
+#vqwzyabalv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -938,7 +962,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#fiehscfyim .gt_column_spanner_outer {
+#vqwzyabalv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -950,15 +974,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 4px;
 }
 
-#fiehscfyim .gt_column_spanner_outer:first-child {
+#vqwzyabalv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fiehscfyim .gt_column_spanner_outer:last-child {
+#vqwzyabalv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fiehscfyim .gt_column_spanner {
+#vqwzyabalv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -970,11 +994,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   width: 100%;
 }
 
-#fiehscfyim .gt_spanner_row {
+#vqwzyabalv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fiehscfyim .gt_group_heading {
+#vqwzyabalv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1000,7 +1024,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   text-align: left;
 }
 
-#fiehscfyim .gt_empty_group_heading {
+#vqwzyabalv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1015,15 +1039,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: middle;
 }
 
-#fiehscfyim .gt_from_md > :first-child {
+#vqwzyabalv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fiehscfyim .gt_from_md > :last-child {
+#vqwzyabalv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fiehscfyim .gt_row {
+#vqwzyabalv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1042,7 +1066,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#fiehscfyim .gt_stub {
+#vqwzyabalv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1055,7 +1079,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#fiehscfyim .gt_stub_row_group {
+#vqwzyabalv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1069,15 +1093,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: top;
 }
 
-#fiehscfyim .gt_row_group_first td {
+#vqwzyabalv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fiehscfyim .gt_row_group_first th {
+#vqwzyabalv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fiehscfyim .gt_summary_row {
+#vqwzyabalv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1087,16 +1111,16 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#fiehscfyim .gt_first_summary_row {
+#vqwzyabalv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_first_summary_row.thick {
+#vqwzyabalv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fiehscfyim .gt_last_summary_row {
+#vqwzyabalv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1106,7 +1130,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_grand_summary_row {
+#vqwzyabalv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1116,7 +1140,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#fiehscfyim .gt_first_grand_summary_row {
+#vqwzyabalv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1126,7 +1150,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_last_grand_summary_row_top {
+#vqwzyabalv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1136,11 +1160,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_striped {
+#vqwzyabalv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fiehscfyim .gt_table_body {
+#vqwzyabalv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1149,7 +1173,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_footnotes {
+#vqwzyabalv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1163,7 +1187,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_footnote {
+#vqwzyabalv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1172,7 +1196,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#fiehscfyim .gt_sourcenotes {
+#vqwzyabalv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1186,7 +1210,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#fiehscfyim .gt_sourcenote {
+#vqwzyabalv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1194,77 +1218,88 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#fiehscfyim .gt_left {
+#vqwzyabalv .gt_left {
   text-align: left;
 }
 
-#fiehscfyim .gt_center {
+#vqwzyabalv .gt_center {
   text-align: center;
 }
 
-#fiehscfyim .gt_right {
+#vqwzyabalv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fiehscfyim .gt_font_normal {
+#vqwzyabalv .gt_font_normal {
   font-weight: normal;
 }
 
-#fiehscfyim .gt_font_bold {
+#vqwzyabalv .gt_font_bold {
   font-weight: bold;
 }
 
-#fiehscfyim .gt_font_italic {
+#vqwzyabalv .gt_font_italic {
   font-style: italic;
 }
 
-#fiehscfyim .gt_super {
+#vqwzyabalv .gt_super {
   font-size: 65%;
 }
 
-#fiehscfyim .gt_footnote_marks {
+#vqwzyabalv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fiehscfyim .gt_asterisk {
+#vqwzyabalv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fiehscfyim .gt_indent_1 {
+#vqwzyabalv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fiehscfyim .gt_indent_2 {
+#vqwzyabalv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fiehscfyim .gt_indent_3 {
+#vqwzyabalv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fiehscfyim .gt_indent_4 {
+#vqwzyabalv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fiehscfyim .gt_indent_5 {
+#vqwzyabalv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fiehscfyim .katex-display {
+#vqwzyabalv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fiehscfyim div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vqwzyabalv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<div id="fiehscfyim" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="fiehscfyim">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"county":["Alamance","Alexander","Alleghany","Anson","Ashe","Avery","Beaufort","Bertie","Bladen","Brunswick","Buncombe","Burke","Cabarrus","Caldwell","Camden","Carteret","Caswell","Catawba","Chatham","Cherokee","Chowan","Clay","Cleveland","Columbus","Craven","Cumberland","Currituck","Dare","Davidson","Davie","Duplin","Durham","Edgecombe","Forsyth","Franklin","Gaston","Gates","Graham","Granville","Greene","Guilford","Halifax","Harnett","Haywood","Henderson","Hertford","Hoke","Hyde","Iredell","Jackson","Johnston","Jones","Lee","Lenoir","Lincoln","Macon","Madison","Martin","McDowell","Mecklenburg","Mitchell","Montgomery","Moore","Nash","New Hanover","Northampton","Onslow","Orange","Pamlico","Pasquotank","Pender","Perquimans","Person","Pitt","Polk","Randolph","Richmond","Robeson","Rockingham","Rowan","Rutherford","Sampson","Scotland","Stanly","Stokes","Surry","Swain","Transylvania","Tyrrell","Union","Vance","Wake","Warren","Washington","Watauga","Wayne","Wilkes","Wilson","Yadkin","Yancey"],"food_insecurity":[17.2,15.8,18.5,28.2,14.6,15.1,19.3,28.7,22.5,11.9,12.1,17.4,13.7,16.6,11,11.4,20.3,15.2,12.7,14.9,21.4,12.8,18.5,22.7,15.9,20.5,10.7,9.6,16.5,12.8,22.8,14.3,27.8,16.7,17,16.7,19.1,14.6,18.9,26.7,17.5,30.9,17.4,12.8,12.8,28.7,22.4,23.3,12.6,15.7,15.4,22.3,19.1,27.1,12.6,15.1,12.3,23.9,16,14.5,12.8,20.5,11.4,21.2,11.8,26.7,15.8,10.4,15.6,17.3,13.4,16.9,18.9,18.9,12.9,17.9,26,31.2,19,17.4,18.1,23.3,29.4,16.2,14.5,18,21.9,11.4,23.6,12.3,26.3,10.4,28.3,28.9,14.1,21.7,17.5,26.2,16.4,14.9],"mental_distress":[18,19.1,19.3,20.2,18.9,18.4,18.9,19.6,19.5,17.2,16.6,19,16.6,19.3,17.2,17.2,19.1,17.9,15.9,19.1,19.3,18.2,19.1,19.8,18,18.2,17.1,16.3,18.9,17.6,18.8,15.2,19.9,17.1,17.9,18.3,19.5,19.2,18.1,19.3,17.3,20.4,18.3,18.1,17.2,19.9,18.9,19,16.9,19,17.4,19.9,18.5,20.3,17.6,18.6,18,20.1,19.1,15.6,18.4,18.9,16.6,18.6,17.1,19.8,17.8,15.3,18,18,17.8,18.8,19,18,17.8,19.1,20.3,20.9,19.7,18.6,19.7,19.3,20.7,18.8,19,19.4,20.7,17.4,19.2,16.4,19.5,14.9,19.8,20.7,18.3,18.7,19.5,19.4,19,19]},"columns":[{"id":"county","name":"county","type":"character","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","html":true,"align":"left"},{"id":"food_insecurity","name":"food_insecurity","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["17.2","15.8","18.5","28.2","14.6","15.1","19.3","28.7","22.5","11.9","12.1","17.4","13.7","16.6","11.0","11.4","20.3","15.2","12.7","14.9","21.4","12.8","18.5","22.7","15.9","20.5","10.7","9.6","16.5","12.8","22.8","14.3","27.8","16.7","17.0","16.7","19.1","14.6","18.9","26.7","17.5","30.9","17.4","12.8","12.8","28.7","22.4","23.3","12.6","15.7","15.4","22.3","19.1","27.1","12.6","15.1","12.3","23.9","16.0","14.5","12.8","20.5","11.4","21.2","11.8","26.7","15.8","10.4","15.6","17.3","13.4","16.9","18.9","18.9","12.9","17.9","26.0","31.2","19.0","17.4","18.1","23.3","29.4","16.2","14.5","18.0","21.9","11.4","23.6","12.3","26.3","10.4","28.3","28.9","14.1","21.7","17.5","26.2","16.4","14.9"],"html":true,"align":"right"},{"id":"mental_distress","name":"mental_distress","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["18.0","19.1","19.3","20.2","18.9","18.4","18.9","19.6","19.5","17.2","16.6","19.0","16.6","19.3","17.2","17.2","19.1","17.9","15.9","19.1","19.3","18.2","19.1","19.8","18.0","18.2","17.1","16.3","18.9","17.6","18.8","15.2","19.9","17.1","17.9","18.3","19.5","19.2","18.1","19.3","17.3","20.4","18.3","18.1","17.2","19.9","18.9","19.0","16.9","19.0","17.4","19.9","18.5","20.3","17.6","18.6","18.0","20.1","19.1","15.6","18.4","18.9","16.6","18.6","17.1","19.8","17.8","15.3","18.0","18.0","17.8","18.8","19.0","18.0","17.8","19.1","20.3","20.9","19.7","18.6","19.7","19.3","20.7","18.8","19.0","19.4","20.7","17.4","19.2","16.4","19.5","14.9","19.8","20.7","18.3","18.7","19.5","19.4","19.0","19.0"],"html":true,"align":"right"}],"defaultPageSize":10,"showPageSizeOptions":false,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPagination":true,"showPageInfo":true,"minRows":1,"height":"auto","theme":{"color":"#333333","backgroundColor":"#FFFFFF","stripedColor":"rgba(128,128,128,0.05)","style":{"font-family":"system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif","fontSize":"20px"},"tableStyle":{"borderTopStyle":"solid","borderTopWidth":"2px","borderTopColor":"#D3D3D3"},"headerStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"groupHeaderStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"cellStyle":{"fontWeight":"normal"}},"elementId":"fiehscfyim","dataKey":"71d0444451344449297fea69bd940396"},"children":[]},"class":"reactR_markup"},"evals":["tag.attribs.columns.0.style","tag.attribs.columns.1.style","tag.attribs.columns.2.style"],"jsHooks":[]}</script>
+<div id="vqwzyabalv" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="vqwzyabalv">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"county":["Alamance","Alexander","Alleghany","Anson","Ashe","Avery","Beaufort","Bertie","Bladen","Brunswick","Buncombe","Burke","Cabarrus","Caldwell","Camden","Carteret","Caswell","Catawba","Chatham","Cherokee","Chowan","Clay","Cleveland","Columbus","Craven","Cumberland","Currituck","Dare","Davidson","Davie","Duplin","Durham","Edgecombe","Forsyth","Franklin","Gaston","Gates","Graham","Granville","Greene","Guilford","Halifax","Harnett","Haywood","Henderson","Hertford","Hoke","Hyde","Iredell","Jackson","Johnston","Jones","Lee","Lenoir","Lincoln","Macon","Madison","Martin","McDowell","Mecklenburg","Mitchell","Montgomery","Moore","Nash","New Hanover","Northampton","Onslow","Orange","Pamlico","Pasquotank","Pender","Perquimans","Person","Pitt","Polk","Randolph","Richmond","Robeson","Rockingham","Rowan","Rutherford","Sampson","Scotland","Stanly","Stokes","Surry","Swain","Transylvania","Tyrrell","Union","Vance","Wake","Warren","Washington","Watauga","Wayne","Wilkes","Wilson","Yadkin","Yancey"],"food_insecurity":[17.2,15.8,18.5,28.2,14.6,15.1,19.3,28.7,22.5,11.9,12.1,17.4,13.7,16.6,11,11.4,20.3,15.2,12.7,14.9,21.4,12.8,18.5,22.7,15.9,20.5,10.7,9.6,16.5,12.8,22.8,14.3,27.8,16.7,17,16.7,19.1,14.6,18.9,26.7,17.5,30.9,17.4,12.8,12.8,28.7,22.4,23.3,12.6,15.7,15.4,22.3,19.1,27.1,12.6,15.1,12.3,23.9,16,14.5,12.8,20.5,11.4,21.2,11.8,26.7,15.8,10.4,15.6,17.3,13.4,16.9,18.9,18.9,12.9,17.9,26,31.2,19,17.4,18.1,23.3,29.4,16.2,14.5,18,21.9,11.4,23.6,12.3,26.3,10.4,28.3,28.9,14.1,21.7,17.5,26.2,16.4,14.9],"mental_distress":[18,19.1,19.3,20.2,18.9,18.4,18.9,19.6,19.5,17.2,16.6,19,16.6,19.3,17.2,17.2,19.1,17.9,15.9,19.1,19.3,18.2,19.1,19.8,18,18.2,17.1,16.3,18.9,17.6,18.8,15.2,19.9,17.1,17.9,18.3,19.5,19.2,18.1,19.3,17.3,20.4,18.3,18.1,17.2,19.9,18.9,19,16.9,19,17.4,19.9,18.5,20.3,17.6,18.6,18,20.1,19.1,15.6,18.4,18.9,16.6,18.6,17.1,19.8,17.8,15.3,18,18,17.8,18.8,19,18,17.8,19.1,20.3,20.9,19.7,18.6,19.7,19.3,20.7,18.8,19,19.4,20.7,17.4,19.2,16.4,19.5,14.9,19.8,20.7,18.3,18.7,19.5,19.4,19,19]},"columns":[{"id":"county","name":"county","type":"character","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","html":true,"align":"left"},{"id":"food_insecurity","name":"food_insecurity","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["17.2","15.8","18.5","28.2","14.6","15.1","19.3","28.7","22.5","11.9","12.1","17.4","13.7","16.6","11.0","11.4","20.3","15.2","12.7","14.9","21.4","12.8","18.5","22.7","15.9","20.5","10.7","9.6","16.5","12.8","22.8","14.3","27.8","16.7","17.0","16.7","19.1","14.6","18.9","26.7","17.5","30.9","17.4","12.8","12.8","28.7","22.4","23.3","12.6","15.7","15.4","22.3","19.1","27.1","12.6","15.1","12.3","23.9","16.0","14.5","12.8","20.5","11.4","21.2","11.8","26.7","15.8","10.4","15.6","17.3","13.4","16.9","18.9","18.9","12.9","17.9","26.0","31.2","19.0","17.4","18.1","23.3","29.4","16.2","14.5","18.0","21.9","11.4","23.6","12.3","26.3","10.4","28.3","28.9","14.1","21.7","17.5","26.2","16.4","14.9"],"html":true,"align":"right"},{"id":"mental_distress","name":"mental_distress","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["18.0","19.1","19.3","20.2","18.9","18.4","18.9","19.6","19.5","17.2","16.6","19.0","16.6","19.3","17.2","17.2","19.1","17.9","15.9","19.1","19.3","18.2","19.1","19.8","18.0","18.2","17.1","16.3","18.9","17.6","18.8","15.2","19.9","17.1","17.9","18.3","19.5","19.2","18.1","19.3","17.3","20.4","18.3","18.1","17.2","19.9","18.9","19.0","16.9","19.0","17.4","19.9","18.5","20.3","17.6","18.6","18.0","20.1","19.1","15.6","18.4","18.9","16.6","18.6","17.1","19.8","17.8","15.3","18.0","18.0","17.8","18.8","19.0","18.0","17.8","19.1","20.3","20.9","19.7","18.6","19.7","19.3","20.7","18.8","19.0","19.4","20.7","17.4","19.2","16.4","19.5","14.9","19.8","20.7","18.3","18.7","19.5","19.4","19.0","19.0"],"html":true,"align":"right"}],"defaultPageSize":10,"showPageSizeOptions":false,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPagination":true,"showPageInfo":true,"minRows":1,"height":"auto","theme":{"color":"#333333","backgroundColor":"#FFFFFF","stripedColor":"rgba(128,128,128,0.05)","style":{"font-family":"system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif","fontSize":"20px"},"tableStyle":{"borderTopStyle":"solid","borderTopWidth":"2px","borderTopColor":"#D3D3D3"},"headerStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"groupHeaderStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"cellStyle":{"fontWeight":"normal"}},"elementId":"vqwzyabalv","dataKey":"71d0444451344449297fea69bd940396"},"children":[]},"class":"reactR_markup"},"evals":["tag.attribs.columns.0.style","tag.attribs.columns.1.style","tag.attribs.columns.2.style"],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</section><section id="geographic-patterns" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="geographic-patterns">Geographic patterns</h2>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-1.png" class="img-fluid" width="528"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-2.png" class="img-fluid" width="528"></a></p>
 </div>
 </div>
 </div>
@@ -1279,7 +1314,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1291,7 +1326,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1303,7 +1338,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1319,7 +1354,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1344,23 +1379,23 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="column" style="width:40%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="juvrupcibz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#juvrupcibz table {
+<div id="zeywrvyzuh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zeywrvyzuh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#juvrupcibz thead, #juvrupcibz tbody, #juvrupcibz tfoot, #juvrupcibz tr, #juvrupcibz td, #juvrupcibz th {
+#zeywrvyzuh thead, #zeywrvyzuh tbody, #zeywrvyzuh tfoot, #zeywrvyzuh tr, #zeywrvyzuh td, #zeywrvyzuh th {
   border-style: none;
 }
 
-#juvrupcibz p {
+#zeywrvyzuh p {
   margin: 0;
   padding: 0;
 }
 
-#juvrupcibz .gt_table {
+#zeywrvyzuh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1386,12 +1421,12 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-left-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_caption {
+#zeywrvyzuh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#juvrupcibz .gt_title {
+#zeywrvyzuh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1403,7 +1438,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-width: 0;
 }
 
-#juvrupcibz .gt_subtitle {
+#zeywrvyzuh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1415,7 +1450,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-width: 0;
 }
 
-#juvrupcibz .gt_heading {
+#zeywrvyzuh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1427,13 +1462,13 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_bottom_border {
+#zeywrvyzuh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_col_headings {
+#zeywrvyzuh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1448,7 +1483,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_col_heading {
+#zeywrvyzuh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1468,7 +1503,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#juvrupcibz .gt_column_spanner_outer {
+#zeywrvyzuh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1480,15 +1515,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 4px;
 }
 
-#juvrupcibz .gt_column_spanner_outer:first-child {
+#zeywrvyzuh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#juvrupcibz .gt_column_spanner_outer:last-child {
+#zeywrvyzuh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#juvrupcibz .gt_column_spanner {
+#zeywrvyzuh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1500,11 +1535,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   width: 100%;
 }
 
-#juvrupcibz .gt_spanner_row {
+#zeywrvyzuh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#juvrupcibz .gt_group_heading {
+#zeywrvyzuh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1530,7 +1565,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   text-align: left;
 }
 
-#juvrupcibz .gt_empty_group_heading {
+#zeywrvyzuh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1545,15 +1580,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: middle;
 }
 
-#juvrupcibz .gt_from_md > :first-child {
+#zeywrvyzuh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#juvrupcibz .gt_from_md > :last-child {
+#zeywrvyzuh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#juvrupcibz .gt_row {
+#zeywrvyzuh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1572,7 +1607,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#juvrupcibz .gt_stub {
+#zeywrvyzuh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1585,7 +1620,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#juvrupcibz .gt_stub_row_group {
+#zeywrvyzuh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1599,15 +1634,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: top;
 }
 
-#juvrupcibz .gt_row_group_first td {
+#zeywrvyzuh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#juvrupcibz .gt_row_group_first th {
+#zeywrvyzuh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#juvrupcibz .gt_summary_row {
+#zeywrvyzuh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1617,16 +1652,16 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#juvrupcibz .gt_first_summary_row {
+#zeywrvyzuh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_first_summary_row.thick {
+#zeywrvyzuh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#juvrupcibz .gt_last_summary_row {
+#zeywrvyzuh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1636,7 +1671,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_grand_summary_row {
+#zeywrvyzuh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1646,7 +1681,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#juvrupcibz .gt_first_grand_summary_row {
+#zeywrvyzuh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1656,7 +1691,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_last_grand_summary_row_top {
+#zeywrvyzuh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1666,11 +1701,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_striped {
+#zeywrvyzuh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#juvrupcibz .gt_table_body {
+#zeywrvyzuh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1679,7 +1714,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_footnotes {
+#zeywrvyzuh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1693,7 +1728,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_footnote {
+#zeywrvyzuh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1702,7 +1737,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#juvrupcibz .gt_sourcenotes {
+#zeywrvyzuh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1716,7 +1751,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#juvrupcibz .gt_sourcenote {
+#zeywrvyzuh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1724,72 +1759,72 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#juvrupcibz .gt_left {
+#zeywrvyzuh .gt_left {
   text-align: left;
 }
 
-#juvrupcibz .gt_center {
+#zeywrvyzuh .gt_center {
   text-align: center;
 }
 
-#juvrupcibz .gt_right {
+#zeywrvyzuh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#juvrupcibz .gt_font_normal {
+#zeywrvyzuh .gt_font_normal {
   font-weight: normal;
 }
 
-#juvrupcibz .gt_font_bold {
+#zeywrvyzuh .gt_font_bold {
   font-weight: bold;
 }
 
-#juvrupcibz .gt_font_italic {
+#zeywrvyzuh .gt_font_italic {
   font-style: italic;
 }
 
-#juvrupcibz .gt_super {
+#zeywrvyzuh .gt_super {
   font-size: 65%;
 }
 
-#juvrupcibz .gt_footnote_marks {
+#zeywrvyzuh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#juvrupcibz .gt_asterisk {
+#zeywrvyzuh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#juvrupcibz .gt_indent_1 {
+#zeywrvyzuh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#juvrupcibz .gt_indent_2 {
+#zeywrvyzuh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#juvrupcibz .gt_indent_3 {
+#zeywrvyzuh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#juvrupcibz .gt_indent_4 {
+#zeywrvyzuh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#juvrupcibz .gt_indent_5 {
+#zeywrvyzuh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#juvrupcibz .katex-display {
+#zeywrvyzuh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#juvrupcibz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zeywrvyzuh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1844,7 +1879,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1856,23 +1891,23 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="column" style="width:38%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="hybtvjzyqo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hybtvjzyqo table {
+<div id="wosnlvffmu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wosnlvffmu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hybtvjzyqo thead, #hybtvjzyqo tbody, #hybtvjzyqo tfoot, #hybtvjzyqo tr, #hybtvjzyqo td, #hybtvjzyqo th {
+#wosnlvffmu thead, #wosnlvffmu tbody, #wosnlvffmu tfoot, #wosnlvffmu tr, #wosnlvffmu td, #wosnlvffmu th {
   border-style: none;
 }
 
-#hybtvjzyqo p {
+#wosnlvffmu p {
   margin: 0;
   padding: 0;
 }
 
-#hybtvjzyqo .gt_table {
+#wosnlvffmu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1898,12 +1933,12 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-left-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_caption {
+#wosnlvffmu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hybtvjzyqo .gt_title {
+#wosnlvffmu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1915,7 +1950,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-width: 0;
 }
 
-#hybtvjzyqo .gt_subtitle {
+#wosnlvffmu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1927,7 +1962,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-width: 0;
 }
 
-#hybtvjzyqo .gt_heading {
+#wosnlvffmu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1939,13 +1974,13 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_bottom_border {
+#wosnlvffmu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_col_headings {
+#wosnlvffmu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1960,7 +1995,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_col_heading {
+#wosnlvffmu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1980,7 +2015,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#hybtvjzyqo .gt_column_spanner_outer {
+#wosnlvffmu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1992,15 +2027,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 4px;
 }
 
-#hybtvjzyqo .gt_column_spanner_outer:first-child {
+#wosnlvffmu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hybtvjzyqo .gt_column_spanner_outer:last-child {
+#wosnlvffmu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hybtvjzyqo .gt_column_spanner {
+#wosnlvffmu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2012,11 +2047,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   width: 100%;
 }
 
-#hybtvjzyqo .gt_spanner_row {
+#wosnlvffmu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hybtvjzyqo .gt_group_heading {
+#wosnlvffmu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2042,7 +2077,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   text-align: left;
 }
 
-#hybtvjzyqo .gt_empty_group_heading {
+#wosnlvffmu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2057,15 +2092,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: middle;
 }
 
-#hybtvjzyqo .gt_from_md > :first-child {
+#wosnlvffmu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hybtvjzyqo .gt_from_md > :last-child {
+#wosnlvffmu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hybtvjzyqo .gt_row {
+#wosnlvffmu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2084,7 +2119,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#hybtvjzyqo .gt_stub {
+#wosnlvffmu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2097,7 +2132,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#hybtvjzyqo .gt_stub_row_group {
+#wosnlvffmu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2111,15 +2146,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: top;
 }
 
-#hybtvjzyqo .gt_row_group_first td {
+#wosnlvffmu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hybtvjzyqo .gt_row_group_first th {
+#wosnlvffmu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hybtvjzyqo .gt_summary_row {
+#wosnlvffmu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2129,16 +2164,16 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#hybtvjzyqo .gt_first_summary_row {
+#wosnlvffmu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_first_summary_row.thick {
+#wosnlvffmu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hybtvjzyqo .gt_last_summary_row {
+#wosnlvffmu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2148,7 +2183,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_grand_summary_row {
+#wosnlvffmu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2158,7 +2193,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#hybtvjzyqo .gt_first_grand_summary_row {
+#wosnlvffmu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2168,7 +2203,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_last_grand_summary_row_top {
+#wosnlvffmu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2178,11 +2213,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_striped {
+#wosnlvffmu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hybtvjzyqo .gt_table_body {
+#wosnlvffmu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2191,7 +2226,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_footnotes {
+#wosnlvffmu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2205,7 +2240,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_footnote {
+#wosnlvffmu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2214,7 +2249,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#hybtvjzyqo .gt_sourcenotes {
+#wosnlvffmu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2228,7 +2263,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#hybtvjzyqo .gt_sourcenote {
+#wosnlvffmu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2236,72 +2271,72 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#hybtvjzyqo .gt_left {
+#wosnlvffmu .gt_left {
   text-align: left;
 }
 
-#hybtvjzyqo .gt_center {
+#wosnlvffmu .gt_center {
   text-align: center;
 }
 
-#hybtvjzyqo .gt_right {
+#wosnlvffmu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hybtvjzyqo .gt_font_normal {
+#wosnlvffmu .gt_font_normal {
   font-weight: normal;
 }
 
-#hybtvjzyqo .gt_font_bold {
+#wosnlvffmu .gt_font_bold {
   font-weight: bold;
 }
 
-#hybtvjzyqo .gt_font_italic {
+#wosnlvffmu .gt_font_italic {
   font-style: italic;
 }
 
-#hybtvjzyqo .gt_super {
+#wosnlvffmu .gt_super {
   font-size: 65%;
 }
 
-#hybtvjzyqo .gt_footnote_marks {
+#wosnlvffmu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hybtvjzyqo .gt_asterisk {
+#wosnlvffmu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hybtvjzyqo .gt_indent_1 {
+#wosnlvffmu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hybtvjzyqo .gt_indent_2 {
+#wosnlvffmu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hybtvjzyqo .gt_indent_3 {
+#wosnlvffmu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hybtvjzyqo .gt_indent_4 {
+#wosnlvffmu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hybtvjzyqo .gt_indent_5 {
+#wosnlvffmu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hybtvjzyqo .katex-display {
+#wosnlvffmu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hybtvjzyqo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wosnlvffmu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2356,7 +2391,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2367,7 +2402,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2376,7 +2411,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2385,7 +2420,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2394,7 +2429,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2409,7 +2444,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2424,7 +2459,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="288"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="288"></a></p>
 </figure>
 </div>
 </div>
@@ -2444,7 +2479,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
 <p>Go to <a href="https://app.wooclap.com/BSAFXJG">wooclap.com</a> and use the code BSAFXJG.</p>
@@ -2466,7 +2501,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2593,7 +2628,7 @@ Reading the model equation
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
 <p>Go to <a href="https://app.wooclap.com/BSAFXJG">wooclap.com</a> and use the code BSAFXJG.</p>
@@ -2615,7 +2650,7 @@ Reading the model equation
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+<figure class="figure"><p><a href="images/15/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="images/15/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
 <p>Go to <a href="https://app.wooclap.com/BSAFXJG">wooclap.com</a> and use the code BSAFXJG.</p>
@@ -2732,7 +2767,7 @@ Mathematically vs.&nbsp;practical meaningfullness
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2745,7 +2780,7 @@ Mathematically vs.&nbsp;practical meaningfullness
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-28-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -2803,7 +2838,18 @@ e_1^2 + e_2^2 + \cdots + e_n^2
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Learn more: <a href="https://www.cdc.gov/places/methodology/">CDC PLACES methodology</a></p>
 </div></div></section></section><section id="application-exercise" class="level1"><h1>Application exercise</h1>
-<section id="application-exercise-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="application-exercise-1">Application exercise</h2>
+<section id="dental-visits-and-health" class="level2"><h2 class="anchored" data-anchor-id="dental-visits-and-health">Dental visits and health</h2>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-29-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-29-1.png" class="img-fluid" width="528"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><a href="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-29-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-29-2.png" class="img-fluid" width="528"></a></p>
+</div>
+</div>
+</div>
+</section><section id="application-exercise-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="application-exercise-1">Application exercise</h2>
 <div class="appex">
 <ul>
 <li><p>Go to your ae project in Positron.</p></li>

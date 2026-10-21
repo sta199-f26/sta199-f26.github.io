@@ -4727,7 +4727,7 @@
     "href": "slides/15-linear-regression-single-predictor.html",
     "title": "Linear regression with a single predictor",
     "section": "",
-    "text": "Each point represents one North Carolina county.\n\n\n\n\n\n\n\n\nWhat do you notice? What do you wonder?\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG.\n\n\n\n\n…\n\nBy the end of today, you should be able to:\n\nidentify the outcome and predictor in a regression model,\nfit a linear regression model with tidymodels,\ninterpret the slope and intercept in context,\nuse a fitted model to calculate predictions and residuals, and\nexplain what makes a line the least squares regression line."
+    "text": "Each point represents one North Carolina county.\n\n\n\n\n\n\n\n\nWhat do you notice? What do you wonder?\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG.\n\n\n\n\nProjects:\n\nPeer review tomorrow: Make as much progress as you can before your\nNew project component: AI disclosure to be added overnight, pull when you get to lab\n\n\n\n. . .\n\nHW 5 due next Wednesday at 11:59 pm\n\n. . .\n\nMy office hours this week: Friday 2-3:30 pm in Old Chem 211, come by if you\n\nhave questions on the homework\nwant to review your exam\nwant to discuss your project (and come with your teammates!)\ncan’t usually make it to my Wednesday OH and I haven’t yet had a chance to meet you\n\n\n\nBy the end of today, you should be able to:\n\nidentify the outcome and predictor in a regression model,\nfit a linear regression model with tidymodels,\ninterpret the slope and intercept in context,\nuse a fitted model to calculate predictions and residuals, and\nexplain what makes a line the least squares regression line."
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor.html#while-you-wait-participate",
@@ -4741,7 +4741,7 @@
     "href": "slides/15-linear-regression-single-predictor.html#announcements",
     "title": "Linear regression with a single predictor",
     "section": "",
-    "text": "…"
+    "text": "Projects:\n\nPeer review tomorrow: Make as much progress as you can before your\nNew project component: AI disclosure to be added overnight, pull when you get to lab\n\n\n\n. . .\n\nHW 5 due next Wednesday at 11:59 pm\n\n. . .\n\nMy office hours this week: Friday 2-3:30 pm in Old Chem 211, come by if you\n\nhave questions on the homework\nwant to review your exam\nwant to discuss your project (and come with your teammates!)\ncan’t usually make it to my Wednesday OH and I haven’t yet had a chance to meet you"
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor.html#learning-goals",
@@ -4790,7 +4790,7 @@
     "href": "slides/15-linear-regression-single-predictor.html#packages",
     "title": "Linear regression with a single predictor",
     "section": "Packages",
-    "text": "Packages\n\ntidyverse for data wrangling and visualization\nscales for better axis labels\ntidymodels for modeling with tidyverse principles\n\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(tidymodels)"
+    "text": "Packages\n\ntidyverse for data wrangling and visualization\nscales for better axis labels\ntidymodels for modeling with tidyverse principles\nmaps for county boundaries\n\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(tidymodels)\nlibrary(maps)"
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor.html#load-the-data",
@@ -4805,6 +4805,13 @@
     "title": "Linear regression with a single predictor",
     "section": "Our focus for today",
     "text": "Our focus for today\n\n\nfood_insecurity - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.\n\nmental_distress - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.\n\nThe full dataset also includes development_tier, region, and appalachian for later modeling lessons."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor.html#geographic-patterns",
+    "href": "slides/15-linear-regression-single-predictor.html#geographic-patterns",
+    "title": "Linear regression with a single predictor",
+    "section": "Geographic patterns",
+    "text": "Geographic patterns"
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor.html#modeling-north-carolina-counties",
@@ -5038,6 +5045,13 @@
     "text": "Counties are not individuals\nEach point is a county, not a person.\nAn association between two county percentages does not, by itself, establish the same relationship among individuals. This is the ecological fallacy.\nAlso remember:\n\nPLACES values are model-based small-area estimates.\nThe fitted line summarizes the 100 North Carolina counties in this dataset.\nPredictions far outside the observed food-insecurity range are extrapolations.\n\n\n\nLearn more: CDC PLACES methodology"
   },
   {
+    "objectID": "slides/15-linear-regression-single-predictor.html#dental-visits-and-health",
+    "href": "slides/15-linear-regression-single-predictor.html#dental-visits-and-health",
+    "title": "Linear regression with a single predictor",
+    "section": "Dental visits and health",
+    "text": "Dental visits and health"
+  },
+  {
     "objectID": "slides/15-linear-regression-single-predictor.html#application-exercise-1",
     "href": "slides/15-linear-regression-single-predictor.html#application-exercise-1",
     "title": "Linear regression with a single predictor",
@@ -5056,7 +5070,7 @@
     "href": "slides/15-linear-regression-single-predictor-slides.html#announcements",
     "title": "Linear regression with a single predictor",
     "section": "Announcements",
-    "text": "Announcements\n\n…"
+    "text": "Announcements\n\nProjects:\n\nPeer review tomorrow: Make as much progress as you can before your\nNew project component: AI disclosure to be added overnight, pull when you get to lab\n\n\n\n\nHW 5 due next Wednesday at 11:59 pm\n\n\n\n\nMy office hours this week: Friday 2-3:30 pm in Old Chem 211, come by if you\n\nhave questions on the homework\nwant to review your exam\nwant to discuss your project (and come with your teammates!)\ncan’t usually make it to my Wednesday OH and I haven’t yet had a chance to meet you"
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor-slides.html#learning-goals",
@@ -5105,7 +5119,7 @@
     "href": "slides/15-linear-regression-single-predictor-slides.html#packages",
     "title": "Linear regression with a single predictor",
     "section": "Packages",
-    "text": "Packages\n\ntidyverse for data wrangling and visualization\nscales for better axis labels\ntidymodels for modeling with tidyverse principles\n\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(tidymodels)"
+    "text": "Packages\n\ntidyverse for data wrangling and visualization\nscales for better axis labels\ntidymodels for modeling with tidyverse principles\nmaps for county boundaries\n\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(tidymodels)\nlibrary(maps)"
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor-slides.html#load-the-data",
@@ -5120,6 +5134,13 @@
     "title": "Linear regression with a single predictor",
     "section": "Our focus for today",
     "text": "Our focus for today\n\nfood_insecurity - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.\nmental_distress - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.\n\nThe full dataset also includes development_tier, region, and appalachian for later modeling lessons."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#geographic-patterns",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#geographic-patterns",
+    "title": "Linear regression with a single predictor",
+    "section": "Geographic patterns",
+    "text": "Geographic patterns"
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor-slides.html#modeling-north-carolina-counties",
@@ -5351,6 +5372,13 @@
     "title": "Linear regression with a single predictor",
     "section": "Counties are not individuals",
     "text": "Counties are not individuals\nEach point is a county, not a person.\nAn association between two county percentages does not, by itself, establish the same relationship among individuals. This is the ecological fallacy.\nAlso remember:\n\nPLACES values are model-based small-area estimates.\nThe fitted line summarizes the 100 North Carolina counties in this dataset.\nPredictions far outside the observed food-insecurity range are extrapolations.\n\n\n\nLearn more: CDC PLACES methodology"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#dental-visits-and-health",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#dental-visits-and-health",
+    "title": "Linear regression with a single predictor",
+    "section": "Dental visits and health",
+    "text": "Dental visits and health"
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor-slides.html#application-exercise-1",
