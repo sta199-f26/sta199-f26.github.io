@@ -6,7 +6,6 @@ categories: HW
 filters:
   - ../remove-fmt-skip.lua
 draft: true
-````
 bibliography: references.bib
 ---
 
@@ -26,7 +25,7 @@ By the end of this homework, you will:
 - prepare data for analysis by setting factor reference levels, computing grouped summaries, reshaping data, handling missing values, and creating derived variables;
 - fit and interpret simple linear regression models with quantitative and categorical predictors, including predictions, residuals, and $R^2$;
 - use residual plots to assess whether a linear model is appropriate; and
-- distinguish association from causation and evaluate the assumptions behind a natural experiment.
+- distinguish association from causation.
 
 ## Guidelines
 
@@ -52,7 +51,7 @@ library(openintro)
 
 A study conducted at the University of Denver, @Benson:1993, investigated whether babies take longer to learn to crawl in cold months, when they are often bundled in clothes that restrict their movement, than in warmer months.
 Infants born during the study year were split into twelve groups, one for each birth month.
-The data for this study are available in the `babies_crawl` dataset, which contains three variables of interest for this part of the homework:
+The data for this study are available in the `babies_crawl` dataset in the **openintro** package, which contains three variables of interest for this part of the homework:
 
 -   `month`: month of birth (1 = January, 2 = February, ..., 12 = December)
 -   `avg_crawling_age`: average age at which babies born in a given month began crawling (in weeks)
@@ -86,8 +85,8 @@ e. Calculate the correlation between `temperature_C` and `avg_crawling_age_month
 Meat consumption is measured in kg per capita per year (averaged over 2011 to 2013).
 Carbohydrate consumption is measured as carbohydrate crops (e.g., cereals, root, sugar, etc.) in kg per capita per year (averaged over 2011 and 2013).
 
-The data from this study is available in `you-2022.csv` in your data folder.
-Frpm this dataset, you will work with the following variables:
+The data from this study is available in `you-2022.csv` in your `data` folder.
+From this dataset, you will work with the following variables:
 
 -  `country`: country name
 -  `meat`: meat consumption (in kg per capita per year)
@@ -126,23 +125,27 @@ d. Calculate the R-squared value for the model and interpret it in context of th
 
 e. Plot residuals vs. the predicted values and comment on what this plot says about whether a linear model is a good fit for the data.
 
+## Question 6
+
+Comment on whether the results from the two models support causal conclusions between these three variables.
+
 # Part 3 - Modeling the Old North State
 
 For this part of the homework you will return to working with data on North Carolina counties.
 
-- Dataset 1: `nc-places.csv` -- See [Lecture 15](https://sta199-f26.github.io/slides/15-linear-regression-single-predictor.html#cdc-places) for a description of this dataset.
+- Dataset 1: `nc-places.csv` -- See [Lecture 15](https://sta199-f26.github.io/slides/15-linear-regression-single-predictor.html#cdc-places) for a description of this dataset. The full data dictionary can be found [here](https://github.com/sta199-f26/sta199-f26.github.io/blob/main/_data/nc-places/README.md#variables).
 
-- Dataset 2: `nc-counties.csv` -- See [Homework 2](hw-2.html) for a description of this dataset.
+- Dataset 2: `nc-counties.csv` -- See [Homework 2](hw-2.html) for a description of this dataset. The full data dictionary can be found [here](https://github.com/sta199-f26/sta199-f26.github.io/blob/main/_data/nc-county/README.md#variables).
 
 Both datasets are in your `data` folder.
 
-## Question 6
+## Question 7
 
 Read the two datasets and then join them together by county name to create a new data frame called `nc_counties_places`.
 Join the two datasets together by county name and create a new data frame called `nc_counties_places`.
 Report the number of rows and columns of this data frame.
 
-## Question 7
+## Question 8
 
 Choose three variables from `nc_counties_places` for the following purposes:
 
@@ -154,17 +157,17 @@ Choose three variables from `nc_counties_places` for the following purposes:
 
 Two of these variables must come from one of the datasets (`nc_places` or `nc_counties`) and the third variable must come from the other dataset.
 
-## Question 8
+## Question 9
 
-a. Fit a linear regression model predicting your outcome variable from Question 7 from Variable 1.
+a. Fit a linear regression model predicting your outcome variable from Question 8 from Variable 1.
 b. Display the tidy model summary.
 c. Interpret the slope in the context of the data.
 d. Interpret the intercept in the context of the data. Is it meaningful? Why or why not?
 e. Calculate the R-squared value for the model and interpret it in context of the data.
 
-## Question 9
+## Question 10
 
-a. Fit a linear regression model predicting your outcome variable from Question 7 from Variable 2.
+a. Fit a linear regression model predicting your outcome variable from Question 8 from Variable 2.
 b. Display the tidy model summary.
 c. Interpret the slope(s) in the context of the data.
 d. Interpret the intercept in the context of the data. Is it meaningful? Why or why not?
