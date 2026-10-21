@@ -1,29 +1,32 @@
 ---
 title: HW 5
-subtitle: To be posted 
+subtitle: When I move, you move
 description: "Due: Wed, Oct 28, 11:59 pm"
 categories: HW
 filters:
   - ../remove-fmt-skip.lua
 draft: true
+````
+bibliography: references.bib
 ---
 
 # Introduction
 
-In this homework, you will explore two very different topics: basketball prospects and public perceptions of government corruption.
-First, you will combine NBA Draft Combine measurements with draft picks to explore player characteristics and highlight players from Duke.
-Then, you will examine Gallup survey results on perceived government corruption across political groups and over time.
-
-Along the way, you will practice importing and cleaning data, identifying mismatches between datasets, joining and summarizing data, and creating and customizing visualizations with ggplot2.
+In this homework, you will investigate relationships between variables in three settings: infant crawling, diet and life expectancy, and minimum wage and employment.
+You will begin by using visualizations and correlation to study how temperature relates to the age at which babies begin crawling, including what happens when the variables are converted to different units.
+Next, you will use simple linear regression to examine how meat and carbohydrate consumption relate to life expectancy across countries.
+Finally, you will analyze data from a natural experiment on minimum wage policy by summarizing and reshaping the data, modeling changes in employment, and considering whether the results support a causal conclusion.
 
 ## Learning objectives
 
 By the end of this homework, you will:
 
-- import data from Excel sheets and clean variable names and missing values;
-- identify unmatched observations and join related datasets;
-- summarize and visualize relationships between variables while accounting for missing values; and
-- recreate and customize visualizations with ggplot2, including colors, labels, and annotations.
+- create and interpret scatterplots, density plots, and boxplots for relationships between variables;
+- calculate and interpret correlation coefficients and explain how linear unit conversions affect correlations and visualizations;
+- prepare data for analysis by setting factor reference levels, computing grouped summaries, reshaping data, handling missing values, and creating derived variables;
+- fit and interpret simple linear regression models with quantitative and categorical predictors, including predictions, residuals, and $R^2$;
+- use residual plots to assess whether a linear model is appropriate; and
+- distinguish association from causation and evaluate the assumptions behind a natural experiment.
 
 ## Guidelines
 
@@ -36,29 +39,115 @@ If not, please refer to an earlier homework assignment for details.
 
 # Packages
 
-In addition to the [**tidyverse**](https://www.tidyverse.org/packages) package, you will also need the [**readxl**](https://readxl.tidyverse.org/) and the [**janitor**](https://sfirke.github.io/janitor/) packages.
-Your analysis must use these packages.
+You will use the [**tidyverse**](https://www.tidyverse.org/packages), [**tidymodels**](https://www.tidymodels.org/), and [**openintro**](https://openintro.org/) packages for this homework, at a minimum.
 
 ```{r}
 #| message: false
 library(tidyverse)
-library(readxl)
-library(janitor)
+library(tidymodels)
+library(openintro)
 ```
 
-# Part 1 - Slam dunks
+# Part 1 - Crawling babies
 
+A study conducted at the University of Denver, @Benson:1993, investigated whether babies take longer to learn to crawl in cold months, when they are often bundled in clothes that restrict their movement, than in warmer months.
+Infants born during the study year were split into twelve groups, one for each birth month.
+The data for this study are available in the `babies_crawl` dataset, which contains three variables of interest for this part of the homework:
 
+-   `month`: month of birth (1 = January, 2 = February, ..., 12 = December)
+-   `avg_crawling_age`: average age at which babies born in a given month began crawling (in weeks)
+-   `temperature`: average outdoor temperature at 6 months of age (in degrees Fahrenheit, F)
 
-# Part 2 - Shaken trusts
+We consider the average crawling age of babies in each group against the average temperature when the babies are six months old (that's when babies often begin trying to crawl).
 
-Should the minimum wage be increased? I’m sure many of you have an opinion about this. When debating this policy issue, one thing we need to understand is how changes in the minimum wage affect employment. When the minimum wage is raised, does it create jobs? Does it put people out of work? Does it have no affect at all? An ECON 101 model of the labor market implies that minimum wage increases could put people out of work because they make it more expensive for firms to employ workers, and we tend to do less of something if it becomes more expensive (demand curves slope down). That's a theoretical argument anyway, but this is ultimately an empirical question -- one that has a long history in applied economics.
+## Question 1
+
+a. Create a visualization displaying the relationship between temperature and crawling age.
+
+b. Describe the relationship in context of the data.
+
+c. Calculate the correlation between average crawling age (in weeks) and temperature (in F).
+
+## Question 2
+
+a. Create a new variable `temperature_C` that converts the temperature from F to C using the formula $C = (F - 32) * 5/9$.
+
+b. Create a new variable `avg_crawling_age_months` that converts the average crawling age from weeks to months using the formula $months = weeks / 4.345$.
+
+c. How would you expect the answers to Question 1 and Question 2 to change after converting the variables to C and months, respectively?
+
+d. Create a new scatterplot displaying the relationship between `temperature_C` and `avg_crawling_age_months`. Does the visualization support your expectations from part c?
+
+e. Calculate the correlation between `temperature_C` and `avg_crawling_age_months`. Does the correlation support your expectations from part c?
+
+# Part 2 - Life expectancy
+
+@You:2022 studied the relationship between meat and carbohydrate consumption and life expectancy across 175 countries.
+Meat consumption is measured in kg per capita per year (averaged over 2011 to 2013).
+Carbohydrate consumption is measured as carbohydrate crops (e.g., cereals, root, sugar, etc.) in kg per capita per year (averaged over 2011 and 2013).
+
+The data from this study is available in `you-2022.csv` in your data folder.
+Frpm this dataset, you will work with the following variables:
+
+-  `country`: country name
+-  `meat`: meat consumption (in kg per capita per year)
+-  `cho_crops`: carbohydrate consumption (in kg per capita per year)
+-  `life_0`: life expectancy at birth (in years)
+
+## Question 3
+
+a. Create a scatterplot displaying the relationship between life expectancy vs. meat consumption and describe the relationship.
+
+b. Create a scatterplot displaying the relationship between life expectancy vs. carbohydrate consumption and describe the relationship.
+
+c. Before you calculate a correlation, which plot shows a stronger correlation? Explain your reasoning.
+
+d. Calculate the correlation coefficients for the relationships visualized in parts a and b. Comment on whether the correlation coefficients support your reasoning in part c.
+
+## Question 4
+
+a. Fit a linear model that predicts life expectancy from meat consumption and display the tidy model summary.
+
+b. Interpret the slope in the context of the data.
+
+c. Interpret the intercept in the context of the data. Is it meaningful? Why or why not?
+
+d. Pick a country of your choice from the dataset and use the model to predict its life expectancy based on its meat consumption and calculate the residual. Comment on whether the model over- or under-predicts life expectancy for this country.
+
+## Question 5
+
+b. Fit a linear model that predicts life expectancy from carbohydrate consumption and display the tidy model summary.
+
+b. Interpret the slope in the context of the data.
+
+c. Interpret the intercept in the context of the data. Is it meaningful? Why or why not?
+
+d. Calculate the R-squared value for the model and interpret it in context of the data.
+
+e. Plot residuals vs. the predicted values and comment on what this plot says about whether a linear model is a good fit for the data.
+
+# Part 3 - Minimum wage
+
+Should the minimum wage be increased?
+I’m sure many of you have an opinion about this.
+When debating this policy issue, one thing we need to understand is how changes in the minimum wage affect employment.
+When the minimum wage is raised, does it create jobs?
+Does it put people out of work?
+Does it have no affect at all?
+An ECON 101 model of the labor market implies that minimum wage increases could put people out of work because they make it more expensive for firms to employ workers, and we tend to do less of something if it becomes more expensive (demand curves slope down).
+That's a theoretical argument anyway, but this is ultimately an empirical question -- one that has a long history in applied economics.
 
 Indeed, the [2021 Nobel Prize in Economic Sciences](https://www.nobelprize.org/prizes/economic-sciences/2021/summary/) was shared by economist David Card, in part for a famous paper he wrote with Alan Krueger that initiated the modern empirical literature on the minimum wage:
 
 > Card, David and Alan Krueger (1994): "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania," *American Economic Review*, Vol. 84, No. 4., pp. 772-793.
 
-On April 1, 1992, New Jersey's minimum wage rose from \$4.25 to \$5.05 per hour. Pennsylvania's did not. In order to assess the impact of this change, Card and Krueger collected data from fast-food restaurants along the PA/NJ border, both `before` the policy change went into affect (February 1992) and `after` (November/December 1992). They figured that restaurants close to the border were probably indistinguishable in terms of their features, practices, clientele, work force, etc, and so if there were any noticeable differences in employment after the wage hike, they must be due to the wage hike itself and not some other confounding factor. This is what we call a **natural experiment**. The data in Card and Krueger are purely observational, but the main idea is that the arbitrary placement of otherwise similar restaurants on either side of the PA/NJ border acts *as if* a controlled, randomized experiment were performed, and so we can use these data to draw *causal* conclusions about the impact of minimum wage policy on employment. As you can imagine, a massive literature has emerged where statisticians and economists argue about when this is appropriate and how it should be done, but nevertheless, researchers nowadays love to sniff around like truffle pigs for cute natural experiments hidden in otherwise messy observational data sets.
+On April 1, 1992, New Jersey's minimum wage rose from \$4.25 to \$5.05 per hour.
+Pennsylvania's did not.
+In order to assess the impact of this change, Card and Krueger collected data from fast-food restaurants along the PA/NJ border, both `before` the policy change went into affect (February 1992) and `after` (November/December 1992).
+They figured that restaurants close to the border were probably indistinguishable in terms of their features, practices, clientele, work force, etc, and so if there were any noticeable differences in employment after the wage hike, they must be due to the wage hike itself and not some other confounding factor.
+This is what we call a **natural experiment**.
+The data in Card and Krueger are purely observational, but the main idea is that the arbitrary placement of otherwise similar restaurants on either side of the PA/NJ border acts *as if* a controlled, randomized experiment were performed, and so we can use these data to draw *causal* conclusions about the impact of minimum wage policy on employment.
+As you can imagine, a massive literature has emerged where statisticians and economists argue about when this is appropriate and how it should be done, but nevertheless, researchers nowadays love to sniff around like truffle pigs for cute natural experiments hidden in otherwise messy observational data sets.
 
 ## Data
 
@@ -83,14 +172,18 @@ The full dataset is available on David Card's [website](https://davidcard.berkel
 
 ## Background
 
-Acquire some domain knowledge! As we know, it's never a good idea to blunder into a data analysis without *some* subject-matter expertise, so here is some suggested reading:
+Acquire some domain knowledge!
+As we know, it's never a good idea to blunder into a data analysis without *some* subject-matter expertise, so here is some suggested reading:
 
 -   In the WSJ this very week: "[The 30-Year Debate Over the Minimum Wage Is Still Not Settled](https://www.wsj.com/economy/jobs/minimum-wage-jobs-cost-debate-card-krueger-63b21af2?st=kFawiR&reflink=desktopwebshare_permalink);"
--   The original Card and Krueger paper is [here](https://davidcard.berkeley.edu/papers/njmin-aer.pdf). Their bottom line was "\[w\]e find no indication that the rise in the minimum wage reduced employment," which runs counter to the usual ECON 101 story. People have been arguing about this ever since;
+-   The original Card and Krueger paper is [here](https://davidcard.berkeley.edu/papers/njmin-aer.pdf).
+    Their bottom line was "\[w\]e find no indication that the rise in the minimum wage reduced employment," which runs counter to the usual ECON 101 story.
+    People have been arguing about this ever since;
 -   [This](https://www.nber.org/papers/w28388) recent survey article attempts to summarize the state of the literature on (dis?)employment effects of the minimum wage;
 -   The award citation for Card's Nobel has useful summaries: [popular](https://www.nobelprize.org/prizes/economic-sciences/2021/popular-information/), [advanced](https://www.nobelprize.org/uploads/2021/10/advanced-economicsciencesprize2021.pdf).
 
-We are not grading this, and we'll never know if you did it or not, but you should definitely go exploring if this area interests you. Furthermore, while you may not do the reading we are suggesting here, you should definitely do a little outside reading in the domain relevant to your final project.
+We are not grading this, and we'll never know if you did it or not, but you should definitely go exploring if this area interests you.
+Furthermore, while you may not do the reading we are suggesting here, you should definitely do a little outside reading in the domain relevant to your final project.
 
 ## Question 6
 
@@ -100,9 +193,13 @@ b.  How many restaurants were sampled in each state?
 
 c.  Compute the median wage and the median employment in each state before and after the policy change.
 
-d.  Create a faceted density plot displaying `wage` according to both `state` and `time`. We want two panels stacked vertically, one for each time period (before and after the policy change). Within each panel, we want two densities, one for each state. Comment on any patterns you notice.
+d.  Create a faceted density plot displaying `wage` according to both `state` and `time`.
+    We want two panels stacked vertically, one for each time period (before and after the policy change).
+    Within each panel, we want two densities, one for each state.
+    Comment on any patterns you notice.
 
-e.  Create a faceted density plot displaying `fte` according to both `state` and `time` (similar to part d). Comment on any patterns you notice.
+e.  Create a faceted density plot displaying `fte` according to both `state` and `time` (similar to part d).
+    Comment on any patterns you notice.
 
 ## Question 7
 
@@ -118,19 +215,25 @@ d.  Add a new variable `gap` to `card_krueger_wide` which is constructed in the 
 -   `gap` equals zero for stores in New Jersey whose starting wage before the policy change was already higher than the new minimum;
 -   `gap` equals $(5.05 - \text{wage}_{\text{before}})/\text{wage}_{\text{before}}$ for all other stores in New Jersey.
 
-Card and Krueger introduced `gap` as an alternative measure of the impact of the minimum wage at each store. In their words:
+Card and Krueger introduced `gap` as an alternative measure of the impact of the minimum wage at each store.
+In their words:
 
-> $\text{GAP}_i$ is the proportional increase in wages at store $i$ necessary to meet the new minimum rate. Variation in GAP, reflects both the New Jersey-Pennsylvania contrast and differences within New Jersey based on reported starting wages in wave 1. Indeed, the value of GAP, is a strong predictor of the actual proportional wage change between waves 1 and 2 ($R^2=0.75$), and conditional on GAP, there is no difference in wage behavior between stores in New Jersey and Pennsylvania
+> $\text{GAP}_i$ is the proportional increase in wages at store $i$ necessary to meet the new minimum rate.
+> Variation in GAP, reflects both the New Jersey-Pennsylvania contrast and differences within New Jersey based on reported starting wages in wave 1.
+> Indeed, the value of GAP, is a strong predictor of the actual proportional wage change between waves 1 and 2 ($R^2=0.75$), and conditional on GAP, there is no difference in wage behavior between stores in New Jersey and Pennsylvania
 
 ## Question 8
 
 a.  Create side-by-side boxplots of `emp_diff` for each state.
 
-b.  Fit a linear model that predicts `emp_diff` from `state` and save the model object. Then, provide the tidy summary output.
+b.  Fit a linear model that predicts `emp_diff` from `state` and save the model object.
+    Then, provide the tidy summary output.
 
 c.  Write the estimated least squares regression line below using proper notation.
 
-d.  Interpret the intercept in the context of the data and the research question. Is the intercept meaningful in this context? Why or why not?
+d.  Interpret the intercept in the context of the data and the research question.
+    Is the intercept meaningful in this context?
+    Why or why not?
 
 e.  Interpret the slope in the context of the data and the research question.
 
@@ -138,17 +241,24 @@ e.  Interpret the slope in the context of the data and the research question.
 
 a.  Create a scatter plot of `gap` versus `emp_diff`.
 
-b.  Fit a linear model that predicts `emp_diff` from `gap` and save the model object. Then, provide the tidy summary output.
+b.  Fit a linear model that predicts `emp_diff` from `gap` and save the model object.
+    Then, provide the tidy summary output.
 
 c.  Write the estimated least squares regression line below using proper notation.
 
-d.  Interpret the intercept in the context of the data and the research question. Is the intercept meaningful in this context? Why or why not?
+d.  Interpret the intercept in the context of the data and the research question.
+    Is the intercept meaningful in this context?
+    Why or why not?
 
 e.  Interpret the slope in the context of the data and the research question.
 
 ## Question 10
 
-Card and Krueger tried to argue that, even though their data were observational, they had nevertheless identified a clean *natural experiment* that permitted them to ascribe a *causal* interpretation to the results of their regression analysis. Do you agree? Do you see any potential dangers with this approach? Write a paragraph or two discussing. Note that we are only grading this on a good faith completion effort, but again, if this area interests you, take the opportunity to do some of the reading under Background, and then try to write something interesting.
+Card and Krueger tried to argue that, even though their data were observational, they had nevertheless identified a clean *natural experiment* that permitted them to ascribe a *causal* interpretation to the results of their regression analysis.
+Do you agree?
+Do you see any potential dangers with this approach?
+Write a paragraph or two discussing.
+Note that we are only grading this on a good faith completion effort, but again, if this area interests you, take the opportunity to do some of the reading under Background, and then try to write something interesting.
 
 # AI use disclosure
 
