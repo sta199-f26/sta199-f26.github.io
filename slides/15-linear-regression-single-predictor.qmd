@@ -71,8 +71,9 @@ base <- ggplot(
 
 ## While you wait: Participate 📱💻 {.xsmall}
 
-:::::: columns
-:::: {.column width="70%"}
+::: columns
+
+::: {.column width="70%"}
 
 ::: wooclap
 
@@ -86,12 +87,18 @@ base
 What do you notice? What do you wonder?
 
 :::
-::::
+
+:::
 
 ::: {.column width="30%"}
-{{< include _wooclap-column.qmd >}}
+
+![](images/15/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/BSAFXJG) and use the code BSAFXJG.
+
 :::
-::::::
+
+:::
 
 ## Announcements {.smaller}
 
@@ -326,7 +333,7 @@ base +
 
 ## Predictor (explanatory variable)
 
-:::::: columns
+::: columns
 ::: {.column width="40%"}
 
 ```{r}
@@ -369,11 +376,11 @@ base +
 ```
 
 :::
-::::::
+:::
 
 ## Outcome (response variable)
 
-:::::: columns
+::: columns
 ::: {.column width="38%"}
 
 ```{r}
@@ -416,7 +423,7 @@ base +
 ```
 
 :::
-::::::
+:::
 
 ## Regression line
 
@@ -577,8 +584,8 @@ ggplot(cor_examples, aes(x = x, y = y, color = r_label)) +
 
 ## Participate 📱💻 {.xsmall}
 
-:::::: columns
-:::: {.column width="70%"}
+::: columns
+::: {.column width="70%"}
 
 ::: wooclap
 
@@ -624,12 +631,16 @@ ggplot(cor_question, aes(x = x, y = y)) +
 :::
 
 :::
-::::
+:::
 
 ::: {.column width="30%"}
-{{< include _wooclap-column.qmd >}}
+
+![](images/15/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/BSAFXJG) and use the code BSAFXJG.
+
 :::
-::::::
+:::
 
 ## Visualizing the model
 
@@ -732,32 +743,36 @@ Predicted mental-distress percentage is 15.2 plus 0.184 times the food insecurit
 
 ## Participate 📱💻 {.xsmall}
 
-:::::: columns
-:::: {.column width="70%"}
+::: columns
+::: {.column width="70%"}
 
 ::: wooclap
 
-The slope of the fitted model is 0.184. Which is the best interpretation?
+The slope of the fitted model is 0.184. Which of the following is the best interpretation?
 
 ::: wooclap-choices
-- For each one percentage-point increase in county food-insecurity prevalence, predicted mental-distress prevalence is 0.184 percentage points higher, on average.
 - Increasing food insecurity by one percentage point causes mental-distress prevalence to increase by 0.184 percentage points.
+- For each percentage-point county food-insecurity prevalence is higher, mental-distress prevaence is expected to be higher, on average, by 0.184 percentage points higher.
 - For each one percentage-point increase in mental-distress prevalence, predicted food-insecurity prevalence is 0.184 percentage points higher.
 - Every adult experiencing food insecurity has 0.184 additional mentally unhealthy days.
 :::
 
 :::
-::::
+:::
 
 ::: {.column width="30%"}
-{{< include _wooclap-column.qmd >}}
+
+![](images/15/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/BSAFXJG) and use the code BSAFXJG.
+
 :::
-::::::
+:::
 
 ## Participate 📱💻 {.xsmall}
 
-:::::: columns
-:::: {.column width="70%"}
+::: columns
+::: {.column width="70%"}
 
 ::: wooclap
 
@@ -771,12 +786,16 @@ The intercept of the fitted model is 15.2. Which is the best interpretation?
 :::
 
 :::
-::::
+:::
 
 ::: {.column width="30%"}
-{{< include _wooclap-column.qmd >}}
+
+![](images/15/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/BSAFXJG) and use the code BSAFXJG.
+
 :::
-::::::
+:::
 
 ## Is the intercept meaningful? {.smaller}
 
