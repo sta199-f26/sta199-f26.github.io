@@ -78,14 +78,7 @@ base <- ggplot(
 
 ::: wooclap
 
-Each point represents one North Carolina county.
-
-```{r}
-#| echo: false
-base
-```
-
-What do you notice? What do you wonder?
+What questions could a model help us answer about community health?
 
 :::
 
@@ -179,7 +172,7 @@ Source: [CDC, About PLACES: Local Data for Better Health](https://www.cdc.gov/pl
 
 The [CDC PLACES 2025 release](https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb) provides local health estimates for every U.S. county.
 
-For North Carolina, we will study:
+For North Carolina, we will explore:
 
 - the estimated percentage of adults who experienced **food insecurity during the previous 12 months**, and
 - the estimated percentage of adults who experienced **frequent mental distress**: at least 14 mentally unhealthy days during the previous 30 days.
@@ -192,6 +185,14 @@ Sources: [CDC PLACES release notes](https://www.cdc.gov/places/current-release-n
 
 :::
 
+## Other data sources
+
+- [NC Department of Commerce county tiers](https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers): The 40 most distressed counties are designated as Tier 1, the next 40 as Tier 2 and the 20 least distressed as Tier 3
+
+- [NC Office of State Archaeology regions](https://archaeology.ncdcr.gov/programs/education/climatechange/risks): Piedmont, Mountains, Coastal Plain
+
+- [Appalachian Regional Commission counties](https://www.arc.gov/appalachian-counties-served-by-arc/): No, Yes
+
 ## How the data were put together {.smaller}
 
 1. Start with the CDC PLACES 2025 county release.
@@ -199,12 +200,6 @@ Sources: [CDC PLACES release notes](https://www.cdc.gov/places/current-release-n
 3. Reshape to one row per county.
 4. Add 2026 development tier, geographic region, and Appalachian status.
 5. Write to a CSV file: `nc-places.csv`.
-
-::: aside
-
-Classification sources: [NC Department of Commerce county tiers](https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers), [NC Office of State Archaeology regions](https://archaeology.ncdcr.gov/programs/education/climatechange/risks), and [Appalachian Regional Commission counties](https://www.arc.gov/appalachian-counties-served-by-arc/). The two Coastal Plain categories are combined.
-
-:::
 
 ## Packages
 
@@ -234,11 +229,8 @@ nc_places <- read_csv(
 
 ## Our focus for today {.smaller}
 
-- `food_insecurity` - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.
-- `mental_distress` - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.
-
-The full dataset also includes `development_tier`, `region`, and `appalachian`
-for later modeling lessons.
+- `food_insecurity` - Food insecurity: % of adults who experienced food insecurity during the previous 12 months.
+- `mental_distress` - Frequent mental distress: % of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.
 
 ```{r}
 #| echo: false
@@ -732,9 +724,9 @@ ggplot(cor_question, aes(x = x, y = y)) +
 
 ::: wooclap-choices
 - -0.95
-- -0.53
+- -0.25
 - 0.00
-- 0.25
+- 0.50
 - 0.80
 :::
 
@@ -816,11 +808,28 @@ $$
 - $b_0$: estimated intercept
 - $b_1$: estimated slope
 
-::: {.callout-note .fragment}
+::: {.callout-note .fragment .small}
 There is **no error term** in the fitted line: $\widehat{Y}$ is the model's prediction, not an observed outcome.
 :::
 
-## Fit the model with tidymodels
+## State the model
+
+```{r}
+linear_reg()
+```
+
+
+## Fit the model
+
+```{r}
+linear_reg() |>
+  fit(
+    mental_distress ~ food_insecurity,
+    data = nc_places
+  )
+```
+
+## Fit the model, and save it
 
 ```{r}
 county_fit <- linear_reg() |>
@@ -828,22 +837,24 @@ county_fit <- linear_reg() |>
     mental_distress ~ food_insecurity,
     data = nc_places
   )
-
-county_fit
 ```
 
-## Extract the coefficients
+## Summarize the model
 
 ```{r}
 tidy(county_fit)
 ```
+
+## Write the model equation {.smaller}
+
+Using mathematical notation
 
 $$
 \widehat{\text{mental distress %}}
 = 15.2 + 0.184 \times \text{food insecurity %}
 $$
 
-::: {.callout-tip .small .fragment}
+::: {.callout-tip .fragment}
 
 ## Reading the model equation
 
