@@ -1,0 +1,995 @@
+---
+title: "Linear regression with a single predictor"
+subtitle: Lecture 15
+author: Prof. Mine Çetinkaya-Rundel
+date: 2026-10-21
+format:
+  revealjs:
+    output-file: 15-linear-regression-single-predictor-slides.html
+    footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    logo: "images/logo.png"
+    toc: false
+  html:
+    code-link: true
+filters:
+  - ../remove-fmt-skip.lua
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(tidymodels)
+library(gt)
+
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+
+percent_label <- function(...) {
+  scales::label_number(suffix = "%", ...)
+}
+
+nc_places <- read_csv(
+  "data/nc-places.csv",
+  show_col_types = FALSE
+)
+
+county_fit <- linear_reg() |>
+  fit(
+    mental_distress ~ food_insecurity,
+    data = nc_places
+  )
+
+county_aug <- augment(county_fit, new_data = nc_places)
+
+county_coefs <- tidy(county_fit)
+b_0 <- county_coefs |> filter(term == "(Intercept)") |> pull(estimate)
+b_1 <- county_coefs |> filter(term == "food_insecurity") |> pull(estimate)
+r <- cor(
+  nc_places$food_insecurity,
+  nc_places$mental_distress
+)
+
+model_color <- "#325b74"
+
+base <- ggplot(
+  nc_places,
+  aes(x = food_insecurity, y = mental_distress)
+) +
+  geom_point(alpha = 0.7) +
+  scale_x_continuous(labels = percent_label()) +
+  scale_y_continuous(labels = percent_label()) +
+  labs(
+    x = "Adults experiencing food insecurity (%)",
+    y = "Adults experiencing\nfrequent mental distress (%)"
+  )
+```
+
+# Warm-up
+
+## While you wait: Participate 📱💻 {.xsmall}
+
+:::::: columns
+:::: {.column width="70%"}
+
+::: wooclap
+
+Each point represents one North Carolina county.
+
+```{r}
+#| echo: false
+base
+```
+
+What do you notice? What do you wonder?
+
+:::
+::::
+
+::: {.column width="30%"}
+{{< include _wooclap-column.qmd >}}
+:::
+::::::
+
+## Announcements {.smaller}
+
+- ...
+
+## Learning goals
+
+By the end of today, you should be able to:
+
+- identify the outcome and predictor in a regression model,
+- fit a linear regression model with **tidymodels**,
+- interpret the slope and intercept in context,
+- use a fitted model to calculate predictions and residuals, and
+- explain what makes a line the least squares regression line.
+
+# Modeling
+
+## Two main uses
+
+- **Prediction:** Use known information to estimate an unknown outcome.
+
+- **Description / explanation:** Summarize how an outcome tends to vary with a predictor.
+
+<br>
+
+::: question
+
+What questions could a model help us answer about community health?
+
+:::
+
+## CDC PLACES {.smaller}
+
+**PLACES: Local Data for Better Health** is a free CDC resource providing
+consistently defined health and health-related estimates for communities across
+the US.
+
+- Covers counties, places, census tracts, and ZIP Code Tabulation Areas.
+- Includes measures of health outcomes, prevention, disability, health behaviors, health-related social needs, and community factors.
+- Uses small area estimation with data from the Behavioral Risk Factor Surveillance System (BRFSS), the Census, and the American Community Survey (ACS).
+- Helps communities identify local health concerns, disparities, and overlapping health and social needs.
+
+::: aside
+
+Source: [CDC, About PLACES: Local Data for Better Health](https://www.cdc.gov/places/about/index.html)
+
+:::
+
+## CDC PLACES
+
+::: callout-important
+These are **model-based local estimates**, not direct survey estimates for each county.
+:::
+
+::: aside
+
+Source: [CDC, About PLACES: Local Data for Better Health](https://www.cdc.gov/places/about/index.html)
+
+:::
+
+## County food insecurity and mental health {.smaller}
+
+The [CDC PLACES 2025 release](https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb) provides local health estimates for every U.S. county.
+
+For North Carolina, we will study:
+
+- the estimated percentage of adults who experienced **food insecurity during the previous 12 months**, and
+- the estimated percentage of adults who experienced **frequent mental distress**: at least 14 mentally unhealthy days during the previous 30 days.
+
+Both are age-adjusted, model-based estimates derived from 2023 survey and population data.
+
+::: aside
+
+Sources: [CDC PLACES release notes](https://www.cdc.gov/places/current-release-notes/), [measure definitions](https://www.cdc.gov/places/measure-definitions/)
+
+:::
+
+## How the data were put together
+
+1. Start with the CDC PLACES 2025 county release.
+2. Filter to North Carolina and age-adjusted prevalence estimates.
+3. Reshape to one row per county.
+4. Write to a CSV file: `nc-places.csv`.
+
+## Packages
+
+- **tidyverse** for data wrangling and visualization
+
+- **tidymodels** for modeling with tidyverse principles
+
+```{r}
+#| message: false
+library(tidyverse)
+library(tidymodels)
+```
+
+## Load the data {.smaller}
+
+```{r}
+nc_places <- read_csv(
+  "data/nc-places.csv"
+)
+```
+
+## Our focus for today {.smaller}
+
+- `food_insecurity` - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.
+- `mental_distress` - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.
+
+```{r}
+#| echo: false
+nc_places |>
+  select(county, food_insecurity, mental_distress) |>
+  gt() |>
+  opt_interactive() |>
+  fmt_number(columns = where(is.numeric), decimals = 1) |>
+  tab_options(table.font.size = px(20))
+```
+
+# Modeling
+
+## Modeling North Carolina counties {.smaller}
+
+::: question
+
+- **Describe:** How is county-level food insecurity related to frequent mental distress?
+
+- **Predict:** For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?
+
+:::
+
+```{r}
+#| echo: false
+base
+```
+
+## Modelling North Carolina counties {.smaller}
+
+::: question
+
+**Describe:** How is county-level food insecurity related to frequent mental distress?
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+base +
+  geom_smooth(method = "lm", color = model_color)
+```
+
+## Modelling North Carolina counties {.smaller}
+
+::: question
+
+**Predict:** For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+prediction_x <- 20
+prediction_y <- b_0 + b_1 * prediction_x
+
+base +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "darkgray",
+    linetype = "dashed"
+  ) +
+  annotate(
+    "segment",
+    x = prediction_x,
+    xend = prediction_x,
+    y = -Inf,
+    yend = prediction_y,
+    color = "#9E2C6A"
+  ) +
+  annotate(
+    "segment",
+    x = -Inf,
+    xend = prediction_x,
+    y = prediction_y,
+    yend = prediction_y,
+    color = "#9E2C6A"
+  )
+```
+
+## Modelling {.smaller}
+
+::: {.columns}
+
+::: {.column width="35%"}
+
+- Use models to describe relationships between variables and to make predictions.
+
+- For now, we will focus on **linear** models—but there are many other types of models.
+
+:::
+
+::: {.column width="65%"}
+
+```{r}
+#| echo: false
+#| message: false
+base +
+  geom_smooth(
+    se = FALSE,
+    color = "darkgray"
+  )
+```
+
+:::
+
+:::
+
+- A model is a useful simplification, not a complete description of reality.
+
+## Modelling vocabulary
+
+- Predictor (explanatory variable)
+- Outcome (response variable)
+- Regression line
+  - Slope
+  - Intercept
+- Correlation
+
+## Predictor (explanatory variable)
+
+:::::: columns
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+nc_places |>
+  select(county, food_insecurity, mental_distress) |>
+  slice_head(n = 6) |>
+  mutate(across(where(is.numeric), as.character)) |>
+  bind_rows(
+    tibble(
+      county = "...",
+      food_insecurity = "...",
+      mental_distress = "..."
+    )
+  ) |>
+  gt() |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#9E2C6A"),
+      cell_text(color = "white")
+    ),
+    locations = cells_body(columns = food_insecurity)
+  ) |>
+  tab_options(table.font.size = px(18))
+```
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+base +
+  theme(
+    axis.title.x = element_text(
+      color = "#9E2C6A",
+      face = "bold"
+    )
+  )
+```
+
+:::
+::::::
+
+## Outcome (response variable)
+
+:::::: columns
+::: {.column width="38%"}
+
+```{r}
+#| echo: false
+nc_places |>
+  select(county, food_insecurity, mental_distress) |>
+  slice_head(n = 6) |>
+  mutate(across(where(is.numeric), as.character)) |>
+  bind_rows(
+    tibble(
+      county = "...",
+      food_insecurity = "...",
+      mental_distress = "..."
+    )
+  ) |>
+  gt() |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#9E2C6A"),
+      cell_text(color = "white")
+    ),
+    locations = cells_body(columns = mental_distress)
+  ) |>
+  tab_options(table.font.size = px(18))
+```
+
+:::
+
+::: {.column width="62%"}
+
+```{r}
+#| echo: false
+base +
+  theme(
+    axis.title.y = element_text(
+      color = "#9E2C6A",
+      face = "bold"
+    )
+  )
+```
+
+:::
+::::::
+
+## Regression line
+
+```{r}
+#| echo: false
+#| message: false
+base +
+  geom_smooth(
+    method = "lm",
+    color = "#9E2C6A",
+    linewidth = 1.5,
+    se = FALSE
+  )
+```
+
+## Regression line: slope
+
+```{r}
+#| echo: false
+#| message: false
+x_start <- 18
+y_start <- b_0 + b_1 * x_start
+
+base +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  annotate(
+    "segment",
+    x = x_start,
+    xend = x_start + 1,
+    y = y_start,
+    yend = y_start,
+    linetype = "dashed",
+    color = "#9E2C6A"
+  ) +
+  annotate(
+    "segment",
+    x = x_start + 1,
+    xend = x_start + 1,
+    y = y_start,
+    yend = y_start + b_1,
+    color = "#9E2C6A"
+  ) +
+  annotate(
+    "label",
+    x = x_start + 1.15,
+    y = y_start + b_1 / 2,
+    label = paste0("slope = ", round(b_1, 2)),
+    color = "#9E2C6A",
+    hjust = 0
+  )
+```
+
+## Regression line: intercept
+
+```{r}
+#| echo: false
+#| message: false
+ggplot(
+  nc_places,
+  aes(x = food_insecurity, y = mental_distress)
+) +
+  geom_point(alpha = 0.7) +
+  geom_abline(
+    intercept = b_0,
+    slope = b_1,
+    color = "black"
+  ) +
+  annotate(
+    "point",
+    shape = 1,
+    size = 4,
+    stroke = 2,
+    x = 0,
+    y = b_0,
+    color = "#9E2C6A"
+  ) +
+  annotate(
+    "label",
+    label = paste0("intercept = ", round(b_0, 1)),
+    x = 2,
+    y = b_0,
+    color = "#9E2C6A",
+    hjust = 0
+  ) +
+  coord_cartesian(xlim = c(0, 33), ylim = c(14, 22)) +
+  scale_x_continuous(labels = percent_label()) +
+  scale_y_continuous(labels = percent_label()) +
+  labs(
+    x = "Adults experiencing food insecurity (%)",
+    y = "Adults experiencing\nfrequent mental distress (%)"
+  )
+```
+
+## Correlation
+
+```{r}
+#| echo: false
+base +
+  stat_ellipse(
+    geom = "polygon",
+    color = "#9E2C6A",
+    fill = "#9E2C6A30"
+  ) +
+  annotate(
+    "text",
+    x = 27,
+    y = 20.5,
+    label = paste("r =", round(r, 2)),
+    color = "#9E2C6A",
+    size = 5,
+    hjust = 0
+  )
+```
+
+## Correlation
+
+- Measures the **direction** and **strength** of a linear relationship.
+- Ranges between -1 and 1.
+- Has the same sign as the slope.
+- Has no units.
+
+```{r}
+#| fig-asp: 0.2
+#| echo: false
+set.seed(12345)
+cor_examples <- tibble(
+  x = 1:20,
+  y1 = 1:20 * 0.75,
+  y2 = 1:20 * 0.75 + rnorm(20, 0, 1),
+  y3 = 1:20 * 0.75 + rnorm(20, 0, 8),
+  y4 = 1:20 + rnorm(20, 0, 200),
+  y5 = -1 * y3,
+  y6 = -1 * y2,
+  y7 = -1 * y1
+) |>
+  pivot_longer(
+    cols = starts_with("y"),
+    names_to = "series",
+    values_to = "y"
+  ) |>
+  group_by(series) |>
+  mutate(r_label = paste("r =", round(cor(x, y), 2))) |>
+  ungroup() |>
+  arrange(series, x) |>
+  mutate(r_label = fct_inorder(r_label))
+
+ggplot(cor_examples, aes(x = x, y = y, color = r_label)) +
+  geom_point(show.legend = FALSE) +
+  facet_wrap(~r_label, ncol = 7, scales = "free") +
+  theme_bw(base_size = 16) +
+  labs(x = NULL, y = NULL) +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  ) +
+  scale_color_viridis_d(end = 0.9)
+```
+
+## Participate 📱💻 {.xsmall}
+
+:::::: columns
+:::: {.column width="70%"}
+
+::: wooclap
+
+Which of the following is the best guess for the correlation between the two variables below?
+
+::: {.columns}
+
+::: {.column}
+
+```{r}
+#| echo: false
+#| fig-width: 3
+#| fig-asp: 1
+set.seed(54321)
+cor_question <- tibble(
+  x = 1:20,
+  y = 1:20 + rnorm(20, 0, 200)
+)
+
+ggplot(cor_question, aes(x = x, y = y)) +
+  geom_point() +
+  labs(x = NULL, y = NULL) +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  )
+```
+
+:::
+
+::: {.column}
+
+::: wooclap-choices
+- -0.95
+- -0.53
+- 0.00
+- 0.25
+- 0.80
+:::
+
+:::
+
+:::
+
+:::
+::::
+
+::: {.column width="30%"}
+{{< include _wooclap-column.qmd >}}
+:::
+::::::
+
+## Visualizing the model
+
+```{r}
+#| message: false
+#| code-fold: true
+ggplot(
+  nc_places,
+  aes(x = food_insecurity, y = mental_distress)
+) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_x_continuous(labels = percent_label()) +
+  scale_y_continuous(labels = percent_label()) +
+  labs(
+    x = "Adults experiencing food insecurity (%)",
+    y = "Adults experiencing\nfrequent mental distress (%)"
+  )
+```
+
+# Linear regression with a single predictor
+
+## A linear regression model
+
+A linear regression model describes the relationship between a quantitative outcome, $Y$, and a quantitative predictor, $X$:
+
+$$
+Y = \beta_0 + \beta_1 X + \epsilon
+$$
+
+::: incremental
+- $\beta_0$: population intercept
+- $\beta_1$: population slope
+- $\epsilon$: unexplained deviation from the line
+:::
+
+## The fitted regression line
+
+We use data to estimate the population relationship:
+
+$$
+\widehat{Y} = b_0 + b_1 X
+$$
+
+- $\widehat{Y}$: predicted value of the outcome
+- $b_0$: estimated intercept
+- $b_1$: estimated slope
+
+## Fit the model with tidymodels
+
+```{r}
+county_fit <- linear_reg() |>
+  fit(
+    mental_distress ~ food_insecurity,
+    data = nc_places
+  )
+
+county_fit
+```
+
+## Extract the coefficients
+
+```{r}
+tidy(county_fit)
+```
+
+$$
+\widehat{\text{mental distress %}}
+= 15.2 + 0.184 \times \text{food insecurity %}
+$$
+
+::: {.callout-tip .small .fragment}
+
+## Reading the model equation
+
+Predicted mental-distress percentage is 15.2 plus 0.184 times the food insecurity percentage.
+
+:::
+
+# Slope and intercept
+
+## Participate 📱💻 {.xsmall}
+
+:::::: columns
+:::: {.column width="70%"}
+
+::: wooclap
+
+The slope of the fitted model is 0.184. Which is the best interpretation?
+
+::: wooclap-choices
+- For each one percentage-point increase in county food-insecurity prevalence, predicted mental-distress prevalence is 0.184 percentage points higher, on average.
+- Increasing food insecurity by one percentage point causes mental-distress prevalence to increase by 0.184 percentage points.
+- For each one percentage-point increase in mental-distress prevalence, predicted food-insecurity prevalence is 0.184 percentage points higher.
+- Every adult experiencing food insecurity has 0.184 additional mentally unhealthy days.
+:::
+
+:::
+::::
+
+::: {.column width="30%"}
+{{< include _wooclap-column.qmd >}}
+:::
+::::::
+
+## Participate 📱💻 {.xsmall}
+
+:::::: columns
+:::: {.column width="70%"}
+
+::: wooclap
+
+The intercept of the fitted model is 15.2. Which is the best interpretation?
+
+::: wooclap-choices
+- For a county with 0% food-insecurity prevalence, the model predicts 15.2% mental-distress prevalence.
+- For a county with 0% mental-distress prevalence, the model predicts 15.2% food-insecurity prevalence.
+- A one percentage-point increase in food-insecurity prevalence predicts a 15.2 percentage-point increase in mental distress.
+- The average North Carolina county has 15.2% mental-distress prevalence.
+:::
+
+:::
+::::
+
+::: {.column width="30%"}
+{{< include _wooclap-column.qmd >}}
+:::
+::::::
+
+## Is the intercept meaningful? {.smaller}
+
+The intercept is meaningful in context if:
+
+- the predictor can feasibly equal or be near zero, and
+- zero is reasonably close to the observed predictor values.
+
+. . .
+
+Here, observed food-insecurity prevalence ranges from `{r} min(nc_places$food_insecurity)`% to `{r} max(nc_places$food_insecurity)`%.
+
+
+::: {.callout-important .fragment}
+## Mathematically vs. practical meaningfullness
+
+The intercept is a mathematical part of the line, but it is **not meaningful in context**.
+:::
+
+# Predictions and residuals
+
+## Make a prediction
+
+For a county where 20% of adults experience food insecurity:
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}}
+&= 15.2 + 0.184 \times 20 \\
+&= 18.9
+\end{aligned}
+$$
+
+We predict that approximately **18.9%** of adults experience frequent mental distress.
+
+## Make a prediction with R {.smaller}
+
+- Step 1: Make a new data frame with the predictor value(s) of interest with `tibble()`:
+
+```{r}
+new_county <- tibble(food_insecurity = 20)
+new_county
+```
+
+::: fragment
+
+- Step 2: Make a prediction for the new dataset using the model with `predict()`:
+
+```{r}
+predict(county_fit, new_data = new_county)
+```
+
+:::
+
+
+## Residuals
+
+A **residual** is the difference between an observed and predicted outcome:
+
+$$
+\text{residual} = \text{observed} - \text{predicted}
+= y - \widehat{y}
+$$
+
+## Calculating residuals with R {.smaller}
+
+Use `augment()` to add predictions and residuals to the original dataset.
+
+```{r}
+county_aug <- augment(county_fit, new_data = nc_places)
+
+county_aug
+```
+
+## Durham residual
+
+```{r}
+county_aug |>
+  select(county, mental_distress, .pred, .resid) |>
+  filter(county == "Durham")
+```
+
+## Visualizing a residual
+
+```{r}
+#| echo: false
+#| message: false
+durham <- county_aug |>
+  filter(county == "Durham")
+
+base +
+  geom_smooth(
+    method = "lm",
+    color = model_color,
+    se = FALSE,
+    linewidth = 1.5
+  ) +
+  geom_segment(
+    data = durham,
+    aes(
+      xend = food_insecurity,
+      yend = .pred
+    ),
+    color = "#9E2C6A",
+    linewidth = 1.5
+  ) +
+  geom_point(
+    data = durham,
+    color = "#9E2C6A",
+    size = 3
+  ) +
+  annotate(
+    "text",
+    x = durham$food_insecurity + 0.2,
+    y = mean(c(durham$mental_distress, durham$.pred)),
+    label = "Durham residual",
+    color = "#9E2C6A",
+    hjust = 0
+  )
+```
+
+## Choosing values for $b_1$ and $b_0$
+
+::: question
+
+Which line fits the points best—and what do we mean by “best”?
+
+:::
+
+```{r}
+#| echo: false
+base +
+  geom_abline(
+    intercept = b_0,
+    slope = b_1,
+    color = model_color,
+    linewidth = 1.5
+  ) +
+  geom_abline(intercept = 14, slope = 0.25, color = "gray") +
+  geom_abline(intercept = 17.5, slope = 0.08, color = "gray") +
+  geom_abline(intercept = 12.5, slope = 0.32, color = "gray")
+```
+
+## Least squares line {.smaller}
+
+- The residual for the $i^{th}$ observation is
+
+$$
+e_i = y_i - \widehat{y}_i
+$$
+
+- Square every residual and add them:
+
+$$
+e_1^2 + e_2^2 + \cdots + e_n^2
+$$
+
+- The **least squares regression line** is the line that minimizes this sum.
+
+# Interpreting responsibly
+
+## Association is not causation {.smaller}
+
+This model tells us that counties with greater estimated food-insecurity prevalence also tend to have greater estimated mental-distress prevalence.
+
+It does **not** establish that food insecurity causes mental distress.
+
+::: fragment
+
+Possible explanations include:
+
+::: incremental
+
+- food insecurity contributing to chronic stress,
+- mental distress affecting employment or income stability,
+- shared social or economic conditions, and
+- features of how the estimates were constructed.
+
+:::
+
+:::
+
+## Counties are not individuals {.smaller}
+
+Each point is a **county**, not a person.
+
+An association between two county percentages does not, by itself, establish the same relationship among individuals. This is the **ecological fallacy**.
+
+Also remember:
+
+- PLACES values are model-based small-area estimates.
+- The fitted line summarizes the 100 North Carolina counties in this dataset.
+- Predictions far outside the observed food-insecurity range are extrapolations.
+
+::: aside
+
+Learn more: [CDC PLACES methodology](https://www.cdc.gov/places/methodology/)
+
+:::
+
+# Application exercise
+
+## Application exercise {.smaller}
+
+::: appex
+
+- Go to your application exercise project in RStudio.
+- Pull to get today's application exercise.
+- Fit, interpret, and use a linear regression model with one quantitative predictor.
+- Render, commit, and push your work.
+
+:::
+
+## Recap {.smaller}
+
+::: task
+
+For a county where 25% of adults experience food insecurity:
+
+1. Calculate the predicted mental-distress prevalence.
+2. Suppose the observed prevalence is 20.5%. Calculate the residual.
+3. Interpret the sign of that residual.
+
+:::
+
+::: fragment
+
+$$
+\widehat{y} = 15.2 + 0.184(25) = 19.77
+$$
+
+$$
+e = 20.5 - 19.77 = 0.73
+$$
+
+The positive residual means the observed prevalence is about 0.73 percentage points **higher** than the model predicts.
+
+:::
