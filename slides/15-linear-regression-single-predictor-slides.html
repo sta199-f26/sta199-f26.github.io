@@ -230,17 +230,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="wooclap">
-<p>Each point represents one North Carolina county.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>What do you notice? What do you wonder?</p>
+<p>What questions could a model help us answer about community health?</p>
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
@@ -339,7 +329,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <section id="county-food-insecurity-and-mental-health" class="slide level2 smaller">
 <h2>County food insecurity and mental health</h2>
 <p>The <a href="https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb">CDC PLACES 2025 release</a> provides local health estimates for every U.S. county.</p>
-<p>For North Carolina, we will study:</p>
+<p>For North Carolina, we will explore:</p>
 <ul>
 <li>the estimated percentage of adults who experienced <strong>food insecurity during the previous 12 months</strong>, and</li>
 <li>the estimated percentage of adults who experienced <strong>frequent mental distress</strong>: at least 14 mentally unhealthy days during the previous 30 days.</li>
@@ -349,6 +339,14 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <aside><div>
 <p>Sources: <a href="https://www.cdc.gov/places/current-release-notes/">CDC PLACES release notes</a>, <a href="https://www.cdc.gov/places/measure-definitions/">measure definitions</a></p>
 </div></aside></section>
+<section id="other-data-sources" class="slide level2">
+<h2>Other data sources</h2>
+<ul>
+<li><p><a href="https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers">NC Department of Commerce county tiers</a>: The 40 most distressed counties are designated as Tier 1, the next 40 as Tier 2 and the 20 least distressed as Tier 3</p></li>
+<li><p><a href="https://archaeology.ncdcr.gov/programs/education/climatechange/risks">NC Office of State Archaeology regions</a>: Piedmont, Mountains, Coastal Plain</p></li>
+<li><p><a href="https://www.arc.gov/appalachian-counties-served-by-arc/">Appalachian Regional Commission counties</a>: No, Yes</p></li>
+</ul>
+</section>
 <section id="how-the-data-were-put-together" class="slide level2 smaller">
 <h2>How the data were put together</h2>
 <ol type="1">
@@ -358,10 +356,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <li>Add 2026 development tier, geographic region, and Appalachian status.</li>
 <li>Write to a CSV file: <code>nc-places.csv</code>.</li>
 </ol>
-
-<aside><div>
-<p>Classification sources: <a href="https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers">NC Department of Commerce county tiers</a>, <a href="https://archaeology.ncdcr.gov/programs/education/climatechange/risks">NC Office of State Archaeology regions</a>, and <a href="https://www.arc.gov/appalachian-counties-served-by-arc/">Appalachian Regional Commission counties</a>. The two Coastal Plain categories are combined.</p>
-</div></aside></section>
+</section>
 <section id="packages" class="slide level2">
 <h2>Packages</h2>
 <ul>
@@ -398,29 +393,28 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <section id="our-focus-for-today" class="slide level2 smaller">
 <h2>Our focus for today</h2>
 <ul>
-<li><code>food_insecurity</code> - Food insecurity: Percentage of adults who experienced food insecurity during the previous 12 months.</li>
-<li><code>mental_distress</code> - Frequent mental distress: Percentage of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.</li>
+<li><code>food_insecurity</code> - Food insecurity: % of adults who experienced food insecurity during the previous 12 months.</li>
+<li><code>mental_distress</code> - Frequent mental distress: % of adults who experienced at least 14 mentally unhealthy days during the previous 30 days.</li>
 </ul>
-<p>The full dataset also includes <code>development_tier</code>, <code>region</code>, and <code>appalachian</code> for later modeling lessons.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="vqwzyabalv" class=".gt_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vqwzyabalv table {
+<div id="acwkvyzqak" class=".gt_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#acwkvyzqak table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vqwzyabalv thead, #vqwzyabalv tbody, #vqwzyabalv tfoot, #vqwzyabalv tr, #vqwzyabalv td, #vqwzyabalv th {
+#acwkvyzqak thead, #acwkvyzqak tbody, #acwkvyzqak tfoot, #acwkvyzqak tr, #acwkvyzqak td, #acwkvyzqak th {
   border-style: none;
 }
 
-#vqwzyabalv p {
+#acwkvyzqak p {
   margin: 0;
   padding: 0;
 }
 
-#vqwzyabalv .gt_table {
+#acwkvyzqak .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -446,12 +440,12 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-left-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_caption {
+#acwkvyzqak .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vqwzyabalv .gt_title {
+#acwkvyzqak .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -463,7 +457,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-width: 0;
 }
 
-#vqwzyabalv .gt_subtitle {
+#acwkvyzqak .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -475,7 +469,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-width: 0;
 }
 
-#vqwzyabalv .gt_heading {
+#acwkvyzqak .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -487,13 +481,13 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_bottom_border {
+#acwkvyzqak .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_col_headings {
+#acwkvyzqak .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -508,7 +502,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_col_heading {
+#acwkvyzqak .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -528,7 +522,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#vqwzyabalv .gt_column_spanner_outer {
+#acwkvyzqak .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -540,15 +534,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 4px;
 }
 
-#vqwzyabalv .gt_column_spanner_outer:first-child {
+#acwkvyzqak .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vqwzyabalv .gt_column_spanner_outer:last-child {
+#acwkvyzqak .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vqwzyabalv .gt_column_spanner {
+#acwkvyzqak .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -560,11 +554,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   width: 100%;
 }
 
-#vqwzyabalv .gt_spanner_row {
+#acwkvyzqak .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vqwzyabalv .gt_group_heading {
+#acwkvyzqak .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -590,7 +584,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   text-align: left;
 }
 
-#vqwzyabalv .gt_empty_group_heading {
+#acwkvyzqak .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -605,15 +599,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: middle;
 }
 
-#vqwzyabalv .gt_from_md > :first-child {
+#acwkvyzqak .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vqwzyabalv .gt_from_md > :last-child {
+#acwkvyzqak .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vqwzyabalv .gt_row {
+#acwkvyzqak .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -632,7 +626,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#vqwzyabalv .gt_stub {
+#acwkvyzqak .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -645,7 +639,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#vqwzyabalv .gt_stub_row_group {
+#acwkvyzqak .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -659,15 +653,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: top;
 }
 
-#vqwzyabalv .gt_row_group_first td {
+#acwkvyzqak .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vqwzyabalv .gt_row_group_first th {
+#acwkvyzqak .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vqwzyabalv .gt_summary_row {
+#acwkvyzqak .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -677,16 +671,16 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#vqwzyabalv .gt_first_summary_row {
+#acwkvyzqak .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_first_summary_row.thick {
+#acwkvyzqak .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vqwzyabalv .gt_last_summary_row {
+#acwkvyzqak .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -696,7 +690,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_grand_summary_row {
+#acwkvyzqak .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -706,7 +700,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#vqwzyabalv .gt_first_grand_summary_row {
+#acwkvyzqak .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -716,7 +710,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_last_grand_summary_row_top {
+#acwkvyzqak .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -726,11 +720,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_striped {
+#acwkvyzqak .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vqwzyabalv .gt_table_body {
+#acwkvyzqak .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -739,7 +733,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_footnotes {
+#acwkvyzqak .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -753,7 +747,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_footnote {
+#acwkvyzqak .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -762,7 +756,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#vqwzyabalv .gt_sourcenotes {
+#acwkvyzqak .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -776,7 +770,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#vqwzyabalv .gt_sourcenote {
+#acwkvyzqak .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -784,77 +778,77 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#vqwzyabalv .gt_left {
+#acwkvyzqak .gt_left {
   text-align: left;
 }
 
-#vqwzyabalv .gt_center {
+#acwkvyzqak .gt_center {
   text-align: center;
 }
 
-#vqwzyabalv .gt_right {
+#acwkvyzqak .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vqwzyabalv .gt_font_normal {
+#acwkvyzqak .gt_font_normal {
   font-weight: normal;
 }
 
-#vqwzyabalv .gt_font_bold {
+#acwkvyzqak .gt_font_bold {
   font-weight: bold;
 }
 
-#vqwzyabalv .gt_font_italic {
+#acwkvyzqak .gt_font_italic {
   font-style: italic;
 }
 
-#vqwzyabalv .gt_super {
+#acwkvyzqak .gt_super {
   font-size: 65%;
 }
 
-#vqwzyabalv .gt_footnote_marks {
+#acwkvyzqak .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vqwzyabalv .gt_asterisk {
+#acwkvyzqak .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vqwzyabalv .gt_indent_1 {
+#acwkvyzqak .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vqwzyabalv .gt_indent_2 {
+#acwkvyzqak .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vqwzyabalv .gt_indent_3 {
+#acwkvyzqak .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vqwzyabalv .gt_indent_4 {
+#acwkvyzqak .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vqwzyabalv .gt_indent_5 {
+#acwkvyzqak .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vqwzyabalv .katex-display {
+#acwkvyzqak .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vqwzyabalv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#acwkvyzqak div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<div id="vqwzyabalv" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="vqwzyabalv">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"county":["Alamance","Alexander","Alleghany","Anson","Ashe","Avery","Beaufort","Bertie","Bladen","Brunswick","Buncombe","Burke","Cabarrus","Caldwell","Camden","Carteret","Caswell","Catawba","Chatham","Cherokee","Chowan","Clay","Cleveland","Columbus","Craven","Cumberland","Currituck","Dare","Davidson","Davie","Duplin","Durham","Edgecombe","Forsyth","Franklin","Gaston","Gates","Graham","Granville","Greene","Guilford","Halifax","Harnett","Haywood","Henderson","Hertford","Hoke","Hyde","Iredell","Jackson","Johnston","Jones","Lee","Lenoir","Lincoln","Macon","Madison","Martin","McDowell","Mecklenburg","Mitchell","Montgomery","Moore","Nash","New Hanover","Northampton","Onslow","Orange","Pamlico","Pasquotank","Pender","Perquimans","Person","Pitt","Polk","Randolph","Richmond","Robeson","Rockingham","Rowan","Rutherford","Sampson","Scotland","Stanly","Stokes","Surry","Swain","Transylvania","Tyrrell","Union","Vance","Wake","Warren","Washington","Watauga","Wayne","Wilkes","Wilson","Yadkin","Yancey"],"food_insecurity":[17.2,15.8,18.5,28.2,14.6,15.1,19.3,28.7,22.5,11.9,12.1,17.4,13.7,16.6,11,11.4,20.3,15.2,12.7,14.9,21.4,12.8,18.5,22.7,15.9,20.5,10.7,9.6,16.5,12.8,22.8,14.3,27.8,16.7,17,16.7,19.1,14.6,18.9,26.7,17.5,30.9,17.4,12.8,12.8,28.7,22.4,23.3,12.6,15.7,15.4,22.3,19.1,27.1,12.6,15.1,12.3,23.9,16,14.5,12.8,20.5,11.4,21.2,11.8,26.7,15.8,10.4,15.6,17.3,13.4,16.9,18.9,18.9,12.9,17.9,26,31.2,19,17.4,18.1,23.3,29.4,16.2,14.5,18,21.9,11.4,23.6,12.3,26.3,10.4,28.3,28.9,14.1,21.7,17.5,26.2,16.4,14.9],"mental_distress":[18,19.1,19.3,20.2,18.9,18.4,18.9,19.6,19.5,17.2,16.6,19,16.6,19.3,17.2,17.2,19.1,17.9,15.9,19.1,19.3,18.2,19.1,19.8,18,18.2,17.1,16.3,18.9,17.6,18.8,15.2,19.9,17.1,17.9,18.3,19.5,19.2,18.1,19.3,17.3,20.4,18.3,18.1,17.2,19.9,18.9,19,16.9,19,17.4,19.9,18.5,20.3,17.6,18.6,18,20.1,19.1,15.6,18.4,18.9,16.6,18.6,17.1,19.8,17.8,15.3,18,18,17.8,18.8,19,18,17.8,19.1,20.3,20.9,19.7,18.6,19.7,19.3,20.7,18.8,19,19.4,20.7,17.4,19.2,16.4,19.5,14.9,19.8,20.7,18.3,18.7,19.5,19.4,19,19]},"columns":[{"id":"county","name":"county","type":"character","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","html":true,"align":"left"},{"id":"food_insecurity","name":"food_insecurity","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["17.2","15.8","18.5","28.2","14.6","15.1","19.3","28.7","22.5","11.9","12.1","17.4","13.7","16.6","11.0","11.4","20.3","15.2","12.7","14.9","21.4","12.8","18.5","22.7","15.9","20.5","10.7","9.6","16.5","12.8","22.8","14.3","27.8","16.7","17.0","16.7","19.1","14.6","18.9","26.7","17.5","30.9","17.4","12.8","12.8","28.7","22.4","23.3","12.6","15.7","15.4","22.3","19.1","27.1","12.6","15.1","12.3","23.9","16.0","14.5","12.8","20.5","11.4","21.2","11.8","26.7","15.8","10.4","15.6","17.3","13.4","16.9","18.9","18.9","12.9","17.9","26.0","31.2","19.0","17.4","18.1","23.3","29.4","16.2","14.5","18.0","21.9","11.4","23.6","12.3","26.3","10.4","28.3","28.9","14.1","21.7","17.5","26.2","16.4","14.9"],"html":true,"align":"right"},{"id":"mental_distress","name":"mental_distress","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["18.0","19.1","19.3","20.2","18.9","18.4","18.9","19.6","19.5","17.2","16.6","19.0","16.6","19.3","17.2","17.2","19.1","17.9","15.9","19.1","19.3","18.2","19.1","19.8","18.0","18.2","17.1","16.3","18.9","17.6","18.8","15.2","19.9","17.1","17.9","18.3","19.5","19.2","18.1","19.3","17.3","20.4","18.3","18.1","17.2","19.9","18.9","19.0","16.9","19.0","17.4","19.9","18.5","20.3","17.6","18.6","18.0","20.1","19.1","15.6","18.4","18.9","16.6","18.6","17.1","19.8","17.8","15.3","18.0","18.0","17.8","18.8","19.0","18.0","17.8","19.1","20.3","20.9","19.7","18.6","19.7","19.3","20.7","18.8","19.0","19.4","20.7","17.4","19.2","16.4","19.5","14.9","19.8","20.7","18.3","18.7","19.5","19.4","19.0","19.0"],"html":true,"align":"right"}],"defaultPageSize":10,"showPageSizeOptions":false,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPagination":true,"showPageInfo":true,"minRows":1,"height":"auto","theme":{"color":"#333333","backgroundColor":"#FFFFFF","stripedColor":"rgba(128,128,128,0.05)","style":{"font-family":"system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif","fontSize":"20px"},"tableStyle":{"borderTopStyle":"solid","borderTopWidth":"2px","borderTopColor":"#D3D3D3"},"headerStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"groupHeaderStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"cellStyle":{"fontWeight":"normal"}},"elementId":"vqwzyabalv","dataKey":"71d0444451344449297fea69bd940396"},"children":[]},"class":"reactR_markup"},"evals":["tag.attribs.columns.0.style","tag.attribs.columns.1.style","tag.attribs.columns.2.style"],"jsHooks":[]}</script>
+<div id="acwkvyzqak" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="acwkvyzqak">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"county":["Alamance","Alexander","Alleghany","Anson","Ashe","Avery","Beaufort","Bertie","Bladen","Brunswick","Buncombe","Burke","Cabarrus","Caldwell","Camden","Carteret","Caswell","Catawba","Chatham","Cherokee","Chowan","Clay","Cleveland","Columbus","Craven","Cumberland","Currituck","Dare","Davidson","Davie","Duplin","Durham","Edgecombe","Forsyth","Franklin","Gaston","Gates","Graham","Granville","Greene","Guilford","Halifax","Harnett","Haywood","Henderson","Hertford","Hoke","Hyde","Iredell","Jackson","Johnston","Jones","Lee","Lenoir","Lincoln","Macon","Madison","Martin","McDowell","Mecklenburg","Mitchell","Montgomery","Moore","Nash","New Hanover","Northampton","Onslow","Orange","Pamlico","Pasquotank","Pender","Perquimans","Person","Pitt","Polk","Randolph","Richmond","Robeson","Rockingham","Rowan","Rutherford","Sampson","Scotland","Stanly","Stokes","Surry","Swain","Transylvania","Tyrrell","Union","Vance","Wake","Warren","Washington","Watauga","Wayne","Wilkes","Wilson","Yadkin","Yancey"],"food_insecurity":[17.2,15.8,18.5,28.2,14.6,15.1,19.3,28.7,22.5,11.9,12.1,17.4,13.7,16.6,11,11.4,20.3,15.2,12.7,14.9,21.4,12.8,18.5,22.7,15.9,20.5,10.7,9.6,16.5,12.8,22.8,14.3,27.8,16.7,17,16.7,19.1,14.6,18.9,26.7,17.5,30.9,17.4,12.8,12.8,28.7,22.4,23.3,12.6,15.7,15.4,22.3,19.1,27.1,12.6,15.1,12.3,23.9,16,14.5,12.8,20.5,11.4,21.2,11.8,26.7,15.8,10.4,15.6,17.3,13.4,16.9,18.9,18.9,12.9,17.9,26,31.2,19,17.4,18.1,23.3,29.4,16.2,14.5,18,21.9,11.4,23.6,12.3,26.3,10.4,28.3,28.9,14.1,21.7,17.5,26.2,16.4,14.9],"mental_distress":[18,19.1,19.3,20.2,18.9,18.4,18.9,19.6,19.5,17.2,16.6,19,16.6,19.3,17.2,17.2,19.1,17.9,15.9,19.1,19.3,18.2,19.1,19.8,18,18.2,17.1,16.3,18.9,17.6,18.8,15.2,19.9,17.1,17.9,18.3,19.5,19.2,18.1,19.3,17.3,20.4,18.3,18.1,17.2,19.9,18.9,19,16.9,19,17.4,19.9,18.5,20.3,17.6,18.6,18,20.1,19.1,15.6,18.4,18.9,16.6,18.6,17.1,19.8,17.8,15.3,18,18,17.8,18.8,19,18,17.8,19.1,20.3,20.9,19.7,18.6,19.7,19.3,20.7,18.8,19,19.4,20.7,17.4,19.2,16.4,19.5,14.9,19.8,20.7,18.3,18.7,19.5,19.4,19,19]},"columns":[{"id":"county","name":"county","type":"character","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","html":true,"align":"left"},{"id":"food_insecurity","name":"food_insecurity","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["17.2","15.8","18.5","28.2","14.6","15.1","19.3","28.7","22.5","11.9","12.1","17.4","13.7","16.6","11.0","11.4","20.3","15.2","12.7","14.9","21.4","12.8","18.5","22.7","15.9","20.5","10.7","9.6","16.5","12.8","22.8","14.3","27.8","16.7","17.0","16.7","19.1","14.6","18.9","26.7","17.5","30.9","17.4","12.8","12.8","28.7","22.4","23.3","12.6","15.7","15.4","22.3","19.1","27.1","12.6","15.1","12.3","23.9","16.0","14.5","12.8","20.5","11.4","21.2","11.8","26.7","15.8","10.4","15.6","17.3","13.4","16.9","18.9","18.9","12.9","17.9","26.0","31.2","19.0","17.4","18.1","23.3","29.4","16.2","14.5","18.0","21.9","11.4","23.6","12.3","26.3","10.4","28.3","28.9","14.1","21.7","17.5","26.2","16.4","14.9"],"html":true,"align":"right"},{"id":"mental_distress","name":"mental_distress","type":"numeric","na":"NA","minWidth":125,"style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["18.0","19.1","19.3","20.2","18.9","18.4","18.9","19.6","19.5","17.2","16.6","19.0","16.6","19.3","17.2","17.2","19.1","17.9","15.9","19.1","19.3","18.2","19.1","19.8","18.0","18.2","17.1","16.3","18.9","17.6","18.8","15.2","19.9","17.1","17.9","18.3","19.5","19.2","18.1","19.3","17.3","20.4","18.3","18.1","17.2","19.9","18.9","19.0","16.9","19.0","17.4","19.9","18.5","20.3","17.6","18.6","18.0","20.1","19.1","15.6","18.4","18.9","16.6","18.6","17.1","19.8","17.8","15.3","18.0","18.0","17.8","18.8","19.0","18.0","17.8","19.1","20.3","20.9","19.7","18.6","19.7","19.3","20.7","18.8","19.0","19.4","20.7","17.4","19.2","16.4","19.5","14.9","19.8","20.7","18.3","18.7","19.5","19.4","19.0","19.0"],"html":true,"align":"right"}],"defaultPageSize":10,"showPageSizeOptions":false,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPagination":true,"showPageInfo":true,"minRows":1,"height":"auto","theme":{"color":"#333333","backgroundColor":"#FFFFFF","stripedColor":"rgba(128,128,128,0.05)","style":{"font-family":"system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif","fontSize":"20px"},"tableStyle":{"borderTopStyle":"solid","borderTopWidth":"2px","borderTopColor":"#D3D3D3"},"headerStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"groupHeaderStyle":{"fontWeight":"normal","backgroundColor":"transparent","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"},"cellStyle":{"fontWeight":"normal"}},"elementId":"acwkvyzqak","dataKey":"71d0444451344449297fea69bd940396"},"children":[]},"class":"reactR_markup"},"evals":["tag.attribs.columns.0.style","tag.attribs.columns.1.style","tag.attribs.columns.2.style"],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -864,10 +858,10 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-1.png" width="528"></p>
+<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-4-1.png" width="528"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-2.png" width="528"></p>
+<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-4-2.png" width="528"></p>
 </div>
 </div>
 </div>
@@ -886,21 +880,21 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 </ul>
 </div>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section id="modelling-north-carolina-counties" class="slide level2 smaller">
 <h2>Modelling North Carolina counties</h2>
 <div class="question">
 <p><strong>Describe:</strong> How is county-level food insecurity related to frequent mental distress?</p>
 </div>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
 <section id="modelling-north-carolina-counties-1" class="slide level2 smaller">
 <h2>Modelling North Carolina counties</h2>
 <div class="question">
 <p><strong>Predict:</strong> For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?</p>
 </div>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
 <section id="modelling" class="slide level2 smaller">
 <h2>Modelling</h2>
 <div class="columns">
@@ -914,7 +908,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -943,23 +937,23 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="column" style="width:40%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="zeywrvyzuh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zeywrvyzuh table {
+<div id="pgiwljemrv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pgiwljemrv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zeywrvyzuh thead, #zeywrvyzuh tbody, #zeywrvyzuh tfoot, #zeywrvyzuh tr, #zeywrvyzuh td, #zeywrvyzuh th {
+#pgiwljemrv thead, #pgiwljemrv tbody, #pgiwljemrv tfoot, #pgiwljemrv tr, #pgiwljemrv td, #pgiwljemrv th {
   border-style: none;
 }
 
-#zeywrvyzuh p {
+#pgiwljemrv p {
   margin: 0;
   padding: 0;
 }
 
-#zeywrvyzuh .gt_table {
+#pgiwljemrv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -985,12 +979,12 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-left-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_caption {
+#pgiwljemrv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zeywrvyzuh .gt_title {
+#pgiwljemrv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1002,7 +996,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-width: 0;
 }
 
-#zeywrvyzuh .gt_subtitle {
+#pgiwljemrv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1014,7 +1008,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-width: 0;
 }
 
-#zeywrvyzuh .gt_heading {
+#pgiwljemrv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1026,13 +1020,13 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_bottom_border {
+#pgiwljemrv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_col_headings {
+#pgiwljemrv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1047,7 +1041,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_col_heading {
+#pgiwljemrv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1067,7 +1061,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#zeywrvyzuh .gt_column_spanner_outer {
+#pgiwljemrv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1079,15 +1073,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 4px;
 }
 
-#zeywrvyzuh .gt_column_spanner_outer:first-child {
+#pgiwljemrv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zeywrvyzuh .gt_column_spanner_outer:last-child {
+#pgiwljemrv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zeywrvyzuh .gt_column_spanner {
+#pgiwljemrv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1099,11 +1093,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   width: 100%;
 }
 
-#zeywrvyzuh .gt_spanner_row {
+#pgiwljemrv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zeywrvyzuh .gt_group_heading {
+#pgiwljemrv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1129,7 +1123,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   text-align: left;
 }
 
-#zeywrvyzuh .gt_empty_group_heading {
+#pgiwljemrv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1144,15 +1138,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: middle;
 }
 
-#zeywrvyzuh .gt_from_md > :first-child {
+#pgiwljemrv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zeywrvyzuh .gt_from_md > :last-child {
+#pgiwljemrv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zeywrvyzuh .gt_row {
+#pgiwljemrv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1171,7 +1165,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#zeywrvyzuh .gt_stub {
+#pgiwljemrv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1184,7 +1178,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#zeywrvyzuh .gt_stub_row_group {
+#pgiwljemrv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1198,15 +1192,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: top;
 }
 
-#zeywrvyzuh .gt_row_group_first td {
+#pgiwljemrv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zeywrvyzuh .gt_row_group_first th {
+#pgiwljemrv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zeywrvyzuh .gt_summary_row {
+#pgiwljemrv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1216,16 +1210,16 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#zeywrvyzuh .gt_first_summary_row {
+#pgiwljemrv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_first_summary_row.thick {
+#pgiwljemrv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zeywrvyzuh .gt_last_summary_row {
+#pgiwljemrv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1235,7 +1229,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_grand_summary_row {
+#pgiwljemrv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1245,7 +1239,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#zeywrvyzuh .gt_first_grand_summary_row {
+#pgiwljemrv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1255,7 +1249,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_last_grand_summary_row_top {
+#pgiwljemrv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1265,11 +1259,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_striped {
+#pgiwljemrv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zeywrvyzuh .gt_table_body {
+#pgiwljemrv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1278,7 +1272,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_footnotes {
+#pgiwljemrv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1292,7 +1286,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_footnote {
+#pgiwljemrv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1301,7 +1295,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#zeywrvyzuh .gt_sourcenotes {
+#pgiwljemrv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1315,7 +1309,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#zeywrvyzuh .gt_sourcenote {
+#pgiwljemrv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1323,72 +1317,72 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#zeywrvyzuh .gt_left {
+#pgiwljemrv .gt_left {
   text-align: left;
 }
 
-#zeywrvyzuh .gt_center {
+#pgiwljemrv .gt_center {
   text-align: center;
 }
 
-#zeywrvyzuh .gt_right {
+#pgiwljemrv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zeywrvyzuh .gt_font_normal {
+#pgiwljemrv .gt_font_normal {
   font-weight: normal;
 }
 
-#zeywrvyzuh .gt_font_bold {
+#pgiwljemrv .gt_font_bold {
   font-weight: bold;
 }
 
-#zeywrvyzuh .gt_font_italic {
+#pgiwljemrv .gt_font_italic {
   font-style: italic;
 }
 
-#zeywrvyzuh .gt_super {
+#pgiwljemrv .gt_super {
   font-size: 65%;
 }
 
-#zeywrvyzuh .gt_footnote_marks {
+#pgiwljemrv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zeywrvyzuh .gt_asterisk {
+#pgiwljemrv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zeywrvyzuh .gt_indent_1 {
+#pgiwljemrv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zeywrvyzuh .gt_indent_2 {
+#pgiwljemrv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zeywrvyzuh .gt_indent_3 {
+#pgiwljemrv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zeywrvyzuh .gt_indent_4 {
+#pgiwljemrv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zeywrvyzuh .gt_indent_5 {
+#pgiwljemrv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zeywrvyzuh .katex-display {
+#pgiwljemrv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zeywrvyzuh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pgiwljemrv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1448,7 +1442,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1461,23 +1455,23 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="column" style="width:38%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="wosnlvffmu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wosnlvffmu table {
+<div id="asafoelgea" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#asafoelgea table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wosnlvffmu thead, #wosnlvffmu tbody, #wosnlvffmu tfoot, #wosnlvffmu tr, #wosnlvffmu td, #wosnlvffmu th {
+#asafoelgea thead, #asafoelgea tbody, #asafoelgea tfoot, #asafoelgea tr, #asafoelgea td, #asafoelgea th {
   border-style: none;
 }
 
-#wosnlvffmu p {
+#asafoelgea p {
   margin: 0;
   padding: 0;
 }
 
-#wosnlvffmu .gt_table {
+#asafoelgea .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1503,12 +1497,12 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-left-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_caption {
+#asafoelgea .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wosnlvffmu .gt_title {
+#asafoelgea .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1520,7 +1514,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-width: 0;
 }
 
-#wosnlvffmu .gt_subtitle {
+#asafoelgea .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1532,7 +1526,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-width: 0;
 }
 
-#wosnlvffmu .gt_heading {
+#asafoelgea .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1544,13 +1538,13 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_bottom_border {
+#asafoelgea .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_col_headings {
+#asafoelgea .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1565,7 +1559,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_col_heading {
+#asafoelgea .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1585,7 +1579,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#wosnlvffmu .gt_column_spanner_outer {
+#asafoelgea .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1597,15 +1591,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 4px;
 }
 
-#wosnlvffmu .gt_column_spanner_outer:first-child {
+#asafoelgea .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wosnlvffmu .gt_column_spanner_outer:last-child {
+#asafoelgea .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wosnlvffmu .gt_column_spanner {
+#asafoelgea .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1617,11 +1611,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   width: 100%;
 }
 
-#wosnlvffmu .gt_spanner_row {
+#asafoelgea .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wosnlvffmu .gt_group_heading {
+#asafoelgea .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1647,7 +1641,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   text-align: left;
 }
 
-#wosnlvffmu .gt_empty_group_heading {
+#asafoelgea .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1662,15 +1656,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: middle;
 }
 
-#wosnlvffmu .gt_from_md > :first-child {
+#asafoelgea .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wosnlvffmu .gt_from_md > :last-child {
+#asafoelgea .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wosnlvffmu .gt_row {
+#asafoelgea .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1689,7 +1683,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   overflow-x: hidden;
 }
 
-#wosnlvffmu .gt_stub {
+#asafoelgea .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1702,7 +1696,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#wosnlvffmu .gt_stub_row_group {
+#asafoelgea .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1716,15 +1710,15 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   vertical-align: top;
 }
 
-#wosnlvffmu .gt_row_group_first td {
+#asafoelgea .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wosnlvffmu .gt_row_group_first th {
+#asafoelgea .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wosnlvffmu .gt_summary_row {
+#asafoelgea .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1734,16 +1728,16 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#wosnlvffmu .gt_first_summary_row {
+#asafoelgea .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_first_summary_row.thick {
+#asafoelgea .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wosnlvffmu .gt_last_summary_row {
+#asafoelgea .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1753,7 +1747,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_grand_summary_row {
+#asafoelgea .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1763,7 +1757,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#wosnlvffmu .gt_first_grand_summary_row {
+#asafoelgea .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1773,7 +1767,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-top-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_last_grand_summary_row_top {
+#asafoelgea .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1783,11 +1777,11 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_striped {
+#asafoelgea .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wosnlvffmu .gt_table_body {
+#asafoelgea .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1796,7 +1790,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-bottom-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_footnotes {
+#asafoelgea .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1810,7 +1804,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_footnote {
+#asafoelgea .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1819,7 +1813,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#wosnlvffmu .gt_sourcenotes {
+#asafoelgea .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1833,7 +1827,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   border-right-color: #D3D3D3;
 }
 
-#wosnlvffmu .gt_sourcenote {
+#asafoelgea .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1841,72 +1835,72 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
   padding-right: 5px;
 }
 
-#wosnlvffmu .gt_left {
+#asafoelgea .gt_left {
   text-align: left;
 }
 
-#wosnlvffmu .gt_center {
+#asafoelgea .gt_center {
   text-align: center;
 }
 
-#wosnlvffmu .gt_right {
+#asafoelgea .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wosnlvffmu .gt_font_normal {
+#asafoelgea .gt_font_normal {
   font-weight: normal;
 }
 
-#wosnlvffmu .gt_font_bold {
+#asafoelgea .gt_font_bold {
   font-weight: bold;
 }
 
-#wosnlvffmu .gt_font_italic {
+#asafoelgea .gt_font_italic {
   font-style: italic;
 }
 
-#wosnlvffmu .gt_super {
+#asafoelgea .gt_super {
   font-size: 65%;
 }
 
-#wosnlvffmu .gt_footnote_marks {
+#asafoelgea .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wosnlvffmu .gt_asterisk {
+#asafoelgea .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wosnlvffmu .gt_indent_1 {
+#asafoelgea .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wosnlvffmu .gt_indent_2 {
+#asafoelgea .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wosnlvffmu .gt_indent_3 {
+#asafoelgea .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wosnlvffmu .gt_indent_4 {
+#asafoelgea .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wosnlvffmu .gt_indent_5 {
+#asafoelgea .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wosnlvffmu .katex-display {
+#asafoelgea .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wosnlvffmu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#asafoelgea div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1966,7 +1960,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1976,19 +1970,19 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <section id="regression-line" class="slide level2">
 <h2>Regression line</h2>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="regression-line-slope" class="slide level2">
 <h2>Regression line: slope</h2>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="regression-line-intercept" class="slide level2">
 <h2>Regression line: intercept</h2>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="correlation" class="slide level2">
 <h2>Correlation</h2>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="correlation-1" class="slide level2">
 <h2>Correlation</h2>
 <ul>
@@ -1998,7 +1992,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <li>Has no units.</li>
 </ul>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
 <section id="participate" class="slide level2 xsmall">
 <h2>Participate 📱💻</h2>
 <div class="columns">
@@ -2011,7 +2005,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-19-1.png" width="288"></p>
+<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-18-1.png" width="288"></p>
 </figure>
 </div>
 </div>
@@ -2020,9 +2014,9 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 <div class="wooclap-choices">
 <ul>
 <li>-0.95</li>
-<li>-0.53</li>
+<li>-0.25</li>
 <li>0.00</li>
-<li>0.25</li>
+<li>0.50</li>
 <li>0.80</li>
 </ul>
 </div>
@@ -2057,7 +2051,7 @@ dbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...
 </details>
 
 </div>
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="linear-regression-with-a-single-predictor" class="title-slide slide level1 center">
 <h1>Linear regression with a single predictor</h1>
@@ -2101,7 +2095,7 @@ Y = \beta_0 + \beta_1 X + \epsilon
 <li><span class="math inline">\(b_0\)</span>: estimated intercept</li>
 <li><span class="math inline">\(b_1\)</span>: estimated slope</li>
 </ul>
-<div class="fragment">
+<div class="fragment small">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -2117,16 +2111,25 @@ Y = \beta_0 + \beta_1 X + \epsilon
 </div>
 </div>
 </section>
-<section id="fit-the-model-with-tidymodels" class="slide level2">
-<h2>Fit the model with tidymodels</h2>
+<section id="state-the-model" class="slide level2">
+<h2>State the model</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>county_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">fit</span>(</span>
-<span id="cb5-3"><a></a>    mental_distress <span class="sc">~</span> food_insecurity,</span>
-<span id="cb5-4"><a></a>    <span class="at">data =</span> nc_places</span>
-<span id="cb5-5"><a></a>  )</span>
-<span id="cb5-6"><a></a></span>
-<span id="cb5-7"><a></a>county_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">linear_reg</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear Regression Model Specification (regression)
+
+Computational engine: lm </code></pre>
+</div>
+</div>
+</section>
+<section id="fit-the-model" class="slide level2">
+<h2>Fit the model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">fit</span>(</span>
+<span id="cb7-3"><a></a>    mental_distress <span class="sc">~</span> food_insecurity,</span>
+<span id="cb7-4"><a></a>    <span class="at">data =</span> nc_places</span>
+<span id="cb7-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>parsnip model object
 
@@ -2140,10 +2143,20 @@ Coefficients:
 </div>
 </div>
 </section>
-<section id="extract-the-coefficients" class="slide level2">
-<h2>Extract the coefficients</h2>
+<section id="fit-the-model-and-save-it" class="slide level2">
+<h2>Fit the model, and save it</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">tidy</span>(county_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>county_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">fit</span>(</span>
+<span id="cb9-3"><a></a>    mental_distress <span class="sc">~</span> food_insecurity,</span>
+<span id="cb9-4"><a></a>    <span class="at">data =</span> nc_places</span>
+<span id="cb9-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summarize-the-model" class="slide level2">
+<h2>Summarize the model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">tidy</span>(county_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term            estimate std.error statistic  p.value
@@ -2152,11 +2165,15 @@ Coefficients:
 2 food_insecurity    0.184    0.0147      12.5 5.24e-22</code></pre>
 </div>
 </div>
+</section>
+<section id="write-the-model-equation" class="slide level2 smaller">
+<h2>Write the model equation</h2>
+<p>Using mathematical notation</p>
 <p><span class="math display">\[
 \widehat{\text{mental distress %}}
 = 15.2 + 0.184 \times \text{food insecurity %}
 \]</span></p>
-<div class="small fragment">
+<div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -2274,8 +2291,8 @@ Coefficients:
 <li>Step 1: Make a new data frame with the predictor value(s) of interest with <code>tibble()</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>new_county <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">food_insecurity =</span> <span class="dv">20</span>)</span>
-<span id="cb9-2"><a></a>new_county</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>new_county <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">food_insecurity =</span> <span class="dv">20</span>)</span>
+<span id="cb12-2"><a></a>new_county</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   food_insecurity
@@ -2288,7 +2305,7 @@ Coefficients:
 <li>Step 2: Make a prediction for the new dataset using the model with <code>predict()</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">predict</span>(county_fit, <span class="at">new_data =</span> new_county)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">predict</span>(county_fit, <span class="at">new_data =</span> new_county)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   .pred
@@ -2310,9 +2327,9 @@ Coefficients:
 <h2>Calculating residuals with R</h2>
 <p>Use <code>augment()</code> to add predictions and residuals to the original dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>county_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(county_fit, <span class="at">new_data =</span> nc_places)</span>
-<span id="cb13-2"><a></a></span>
-<span id="cb13-3"><a></a>county_aug</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>county_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(county_fit, <span class="at">new_data =</span> nc_places)</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>county_aug</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 100 × 48
    .pred .resid county    county_fips development_tier region        appalachian
@@ -2340,9 +2357,9 @@ Coefficients:
 <section id="durham-residual" class="slide level2">
 <h2>Durham residual</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>county_aug <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a></a>  <span class="fu">select</span>(county, mental_distress, .pred, .resid) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Durham"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>county_aug <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">select</span>(county, mental_distress, .pred, .resid) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Durham"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
   county mental_distress .pred .resid
@@ -2354,14 +2371,14 @@ Coefficients:
 <section id="visualizing-a-residual" class="slide level2">
 <h2>Visualizing a residual</h2>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
 <section id="choosing-values-for-b_1-and-b_0" class="slide level2">
 <h2>Choosing values for <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_0\)</span></h2>
 <div class="question">
 <p>Which line fits the points best—and what do we mean by “best”?</p>
 </div>
 
-<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
+<img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
 <section id="least-squares-line" class="slide level2 smaller">
 <h2>Least squares line</h2>
 <ul>
@@ -2433,10 +2450,10 @@ e_1^2 + e_2^2 + \cdots + e_n^2
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-29-1.png" width="528"></p>
+<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-30-1.png" width="528"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-29-2.png" width="528"></p>
+<p><img data-src="15-linear-regression-single-predictor_files/figure-revealjs/unnamed-chunk-30-2.png" width="528"></p>
 </div>
 </div>
 </div>
