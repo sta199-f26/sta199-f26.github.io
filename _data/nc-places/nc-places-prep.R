@@ -71,3 +71,8 @@ write_csv(
   nc_places,
   here::here("slides", "data", "nc-places.csv")
 )
+
+write_csv(
+  nc_places,
+  here::here("ae", "data", "nc-places.csv")
+)

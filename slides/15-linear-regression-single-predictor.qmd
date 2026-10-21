@@ -180,11 +180,14 @@ Sources: [CDC PLACES release notes](https://www.cdc.gov/places/current-release-n
 
 - **tidyverse** for data wrangling and visualization
 
+- **scales** for better axis labels
+
 - **tidymodels** for modeling with tidyverse principles
 
 ```{r}
 #| message: false
 library(tidyverse)
+library(scales)
 library(tidymodels)
 ```
 
@@ -998,36 +1001,11 @@ Learn more: [CDC PLACES methodology](https://www.cdc.gov/places/methodology/)
 ## Application exercise {.smaller}
 
 ::: appex
+-   Go to your ae project in Positron.
 
-- Go to your application exercise project in RStudio.
-- Pull to get today's application exercise.
-- Fit, interpret, and use a linear regression model with one quantitative predictor.
-- Render, commit, and push your work.
+-   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your source control pane.
 
-:::
+-   If you haven't yet done so, pull to get today's application exercise file: `ae-09-nc-places-model.qmd`.
 
-## Recap {.smaller}
-
-::: task
-
-For a county where 25% of adults experience food insecurity:
-
-1. Calculate the predicted mental-distress prevalence.
-2. Suppose the observed prevalence is 20.5%. Calculate the residual.
-3. Interpret the sign of that residual.
-
-:::
-
-::: fragment
-
-$$
-\widehat{y} = 15.2 + 0.184(25) = 19.77
-$$
-
-$$
-e = 20.5 - 19.77 = 0.73
-$$
-
-The positive residual means the observed prevalence is about 0.73 percentage points **higher** than the model predicts.
-
+-   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
 :::

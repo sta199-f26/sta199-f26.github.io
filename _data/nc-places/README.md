@@ -18,7 +18,7 @@ Run `nc-places-prep.R` from the project root. The script:
 1. downloads North Carolina county records from the 2025 release;
 2. retains age-adjusted prevalence estimates for every available measure;
 3. reshapes the records to one row per county; and
-4. writes `nc-places.csv` here and to `slides/data/`.
+4. writes `nc-places.csv` here, to `slides/data/`, and to `ae/data/`.
 
 The resulting file has 100 rows (one per North Carolina county), three county
 identifier columns, and all 40 age-adjusted measure columns in the current
