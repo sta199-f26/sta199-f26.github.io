@@ -40,9 +40,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-e02b5ae353ca98bbdbd673ae67544635.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-86c04e4efba2d720f0a04544845aa057.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ddf2300b9ea6143e10801c03c556c108.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c4c413027288de36e119cc1200158b21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ddf2300b9ea6143e10801c03c556c108.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -526,6 +526,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
   <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
   </ul></li>
+  <li><a href="#overall" id="toc-overall" class="nav-link" data-scroll-target="#overall">Overall</a>
+  <ul class="collapse">
+  <li><a href="#rubric" id="toc-rubric" class="nav-link" data-scroll-target="#rubric">Rubric</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/hw/rubric-for-codex/hw-5-rubric.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -561,49 +565,257 @@ ul.task-list li input[type="checkbox"] {
 <h1>Part 1 - Crawling babies</h1>
 <section id="question-1" class="level2">
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Part (a) - Code creates a scatterplot using <code>geom_point()</code>.</p></li>
+<li><p>Part (a) - Code maps temperature to the x-axis and average crawling age to the y-axis.</p></li>
+<li><p>Part (a) - Plot has informative and human-readable axis labels.</p></li>
+<li><p>Part (a) - Plot has an informative and human-readable title.</p></li>
+<li><p>Part (b) - Narrative correctly describes the direction, strength, and form of the relationship in context.</p></li>
+<li><p>Part (b) - Narrative correctly identifies the unusual observation in context.</p></li>
+<li><p>Part (c) - Code correctly calculates and displays the correlation between <code>temperature</code> and <code>avg_crawling_age</code>.</p></li>
+<li><p>Code style and readability: line breaks after each <code>|&gt;</code> and <code>+</code>, appropriate indentation, spaces around <code>=</code> signs, and spaces after commas.</p>
+<ul>
+<li>Note: Indentation with two spaces, four spaces, or tabs is acceptable.</li>
+</ul></li>
+<li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
+</ol>
 </section>
 <section id="question-2" class="level2">
 <h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Part (a) - Code correctly creates <code>temperature_C</code> using <code>(temperature - 32) * 5/9</code> and saves it in the data frame.</p></li>
+<li><p>Part (b) - Code correctly creates <code>avg_crawling_age_months</code> using <code>avg_crawling_age / 4.345</code> and saves it in the data frame.</p></li>
+<li><p>Part (c) - Narrative correctly describes how the scatterplot would change after converting units.</p></li>
+<li><p>Part (c) - Narrative correctly describes how the correlation would change after converting units and provides an appropriate explanation.</p></li>
+<li><p>Part (d) - Code creates a scatterplot using <code>geom_point()</code>.</p></li>
+<li><p>Part (d) - Code maps <code>temperature_C</code> to the x-axis and <code>avg_crawling_age_months</code> to the y-axis.</p></li>
+<li><p>Part (d) - Plot has informative and human-readable axis labels.</p></li>
+<li><p>Part (d) - Plot has an informative and human-readable title.</p></li>
+<li><p>Part (d) - Narrative compares the new scatterplot with the expectation in part (c) and provides a correct explanation.</p></li>
+<li><p>Part (e) - Code correctly calculates and displays the correlation between the converted variables.</p></li>
+<li><p>Part (e) - Narrative correctly compares the calculated correlation with the expectation in part (c).</p></li>
+<li><p>Code style and readability: line breaks after each <code>|&gt;</code> and <code>+</code>, appropriate indentation, spaces around <code>=</code> signs, and spaces after commas.</p>
+<ul>
+<li>Note: Indentation with two spaces, four spaces, or tabs is acceptable.</li>
+</ul></li>
+<li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
+</ol>
 </section>
 </section>
 <section id="part-2---life-expectancy" class="level1">
 <h1>Part 2 - Life expectancy</h1>
 <section id="question-3" class="level2">
 <h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Part (a) - Code creates a scatterplot using <code>geom_point()</code>.</p></li>
+<li><p>Part (a) - Code maps meat consumption to the x-axis and life expectancy to the y-axis.</p></li>
+<li><p>Part (a) - Plot has informative and human-readable axis labels.</p></li>
+<li><p>Part (a) - Plot has an informative and human-readable title.</p></li>
+<li><p>Part (a) - Narrative correctly describes the direction, strength, and form of the relationship in context.</p></li>
+<li><p>Part (b) - Code creates a scatterplot using <code>geom_point()</code>.</p></li>
+<li><p>Part (b) - Code maps carbohydrate consumption to the x-axis and life expectancy to the y-axis.</p></li>
+<li><p>Part (b) - Plot has informative and human-readable axis labels.</p></li>
+<li><p>Part (b) - Plot has an informative and human-readable title.</p></li>
+<li><p>Part (b) - Narrative correctly describes the relationship in context.</p></li>
+<li><p>Part (c) - Narrative correctly identifies which plot appears to show the stronger correlation and provides an appropriate explanation.</p></li>
+<li><p>Part (d) - Code correctly calculates and displays both correlations, handling missing observations appropriately.</p></li>
+<li><p>Part (d) - Narrative compares the correlations’ magnitudes and correctly explains whether they support the expectation from part (c).</p></li>
+<li><p>Code style and readability: line breaks after each <code>|&gt;</code> and <code>+</code>, appropriate indentation, spaces around <code>=</code> signs, and spaces after commas.</p>
+<ul>
+<li>Note: Indentation with two spaces, four spaces, or tabs is acceptable.</li>
+</ul></li>
+<li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
+</ol>
+<p>Grading note: Four countries are missing meat or carbohydrate consumption, so ggplot2 warns that 4 rows were removed. Do not penalize this warning.</p>
 </section>
 <section id="question-4" class="level2">
 <h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Part (a) - Code fits a linear regression with <code>life_0</code> as the response and <code>meat</code> as the predictor using the <code>you</code> data.</p></li>
+<li><p>Part (a) - Linear regression uses tidymodels functions, e.g., <code>linear_reg()</code> and <code>fit()</code>.</p></li>
+<li><p>Part (a) - Code displays the model coefficients using <code>tidy()</code>.</p></li>
+<li><p>Part (b) - Narrative provides correct interpretation of the slope in context of the data.</p>
+<ul>
+<li>Includes “each additional kg per capita per year” of meat consumption or an equivalent, consistently rescaled increment.</li>
+<li>Includes “on average” or similar language.</li>
+<li>Includes the correct value with units.</li>
+<li>All else correct.</li>
+</ul></li>
+<li><p>Part (c) - Narrative provides correct interpretation of the intercept in context of the data.</p>
+<ul>
+<li>Includes 0 for the predictor value.</li>
+<li>Includes “on average” or similar language.</li>
+<li>Includes the correct value with units.</li>
+<li>All else correct.</li>
+</ul></li>
+<li><p>Part (c) - Narrative states that the intercept is meaningful and provides correct justification.</p></li>
+<li><p>Part (d) - Response identifies a country in the data and its meat consumption and observed life expectancy.</p></li>
+<li><p>Part (d) - Code uses <code>augment()</code> to obtain the prediction for the chosen country.</p></li>
+<li><p>Part (d) - Predicted life expectancy is correct for the chosen country and fitted model.</p></li>
+<li><p>Part (d) - Residual is correctly calculated as observed minus predicted life expectancy, in years.</p></li>
+<li><p>Part (d) - Narrative correctly states whether the model over- or under-predicts for the chosen country.</p></li>
+<li><p>Code style and readability: line breaks after each <code>|&gt;</code> and <code>+</code>, appropriate indentation, spaces around <code>=</code> signs, and spaces after commas.</p>
+<ul>
+<li>Note: Indentation with two spaces, four spaces, or tabs is acceptable.</li>
+</ul></li>
+<li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
+</ol>
+<p>Grading notes: Accept a rescaled predictor increment if the stated change is scaled consistently. Do not penalize an incorrect model estimate again when a subsequent interpretation or calculation is otherwise correct for the student’s displayed model.</p>
 </section>
 <section id="question-5" class="level2">
 <h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Part (a) - Code fits a linear regression with <code>life_0</code> as the response and <code>cho_crops</code> as the predictor using the <code>you</code> data.</p></li>
+<li><p>Part (a) - Linear regression uses tidymodels functions, e.g., <code>linear_reg()</code> and <code>fit()</code>.</p></li>
+<li><p>Part (a) - Code displays the model coefficients using <code>tidy()</code>.</p></li>
+<li><p>Part (b) - Narrative provides correct interpretation of the slope in context of the data.</p>
+<ul>
+<li>Includes “each additional kg per capita per year” of carbohydrate consumption or an equivalent, consistently rescaled increment.</li>
+<li>Includes “on average” or similar language.</li>
+<li>Includes the correct value with units.</li>
+<li>All else correct.</li>
+</ul></li>
+<li><p>Part (c) - Narrative provides correct interpretation of the intercept in context of the data.</p>
+<ul>
+<li>Includes 0 for the predictor value.</li>
+<li>Includes “on average” or similar language.</li>
+<li>Includes the correct value with units.</li>
+<li>All else correct.</li>
+</ul></li>
+<li><p>Part (c) - Narrative states that the intercept is not meaningful and provides correct justification.</p></li>
+<li><p>Part (d) - Code correctly calculates and displays R-squared.</p></li>
+<li><p>Part (d) - Narrative provides a correct interpretation of R-squared in context of the data.</p></li>
+<li><p>Part (e) - Code uses <code>augment()</code> to obtain predicted values and residuals.</p></li>
+<li><p>Part (e) - Predicted values and residuals are correct for the fitted model.</p></li>
+<li><p>Part (e) - Code creates a scatterplot using <code>geom_point()</code>. A horizontal line at zero is optional.</p></li>
+<li><p>Part (e) - Code maps predicted life expectancy to the x-axis and residuals to the y-axis.</p></li>
+<li><p>Part (e) - Plot has informative and human-readable axis labels.</p></li>
+<li><p>Part (e) - Plot has an informative and human-readable title.</p></li>
+<li><p>Part (e) - Narrative correctly describes the residual plot and assesses whether a linear model is a good fit for the data.</p></li>
+<li><p>Code style and readability: line breaks after each <code>|&gt;</code> and <code>+</code>, appropriate indentation, spaces around <code>=</code> signs, and spaces after commas.</p>
+<ul>
+<li>Note: Indentation with two spaces, four spaces, or tabs is acceptable.</li>
+</ul></li>
+<li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
+</ol>
+<p>Grading notes: Slope and intercept interpretations must convey an average or predicted response, rather than a guaranteed outcome for each country. Accept consistently rescaled slope interpretations, and do not penalize a model error again in otherwise correct follow-up interpretations.</p>
 </section>
 <section id="question-6" class="level2">
 <h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li>Narrative correctly assesses whether the models support causal conclusions in context of the data.</li>
+</ol>
 </section>
 </section>
 <section id="part-3---modeling-the-old-north-state" class="level1">
 <h1>Part 3 - Modeling the Old North State</h1>
 <section id="question-7" class="level2">
 <h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Code reads <code>nc-places.csv</code> into <code>nc_places</code> and <code>nc-county.csv</code> into <code>nc_counties</code>.</p></li>
+<li><p>Code correctly joins the data frames by county name and saves the result as <code>nc_counties_places</code>. An inferred join on the sole shared column, <code>county</code>, is acceptable, as are other join types producing the same correct result for these data.</p></li>
+<li><p>Response correctly reports the number of rows and columns in the joined data frame: 100 rows and 67 columns.</p>
+<ul>
+<li>Note: <code>nc_counties</code> has 22 columns and <code>nc_places</code> has 46, sharing only <code>county</code>. A different count likely indicates joining on the wrong column(s); don’t penalize the same error again.</li>
+</ul></li>
+<li><p>Code style and readability: line breaks after each <code>|&gt;</code> and <code>+</code>, appropriate indentation, spaces around <code>=</code> signs, and spaces after commas.</p>
+<ul>
+<li>Note: Indentation with two spaces, four spaces, or tabs is acceptable.</li>
+</ul></li>
+<li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
+</ol>
 </section>
 <section id="question-8" class="level2">
 <h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Response clearly identifies a numeric outcome variable and correctly states its original data frame.</p></li>
+<li><p>Narrative explains why the outcome is interesting to predict and why prediction is sensible in this context.</p></li>
+<li><p>Response clearly identifies a numeric predictor and correctly states its original data frame.</p></li>
+<li><p>Narrative gives a plausible explanation of how the numeric predictor might relate to the outcome and why it could be useful for prediction.</p></li>
+<li><p>Response clearly identifies a categorical predictor and correctly states its original data frame.</p></li>
+<li><p>Narrative gives a plausible explanation of how the categorical predictor might relate to the outcome and why it could be useful for prediction.</p></li>
+<li><p>Response correctly states the categorical predictor’s reference level. If the level order is changed, the code implements that change consistently with the stated reference.</p></li>
+<li><p>Two selected variables originate in one data frame and the third originates in the other. A variable shared by both original data frames cannot by itself demonstrate use of information from the other source.</p></li>
+</ol>
+<p>Grading note: Choices need not match the key. Grade the suitability of the variables and the reasoning, rather than requiring a strong observed relationship. Reordering factor levels is optional.</p>
 </section>
 <section id="question-9" class="level2">
 <h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Part (a) - Code fits a linear regression with the Question 8 outcome as the response and the chosen numeric variable as the sole predictor, using <code>nc_counties_places</code>.</p></li>
+<li><p>Part (a) - Linear regression uses tidymodels functions, e.g., <code>linear_reg()</code> and <code>fit()</code>.</p></li>
+<li><p>Part (b) - Code displays the model coefficients using <code>tidy()</code>.</p></li>
+<li><p>Part (c) - Narrative provides correct interpretation of the slope in context of the data.</p>
+<ul>
+<li>Includes “each additional unit” of the chosen numeric predictor, with the predictor and its units identified. A consistently rescaled increment is acceptable.</li>
+<li>Includes “on average” or similar language.</li>
+<li>Includes the correct value with units.</li>
+<li>All else correct.</li>
+</ul></li>
+<li><p>Part (d) - Narrative provides correct interpretation of the intercept in context of the data.</p>
+<ul>
+<li>Includes 0 for the predictor value.</li>
+<li>Includes “on average” or similar language.</li>
+<li>Includes the correct value with units.</li>
+<li>All else correct.</li>
+</ul></li>
+<li><p>Part (d) - Narrative correctly states whether the intercept is meaningful and provides correct justification.</p></li>
+<li><p>Part (e) - Code correctly calculates and displays the model’s R-squared.</p></li>
+<li><p>Part (e) - Narrative provides a correct interpretation of R-squared in context of the data.</p></li>
+<li><p>Code style and readability: line breaks after each <code>|&gt;</code> and <code>+</code>, appropriate indentation, spaces around <code>=</code> signs, and spaces after commas.</p>
+<ul>
+<li>Note: Indentation with two spaces, four spaces, or tabs is acceptable.</li>
+</ul></li>
+<li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
+</ol>
+<p>Grading notes: Grade against the student’s chosen variables and fitted model, rather than requiring the key’s variables or estimates. Accept a meaningful rescaled predictor increment when the slope is scaled consistently. For an outcome measured as a percentage, distinguish percentage-point changes from percent changes. Avoid penalizing the same model error again in subsequent interpretations.</p>
 </section>
 <section id="question-10" class="level2">
 <h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
-<p>Rubric items to be added, check back soon!</p>
+<ol type="1">
+<li><p>Part (a) - Code fits a linear regression with the Question 8 outcome as the response and the chosen categorical variable as the sole predictor, using <code>nc_counties_places</code>. The predictor is treated as categorical.</p></li>
+<li><p>Part (a) - Linear regression uses tidymodels functions, e.g., <code>linear_reg()</code> and <code>fit()</code>.</p></li>
+<li><p>Part (b) - Code displays the model coefficients using <code>tidy()</code>, with the appropriate reference level and a coefficient for each non-reference level.</p></li>
+<li><p>Part (c) - Narrative provides correct interpretation of the category coefficients in context of the data.</p>
+<ul>
+<li><p>Includes the correct comparison between each non-reference category and the reference category.</p></li>
+<li><p>Includes “on average” or similar language.</p></li>
+<li><p>Includes the correct value with units.</p></li>
+<li><p>All else correct.</p></li>
+<li><p>Note: Apply each sub-item across all non-reference coefficients; award partial credit when only some are correct.</p></li>
+</ul></li>
+<li><p>Part (d) - Narrative provides correct interpretation of the intercept in context of the data.</p>
+<ul>
+<li>Includes the correct reference category (all indicator variables equal 0).</li>
+<li>Includes “on average” or similar language.</li>
+<li>Includes the correct value with units.</li>
+<li>All else correct.</li>
+</ul></li>
+<li><p>Part (d) - Narrative correctly states whether the intercept is meaningful and provides correct justification.</p></li>
+<li><p>Part (e) - Code correctly calculates and displays the model’s R-squared.</p></li>
+<li><p>Part (e) - Narrative provides a correct interpretation of R-squared in context of the data.</p></li>
+<li><p>Code style and readability: line breaks after each <code>|&gt;</code> and <code>+</code>, appropriate indentation, spaces around <code>=</code> signs, and spaces after commas.</p>
+<ul>
+<li>Note: Indentation with two spaces, four spaces, or tabs is acceptable.</li>
+</ul></li>
+<li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
+</ol>
+<p>Grading notes: Choices and reference levels need not match the key. Grade interpretations against the student’s displayed model and reference level. For an outcome measured as a percentage, coefficient differences are in percentage points. Avoid penalizing the same model error again in subsequent interpretations.</p>
+</section>
+</section>
+<section id="overall" class="level1">
+<h1>Overall</h1>
+<p>These rubric items are not tied to a specific question but apply to the entire homework. Check for these if explicitly asked to provide overall feedback or if you notice them while reviewing the homework or as the student is finishing up working on the last question.</p>
+<section id="rubric" class="level2">
+<h2 class="anchored" data-anchor-id="rubric">Rubric</h2>
+<ul>
+<li><p>Final .qmd and rendered PDF files exist in the remote GitHub repository.</p></li>
+<li><p>At least three commits were made and pushed to the GitHub repository, and the submission is reasonably organized.</p></li>
+<li><p>An AI-use disclosure states whether an LLM or generative AI tool was used (Yes or No).</p></li>
+<li><p>If AI was used, the disclosure describes all the ways it was used.</p></li>
+<li><p>If AI was used, the disclosure lists all tools used, including model names and versions if known.</p></li>
+<li><p>Any non-AI sources used are cited, with the question(s) for which each source was used.</p></li>
+</ul>
 
 
 </section>
