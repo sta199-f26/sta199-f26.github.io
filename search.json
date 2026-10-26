@@ -3971,361 +3971,459 @@
     "text": "Review\n\nHow would you write the following pipeline with count() instead?\n\ngerrymander_24 |&gt;\n  group_by(state) |&gt;\n  summarize(n = n()) |&gt;\n  arrange(desc(n))\n\n# A tibble: 50 × 2\n   state              n\n   &lt;chr&gt;          &lt;int&gt;\n 1 California        52\n 2 Texas             38\n 3 Florida           28\n 4 New York          26\n 5 Illinois          17\n 6 Pennsylvania      17\n 7 Ohio              15\n 8 Georgia           14\n 9 North Carolina    14\n10 Michigan          13\n# ℹ 40 more rows\n\n\n\n\ngerrymander_24 |&gt; arrange(state) |&gt; count()\ngerrymander_24 |&gt; count(state) |&gt; arrange(desc(n))\ngerrymander_24 |&gt; count(state) |&gt; sort(n)\ngerrymander_24 |&gt; count(state, sort = TRUE)"
   },
   {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#while-you-wait-participate",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#while-you-wait-participate",
-    "title": "Linear regression with a single predictor",
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#while-you-wait-participate",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#while-you-wait-participate",
+    "title": "Linear regression with outliers and categorical predictors",
     "section": "While you wait: Participate 📱💻",
-    "text": "While you wait: Participate 📱💻\n\n\n\nWhat questions could a model help us answer about community health?\n\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG."
+    "text": "While you wait: Participate 📱💻\n\n\n\nIn the previous class, we used food-insecurity prevalence to predict mental-distress prevalence. Durham County had a residual of -2.60 percentage points.\nWhich of the following best fill the blank below.\n\nThe model _______ by 2.60 percentage points.\n\n\n\noverpredicted mental-distress prevalence\nunderpredicted mental-distress prevalence\noverpredicted food-insecurity prevalence\nunderpredicted food-insecurity prevalence\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code QYNCEFD."
   },
   {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#announcements",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#announcements",
-    "title": "Linear regression with a single predictor",
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#announcements",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#announcements",
+    "title": "Linear regression with outliers and categorical predictors",
     "section": "Announcements",
-    "text": "Announcements\n\nProjects:\n\nPeer review tomorrow: Make as much progress as you can before your\nNew project component: AI disclosure to be added overnight, pull when you get to lab\n\n\n\n\nHW 5 due next Wednesday at 11:59 pm\n\n\n\n\nMy office hours this week: Friday 2-3:30 pm in Old Chem 211, come by if you\n\nhave questions on the homework\nwant to review your exam\nwant to discuss your project (and come with your teammates!)\ncan’t usually make it to my Wednesday OH and I haven’t yet had a chance to meet you"
+    "text": "Announcements\n\nPeer tutors through the ARC are available:\nhttps://sta199-f26.github.io/course-support.html#peer-tutors\nPeer eval 3 is due tonight\nHW 5 is due Wednesday night"
   },
   {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#learning-goals",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#learning-goals",
-    "title": "Linear regression with a single predictor",
-    "section": "Learning goals",
-    "text": "Learning goals\nBy the end of today, you should be able to:\n\nidentify the outcome and predictor in a regression model,\nfit a linear regression model with tidymodels,\ninterpret the slope and intercept in context,\nuse a fitted model to calculate predictions and residuals, and\nexplain what makes a line the least squares regression line."
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#what-should-progress-on-projects-look-like-nowadays",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#what-should-progress-on-projects-look-like-nowadays",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "What should progress on projects look like nowadays?",
+    "text": "What should progress on projects look like nowadays?\n\nSchedule meetings (at least one this week and at least two next week)\nThis week:\n\nOutline your presentation and start drafting slides and discussing who will present which slide (each team member must speak during the presentation)\nStart drafting your writeup – you can structure it as the words you will say in your presentation (i.e., your script)\n\nNext week: Make sure at least one meeting is dedicated to practicing your presentation and timing yourself\nAfter next week: Write the reflection portion of your writeup"
   },
   {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#two-main-uses",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#two-main-uses",
-    "title": "Linear regression with a single predictor",
-    "section": "Two main uses",
-    "text": "Two main uses\n\nPrediction: Use known information to estimate an unknown outcome.\nDescription / explanation: Summarize how an outcome tends to vary with a predictor.\n\n\n\nWhat questions could a model help us answer about community health?"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#cdc-places",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#cdc-places",
-    "title": "Linear regression with a single predictor",
-    "section": "CDC PLACES",
-    "text": "CDC PLACES\nPLACES: Local Data for Better Health is a free CDC resource providing consistently defined health and health-related estimates for communities across the US.\n\nCovers counties, places, census tracts, and ZIP Code Tabulation Areas.\nIncludes measures of health outcomes, prevention, disability, health behaviors, health-related social needs, and community factors.\nUses small area estimation with data from the Behavioral Risk Factor Surveillance System (BRFSS), the Census, and the American Community Survey (ACS).\nHelps communities identify local health concerns, disparities, and overlapping health and social needs.\n\n\n\nSource: CDC, About PLACES: Local Data for Better Health"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#cdc-places-1",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#cdc-places-1",
-    "title": "Linear regression with a single predictor",
-    "section": "CDC PLACES",
-    "text": "CDC PLACES\n\n\n\n\n\n\nImportant\n\n\nThese are model-based local estimates, not direct survey estimates for each county.\n\n\n\n\n\nSource: CDC, About PLACES: Local Data for Better Health"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#county-food-insecurity-and-mental-health",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#county-food-insecurity-and-mental-health",
-    "title": "Linear regression with a single predictor",
-    "section": "County food insecurity and mental health",
-    "text": "County food insecurity and mental health\nThe CDC PLACES 2025 release provides local health estimates for every U.S. county.\nFor North Carolina, we will explore:\n\nthe estimated percentage of adults who experienced food insecurity during the previous 12 months, and\nthe estimated percentage of adults who experienced frequent mental distress: at least 14 mentally unhealthy days during the previous 30 days.\n\nBoth are age-adjusted, model-based estimates derived from 2023 survey and population data.\n\n\nSources: CDC PLACES release notes, measure definitions"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#other-data-sources",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#other-data-sources",
-    "title": "Linear regression with a single predictor",
-    "section": "Other data sources",
-    "text": "Other data sources\n\nNC Department of Commerce county tiers: The 40 most distressed counties are designated as Tier 1, the next 40 as Tier 2 and the 20 least distressed as Tier 3\nNC Office of State Archaeology regions: Piedmont, Mountains, Coastal Plain\nAppalachian Regional Commission counties: No, Yes"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#how-the-data-were-put-together",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#how-the-data-were-put-together",
-    "title": "Linear regression with a single predictor",
-    "section": "How the data were put together",
-    "text": "How the data were put together\n\nStart with the CDC PLACES 2025 county release.\nFilter to North Carolina and age-adjusted prevalence estimates.\nReshape to one row per county.\nAdd 2026 development tier, geographic region, and Appalachian status.\nWrite to a CSV file: nc-places.csv."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#packages",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#packages",
-    "title": "Linear regression with a single predictor",
-    "section": "Packages",
-    "text": "Packages\n\ntidyverse for data wrangling and visualization\nscales for better axis labels\ntidymodels for modeling with tidyverse principles\nmaps for county boundaries\n\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(tidymodels)\nlibrary(maps)"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#load-the-data",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#load-the-data",
-    "title": "Linear regression with a single predictor",
-    "section": "Load the data",
-    "text": "Load the data\n\nnc_places &lt;- read_csv(\n  \"data/nc-places.csv\"\n)\n\nRows: 100 Columns: 46\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): county, development_tier, region, appalachian\ndbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#our-focus-for-today",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#our-focus-for-today",
-    "title": "Linear regression with a single predictor",
-    "section": "Our focus for today",
-    "text": "Our focus for today\n\nfood_insecurity - Food insecurity: % of adults who experienced food insecurity during the previous 12 months.\nmental_distress - Frequent mental distress: % of adults who experienced at least 14 mentally unhealthy days during the previous 30 days."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#geographic-patterns",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#geographic-patterns",
-    "title": "Linear regression with a single predictor",
-    "section": "Geographic patterns",
-    "text": "Geographic patterns"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modeling-north-carolina-counties",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#modeling-north-carolina-counties",
-    "title": "Linear regression with a single predictor",
-    "section": "Modeling North Carolina counties",
-    "text": "Modeling North Carolina counties\n\n\nDescribe: How is county-level food insecurity related to frequent mental distress?\nPredict: For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties",
-    "title": "Linear regression with a single predictor",
-    "section": "Modelling North Carolina counties",
-    "text": "Modelling North Carolina counties\n\nDescribe: How is county-level food insecurity related to frequent mental distress?"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties-1",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties-1",
-    "title": "Linear regression with a single predictor",
-    "section": "Modelling North Carolina counties",
-    "text": "Modelling North Carolina counties\n\nPredict: For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling",
-    "title": "Linear regression with a single predictor",
-    "section": "Modelling",
-    "text": "Modelling\n\n\n\nUse models to describe relationships between variables and to make predictions.\nFor now, we will focus on linear models—but there are many other types of models.\n\n\n\n\n\n\n\n\n\n\n\n\n\nA model is a useful simplification, not a complete description of reality."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-vocabulary",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-vocabulary",
-    "title": "Linear regression with a single predictor",
-    "section": "Modelling vocabulary",
-    "text": "Modelling vocabulary\n\nPredictor (explanatory variable)\nOutcome (response variable)\nRegression line\n\nSlope\nIntercept\n\nCorrelation"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#predictor-explanatory-variable",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#predictor-explanatory-variable",
-    "title": "Linear regression with a single predictor",
-    "section": "Predictor (explanatory variable)",
-    "text": "Predictor (explanatory variable)\n\n\n\n\n\n\n\n\n\n\ncounty\nfood_insecurity\nmental_distress\n\n\n\n\nAlamance\n17.2\n18\n\n\nAlexander\n15.8\n19.1\n\n\nAlleghany\n18.5\n19.3\n\n\nAnson\n28.2\n20.2\n\n\nAshe\n14.6\n18.9\n\n\nAvery\n15.1\n18.4\n\n\n...\n...\n..."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#outcome-response-variable",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#outcome-response-variable",
-    "title": "Linear regression with a single predictor",
-    "section": "Outcome (response variable)",
-    "text": "Outcome (response variable)\n\n\n\n\n\n\n\n\n\n\ncounty\nfood_insecurity\nmental_distress\n\n\n\n\nAlamance\n17.2\n18\n\n\nAlexander\n15.8\n19.1\n\n\nAlleghany\n18.5\n19.3\n\n\nAnson\n28.2\n20.2\n\n\nAshe\n14.6\n18.9\n\n\nAvery\n15.1\n18.4\n\n\n...\n...\n..."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line",
-    "title": "Linear regression with a single predictor",
-    "section": "Regression line",
-    "text": "Regression line"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line-slope",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line-slope",
-    "title": "Linear regression with a single predictor",
-    "section": "Regression line: slope",
-    "text": "Regression line: slope"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line-intercept",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line-intercept",
-    "title": "Linear regression with a single predictor",
-    "section": "Regression line: intercept",
-    "text": "Regression line: intercept"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#correlation",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#correlation",
-    "title": "Linear regression with a single predictor",
-    "section": "Correlation",
-    "text": "Correlation"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#correlation-1",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#correlation-1",
-    "title": "Linear regression with a single predictor",
-    "section": "Correlation",
-    "text": "Correlation\n\nMeasures the direction and strength of a linear relationship.\nRanges between -1 and 1.\nHas the same sign as the slope.\nHas no units."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#participate",
-    "title": "Linear regression with a single predictor",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nWhich of the following is the best guess for the correlation between the two variables below?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n-0.95\n-0.25\n0.00\n0.50\n0.80\n\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#visualizing-the-model",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#visualizing-the-model",
-    "title": "Linear regression with a single predictor",
-    "section": "Visualizing the model",
-    "text": "Visualizing the model\n\n\nCode\nggplot(\n  nc_places,\n  aes(x = food_insecurity, y = mental_distress)\n) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  scale_x_continuous(labels = percent_label()) +\n  scale_y_continuous(labels = percent_label()) +\n  labs(\n    x = \"Adults experiencing food insecurity (%)\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\"\n  )"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#a-regression-model",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#a-regression-model",
-    "title": "Linear regression with a single predictor",
-    "section": "A regression model",
-    "text": "A regression model\nA regression model separates an observed outcome into a systematic part and an unexplained part:\n\\[\n\\begin{aligned}\nY &= \\text{Model} + \\text{Error} \\\\\n  &= f(X) + \\epsilon \\\\\n  &= \\mu_{Y \\mid X} + \\epsilon\n\\end{aligned}\n\\]\n\n\\(\\mu_{Y \\mid X}\\) is the mean outcome for observations with predictor value \\(X\\).\n\\(\\epsilon\\) is the deviation of an observed outcome from that mean."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#a-linear-regression-model",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#a-linear-regression-model",
-    "title": "Linear regression with a single predictor",
-    "section": "A linear regression model",
-    "text": "A linear regression model\nA linear regression model describes the relationship between a quantitative outcome, \\(Y\\), and a quantitative predictor, \\(X\\):\n\\[\nY = \\beta_0 + \\beta_1 X + \\epsilon\n\\]\n\n\\(\\beta_0\\): population intercept\n\\(\\beta_1\\): population slope\n\\(\\epsilon\\): unexplained deviation from the line"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#the-fitted-regression-line",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#the-fitted-regression-line",
-    "title": "Linear regression with a single predictor",
-    "section": "The fitted regression line",
-    "text": "The fitted regression line\nWe use data to estimate the population relationship:\n\\[\n\\widehat{Y} = b_0 + b_1 X\n\\]\n\n\\(\\widehat{Y}\\): predicted value of the outcome\n\\(b_0\\): estimated intercept\n\\(b_1\\): estimated slope\n\n\n\n\n\n\n\n\nNote\n\n\nThere is no error term in the fitted line: \\(\\widehat{Y}\\) is the model’s prediction, not an observed outcome."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#state-the-model",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#state-the-model",
-    "title": "Linear regression with a single predictor",
-    "section": "State the model",
-    "text": "State the model\n\nlinear_reg()\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model",
-    "title": "Linear regression with a single predictor",
-    "section": "Fit the model",
-    "text": "Fit the model\n\nlinear_reg() |&gt;\n  fit(\n    mental_distress ~ food_insecurity,\n    data = nc_places\n  )\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = mental_distress ~ food_insecurity, data = data)\n\nCoefficients:\n    (Intercept)  food_insecurity  \n        15.1742           0.1837"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model-and-save-it",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model-and-save-it",
-    "title": "Linear regression with a single predictor",
-    "section": "Fit the model, and save it",
-    "text": "Fit the model, and save it\n\ncounty_fit &lt;- linear_reg() |&gt;\n  fit(\n    mental_distress ~ food_insecurity,\n    data = nc_places\n  )"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#summarize-the-model",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#summarize-the-model",
-    "title": "Linear regression with a single predictor",
-    "section": "Summarize the model",
-    "text": "Summarize the model\n\ntidy(county_fit)\n\n# A tibble: 2 × 5\n  term            estimate std.error statistic  p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)       15.2      0.278       54.5 3.96e-75\n2 food_insecurity    0.184    0.0147      12.5 5.24e-22"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#write-the-model-equation",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#write-the-model-equation",
-    "title": "Linear regression with a single predictor",
-    "section": "Write the model equation",
-    "text": "Write the model equation\nUsing mathematical notation\n\\[\n\\widehat{\\text{mental distress %}}\n= 15.2 + 0.184 \\times \\text{food insecurity %}\n\\]\n\n\n\n\n\n\n\nReading the model equation\n\n\nPredicted mental-distress percentage is 15.2 plus 0.184 times the food insecurity percentage."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate-1",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#participate-1",
-    "title": "Linear regression with a single predictor",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nThe slope of the fitted model is 0.184. Which of the following is the best interpretation?\n\n\nIncreasing food insecurity by one percentage point causes mental-distress prevalence to increase by 0.184 percentage points.\nFor each percentage-point county food-insecurity prevalence is higher, mental-distress prevaence is expected to be higher, on average, by 0.184 percentage points.\nFor each one percentage-point increase in mental-distress prevalence, predicted food-insecurity prevalence is 0.184 percentage points higher.\nEvery adult experiencing food insecurity has 0.184 additional mentally unhealthy days.\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate-2",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#participate-2",
-    "title": "Linear regression with a single predictor",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nThe intercept of the fitted model is 15.2. Which is the best interpretation?\n\n\nFor a county with 0% food-insecurity prevalence, the model predicts 15.2% mental-distress prevalence.\nFor a county with 0% mental-distress prevalence, the model predicts 15.2% food-insecurity prevalence.\nA one percentage-point increase in food-insecurity prevalence predicts a 15.2 percentage-point increase in mental distress.\nThe average North Carolina county has 15.2% mental-distress prevalence.\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#is-the-intercept-meaningful",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#is-the-intercept-meaningful",
-    "title": "Linear regression with a single predictor",
-    "section": "Is the intercept meaningful?",
-    "text": "Is the intercept meaningful?\nThe intercept is meaningful in context if:\n\nthe predictor can feasibly equal or be near zero, and\nzero is reasonably close to the observed predictor values.\n\n\nHere, observed food-insecurity prevalence ranges from 9.6% to 31.2%.\n\n\n\n\n\n\n\nMathematically vs. practical meaningfullness\n\n\nThe intercept is a mathematical part of the line, but it is not meaningful in context."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction",
-    "title": "Linear regression with a single predictor",
-    "section": "Make a prediction",
-    "text": "Make a prediction\nFor a county where 20% of adults experience food insecurity:\n\\[\n\\begin{aligned}\n\\widehat{\\text{mental distress %}}\n&= 15.2 + 0.184 \\times 20 \\\\\n&= 18.9\n\\end{aligned}\n\\]\nWe predict that approximately 18.9% of adults experience frequent mental distress."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction-with-r",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction-with-r",
-    "title": "Linear regression with a single predictor",
-    "section": "Make a prediction with R",
-    "text": "Make a prediction with R\n\nStep 1: Make a new data frame with the predictor value(s) of interest with tibble():\n\n\nnew_county &lt;- tibble(food_insecurity = 20)\nnew_county\n\n# A tibble: 1 × 1\n  food_insecurity\n            &lt;dbl&gt;\n1              20\n\n\n\n\nStep 2: Make a prediction for the new dataset using the model with predict():\n\n\npredict(county_fit, new_data = new_county)\n\n# A tibble: 1 × 1\n  .pred\n  &lt;dbl&gt;\n1  18.8"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#residuals",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#residuals",
-    "title": "Linear regression with a single predictor",
-    "section": "Residuals",
-    "text": "Residuals\nA residual is the difference between an observed and predicted outcome:\n\\[\n\\text{residual} = \\text{observed} - \\text{predicted}\n= y - \\widehat{y}\n\\]"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#calculating-residuals-with-r",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#calculating-residuals-with-r",
-    "title": "Linear regression with a single predictor",
-    "section": "Calculating residuals with R",
-    "text": "Calculating residuals with R\nUse augment() to add predictions and residuals to the original dataset.\n\ncounty_aug &lt;- augment(county_fit, new_data = nc_places)\n\ncounty_aug\n\n# A tibble: 100 × 48\n   .pred .resid county    county_fips development_tier region        appalachian\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;      \n 1  18.3 -0.334 Alamance        37001 Tier 2           Piedmont      No         \n 2  18.1  1.02  Alexander       37003 Tier 1           Piedmont      Yes        \n 3  18.6  0.728 Alleghany       37005 Tier 2           Mountains     Yes        \n 4  20.4 -0.154 Anson           37007 Tier 1           Piedmont      No         \n 5  17.9  1.04  Ashe            37009 Tier 2           Mountains     Yes        \n 6  17.9  0.452 Avery           37011 Tier 2           Mountains     Yes        \n 7  18.7  0.181 Beaufort        37013 Tier 2           Coastal Plain No         \n 8  20.4 -0.846 Bertie          37015 Tier 1           Coastal Plain No         \n 9  19.3  0.193 Bladen          37017 Tier 1           Coastal Plain No         \n10  17.4 -0.160 Brunswick       37019 Tier 3           Coastal Plain No         \n# ℹ 90 more rows\n# ℹ 41 more variables: food_insecurity &lt;dbl&gt;, mental_distress &lt;dbl&gt;,\n#   dental_visit &lt;dbl&gt;, fair_or_poor_health &lt;dbl&gt;, all_teeth_lost &lt;dbl&gt;,\n#   annual_checkup &lt;dbl&gt;, any_disability &lt;dbl&gt;, arthritis &lt;dbl&gt;,\n#   binge_drinking &lt;dbl&gt;, cancer_non_skin_or_melanoma &lt;dbl&gt;,\n#   cholesterol_screening &lt;dbl&gt;, cognitive_disability &lt;dbl&gt;,\n#   colorectal_cancer_screening &lt;dbl&gt;, copd &lt;dbl&gt;, …"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#durham-residual",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#durham-residual",
-    "title": "Linear regression with a single predictor",
-    "section": "Durham residual",
-    "text": "Durham residual\n\ncounty_aug |&gt;\n  select(county, mental_distress, .pred, .resid) |&gt;\n  filter(county == \"Durham\")\n\n# A tibble: 1 × 4\n  county mental_distress .pred .resid\n  &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 Durham            15.2  17.8  -2.60"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#visualizing-a-residual",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#visualizing-a-residual",
-    "title": "Linear regression with a single predictor",
-    "section": "Visualizing a residual",
-    "text": "Visualizing a residual"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#choosing-values-for-b_1-and-b_0",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#choosing-values-for-b_1-and-b_0",
-    "title": "Linear regression with a single predictor",
-    "section": "Choosing values for \\(b_1\\) and \\(b_0\\)",
-    "text": "Choosing values for \\(b_1\\) and \\(b_0\\)\n\nWhich line fits the points best—and what do we mean by “best”?"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#least-squares-line",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#least-squares-line",
-    "title": "Linear regression with a single predictor",
-    "section": "Least squares line",
-    "text": "Least squares line\n\nThe residual for the \\(i^{th}\\) observation is\n\n\\[\ne_i = y_i - \\widehat{y}_i\n\\]\n\nSquare every residual and add them:\n\n\\[\ne_1^2 + e_2^2 + \\cdots + e_n^2\n\\]\n\nThe least squares regression line is the line that minimizes this sum."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#properties-of-least-squares-regression",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#properties-of-least-squares-regression",
-    "title": "Linear regression with a single predictor",
-    "section": "Properties of least-squares regression",
-    "text": "Properties of least-squares regression\nFor a least-squares line with one quantitative predictor and an intercept:\n\nThe line passes through the point of means, \\((\\bar{x}, \\bar{y})\\): \\[b_0 = \\bar{y} - b_1\\bar{x}\\]\nThe slope and correlation have the same sign: \\[b_1 = r\\frac{s_y}{s_x}\\]\nThe residuals sum to zero: \\[\\sum_{i=1}^{n} e_i = 0\\]\nThe residuals and predictor values are uncorrelated."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#association-is-not-causation",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#association-is-not-causation",
-    "title": "Linear regression with a single predictor",
-    "section": "Association is not causation",
-    "text": "Association is not causation\nThis model tells us that counties with greater estimated food-insecurity prevalence also tend to have greater estimated mental-distress prevalence.\nIt does not establish that food insecurity causes mental distress.\n\nPossible explanations include:\n\nfood insecurity contributing to chronic stress,\nmental distress affecting employment or income stability,\nshared social or economic conditions, and\nfeatures of how the estimates were constructed."
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#counties-are-not-individuals",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#counties-are-not-individuals",
-    "title": "Linear regression with a single predictor",
-    "section": "Counties are not individuals",
-    "text": "Counties are not individuals\nEach point is a county, not a person.\nAn association between two county percentages does not, by itself, establish the same relationship among individuals. This is the ecological fallacy.\nAlso remember:\n\nPLACES values are model-based small-area estimates.\nThe fitted line summarizes the 100 North Carolina counties in this dataset.\nPredictions far outside the observed food-insecurity range are extrapolations.\n\n\n\nLearn more: CDC PLACES methodology"
-  },
-  {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#dental-visits-and-health",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#dental-visits-and-health",
-    "title": "Linear regression with a single predictor",
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#dental-visits-and-health",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#dental-visits-and-health",
+    "title": "Linear regression with outliers and categorical predictors",
     "section": "Dental visits and health",
     "text": "Dental visits and health"
   },
   {
-    "objectID": "slides/15-linear-regression-single-predictor-slides.html#application-exercise-1",
-    "href": "slides/15-linear-regression-single-predictor-slides.html#application-exercise-1",
-    "title": "Linear regression with a single predictor",
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#application-exercise",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#application-exercise",
+    "title": "Linear regression with outliers and categorical predictors",
     "section": "Application exercise",
     "text": "Application exercise\n\n\nGo to your ae project in Positron.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.\nIf you haven’t yet done so, pull to get today’s application exercise file: ae-09-nc-places-model.qmd.\nWork through the application exercise in class, and render, commit, and push your edits by the end of class."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#is-linear-model-appropriate",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#is-linear-model-appropriate",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Is linear model appropriate?",
+    "text": "Is linear model appropriate?\nIn the residuals vs. fitted (predicted) plot, we look for a horizontal band of points with no clear pattern.\n\n\nCode\nhealth_dental_fit &lt;- linear_reg() |&gt;\n  fit(fair_or_poor_health ~ dental_visit, data = nc_places)\n\nhealth_dental_aug &lt;- augment(\n  health_dental_fit,\n  new_data = nc_places\n)\n\nggplot(\n  health_dental_aug,\n  aes(x = .pred, y = .resid)\n) +\n  geom_hline(\n    yintercept = 0,\n    color = \"#9E2C6A\",\n    linetype = \"dashed\"\n  ) +\n  geom_point(alpha = 0.6) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Predicted fair or poor health (%)\",\n    y = \"Residual (%)\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#does-the-model-do-a-good-job-explaining-the-variability-in-the-outcome",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#does-the-model-do-a-good-job-explaining-the-variability-in-the-outcome",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Does the model do a good job explaining the variability in the outcome?",
+    "text": "Does the model do a good job explaining the variability in the outcome?\nThe model (dental visits) explains 85% of the variability in fair or poor health percentage in NC counties.\n\nglance(health_dental_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0.850         0.849  1.42      556. 3.42e-42     1  -176.  357.  365.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#depression-and-hearing-disability",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#depression-and-hearing-disability",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Depression and hearing disability",
+    "text": "Depression and hearing disability\n\nWhat observations stand out from the main cloud of points? In what way do they stand out?"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#outliers-in-regression",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#outliers-in-regression",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Outliers in regression",
+    "text": "Outliers in regression\n\nAn outlier is a point—or group of points—that stands out from the rest of the data.\nA leverage point is horizontally far from the center of the cloud. It has the potential to pull harder on the fitted line.\nAn influential point actually changes the slope or position of the fitted line substantially.\n\n\n\n\n\n\n\n\nImportant\n\n\nThese categories can overlap: a point can be an outlier, a leverage point, and an influential point."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#three-counties-to-investigate",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#three-counties-to-investigate",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Three counties to investigate",
+    "text": "Three counties to investigate\n\nHow would you classify Greene, Swain, and Robeson counties?"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#potential-outlier-greene-county",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#potential-outlier-greene-county",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Potential outlier: Greene County",
+    "text": "Potential outlier: Greene County\n\n\n\n\nCode\ngreene &lt;- hearing_depression_aug |&gt;\n  filter(county == \"Greene\")\n\nggplot(\n  nc_places,\n  aes(x = hearing_disability, y = depression)\n) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(\n    aes(color = \"All counties\", linetype = \"All counties\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  geom_smooth(\n    data = nc_places |&gt; filter(county != \"Greene\"),\n    aes(color = \"Without Greene\", linetype = \"Without Greene\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  scale_color_manual(\n    values = c(\n      \"All counties\" = \"#325b74\",\n      \"Without Greene\" = \"#9E2C6A\"\n    )\n  ) +\n  scale_linetype_manual(\n    values = c(\n      \"All counties\" = \"solid\",\n      \"Without Greene\" = \"dashed\"\n    )\n  ) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Adults with a hearing disability (%)\",\n    y = \"Adults with depression (%)\",\n    color = NULL,\n    linetype = NULL\n  ) +\n  geom_segment(\n    data = greene,\n    aes(\n      x = hearing_disability,\n      xend = hearing_disability,\n      y = .pred,\n      yend = depression\n    ),\n    color = \"#9E2C6A\",\n    linewidth = 1.2,\n    linetype = \"dotted\"\n  ) +\n  geom_point(data = greene, color = \"#9E2C6A\", size = 3) +\n  geom_text(\n    data = greene,\n    aes(label = county),\n    color = \"#9E2C6A\",\n    fontface = \"bold\",\n    nudge_y = 0.35\n  ) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\n\nGreene is vertically far below the fitted line.\nIts hearing-disability prevalence is near the center of the observed values.\nRemoving Greene barely changes the slope.\n\n\n\nGreene County is a potential outlier in this relationship, but not a leverage or influential point."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#leverage-point-swain-county",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#leverage-point-swain-county",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Leverage point: Swain County",
+    "text": "Leverage point: Swain County\n\n\n\n\nCode\nswain &lt;- hearing_depression_aug |&gt;\n  filter(county == \"Swain\")\n\nggplot(\n  nc_places,\n  aes(x = hearing_disability, y = depression)\n) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(\n    aes(color = \"All counties\", linetype = \"All counties\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  geom_smooth(\n    data = nc_places |&gt; filter(county != \"Swain\"),\n    aes(color = \"Without Swain\", linetype = \"Without Swain\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  scale_color_manual(\n    values = c(\n      \"All counties\" = \"#325b74\",\n      \"Without Swain\" = \"#9E2C6A\"\n    )\n  ) +\n  scale_linetype_manual(\n    values = c(\n      \"All counties\" = \"solid\",\n      \"Without Swain\" = \"dashed\"\n    )\n  ) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Adults with a hearing disability (%)\",\n    y = \"Adults with depression (%)\",\n    color = NULL,\n    linetype = NULL\n  ) +\n  geom_segment(\n    data = swain,\n    aes(\n      x = hearing_disability,\n      xend = hearing_disability,\n      y = .pred,\n      yend = depression\n    ),\n    color = \"#9E2C6A\",\n    linewidth = 1.2,\n    linetype = \"dotted\"\n  ) +\n  geom_point(data = swain, color = \"#9E2C6A\", size = 3) +\n  geom_text(\n    data = swain,\n    aes(label = county),\n    color = \"#9E2C6A\",\n    fontface = \"bold\",\n    nudge_y = 0.35\n  ) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\n\nSwain is horizontally far from the center of the cloud.\nIt lies almost exactly on the fitted line: its residual is tiny.\nRemoving Swain barely changes the fitted line.\n\n\n\nSwain County is a high-leverage point in this relationship, but not an outlier or influential point."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#influential-point-robeson-county",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#influential-point-robeson-county",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Influential point: Robeson County",
+    "text": "Influential point: Robeson County\n\n\n\n\nCode\nrobeson &lt;- hearing_depression_aug |&gt;\n  filter(county == \"Robeson\")\n\nggplot(\n  nc_places,\n  aes(x = hearing_disability, y = depression)\n) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(\n    aes(color = \"All counties\", linetype = \"All counties\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  geom_smooth(\n    data = nc_places |&gt; filter(county != \"Robeson\"),\n    aes(color = \"Without Robeson\", linetype = \"Without Robeson\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  scale_color_manual(\n    values = c(\n      \"All counties\" = \"#325b74\",\n      \"Without Robeson\" = \"#9E2C6A\"\n    )\n  ) +\n  scale_linetype_manual(\n    values = c(\n      \"All counties\" = \"solid\",\n      \"Without Robeson\" = \"dashed\"\n    )\n  ) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Adults with a hearing disability (%)\",\n    y = \"Adults with depression (%)\",\n    color = NULL,\n    linetype = NULL\n  ) +\n  geom_segment(\n    data = robeson,\n    aes(\n      x = hearing_disability,\n      xend = hearing_disability,\n      y = .pred,\n      yend = depression\n    ),\n    color = \"#9E2C6A\",\n    linewidth = 1.2,\n    linetype = \"dotted\"\n  ) +\n  geom_point(data = robeson, color = \"#9E2C6A\", size = 3) +\n  geom_text(\n    data = robeson,\n    aes(label = county),\n    color = \"#9E2C6A\",\n    fontface = \"bold\",\n    nudge_y = 0.35,\n    hjust = 1.05\n  ) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\nRobeson County is an influential point with high-leverage.\n\n\n\nRobeson is horizontally far from the center of the cloud.\nIt also falls far below the fitted relationship: its residual has a high magnitude compared to other counties in the data.\nThis combination pulls the right side of the fitted line downward – the slope of the model is 1.199 with all counties and 1.609 without Robeson County."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#working-with-outliers",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#working-with-outliers",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Working with outliers",
+    "text": "Working with outliers\n\nInvestigate why the observation is unusual:\n\nIs it a data or measurement error?\nIs it a genuine but exceptional case?\nDoes it reveal a subgroup or a missing variable?\n\n\n\n\nFit the model with and without the observation and compare the results.\n\n\n\n\nDo not remove an outlier solely because it is unusual. Report and justify any decision to exclude data."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#development-tiers",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#development-tiers",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Development tiers",
+    "text": "Development tiers\nThe North Carolina Department of Commerce ranks all 100 counties by economic well-being each year. The tiers are used in state programs that aim to encourage economic activity in less prosperous areas.\n\nTier 1: 40 most economically distressed counties\nTier 2: next 40 counties\nTier 3: 20 least economically distressed counties\n\nThe ranking combines four equally weighted measures: unemployment, median household income, 36-month population growth, and adjusted property tax base per capita.\n\n\nSources: N.C. Department of Commerce, County Distress Rankings and N.C. General Statute § 143B-437.08"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#a-new-question",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#a-new-question",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "A new question",
+    "text": "A new question\n\nHow does estimated frequent mental-distress prevalence vary by county development tier?\nHow are the variables in this analysis different from those in our model from last time?\n\n\n\noutcome: frequent mental-distress prevalence (numerical)\npredictor: county development tier (categorical; Tier 1 is most economically distressed and Tier 3 is least economically distressed)"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#visualize",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#visualize",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Visualize",
+    "text": "Visualize\n\nDetermine whether each of the following plot types would be an appropriate choice for visualizing the relationship between mental-distress prevalence and development tier.\n\n\nScatterplot ❌\nBox plot ✅\nViolin plot ✅\nDensity plot ✅\nBar plot ❌\nStacked bar plot ❌"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#boxplot",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#boxplot",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Boxplot",
+    "text": "Boxplot\n\n\nCode\nggplot(\n  nc_places,\n  aes(x = development_tier, y = mental_distress)\n) +\n  geom_boxplot() +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Development tier\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\",\n    title = \"Mental distress by county development tier\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#violin-plot",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#violin-plot",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Violin plot",
+    "text": "Violin plot\n\n\nCode\nggplot(\n  nc_places,\n  aes(x = development_tier, y = mental_distress)\n) +\n  geom_violin() +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Development tier\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\",\n    title = \"Mental distress by county development tier\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#density-plot",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#density-plot",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Density plot",
+    "text": "Density plot\n\n\nCode\nggplot(\n  nc_places,\n  aes(\n    x = mental_distress,\n    color = development_tier,\n    fill = development_tier\n  )\n) +\n  geom_density(alpha = 0.5) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_color_viridis_d(end = 0.85) +\n  scale_fill_viridis_d(end = 0.85) +\n  labs(\n    x = \"Adults experiencing frequent mental distress (%)\",\n    y = \"Density\",\n    color = \"Development\\ntier\",\n    fill = \"Development\\ntier\",\n    title = \"Mental distress by county development tier\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#multiple-geoms",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#multiple-geoms",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Multiple geoms",
+    "text": "Multiple geoms\n\n\nCode\nggplot(\n  nc_places,\n  aes(x = development_tier, y = mental_distress)\n) +\n  geom_boxplot(outlier.shape = NA) +\n  geom_jitter(width = 0.12, height = 0, size = 2, alpha = 0.5) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Development tier\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\",\n    title = \"Mental distress by county development tier\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#summarize",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#summarize",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Summarize",
+    "text": "Summarize\n\nCalculate the average mental-distress prevalence for counties in each development tier. How do the averages compare across tiers?\n\n\n\nnc_places |&gt;\n  group_by(development_tier) |&gt;\n  summarize(mean_mental_distress = mean(mental_distress))\n\n# A tibble: 3 × 2\n  development_tier mean_mental_distress\n  &lt;chr&gt;                           &lt;dbl&gt;\n1 Tier 1                           19.4\n2 Tier 2                           18.4\n3 Tier 3                           16.8"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#model---fit",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#model---fit",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - fit",
+    "text": "Model - fit\n\nFit a linear regression model predicting mental-distress prevalence from development tier and display the results.\nWhy is Tier 1 not in the output?\n\n\nmental_distress_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier, data = nc_places)\n\ntidy(mental_distress_tier_fit)\n\n# A tibble: 3 × 5\n  term                   estimate std.error statistic   p.value\n  &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)               19.4      0.136    143.   1.06e-114\n2 development_tierTier 2    -1        0.192     -5.22 1.04e-  6\n3 development_tierTier 3    -2.57     0.235    -11.0  1.18e- 18\n\n\n\n\\[\n\\widehat{\\text{mental distress %}} = 19.4 - 1 \\times \\text{Tier 2} - 2.57 \\times \\text{Tier 3}\n\\]"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#model---interpret-tier-2",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#model---interpret-tier-2",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - interpret, Tier 2",
+    "text": "Model - interpret, Tier 2\n\\[\n\\widehat{\\text{mental distress %}} = 19.4 \\color{#9E2C6A}{- 1 \\times \\text{Tier 2}} - 2.57 \\times \\text{Tier 3}\n\\]\n\nTier 2 counties are predicted to have, on average, a mental-distress prevalence 1 percentage point lower than Tier 1 counties."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#model---interpret-tier-3",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#model---interpret-tier-3",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - interpret, Tier 3",
+    "text": "Model - interpret, Tier 3\n\\[\n\\widehat{\\text{mental distress %}} = 19.4 - 1 \\times \\text{Tier 2} \\color{#9E2C6A}{- 2.57 \\times \\text{Tier 3}}\n\\]\n\nTier 3 counties are predicted to have, on average, a mental-distress prevalence 2.57 percentage points lower than Tier 1 counties."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#model---interpret-intercept",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#model---interpret-intercept",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - interpret, Intercept",
+    "text": "Model - interpret, Intercept\n\\[\n\\widehat{\\text{mental distress %}} = \\color{#9E2C6A}{19.4} - 1 \\times \\text{Tier 2} - 2.57 \\times \\text{Tier 3}\n\\]\n\nThe predicted average mental-distress prevalence among Tier 1 counties is 19.4%."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#model---predict",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#model---predict",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - predict",
+    "text": "Model - predict\n\nWhat is the predicted mental-distress prevalence for a Tier 1 county? What are the predicted values for Tier 2 and Tier 3 counties? Where have we seen these values before?\n\n\n\nnew_counties &lt;- tibble(\n  county = c(\"County A\", \"County B\", \"County C\"),\n  development_tier = c(\"Tier 1\", \"Tier 2\", \"Tier 3\")\n)\n\naugment(mental_distress_tier_fit, new_data = new_counties)\n\n# A tibble: 3 × 3\n  .pred county   development_tier\n  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;           \n1  19.4 County A Tier 1          \n2  18.4 County B Tier 2          \n3  16.8 County C Tier 3"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#model---predict-1",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#model---predict-1",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - predict",
+    "text": "Model - predict\n\nCalculate the predicted mental-distress prevalence for counties in each development tier by hand.\n\n\\[\n\\widehat{\\text{mental distress %}} = 19.42 - 1.00 \\times \\text{Tier 2} - 2.57 \\times \\text{Tier 3}\n\\]\n\n\nTier 1: \\(\\widehat{\\text{mental distress %}} = 19.42 - 1.00 \\times \\color{#9E2C6A}{0} - 2.57 \\times \\color{#9E2C6A}{0} = 19.42\\)\n\n\n\n\nTier 2: \\(\\widehat{\\text{mental distress %}} = 19.42 - 1.00 \\times 1 - 2.57 \\times \\color{#9E2C6A}{0} = 18.42\\)\n\n\n\n\nTier 3: \\(\\widehat{\\text{mental distress %}} = 19.42 - 1.00 \\times \\color{#9E2C6A}{0} - 2.57 \\times 1 = 16.85\\)"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#models-with-categorical-predictors",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#models-with-categorical-predictors",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Models with categorical predictors",
+    "text": "Models with categorical predictors\n\nA categorical predictor is encoded using dummy variables. A predictor with \\(k\\) levels requires \\(k - 1\\) dummy variables.\nThe first level of the categorical variable is the baseline level. In a model with one categorical predictor, the intercept is the predicted value of the outcome for the baseline level (when all dummy variables equal 0).\nEach slope coefficient describes the difference between the predicted value of the outcome for that level of the categorical variable compared to the baseline level."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#changing-the-baseline-level",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#changing-the-baseline-level",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Changing the baseline level",
+    "text": "Changing the baseline level\n\nBy default, R uses the first level of a categorical variable as the baseline level.\nWe can change the baseline level by reordering the levels of the categorical variable."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#participate",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#participate",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhat function goes in the blank to make Tier 3 the baseline level in the development_tier variable?\n\nnc_places |&gt;\n  mutate(\n    development_tier = ___(development_tier, \"Tier 3\")\n  )\n\n\n\nlevel_reorder\nfct_relevel\nfct_reorder\nstr_relevel\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code QYNCEFD."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical-slides.html#participate-1",
+    "href": "slides/16-linear-regression-outliers-categorical-slides.html#participate-1",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhat is the baseline level of development_tier in the following model?\n\nlinear_reg() |&gt;\n  fit(\n    mental_distress ~ development_tier,\n    data = nc_places_tier_2\n  ) |&gt;\n  tidy()\n\n# A tibble: 3 × 5\n  term                   estimate std.error statistic   p.value\n  &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)               18.4      0.136    136.   1.75e-112\n2 development_tierTier 1     1.00     0.192      5.22 1.04e-  6\n3 development_tierTier 3    -1.57     0.235     -6.70 1.40e-  9\n\n\n\n\nTier 1\nTier 2\nTier 3\nCannot tell from the output\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code QYNCEFD."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html",
+    "href": "slides/16-linear-regression-outliers-categorical.html",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "",
+    "text": "In the previous class, we used food-insecurity prevalence to predict mental-distress prevalence. Durham County had a residual of -2.60 percentage points.\nWhich of the following best fill the blank below.\n\nThe model _______ by 2.60 percentage points.\n\n\n\noverpredicted mental-distress prevalence\nunderpredicted mental-distress prevalence\noverpredicted food-insecurity prevalence\nunderpredicted food-insecurity prevalence\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code QYNCEFD.\n\n\n\n\nPeer tutors through the ARC are available:https://sta199-f26.github.io/course-support.html#peer-tutors\nPeer eval 3 is due tonight\nHW 5 is due Wednesday night\n\n\nSchedule meetings (at least one this week and at least two next week)\n\nThis week:\n\nOutline your presentation and start drafting slides and discussing who will present which slide (each team member must speak during the presentation)\nStart drafting your writeup – you can structure it as the words you will say in your presentation (i.e., your script)\n\n\nNext week: Make sure at least one meeting is dedicated to practicing your presentation and timing yourself\nAfter next week: Write the reflection portion of your writeup"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#while-you-wait-participate",
+    "href": "slides/16-linear-regression-outliers-categorical.html#while-you-wait-participate",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "",
+    "text": "In the previous class, we used food-insecurity prevalence to predict mental-distress prevalence. Durham County had a residual of -2.60 percentage points.\nWhich of the following best fill the blank below.\n\nThe model _______ by 2.60 percentage points.\n\n\n\noverpredicted mental-distress prevalence\nunderpredicted mental-distress prevalence\noverpredicted food-insecurity prevalence\nunderpredicted food-insecurity prevalence\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code QYNCEFD."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#announcements",
+    "href": "slides/16-linear-regression-outliers-categorical.html#announcements",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "",
+    "text": "Peer tutors through the ARC are available:https://sta199-f26.github.io/course-support.html#peer-tutors\nPeer eval 3 is due tonight\nHW 5 is due Wednesday night"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#what-should-progress-on-projects-look-like-nowadays",
+    "href": "slides/16-linear-regression-outliers-categorical.html#what-should-progress-on-projects-look-like-nowadays",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "",
+    "text": "Schedule meetings (at least one this week and at least two next week)\n\nThis week:\n\nOutline your presentation and start drafting slides and discussing who will present which slide (each team member must speak during the presentation)\nStart drafting your writeup – you can structure it as the words you will say in your presentation (i.e., your script)\n\n\nNext week: Make sure at least one meeting is dedicated to practicing your presentation and timing yourself\nAfter next week: Write the reflection portion of your writeup"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#dental-visits-and-health",
+    "href": "slides/16-linear-regression-outliers-categorical.html#dental-visits-and-health",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Dental visits and health",
+    "text": "Dental visits and health"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#application-exercise",
+    "href": "slides/16-linear-regression-outliers-categorical.html#application-exercise",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Application exercise",
+    "text": "Application exercise\n\n\nGo to your ae project in Positron.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.\nIf you haven’t yet done so, pull to get today’s application exercise file: ae-09-nc-places-model.qmd.\nWork through the application exercise in class, and render, commit, and push your edits by the end of class."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#is-linear-model-appropriate",
+    "href": "slides/16-linear-regression-outliers-categorical.html#is-linear-model-appropriate",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Is linear model appropriate?",
+    "text": "Is linear model appropriate?\nIn the residuals vs. fitted (predicted) plot, we look for a horizontal band of points with no clear pattern.\n\nCodehealth_dental_fit &lt;- linear_reg() |&gt;\n  fit(fair_or_poor_health ~ dental_visit, data = nc_places)\n\nhealth_dental_aug &lt;- augment(\n  health_dental_fit,\n  new_data = nc_places\n)\n\nggplot(\n  health_dental_aug,\n  aes(x = .pred, y = .resid)\n) +\n  geom_hline(\n    yintercept = 0,\n    color = \"#9E2C6A\",\n    linetype = \"dashed\"\n  ) +\n  geom_point(alpha = 0.6) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Predicted fair or poor health (%)\",\n    y = \"Residual (%)\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#does-the-model-do-a-good-job-explaining-the-variability-in-the-outcome",
+    "href": "slides/16-linear-regression-outliers-categorical.html#does-the-model-do-a-good-job-explaining-the-variability-in-the-outcome",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Does the model do a good job explaining the variability in the outcome?",
+    "text": "Does the model do a good job explaining the variability in the outcome?\nThe model (dental visits) explains 85% of the variability in fair or poor health percentage in NC counties.\n\nglance(health_dental_fit)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     0.850         0.849  1.42      556. 3.42e-42     1  -176.  357.  365.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#depression-and-hearing-disability",
+    "href": "slides/16-linear-regression-outliers-categorical.html#depression-and-hearing-disability",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Depression and hearing disability",
+    "text": "Depression and hearing disability\n\nWhat observations stand out from the main cloud of points? In what way do they stand out?"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#outliers-in-regression",
+    "href": "slides/16-linear-regression-outliers-categorical.html#outliers-in-regression",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Outliers in regression",
+    "text": "Outliers in regression\n\n\nAn outlier is a point—or group of points—that stands out from the rest of the data.\nA leverage point is horizontally far from the center of the cloud. It has the potential to pull harder on the fitted line.\nAn influential point actually changes the slope or position of the fitted line substantially.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThese categories can overlap: a point can be an outlier, a leverage point, and an influential point."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#three-counties-to-investigate",
+    "href": "slides/16-linear-regression-outliers-categorical.html#three-counties-to-investigate",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Three counties to investigate",
+    "text": "Three counties to investigate\n\nHow would you classify Greene, Swain, and Robeson counties?"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#potential-outlier-greene-county",
+    "href": "slides/16-linear-regression-outliers-categorical.html#potential-outlier-greene-county",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Potential outlier: Greene County",
+    "text": "Potential outlier: Greene County\n\n\n\nCodegreene &lt;- hearing_depression_aug |&gt;\n  filter(county == \"Greene\")\n\nggplot(\n  nc_places,\n  aes(x = hearing_disability, y = depression)\n) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(\n    aes(color = \"All counties\", linetype = \"All counties\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  geom_smooth(\n    data = nc_places |&gt; filter(county != \"Greene\"),\n    aes(color = \"Without Greene\", linetype = \"Without Greene\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  scale_color_manual(\n    values = c(\n      \"All counties\" = \"#325b74\",\n      \"Without Greene\" = \"#9E2C6A\"\n    )\n  ) +\n  scale_linetype_manual(\n    values = c(\n      \"All counties\" = \"solid\",\n      \"Without Greene\" = \"dashed\"\n    )\n  ) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Adults with a hearing disability (%)\",\n    y = \"Adults with depression (%)\",\n    color = NULL,\n    linetype = NULL\n  ) +\n  geom_segment(\n    data = greene,\n    aes(\n      x = hearing_disability,\n      xend = hearing_disability,\n      y = .pred,\n      yend = depression\n    ),\n    color = \"#9E2C6A\",\n    linewidth = 1.2,\n    linetype = \"dotted\"\n  ) +\n  geom_point(data = greene, color = \"#9E2C6A\", size = 3) +\n  geom_text(\n    data = greene,\n    aes(label = county),\n    color = \"#9E2C6A\",\n    fontface = \"bold\",\n    nudge_y = 0.35\n  ) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\nGreene is vertically far below the fitted line.\nIts hearing-disability prevalence is near the center of the observed values.\nRemoving Greene barely changes the slope.\n\n\n\n\nGreene County is a potential outlier in this relationship, but not a leverage or influential point."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#leverage-point-swain-county",
+    "href": "slides/16-linear-regression-outliers-categorical.html#leverage-point-swain-county",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Leverage point: Swain County",
+    "text": "Leverage point: Swain County\n\n\n\nCodeswain &lt;- hearing_depression_aug |&gt;\n  filter(county == \"Swain\")\n\nggplot(\n  nc_places,\n  aes(x = hearing_disability, y = depression)\n) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(\n    aes(color = \"All counties\", linetype = \"All counties\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  geom_smooth(\n    data = nc_places |&gt; filter(county != \"Swain\"),\n    aes(color = \"Without Swain\", linetype = \"Without Swain\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  scale_color_manual(\n    values = c(\n      \"All counties\" = \"#325b74\",\n      \"Without Swain\" = \"#9E2C6A\"\n    )\n  ) +\n  scale_linetype_manual(\n    values = c(\n      \"All counties\" = \"solid\",\n      \"Without Swain\" = \"dashed\"\n    )\n  ) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Adults with a hearing disability (%)\",\n    y = \"Adults with depression (%)\",\n    color = NULL,\n    linetype = NULL\n  ) +\n  geom_segment(\n    data = swain,\n    aes(\n      x = hearing_disability,\n      xend = hearing_disability,\n      y = .pred,\n      yend = depression\n    ),\n    color = \"#9E2C6A\",\n    linewidth = 1.2,\n    linetype = \"dotted\"\n  ) +\n  geom_point(data = swain, color = \"#9E2C6A\", size = 3) +\n  geom_text(\n    data = swain,\n    aes(label = county),\n    color = \"#9E2C6A\",\n    fontface = \"bold\",\n    nudge_y = 0.35\n  ) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\nSwain is horizontally far from the center of the cloud.\nIt lies almost exactly on the fitted line: its residual is tiny.\nRemoving Swain barely changes the fitted line.\n\n\n\n\nSwain County is a high-leverage point in this relationship, but not an outlier or influential point."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#influential-point-robeson-county",
+    "href": "slides/16-linear-regression-outliers-categorical.html#influential-point-robeson-county",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Influential point: Robeson County",
+    "text": "Influential point: Robeson County\n\n\n\nCoderobeson &lt;- hearing_depression_aug |&gt;\n  filter(county == \"Robeson\")\n\nggplot(\n  nc_places,\n  aes(x = hearing_disability, y = depression)\n) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(\n    aes(color = \"All counties\", linetype = \"All counties\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  geom_smooth(\n    data = nc_places |&gt; filter(county != \"Robeson\"),\n    aes(color = \"Without Robeson\", linetype = \"Without Robeson\"),\n    method = \"lm\",\n    se = FALSE\n  ) +\n  scale_color_manual(\n    values = c(\n      \"All counties\" = \"#325b74\",\n      \"Without Robeson\" = \"#9E2C6A\"\n    )\n  ) +\n  scale_linetype_manual(\n    values = c(\n      \"All counties\" = \"solid\",\n      \"Without Robeson\" = \"dashed\"\n    )\n  ) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Adults with a hearing disability (%)\",\n    y = \"Adults with depression (%)\",\n    color = NULL,\n    linetype = NULL\n  ) +\n  geom_segment(\n    data = robeson,\n    aes(\n      x = hearing_disability,\n      xend = hearing_disability,\n      y = .pred,\n      yend = depression\n    ),\n    color = \"#9E2C6A\",\n    linewidth = 1.2,\n    linetype = \"dotted\"\n  ) +\n  geom_point(data = robeson, color = \"#9E2C6A\", size = 3) +\n  geom_text(\n    data = robeson,\n    aes(label = county),\n    color = \"#9E2C6A\",\n    fontface = \"bold\",\n    nudge_y = 0.35,\n    hjust = 1.05\n  ) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\nRobeson County is an influential point with high-leverage.\n\n\n\nRobeson is horizontally far from the center of the cloud.\nIt also falls far below the fitted relationship: its residual has a high magnitude compared to other counties in the data.\nThis combination pulls the right side of the fitted line downward – the slope of the model is 1.199 with all counties and 1.609 without Robeson County."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#working-with-outliers",
+    "href": "slides/16-linear-regression-outliers-categorical.html#working-with-outliers",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Working with outliers",
+    "text": "Working with outliers\n\nInvestigate why the observation is unusual:\n\nIs it a data or measurement error?\nIs it a genuine but exceptional case?\nDoes it reveal a subgroup or a missing variable?\n\n\n\n. . .\n\nFit the model with and without the observation and compare the results.\n\n. . .\n\nDo not remove an outlier solely because it is unusual. Report and justify any decision to exclude data."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#development-tiers",
+    "href": "slides/16-linear-regression-outliers-categorical.html#development-tiers",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Development tiers",
+    "text": "Development tiers\nThe North Carolina Department of Commerce ranks all 100 counties by economic well-being each year. The tiers are used in state programs that aim to encourage economic activity in less prosperous areas.\n\n\nTier 1: 40 most economically distressed counties\n\nTier 2: next 40 counties\n\nTier 3: 20 least economically distressed counties\n\nThe ranking combines four equally weighted measures: unemployment, median household income, 36-month population growth, and adjusted property tax base per capita.\n\n\nSources: N.C. Department of Commerce, County Distress Rankings and N.C. General Statute § 143B-437.08"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#a-new-question",
+    "href": "slides/16-linear-regression-outliers-categorical.html#a-new-question",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "A new question",
+    "text": "A new question\n\nHow does estimated frequent mental-distress prevalence vary by county development tier?\nHow are the variables in this analysis different from those in our model from last time?\n\n. . .\n\noutcome: frequent mental-distress prevalence (numerical)\npredictor: county development tier (categorical; Tier 1 is most economically distressed and Tier 3 is least economically distressed)"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#visualize",
+    "href": "slides/16-linear-regression-outliers-categorical.html#visualize",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Visualize",
+    "text": "Visualize\n\nDetermine whether each of the following plot types would be an appropriate choice for visualizing the relationship between mental-distress prevalence and development tier.\n\n\nScatterplot ❌\nBox plot ✅\nViolin plot ✅\nDensity plot ✅\nBar plot ❌\nStacked bar plot ❌"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#boxplot",
+    "href": "slides/16-linear-regression-outliers-categorical.html#boxplot",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Boxplot",
+    "text": "Boxplot\n\nCodeggplot(\n  nc_places,\n  aes(x = development_tier, y = mental_distress)\n) +\n  geom_boxplot() +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Development tier\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\",\n    title = \"Mental distress by county development tier\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#violin-plot",
+    "href": "slides/16-linear-regression-outliers-categorical.html#violin-plot",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Violin plot",
+    "text": "Violin plot\n\nCodeggplot(\n  nc_places,\n  aes(x = development_tier, y = mental_distress)\n) +\n  geom_violin() +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Development tier\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\",\n    title = \"Mental distress by county development tier\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#density-plot",
+    "href": "slides/16-linear-regression-outliers-categorical.html#density-plot",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Density plot",
+    "text": "Density plot\n\nCodeggplot(\n  nc_places,\n  aes(\n    x = mental_distress,\n    color = development_tier,\n    fill = development_tier\n  )\n) +\n  geom_density(alpha = 0.5) +\n  scale_x_continuous(labels = label_percent(scale = 1)) +\n  scale_color_viridis_d(end = 0.85) +\n  scale_fill_viridis_d(end = 0.85) +\n  labs(\n    x = \"Adults experiencing frequent mental distress (%)\",\n    y = \"Density\",\n    color = \"Development\\ntier\",\n    fill = \"Development\\ntier\",\n    title = \"Mental distress by county development tier\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#multiple-geoms",
+    "href": "slides/16-linear-regression-outliers-categorical.html#multiple-geoms",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Multiple geoms",
+    "text": "Multiple geoms\n\nCodeggplot(\n  nc_places,\n  aes(x = development_tier, y = mental_distress)\n) +\n  geom_boxplot(outlier.shape = NA) +\n  geom_jitter(width = 0.12, height = 0, size = 2, alpha = 0.5) +\n  scale_y_continuous(labels = label_percent(scale = 1)) +\n  labs(\n    x = \"Development tier\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\",\n    title = \"Mental distress by county development tier\"\n  )"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#summarize",
+    "href": "slides/16-linear-regression-outliers-categorical.html#summarize",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Summarize",
+    "text": "Summarize\n\nCalculate the average mental-distress prevalence for counties in each development tier. How do the averages compare across tiers?\n\n\n\nnc_places |&gt;\n  group_by(development_tier) |&gt;\n  summarize(mean_mental_distress = mean(mental_distress))\n\n# A tibble: 3 × 2\n  development_tier mean_mental_distress\n  &lt;chr&gt;                           &lt;dbl&gt;\n1 Tier 1                           19.4\n2 Tier 2                           18.4\n3 Tier 3                           16.8"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#model---fit",
+    "href": "slides/16-linear-regression-outliers-categorical.html#model---fit",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - fit",
+    "text": "Model - fit\n\nFit a linear regression model predicting mental-distress prevalence from development tier and display the results.\nWhy is Tier 1 not in the output?\n\n\nmental_distress_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier, data = nc_places)\n\ntidy(mental_distress_tier_fit)\n\n# A tibble: 3 × 5\n  term                   estimate std.error statistic   p.value\n  &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)               19.4      0.136    143.   1.06e-114\n2 development_tierTier 2    -1        0.192     -5.22 1.04e-  6\n3 development_tierTier 3    -2.57     0.235    -11.0  1.18e- 18\n\n\n\n\\[\n\\widehat{\\text{mental distress %}} = 19.4 - 1 \\times \\text{Tier 2} - 2.57 \\times \\text{Tier 3}\n\\]"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#model---interpret-tier-2",
+    "href": "slides/16-linear-regression-outliers-categorical.html#model---interpret-tier-2",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - interpret, Tier 2",
+    "text": "Model - interpret, Tier 2\n\\[\n\\widehat{\\text{mental distress %}} = 19.4 \\color{#9E2C6A}{- 1 \\times \\text{Tier 2}} - 2.57 \\times \\text{Tier 3}\n\\]\n\nTier 2 counties are predicted to have, on average, a mental-distress prevalence 1 percentage point lower than Tier 1 counties."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#model---interpret-tier-3",
+    "href": "slides/16-linear-regression-outliers-categorical.html#model---interpret-tier-3",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - interpret, Tier 3",
+    "text": "Model - interpret, Tier 3\n\\[\n\\widehat{\\text{mental distress %}} = 19.4 - 1 \\times \\text{Tier 2} \\color{#9E2C6A}{- 2.57 \\times \\text{Tier 3}}\n\\]\n\nTier 3 counties are predicted to have, on average, a mental-distress prevalence 2.57 percentage points lower than Tier 1 counties."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#model---interpret-intercept",
+    "href": "slides/16-linear-regression-outliers-categorical.html#model---interpret-intercept",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - interpret, Intercept",
+    "text": "Model - interpret, Intercept\n\\[\n\\widehat{\\text{mental distress %}} = \\color{#9E2C6A}{19.4} - 1 \\times \\text{Tier 2} - 2.57 \\times \\text{Tier 3}\n\\]\n\nThe predicted average mental-distress prevalence among Tier 1 counties is 19.4%."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#model---predict",
+    "href": "slides/16-linear-regression-outliers-categorical.html#model---predict",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - predict",
+    "text": "Model - predict\n\nWhat is the predicted mental-distress prevalence for a Tier 1 county? What are the predicted values for Tier 2 and Tier 3 counties? Where have we seen these values before?\n\n\n\nnew_counties &lt;- tibble(\n  county = c(\"County A\", \"County B\", \"County C\"),\n  development_tier = c(\"Tier 1\", \"Tier 2\", \"Tier 3\")\n)\n\naugment(mental_distress_tier_fit, new_data = new_counties)\n\n# A tibble: 3 × 3\n  .pred county   development_tier\n  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;           \n1  19.4 County A Tier 1          \n2  18.4 County B Tier 2          \n3  16.8 County C Tier 3"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#model---predict-1",
+    "href": "slides/16-linear-regression-outliers-categorical.html#model---predict-1",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Model - predict",
+    "text": "Model - predict\n\nCalculate the predicted mental-distress prevalence for counties in each development tier by hand.\n\n\\[\n\\widehat{\\text{mental distress %}} = 19.42 - 1.00 \\times \\text{Tier 2} - 2.57 \\times \\text{Tier 3}\n\\]\n. . .\n\nTier 1: \\(\\widehat{\\text{mental distress %}} = 19.42 - 1.00 \\times \\color{#9E2C6A}{0} - 2.57 \\times \\color{#9E2C6A}{0} = 19.42\\)\n\n\n. . .\n\nTier 2: \\(\\widehat{\\text{mental distress %}} = 19.42 - 1.00 \\times 1 - 2.57 \\times \\color{#9E2C6A}{0} = 18.42\\)\n\n\n. . .\n\nTier 3: \\(\\widehat{\\text{mental distress %}} = 19.42 - 1.00 \\times \\color{#9E2C6A}{0} - 2.57 \\times 1 = 16.85\\)"
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#models-with-categorical-predictors",
+    "href": "slides/16-linear-regression-outliers-categorical.html#models-with-categorical-predictors",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Models with categorical predictors",
+    "text": "Models with categorical predictors\n\n\nA categorical predictor is encoded using dummy variables. A predictor with \\(k\\) levels requires \\(k - 1\\) dummy variables.\nThe first level of the categorical variable is the baseline level. In a model with one categorical predictor, the intercept is the predicted value of the outcome for the baseline level (when all dummy variables equal 0).\nEach slope coefficient describes the difference between the predicted value of the outcome for that level of the categorical variable compared to the baseline level."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#changing-the-baseline-level",
+    "href": "slides/16-linear-regression-outliers-categorical.html#changing-the-baseline-level",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Changing the baseline level",
+    "text": "Changing the baseline level\n\nBy default, R uses the first level of a categorical variable as the baseline level.\nWe can change the baseline level by reordering the levels of the categorical variable."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#participate",
+    "href": "slides/16-linear-regression-outliers-categorical.html#participate",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhat function goes in the blank to make Tier 3 the baseline level in the development_tier variable?\n\nnc_places |&gt;\n  mutate(\n    development_tier = ___(development_tier, \"Tier 3\")\n  )\n\n\n\nlevel_reorder\nfct_relevel\nfct_reorder\nstr_relevel\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code QYNCEFD."
+  },
+  {
+    "objectID": "slides/16-linear-regression-outliers-categorical.html#participate-1",
+    "href": "slides/16-linear-regression-outliers-categorical.html#participate-1",
+    "title": "Linear regression with outliers and categorical predictors",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhat is the baseline level of development_tier in the following model?\n\nlinear_reg() |&gt;\n  fit(\n    mental_distress ~ development_tier,\n    data = nc_places_tier_2\n  ) |&gt;\n  tidy()\n\n# A tibble: 3 × 5\n  term                   estimate std.error statistic   p.value\n  &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)               18.4      0.136    136.   1.75e-112\n2 development_tierTier 1     1.00     0.192      5.22 1.04e-  6\n3 development_tierTier 3    -1.57     0.235     -6.70 1.40e-  9\n\n\n\n\nTier 1\nTier 2\nTier 3\nCannot tell from the output\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code QYNCEFD."
   },
   {
     "objectID": "slides/15-linear-regression-single-predictor.html",
@@ -4687,6 +4785,363 @@
   {
     "objectID": "slides/15-linear-regression-single-predictor.html#application-exercise-1",
     "href": "slides/15-linear-regression-single-predictor.html#application-exercise-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Application exercise",
+    "text": "Application exercise\n\n\nGo to your ae project in Positron.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.\nIf you haven’t yet done so, pull to get today’s application exercise file: ae-09-nc-places-model.qmd.\nWork through the application exercise in class, and render, commit, and push your edits by the end of class."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#while-you-wait-participate",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#while-you-wait-participate",
+    "title": "Linear regression with a single predictor",
+    "section": "While you wait: Participate 📱💻",
+    "text": "While you wait: Participate 📱💻\n\n\n\nWhat questions could a model help us answer about community health?\n\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#announcements",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#announcements",
+    "title": "Linear regression with a single predictor",
+    "section": "Announcements",
+    "text": "Announcements\n\nProjects:\n\nPeer review tomorrow: Make as much progress as you can before your\nNew project component: AI disclosure to be added overnight, pull when you get to lab\n\n\n\n\nHW 5 due next Wednesday at 11:59 pm\n\n\n\n\nMy office hours this week: Friday 2-3:30 pm in Old Chem 211, come by if you\n\nhave questions on the homework\nwant to review your exam\nwant to discuss your project (and come with your teammates!)\ncan’t usually make it to my Wednesday OH and I haven’t yet had a chance to meet you"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#learning-goals",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#learning-goals",
+    "title": "Linear regression with a single predictor",
+    "section": "Learning goals",
+    "text": "Learning goals\nBy the end of today, you should be able to:\n\nidentify the outcome and predictor in a regression model,\nfit a linear regression model with tidymodels,\ninterpret the slope and intercept in context,\nuse a fitted model to calculate predictions and residuals, and\nexplain what makes a line the least squares regression line."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#two-main-uses",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#two-main-uses",
+    "title": "Linear regression with a single predictor",
+    "section": "Two main uses",
+    "text": "Two main uses\n\nPrediction: Use known information to estimate an unknown outcome.\nDescription / explanation: Summarize how an outcome tends to vary with a predictor.\n\n\n\nWhat questions could a model help us answer about community health?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#cdc-places",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#cdc-places",
+    "title": "Linear regression with a single predictor",
+    "section": "CDC PLACES",
+    "text": "CDC PLACES\nPLACES: Local Data for Better Health is a free CDC resource providing consistently defined health and health-related estimates for communities across the US.\n\nCovers counties, places, census tracts, and ZIP Code Tabulation Areas.\nIncludes measures of health outcomes, prevention, disability, health behaviors, health-related social needs, and community factors.\nUses small area estimation with data from the Behavioral Risk Factor Surveillance System (BRFSS), the Census, and the American Community Survey (ACS).\nHelps communities identify local health concerns, disparities, and overlapping health and social needs.\n\n\n\nSource: CDC, About PLACES: Local Data for Better Health"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#cdc-places-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#cdc-places-1",
+    "title": "Linear regression with a single predictor",
+    "section": "CDC PLACES",
+    "text": "CDC PLACES\n\n\n\n\n\n\nImportant\n\n\nThese are model-based local estimates, not direct survey estimates for each county.\n\n\n\n\n\nSource: CDC, About PLACES: Local Data for Better Health"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#county-food-insecurity-and-mental-health",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#county-food-insecurity-and-mental-health",
+    "title": "Linear regression with a single predictor",
+    "section": "County food insecurity and mental health",
+    "text": "County food insecurity and mental health\nThe CDC PLACES 2025 release provides local health estimates for every U.S. county.\nFor North Carolina, we will explore:\n\nthe estimated percentage of adults who experienced food insecurity during the previous 12 months, and\nthe estimated percentage of adults who experienced frequent mental distress: at least 14 mentally unhealthy days during the previous 30 days.\n\nBoth are age-adjusted, model-based estimates derived from 2023 survey and population data.\n\n\nSources: CDC PLACES release notes, measure definitions"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#other-data-sources",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#other-data-sources",
+    "title": "Linear regression with a single predictor",
+    "section": "Other data sources",
+    "text": "Other data sources\n\nNC Department of Commerce county tiers: The 40 most distressed counties are designated as Tier 1, the next 40 as Tier 2 and the 20 least distressed as Tier 3\nNC Office of State Archaeology regions: Piedmont, Mountains, Coastal Plain\nAppalachian Regional Commission counties: No, Yes"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#how-the-data-were-put-together",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#how-the-data-were-put-together",
+    "title": "Linear regression with a single predictor",
+    "section": "How the data were put together",
+    "text": "How the data were put together\n\nStart with the CDC PLACES 2025 county release.\nFilter to North Carolina and age-adjusted prevalence estimates.\nReshape to one row per county.\nAdd 2026 development tier, geographic region, and Appalachian status.\nWrite to a CSV file: nc-places.csv."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#packages",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#packages",
+    "title": "Linear regression with a single predictor",
+    "section": "Packages",
+    "text": "Packages\n\ntidyverse for data wrangling and visualization\nscales for better axis labels\ntidymodels for modeling with tidyverse principles\nmaps for county boundaries\n\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(tidymodels)\nlibrary(maps)"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#load-the-data",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#load-the-data",
+    "title": "Linear regression with a single predictor",
+    "section": "Load the data",
+    "text": "Load the data\n\nnc_places &lt;- read_csv(\n  \"data/nc-places.csv\"\n)\n\nRows: 100 Columns: 46\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): county, development_tier, region, appalachian\ndbl (42): county_fips, food_insecurity, mental_distress, dental_visit, fair_...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#our-focus-for-today",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#our-focus-for-today",
+    "title": "Linear regression with a single predictor",
+    "section": "Our focus for today",
+    "text": "Our focus for today\n\nfood_insecurity - Food insecurity: % of adults who experienced food insecurity during the previous 12 months.\nmental_distress - Frequent mental distress: % of adults who experienced at least 14 mentally unhealthy days during the previous 30 days."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#geographic-patterns",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#geographic-patterns",
+    "title": "Linear regression with a single predictor",
+    "section": "Geographic patterns",
+    "text": "Geographic patterns"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modeling-north-carolina-counties",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modeling-north-carolina-counties",
+    "title": "Linear regression with a single predictor",
+    "section": "Modeling North Carolina counties",
+    "text": "Modeling North Carolina counties\n\n\nDescribe: How is county-level food insecurity related to frequent mental distress?\nPredict: For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling North Carolina counties",
+    "text": "Modelling North Carolina counties\n\nDescribe: How is county-level food insecurity related to frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-north-carolina-counties-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling North Carolina counties",
+    "text": "Modelling North Carolina counties\n\nPredict: For a county where 20% of adults experience food insecurity, what percentage would we predict experience frequent mental distress?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling",
+    "text": "Modelling\n\n\n\nUse models to describe relationships between variables and to make predictions.\nFor now, we will focus on linear models—but there are many other types of models.\n\n\n\n\n\n\n\n\n\n\n\n\n\nA model is a useful simplification, not a complete description of reality."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#modelling-vocabulary",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#modelling-vocabulary",
+    "title": "Linear regression with a single predictor",
+    "section": "Modelling vocabulary",
+    "text": "Modelling vocabulary\n\nPredictor (explanatory variable)\nOutcome (response variable)\nRegression line\n\nSlope\nIntercept\n\nCorrelation"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#predictor-explanatory-variable",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#predictor-explanatory-variable",
+    "title": "Linear regression with a single predictor",
+    "section": "Predictor (explanatory variable)",
+    "text": "Predictor (explanatory variable)\n\n\n\n\n\n\n\n\n\n\ncounty\nfood_insecurity\nmental_distress\n\n\n\n\nAlamance\n17.2\n18\n\n\nAlexander\n15.8\n19.1\n\n\nAlleghany\n18.5\n19.3\n\n\nAnson\n28.2\n20.2\n\n\nAshe\n14.6\n18.9\n\n\nAvery\n15.1\n18.4\n\n\n...\n...\n..."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#outcome-response-variable",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#outcome-response-variable",
+    "title": "Linear regression with a single predictor",
+    "section": "Outcome (response variable)",
+    "text": "Outcome (response variable)\n\n\n\n\n\n\n\n\n\n\ncounty\nfood_insecurity\nmental_distress\n\n\n\n\nAlamance\n17.2\n18\n\n\nAlexander\n15.8\n19.1\n\n\nAlleghany\n18.5\n19.3\n\n\nAnson\n28.2\n20.2\n\n\nAshe\n14.6\n18.9\n\n\nAvery\n15.1\n18.4\n\n\n...\n...\n..."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line",
+    "text": "Regression line"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line-slope",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line-slope",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line: slope",
+    "text": "Regression line: slope"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#regression-line-intercept",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#regression-line-intercept",
+    "title": "Linear regression with a single predictor",
+    "section": "Regression line: intercept",
+    "text": "Regression line: intercept"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#correlation",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#correlation",
+    "title": "Linear regression with a single predictor",
+    "section": "Correlation",
+    "text": "Correlation"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#correlation-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#correlation-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Correlation",
+    "text": "Correlation\n\nMeasures the direction and strength of a linear relationship.\nRanges between -1 and 1.\nHas the same sign as the slope.\nHas no units."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#participate",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhich of the following is the best guess for the correlation between the two variables below?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n-0.95\n-0.25\n0.00\n0.50\n0.80\n\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#visualizing-the-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#visualizing-the-model",
+    "title": "Linear regression with a single predictor",
+    "section": "Visualizing the model",
+    "text": "Visualizing the model\n\n\nCode\nggplot(\n  nc_places,\n  aes(x = food_insecurity, y = mental_distress)\n) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  scale_x_continuous(labels = percent_label()) +\n  scale_y_continuous(labels = percent_label()) +\n  labs(\n    x = \"Adults experiencing food insecurity (%)\",\n    y = \"Adults experiencing\\nfrequent mental distress (%)\"\n  )"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#a-regression-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#a-regression-model",
+    "title": "Linear regression with a single predictor",
+    "section": "A regression model",
+    "text": "A regression model\nA regression model separates an observed outcome into a systematic part and an unexplained part:\n\\[\n\\begin{aligned}\nY &= \\text{Model} + \\text{Error} \\\\\n  &= f(X) + \\epsilon \\\\\n  &= \\mu_{Y \\mid X} + \\epsilon\n\\end{aligned}\n\\]\n\n\\(\\mu_{Y \\mid X}\\) is the mean outcome for observations with predictor value \\(X\\).\n\\(\\epsilon\\) is the deviation of an observed outcome from that mean."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#a-linear-regression-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#a-linear-regression-model",
+    "title": "Linear regression with a single predictor",
+    "section": "A linear regression model",
+    "text": "A linear regression model\nA linear regression model describes the relationship between a quantitative outcome, \\(Y\\), and a quantitative predictor, \\(X\\):\n\\[\nY = \\beta_0 + \\beta_1 X + \\epsilon\n\\]\n\n\\(\\beta_0\\): population intercept\n\\(\\beta_1\\): population slope\n\\(\\epsilon\\): unexplained deviation from the line"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#the-fitted-regression-line",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#the-fitted-regression-line",
+    "title": "Linear regression with a single predictor",
+    "section": "The fitted regression line",
+    "text": "The fitted regression line\nWe use data to estimate the population relationship:\n\\[\n\\widehat{Y} = b_0 + b_1 X\n\\]\n\n\\(\\widehat{Y}\\): predicted value of the outcome\n\\(b_0\\): estimated intercept\n\\(b_1\\): estimated slope\n\n\n\n\n\n\n\n\nNote\n\n\nThere is no error term in the fitted line: \\(\\widehat{Y}\\) is the model’s prediction, not an observed outcome."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#state-the-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#state-the-model",
+    "title": "Linear regression with a single predictor",
+    "section": "State the model",
+    "text": "State the model\n\nlinear_reg()\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model",
+    "title": "Linear regression with a single predictor",
+    "section": "Fit the model",
+    "text": "Fit the model\n\nlinear_reg() |&gt;\n  fit(\n    mental_distress ~ food_insecurity,\n    data = nc_places\n  )\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = mental_distress ~ food_insecurity, data = data)\n\nCoefficients:\n    (Intercept)  food_insecurity  \n        15.1742           0.1837"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model-and-save-it",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#fit-the-model-and-save-it",
+    "title": "Linear regression with a single predictor",
+    "section": "Fit the model, and save it",
+    "text": "Fit the model, and save it\n\ncounty_fit &lt;- linear_reg() |&gt;\n  fit(\n    mental_distress ~ food_insecurity,\n    data = nc_places\n  )"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#summarize-the-model",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#summarize-the-model",
+    "title": "Linear regression with a single predictor",
+    "section": "Summarize the model",
+    "text": "Summarize the model\n\ntidy(county_fit)\n\n# A tibble: 2 × 5\n  term            estimate std.error statistic  p.value\n  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)       15.2      0.278       54.5 3.96e-75\n2 food_insecurity    0.184    0.0147      12.5 5.24e-22"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#write-the-model-equation",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#write-the-model-equation",
+    "title": "Linear regression with a single predictor",
+    "section": "Write the model equation",
+    "text": "Write the model equation\nUsing mathematical notation\n\\[\n\\widehat{\\text{mental distress %}}\n= 15.2 + 0.184 \\times \\text{food insecurity %}\n\\]\n\n\n\n\n\n\n\nReading the model equation\n\n\nPredicted mental-distress percentage is 15.2 plus 0.184 times the food insecurity percentage."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#participate-1",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nThe slope of the fitted model is 0.184. Which of the following is the best interpretation?\n\n\nIncreasing food insecurity by one percentage point causes mental-distress prevalence to increase by 0.184 percentage points.\nFor each percentage-point county food-insecurity prevalence is higher, mental-distress prevaence is expected to be higher, on average, by 0.184 percentage points.\nFor each one percentage-point increase in mental-distress prevalence, predicted food-insecurity prevalence is 0.184 percentage points higher.\nEvery adult experiencing food insecurity has 0.184 additional mentally unhealthy days.\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#participate-2",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#participate-2",
+    "title": "Linear regression with a single predictor",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nThe intercept of the fitted model is 15.2. Which is the best interpretation?\n\n\nFor a county with 0% food-insecurity prevalence, the model predicts 15.2% mental-distress prevalence.\nFor a county with 0% mental-distress prevalence, the model predicts 15.2% food-insecurity prevalence.\nA one percentage-point increase in food-insecurity prevalence predicts a 15.2 percentage-point increase in mental distress.\nThe average North Carolina county has 15.2% mental-distress prevalence.\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code BSAFXJG."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#is-the-intercept-meaningful",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#is-the-intercept-meaningful",
+    "title": "Linear regression with a single predictor",
+    "section": "Is the intercept meaningful?",
+    "text": "Is the intercept meaningful?\nThe intercept is meaningful in context if:\n\nthe predictor can feasibly equal or be near zero, and\nzero is reasonably close to the observed predictor values.\n\n\nHere, observed food-insecurity prevalence ranges from 9.6% to 31.2%.\n\n\n\n\n\n\n\nMathematically vs. practical meaningfullness\n\n\nThe intercept is a mathematical part of the line, but it is not meaningful in context."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction",
+    "title": "Linear regression with a single predictor",
+    "section": "Make a prediction",
+    "text": "Make a prediction\nFor a county where 20% of adults experience food insecurity:\n\\[\n\\begin{aligned}\n\\widehat{\\text{mental distress %}}\n&= 15.2 + 0.184 \\times 20 \\\\\n&= 18.9\n\\end{aligned}\n\\]\nWe predict that approximately 18.9% of adults experience frequent mental distress."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction-with-r",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#make-a-prediction-with-r",
+    "title": "Linear regression with a single predictor",
+    "section": "Make a prediction with R",
+    "text": "Make a prediction with R\n\nStep 1: Make a new data frame with the predictor value(s) of interest with tibble():\n\n\nnew_county &lt;- tibble(food_insecurity = 20)\nnew_county\n\n# A tibble: 1 × 1\n  food_insecurity\n            &lt;dbl&gt;\n1              20\n\n\n\n\nStep 2: Make a prediction for the new dataset using the model with predict():\n\n\npredict(county_fit, new_data = new_county)\n\n# A tibble: 1 × 1\n  .pred\n  &lt;dbl&gt;\n1  18.8"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#residuals",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#residuals",
+    "title": "Linear regression with a single predictor",
+    "section": "Residuals",
+    "text": "Residuals\nA residual is the difference between an observed and predicted outcome:\n\\[\n\\text{residual} = \\text{observed} - \\text{predicted}\n= y - \\widehat{y}\n\\]"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#calculating-residuals-with-r",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#calculating-residuals-with-r",
+    "title": "Linear regression with a single predictor",
+    "section": "Calculating residuals with R",
+    "text": "Calculating residuals with R\nUse augment() to add predictions and residuals to the original dataset.\n\ncounty_aug &lt;- augment(county_fit, new_data = nc_places)\n\ncounty_aug\n\n# A tibble: 100 × 48\n   .pred .resid county    county_fips development_tier region        appalachian\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;      \n 1  18.3 -0.334 Alamance        37001 Tier 2           Piedmont      No         \n 2  18.1  1.02  Alexander       37003 Tier 1           Piedmont      Yes        \n 3  18.6  0.728 Alleghany       37005 Tier 2           Mountains     Yes        \n 4  20.4 -0.154 Anson           37007 Tier 1           Piedmont      No         \n 5  17.9  1.04  Ashe            37009 Tier 2           Mountains     Yes        \n 6  17.9  0.452 Avery           37011 Tier 2           Mountains     Yes        \n 7  18.7  0.181 Beaufort        37013 Tier 2           Coastal Plain No         \n 8  20.4 -0.846 Bertie          37015 Tier 1           Coastal Plain No         \n 9  19.3  0.193 Bladen          37017 Tier 1           Coastal Plain No         \n10  17.4 -0.160 Brunswick       37019 Tier 3           Coastal Plain No         \n# ℹ 90 more rows\n# ℹ 41 more variables: food_insecurity &lt;dbl&gt;, mental_distress &lt;dbl&gt;,\n#   dental_visit &lt;dbl&gt;, fair_or_poor_health &lt;dbl&gt;, all_teeth_lost &lt;dbl&gt;,\n#   annual_checkup &lt;dbl&gt;, any_disability &lt;dbl&gt;, arthritis &lt;dbl&gt;,\n#   binge_drinking &lt;dbl&gt;, cancer_non_skin_or_melanoma &lt;dbl&gt;,\n#   cholesterol_screening &lt;dbl&gt;, cognitive_disability &lt;dbl&gt;,\n#   colorectal_cancer_screening &lt;dbl&gt;, copd &lt;dbl&gt;, …"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#durham-residual",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#durham-residual",
+    "title": "Linear regression with a single predictor",
+    "section": "Durham residual",
+    "text": "Durham residual\n\ncounty_aug |&gt;\n  select(county, mental_distress, .pred, .resid) |&gt;\n  filter(county == \"Durham\")\n\n# A tibble: 1 × 4\n  county mental_distress .pred .resid\n  &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 Durham            15.2  17.8  -2.60"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#visualizing-a-residual",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#visualizing-a-residual",
+    "title": "Linear regression with a single predictor",
+    "section": "Visualizing a residual",
+    "text": "Visualizing a residual"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#choosing-values-for-b_1-and-b_0",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#choosing-values-for-b_1-and-b_0",
+    "title": "Linear regression with a single predictor",
+    "section": "Choosing values for \\(b_1\\) and \\(b_0\\)",
+    "text": "Choosing values for \\(b_1\\) and \\(b_0\\)\n\nWhich line fits the points best—and what do we mean by “best”?"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#least-squares-line",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#least-squares-line",
+    "title": "Linear regression with a single predictor",
+    "section": "Least squares line",
+    "text": "Least squares line\n\nThe residual for the \\(i^{th}\\) observation is\n\n\\[\ne_i = y_i - \\widehat{y}_i\n\\]\n\nSquare every residual and add them:\n\n\\[\ne_1^2 + e_2^2 + \\cdots + e_n^2\n\\]\n\nThe least squares regression line is the line that minimizes this sum."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#properties-of-least-squares-regression",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#properties-of-least-squares-regression",
+    "title": "Linear regression with a single predictor",
+    "section": "Properties of least-squares regression",
+    "text": "Properties of least-squares regression\nFor a least-squares line with one quantitative predictor and an intercept:\n\nThe line passes through the point of means, \\((\\bar{x}, \\bar{y})\\): \\[b_0 = \\bar{y} - b_1\\bar{x}\\]\nThe slope and correlation have the same sign: \\[b_1 = r\\frac{s_y}{s_x}\\]\nThe residuals sum to zero: \\[\\sum_{i=1}^{n} e_i = 0\\]\nThe residuals and predictor values are uncorrelated."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#association-is-not-causation",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#association-is-not-causation",
+    "title": "Linear regression with a single predictor",
+    "section": "Association is not causation",
+    "text": "Association is not causation\nThis model tells us that counties with greater estimated food-insecurity prevalence also tend to have greater estimated mental-distress prevalence.\nIt does not establish that food insecurity causes mental distress.\n\nPossible explanations include:\n\nfood insecurity contributing to chronic stress,\nmental distress affecting employment or income stability,\nshared social or economic conditions, and\nfeatures of how the estimates were constructed."
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#counties-are-not-individuals",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#counties-are-not-individuals",
+    "title": "Linear regression with a single predictor",
+    "section": "Counties are not individuals",
+    "text": "Counties are not individuals\nEach point is a county, not a person.\nAn association between two county percentages does not, by itself, establish the same relationship among individuals. This is the ecological fallacy.\nAlso remember:\n\nPLACES values are model-based small-area estimates.\nThe fitted line summarizes the 100 North Carolina counties in this dataset.\nPredictions far outside the observed food-insecurity range are extrapolations.\n\n\n\nLearn more: CDC PLACES methodology"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#dental-visits-and-health",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#dental-visits-and-health",
+    "title": "Linear regression with a single predictor",
+    "section": "Dental visits and health",
+    "text": "Dental visits and health"
+  },
+  {
+    "objectID": "slides/15-linear-regression-single-predictor-slides.html#application-exercise-1",
+    "href": "slides/15-linear-regression-single-predictor-slides.html#application-exercise-1",
     "title": "Linear regression with a single predictor",
     "section": "Application exercise",
     "text": "Application exercise\n\n\nGo to your ae project in Positron.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your source control pane.\nIf you haven’t yet done so, pull to get today’s application exercise file: ae-09-nc-places-model.qmd.\nWork through the application exercise in class, and render, commit, and push your edits by the end of class."
