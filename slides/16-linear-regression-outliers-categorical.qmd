@@ -1,0 +1,947 @@
+---
+title: "Linear regression with outliers and categorical predictors"
+subtitle: Lecture 16
+author: Prof. Mine Çetinkaya-Rundel
+date: 2026-10-26
+format:
+  revealjs:
+    output-file: 16-linear-regression-outliers-categorical-slides.html
+    footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    logo: "images/logo.png"
+    toc: false
+  html:
+    code-link: true
+filters:
+  - ../remove-fmt-skip.lua
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(tidymodels)
+library(gt)
+library(patchwork)
+library(scales)
+
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+
+nc_places <- read_csv(
+  here::here("slides", "data/nc-places.csv"),
+  show_col_types = FALSE
+)
+```
+
+# Warm-up
+
+## While you wait: Participate 📱💻 
+
+::: columns
+
+::: {.column width="70%" .xsmall}
+
+::: wooclap
+
+In the previous class, we used food-insecurity prevalence to predict mental-distress
+prevalence. Durham County had a residual of -2.60 percentage points.
+
+Which of the following best fill the blank below.
+
+> The model _______ by 2.60 percentage points.
+
+::: wooclap-choices
+- overpredicted mental-distress prevalence
+- underpredicted mental-distress prevalence
+- overpredicted food-insecurity prevalence
+- underpredicted food-insecurity prevalence
+:::
+
+:::
+
+:::
+
+::: {.column width="30%" .small}
+
+![](images/16/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/QYNCEFD) and use the code QYNCEFD.
+
+:::
+
+:::
+
+## Announcements {.smaller}
+
+- Peer tutors through the ARC are available: https://sta199-f26.github.io/course-support.html#peer-tutorsd
+
+- Peer eval 3 is due tonight
+
+- HW 5 is due Wednesday night
+
+## What should progress on projects look like nowadays? {.smaller}
+
+- Schedule meetings (at least one this week and at least two next week)
+
+- This week: 
+  - Outline your presentation and start drafting slides and discussing who will present which slide (each team member must speak during the presentation)
+  - Start drafting your writeup -- you can structure it as the words you will say in your presentation (i.e., your script)
+
+- Next week: Make sure at least one meeting is dedicated to practicing your presentation and timing yourself
+
+- After next week: Write the reflection portion of your writeup
+
+# From last time
+
+## Dental visits and health
+
+```{r}
+#| echo: false
+#| fig-height: 4.8
+#| fig-width: 5.5
+#| layout-ncol: 2
+nc_county_map_2 <- map_data("county") |>
+  filter(region == "north carolina") |>
+  mutate(county_key = subregion) |>
+  left_join(
+    nc_places |>
+      transmute(
+        county_key = str_to_lower(county),
+        dental_visit,
+        fair_or_poor_health
+      ),
+    by = "county_key"
+  )
+
+ggplot(
+  nc_county_map_2,
+  aes(x = long, y = lat, group = group, fill = dental_visit)
+) +
+  geom_polygon(color = "white", linewidth = 0.15) +
+  coord_quickmap() +
+  scale_fill_gradient(
+    low = "#eef3f6",
+    high = "#A19436",
+    breaks = function(limits) {
+      seq(limits[1], limits[2], length.out = 3)
+    },
+    labels = label_number(suffix = "%", accuracy = 1)
+  ) +
+  labs(title = "Dental visits", fill = "Estimated percentage") +
+  guides(
+    fill = guide_colorbar(
+      title.position = "top",
+      title.hjust = 0.5,
+      barwidth = grid::unit(2.8, "in"),
+      barheight = grid::unit(0.15, "in")
+    )
+  ) +
+  theme_void(base_size = 18) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+
+ggplot(
+  nc_county_map_2,
+  aes(x = long, y = lat, group = group, fill = fair_or_poor_health)
+) +
+  geom_polygon(color = "white", linewidth = 0.15) +
+  coord_quickmap() +
+  scale_fill_gradient(
+    low = "#eef3f6",
+    high = "#9E2C6A",
+    breaks = function(limits) {
+      seq(limits[1], limits[2], length.out = 3)
+    },
+    labels = label_number(suffix = "%", accuracy = 1)
+  ) +
+  labs(title = "Fair or poor health", fill = "Estimated percentage") +
+  guides(
+    fill = guide_colorbar(
+      title.position = "top",
+      title.hjust = 0.5,
+      barwidth = grid::unit(2.8, "in"),
+      barheight = grid::unit(0.15, "in")
+    )
+  ) +
+  theme_void(base_size = 18) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+```
+
+
+## Application exercise {.smaller}
+
+::: appex
+-   Go to your ae project in Positron.
+
+-   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your source control pane.
+
+-   If you haven't yet done so, pull to get today's application exercise file: `ae-09-nc-places-model.qmd`.
+
+-   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
+:::
+
+# Outliers
+
+```{r}
+#| label: hearing-depression-fit
+#| include: false
+hearing_depression_fit <- linear_reg() |>
+  fit(depression ~ hearing_disability, data = nc_places)
+
+hearing_depression_fit_without_robeson <- linear_reg() |>
+  fit(
+    depression ~ hearing_disability,
+    data = nc_places |> filter(county != "Robeson")
+  )
+
+hearing_depression_aug <- augment(
+  hearing_depression_fit,
+  new_data = nc_places
+)
+
+hearing_depression_slope <- tidy(hearing_depression_fit) |>
+  filter(term == "hearing_disability") |>
+  pull(estimate)
+
+hearing_depression_slope_without_robeson <- tidy(
+  hearing_depression_fit_without_robeson
+) |>
+  filter(term == "hearing_disability") |>
+  pull(estimate)
+
+outlier_counties <- c("Greene", "Swain", "Robeson")
+```
+
+## Depression and hearing disability {.smaller}
+
+::: question
+What observations stand out from the main cloud of points? In what way do they
+stand out?
+:::
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-height: 5
+ggplot(
+  nc_places,
+  aes(x = hearing_disability, y = depression)
+) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "#325b74") +
+  scale_x_continuous(labels = label_number(suffix = "%")) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    x = "Adults with a hearing disability (%)",
+    y = "Adults with depression (%)"
+  )
+```
+
+## Outliers in regression {.smaller}
+
+::: incremental
+- An **outlier** is a point—or group of points—that stands out from the rest of
+  the data.
+
+- A **leverage point** is horizontally far from the center of the cloud. It has
+  the potential to pull harder on the fitted line.
+
+- An **influential point** actually changes the slope or position of the fitted
+  line substantially.
+:::
+
+::: {.callout-important .fragment}
+These categories can overlap: a point can be an outlier, a leverage point, and
+an influential point.
+:::
+
+## Three counties to investigate {.smaller}
+
+::: question
+How would you classify Greene, Swain, and Robeson counties?
+:::
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-height: 5
+ggplot(
+  nc_places,
+  aes(x = hearing_disability, y = depression)
+) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "#325b74") +
+  scale_x_continuous(labels = label_number(suffix = "%")) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    x = "Adults with a hearing disability (%)",
+    y = "Adults with depression (%)"
+  ) +
+  geom_point(
+    data = nc_places |> filter(county %in% outlier_counties),
+    color = "#9E2C6A",
+    size = 3
+  ) +
+  geom_text(
+    data = nc_places |> filter(county %in% outlier_counties),
+    aes(
+      label = county,
+      hjust = if_else(county == "Robeson", 1.05, 0.5),
+      vjust = if_else(county == "Robeson", 1.3, -0.5)
+    ),
+    color = "#9E2C6A",
+    fontface = "bold"
+  )
+```
+
+## Potential outlier: Greene County {.smaller}
+
+::: columns
+::: {.column width="62%"}
+
+```{r}
+#| label: hearing-depression-greene
+#| code-fold: true
+#| fig-asp: 0.618
+#| fig-width: 7
+#| message: false
+greene <- hearing_depression_aug |>
+  filter(county == "Greene")
+
+ggplot(
+  nc_places,
+  aes(x = hearing_disability, y = depression)
+) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(
+    aes(color = "All counties", linetype = "All counties"),
+    method = "lm",
+    se = FALSE
+  ) +
+  geom_smooth(
+    data = nc_places |> filter(county != "Greene"),
+    aes(color = "Without Greene", linetype = "Without Greene"),
+    method = "lm",
+    se = FALSE
+  ) +
+  scale_color_manual(
+    values = c(
+      "All counties" = "#325b74",
+      "Without Greene" = "#9E2C6A"
+    )
+  ) +
+  scale_linetype_manual(
+    values = c(
+      "All counties" = "solid",
+      "Without Greene" = "dashed"
+    )
+  ) +
+  scale_x_continuous(labels = label_number(suffix = "%")) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    x = "Adults with a hearing disability (%)",
+    y = "Adults with depression (%)",
+    color = NULL,
+    linetype = NULL
+  ) +
+  geom_segment(
+    data = greene,
+    aes(
+      x = hearing_disability,
+      xend = hearing_disability,
+      y = .pred,
+      yend = depression
+    ),
+    color = "#9E2C6A",
+    linewidth = 1.2,
+    linetype = "dotted"
+  ) +
+  geom_point(data = greene, color = "#9E2C6A", size = 3) +
+  geom_text(
+    data = greene,
+    aes(label = county),
+    color = "#9E2C6A",
+    fontface = "bold",
+    nudge_y = 0.35
+  ) +
+  theme(legend.position = "bottom")
+```
+
+:::
+::: {.column width="38%"}
+
+- Greene is vertically far below the fitted line.
+
+- Its hearing-disability prevalence is near the center of the observed values.
+
+- Removing Greene barely changes the slope.
+
+:::
+:::
+
+::: fragment
+**Greene County is a potential outlier in this relationship, but not a leverage or influential point.**
+:::
+
+## Leverage point: Swain County {.smaller}
+
+::: columns
+::: {.column width="62%"}
+
+```{r}
+#| label: hearing-depression-swain
+#| code-fold: true
+#| fig-asp: 0.618
+#| fig-width: 7
+#| message: false
+swain <- hearing_depression_aug |>
+  filter(county == "Swain")
+
+ggplot(
+  nc_places,
+  aes(x = hearing_disability, y = depression)
+) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(
+    aes(color = "All counties", linetype = "All counties"),
+    method = "lm",
+    se = FALSE
+  ) +
+  geom_smooth(
+    data = nc_places |> filter(county != "Swain"),
+    aes(color = "Without Swain", linetype = "Without Swain"),
+    method = "lm",
+    se = FALSE
+  ) +
+  scale_color_manual(
+    values = c(
+      "All counties" = "#325b74",
+      "Without Swain" = "#9E2C6A"
+    )
+  ) +
+  scale_linetype_manual(
+    values = c(
+      "All counties" = "solid",
+      "Without Swain" = "dashed"
+    )
+  ) +
+  scale_x_continuous(labels = label_number(suffix = "%")) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    x = "Adults with a hearing disability (%)",
+    y = "Adults with depression (%)",
+    color = NULL,
+    linetype = NULL
+  ) +
+  geom_segment(
+    data = swain,
+    aes(
+      x = hearing_disability,
+      xend = hearing_disability,
+      y = .pred,
+      yend = depression
+    ),
+    color = "#9E2C6A",
+    linewidth = 1.2,
+    linetype = "dotted"
+  ) +
+  geom_point(data = swain, color = "#9E2C6A", size = 3) +
+  geom_text(
+    data = swain,
+    aes(label = county),
+    color = "#9E2C6A",
+    fontface = "bold",
+    nudge_y = 0.35
+  ) +
+  theme(legend.position = "bottom")
+```
+
+:::
+::: {.column width="38%"}
+
+- Swain is horizontally far from the center of the cloud.
+
+- It lies almost exactly on the fitted line: its residual is tiny.
+
+- Removing Swain barely changes the fitted line.
+
+:::
+:::
+
+::: fragment
+**Swain County is a high-leverage point in this relationship, but not an outlier or influential point.**
+:::  
+
+## Influential point: Robeson County {.smaller}
+
+::: columns
+::: {.column width="62%"}
+
+```{r}
+#| label: hearing-depression-robeson
+#| code-fold: true
+#| fig-asp: 0.618
+#| fig-width: 7
+#| message: false
+robeson <- hearing_depression_aug |>
+  filter(county == "Robeson")
+
+ggplot(
+  nc_places,
+  aes(x = hearing_disability, y = depression)
+) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(
+    aes(color = "All counties", linetype = "All counties"),
+    method = "lm",
+    se = FALSE
+  ) +
+  geom_smooth(
+    data = nc_places |> filter(county != "Robeson"),
+    aes(color = "Without Robeson", linetype = "Without Robeson"),
+    method = "lm",
+    se = FALSE
+  ) +
+  scale_color_manual(
+    values = c(
+      "All counties" = "#325b74",
+      "Without Robeson" = "#9E2C6A"
+    )
+  ) +
+  scale_linetype_manual(
+    values = c(
+      "All counties" = "solid",
+      "Without Robeson" = "dashed"
+    )
+  ) +
+  scale_x_continuous(labels = label_number(suffix = "%")) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    x = "Adults with a hearing disability (%)",
+    y = "Adults with depression (%)",
+    color = NULL,
+    linetype = NULL
+  ) +
+  geom_segment(
+    data = robeson,
+    aes(
+      x = hearing_disability,
+      xend = hearing_disability,
+      y = .pred,
+      yend = depression
+    ),
+    color = "#9E2C6A",
+    linewidth = 1.2,
+    linetype = "dotted"
+  ) +
+  geom_point(data = robeson, color = "#9E2C6A", size = 3) +
+  geom_text(
+    data = robeson,
+    aes(label = county),
+    color = "#9E2C6A",
+    fontface = "bold",
+    nudge_y = 0.35,
+    hjust = 1.05
+  ) +
+  theme(legend.position = "bottom")
+```
+
+::: fragment
+**Robeson County is an influential point with high-leverage.**
+:::
+
+:::
+::: {.column width="38%"}
+
+- Robeson is horizontally far from the center of the cloud.
+
+- It also falls far below the fitted relationship: its residual has a high magnitude compared to other counties in the data.
+
+- This combination pulls the right side of the fitted line downward -- the slope of the model is `{r} round(hearing_depression_slope, 3)` with all counties and `{r} round(hearing_depression_slope_without_robeson, 3)` without Robeson County.
+
+:::
+:::
+
+## Working with outliers {.smaller}
+
+- Investigate why the observation is unusual:
+  - Is it a data or measurement error?
+  - Is it a genuine but exceptional case?
+  - Does it reveal a subgroup or a missing variable?
+
+. . .
+
+- Fit the model **with and without** the observation and compare the results.
+
+. . .
+
+- Do not remove an outlier solely because it is unusual. Report and justify any decision to exclude data.
+
+# Categorical predictor
+
+## Development tiers {.smaller}
+
+The North Carolina Department of Commerce ranks all 100 counties by economic
+well-being each year. The tiers are used in state programs that aim to
+encourage economic activity in less prosperous areas.
+
+- **Tier 1:** 40 most economically distressed counties
+- **Tier 2:** next 40 counties
+- **Tier 3:** 20 least economically distressed counties
+
+The ranking combines four equally weighted measures: unemployment, median
+household income, 36-month population growth, and adjusted property tax base
+per capita.
+
+::: aside
+Sources: [N.C. Department of Commerce, County Distress Rankings](https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers) and [N.C. General Statute § 143B-437.08](https://www3.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_143B/GS_143B-437.08.html)
+:::
+
+## A new question
+
+::: question
+How does estimated frequent mental-distress prevalence vary by county
+development tier?
+
+How are the variables in this analysis different from those in our model from
+last time?
+:::
+
+. . .
+
+-   outcome: frequent mental-distress prevalence (numerical)
+
+-   predictor: county development tier (categorical; Tier 1 is most
+    economically distressed and Tier 3 is least economically distressed)
+
+## Visualize {.smaller}
+
+::: question
+Determine whether each of the following plot types would be an appropriate
+choice for visualizing the relationship between mental-distress prevalence and
+development tier.
+:::
+
+-   Scatterplot [❌]{.fragment}
+
+-   Box plot [✅]{.fragment}
+
+-   Violin plot [✅]{.fragment}
+
+-   Density plot [✅]{.fragment}
+
+-   Bar plot [❌]{.fragment}
+
+-   Stacked bar plot [❌]{.fragment}
+
+## Boxplot
+
+```{r}
+#| code-fold: true
+#| warning: false
+ggplot(
+  nc_places,
+  aes(x = development_tier, y = mental_distress)
+) +
+  geom_boxplot() +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    x = "Development tier",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    title = "Mental distress by county development tier"
+  )
+```
+
+## Violin plot
+
+```{r}
+#| code-fold: true
+#| warning: false
+ggplot(
+  nc_places,
+  aes(x = development_tier, y = mental_distress)
+) +
+  geom_violin() +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    x = "Development tier",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    title = "Mental distress by county development tier"
+  )
+```
+
+## Density plot
+```{r}
+#| code-fold: true
+#| warning: false
+ggplot(
+  nc_places,
+  aes(
+    x = mental_distress,
+    color = development_tier,
+    fill = development_tier
+  )
+) +
+  geom_density(alpha = 0.5) +
+  scale_x_continuous(labels = label_number(suffix = "%")) +
+  scale_color_viridis_d(end = 0.85) +
+  scale_fill_viridis_d(end = 0.85) +
+  labs(
+    x = "Adults experiencing frequent mental distress (%)",
+    y = "Density",
+    color = "Development\ntier",
+    fill = "Development\ntier",
+    title = "Mental distress by county development tier"
+  )
+```
+
+## Multiple geoms
+
+```{r}
+#| code-fold: true
+#| warning: false
+ggplot(
+  nc_places,
+  aes(x = development_tier, y = mental_distress)
+) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.12, height = 0, size = 2, alpha = 0.5) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    x = "Development tier",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    title = "Mental distress by county development tier"
+  )
+```
+
+## Summarize
+
+::: question
+Calculate the average mental-distress prevalence for counties in each development tier. How do the averages compare across tiers?
+:::
+
+::: fragment
+
+```{r}
+nc_places |>
+  group_by(development_tier) |>
+  summarize(mean_mental_distress = mean(mental_distress))
+```
+
+:::
+
+## Model - fit {.smaller}
+
+::: question
+Fit a linear regression model predicting mental-distress prevalence from
+development tier and display the results.
+
+Why is Tier 1 not in the output?
+:::
+
+```{r}
+mental_distress_tier_fit <- linear_reg() |>
+  fit(mental_distress ~ development_tier, data = nc_places)
+
+tidy(mental_distress_tier_fit)
+```
+
+::: fragment
+
+$$
+\widehat{\text{mental distress %}} = 19.4 - 1 \times \text{Tier 2} - 2.57 \times \text{Tier 3}
+$$
+
+:::
+
+## Model - interpret, Tier 2
+
+$$
+\widehat{\text{mental distress %}} = 19.4 \color{#9E2C6A}{- 1 \times \text{Tier 2}} - 2.57 \times \text{Tier 3}
+$$
+
+::: fragment
+
+Tier 2 counties are predicted to have, on average, a mental-distress prevalence 1 percentage point lower than Tier 1 counties.
+
+:::
+
+## Model - interpret, Tier 3
+
+$$
+\widehat{\text{mental distress %}} = 19.4 - 1 \times \text{Tier 2} \color{#9E2C6A}{- 2.57 \times \text{Tier 3}}
+$$
+
+::: fragment
+
+Tier 3 counties are predicted to have, on average, a mental-distress prevalence 2.57 percentage points lower than Tier 1 counties.
+
+:::
+
+## Model - interpret, Intercept
+
+$$
+\widehat{\text{mental distress %}} = \color{#9E2C6A}{19.4} - 1 \times \text{Tier 2} - 2.57 \times \text{Tier 3}
+$$
+
+::: fragment
+
+The predicted average mental-distress prevalence among Tier 1 counties is 19.4%.
+
+:::
+
+## Model - predict {.smaller}
+
+::: question
+What is the predicted mental-distress prevalence for a Tier 1 county?
+What are the predicted values for Tier 2 and Tier 3 counties?
+Where have we seen these values before?
+:::
+
+::: fragment
+
+```{r}
+new_counties <- tibble(
+  county = c("County A", "County B", "County C"),
+  development_tier = c("Tier 1", "Tier 2", "Tier 3")
+)
+
+augment(mental_distress_tier_fit, new_data = new_counties)
+```
+
+:::
+
+## Model - predict {.smaller}
+
+::: task
+Calculate the predicted mental-distress prevalence for counties in each
+development tier *by hand*.
+:::
+
+$$
+\widehat{\text{mental distress %}} = 19.42 - 1.00 \times \text{Tier 2} - 2.57 \times \text{Tier 3}
+$$
+
+. . .
+
+-   Tier 1: $\widehat{\text{mental distress %}} = 19.42 - 1.00 \times \color{#9E2C6A}{0} - 2.57 \times \color{#9E2C6A}{0} = 19.42$
+
+. . .
+
+-   Tier 2: $\widehat{\text{mental distress %}} = 19.42 - 1.00 \times 1 - 2.57 \times \color{#9E2C6A}{0} = 18.42$
+
+. . .
+
+-   Tier 3: $\widehat{\text{mental distress %}} = 19.42 - 1.00 \times \color{#9E2C6A}{0} - 2.57 \times 1 = 16.85$
+
+## Models with categorical predictors {.smaller}
+
+::: incremental
+-   A categorical predictor is encoded using **dummy variables**.
+    A predictor with $k$ levels requires $k - 1$ dummy variables.
+
+-   The first level of the categorical variable is the **baseline level**.
+    In a model with one categorical predictor, the intercept is the predicted
+    value of the outcome for the baseline level (when all dummy variables equal 0).
+
+-   Each slope coefficient describes the difference between the predicted value of the outcome for that level of the categorical variable compared to the baseline level.
+:::
+
+## Changing the baseline level
+
+-   By default, R uses the first level of a categorical variable as the baseline level.
+
+-   We can change the baseline level by reordering the levels of the categorical variable.
+
+## Participate 📱💻 {.xsmall}
+
+:::::: columns
+
+:::: {.column width="70%"}
+
+::: wooclap
+
+What function goes in the blank to make Tier 3 the baseline level in the
+`development_tier` variable?
+
+```{r}
+#| eval: false
+nc_places |>
+  mutate(
+    development_tier = ___(development_tier, "Tier 3")
+  )
+```
+
+::: wooclap-choices
+- `level_reorder`
+- `fct_relevel`
+- `fct_reorder`
+- `str_relevel`
+:::
+
+:::
+
+::::
+
+::: {.column width="30%"}
+{{< include _wooclap-column.qmd >}}
+:::
+
+::::::
+
+## Participate 📱💻 {.xsmall}
+
+:::::: columns
+
+:::: {.column width="70%"}
+
+::: wooclap
+
+What is the baseline level of `development_tier` in the following model?
+
+```{r}
+#| include: false
+nc_places_tier_2 <- nc_places |>
+  mutate(
+    development_tier = fct_relevel(development_tier, "Tier 2")
+  )
+```
+
+```{r}
+linear_reg() |>
+  fit(
+    mental_distress ~ development_tier,
+    data = nc_places_tier_2
+  ) |>
+  tidy()
+```
+
+::: wooclap-choices
+- Tier 1
+- Tier 2
+- Tier 3
+- Cannot tell from the output
+:::
+
+:::
+
+::::
+
+::: {.column width="30%"}
+{{< include _wooclap-column.qmd >}}
+:::
+
+::::::
