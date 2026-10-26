@@ -45,8 +45,8 @@ nc_places <- read_csv(
 
 ::: wooclap
 
-In the previous class, we used food-insecurity prevalence to predict mental-distress
-prevalence. Durham County had a residual of -2.60 percentage points.
+In the previous class, we used food-insecurity prevalence to predict mental-distress prevalence.
+Durham County had a residual of -2.60 percentage points.
 
 Which of the following best fill the blank below.
 
@@ -85,7 +85,7 @@ Go to [wooclap.com](https://app.wooclap.com/QYNCEFD) and use the code QYNCEFD.
 
 - Schedule meetings (at least one this week and at least two next week)
 
-- This week: 
+- This week:
   - Outline your presentation and start drafting slides and discussing who will present which slide (each team member must speak during the presentation)
   - Start drafting your writeup -- you can structure it as the words you will say in your presentation (i.e., your script)
 
@@ -226,8 +226,8 @@ outlier_counties <- c("Greene", "Swain", "Robeson")
 ## Depression and hearing disability {.smaller}
 
 ::: question
-What observations stand out from the main cloud of points? In what way do they
-stand out?
+What observations stand out from the main cloud of points?
+In what way do they stand out?
 :::
 
 ```{r}
@@ -252,19 +252,16 @@ ggplot(
 ## Outliers in regression {.smaller}
 
 ::: incremental
-- An **outlier** is a point—or group of points—that stands out from the rest of
-  the data.
+- An **outlier** is a point—or group of points—that stands out from the rest of the data.
 
-- A **leverage point** is horizontally far from the center of the cloud. It has
-  the potential to pull harder on the fitted line.
+- A **leverage point** is horizontally far from the center of the cloud.
+  It has the potential to pull harder on the fitted line.
 
-- An **influential point** actually changes the slope or position of the fitted
-  line substantially.
+- An **influential point** actually changes the slope or position of the fitted line substantially.
 :::
 
 ::: {.callout-important .fragment}
-These categories can overlap: a point can be an outlier, a leverage point, and
-an influential point.
+These categories can overlap: a point can be an outlier, a leverage point, and an influential point.
 :::
 
 ## Three counties to investigate {.smaller}
@@ -588,23 +585,21 @@ ggplot(
 
 . . .
 
-- Do not remove an outlier solely because it is unusual. Report and justify any decision to exclude data.
+- Do not remove an outlier solely because it is unusual.
+  Report and justify any decision to exclude data.
 
 # Categorical predictor
 
 ## Development tiers {.smaller}
 
-The North Carolina Department of Commerce ranks all 100 counties by economic
-well-being each year. The tiers are used in state programs that aim to
-encourage economic activity in less prosperous areas.
+The North Carolina Department of Commerce ranks all 100 counties by economic well-being each year.
+The tiers are used in state programs that aim to encourage economic activity in less prosperous areas.
 
 - **Tier 1:** 40 most economically distressed counties
 - **Tier 2:** next 40 counties
 - **Tier 3:** 20 least economically distressed counties
 
-The ranking combines four equally weighted measures: unemployment, median
-household income, 36-month population growth, and adjusted property tax base
-per capita.
+The ranking combines four equally weighted measures: unemployment, median household income, 36-month population growth, and adjusted property tax base per capita.
 
 ::: aside
 Sources: [N.C. Department of Commerce, County Distress Rankings](https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers) and [N.C. General Statute § 143B-437.08](https://www3.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_143B/GS_143B-437.08.html)
@@ -613,26 +608,21 @@ Sources: [N.C. Department of Commerce, County Distress Rankings](https://www.com
 ## A new question
 
 ::: question
-How does estimated frequent mental-distress prevalence vary by county
-development tier?
+How does estimated frequent mental-distress prevalence vary by county development tier?
 
-How are the variables in this analysis different from those in our model from
-last time?
+How are the variables in this analysis different from those in our model from last time?
 :::
 
 . . .
 
 -   outcome: frequent mental-distress prevalence (numerical)
 
--   predictor: county development tier (categorical; Tier 1 is most
-    economically distressed and Tier 3 is least economically distressed)
+-   predictor: county development tier (categorical; Tier 1 is most economically distressed and Tier 3 is least economically distressed)
 
 ## Visualize {.smaller}
 
 ::: question
-Determine whether each of the following plot types would be an appropriate
-choice for visualizing the relationship between mental-distress prevalence and
-development tier.
+Determine whether each of the following plot types would be an appropriate choice for visualizing the relationship between mental-distress prevalence and development tier.
 :::
 
 -   Scatterplot [❌]{.fragment}
@@ -730,7 +720,8 @@ ggplot(
 ## Summarize
 
 ::: question
-Calculate the average mental-distress prevalence for counties in each development tier. How do the averages compare across tiers?
+Calculate the average mental-distress prevalence for counties in each development tier.
+How do the averages compare across tiers?
 :::
 
 ::: fragment
@@ -746,8 +737,7 @@ nc_places |>
 ## Model - fit {.smaller}
 
 ::: question
-Fit a linear regression model predicting mental-distress prevalence from
-development tier and display the results.
+Fit a linear regression model predicting mental-distress prevalence from development tier and display the results.
 
 Why is Tier 1 not in the output?
 :::
@@ -827,8 +817,7 @@ augment(mental_distress_tier_fit, new_data = new_counties)
 ## Model - predict {.smaller}
 
 ::: task
-Calculate the predicted mental-distress prevalence for counties in each
-development tier *by hand*.
+Calculate the predicted mental-distress prevalence for counties in each development tier *by hand*.
 :::
 
 $$
@@ -854,8 +843,7 @@ $$
     A predictor with $k$ levels requires $k - 1$ dummy variables.
 
 -   The first level of the categorical variable is the **baseline level**.
-    In a model with one categorical predictor, the intercept is the predicted
-    value of the outcome for the baseline level (when all dummy variables equal 0).
+    In a model with one categorical predictor, the intercept is the predicted value of the outcome for the baseline level (when all dummy variables equal 0).
 
 -   Each slope coefficient describes the difference between the predicted value of the outcome for that level of the categorical variable compared to the baseline level.
 :::
@@ -874,8 +862,7 @@ $$
 
 ::: wooclap
 
-What function goes in the blank to make Tier 3 the baseline level in the
-`development_tier` variable?
+What function goes in the blank to make Tier 3 the baseline level in the `development_tier` variable?
 
 ```{r}
 #| eval: false
