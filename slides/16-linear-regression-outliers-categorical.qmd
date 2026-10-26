@@ -75,7 +75,8 @@ Go to [wooclap.com](https://app.wooclap.com/QYNCEFD) and use the code QYNCEFD.
 
 ## Announcements {.smaller}
 
-- Peer tutors through the ARC are available: https://sta199-f26.github.io/course-support.html#peer-tutorsd
+- Peer tutors through the ARC are available: \
+  <https://sta199-f26.github.io/course-support.html#peer-tutors>
 
 - Peer eval 3 is due tonight
 
@@ -191,6 +192,51 @@ ggplot(
 -   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
 :::
 
+# Evaluating fit
+
+## Is linear model appropriate?
+
+In the residuals vs. fitted (predicted) plot, we look for a horizontal band of points with no clear pattern.
+
+```{r}
+#| label: health-dental-res-plot
+#| code-fold: true
+health_dental_fit <- linear_reg() |>
+  fit(fair_or_poor_health ~ dental_visit, data = nc_places)
+
+health_dental_aug <- augment(
+  health_dental_fit,
+  new_data = nc_places
+)
+
+ggplot(
+  health_dental_aug,
+  aes(x = .pred, y = .resid)
+) +
+  geom_hline(
+    yintercept = 0,
+    color = "#9E2C6A",
+    linetype = "dashed"
+  ) +
+  geom_point(alpha = 0.6) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  labs(
+    x = "Predicted fair or poor health (%)",
+    y = "Residual (%)"
+  )
+```
+
+## Does the model do a good job explaining the variability in the outcome? {.smaller}
+
+The model (dental visits) explains 85% of the variability in fair or poor health percentage in NC counties.
+
+```{r}
+#| label: health-dental-rsquared
+glance(health_dental_fit)
+```
+
+
 # Outliers
 
 ```{r}
@@ -241,8 +287,8 @@ ggplot(
 ) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = FALSE, color = "#325b74") +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(
     x = "Adults with a hearing disability (%)",
     y = "Adults with depression (%)"
@@ -281,8 +327,8 @@ ggplot(
 ) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = FALSE, color = "#325b74") +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(
     x = "Adults with a hearing disability (%)",
     y = "Adults with depression (%)"
@@ -346,8 +392,8 @@ ggplot(
       "Without Greene" = "dashed"
     )
   ) +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(
     x = "Adults with a hearing disability (%)",
     y = "Adults with depression (%)",
@@ -435,8 +481,8 @@ ggplot(
       "Without Swain" = "dashed"
     )
   ) +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(
     x = "Adults with a hearing disability (%)",
     y = "Adults with depression (%)",
@@ -524,8 +570,8 @@ ggplot(
       "Without Robeson" = "dashed"
     )
   ) +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(
     x = "Adults with a hearing disability (%)",
     y = "Adults with depression (%)",
@@ -647,7 +693,7 @@ ggplot(
   aes(x = development_tier, y = mental_distress)
 ) +
   geom_boxplot() +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(
     x = "Development tier",
     y = "Adults experiencing\nfrequent mental distress (%)",
@@ -665,7 +711,7 @@ ggplot(
   aes(x = development_tier, y = mental_distress)
 ) +
   geom_violin() +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(
     x = "Development tier",
     y = "Adults experiencing\nfrequent mental distress (%)",
@@ -686,7 +732,7 @@ ggplot(
   )
 ) +
   geom_density(alpha = 0.5) +
-  scale_x_continuous(labels = label_number(suffix = "%")) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
   scale_color_viridis_d(end = 0.85) +
   scale_fill_viridis_d(end = 0.85) +
   labs(
@@ -709,7 +755,7 @@ ggplot(
 ) +
   geom_boxplot(outlier.shape = NA) +
   geom_jitter(width = 0.12, height = 0, size = 2, alpha = 0.5) +
-  scale_y_continuous(labels = label_number(suffix = "%")) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(
     x = "Development tier",
     y = "Adults experiencing\nfrequent mental distress (%)",
@@ -884,7 +930,11 @@ nc_places |>
 ::::
 
 ::: {.column width="30%"}
-{{< include _wooclap-column.qmd >}}
+
+![](images/16/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/QYNCEFD) and use the code QYNCEFD.
+
 :::
 
 ::::::
@@ -928,7 +978,11 @@ linear_reg() |>
 ::::
 
 ::: {.column width="30%"}
-{{< include _wooclap-column.qmd >}}
+
+![](images/16/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/QYNCEFD) and use the code QYNCEFD.
+
 :::
 
 ::::::
