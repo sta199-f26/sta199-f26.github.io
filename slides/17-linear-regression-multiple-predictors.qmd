@@ -1,0 +1,837 @@
+---
+title: "Linear regression with multiple predictors"
+subtitle: Lecture 17
+author: Prof. Mine Çetinkaya-Rundel
+date: 2026-10-26
+format:
+  revealjs:
+    output-file: 17-linear-regression-multiple-predictors-slides.html
+    footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    logo: "images/logo.png"
+    toc: false
+  html:
+    code-link: true
+filters:
+  - ../remove-fmt-skip.lua
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(tidymodels)
+library(gt)
+library(patchwork)
+library(scales)
+
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+
+nc_places <- read_csv(
+  here::here("slides", "data/nc-places.csv"),
+  show_col_types = FALSE
+)
+```
+
+# Warm-up
+
+## While you wait: Participate 📱💻 
+
+::: columns
+
+::: {.column width="70%" .xsmall}
+
+::: wooclap
+
+Which of the following is true about linear regression models?
+
+::: wooclap-choices
+- The regression line always passes through the origin (x = 0, y = 0).
+- The slope indicates the average change in the outcome for a one-unit increase in the predictor.
+- The intercept indicates the average value of the predictor when the outcome is 0.
+- Least squares regression line minimizes the sum of the vertical distances between the observed and predicted values of the outcome.
+:::
+
+:::
+
+:::
+
+::: {.column width="30%" .small}
+
+![](images/17/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/YJMSXJE) and use the code YJMSXJE.
+
+:::
+
+:::
+
+## Announcements {.smaller}
+
+- ...
+
+## Project... {.smaller}
+
+- ...
+
+# From last time: Categorical predictors
+
+## Mental-distress prevalence by county development tier
+
+::: question
+How does estimated frequent mental-distress prevalence vary by county development tier?
+:::
+
+-   outcome: frequent mental-distress prevalence (numerical)
+
+-   predictor: county development tier (categorical; Tier 1 is most economically distressed and Tier 3 is least economically distressed)
+
+## Boxplot
+
+```{r}
+#| code-fold: true
+#| warning: false
+ggplot(
+  nc_places,
+  aes(x = development_tier, y = mental_distress)
+) +
+  geom_boxplot() +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  labs(
+    x = "Development tier",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    title = "Mental distress by county development tier"
+  )
+```
+
+## Violin plot
+
+```{r}
+#| code-fold: true
+#| warning: false
+ggplot(
+  nc_places,
+  aes(x = development_tier, y = mental_distress)
+) +
+  geom_violin() +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  labs(
+    x = "Development tier",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    title = "Mental distress by county development tier"
+  )
+```
+
+## Density plot
+
+```{r}
+#| code-fold: true
+#| warning: false
+ggplot(
+  nc_places,
+  aes(
+    x = mental_distress,
+    color = development_tier,
+    fill = development_tier
+  )
+) +
+  geom_density(alpha = 0.5) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_color_viridis_d(end = 0.85) +
+  scale_fill_viridis_d(end = 0.85) +
+  labs(
+    x = "Adults experiencing frequent mental distress (%)",
+    y = "Density",
+    color = "Development\ntier",
+    fill = "Development\ntier",
+    title = "Mental distress by county development tier"
+  )
+```
+
+## Multiple geoms
+
+```{r}
+#| code-fold: true
+#| warning: false
+ggplot(
+  nc_places,
+  aes(x = development_tier, y = mental_distress)
+) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.12, height = 0, size = 2, alpha = 0.5) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  labs(
+    x = "Development tier",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    title = "Mental distress by county development tier"
+  )
+```
+
+## Summarize
+
+::: question
+Calculate the average mental-distress prevalence for counties in each development tier.
+How do the averages compare across tiers?
+:::
+
+::: fragment
+
+```{r}
+nc_places |>
+  group_by(development_tier) |>
+  summarize(mean_mental_distress = mean(mental_distress))
+```
+
+:::
+
+## Model - fit {.smaller}
+
+::: question
+Fit a linear regression model predicting mental-distress prevalence from development tier and display the results.
+
+Why is Tier 1 not in the output?
+:::
+
+```{r}
+md_tier_fit <- linear_reg() |>
+  fit(mental_distress ~ development_tier, data = nc_places)
+
+tidy(md_tier_fit)
+```
+
+::: fragment
+
+$$
+\widehat{\text{mental distress %}} = 19.4 - 1 \times \text{Tier 2} - 2.57 \times \text{Tier 3}
+$$
+
+:::
+
+## Model - interpret, Tier 2
+
+$$
+\widehat{\text{mental distress %}} = 19.4 \color{#9E2C6A}{- 1 \times \text{Tier 2}} - 2.57 \times \text{Tier 3}
+$$
+
+::: fragment
+
+Tier 2 counties are predicted to have, on average, a mental-distress prevalence 1 percentage point lower than Tier 1 counties.
+
+:::
+
+## Model - interpret, Tier 3
+
+$$
+\widehat{\text{mental distress %}} = 19.4 - 1 \times \text{Tier 2} \color{#9E2C6A}{- 2.57 \times \text{Tier 3}}
+$$
+
+::: fragment
+
+Tier 3 counties are predicted to have, on average, a mental-distress prevalence 2.57 percentage points lower than Tier 1 counties.
+
+:::
+
+## Model - interpret, Intercept
+
+$$
+\widehat{\text{mental distress %}} = \color{#9E2C6A}{19.4} - 1 \times \text{Tier 2} - 2.57 \times \text{Tier 3}
+$$
+
+::: fragment
+
+The predicted average mental-distress prevalence among Tier 1 counties is 19.4%.
+
+:::
+
+## Model - predict {.smaller}
+
+::: question
+What is the predicted mental-distress prevalence for a Tier 1 county?
+What are the predicted values for Tier 2 and Tier 3 counties?
+Where have we seen these values before?
+:::
+
+::: fragment
+
+```{r}
+new_counties <- tibble(
+  county = c("County A", "County B", "County C"),
+  development_tier = c("Tier 1", "Tier 2", "Tier 3")
+)
+
+augment(md_tier_fit, new_data = new_counties)
+```
+
+:::
+
+## Model - predict {.smaller}
+
+::: task
+Calculate the predicted mental-distress prevalence for counties in each development tier *by hand*.
+:::
+
+$$
+\widehat{\text{mental distress %}} = 19.42 - 1.00 \times \text{Tier 2} - 2.57 \times \text{Tier 3}
+$$
+
+. . .
+
+-   Tier 1: $\widehat{\text{mental distress %}} = 19.42 - 1.00 \times \color{#9E2C6A}{0} - 2.57 \times \color{#9E2C6A}{0} = 19.42$
+
+. . .
+
+-   Tier 2: $\widehat{\text{mental distress %}} = 19.42 - 1.00 \times 1 - 2.57 \times \color{#9E2C6A}{0} = 18.42$
+
+. . .
+
+-   Tier 3: $\widehat{\text{mental distress %}} = 19.42 - 1.00 \times \color{#9E2C6A}{0} - 2.57 \times 1 = 16.85$
+
+## Models with categorical predictors {.smaller}
+
+::: incremental
+-   A categorical predictor is encoded using **dummy variables**.
+    A predictor with $k$ levels requires $k - 1$ dummy variables.
+
+-   The first level of the categorical variable is the **baseline level**.
+    In a model with one categorical predictor, the intercept is the predicted value of the outcome for the baseline level (when all dummy variables equal 0).
+
+-   Each slope coefficient describes the difference between the predicted value of the outcome for that level of the categorical variable compared to the baseline level.
+:::
+
+## Changing the baseline level
+
+-   By default, R uses the first level of a categorical variable as the baseline level.
+
+-   We can change the baseline level by reordering the levels of the categorical variable.
+
+## Participate 📱💻 {.xsmall}
+
+:::::: columns
+
+:::: {.column width="70%"}
+
+::: wooclap
+
+What function goes in the blank to make Tier 3 the baseline level in the `development_tier` variable?
+
+```{r}
+#| eval: false
+nc_places |>
+  mutate(
+    development_tier = ___(development_tier, "Tier 3")
+  )
+```
+
+::: wooclap-choices
+- `level_reorder`
+- `fct_relevel`
+- `fct_reorder`
+- `str_relevel`
+:::
+
+:::
+
+::::
+
+::: {.column width="30%"}
+
+![](images/17/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/YJMSXJE) and use the code YJMSXJE.
+
+:::
+
+::::::
+
+## Participate 📱💻 {.xsmall}
+
+:::::: columns
+
+:::: {.column width="70%"}
+
+::: wooclap
+
+What is the baseline level of `development_tier` in the following model?
+
+```{r}
+#| include: false
+nc_places_tier_2 <- nc_places |>
+  mutate(
+    development_tier = fct_relevel(development_tier, "Tier 2")
+  )
+```
+
+```{r}
+linear_reg() |>
+  fit(
+    mental_distress ~ development_tier,
+    data = nc_places_tier_2
+  ) |>
+  tidy()
+```
+
+::: wooclap-choices
+- Tier 1
+- Tier 2
+- Tier 3
+- Cannot tell from the output
+:::
+
+:::
+
+::::
+
+::: {.column width="30%"}
+
+![](images/17/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/YJMSXJE) and use the code YJMSXJE.
+
+:::
+
+::::::
+
+# Multiple predictors
+
+## A new question
+
+::: question
+How does estimated frequent mental-distress prevalence vary by county development tier as well as loneliness prevalence?
+:::
+
+-   outcome: frequent mental-distress prevalence (numerical)
+
+-   predictor**s**: 
+    - development tier (categorical)
+    - loneliness prevalence (numerical)
+
+## Visualize
+
+```{r}
+#| label: mental-distress-tier-loneliness
+#| code-fold: true
+#| fig-asp: 0.618
+#| fig-width: 7
+ggplot(
+  nc_places,
+  aes(x = loneliness, y = mental_distress, fill = development_tier)
+) +
+  geom_point(
+    alpha = 0.7,
+    size = 3,
+    shape = "circle filled",
+    color = "#674574"
+  ) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  scale_fill_viridis_d(end = 0.85) +
+  labs(
+    x = "Adults experiencing loneliness (%)",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    fill = "Development tier",
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.8, 0.22)
+  )
+```
+
+## Model - fit {.smaller}
+
+```{r}
+md_tier_lone_fit <- linear_reg() |>
+  fit(
+    mental_distress ~ development_tier + loneliness,
+    data = nc_places
+  )
+```
+
+## Model - output and formula {.smaller}
+
+```{r}
+tidy(md_tier_lone_fit)
+```
+
+::: fragment
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}} &= 6.04 \\
+&- 0.381 \times \text{Tier 2} \\
+&- 1.41 \times \text{Tier 3} \\
+&+ 0.379 \times \text{loneliness %}
+\end{aligned}
+$$
+
+:::
+
+## Model - formula, deconstructed {.smaller}
+
+::: fragment
+**Tier 1:** $\text{Tier 2} = \color{#5C97CB}{\mathbf{0}}$ and $\text{Tier 3} = \color{#5C97CB}{\mathbf{0}}$
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}} &= 6.04 - 0.381 \times \color{#5C97CB}{\mathbf{0}} - 1.41 \times \color{#5C97CB}{\mathbf{0}} + 0.379 \times \text{loneliness %} \\
+&= 6.04 + 0.379 \times \text{loneliness %}
+\end{aligned}
+$$
+:::
+
+::: fragment
+**Tier 2:** $\text{Tier 2} = \color{#9E2C6A}{\mathbf{1}}$ and $\text{Tier 3} = \color{#5C97CB}{\mathbf{0}}$
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}} &= 6.04 - 0.381 \times \color{#9E2C6A}{\mathbf{1}} - 1.41 \times \color{#5C97CB}{\mathbf{0}} + 0.379 \times \text{loneliness %} \\
+&= 5.66 + 0.379 \times \text{loneliness %}
+\end{aligned}
+$$
+:::
+
+::: fragment
+**Tier 3:** $\text{Tier 2} = \color{#5C97CB}{\mathbf{0}}$ and $\text{Tier 3} = \color{#9E2C6A}{\mathbf{1}}$
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}} &= 6.04 - 0.381 \times \color{#5C97CB}{\mathbf{0}} - 1.41 \times \color{#9E2C6A}{\mathbf{1}} + 0.379 \times \text{loneliness %} \\
+&= 4.63 + 0.379 \times \text{loneliness %}
+\end{aligned}
+$$
+:::
+
+## Participate 📱💻 {.xsmall}
+
+:::::: columns
+
+:::: {.column width="75%"}
+
+::: wooclap
+
+What do the following look like on a scatterplot?
+
+-   **Tier 1:** $\widehat{\text{mental distress %}} = 6.04 + 0.379 \times \text{loneliness %}$
+
+-   **Tier 2:** $\widehat{\text{mental distress %}} = 5.66 + 0.379 \times \text{loneliness %}$
+
+-   **Tier 3:** $\widehat{\text{mental distress %}} = 4.63 + 0.379 \times \text{loneliness %}$
+
+::: wooclap-choices
+- Parallel lines with different intercepts
+- Parallel lines with the same intercept
+- Lines with different slopes and different intercepts
+- Lines with different slopes and the same intercept
+:::
+
+:::
+
+::::
+
+::: {.column width="25%"}
+
+![](images/17/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/YJMSXJE) and use the code YJMSXJE.
+
+:::
+
+::::::
+
+## Model - visualize
+
+```{r}
+#| label: mental-distress-tier-loneliness-lm-main
+#| code-fold: true
+#| fig-asp: 0.7
+#| fig-width: 7
+md_tier_lone_aug <- augment(
+  md_tier_lone_fit,
+  new_data = nc_places
+)
+
+ggplot(
+  md_tier_lone_aug,
+  aes(x = loneliness, y = mental_distress, fill = development_tier)
+) +
+  geom_line(
+    aes(y = .pred, color = development_tier),
+    linewidth = 1
+  ) +
+  geom_point(
+    alpha = 0.7,
+    size = 3,
+    shape = "circle filled",
+    color = "#674574"
+  ) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  scale_color_viridis_d(end = 0.85, guide = "none") +
+  scale_fill_viridis_d(end = 0.85) +
+  labs(
+    x = "Adults experiencing loneliness (%)",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    fill = "Development tier",
+    title = "Main effects models",
+    subtitle = "Linear model for each tier: same slope, different intercepts"
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.8, 0.22)
+  )
+```
+
+## Model - interpret, slope (numerical)
+
+::: small
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}} &= 6.04 \\
+&- 0.381 \times \text{Tier 2} \\
+&- 1.41 \times \text{Tier 3} \\
+&+ 0.379 \times \text{loneliness %}
+\end{aligned}
+$$
+
+:::
+
+::: fragment
+**Loneliness:** For each additional percentage point in loneliness prevalence, the model predicts mental distress prevalence to be higher, on average, by 0.381 percentage points, all else held constant (i.e., for counties in the same development tier).
+:::
+
+## Model - interpret, slope (categorical)
+
+::: small
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}} &= 6.04 \\
+&- 0.381 \times \text{Tier 2} \\
+&- 1.41 \times \text{Tier 3} \\
+&+ 0.379 \times \text{loneliness %}
+\end{aligned}
+$$
+
+:::
+
+::: fragment
+**Tier 2:** For Tier 2 counties, the model predicts mental distress prevalence to be lower, on average, by 0.38 percentage points than for Tier 1 counties, all else held constant (i.e., for counties with the same loneliness prevalence).
+:::
+
+## Model - interpret, slope (categorical)
+
+::: small
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}} &= 6.04 \\
+&- 0.381 \times \text{Tier 2} \\
+&- 1.41 \times \text{Tier 3} \\
+&+ 0.379 \times \text{loneliness %}
+\end{aligned}
+$$
+
+:::
+
+::: fragment
+**Tier 3:** For Tier 3 counties, the model predicts mental distress prevalence to be lower, on average, by 1.41 percentage points than for Tier 1 counties, all else held constant (i.e., for counties with the same loneliness prevalence).
+:::
+
+## Model - interpret, intercept
+
+::: small
+
+$$
+\begin{aligned}
+\widehat{\text{mental distress %}} &= 6.04 \\
+&- 0.381 \times \text{Tier 2} \\
+&- 1.41 \times \text{Tier 3} \\
+&+ 0.379 \times \text{loneliness %}
+\end{aligned}
+$$
+
+:::
+
+::: fragment
+**Intercept:** For Tier 1 counties with 0% loneliness prevalence, the model predicts mental distress prevalence to be 6.04%. However, 0% loneliness is outside the range of the observed data, so the intercept is not meaningful in context.
+
+:::
+
+## $R^2$: Variability explained {.smaller}
+
+::: question
+How much of the variability in mental-distress prevalence is explained by...
+:::
+
+::: {.columns}
+
+::: {.column}
+
+**tier alone:**
+
+```{r}
+glance(md_tier_fit) |>
+  select(r.squared)
+```
+
+::: fragment
+
+The model with tier alone as predictor explains approximately **55.4%** of the variability in mental-distress prevalence among North Carolina counties.
+
+:::
+
+:::
+
+::: {.column}
+
+::: fragment
+
+**tier + loneliness prevalence:**
+
+```{r}
+glance(md_tier_lone_fit) |>
+  select(r.squared)
+```
+
+:::
+
+::: fragment
+
+The model with tier and loneliness prevalence as predictors explain approximately **69.1%** of the variability in mental-distress prevalence among North Carolina counties.
+
+:::
+
+:::
+
+:::
+
+::: {.question .fragment}
+
+What does this say about which model is better for predicting mental distress prevalence?
+
+:::
+
+## Adjusted $R^2$: Fit and complexity {.smaller}
+
+-  $R^2$:
+   - measures the proportion of variability explained by the model
+   - increases as more predictors are added to the model, even if the new predictors are not meaningful
+
+-   Adjusted $R^2$:
+    - measures the proportion of variability explained by the model, with a penalty for the number of predictor coefficients in the model
+    - penalizes the model for adding unnecessary predictors, therefore does not automatically increase when another predictor is added
+  
+## Adjusted $R^2$: Fit and complexity {.smaller}
+
+::: {.columns}
+
+::: {.column}
+
+**tier alone:**
+
+```{r}
+glance(md_tier_fit) |>
+  select(adj.r.squared)
+```
+
+:::
+
+::: {.column}
+
+::: fragment
+
+**tier + loneliness prevalence:**
+
+```{r}
+glance(md_tier_lone_fit) |>
+  select(adj.r.squared)
+```
+
+:::
+
+:::
+
+:::
+
+<br>
+
+::: {.question .fragment}
+
+What does this say about which model is better for predicting mental distress prevalence?
+
+:::
+
+## Other explanations?
+
+::: {.columns}
+
+::: {.column width="30%"}
+
+::: {.question .small} 
+
+Current model: Mental distress prevalence is higher by the same amount for each additional percentage point in loneliness prevalence, regardless of development tier.
+
+Could there be a different reality?
+
+:::
+
+:::
+
+::: {.column width="70%"}
+
+```{r}
+#| label: mental-distress-tier-loneliness-lm-revisit
+#| code-fold: true
+#| fig-asp: 0.618
+#| fig-width: 7
+md_tier_lone_aug <- augment(
+  md_tier_lone_fit,
+  new_data = nc_places
+)
+
+ggplot(
+  md_tier_lone_aug,
+  aes(x = loneliness, y = mental_distress, fill = development_tier)
+) +
+  geom_line(
+    aes(y = .pred, color = development_tier),
+    linewidth = 1
+  ) +
+  geom_point(
+    alpha = 0.7,
+    size = 3,
+    shape = "circle filled",
+    color = "#674574"
+  ) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  scale_color_viridis_d(end = 0.85, guide = "none") +
+  scale_fill_viridis_d(end = 0.85) +
+  labs(
+    x = "Adults experiencing loneliness (%)",
+    y = "Adults experiencing\nfrequent mental distress (%)",
+    fill = "Development tier",
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.8, 0.22)
+  )
+```
+
+:::
+
+:::
+
+## Application exercise {.smaller}
+
+::: appex
+-   Go to your ae project in Positron.
+
+-   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your source control pane.
+
+-   If you haven't yet done so, pull to get today's application exercise file: `ae-10-nc-places-multi-model.qmd`.
+
+-   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
+:::
