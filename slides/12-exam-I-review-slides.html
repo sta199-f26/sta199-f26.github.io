@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Prof.&nbsp;Mine Çetinkaya-Rundel">
   <meta name="dcterms.date" content="2026-09-30">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c920ede21890f3a947105a3b8b329d99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3b10b6ec34c7aba22fd5177590698153.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -203,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Prof.&nbsp;Mine Çetinkaya-Rundel 
+Prof.&nbsp;Mine Çetinkaya-Rundel
 </div>
         <p class="quarto-title-affiliation">
             Duke University <br> STA 199 - Fall 2026
@@ -318,8 +324,8 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <h2>Q16: Which bar plot?</h2>
 <p>Which plot is produced by this code? <span class="fragment"><strong>Correct: D.</strong></span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb1-2"><a aria-label="2"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 <img data-src="12-exam-I-review_files/figure-revealjs/q16-options-1.png" style="width:95.0%" alt="Five options: A island proportions filled by species; B species proportions filled by island; C horizontal species proportions; D island counts filled by species; E horizontal species counts filled by island." class="r-stretch"></section>
@@ -364,8 +370,8 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <h2>Q27: Summing a condition</h2>
 <p>Which statements about the code and its result are true? <strong>Select all that apply.</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>movies <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">summarize</span>(<span class="fu">sum</span>(release_country <span class="sc">==</span> <span class="st">"United States"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a>movies <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a aria-label="2"></a>  <span class="fu">summarize</span>(<span class="fu">sum</span>(release_country <span class="sc">==</span> <span class="st">"United States"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   `sum(release_country == "United States")`
@@ -384,9 +390,9 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <section id="q29-a-6-6-result" class="slide level2 xsmall">
 <h2>Q29: A 6 × 6 result</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>movies <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">count</span>(rating, genre) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> genre, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a>movies <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a aria-label="2"></a>  <span class="fu">count</span>(rating, genre) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a aria-label="3"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> genre, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   rating    Other Drama Action Comedy Horror
@@ -412,13 +418,13 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <h2>Q31: Reshaping inflation data — question</h2>
 <p><code>country_inflation</code> has <strong>38 rows and 34 columns</strong>: one row per country, a <code>country</code> column, and annual inflation columns for <strong>1993–2025</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>country_inflation_long <span class="ot">&lt;-</span> country_inflation <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb7-3"><a></a>    <span class="at">cols =</span> <span class="sc">!</span>country,</span>
-<span id="cb7-4"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
-<span id="cb7-5"><a></a>    <span class="at">names_transform =</span> as.numeric,</span>
-<span id="cb7-6"><a></a>    <span class="at">values_to =</span> <span class="st">"inflation_rate"</span></span>
-<span id="cb7-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a>country_inflation_long <span class="ot">&lt;-</span> country_inflation <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a aria-label="2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb7-3"><a aria-label="3"></a>    <span class="at">cols =</span> <span class="sc">!</span>country,</span>
+<span id="cb7-4"><a aria-label="4"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb7-5"><a aria-label="5"></a>    <span class="at">names_transform =</span> as.numeric,</span>
+<span id="cb7-6"><a aria-label="6"></a>    <span class="at">values_to =</span> <span class="st">"inflation_rate"</span></span>
+<span id="cb7-7"><a aria-label="7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="question">
 <p>How many rows and columns does the result have? <strong>Show where each number comes from.</strong> What does each row represent, what did <code>pivot_longer()</code> do, and what does <code>names_transform = as.numeric</code> accomplish?</p>
@@ -444,12 +450,12 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <section id="q32-ratios-and-the-top-five-question" class="slide level2 xsmall">
 <h2>Q32: Ratios and the top five — question</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>country_inflation <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">1993</span><span class="st">`</span>), <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">2025</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a></a>  <span class="fu">mutate</span>(<span class="at">inf_ratio =</span> <span class="st">`</span><span class="at">2025</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">1993</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a></a>  <span class="fu">select</span>(country, inf_ratio) <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(inf_ratio)) <span class="sc">|&gt;</span></span>
-<span id="cb8-6"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>country_inflation <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">1993</span><span class="st">`</span>), <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">2025</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">inf_ratio =</span> <span class="st">`</span><span class="at">2025</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">1993</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a aria-label="4"></a>  <span class="fu">select</span>(country, inf_ratio) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a aria-label="5"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(inf_ratio)) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a aria-label="6"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
   country        inf_ratio
@@ -730,7 +736,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -842,13 +848,14 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Prof.&nbsp;Mine Çetinkaya-Rundel">
   <meta name="dcterms.date" content="2026-09-30">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c920ede21890f3a947105a3b8b329d99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3b10b6ec34c7aba22fd5177590698153.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -203,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Prof.&nbsp;Mine Çetinkaya-Rundel 
+Prof.&nbsp;Mine Çetinkaya-Rundel
 </div>
         <p class="quarto-title-affiliation">
             Duke University <br> STA 199 - Fall 2026
@@ -332,92 +338,92 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <h2>Common words in The Chronicle titles</h2>
 <p>Code for the earlier plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|2|3-6|7|8|9|10-24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>chronicle <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(word, title, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-4"><a></a>    <span class="at">word =</span> <span class="fu">str_replace_all</span>(word, <span class="st">"’"</span>, <span class="st">"'"</span>),</span>
-<span id="cb1-5"><a></a>    <span class="at">word =</span> <span class="fu">str_replace</span>(word, <span class="st">"duke's"</span>, <span class="st">"duke"</span>)</span>
-<span id="cb1-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-10"><a></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">fct_reorder</span>(word, n)) <span class="sc">|&gt;</span></span>
-<span id="cb1-11"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> word, <span class="at">x =</span> n, <span class="at">fill =</span> <span class="fu">log</span>(n))) <span class="sc">+</span></span>
-<span id="cb1-12"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb1-13"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<span id="cb1-14"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-15"><a></a>    <span class="at">x =</span> <span class="st">"Number of mentions"</span>,</span>
-<span id="cb1-16"><a></a>    <span class="at">y =</span> <span class="st">"Word"</span>,</span>
-<span id="cb1-17"><a></a>    <span class="at">title =</span> <span class="st">"The Chronicle - Opinion pieces"</span>,</span>
-<span id="cb1-18"><a></a>    <span class="at">subtitle =</span> <span class="st">"Common words in the 500 most recent opinion piece titles"</span>,</span>
-<span id="cb1-19"><a></a>    <span class="at">caption =</span> <span class="st">"Source: Data scraped from The Chronicle on September 29, 2026"</span></span>
-<span id="cb1-20"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb1-21"><a></a>  <span class="fu">theme</span>(</span>
-<span id="cb1-22"><a></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb1-23"><a></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>)</span>
-<span id="cb1-24"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|2|3-6|7|8|9|10-24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>chronicle <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a aria-label="2"></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(word, title, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a aria-label="3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-4"><a aria-label="4"></a>    <span class="at">word =</span> <span class="fu">str_replace_all</span>(word, <span class="st">"’"</span>, <span class="st">"'"</span>),</span>
+<span id="cb1-5"><a aria-label="5"></a>    <span class="at">word =</span> <span class="fu">str_replace</span>(word, <span class="st">"duke's"</span>, <span class="st">"duke"</span>)</span>
+<span id="cb1-6"><a aria-label="6"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a aria-label="7"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a aria-label="8"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a aria-label="9"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a aria-label="10"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">fct_reorder</span>(word, n)) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a aria-label="11"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> word, <span class="at">x =</span> n, <span class="at">fill =</span> <span class="fu">log</span>(n))) <span class="sc">+</span></span>
+<span id="cb1-12"><a aria-label="12"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-13"><a aria-label="13"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a aria-label="14"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-15"><a aria-label="15"></a>    <span class="at">x =</span> <span class="st">"Number of mentions"</span>,</span>
+<span id="cb1-16"><a aria-label="16"></a>    <span class="at">y =</span> <span class="st">"Word"</span>,</span>
+<span id="cb1-17"><a aria-label="17"></a>    <span class="at">title =</span> <span class="st">"The Chronicle - Opinion pieces"</span>,</span>
+<span id="cb1-18"><a aria-label="18"></a>    <span class="at">subtitle =</span> <span class="st">"Common words in the 500 most recent opinion piece titles"</span>,</span>
+<span id="cb1-19"><a aria-label="19"></a>    <span class="at">caption =</span> <span class="st">"Source: Data scraped from The Chronicle on September 29, 2026"</span></span>
+<span id="cb1-20"><a aria-label="20"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-21"><a aria-label="21"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-22"><a aria-label="22"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb1-23"><a aria-label="23"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>)</span>
+<span id="cb1-24"><a aria-label="24"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="avg-sentiment-scores-of-articles" class="slide level2 smaller">
 <h2>Avg sentiment scores of articles</h2>
 <p>Code for the earlier plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="|2-3|5|6|7-8|9-13|23-56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>afinn_sentiments <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"slides"</span>, <span class="st">"data/afinn-sentiments.csv"</span>))</span>
-<span id="cb2-2"><a></a>chronicle_author_sentiments <span class="ot">&lt;-</span> chronicle <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(word, article_text, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">str_replace_all</span>(word, <span class="st">"’"</span>, <span class="st">"'"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
-<span id="cb2-6"><a></a>  <span class="fu">left_join</span>(afinn_sentiments) <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a></a>  <span class="fu">group_by</span>(author, article_text) <span class="sc">|&gt;</span></span>
-<span id="cb2-8"><a></a>  <span class="fu">summarize</span>(<span class="at">total_sentiment =</span> <span class="fu">sum</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-9"><a></a>  <span class="fu">group_by</span>(author) <span class="sc">|&gt;</span></span>
-<span id="cb2-10"><a></a>  <span class="fu">summarize</span>(</span>
-<span id="cb2-11"><a></a>    <span class="at">n_articles =</span> <span class="fu">n</span>(),</span>
-<span id="cb2-12"><a></a>    <span class="at">avg_sentiment =</span> <span class="fu">mean</span>(total_sentiment, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-13"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-14"><a></a>  <span class="fu">filter</span>(n_articles <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(author)) <span class="sc">|&gt;</span></span>
-<span id="cb2-15"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_sentiment)) <span class="sc">|&gt;</span></span>
-<span id="cb2-16"><a></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">34</span><span class="sc">:</span><span class="dv">43</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-17"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-18"><a></a>    <span class="at">author =</span> <span class="fu">fct_reorder</span>(author, avg_sentiment),</span>
-<span id="cb2-19"><a></a>    <span class="at">neg_pos =</span> <span class="fu">if_else</span>(avg_sentiment <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"neg"</span>, <span class="st">"pos"</span>),</span>
-<span id="cb2-20"><a></a>    <span class="at">label_position =</span> <span class="fu">if_else</span>(neg_pos <span class="sc">==</span> <span class="st">"neg"</span>, <span class="fl">0.25</span>, <span class="sc">-</span><span class="fl">0.25</span>)</span>
-<span id="cb2-21"><a></a>  )</span>
-<span id="cb2-22"><a></a></span>
-<span id="cb2-23"><a></a><span class="fu">ggplot</span>(chronicle_author_sentiments, <span class="fu">aes</span>(<span class="at">y =</span> author, <span class="at">x =</span> avg_sentiment)) <span class="sc">+</span></span>
-<span id="cb2-24"><a></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> neg_pos), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb2-25"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb2-26"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> label_position, <span class="at">label =</span> author, <span class="at">color =</span> neg_pos),</span>
-<span id="cb2-27"><a></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>)),</span>
-<span id="cb2-28"><a></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb2-29"><a></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
-<span id="cb2-30"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb2-31"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb2-32"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(avg_sentiment, <span class="dv">1</span>)),</span>
-<span id="cb2-33"><a></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">1.25</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="sc">-</span><span class="fl">0.25</span>, <span class="dv">10</span>)),</span>
-<span id="cb2-34"><a></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb2-35"><a></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
-<span id="cb2-36"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb2-37"><a></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"neg"</span> <span class="ot">=</span> <span class="st">"#4d4009"</span>, <span class="st">"pos"</span> <span class="ot">=</span> <span class="st">"#FF4B91"</span>)) <span class="sc">+</span></span>
-<span id="cb2-38"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"neg"</span> <span class="ot">=</span> <span class="st">"#4d4009"</span>, <span class="st">"pos"</span> <span class="ot">=</span> <span class="st">"#FF4B91"</span>)) <span class="sc">+</span></span>
-<span id="cb2-39"><a></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">40</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb2-40"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-41"><a></a>    <span class="at">x =</span> <span class="st">"negative  ←     Average sentiment score (AFINN)     →  positive"</span>,</span>
-<span id="cb2-42"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb2-43"><a></a>    <span class="at">title =</span> <span class="st">"The Chronicle - Opinion pieces</span><span class="sc">\n</span><span class="st">Average sentiment scores of articles by author"</span>,</span>
-<span id="cb2-44"><a></a>    <span class="at">subtitle =</span> <span class="st">"Top 10 average positive and negative scores"</span>,</span>
-<span id="cb2-45"><a></a>    <span class="at">caption =</span> <span class="st">"Source: Data scraped from The Chronicle on Sep 29, 2026"</span></span>
-<span id="cb2-46"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb2-47"><a></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<span id="cb2-48"><a></a>  <span class="fu">theme</span>(</span>
-<span id="cb2-49"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb2-50"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
-<span id="cb2-51"><a></a>      <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
-<span id="cb2-52"><a></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="fl">0.5</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>, <span class="at">l =</span> <span class="dv">0</span>, <span class="at">unit =</span> <span class="st">"lines"</span>)</span>
-<span id="cb2-53"><a></a>    ),</span>
-<span id="cb2-54"><a></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb2-55"><a></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
-<span id="cb2-56"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" data-code-line-numbers="|2-3|5|6|7-8|9-13|23-56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a>afinn_sentiments <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"slides"</span>, <span class="st">"data/afinn-sentiments.csv"</span>))</span>
+<span id="cb2-2"><a aria-label="2"></a>chronicle_author_sentiments <span class="ot">&lt;-</span> chronicle <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a aria-label="3"></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(word, article_text, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">str_replace_all</span>(word, <span class="st">"’"</span>, <span class="st">"'"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a aria-label="5"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a aria-label="6"></a>  <span class="fu">left_join</span>(afinn_sentiments) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a aria-label="7"></a>  <span class="fu">group_by</span>(author, article_text) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a aria-label="8"></a>  <span class="fu">summarize</span>(<span class="at">total_sentiment =</span> <span class="fu">sum</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a aria-label="9"></a>  <span class="fu">group_by</span>(author) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a aria-label="10"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb2-11"><a aria-label="11"></a>    <span class="at">n_articles =</span> <span class="fu">n</span>(),</span>
+<span id="cb2-12"><a aria-label="12"></a>    <span class="at">avg_sentiment =</span> <span class="fu">mean</span>(total_sentiment, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-13"><a aria-label="13"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a aria-label="14"></a>  <span class="fu">filter</span>(n_articles <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(author)) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a aria-label="15"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_sentiment)) <span class="sc">|&gt;</span></span>
+<span id="cb2-16"><a aria-label="16"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">34</span><span class="sc">:</span><span class="dv">43</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-17"><a aria-label="17"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-18"><a aria-label="18"></a>    <span class="at">author =</span> <span class="fu">fct_reorder</span>(author, avg_sentiment),</span>
+<span id="cb2-19"><a aria-label="19"></a>    <span class="at">neg_pos =</span> <span class="fu">if_else</span>(avg_sentiment <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"neg"</span>, <span class="st">"pos"</span>),</span>
+<span id="cb2-20"><a aria-label="20"></a>    <span class="at">label_position =</span> <span class="fu">if_else</span>(neg_pos <span class="sc">==</span> <span class="st">"neg"</span>, <span class="fl">0.25</span>, <span class="sc">-</span><span class="fl">0.25</span>)</span>
+<span id="cb2-21"><a aria-label="21"></a>  )</span>
+<span id="cb2-22"><a aria-label="22"></a></span>
+<span id="cb2-23"><a aria-label="23"></a><span class="fu">ggplot</span>(chronicle_author_sentiments, <span class="fu">aes</span>(<span class="at">y =</span> author, <span class="at">x =</span> avg_sentiment)) <span class="sc">+</span></span>
+<span id="cb2-24"><a aria-label="24"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> neg_pos), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb2-25"><a aria-label="25"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb2-26"><a aria-label="26"></a>    <span class="fu">aes</span>(<span class="at">x =</span> label_position, <span class="at">label =</span> author, <span class="at">color =</span> neg_pos),</span>
+<span id="cb2-27"><a aria-label="27"></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>)),</span>
+<span id="cb2-28"><a aria-label="28"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-29"><a aria-label="29"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
+<span id="cb2-30"><a aria-label="30"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-31"><a aria-label="31"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb2-32"><a aria-label="32"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(avg_sentiment, <span class="dv">1</span>)),</span>
+<span id="cb2-33"><a aria-label="33"></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">1.25</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="sc">-</span><span class="fl">0.25</span>, <span class="dv">10</span>)),</span>
+<span id="cb2-34"><a aria-label="34"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb2-35"><a aria-label="35"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
+<span id="cb2-36"><a aria-label="36"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-37"><a aria-label="37"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"neg"</span> <span class="ot">=</span> <span class="st">"#4d4009"</span>, <span class="st">"pos"</span> <span class="ot">=</span> <span class="st">"#FF4B91"</span>)) <span class="sc">+</span></span>
+<span id="cb2-38"><a aria-label="38"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"neg"</span> <span class="ot">=</span> <span class="st">"#4d4009"</span>, <span class="st">"pos"</span> <span class="ot">=</span> <span class="st">"#FF4B91"</span>)) <span class="sc">+</span></span>
+<span id="cb2-39"><a aria-label="39"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">40</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb2-40"><a aria-label="40"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-41"><a aria-label="41"></a>    <span class="at">x =</span> <span class="st">"negative  ←     Average sentiment score (AFINN)     →  positive"</span>,</span>
+<span id="cb2-42"><a aria-label="42"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-43"><a aria-label="43"></a>    <span class="at">title =</span> <span class="st">"The Chronicle - Opinion pieces</span><span class="sc">\n</span><span class="st">Average sentiment scores of articles by author"</span>,</span>
+<span id="cb2-44"><a aria-label="44"></a>    <span class="at">subtitle =</span> <span class="st">"Top 10 average positive and negative scores"</span>,</span>
+<span id="cb2-45"><a aria-label="45"></a>    <span class="at">caption =</span> <span class="st">"Source: Data scraped from The Chronicle on Sep 29, 2026"</span></span>
+<span id="cb2-46"><a aria-label="46"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-47"><a aria-label="47"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb2-48"><a aria-label="48"></a>  <span class="fu">theme</span>(</span>
+<span id="cb2-49"><a aria-label="49"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb2-50"><a aria-label="50"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb2-51"><a aria-label="51"></a>      <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-52"><a aria-label="52"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="fl">0.5</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>, <span class="at">l =</span> <span class="dv">0</span>, <span class="at">unit =</span> <span class="st">"lines"</span>)</span>
+<span id="cb2-53"><a aria-label="53"></a>    ),</span>
+<span id="cb2-54"><a aria-label="54"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb2-55"><a aria-label="55"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
+<span id="cb2-56"><a aria-label="56"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="where-is-the-data-coming-from" class="slide level2 smaller">
@@ -443,7 +449,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <p><img src="images/11/chronicle-opinion-page.png" style="width: 100%; height: auto;"></p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>chronicle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a>chronicle</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 500 × 9
    title   author date_time           date       month   day column article_text
@@ -485,23 +491,23 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <h2>Hypertext Markup Language</h2>
 <p>Most of the data on the web is still largely available as HTML - while it is structured (hierarchical) it often is not available in a form useful for analysis (flat / tidy).</p>
 <div class="small">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
-<span id="cb5-2"><a></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
-<span id="cb5-3"><a></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>This is a title<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
-<span id="cb5-4"><a></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
-<span id="cb5-5"><a></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb5-6"><a></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> align</span><span class="op">=</span><span class="st">"center"</span><span class="dt">&gt;</span>Hello world!<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
-<span id="cb5-7"><a></a>    <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">/&gt;</span></span>
-<span id="cb5-8"><a></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"name"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"first"</span><span class="dt">&gt;</span>John<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb5-9"><a></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"name"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"last"</span><span class="dt">&gt;</span>Doe<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb5-10"><a></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"contact"</span><span class="dt">&gt;</span></span>
-<span id="cb5-11"><a></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"home"</span><span class="dt">&gt;</span>555-555-1234<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb5-12"><a></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"home"</span><span class="dt">&gt;</span>555-555-2345<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb5-13"><a></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"work"</span><span class="dt">&gt;</span>555-555-9999<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb5-14"><a></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"fax"</span><span class="dt">&gt;</span>555-555-8888<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb5-15"><a></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb5-16"><a></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb5-17"><a></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a aria-label="1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<span id="cb5-2"><a aria-label="2"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb5-3"><a aria-label="3"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>This is a title<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb5-4"><a aria-label="4"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb5-5"><a aria-label="5"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb5-6"><a aria-label="6"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> align</span><span class="op">=</span><span class="st">"center"</span><span class="dt">&gt;</span>Hello world!<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-7"><a aria-label="7"></a>    <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">/&gt;</span></span>
+<span id="cb5-8"><a aria-label="8"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"name"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"first"</span><span class="dt">&gt;</span>John<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-9"><a aria-label="9"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"name"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"last"</span><span class="dt">&gt;</span>Doe<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-10"><a aria-label="10"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"contact"</span><span class="dt">&gt;</span></span>
+<span id="cb5-11"><a aria-label="11"></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"home"</span><span class="dt">&gt;</span>555-555-1234<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-12"><a aria-label="12"></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"home"</span><span class="dt">&gt;</span>555-555-2345<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-13"><a aria-label="13"></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"work"</span><span class="dt">&gt;</span>555-555-9999<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-14"><a aria-label="14"></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"fax"</span><span class="dt">&gt;</span>555-555-8888<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-15"><a aria-label="15"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-16"><a aria-label="16"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb5-17"><a aria-label="17"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="rvest" class="slide level2 smaller">
@@ -514,7 +520,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <li><a href="https://rvest.tidyverse.org">rvest.tidyverse.org</a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(rvest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a><span class="fu">library</span>(rvest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-right">
@@ -549,30 +555,30 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div>
 </div><div class="column small" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>source_code_for_a_page <span class="ot">&lt;-</span></span>
-<span id="cb7-2"><a></a>  <span class="st">'&lt;html&gt;</span></span>
-<span id="cb7-3"><a></a><span class="st">  &lt;head&gt;</span></span>
-<span id="cb7-4"><a></a><span class="st">    &lt;title&gt;This is a title&lt;/title&gt;</span></span>
-<span id="cb7-5"><a></a><span class="st">  &lt;/head&gt;</span></span>
-<span id="cb7-6"><a></a><span class="st">  &lt;body&gt;</span></span>
-<span id="cb7-7"><a></a><span class="st">    &lt;p align="center"&gt;Hello world!&lt;/p&gt;</span></span>
-<span id="cb7-8"><a></a><span class="st">    &lt;br/&gt;</span></span>
-<span id="cb7-9"><a></a><span class="st">    &lt;div class="name" id="first"&gt;John&lt;/div&gt;</span></span>
-<span id="cb7-10"><a></a><span class="st">    &lt;div class="name" id="last"&gt;Doe&lt;/div&gt;</span></span>
-<span id="cb7-11"><a></a><span class="st">    &lt;div class="contact"&gt;</span></span>
-<span id="cb7-12"><a></a><span class="st">      &lt;div class="home"&gt;555-555-1234&lt;/div&gt;</span></span>
-<span id="cb7-13"><a></a><span class="st">      &lt;div class="home"&gt;555-555-2345&lt;/div&gt;</span></span>
-<span id="cb7-14"><a></a><span class="st">      &lt;div class="work"&gt;555-555-9999&lt;/div&gt;</span></span>
-<span id="cb7-15"><a></a><span class="st">      &lt;div class="fax"&gt;555-555-8888&lt;/div&gt;</span></span>
-<span id="cb7-16"><a></a><span class="st">    &lt;/div&gt;</span></span>
-<span id="cb7-17"><a></a><span class="st">  &lt;/body&gt;</span></span>
-<span id="cb7-18"><a></a><span class="st">&lt;/html&gt;'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a>source_code_for_a_page <span class="ot">&lt;-</span></span>
+<span id="cb7-2"><a aria-label="2"></a>  <span class="st">'&lt;html&gt;</span></span>
+<span id="cb7-3"><a aria-label="3"></a><span class="st">  &lt;head&gt;</span></span>
+<span id="cb7-4"><a aria-label="4"></a><span class="st">    &lt;title&gt;This is a title&lt;/title&gt;</span></span>
+<span id="cb7-5"><a aria-label="5"></a><span class="st">  &lt;/head&gt;</span></span>
+<span id="cb7-6"><a aria-label="6"></a><span class="st">  &lt;body&gt;</span></span>
+<span id="cb7-7"><a aria-label="7"></a><span class="st">    &lt;p align="center"&gt;Hello world!&lt;/p&gt;</span></span>
+<span id="cb7-8"><a aria-label="8"></a><span class="st">    &lt;br/&gt;</span></span>
+<span id="cb7-9"><a aria-label="9"></a><span class="st">    &lt;div class="name" id="first"&gt;John&lt;/div&gt;</span></span>
+<span id="cb7-10"><a aria-label="10"></a><span class="st">    &lt;div class="name" id="last"&gt;Doe&lt;/div&gt;</span></span>
+<span id="cb7-11"><a aria-label="11"></a><span class="st">    &lt;div class="contact"&gt;</span></span>
+<span id="cb7-12"><a aria-label="12"></a><span class="st">      &lt;div class="home"&gt;555-555-1234&lt;/div&gt;</span></span>
+<span id="cb7-13"><a aria-label="13"></a><span class="st">      &lt;div class="home"&gt;555-555-2345&lt;/div&gt;</span></span>
+<span id="cb7-14"><a aria-label="14"></a><span class="st">      &lt;div class="work"&gt;555-555-9999&lt;/div&gt;</span></span>
+<span id="cb7-15"><a aria-label="15"></a><span class="st">      &lt;div class="fax"&gt;555-555-8888&lt;/div&gt;</span></span>
+<span id="cb7-16"><a aria-label="16"></a><span class="st">    &lt;/div&gt;</span></span>
+<span id="cb7-17"><a aria-label="17"></a><span class="st">  &lt;/body&gt;</span></span>
+<span id="cb7-18"><a aria-label="18"></a><span class="st">&lt;/html&gt;'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(source_code_for_a_page)</span>
-<span id="cb8-2"><a></a>page</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(source_code_for_a_page)</span>
+<span id="cb8-2"><a aria-label="2"></a>page</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{html_document}
 &lt;html&gt;
@@ -590,7 +596,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div><div class="column">
 <div class="medium">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"p"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"p"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (1)}
 [1] &lt;p align="center"&gt;Hello world!&lt;/p&gt;</code></pre>
@@ -605,7 +611,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div><div class="column">
 <div class="medium">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"p"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"p"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Hello world!"</code></pre>
 </div>
@@ -619,7 +625,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div><div class="column">
 <div class="medium">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"p"</span>) <span class="sc">|&gt;</span> <span class="fu">html_attrs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"p"</span>) <span class="sc">|&gt;</span> <span class="fu">html_attrs</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
    align 
@@ -635,7 +641,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div><div class="column">
 <div class="medium">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"p"</span>) <span class="sc">|&gt;</span> <span class="fu">html_attr</span>(<span class="st">"align"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"p"</span>) <span class="sc">|&gt;</span> <span class="fu">html_attr</span>(<span class="st">"align"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "center"</code></pre>
 </div>
@@ -648,7 +654,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <p>Give me all the elements tagged <code>div</code>:</p>
 <div class="medium">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"div"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"div"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (7)}
 [1] &lt;div class="name" id="first"&gt;John&lt;/div&gt;
@@ -668,7 +674,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </ul>
 <div class="medium">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"div"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a>page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"div"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "John"                                                                                  
 [2] "Doe"                                                                                   
@@ -685,20 +691,20 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <section id="extracting-text-from-selected-elements" class="slide level2 smaller">
 <h2>Extracting text from selected elements</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>source_code_for_a_boring_page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(</span>
-<span id="cb22-2"><a></a>  <span class="st">"&lt;p&gt;  </span></span>
-<span id="cb22-3"><a></a><span class="st">    This is the first sentence in the paragraph.</span></span>
-<span id="cb22-4"><a></a><span class="st">    This is the second sentence that should be on the same line as the first sentence.&lt;br&gt;This third sentence should start on a new line.</span></span>
-<span id="cb22-5"><a></a><span class="st">  &lt;/p&gt;"</span></span>
-<span id="cb22-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-label="1"></a>source_code_for_a_boring_page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(</span>
+<span id="cb22-2"><a aria-label="2"></a>  <span class="st">"&lt;p&gt;  </span></span>
+<span id="cb22-3"><a aria-label="3"></a><span class="st">    This is the first sentence in the paragraph.</span></span>
+<span id="cb22-4"><a aria-label="4"></a><span class="st">    This is the second sentence that should be on the same line as the first sentence.&lt;br&gt;This third sentence should start on a new line.</span></span>
+<span id="cb22-5"><a aria-label="5"></a><span class="st">  &lt;/p&gt;"</span></span>
+<span id="cb22-6"><a aria-label="6"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="columns">
 <div class="column fragment">
 <p><code>html_text()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>source_code_for_a_boring_page <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-label="1"></a>source_code_for_a_boring_page <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a aria-label="2"></a>  <span class="fu">html_text</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "  \n    This is the first sentence in the paragraph.\n    This is the second sentence that should be on the same line as the first sentence.This third sentence should start on a new line.\n  "</code></pre>
 </div>
@@ -706,8 +712,8 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div><div class="column fragment">
 <p><code>html_text2()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>source_code_for_a_boring_page <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a></a>  <span class="fu">html_text2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-label="1"></a>source_code_for_a_boring_page <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a aria-label="2"></a>  <span class="fu">html_text2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "This is the first sentence in the paragraph. This is the second sentence that should be on the same line as the first sentence.\nThis third sentence should start on a new line."</code></pre>
 </div>
@@ -825,7 +831,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/logo.png" class="slide-logo"></p>
+<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
 </div>
@@ -1013,7 +1019,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1125,13 +1131,14 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

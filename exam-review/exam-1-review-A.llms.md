@@ -1,0 +1,111 @@
+# Exam 1 review
+
+Suggested answers
+
+1.  b, c, f, g -
+
+    - The `blizzard_salary` dataset has 409 rows.
+
+    - The `percent_incr` variable is numerical and continuous.
+
+    - The `salary_type` variable is categorical.
+
+2.  Figure 1 - A shared x-axis makes it easier to compare summary statistics for the variable on the x-axis.
+
+3.  c - It’s a value higher than the median for hourly but lower than the mean for salaried.
+
+4.  b - There is more variability around the mean compared to the hourly distribution.
+
+5.  a, b, e - Pie charts and waffle charts are for visualizing distributions of categorical data only. Scatterplots are for visualizing the relationship between two numerical variables.
+
+6.  c - `mutate()` is used to create or modify a variable.
+
+7.  a - `"Poor", "Successful", "High", "Top"`
+
+8.  b - Option 2. The plot in Option 1 shows the number of employees with a given performance rating for each salary type while the plot in Option 2 gives the proportion of employees with a given performance rating for each salary type. In order to assess the relationship between these variables (e.g., how much more likely is a Top rating among Salaried vs. Hourly workers), we need the proportions, not the counts.
+
+9.  There may be some `NA`s in these two variables that are not visible in the plot.
+
+10. The proportions under Hourly would go in the Hourly bar, and those under Salaried would go in the Salaried bar.
+
+11. c - `filter(salary_type != "Hourly" & performance_rating == "Poor")` - There are 5 observations for **“not Hourly”** **“and”** Poor.
+
+12. a - `arrange()` - The result is arranged in increasing order of `annual_salary`, which is the default for `arrange()`.
+
+13. c, d, e, f.
+
+14. Part 1: The following should be fixed:
+
+    - There should be a `|` after `#` before `label`
+
+    - There should be a `:` after label, not `=`
+
+    - There shouldn’t be a space in the chunk label, it should be `plot-blizzard`
+
+    - There should be spaces after commas in the code
+
+    - There should be spaces on both sides of `=` in the code
+
+    - There should be a space before `+`
+
+    - `geom_boxplot()` should be on the next line and indented
+
+    - There should be a `+` at the end of the `geom_boxplot()` line
+
+    - `labs()` should be indented
+
+    Part 2: The warning is caused by `NA` in the data. It means that 39 observations were `NA`s and are not plotted/represented on the plot.
+
+15. Part 1:
+
+    1.  Render: Run all of the code and render all of the text in the document and produce an output.
+    2.  Commit: Take a snapshot of your changes in Git with an appropriate message.
+    3.  Push: Send your changes off to GitHub.
+
+    Part 2: c - Rendering or committing isn’t sufficient to send your changes to your GitHub repository, a push is needed. A pull is also not needed to view the changes in the browser.
+
+16. d
+
+17. a, d
+
+18. a, d
+
+19. c
+
+20. b
+
+21. a
+
+22. b
+
+23. 
+
+[![](exam-1-review-A_files/figure-html/unnamed-chunk-1-1.png)](exam-1-review-A_files/figure-html/unnamed-chunk-1-1.png)
+
+24. a, d
+
+25. b, c, e
+
+26. a
+
+27. a, c, e
+
+28. a, b, c, d
+
+29. a, d
+
+30. Part 1: The `NA` row represents vault routines by gymnasts whose `country` value did not match any `entity` in the `continents` dataset. In a `left_join()`, every row of the left data frame (`gymnastics`) is kept, and when no match is found in the right data frame, the columns coming from the right data frame (including `continent`) are filled with `NA`. When we then `group_by(continent)` and `summarize()`, all of these unmatched routines are grouped together into a single `NA` group.
+
+    Part 2: The `mean_vault_score` of athletes from these three countries is 13.7, they’re the ones in the `NA` group in the output.
+
+31. `country_inflation_long` has 38 × 33 = 1,254 rows (ok to not calculate the final answer, but just show the multiplication) and 3 columns: `country`, `year`, and `inflation_rate`. Each row represents a single country/year combination — the inflation rate for one country in one year. `pivot_longer()` took the year and turned them into rows: the column names (the years) went into a new `year` column, and the values (the inflation rates) went into a new `inflation_rate` column. `names_transform = as.numeric` converted the `year` values from character strings to numeric values.
+
+32. Part 1: The resulting data frame shows the five countries with the largest ratio of their 2025 inflation rate to their 1993 inflation rate, in descending order of that ratio. Each `inf_ratio` value tells us how many times larger (or smaller) a country’s inflation rate in 2025 is compared to 1993 — e.g., an `inf_ratio` of 2.20 for New Zealand means its 2025 inflation rate was 2.2 times its 1993 rate.
+
+    Part 2: Without the [`filter()`](https://rdrr.io/r/stats/filter.html) step, the pipeline would still run, but countries missing a 1993 or 2025 value would end up with `NA` for `inf_ratio` — division involving an `NA` returns `NA`. This could be misleading because the reader can’t tell whether a country was excluded due to missing data or simply didn’t rank in the top five, and `arrange()` places `NA`s last, silently burying these countries rather than flagging them. Filtering first makes the missing-data handling explicit.
+
+    Part 3: `summarize()` collapses the data down to summary statistics (one row per group, or one row overall if ungrouped), computing aggregates like a mean or maximum. It would not create a new `inf_ratio` column with one value per country, and the subsequent `select()`/`arrange()` steps would no longer have per-country rows to work with. `mutate()` is needed here because the goal is to add a new column computed from existing columns while keeping one row per country.
+
+    Part 4: They would need to add a `group_by()` country step before the summarize so the summary statistic is calculated for each country. (Optional) They can also remove thr `select(country, inf_ratio)` step because the result from the grouped summary would only have these columns anyway. But inclusion of this step wouldn’t result in an error.
+
+    Part 5: The distribution is unimodal and right-skewed, with most countries clustered between about 0.1 and 0.75 and a small number of countries with much higher ratios stretching out to just over 2. The dashed vertical line at 1 marks the point where a country’s 2025 inflation rate is exactly equal to its 1993 rate. Countries to the left of the line had a lower inflation rate in 2025 than in 1993, while countries to the right (9 of 32) had a higher rate in 2025.

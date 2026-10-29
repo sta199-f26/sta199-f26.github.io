@@ -1,0 +1,284 @@
+# HW 1
+
+Exploring Spotify charts
+
+HW
+
+Due: Wed, Sep 9, 11:59 pm
+
+# Introduction
+
+## Learning objectives
+
+- Gain practice with
+  - the data science workflow using R, Positron, Git, and GitHub,
+  - writing a reproducible report using Quarto, and
+  - version control using Git and GitHub
+- Create data visualizations with the `tidyverse`, specifically using `ggplot2`
+- Wrangle data with the `tidyverse`, specifically using `dplyr`
+- Interpret data visualizations
+
+## Getting Started
+
+To get started, follow the instructions below.
+
+- Go to <https://cmgr.oit.duke.edu/containers> and login with your Duke NetID and Password.
+- Click `STA199` under My reservations to log into your container. You should now see the Positron environment.
+- Go to the course organization at [github.com/sta199-f26](https://github.com/sta199-f26) organization on GitHub. Click on the repo with the prefix for this assignment (e.g., **hw-1**, **hw-2**). It contains the starter documents you need to complete the homework.
+- Click on the green **CODE** button, select **HTTPS** under **Clone**. Click on the clipboard icon to copy the repo URL.
+- In Positron, go to *New* ➛ *New Folder From Git…*
+- Copy and paste the URL of your assignment repo into the dialog box *Git Repository URL*. Again, please make sure to have *HTTPS* highlighted under *Clone* when you copy the address.
+- Click *OK*, and the files from your GitHub repo will be displayed in the *Explorer* view in Positron.
+
+Open the `hw-1.qmd` template Quarto file and update the author field with your first and last name. Click `Preview` to render the document, then check the resulting PDF to confirm that your name appears correctly.
+
+Stage and commit your changes with a meaningful commit message, then select `Sync Changes` to push your updates to GitHub.
+
+## Guidelines
+
+The guidelines should feel familiar, as they are the same ones from the lab! They are included below as a reminder.
+
+### Code
+
+Code should follow the [tidyverse style](https://style.tidyverse.org/). Particularly,
+
+- there should be spaces before and line breaks after each `+` when building a `ggplot`,
+- there should also be spaces before and line breaks after each `|>` in a data transformation pipeline,
+- code should be properly indented,
+- there should be spaces around `=` signs and spaces after commas.
+
+Additionally, all code should be visible in the PDF output, i.e., should not run off the page on the PDF. Long lines that run off the page should be split across multiple lines with line breaks.
+
+### Plots
+
+- Plots should have an informative title and, if needed, also a subtitle.
+- Axes and legends should be labeled with both the variable name and its units (if applicable).
+- Careful consideration should be given to aesthetic choices.
+
+### Workflow
+
+Continuing to develop a sound workflow for reproducible data analysis is important as you complete the lab and other assignments in this course.
+
+- You should have at least 3 commits with meaningful commit messages by the end of the assignment.
+- Final versions of both your `.qmd` file and the rendered PDF should be pushed to GitHub.
+
+## AI support and feedback
+
+You can get immediate support as well as feedback on all of the questions with AI, based on rubrics designed by the course instructor, via the Codex extension in Positron, and using AI access provided by Duke University.
+
+When working on your assignment, feel free to ask Codex for help, but don’t ask it to do your work for you. After completing a question, ask Codex to provide feedback on your answer, e.g., “Review my answer for Question 1.”
+
+> **NOTE:**
+>
+> If you have not yet enable ChatGPT Edu provided by the university, please follow the steps outlined below first. In order to do this, you will need an eligible Duke NetID, access to multi-factor authentication, and must be at least 18 years old.
+>
+> 1.  Open [Duke Software Manager](https://software-manager.oit.duke.edu/) and log in with your NetID using Duke Shibboleth.
+>
+> 2.  On the **Search for Software** page, select **ChatGPT - Duke Standard**. It should be listed as Free.
+>
+> 3.  Review the product description and select **Order Software**.
+>
+> 4.  Accept the terms, including the age and usage confirmations, and complete the order. The Standard license does not require a fund code.
+>
+> 5.  Open **My Licenses** and confirm that **ChatGPT - Duke Standard** appears under **Current Licenses**.
+>
+> If **Order Software** is disabled and the page says that you are already licensed, no further order is needed. New licenses may take a few minutes to appear. See Duke’s general [Software Manager ordering instructions](https://oit.duke.edu/help/articles/kb0035630/) for more details.
+
+> **IMPORTANT:**
+>
+> Since this is your first time using Codex in Positron, you will first need to install the relevant extension and log in. To do so,
+>
+> - Click on the Extensions icon in your activity bar.
+> - Search for `Codex` and install the `Codex - OpenAI's coding agent` extension.
+>
+> Then, log in with your Duke credentials. To do so, in the Codex window in Positron, click on “More options” and then “Use device code”. This will ask if you want to open an external website, click Open, and then paste the device code provided.
+
+## Packages
+
+You will use the **tidyverse** package for data wrangling and visualization, **scales** for better axis labels, and **ggthemes** for additional color palettes.
+
+``` downlit
+library(tidyverse)
+```
+
+# Questions
+
+For this homework, you will use the Spotify data from [Lab 1](../lab/lab-1.llms.md)
+
+You will analyze a fixed snapshot of the first 200 songs on Spotify’s Global Weekly chart for the week dated August 27, 2026. Each row represents a song. Spotify releases a new chart every week, and a website called [Kworb.net](https://kworb.net/) republishes a snapshot of these data weekly. This week’s data was retrieved from [Kworb’s republished Spotify Global Weekly chart](https://kworb.net/spotify/country/global_weekly.html) on August 29, 2026. Spotify states that its chart stream counts are generated using a formula that filters for chart eligibility, so `streams` should not be interpreted as every raw Spotify play.[^1] The data also include a broad `genre` classification. These labels describe the credited artist’s general musical style, not necessarily the genre of every individual song; artists and songs can belong to more than one genre.
+
+Read the data into R with:
+
+``` downlit
+spotify <- read_csv("data/spotify-global-weekly-2026-08-27.csv")
+```
+
+## Question 1
+
+Visualize the distribution of `weeks_on_chart` using a histogram with [`geom_histogram()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html) with three different binwidths: a binwidth of 5, a binwidth of 50, and a binwidth of 500. For example, you can create the first plot with:
+
+``` downlit
+ggplot(spotify, aes(x = weeks_on_chart)) +
+  geom_histogram(binwidth = 5) +
+  labs(
+    x = "Weeks on Chart",
+    y = "Count",
+    title = "Distribution of Weeks on Spotify's Global Weekly Chart",
+    subtitle = "Binwidth = 5 weeks"
+  )
+```
+
+You will need to make three different histograms. Make sure to set informative titles and axis labels for each of your plots. Then, comment on which binwidth is most appropriate for these data and why.
+
+Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 1”.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+
+## Question 2
+
+Visualize the distribution of `weeks_on_chart` again, this time using a boxplot with [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html). Make sure to set informative titles and axis labels for your plot. Then, using information as needed from the box plot as well as the histogram from Question 1, describe the distribution of `weeks_on_chart` and comment on any potential outliers. Then, use a data wrangling pipeline to identify the outliers based on a visual inspection of the plot, and then display only the `artist`, `song`, `weeks_on_chart`, and `rank` variables in your output. Display the results in descending order of `weeks_on_chart`. Finally, comment on whether any of these outliers are surprising or expected for you, and why.
+
+> **TIP:**
+>
+> In describing a distribution, make sure to mention shape, center, spread, and any unusual observations.
+
+Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 2”.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+
+## Question 3
+
+A song’s `peak_rank` is its best-ever position during its current run on the chart. Because smaller ranks are better, create a variable called `positions_below_peak` that measures how many positions a song’s current rank is below its peak rank.
+
+``` downlit
+spotify <- spotify |>
+  mutate(positions_below_peak = rank - peak_rank)
+```
+
+In one pipeline, display the 10 songs farthest below their peak rank. Include the song title, artist, current rank, peak rank, `positions_below_peak`, and weeks on chart. Can you identify any patterns? Choose one song from your results and give one plausible explanation for why it may be charting below its earlier peak. Your explanation is a hypothesis, not a conclusion supported by these data alone.
+
+Preview, commit, and push your changes to GitHub with the commit message “Added answer for Question 3”.
+
+Make sure to commit and push all changed files so that your source control pane is empty afterward.
+
+## Question 4
+
+Create a scatterplot of `positions_below_peak` (y-axis) versus `weeks_on_chart` (x-axis), and describe the relationship between these two variables. Then, in one pipeline, identify the song that has been on the chart for a long time but is still very close to its peak rank. Include the song title, artist, current rank, peak rank, `positions_below_peak`, and weeks on chart in your output. Finally, comment on where on the scatterplot this song can be found.
+
+## Question 5
+
+*Do songs from some genres tend to have higher weekly stream counts than others?*
+
+To explore this question, create side-by-side boxplots of weekly streams (`streams`) by genre (`genre`). To keep the plot readable, include only the genres with at least 10 songs on the chart.
+
+- How do typical weekly stream counts compare across these genres?
+
+- How do the variabilities of weekly stream counts compare across these genres?
+
+- Which genre contains the single most-streamed song among the genres in your plot? In a single pipeline, identify the song by name and its weekly stream count.
+
+> **TIP:**
+>
+> In addition to answering the specific prompts above, make sure your response answers the initial question, “Do songs from some genres tend to have higher weekly stream counts than others?”
+
+Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.
+
+Once again, make sure to commit and push all changed files so that your source control pane is empty afterwards.
+
+## Question 6
+
+*Do some genres have a higher percentage of songs with above-typical weekly stream counts?*
+
+Create a segmented bar plot with one bar per genre and the bar filled with colors according to the value of `stream_level` – one color indicating `Above median` and the other color indicating `At or below median` weekly streams. The y-axis of the segmented barplot should range from 0 to 1, indicating proportions. Compare the percentage of songs with above-median weekly stream counts across the genres based on this plot. Make sure to supplement your narrative with rough estimates of these percentages. Include only genres with at least 10 songs on the plot.
+
+> **TIP:**
+>
+> For this question, you should begin with the data wrangling pipeline below. We will learn more about data wrangling in the coming weeks, so this is a mini-preview. This pipeline creates a new variable called `stream_level` based on whether a song’s weekly streams are above the median of all songs in the dataset. The resulting data frame is assigned back to `spotify`, overwriting the existing data frame with a version that includes the new `stream_level` variable.
+>
+> ``` downlit
+> spotify <- spotify |>
+>   mutate(
+>     stream_level = if_else(
+>       streams > median(streams),
+>       "Above median",
+>       "At or below median"
+>     )
+>   )
+> ```
+
+Now is another good time to preview, commit, and push your changes to GitHub with an informative and concise commit message.
+
+And once again, make sure to commit and push all changed files so that your source control pane is empty afterward. We keep repeating this because it’s important and because we see students forget to do this. So take a moment to make sure you’re following along with the version control instructions.
+
+# AI use disclosure
+
+The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.
+
+- Did you use an LLM / generative AI tool when completing this assignment? (Yes or No)
+
+- If Yes, list all of the ways you used it from the list below.
+
+  - I used it to clarify the question(s).
+  - I used it to better understand concept(s).
+  - I asked it to help write code.
+  - I gave it my code and asked it to help fix it.
+  - I asked it about an error or unexpected code behavior.
+  - I used it to get feedback on my answer(s).
+  - I pasted the question prompt in and asked for help, but wrote my own answer.
+  - I pasted the question prompt in and copied at least part of its response into my Quarto document.
+  - Other (please specify)
+
+- If Yes, list all the AI tools you used.
+
+  - Include the model name and version (if known). For example, “ChatGPT GPT-5.5” or “Claude Sonnet 4”.
+  - Include the tool as well. For example, “Codex extension in Positron”, “ChatGPT in a web browser”, etc.
+
+Additionally, cite any other non-AI sources you used to help you complete the assignment, along with the question(s) for which you used each source.
+
+**Sample citations:**
+
+- Example 1: All questions: 5.6 Luna Light, in Codex in Positron.
+- Example 2: I used ChatGPT GPT-5.5 for Questions 5 and 7. Prompt: “Why did my code have an error?” (pasted code).
+
+# Wrap-up
+
+Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub and your source control pane is empty. We will be checking these to make sure you have been practicing how to commit and push changes.
+
+## Submission
+
+Submit your PDF document to Gradescope by the deadline to be considered “on time”:
+
+- Go to <http://www.gradescope.com> and click *Log in* in the top right corner.
+- Click *School Credentials* \\\rightarrow\\ *Duke NetID* and log in using your NetID credentials.
+- Click on your *STA 199* course.
+- Click on the assignment, and you’ll be prompted to submit it.
+- Mark all the pages associated with question. All the pages of your homework should be associated with at least one question (i.e., should be “checked”).
+
+> **IMPORTANT:**
+>
+> Make sure you have:
+>
+> - attempted all questions
+> - included an AI use disclosure
+> - rendered your Quarto document
+> - committed and pushed everything to your GitHub repository such that the Git pane in Positron is empty
+> - uploaded your PDF to Gradescope
+> - selected your pages on Gradescope for each question
+
+## Grading and feedback
+
+You can get immediate feedback on all of the questions with AI.
+
+Submit your final version of `hw-1.pdf` to Gradescope. Be sure to select the pages associated with each question.
+
+A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.
+
+There are also workflow points for:
+
+- committing at least three times as you work through your homework,
+- having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
+- overall organization.
+
+## Footnotes
+
+[^1]: See Spotify’s chart documentation: <https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/>.

@@ -6,12 +6,12 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/countdown-0.5.0/countdown.js"></script>
 <link href="../site_libs/quarto-contrib/countdown-0.5.0/countdown.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
   <meta name="dcterms.date" content="2026-08-24">
@@ -22,10 +22,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -100,7 +106,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c920ede21890f3a947105a3b8b329d99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3b10b6ec34c7aba22fd5177590698153.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -207,7 +213,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Mine Çetinkaya-Rundel 
+Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
         <p class="quarto-title-affiliation">
             Duke University <br> STA 199 - Fall 2026
@@ -281,7 +287,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>What you hope to get out of this course</li>
 </ul>
 </div>
-<div id="timer_38b97285c17efcefc524f54a56fd7d364220951a" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
+<div id="timer_9578c10a3b2042d1dde6986afd2a268de11156b3" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
@@ -353,23 +359,23 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h2>Load some packages</h2>
 <p>More on what packages are on Thursday, but in a nutshell “get your tools out of the toolbox”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling and visualization</span></span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(scales) <span class="co"># for better axis labels</span></span>
-<span id="cb1-3"><a></a><span class="fu">library</span>(tidytext) <span class="co"># for handling text data</span></span>
-<span id="cb1-4"><a></a><span class="fu">library</span>(taylor) <span class="co"># for a surprise!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling and visualization</span></span>
+<span id="cb1-2"><a aria-label="2"></a><span class="fu">library</span>(scales) <span class="co"># for better axis labels</span></span>
+<span id="cb1-3"><a aria-label="3"></a><span class="fu">library</span>(tidytext) <span class="co"># for handling text data</span></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="fu">library</span>(taylor) <span class="co"># for a surprise!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="import-the-data" class="slide level2">
 <h2>Import the data</h2>
 <p>Import the data called <code>country-lyrics.csv</code> in the folder called <code>data</code> using the <code>read_csv()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>country <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/country-lyrics.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a>country <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/country-lyrics.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="take-a-peek-at-the-data" class="slide level2 smaller">
 <h2>Take a peek at the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a>country</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 484 × 8
    song   artist featuring entered_top_30_in lyrics writers producer rough_order
@@ -398,21 +404,21 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">count</span>(entered_top_30_in) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> entered_top_30_in, <span class="at">y =</span> prop, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb5-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb5-6"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb5-7"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb5-8"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2013</span>, <span class="dv">2019</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb5-9"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-10"><a></a>    <span class="at">title =</span> <span class="st">"When did these songs break into the Top 30?"</span>,</span>
-<span id="cb5-11"><a></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-12"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-13"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
-<span id="cb5-14"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-15"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a aria-label="2"></a>  <span class="fu">count</span>(entered_top_30_in) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> entered_top_30_in, <span class="at">y =</span> prop, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-5"><a aria-label="5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a aria-label="6"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb5-7"><a aria-label="7"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-8"><a aria-label="8"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2013</span>, <span class="dv">2019</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-9"><a aria-label="9"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-10"><a aria-label="10"></a>    <span class="at">title =</span> <span class="st">"When did these songs break into the Top 30?"</span>,</span>
+<span id="cb5-11"><a aria-label="11"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-12"><a aria-label="12"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-13"><a aria-label="13"></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
+<span id="cb5-14"><a aria-label="14"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-15"><a aria-label="15"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -423,18 +429,18 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">count</span>(artist, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(artist, n), <span class="at">x =</span> n, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
-<span id="cb6-5"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-7"><a></a>    <span class="at">title =</span> <span class="st">"Who had the most Top 30 country hits?"</span>,</span>
-<span id="cb6-8"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-9"><a></a>    <span class="at">x =</span> <span class="st">"Number of songs"</span>,</span>
-<span id="cb6-10"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
-<span id="cb6-11"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-12"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a aria-label="2"></a>  <span class="fu">count</span>(artist, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a aria-label="3"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(artist, n), <span class="at">x =</span> n, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
+<span id="cb6-5"><a aria-label="5"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a aria-label="6"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-7"><a aria-label="7"></a>    <span class="at">title =</span> <span class="st">"Who had the most Top 30 country hits?"</span>,</span>
+<span id="cb6-8"><a aria-label="8"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-9"><a aria-label="9"></a>    <span class="at">x =</span> <span class="st">"Number of songs"</span>,</span>
+<span id="cb6-10"><a aria-label="10"></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
+<span id="cb6-11"><a aria-label="11"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-12"><a aria-label="12"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -445,8 +451,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">select</span>(song, writers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a aria-label="2"></a>  <span class="fu">select</span>(song, writers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 484 × 2
@@ -476,10 +482,10 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a></a>  <span class="co"># separate into multiple rows for each writer, using comma as delimiter</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">separate_longer_delim</span>(writers, <span class="at">delim =</span> <span class="st">", "</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a></a>  <span class="fu">count</span>(writers, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a aria-label="2"></a>  <span class="co"># separate into multiple rows for each writer, using comma as delimiter</span></span>
+<span id="cb9-3"><a aria-label="3"></a>  <span class="fu">separate_longer_delim</span>(writers, <span class="at">delim =</span> <span class="st">", "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a aria-label="4"></a>  <span class="fu">count</span>(writers, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 517 × 2
@@ -504,20 +510,20 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">separate_longer_delim</span>(writers, <span class="at">delim =</span> <span class="st">", "</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">count</span>(writers, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(writers, n), <span class="at">x =</span> n, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
-<span id="cb11-6"><a></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb11-7"><a></a>  <span class="fu">scale_fill_taylor_c</span>(<span class="at">album =</span> <span class="st">"Speak Now"</span>) <span class="sc">+</span></span>
-<span id="cb11-8"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-9"><a></a>    <span class="at">title =</span> <span class="st">"Is country radio run by a small circle of hitmakers?"</span>,</span>
-<span id="cb11-10"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb11-11"><a></a>    <span class="at">x =</span> <span class="st">"Number of songs written"</span>,</span>
-<span id="cb11-12"><a></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
-<span id="cb11-13"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb11-14"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a aria-label="2"></a>  <span class="fu">separate_longer_delim</span>(writers, <span class="at">delim =</span> <span class="st">", "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a aria-label="3"></a>  <span class="fu">count</span>(writers, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a aria-label="4"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a aria-label="5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_reorder</span>(writers, n), <span class="at">x =</span> n, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
+<span id="cb11-6"><a aria-label="6"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a aria-label="7"></a>  <span class="fu">scale_fill_taylor_c</span>(<span class="at">album =</span> <span class="st">"Speak Now"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a aria-label="8"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-9"><a aria-label="9"></a>    <span class="at">title =</span> <span class="st">"Is country radio run by a small circle of hitmakers?"</span>,</span>
+<span id="cb11-10"><a aria-label="10"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-11"><a aria-label="11"></a>    <span class="at">x =</span> <span class="st">"Number of songs written"</span>,</span>
+<span id="cb11-12"><a aria-label="12"></a>    <span class="at">caption =</span> <span class="st">"Country songs reaching the Top 30 of Billboard's Country Airplay chart."</span></span>
+<span id="cb11-13"><a aria-label="13"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-14"><a aria-label="14"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -535,13 +541,13 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">unnest_tokens</span>(word, lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a aria-label="2"></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a aria-label="3"></a>  <span class="fu">unnest_tokens</span>(word, lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a aria-label="4"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a aria-label="5"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a aria-label="6"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a aria-label="7"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 2
@@ -571,12 +577,12 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">unnest_tokens</span>(bigram, lyrics, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a></a>  <span class="fu">count</span>(bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">8</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a aria-label="2"></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a aria-label="3"></a>  <span class="fu">unnest_tokens</span>(bigram, lyrics, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a aria-label="4"></a>  <span class="fu">count</span>(bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a aria-label="5"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">8</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a aria-label="6"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 2
@@ -602,15 +608,15 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a></a>  <span class="fu">unnest_tokens</span>(bigram, lyrics, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-4"><a></a>  <span class="fu">separate_wider_delim</span>(bigram, <span class="at">delim =</span> <span class="st">" "</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"word1"</span>, <span class="st">"word2"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb16-5"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(word1 <span class="sc">==</span> word)) <span class="sc">|&gt;</span></span>
-<span id="cb16-6"><a></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(word2 <span class="sc">==</span> word)) <span class="sc">|&gt;</span></span>
-<span id="cb16-7"><a></a>  <span class="fu">count</span>(word1, word2, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-8"><a></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-9"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a aria-label="2"></a>  <span class="fu">select</span>(lyrics) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a aria-label="3"></a>  <span class="fu">unnest_tokens</span>(bigram, lyrics, <span class="at">token =</span> <span class="st">"ngrams"</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a aria-label="4"></a>  <span class="fu">separate_wider_delim</span>(bigram, <span class="at">delim =</span> <span class="st">" "</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"word1"</span>, <span class="st">"word2"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a aria-label="5"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(word1 <span class="sc">==</span> word)) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a aria-label="6"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(word2 <span class="sc">==</span> word)) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a aria-label="7"></a>  <span class="fu">count</span>(word1, word2, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a aria-label="8"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-9"><a aria-label="9"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 3
@@ -671,22 +677,22 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>country <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a></a>  <span class="fu">mutate</span>(<span class="at">lyrics_lower =</span> <span class="fu">str_to_lower</span>(lyrics)) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a></a>  <span class="fu">summarize</span>(</span>
-<span id="cb18-4"><a></a>    <span class="at">truck =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"truck"</span>)),</span>
-<span id="cb18-5"><a></a>    <span class="at">whiskey =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"whiskey"</span>)),</span>
-<span id="cb18-6"><a></a>    <span class="at">beer =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"beer"</span>)),</span>
-<span id="cb18-7"><a></a>    <span class="st">`</span><span class="at">dirt road</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"dirt road"</span>)),</span>
-<span id="cb18-8"><a></a>    <span class="st">`</span><span class="at">blue jeans</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"blue jeans"</span>)),</span>
-<span id="cb18-9"><a></a>    <span class="at">tractor =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"tractor"</span>))</span>
-<span id="cb18-10"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb18-11"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb18-12"><a></a>    <span class="fu">everything</span>(),</span>
-<span id="cb18-13"><a></a>    <span class="at">names_to =</span> <span class="st">"stereotype"</span>,</span>
-<span id="cb18-14"><a></a>    <span class="at">values_to =</span> <span class="st">"prop"</span></span>
-<span id="cb18-15"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb18-16"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a>country <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(<span class="at">lyrics_lower =</span> <span class="fu">str_to_lower</span>(lyrics)) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a aria-label="3"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb18-4"><a aria-label="4"></a>    <span class="at">truck =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"truck"</span>)),</span>
+<span id="cb18-5"><a aria-label="5"></a>    <span class="at">whiskey =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"whiskey"</span>)),</span>
+<span id="cb18-6"><a aria-label="6"></a>    <span class="at">beer =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"beer"</span>)),</span>
+<span id="cb18-7"><a aria-label="7"></a>    <span class="st">`</span><span class="at">dirt road</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"dirt road"</span>)),</span>
+<span id="cb18-8"><a aria-label="8"></a>    <span class="st">`</span><span class="at">blue jeans</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"blue jeans"</span>)),</span>
+<span id="cb18-9"><a aria-label="9"></a>    <span class="at">tractor =</span> <span class="fu">mean</span>(<span class="fu">str_detect</span>(lyrics_lower, <span class="st">"tractor"</span>))</span>
+<span id="cb18-10"><a aria-label="10"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-11"><a aria-label="11"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb18-12"><a aria-label="12"></a>    <span class="fu">everything</span>(),</span>
+<span id="cb18-13"><a aria-label="13"></a>    <span class="at">names_to =</span> <span class="st">"stereotype"</span>,</span>
+<span id="cb18-14"><a aria-label="14"></a>    <span class="at">values_to =</span> <span class="st">"prop"</span></span>
+<span id="cb18-15"><a aria-label="15"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-16"><a aria-label="16"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
@@ -1018,7 +1024,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/logo.png" class="slide-logo"></p>
+<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
 </div>
@@ -1206,7 +1212,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1318,13 +1324,14 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

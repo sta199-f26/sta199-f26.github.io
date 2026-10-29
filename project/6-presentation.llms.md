@@ -1,0 +1,53 @@
+# Presentation
+
+Milestone 6
+
+Project
+
+# Presentation + slides
+
+## Slides
+
+In addition to the written report, your team will also create presentation slides and deliver a presentation that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.
+
+You can create your slides with any software you like (Keynote, PowerPoint, Google Slides, etc.). We recommend choosing an option that’s easy to collaborate with, e.g., Google Slides. If you choose this option, save the slides as a PDF and upload it to your repo as `presentation.pdf`.
+
+You can also use Quarto to make your slides! While we won’t be covering making slides with Quarto in the class, we would be happy to help you with it in office hours. It’s no different than writing other documents with Quarto, so the learning curve will not be steep!
+
+The slide deck should be roughly 6 content slides + 1 title slide. Here is a *suggested* outline as you think through the slides; you ***do not*** have to use this exact format for the 6 slides.
+
+- Title Slide
+- Slide 1: Introduce the topic and motivation
+- Slide 2: Introduce the data
+- Slides 3-5: Highlights from EDA
+- Slide 6: Conclusions + discussion + critique
+
+## Presentation
+
+Presentations will be in person in lab. All team members must participate in the presentation. **The presentation must be no longer than 5 minutes.**
+
+## Grading
+
+The presentation is worth 20 points, broken down as follows:
+
+| Total            | 20 pts |
+|------------------|--------|
+| **Slides**       | 10 pts |
+| **Presentation** | 10 pts |
+
+### Slides
+
+Are the slides well organized and readable, with concise text and figures that have legible labels, legends, etc.?
+
+### Presentation
+
+- Time management: Did the team divide the time well among themselves and finish within the time limit?
+- Professionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?
+- Teamwork: Did the team present a unified story, or did it seem like independent pieces of work patched together?
+- Creativity and critical thought: Is the project carefully thought out? Does it appear that time and effort went into the planning and implementation of the project?
+- Content: Including, but not limited to the following:
+  - Is the question well articulated in the presentation?
+  - Can the question be answered with the data?
+  - Does the analysis answer the question?
+  - Are the conclusion(s) made based on the analysis justifiable?
+  - Are the limitations carefully considered and articulated?

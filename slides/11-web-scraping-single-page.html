@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.19">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Prof.&nbsp;Mine Çetinkaya-Rundel">
 <meta name="dcterms.date" content="2026-09-30">
 <title>Web scraping a single page – STA 199CCL</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -68,14 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8aa723cf165abd5dca27c58d64131771.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-0468bd313de546c462d4cba742c45798.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8aa723cf165abd5dca27c58d64131771.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6afe6185afd896eb7a99e7e462244394.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cc800964ddffb3f1934fd1a06b901fd8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6afe6185afd896eb7a99e7e462244394.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -294,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
@@ -730,90 +736,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="common-words-in-the-chronicle-titles-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="common-words-in-the-chronicle-titles-1">Common words in The Chronicle titles</h2>
 <p>Code for the earlier plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>chronicle <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(word, title, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="at">word =</span> <span class="fu">str_replace_all</span>(word, <span class="st">"’"</span>, <span class="st">"'"</span>),</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    <span class="at">word =</span> <span class="fu">str_replace</span>(word, <span class="st">"duke's"</span>, <span class="st">"duke"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">fct_reorder</span>(word, n)) <span class="sc">|&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> word, <span class="at">x =</span> n, <span class="at">fill =</span> <span class="fu">log</span>(n))) <span class="sc">+</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    <span class="at">x =</span> <span class="st">"Number of mentions"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16"></a>    <span class="at">y =</span> <span class="st">"Word"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17"></a>    <span class="at">title =</span> <span class="st">"The Chronicle - Opinion pieces"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18"></a>    <span class="at">subtitle =</span> <span class="st">"Common words in the 500 most recent opinion piece titles"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19"></a>    <span class="at">caption =</span> <span class="st">"Source: Data scraped from The Chronicle on September 29, 2026"</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>  <span class="fu">theme</span>(</span>
-<span id="cb1-22"><a href="#cb1-22"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>chronicle <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(word, title, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    <span class="at">word =</span> <span class="fu">str_replace_all</span>(word, <span class="st">"’"</span>, <span class="st">"'"</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>    <span class="at">word =</span> <span class="fu">str_replace</span>(word, <span class="st">"duke's"</span>, <span class="st">"duke"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">fct_reorder</span>(word, n)) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> word, <span class="at">x =</span> n, <span class="at">fill =</span> <span class="fu">log</span>(n))) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>    <span class="at">x =</span> <span class="st">"Number of mentions"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>    <span class="at">y =</span> <span class="st">"Word"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>    <span class="at">title =</span> <span class="st">"The Chronicle - Opinion pieces"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>    <span class="at">subtitle =</span> <span class="st">"Common words in the 500 most recent opinion piece titles"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a>    <span class="at">caption =</span> <span class="st">"Source: Data scraped from The Chronicle on September 29, 2026"</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-label="23"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-label="24"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="avg-sentiment-scores-of-articles" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="avg-sentiment-scores-of-articles">Avg sentiment scores of articles</h2>
 <p>Code for the earlier plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>afinn_sentiments <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"slides"</span>, <span class="st">"data/afinn-sentiments.csv"</span>))</span>
-<span id="cb2-2"><a href="#cb2-2"></a>chronicle_author_sentiments <span class="ot">&lt;-</span> chronicle <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(word, article_text, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">str_replace_all</span>(word, <span class="st">"’"</span>, <span class="st">"'"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">left_join</span>(afinn_sentiments) <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">group_by</span>(author, article_text) <span class="sc">|&gt;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">summarize</span>(<span class="at">total_sentiment =</span> <span class="fu">sum</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">group_by</span>(author) <span class="sc">|&gt;</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">n_articles =</span> <span class="fu">n</span>(),</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    <span class="at">avg_sentiment =</span> <span class="fu">mean</span>(total_sentiment, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-13"><a href="#cb2-13"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">filter</span>(n_articles <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(author)) <span class="sc">|&gt;</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_sentiment)) <span class="sc">|&gt;</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">34</span><span class="sc">:</span><span class="dv">43</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-18"><a href="#cb2-18"></a>    <span class="at">author =</span> <span class="fu">fct_reorder</span>(author, avg_sentiment),</span>
-<span id="cb2-19"><a href="#cb2-19"></a>    <span class="at">neg_pos =</span> <span class="fu">if_else</span>(avg_sentiment <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"neg"</span>, <span class="st">"pos"</span>),</span>
-<span id="cb2-20"><a href="#cb2-20"></a>    <span class="at">label_position =</span> <span class="fu">if_else</span>(neg_pos <span class="sc">==</span> <span class="st">"neg"</span>, <span class="fl">0.25</span>, <span class="sc">-</span><span class="fl">0.25</span>)</span>
-<span id="cb2-21"><a href="#cb2-21"></a>  )</span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="fu">ggplot</span>(chronicle_author_sentiments, <span class="fu">aes</span>(<span class="at">y =</span> author, <span class="at">x =</span> avg_sentiment)) <span class="sc">+</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> neg_pos), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb2-26"><a href="#cb2-26"></a>    <span class="fu">aes</span>(<span class="at">x =</span> label_position, <span class="at">label =</span> author, <span class="at">color =</span> neg_pos),</span>
-<span id="cb2-27"><a href="#cb2-27"></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>)),</span>
-<span id="cb2-28"><a href="#cb2-28"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb2-29"><a href="#cb2-29"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb2-32"><a href="#cb2-32"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(avg_sentiment, <span class="dv">1</span>)),</span>
-<span id="cb2-33"><a href="#cb2-33"></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">1.25</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="sc">-</span><span class="fl">0.25</span>, <span class="dv">10</span>)),</span>
-<span id="cb2-34"><a href="#cb2-34"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb2-35"><a href="#cb2-35"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"neg"</span> <span class="ot">=</span> <span class="st">"#4d4009"</span>, <span class="st">"pos"</span> <span class="ot">=</span> <span class="st">"#FF4B91"</span>)) <span class="sc">+</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"neg"</span> <span class="ot">=</span> <span class="st">"#4d4009"</span>, <span class="st">"pos"</span> <span class="ot">=</span> <span class="st">"#FF4B91"</span>)) <span class="sc">+</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">40</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb2-40"><a href="#cb2-40"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-41"><a href="#cb2-41"></a>    <span class="at">x =</span> <span class="st">"negative  ←     Average sentiment score (AFINN)     →  positive"</span>,</span>
-<span id="cb2-42"><a href="#cb2-42"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb2-43"><a href="#cb2-43"></a>    <span class="at">title =</span> <span class="st">"The Chronicle - Opinion pieces</span><span class="sc">\n</span><span class="st">Average sentiment scores of articles by author"</span>,</span>
-<span id="cb2-44"><a href="#cb2-44"></a>    <span class="at">subtitle =</span> <span class="st">"Top 10 average positive and negative scores"</span>,</span>
-<span id="cb2-45"><a href="#cb2-45"></a>    <span class="at">caption =</span> <span class="st">"Source: Data scraped from The Chronicle on Sep 29, 2026"</span></span>
-<span id="cb2-46"><a href="#cb2-46"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-47"><a href="#cb2-47"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<span id="cb2-48"><a href="#cb2-48"></a>  <span class="fu">theme</span>(</span>
-<span id="cb2-49"><a href="#cb2-49"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb2-50"><a href="#cb2-50"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
-<span id="cb2-51"><a href="#cb2-51"></a>      <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
-<span id="cb2-52"><a href="#cb2-52"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="fl">0.5</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>, <span class="at">l =</span> <span class="dv">0</span>, <span class="at">unit =</span> <span class="st">"lines"</span>)</span>
-<span id="cb2-53"><a href="#cb2-53"></a>    ),</span>
-<span id="cb2-54"><a href="#cb2-54"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb2-55"><a href="#cb2-55"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
-<span id="cb2-56"><a href="#cb2-56"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>afinn_sentiments <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"slides"</span>, <span class="st">"data/afinn-sentiments.csv"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>chronicle_author_sentiments <span class="ot">&lt;-</span> chronicle <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>  tidytext<span class="sc">::</span><span class="fu">unnest_tokens</span>(word, article_text, <span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">str_replace_all</span>(word, <span class="st">"’"</span>, <span class="st">"'"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>  <span class="fu">left_join</span>(afinn_sentiments) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>  <span class="fu">group_by</span>(author, article_text) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>  <span class="fu">summarize</span>(<span class="at">total_sentiment =</span> <span class="fu">sum</span>(value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>  <span class="fu">group_by</span>(author) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>    <span class="at">n_articles =</span> <span class="fu">n</span>(),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a>    <span class="at">avg_sentiment =</span> <span class="fu">mean</span>(total_sentiment, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-label="13"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-label="14"></a>  <span class="fu">filter</span>(n_articles <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(author)) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-label="15"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_sentiment)) <span class="sc">|&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-label="16"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">34</span><span class="sc">:</span><span class="dv">43</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-label="17"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-18"><a href="#cb2-18" aria-label="18"></a>    <span class="at">author =</span> <span class="fu">fct_reorder</span>(author, avg_sentiment),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-label="19"></a>    <span class="at">neg_pos =</span> <span class="fu">if_else</span>(avg_sentiment <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"neg"</span>, <span class="st">"pos"</span>),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-label="20"></a>    <span class="at">label_position =</span> <span class="fu">if_else</span>(neg_pos <span class="sc">==</span> <span class="st">"neg"</span>, <span class="fl">0.25</span>, <span class="sc">-</span><span class="fl">0.25</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-label="21"></a>  )</span>
+<span id="cb2-22"><a href="#cb2-22" aria-label="22"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-label="23"></a><span class="fu">ggplot</span>(chronicle_author_sentiments, <span class="fu">aes</span>(<span class="at">y =</span> author, <span class="at">x =</span> avg_sentiment)) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-label="24"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> neg_pos), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-label="25"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-label="26"></a>    <span class="fu">aes</span>(<span class="at">x =</span> label_position, <span class="at">label =</span> author, <span class="at">color =</span> neg_pos),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-label="27"></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>)),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-label="28"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-label="29"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-label="30"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-label="31"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb2-32"><a href="#cb2-32" aria-label="32"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(avg_sentiment, <span class="dv">1</span>)),</span>
+<span id="cb2-33"><a href="#cb2-33" aria-label="33"></a>    <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">1.25</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="sc">-</span><span class="fl">0.25</span>, <span class="dv">10</span>)),</span>
+<span id="cb2-34"><a href="#cb2-34" aria-label="34"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-label="35"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-label="36"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-label="37"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"neg"</span> <span class="ot">=</span> <span class="st">"#4d4009"</span>, <span class="st">"pos"</span> <span class="ot">=</span> <span class="st">"#FF4B91"</span>)) <span class="sc">+</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-label="38"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"neg"</span> <span class="ot">=</span> <span class="st">"#4d4009"</span>, <span class="st">"pos"</span> <span class="ot">=</span> <span class="st">"#FF4B91"</span>)) <span class="sc">+</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-label="39"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">40</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-label="40"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-41"><a href="#cb2-41" aria-label="41"></a>    <span class="at">x =</span> <span class="st">"negative  ←     Average sentiment score (AFINN)     →  positive"</span>,</span>
+<span id="cb2-42"><a href="#cb2-42" aria-label="42"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-label="43"></a>    <span class="at">title =</span> <span class="st">"The Chronicle - Opinion pieces</span><span class="sc">\n</span><span class="st">Average sentiment scores of articles by author"</span>,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-label="44"></a>    <span class="at">subtitle =</span> <span class="st">"Top 10 average positive and negative scores"</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-label="45"></a>    <span class="at">caption =</span> <span class="st">"Source: Data scraped from The Chronicle on Sep 29, 2026"</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-label="46"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-label="47"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-label="48"></a>  <span class="fu">theme</span>(</span>
+<span id="cb2-49"><a href="#cb2-49" aria-label="49"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb2-50"><a href="#cb2-50" aria-label="50"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb2-51"><a href="#cb2-51" aria-label="51"></a>      <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-52"><a href="#cb2-52" aria-label="52"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="fl">0.5</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>, <span class="at">l =</span> <span class="dv">0</span>, <span class="at">unit =</span> <span class="st">"lines"</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-label="53"></a>    ),</span>
+<span id="cb2-54"><a href="#cb2-54" aria-label="54"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb2-55"><a href="#cb2-55" aria-label="55"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">size =</span> <span class="dv">10</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-label="56"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="where-is-the-data-coming-from" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="where-is-the-data-coming-from">Where is the data coming from?</h2>
 <div class="center">
@@ -834,7 +840,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/11/chronicle-opinion-page.png" style="width: 100%; height: auto;"></p>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chronicle</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 500 × 9
    title   author date_time           date       month   day column article_text
@@ -869,7 +875,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></section><section id="hypertext-markup-language" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="hypertext-markup-language">Hypertext Markup Language</h2>
 <p>Most of the data on the web is still largely available as HTML - while it is structured (hierarchical) it often is not available in a form useful for analysis (flat / tidy).</p>
 <div class="small">
-<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>This is a title<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
@@ -885,7 +891,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"fax"</span><span class="dt">&gt;</span>555-555-8888<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="rvest" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="rvest">rvest</h2>
 <div class="columns">
@@ -897,7 +903,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://rvest.tidyverse.org">rvest.tidyverse.org</a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-right">
@@ -927,7 +933,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="column small" style="width:60%;">
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">source_code_for_a_page</span> <span class="op">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">source_code_for_a_page</span> <span class="op">&lt;-</span></span>
 <span>  <span class="st">'&lt;html&gt;</span></span>
 <span><span class="st">  &lt;head&gt;</span></span>
 <span><span class="st">    &lt;title&gt;This is a title&lt;/title&gt;</span></span>
@@ -944,14 +950,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="st">      &lt;div class="fax"&gt;555-555-8888&lt;/div&gt;</span></span>
 <span><span class="st">    &lt;/div&gt;</span></span>
 <span><span class="st">  &lt;/body&gt;</span></span>
-<span><span class="st">&lt;/html&gt;'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="st">&lt;/html&gt;'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">source_code_for_a_page</span><span class="op">)</span></span>
-<span><span class="va">page</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">source_code_for_a_page</span><span class="op">)</span></span>
+<span><span class="va">page</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{html_document}
 &lt;html&gt;
@@ -967,7 +973,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div><div class="column">
 <div class="medium">
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (1)}
 [1] &lt;p align="center"&gt;Hello world!&lt;/p&gt;</code></pre>
@@ -983,7 +989,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div><div class="column">
 <div class="medium">
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Hello world!"</code></pre>
 </div>
@@ -998,7 +1004,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div><div class="column">
 <div class="medium">
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attrs</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attrs</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
    align 
@@ -1015,7 +1021,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div><div class="column">
 <div class="medium">
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="st">"align"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="st">"align"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "center"</code></pre>
 </div>
@@ -1027,7 +1033,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Give me all the elements tagged <code>div</code>:</p>
 <div class="medium">
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"div"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"div"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (7)}
 [1] &lt;div class="name" id="first"&gt;John&lt;/div&gt;
@@ -1047,7 +1053,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="medium">
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"div"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"div"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "John"                                                                                  
 [2] "Doe"                                                                                   
@@ -1061,20 +1067,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="extracting-text-from-selected-elements" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="extracting-text-from-selected-elements">Extracting text from selected elements</h2>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">source_code_for_a_boring_page</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">source_code_for_a_boring_page</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span></span>
 <span>  <span class="st">"&lt;p&gt;  </span></span>
 <span><span class="st">    This is the first sentence in the paragraph.</span></span>
 <span><span class="st">    This is the second sentence that should be on the same line as the first sentence.&lt;br&gt;This third sentence should start on a new line.</span></span>
 <span><span class="st">  &lt;/p&gt;"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="columns">
 <div class="column fragment">
 <p><code><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">source_code_for_a_boring_page</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">source_code_for_a_boring_page</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "  \n    This is the first sentence in the paragraph.\n    This is the second sentence that should be on the same line as the first sentence.This third sentence should start on a new line.\n  "</code></pre>
 </div>
@@ -1083,8 +1089,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="column fragment">
 <p><code><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">source_code_for_a_boring_page</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">source_code_for_a_boring_page</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "This is the first sentence in the paragraph. This is the second sentence that should be on the same line as the first sentence.\nThis third sentence should start on a new line."</code></pre>
 </div>
@@ -1285,13 +1291,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

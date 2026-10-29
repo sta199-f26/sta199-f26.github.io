@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
   <meta name="dcterms.date" content="2026-09-16">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c920ede21890f3a947105a3b8b329d99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3b10b6ec34c7aba22fd5177590698153.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -203,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Mine Çetinkaya-Rundel 
+Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
         <p class="quarto-title-affiliation">
             Duke University <br> STA 199 - Fall 2026
@@ -225,9 +231,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>Which of the following plots does this code produce?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> trump_24)) <span class="sc">+</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">geom_beeswarm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb1-2"><a aria-label="2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
+<span id="cb1-3"><a aria-label="3"></a>  <span class="fu">geom_beeswarm</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
@@ -274,9 +280,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p><img data-src="images/07/gerrymander-recreate.png"></p>
 </div></div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
-<span id="cb2-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
-<span id="cb2-3"><a></a>  <span class="fu">geom_beeswarm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb2-2"><a aria-label="2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
+<span id="cb2-3"><a aria-label="3"></a>  <span class="fu">geom_beeswarm</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -292,9 +298,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Original Code:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">geom_beeswarm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb3-2"><a aria-label="2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22)) <span class="sc">+</span></span>
+<span id="cb3-3"><a aria-label="3"></a>  <span class="fu">geom_beeswarm</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -320,9 +326,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Swap the order of the two geoms.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb4-2"><a aria-label="2"></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a aria-label="3"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -348,9 +354,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Make the boxplots semi-transparent.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb5-2"><a aria-label="2"></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a aria-label="3"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -376,9 +382,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Remove the legend.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> gerry_22, <span class="at">y =</span> harris_24)) <span class="sc">+</span></span>
+<span id="cb6-2"><a aria-label="2"></a>  <span class="fu">geom_beeswarm</span>(<span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a aria-label="3"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> gerry_22), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -580,7 +586,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="read-data" class="slide level2 smaller">
 <h2>Read data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>majors <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/majors.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a>majors <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/majors.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 33 Columns: 17
 ── Column specification ────────────────────────────────────────────────────────
@@ -599,7 +605,7 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <section id="view-data" class="slide level2 smaller">
 <h2>View data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>majors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a>majors</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 33 × 17
    department     academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
@@ -663,16 +669,16 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <section id="first-filter" class="slide level2">
 <h2>First: <code>filter()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>statsci_majors <span class="ot">&lt;-</span> majors <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb11-3"><a></a>    department <span class="sc">==</span> <span class="st">"Statistical Science"</span>,</span>
-<span id="cb11-4"><a></a>    academic_plan <span class="sc">!=</span> <span class="st">"Minor"</span></span>
-<span id="cb11-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-label="1"></a>statsci_majors <span class="ot">&lt;-</span> majors <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a aria-label="2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb11-3"><a aria-label="3"></a>    department <span class="sc">==</span> <span class="st">"Statistical Science"</span>,</span>
+<span id="cb11-4"><a aria-label="4"></a>    academic_plan <span class="sc">!=</span> <span class="st">"Minor"</span></span>
+<span id="cb11-5"><a aria-label="5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="fragment small">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>statsci_majors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a>statsci_majors</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 17
   department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
@@ -691,14 +697,14 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <h2>The Goal</h2>
 <p>We want to write code that starts something like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(statsci_majors, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">color =</span> academic_plan)) <span class="sc">+</span></span>
-<span id="cb14-2"><a></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a><span class="fu">ggplot</span>(statsci_majors, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">color =</span> academic_plan)) <span class="sc">+</span></span>
+<span id="cb14-2"><a aria-label="2"></a>  ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p><br></p>
 <p>But the data are not organized in the appropriate columns :(</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>statsci_majors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-label="1"></a>statsci_majors</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 17
   department      academic_plan `2026` `2025` `2024` `2023` `2022` `2021` `2020`
@@ -829,14 +835,14 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <p>⬇️</p>
 </div><div class="column fragment" style="width:95%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb22-3"><a></a>    <span class="at">cols =</span> ___________________,</span>
-<span id="cb22-4"><a></a></span>
-<span id="cb22-5"><a></a>    <span class="at">names_to =</span> _______________,</span>
-<span id="cb22-6"><a></a></span>
-<span id="cb22-7"><a></a>    <span class="at">values_to =</span> ______________</span>
-<span id="cb22-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-label="1"></a>statsci_majors <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a aria-label="2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb22-3"><a aria-label="3"></a>    <span class="at">cols =</span> ___________________,</span>
+<span id="cb22-4"><a aria-label="4"></a></span>
+<span id="cb22-5"><a aria-label="5"></a>    <span class="at">names_to =</span> _______________,</span>
+<span id="cb22-6"><a aria-label="6"></a></span>
+<span id="cb22-7"><a aria-label="7"></a>    <span class="at">values_to =</span> ______________</span>
+<span id="cb22-8"><a aria-label="8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 </div>
@@ -867,14 +873,14 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <p>What goes in each of the blanks?</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb24-3"><a></a>    <span class="at">cols =</span> ___________________, <span class="co"># columns to pivot</span></span>
-<span id="cb24-4"><a></a></span>
-<span id="cb24-5"><a></a>    <span class="at">names_to =</span> _______________, <span class="co"># what the new variable name should be</span></span>
-<span id="cb24-6"><a></a></span>
-<span id="cb24-7"><a></a>    <span class="at">values_to =</span> ______________  <span class="co"># where the new variable name should come from</span></span>
-<span id="cb24-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-label="1"></a>statsci_majors <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a aria-label="2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb24-3"><a aria-label="3"></a>    <span class="at">cols =</span> ___________________, <span class="co"># columns to pivot</span></span>
+<span id="cb24-4"><a aria-label="4"></a></span>
+<span id="cb24-5"><a aria-label="5"></a>    <span class="at">names_to =</span> _______________, <span class="co"># what the new variable name should be</span></span>
+<span id="cb24-6"><a aria-label="6"></a></span>
+<span id="cb24-7"><a aria-label="7"></a>    <span class="at">values_to =</span> ______________  <span class="co"># where the new variable name should come from</span></span>
+<span id="cb24-8"><a aria-label="8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="how-did-it-go" class="slide level2 smaller">
@@ -955,12 +961,12 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <div class="columns">
 <div class="column small">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb28-3"><a></a>    <span class="at">cols =</span> <span class="sc">!</span><span class="fu">c</span>(department, academic_plan),</span>
-<span id="cb28-4"><a></a>    <span class="at">values_to =</span> <span class="st">"n"</span>,</span>
-<span id="cb28-5"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span></span>
-<span id="cb28-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-label="1"></a>statsci_majors <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a aria-label="2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb28-3"><a aria-label="3"></a>    <span class="at">cols =</span> <span class="sc">!</span><span class="fu">c</span>(department, academic_plan),</span>
+<span id="cb28-4"><a aria-label="4"></a>    <span class="at">values_to =</span> <span class="st">"n"</span>,</span>
+<span id="cb28-5"><a aria-label="5"></a>    <span class="at">names_to =</span> <span class="st">"year"</span></span>
+<span id="cb28-6"><a aria-label="6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 4
    department          academic_plan year      n
@@ -992,13 +998,13 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <h2><code>pivot_longer()</code> again</h2>
 <p>Let’s pivot again, this time making sure also that <code>year</code> is a numerical variable in the resulting data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>statsci_majors <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb30-3"><a></a>    <span class="at">cols =</span> <span class="sc">!</span><span class="fu">c</span>(department, academic_plan),</span>
-<span id="cb30-4"><a></a>    <span class="at">values_to =</span> <span class="st">"n"</span>,</span>
-<span id="cb30-5"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
-<span id="cb30-6"><a></a>    <span class="at">names_transform =</span> as.numeric</span>
-<span id="cb30-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-label="1"></a>statsci_majors <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a aria-label="2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb30-3"><a aria-label="3"></a>    <span class="at">cols =</span> <span class="sc">!</span><span class="fu">c</span>(department, academic_plan),</span>
+<span id="cb30-4"><a aria-label="4"></a>    <span class="at">values_to =</span> <span class="st">"n"</span>,</span>
+<span id="cb30-5"><a aria-label="5"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb30-6"><a aria-label="6"></a>    <span class="at">names_transform =</span> as.numeric</span>
+<span id="cb30-7"><a aria-label="7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 4
    department          academic_plan  year     n
@@ -1112,12 +1118,12 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <p>⬆️</p>
 </div><div class="column fragment" style="width:95%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>statsci_majors_longer <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb35-3"><a></a>    <span class="at">names_from =</span> _______,</span>
-<span id="cb35-4"><a></a></span>
-<span id="cb35-5"><a></a>    <span class="at">values_from =</span> ______________</span>
-<span id="cb35-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-label="1"></a>statsci_majors_longer <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a aria-label="2"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb35-3"><a aria-label="3"></a>    <span class="at">names_from =</span> _______,</span>
+<span id="cb35-4"><a aria-label="4"></a></span>
+<span id="cb35-5"><a aria-label="5"></a>    <span class="at">values_from =</span> ______________</span>
+<span id="cb35-6"><a aria-label="6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 </div>
@@ -1145,11 +1151,11 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 <section id="pivot_wider" class="slide level2 smaller">
 <h2><code>pivot_wider()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>statsci_majors_longer <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb37-3"><a></a>    <span class="at">names_from =</span> year,</span>
-<span id="cb37-4"><a></a>    <span class="at">values_from =</span> n</span>
-<span id="cb37-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-label="1"></a>statsci_majors_longer <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a aria-label="2"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb37-3"><a aria-label="3"></a>    <span class="at">names_from =</span> year,</span>
+<span id="cb37-4"><a aria-label="4"></a>    <span class="at">values_from =</span> n</span>
+<span id="cb37-5"><a aria-label="5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -1184,7 +1190,7 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/logo.png" class="slide-logo"></p>
+<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
 </div>
@@ -1372,7 +1378,7 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1484,13 +1490,14 @@ dbl (15): 2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, ...
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -1,0 +1,362 @@
+# STA 199 - Introduction to Data Science and Statistical Thinking
+
+Fall 2026
+
+# TL;DR
+
+for quick reference… but really, read the [long version](#long-version)!
+
+## Required Materials
+
+- **Textbooks** (free online): *R for Data Science, 2e* and *Introduction to Modern Statistics*
+- **Computing**: Laptop required for all classes; R and Positron accessed through Duke containers, no installation needed
+- **Platform**: Course website at [sta199-f26.github.io](https://sta199-f26.github.io) – everything you need is there or linked from there!
+
+## Assessment & Grading
+
+| Component | Weight | Details |
+|----|----|----|
+| Lectures | 5% | Attendance/participation via Wooclap (17/25 lectures minimum for full score) |
+| Homework | 5% | Individual (lowest grade dropped) |
+| Labs | 10% | Team-based, completed in class (lowest 2 dropped) |
+| Project | 15% | Team-based data analysis with write-up and presentation, must be completed to pass the class |
+| Exam 1 | 20% | In-class |
+| Exam 2 | 20% | In-class |
+| Final | 25% | In-class |
+
+See [improvement bonus](#exams) for how the final exam can replace a lower midterm score.
+
+## Key Policies
+
+### Academic Honesty
+
+- **Individual work**: Homework and exams must be completed alone
+- **Team collaboration**: Expected for labs and project
+- **AI tools**: Allowed as a resource, with disclosure and citation; not allowed to answer the exercises for you, and never copy-pasted in unedited
+- **Online resources**: Permitted with explicit citation
+
+### Deadlines & Late Work
+
+- **Homework**: Up to 3 days late (-5% per day)
+- **Labs**: No late work (completed in class)
+- **Exams/Project**: No extensions or make-ups
+- **One-time late penalty waiver**: Waives the homework late penalty once per semester; [request before deadline](mailto:mary.knox@duke.edu)
+
+### Attendance
+
+- **Lectures**: Participation tracked via Wooclap
+- **Labs**: Mandatory attendance (no make-ups possible)
+- **Lecture recordings**: Available for excused absences only
+
+## Important dates
+
+- **Aug 24:** Classes begin
+- **Sep 4:** Drop/add ends
+- **Sep 7:** Labor Day
+- **Oct 7:** Exam 1 (in-class)
+- **Oct 12-13:** Fall break
+- **Nov 5:** Project presentation in lab + write-up
+- **Nov 6:** Last day to withdraw with W
+- **Nov 18:** Exam 2 (in-class)
+- **Nov 25-27:** Thanksgiving break
+- **Dec 4:** Classes end
+- **Dec 10:** Final exam
+
+## Getting Help
+
+- **Course content and assignments**: Office hours or [Ed Discussion](https://edstem.org/)
+- **Extensions, accommodations, missed work, registration**: Course coordinator Dr. Mary Knox, <mary.knox@duke.edu>
+- **Email**: Include “STA 199” in the subject line
+
+# Long version
+
+that you should read carefully…
+
+## Course learning objectives
+
+By the end of the semester, you will…
+
+- learn to explore, visualize, and analyze data in a reproducible and shareable manner using R and Positron;
+- gain experience in data wrangling and tidying, exploratory data analysis, data visualization, predictive and descriptive modeling, and statistical inference;
+- work on problems and case studies inspired by and based on real-world questions and data;
+- explore ethical considerations in data science, including issues of misrepresentation, privacy, and bias;
+- responsibly leverage AI tools within data science workflows while critically assessing the validity and potential biases in AI-generated insights;
+- effectively communicate results through written assignments and a project presentation.
+
+## Course materials
+
+### Textbooks
+
+All books are **freely available online**.
+
+- [R for Data Science, 2e](https://r4ds.hadley.nz/), Wickham, Çetinkaya-Rundel, Grolemund. O’Reilly, 2nd edition, 2023. Hard copy available [on Amazon](https://www.amazon.com/dp/1492097403?&tag=hadlwick-20).
+
+- [Introduction to Modern Statistics](https://openintrostat.github.io/ims/), Çetinkaya-Rundel, Hardin. OpenIntro Inc., 2nd Edition, 2023. Hard copy available [on Amazon](https://openintro.org/go?id=ims2_bw_pb&referrer=/book/ims/index.php).
+
+### Computing
+
+We will use the statistical software R through the Positron IDE, which you’ll access through Docker containers provided by the Duke Office of Information Technology, so there’s nothing to install. See the [computing page](computing-access.llms.md) for more information.
+
+## Course community
+
+### Inclusive community
+
+I intend that students from diverse backgrounds and perspectives be well served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity students bring to this class be viewed as a resource, strength, and benefit. I also intend to present materials and activities that respect diversity and align with [Duke’s Commitment to Diversity and Inclusion](https://provost.duke.edu/about/dukes-commitment-diversity-and-inclusion/). Your suggestions are encouraged and appreciated. Please let me know ways to improve the course’s effectiveness for you personally, other students, or student groups.
+
+If you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource.
+
+I (like many people) am still in the process of learning about diverse perspectives and identities. If anything was said in class (by anyone) that made you feel uncomfortable, please let me or a member of the teaching team know.
+
+### Personal pronouns
+
+Using pronouns can help foster a respectful campus environment where all community members can thrive. Sharing pronouns is always optional for members of the Duke community. If you would like to share yours, you can update them in DukeHub. You can learn more at the [DukeHub & Zoom Tutorials](https://students.duke.edu/belonging/icr/csgd/pronouns/dukehub-zoom/).
+
+### Communication
+
+Announcements will be emailed periodically via Canvas Announcements. Please check your email regularly to ensure you receive the latest course announcements.
+
+### Email
+
+If you have questions about assignment extensions, accommodations, missed work, or registration, please email the course coordinator, Dr. Mary Knox, at <mary.knox@duke.edu>. For any other matter not appropriate for the class discussion forum, please email Dr. Mine Çetinkaya-Rundel directly at <mc301@duke.edu>. **If you do so, please include “STA 199” in the subject line.** Barring extenuating circumstances, I will respond to STA 199 emails within 48 hours, Monday through Friday. Response time may be slower for emails sent Friday evening through Sunday.
+
+## Five tips for success
+
+Your success in this course depends very much on you and the effort you put into it. The course has been organized so that the burden of learning is on you. Your TAs and I will help you by providing you with materials, answering questions, and setting a pace, but for this to work, you must do the following:
+
+1.  **Watch the videos and do the readings before each class.**
+
+Come prepared so you can engage deeply with the material during lectures and labs, rather than spending class time learning the basics.
+
+2.  **Be present and engaged in every lecture and lab.**
+
+In lectures, do the application exercises, ask questions, and participate in discussions. In labs, work on the lab exercises, ask questions, and collaborate with your teammates. If you miss a class, make sure to catch up on the material before the next class.
+
+3.  **Ask questions.**
+
+As often as you can. In class, out of class. Ask me, ask the TAs, ask your friends, ask the person sitting next to you. This will help you more than anything else. If you get a question wrong on an assessment, ask us why. If you’re not sure about the lab, ask. If you hear something on the news that sounds related to what we discussed, ask. If the reading is confusing, ask.
+
+4.  **Do the homework.**
+
+The earlier you start, the better. It’s not enough to just mechanically plow through the exercises. It’s definitely not useful to ask AI to do it for you – the goal isn’t “finishing” the homework, but actually “doing” it. You should ask yourself how these exercises relate to earlier material and imagine how they might be adapted (for example, to make questions for an exam).
+
+5.  **Don’t procrastinate.**
+
+The content builds on what was taught in previous weeks, so if something is confusing to you in Week 2, Week 3 will be even more confusing, and Week 4 even worse, etc. Don’t let the week end with unanswered questions. But if you find yourself falling behind and not knowing where to begin asking, come to office hours and work with a member of the teaching team to help you identify a good (re)starting point.
+
+## Getting help
+
+- The teaching team is here to help you be successful in the course. You are encouraged to attend office hours to ask questions about the course content and assignments. Office hours are a valuable resource — please use them!
+- Outside of class and office hours, any general questions about course content or assignments should be posted on the class discussion forum, [Ed Discussion](https://edstem.org/). There is a chance another student has already asked a similar question, so please check the other posts on the forum before adding a new question. If you know the answer to a question, I encourage you to respond!
+
+Check out the [Support](course-support.llms.md) tab for more resources.
+
+## Course components
+
+You submit all assignments the same way: push your work to the assignment’s GitHub repository and submit the PDF output on Gradescope. Labs are due at the end of your lab session; homework is due by 11:59 pm on Wednesdays. Submit what you have even if you haven’t finished, as you will receive partial credit for your work.
+
+### Lectures
+
+Lectures are designed to be interactive, so you gain experience applying new concepts and learning from each other. My role as instructor is to introduce you to new methods, tools, and techniques, but it is up to you to take them and use them. A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing. Therefore, most lectures will feature application exercises that serve as opportunities to practice what you’re learning as you go and provide great preparation for the assignments and exams. You are expected to prepare for these by completing assigned readings and videos.
+
+You are expected to bring a laptop (or Chromebook) to each class to participate in the application activities. Please ensure your device is fully charged before you come to class, as the number of outlets in the classroom will not be sufficient to accommodate everyone.
+
+Application exercises won’t be graded directly, but we will track activity on them to ensure you’re staying engaged with the course, and exams will feature topics and questions from these exercises. Attendance and participation in lectures will instead be tracked through in-class questions via Wooclap, which you can access on your laptop or phone. You will earn points for answering questions during lecture, and these points will contribute to your attendance and participation grade.
+
+*There are 25 lectures during the semester. You must participate in Wooclap questions in at least 17 lectures to get full credit on this component. Otherwise, your grade on this component will be calculated as the percentage of lectures you attended and participated in, e.g., if you attend and participate in 15/25 lectures, you get (15/25) x 5% = 3%.*
+
+### Labs
+
+Labs are designed to be hands-on at all times, so you’re expected to bring a laptop to each lab session.
+
+During labs, you will get a brief introduction to the lab assignment from your TA and then work on the exercises with your teammates; each student submits their own write-up of the lab assignment. It’s your responsibility to submit your work on time.
+
+In the first few weeks of the semester, you will be randomly assigned to a team and work with your teammates on an exercise that is due at the end of the lab session. Once project teams are formed, you will work with that team on the lab exercises. You must be present in lab to complete the lab assignment.
+
+*The lowest two lab grades will be dropped at the end of the semester, which means you can miss up to two lab sessions with no penalty.*
+
+### Homework
+
+You will complete homework assignments individually. You may start working on your homework assignment during your lab session, once you complete your lab exercises, but you will likely need to finish it outside of class. Your homework will be comprised of some practice exercises where you can get immediate feedback from AI tools designed for this course and some graded exercises.
+
+You will submit your homework assignments by pushing your work to your GitHub repository for the homework and submitting the PDF output on Gradescope *by 11:59 pm on Wednesdays*.
+
+*The lowest homework grade will be dropped at the end of the semester, which means you can miss one homework assignment with no penalty.*
+
+### Exams
+
+This course has three exams: two midterms and a final. Each exam will be completed in class, and you may use a cheat sheet (1 page, both sides, prepared by you).
+
+The exams will focus on both conceptual understanding of the content and application through analysis and computational tasks. The exam will cover material from videos, reading assignments, lectures, application exercises, homework assignments, and labs.
+
+*Missed exams: There are no make-up exams. If you miss Exam 1 or 2 due to a documented illness or similar circumstance (Dean’s Excuse), your final exam score will replace the missed exam score. If you miss the Final Exam due to a documented illness or similar circumstance (Dean’s Excuse), you will receive an Incomplete and will take the final exam later.*
+
+*Improvement bonus: For students who take all exams (Exam 1, Exam 2, and Final Exam), the final exam score will replace the lower of the two mid-semester exam scores, if the final exam score is higher.*
+
+### Project
+
+The project aims to apply what you’ve learned throughout the semester to analyze an interesting data-driven research question. In a nutshell, you will ask a question you’re curious about and answer it with a dataset of your choice. The project will be completed in teams, with each team presenting their work during a lab session and preparing a written report.
+
+Your project will be completed in a number of milestones, each with its own instructions and grading criteria. More information about the project will be provided during the semester.
+
+Overall, the assessment of the project will emphasize the quality of your work, including the clarity, correctness, and effectiveness of your communication, rather than the quantity of work you produce.
+
+You will be evaluated on the final product your team produces as well as on your individual contributions. All team members are expected to contribute equally to the project, and you will be asked to evaluate them throughout the semester. Failure to adequately contribute to any project component will result in a penalty to your mark relative to the team’s overall mark. You are expected to use the provided GitHub repository as the central collaborative platform. Commits to this repository will be used as a metric (one of several) of each team member’s relative contribution to each project.
+
+*You cannot pass this course if you have not completed the project.*
+
+## Grading
+
+The final course grade will be calculated as follows:
+
+| Category | Percentage |
+|----------|------------|
+| Lectures | 5%         |
+| HW       | 5%         |
+| Labs     | 10%        |
+| Project  | 15%        |
+| Exam 1   | 20%        |
+| Exam 2   | 20%        |
+| Final    | 25%        |
+
+The final letter grade will be determined based on the following thresholds:
+
+| Letter Grade | Final Course Grade |
+|--------------|--------------------|
+| A            | \>= 93             |
+| A-           | 90 - 92.99         |
+| B+           | 87 - 89.99         |
+| B            | 83 - 86.99         |
+| B-           | 80 - 82.99         |
+| C+           | 77 - 79.99         |
+| C            | 73 - 76.99         |
+| C-           | 70 - 72.99         |
+| D+           | 67 - 69.99         |
+| D            | 63 - 66.99         |
+| D-           | 60 - 62.99         |
+| F            | \< 60              |
+
+## Course policies
+
+### Duke Community Standard
+
+Duke University is a community dedicated to scholarship, leadership, and service and to the principles of honesty, fairness, respect, and accountability. Members of this community commit to reflect upon and uphold these principles in all academic and non-academic endeavors, and to protect and promote a culture of integrity.
+
+Duke University has high expectations for students’ scholarship and conduct. In accepting admission, students indicate their willingness to subscribe to and be governed by the rules and regulations of the university, which flow from the [Duke Community Standard (DCS)](https://dukecommunitystandard.students.duke.edu/).
+
+Regardless of course delivery format, it is the responsibility of all students to understand and follow all Duke policies, including but not limited to the [academic integrity policy](https://dukecommunitystandard.students.duke.edu/policies/) (e.g., completing one’s own work, following proper citation of sources, adhering to guidance around group work projects, and more). Ignoring these requirements is a violation of the DCS.
+
+Students can direct any questions or concerns regarding academic integrity to the Office of Student Conduct and Community Standards at <conduct@duke.edu> and can access the DCS guide at [dukecommunitystandard.students.duke.edu](https://dukecommunitystandard.students.duke.edu). A referral can be submitted at [support.students.duke.edu](https://support.students.duke.edu/). 
+
+### Academic honesty
+
+**TL;DR: Don’t cheat!**
+
+#### What is allowed and what is not?
+
+Please abide by the following as you work on assignments in this course:
+
+- **Collaboration:** Only work that is clearly assigned as teamwork should be completed collaboratively. On individual assignments, you may not directly share work (including code) with another student in this class; on team assignments, you may not directly share work (including code) with another team. “Sharing” includes, but is not limited to, messaging, emailing, or otherwise providing your work to another student or team.
+
+  - Labs: Collaboration in teams for lab assignments is not only allowed but expected. You will work together with your lab team to complete the lab exercise. However, each student must submit their own write-up of the lab exercise, reflecting their understanding and ideas. It’s expected that lab submissions will be similar across team members.
+
+  - Project: The project is a single, collaborative work developed by the entire team. It is the team’s responsibility to ensure that all components of the project are vetted and revised by all team members, even if some division of labor occurs for first drafts. High-level communication between teams is also allowed; however, you may not share code or project components across teams.
+
+  - Homework: You may discuss homework assignments with other students; however, you may not directly share (or copy) code or write-up with other students. For homework assignments, sharing (or copying) of the code or write-up will be considered a violation for all students involved, regardless of who initiated the sharing.
+
+  - Exams: You may not discuss or otherwise work with others on the exams. During exams, collaboration or the use of unauthorized materials will be considered a violation for all students involved, regardless of who initiated the sharing.
+
+- **Use of online resources:** I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., Stack Overflow). Still, you must explicitly cite where you obtained any code you directly use (or use as inspiration).
+
+- **Use of generative artificial intelligence (AI)**: You should treat the use of AI tools and LLMs (e.g. ChatGPT, Claude, Gemini, GitHub Copilot) like other online resources. Two guiding principles govern how to use AI in this course:
+
+  1.  *Cognitive dimension:* Working with AI should not reduce your thinking ability. We will practice using AI to facilitate, rather than hinder, learning.
+
+  2.  *Ethical dimension:* Students using AI should be transparent about their use and ensure it aligns with academic integrity.
+
+  If you choose to use AI tools and LLMs, you must follow these guidelines:
+
+  - Disclose your usage by indicating as such in the AI disclosure statement accompanying the assignment.
+  - Cite any AI-generated content you use in your work, including code and narrative. You may use [these guidelines](https://guides.lib.monash.edu/c.php?g=219786&p=6972087) to cite AI-generated content. **The bare minimum citation must include the AI tool you’re using (e.g., ChatGPT), the model the tool uses, the date when you ran the prompt, and a link to the full transcript of the session starting with your prompt.**
+  - Do not copy-paste assignment prompts into AI tools. Instead, you must create your own prompt that reflects your understanding of the assignment and the course materials.
+  - Do not just copy-paste/insert AI-generated content into your assignment. Instead, edit the content to ensure it reflects your understanding, has your voice and intellectual input, and conforms with course materials, syntax, terminology, and style.
+
+  In general, you may use AI as a resource as you complete assignments, but not to answer the exercises for you. You are ultimately responsible for the work you turn in; it should reflect *your* understanding of the course content. Identifying AI-generated content is fairly straightforward. **Any content identified as AI-generated but not cited as such will be treated as plagiarism, resulting in an automatic 0 for the relevant portion of the assignment.**
+
+  Finally, if you’re using AI tools for learning, be critical of the answers you receive: AI-generated content may not always be accurate or reliable, or, more likely, it may not be based on course materials, making it more confusing than helpful.
+
+If you are unsure whether using a particular resource complies with the academic honesty policy, please ask a member of the teaching team.
+
+#### What happens if you violate the academic honesty policy?
+
+Any violations in academic honesty standards as outlined in the [Duke Community Standard](https://trinity.duke.edu/undergraduate/academic-policies/community-standard-student-conduct) and those specific to this course:
+
+- will automatically result in a 0 for the relevant portion or the entire assignment or assessment,
+
+- can result in further deductions to your overall course grade (e.g., drop down to the next letter grade or drop down to an F), and
+
+- can be reported to the [Office of Student Conduct & Community Standards](https://students.duke.edu/get-assistance/community-standard/osccs/) for further action.
+
+### Late work & extensions
+
+The due dates for homework assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback promptly. We understand that things come up periodically that could make it difficult to submit an assignment by the deadline, which is why the lowest homework and the lowest two lab grades are dropped.
+
+- Homework assignments may be submitted up to 3 days late. A 5% deduction will be applied for every 24 hours the assignment is late.
+- No late work is accepted for labs, exams, or the project.
+
+### One-time late penalty waiver
+
+If circumstances prevent you from completing a homework assignment by the stated due date, you may email the course coordinator, [Dr. Mary Knox](mailto:mary.knox@duke.edu), **before the deadline** to request a waiver of the late penalty (up to the maximum 15%, i.e., 3 days late). In your email, you only need to request the waiver; you do not need to explain. This waiver may only be used **once** in the semester, so use it wisely. The waiver may only be used for homework assignments, not for attendance/participation, labs, exams, or the project.
+
+If circumstances have a longer-term impact on your academic performance, please let your Quad advisor or academic dean know. They can be a resource. Please let me know if you need help contacting them.
+
+### Regrade requests
+
+Regrade requests must be submitted on Gradescope within a week after an assignment is returned. Regrade requests will be considered if there was an error in the grade calculation or if a correct answer was mistakenly marked as incorrect. Requests to dispute the number of points deducted for an incorrect response will not be considered. Regrade requests are also not a mechanism for asking for clarification on feedback; those questions should be brought to office hours. Note that by submitting a regrade request, the **entire assignment may be regraded**, which could potentially result in losing points.
+
+*No grades will be changed after the final exam has been administered.*
+
+### Attendance policy
+
+Every student is expected to attend and participate in lectures and labs, and a portion of your grade depends on this (see [Lectures](#lectures) and [Labs](#labs)). If you miss a lecture, review the material and complete the application exercise, if applicable, before the next lecture. Recordings are available upon request for excused absences; see the [Lecture recording request](#lecture-recording-request) policy. There is no way to make up for missing a lab.
+
+More details on Trinity attendance policies are available [here](https://trinity.duke.edu/undergraduate/academic-policies/class-attendance-and-missed-work).
+
+### Lecture recording request
+
+Lectures will be recorded on Panopto and will be made available to students with an excused absence upon request. Videos shared with such students will be available for a week after the lecture date. To request a specific lecture’s video, please complete the form at the link below. Please submit the form within 24 hours of missing the lecture to ensure you have sufficient time to watch the recording. Please also make sure that any official documentation, such as an incapacitation form, Dean’s excuse, or NOVAP, is uploaded to the form.
+
+🔗 <https://forms.office.com/r/z6KrpJyD8q>
+
+About one week before each exam, the class recordings will be available to all students. These recordings will be available until the start of the exam.
+
+## Accommodations
+
+### Academic accommodations
+
+If you are a student who requires academic accommodations or the use of auxiliar aids and services for this class, it is your responsibility to initiate a request with the Student Disability Access Office (SDAO). The SDAO will evaluate the request with requited documentation, recommend appropriate accommodations, and prepare a verification letter dated in the current academic term in which the request is being made. Please note that accommodations are not retroactive, and accommodations cannot be provided until a Faculty Accommodation Letter has been given to me. Please contact SDAO for more information at <sdao@duke.edu> or visit <https://access.duke.edu/students>.
+
+This class will use the Testing Center to provide testing accommodations to undergraduates registered with and approved by the Student Disability Access Office (SDAO) and to administer make-up tests for students with excused absences. The center operates by appointment only, and appointments must be made at least four (4) consecutive days in advance. However, please schedule your appointments as far in advance as possible.
+
+You will not be able to make an appointment until you have submitted a Semester Request with the SDAO and your accommodations have been approved. If you have not already done so, promptly submit a Semester Request to the SDAO to ensure you can make your appointment on time. For instructions on how to register with SDAO, visit their website at <https://access.duke.edu/students>.
+
+### Religious accommodations
+
+University policy permits students to be absent from class to observe a religious holiday. Accordingly, Trinity College of Arts & Sciences and the Pratt School of Engineering have established procedures for students to notify their instructors of an absence necessitated by the observance of a religious holiday. Please submit requests for religious accommodations at the beginning of the semester so we can work to make suitable arrangements well ahead of time. You can find the policy and relevant notification form here: <https://trinity.duke.edu/undergraduate/academic-policies/religious-holidays>.
+
+## Important dates
+
+- **Aug 24:** Classes begin
+- **Sep 4:** Drop/add ends
+- **Sep 7:** Labor Day
+- **Oct 7:** Exam 1 (in-class)
+- **Oct 12-13:** Fall break
+- **Nov 5:** Project presentation in lab + write-up
+- **Nov 6:** Last day to withdraw with W
+- **Nov 18:** Exam 2 (in-class)
+- **Nov 25-27:** Thanksgiving break
+- **Dec 4:** Classes end
+- **Dec 10:** Final exam
+
+Assignment due dates are listed on the course schedule.
+
+For more important dates, see the full [Duke Academic Calendar](https://registrar.duke.edu/2026-2027-academic-calendar/).

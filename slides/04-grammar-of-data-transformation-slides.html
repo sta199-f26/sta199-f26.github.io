@@ -6,10 +6,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
   <meta name="dcterms.date" content="2026-09-02">
@@ -20,10 +20,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -98,7 +104,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c920ede21890f3a947105a3b8b329d99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3b10b6ec34c7aba22fd5177590698153.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -205,7 +211,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Mine Çetinkaya-Rundel 
+Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
         <p class="quarto-title-affiliation">
             Duke University <br> STA 199 - Fall 2026
@@ -227,9 +233,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>Which of the following is <strong>true</strong> about the code below?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(mtcars, _[blank]<span class="fu">_</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">ggplot</span>(mtcars, _[blank]<span class="fu">_</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb1-2"><a aria-label="2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-3"><a aria-label="3"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="wooclap-choices">
 <ul>
@@ -343,7 +349,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Installed with <code>install.packages()</code>, once per system:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -363,7 +369,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Loaded with <code>library()</code>, once per session:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -398,14 +404,14 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>Columns (variables) in data frames can be accessed with <code>$</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>dataframe<span class="sc">$</span>variable_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a>dataframe<span class="sc">$</span>variable_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
 <section id="gss-data-frame" class="slide level2 smaller">
 <h2><code>gss</code> data frame</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a>gss</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,294 × 9
     year marital_status   age education_years children happiness     health
@@ -428,7 +434,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="health-variable" class="slide level2 smaller">
 <h2><code>health</code> variable</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>gss<span class="sc">$</span>health</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a>gss<span class="sc">$</span>health</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   [1] "Good"      "Good"      "Good"      "Good"      "Good"      "Good"     
    [7] "Good"      "Good"      "Good"      "Good"      "Good"      "Excellent"
@@ -989,7 +995,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>Why did the error occur?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>happiness</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a>happiness</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error:
 ! object 'happiness' not found</code></pre>
@@ -1018,8 +1024,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h2><code>function(argument)</code></h2>
 <p>Functions are (most often) verbs, followed by what they will be applied to in parentheses, and separated by commas:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">do_this</span>(to_this)</span>
-<span id="cb11-2"><a></a><span class="fu">do_that</span>(to_this, to_that, with_those)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-label="1"></a><span class="fu">do_this</span>(to_this)</span>
+<span id="cb11-2"><a aria-label="2"></a><span class="fu">do_that</span>(to_this, to_that, with_those)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="help" class="slide level2">
@@ -1028,7 +1034,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="column">
 <p>Object documentation can be accessed with <code>?</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a>?mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column">
 <p><video data-src="images/04/mean-docs.mov" alt="Documentation for mean function in R." controls=""><a href="images/04/mean-docs.mov">Video</a></video></p>
@@ -1042,9 +1048,11 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="a-quick-reminder" class="slide level2 smaller">
 <h2>A quick reminder</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-7" data-code-line-numbers="|1|2|3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1"></a>gss <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">45</span>) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3"></a>  <span class="fu">select</span>(age, employment_status, party_id, happiness)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7" data-llms-code-original="gss |> # <1>
+  filter(age > 45) |> # <2>
+  select(age, employment_status, party_id, happiness) # <3>" data-code-line-numbers="|1|2|3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-label="1"></a>gss <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-label="2"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">45</span>) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-label="3"></a>  <span class="fu">select</span>(age, employment_status, party_id, happiness)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
@@ -1109,15 +1117,15 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="columns">
 <div class="column fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a><span class="fu">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
 </div>
 </div><div class="column fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="dv">1</span> <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a></a>  <span class="fu">sum</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a><span class="dv">1</span> <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a aria-label="2"></a>  <span class="fu">sum</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
@@ -1127,7 +1135,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="columns">
 <div class="column fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">select</span>(<span class="fu">filter</span>(gss, age <span class="sc">&gt;</span> <span class="dv">50</span>), health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="fu">select</span>(<span class="fu">filter</span>(gss, age <span class="sc">&gt;</span> <span class="dv">50</span>), health)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,568 × 1
    health   
@@ -1147,9 +1155,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 </div><div class="column fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a></a>  <span class="fu">select</span>(health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a aria-label="2"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a aria-label="3"></a>  <span class="fu">select</span>(health)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,568 × 1
    health   
@@ -1169,7 +1177,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 </div></div>
 </section>
-<section id="code-style-tip" class="slide level2 smaller">
+<section id="code-style-tip-b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c206661206c6967687462756c62203e7d7d" class="slide level2 smaller">
 <h2>Code style tip <i class="fa-solid fa-lightbulb" aria-label="lightbulb"></i></h2>
 <div class="columns">
 <div class="column">
@@ -1217,7 +1225,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 <p>Start with the <code>gss</code> data frame:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-label="1"></a>gss</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,294 × 9
     year marital_status   age education_years children happiness     health
@@ -1243,8 +1251,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Find respondents who are living the dream: <strong>retired</strong>, in excellent health, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a></a>  <span class="fu">filter</span>(employment_status <span class="sc">==</span> <span class="st">"Retired"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-label="1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a aria-label="2"></a>  <span class="fu">filter</span>(employment_status <span class="sc">==</span> <span class="st">"Retired"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 795 × 9
     year marital_status   age education_years children happiness     health   
@@ -1270,11 +1278,11 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Find respondents who are living the dream: retired, <strong>in excellent health</strong>, very happy, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb26-3"><a></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
-<span id="cb26-4"><a></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span></span>
-<span id="cb26-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-label="1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a aria-label="2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb26-3"><a aria-label="3"></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb26-4"><a aria-label="4"></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span></span>
+<span id="cb26-5"><a aria-label="5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 120 × 9
     year marital_status   age education_years children happiness     health   
@@ -1300,12 +1308,12 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Find respondents who are living the dream: retired, in excellent health, <strong>very happy</strong>, and younger than 50 years old. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb28-3"><a></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
-<span id="cb28-4"><a></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
-<span id="cb28-5"><a></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span></span>
-<span id="cb28-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-label="1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a aria-label="2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb28-3"><a aria-label="3"></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb28-4"><a aria-label="4"></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb28-5"><a aria-label="5"></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span></span>
+<span id="cb28-6"><a aria-label="6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 44 × 9
     year marital_status   age education_years children happiness  health   
@@ -1331,13 +1339,13 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Find respondents who are living the dream: retired, in excellent health, very happy, and <strong>younger than 50 years old</strong>. Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb30-3"><a></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
-<span id="cb30-4"><a></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
-<span id="cb30-5"><a></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span>,</span>
-<span id="cb30-6"><a></a>    age <span class="sc">&lt;</span> <span class="dv">50</span></span>
-<span id="cb30-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-label="1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a aria-label="2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb30-3"><a aria-label="3"></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb30-4"><a aria-label="4"></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb30-5"><a aria-label="5"></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span>,</span>
+<span id="cb30-6"><a aria-label="6"></a>    age <span class="sc">&lt;</span> <span class="dv">50</span></span>
+<span id="cb30-7"><a aria-label="7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 9
    year marital_status   age education_years children happiness  health   
@@ -1353,14 +1361,14 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Find respondents who are living the dream: retired, in excellent health, very happy, and younger than 50 years old. <strong>Display their ages, employment statuses, health statuses, happiness levels, and the number of children they have.</strong></p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>gss <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb32-3"><a></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
-<span id="cb32-4"><a></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
-<span id="cb32-5"><a></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span>,</span>
-<span id="cb32-6"><a></a>    age <span class="sc">&lt;</span> <span class="dv">50</span></span>
-<span id="cb32-7"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb32-8"><a></a>  <span class="fu">select</span>(age, employment_status, health, happiness, children)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-label="1"></a>gss <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a aria-label="2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb32-3"><a aria-label="3"></a>    employment_status <span class="sc">==</span> <span class="st">"Retired"</span>,</span>
+<span id="cb32-4"><a aria-label="4"></a>    health <span class="sc">==</span> <span class="st">"Excellent"</span>,</span>
+<span id="cb32-5"><a aria-label="5"></a>    happiness <span class="sc">==</span> <span class="st">"Very happy"</span>,</span>
+<span id="cb32-6"><a aria-label="6"></a>    age <span class="sc">&lt;</span> <span class="dv">50</span></span>
+<span id="cb32-7"><a aria-label="7"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb32-8"><a aria-label="8"></a>  <span class="fu">select</span>(age, employment_status, health, happiness, children)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
     age employment_status health    happiness  children
@@ -1373,7 +1381,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/logo.png" class="slide-logo"></p>
+<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
 </div>
@@ -1561,7 +1569,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1673,13 +1681,14 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

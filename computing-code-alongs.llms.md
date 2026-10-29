@@ -1,0 +1,47 @@
+# Code alongs
+
+The code along videos linked from the course schedule page serve as an additional resource for getting coding practice.
+
+The files you can use to follow along with the videos come from the template repository at <https://github.com/sta199/code-alongs>.
+
+## Set up your code alongs repository
+
+You only need to do this once, at the start of the semester. After that, you’ll use the same repository for all of the code alongs.
+
+- Go to <https://github.com/sta199/code-alongs> and click on the green **Use this template** button, then select **Create a new repository**.
+
+- Under *Owner*, select the **sta199-f26** organization.
+
+- Name your repository `code-alongs-yourname`, replacing `yourname` with your own name.
+
+- Keep the repository **private**.
+
+- Click **Create repository**.
+
+## Clone the repository
+
+- On your new repository’s page, click on the green **CODE** button and copy the **HTTPS** URL.
+
+- In Positron, go to *New* ➛ *New Folder From Git…* and paste the URL into the dialog box labeled *Git repository URL*.
+
+- Click *OK*. Positron will clone the repo and open it as a new workspace.
+
+> **TIP:**
+>
+> If you need a refresher on cloning a repository, see the [Clone your first repository](lab/lab-0.llms.md#clone-your-first-repository) section of Lab 0.
+
+## Work through a code along
+
+- Open the `.qmd` file that corresponds to the video you’re watching.
+
+- Write your code in the document as you follow along with the video, rendering as you go to check your work.
+
+- When you’re done, commit and push your work:
+
+  - Go to the *Source Control* pane and stage the files you changed.
+  - Write a brief, informative commit message.
+  - Click *Sync* to push your commits to GitHub.
+
+> **NOTE:**
+>
+> This is the same workflow you’ll use for your labs, homework, and project, so the code alongs are a good low-stakes place to practice it. Committing and pushing also means your work is backed up on GitHub and available to you from any device.

@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Prof.&nbsp;Mine Çetinkaya-Rundel">
   <meta name="dcterms.date" content="2026-10-26">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c920ede21890f3a947105a3b8b329d99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3b10b6ec34c7aba22fd5177590698153.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -203,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Prof.&nbsp;Mine Çetinkaya-Rundel 
+Prof.&nbsp;Mine Çetinkaya-Rundel
 </div>
         <p class="quarto-title-affiliation">
             Duke University <br> STA 199 - Fall 2026
@@ -308,30 +314,30 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>health_dental_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">fit</span>(fair_or_poor_health <span class="sc">~</span> dental_visit, <span class="at">data =</span> nc_places)</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a>health_dental_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(</span>
-<span id="cb1-5"><a></a>  health_dental_fit,</span>
-<span id="cb1-6"><a></a>  <span class="at">new_data =</span> nc_places</span>
-<span id="cb1-7"><a></a>)</span>
-<span id="cb1-8"><a></a></span>
-<span id="cb1-9"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb1-10"><a></a>  health_dental_aug,</span>
-<span id="cb1-11"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> .pred, <span class="at">y =</span> .resid)</span>
-<span id="cb1-12"><a></a>) <span class="sc">+</span></span>
-<span id="cb1-13"><a></a>  <span class="fu">geom_hline</span>(</span>
-<span id="cb1-14"><a></a>    <span class="at">yintercept =</span> <span class="dv">0</span>,</span>
-<span id="cb1-15"><a></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
-<span id="cb1-16"><a></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
-<span id="cb1-17"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb1-18"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb1-19"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb1-20"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb1-21"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-22"><a></a>    <span class="at">x =</span> <span class="st">"Predicted fair or poor health (%)"</span>,</span>
-<span id="cb1-23"><a></a>    <span class="at">y =</span> <span class="st">"Residual (%)"</span></span>
-<span id="cb1-24"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>health_dental_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a aria-label="2"></a>  <span class="fu">fit</span>(fair_or_poor_health <span class="sc">~</span> dental_visit, <span class="at">data =</span> nc_places)</span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a>health_dental_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(</span>
+<span id="cb1-5"><a aria-label="5"></a>  health_dental_fit,</span>
+<span id="cb1-6"><a aria-label="6"></a>  <span class="at">new_data =</span> nc_places</span>
+<span id="cb1-7"><a aria-label="7"></a>)</span>
+<span id="cb1-8"><a aria-label="8"></a></span>
+<span id="cb1-9"><a aria-label="9"></a><span class="fu">ggplot</span>(</span>
+<span id="cb1-10"><a aria-label="10"></a>  health_dental_aug,</span>
+<span id="cb1-11"><a aria-label="11"></a>  <span class="fu">aes</span>(<span class="at">x =</span> .pred, <span class="at">y =</span> .resid)</span>
+<span id="cb1-12"><a aria-label="12"></a>) <span class="sc">+</span></span>
+<span id="cb1-13"><a aria-label="13"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb1-14"><a aria-label="14"></a>    <span class="at">yintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb1-15"><a aria-label="15"></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
+<span id="cb1-16"><a aria-label="16"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb1-17"><a aria-label="17"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-18"><a aria-label="18"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb1-19"><a aria-label="19"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb1-20"><a aria-label="20"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb1-21"><a aria-label="21"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-22"><a aria-label="22"></a>    <span class="at">x =</span> <span class="st">"Predicted fair or poor health (%)"</span>,</span>
+<span id="cb1-23"><a aria-label="23"></a>    <span class="at">y =</span> <span class="st">"Residual (%)"</span></span>
+<span id="cb1-24"><a aria-label="24"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -340,7 +346,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <h2>Does the model do a good job explaining the variability in the outcome?</h2>
 <p>The model (dental visits) explains 85% of the variability in fair or poor health percentage in NC counties.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">glance</span>(health_dental_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="fu">glance</span>(health_dental_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
@@ -399,66 +405,66 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>greene <span class="ot">&lt;-</span> hearing_depression_aug <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Greene"</span>)</span>
-<span id="cb4-3"><a></a></span>
-<span id="cb4-4"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb4-5"><a></a>  nc_places,</span>
-<span id="cb4-6"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> hearing_disability, <span class="at">y =</span> depression)</span>
-<span id="cb4-7"><a></a>) <span class="sc">+</span></span>
-<span id="cb4-8"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb4-9"><a></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb4-10"><a></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"All counties"</span>, <span class="at">linetype =</span> <span class="st">"All counties"</span>),</span>
-<span id="cb4-11"><a></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb4-12"><a></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
-<span id="cb4-13"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-14"><a></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb4-15"><a></a>    <span class="at">data =</span> nc_places <span class="sc">|&gt;</span> <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Greene"</span>),</span>
-<span id="cb4-16"><a></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Without Greene"</span>, <span class="at">linetype =</span> <span class="st">"Without Greene"</span>),</span>
-<span id="cb4-17"><a></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb4-18"><a></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
-<span id="cb4-19"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-20"><a></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb4-21"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb4-22"><a></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"#325b74"</span>,</span>
-<span id="cb4-23"><a></a>      <span class="st">"Without Greene"</span> <span class="ot">=</span> <span class="st">"#9E2C6A"</span></span>
-<span id="cb4-24"><a></a>    )</span>
-<span id="cb4-25"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-26"><a></a>  <span class="fu">scale_linetype_manual</span>(</span>
-<span id="cb4-27"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb4-28"><a></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
-<span id="cb4-29"><a></a>      <span class="st">"Without Greene"</span> <span class="ot">=</span> <span class="st">"dashed"</span></span>
-<span id="cb4-30"><a></a>    )</span>
-<span id="cb4-31"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-32"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb4-33"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb4-34"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-35"><a></a>    <span class="at">x =</span> <span class="st">"Adults with a hearing disability (%)"</span>,</span>
-<span id="cb4-36"><a></a>    <span class="at">y =</span> <span class="st">"Adults with depression (%)"</span>,</span>
-<span id="cb4-37"><a></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-38"><a></a>    <span class="at">linetype =</span> <span class="cn">NULL</span></span>
-<span id="cb4-39"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-40"><a></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb4-41"><a></a>    <span class="at">data =</span> greene,</span>
-<span id="cb4-42"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb4-43"><a></a>      <span class="at">x =</span> hearing_disability,</span>
-<span id="cb4-44"><a></a>      <span class="at">xend =</span> hearing_disability,</span>
-<span id="cb4-45"><a></a>      <span class="at">y =</span> .pred,</span>
-<span id="cb4-46"><a></a>      <span class="at">yend =</span> depression</span>
-<span id="cb4-47"><a></a>    ),</span>
-<span id="cb4-48"><a></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
-<span id="cb4-49"><a></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
-<span id="cb4-50"><a></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
-<span id="cb4-51"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-52"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> greene, <span class="at">color =</span> <span class="st">"#9E2C6A"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb4-53"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb4-54"><a></a>    <span class="at">data =</span> greene,</span>
-<span id="cb4-55"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> county),</span>
-<span id="cb4-56"><a></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
-<span id="cb4-57"><a></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb4-58"><a></a>    <span class="at">nudge_y =</span> <span class="fl">0.35</span></span>
-<span id="cb4-59"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-60"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a>greene <span class="ot">&lt;-</span> hearing_depression_aug <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a aria-label="2"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Greene"</span>)</span>
+<span id="cb4-3"><a aria-label="3"></a></span>
+<span id="cb4-4"><a aria-label="4"></a><span class="fu">ggplot</span>(</span>
+<span id="cb4-5"><a aria-label="5"></a>  nc_places,</span>
+<span id="cb4-6"><a aria-label="6"></a>  <span class="fu">aes</span>(<span class="at">x =</span> hearing_disability, <span class="at">y =</span> depression)</span>
+<span id="cb4-7"><a aria-label="7"></a>) <span class="sc">+</span></span>
+<span id="cb4-8"><a aria-label="8"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a aria-label="9"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb4-10"><a aria-label="10"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"All counties"</span>, <span class="at">linetype =</span> <span class="st">"All counties"</span>),</span>
+<span id="cb4-11"><a aria-label="11"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb4-12"><a aria-label="12"></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-13"><a aria-label="13"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-14"><a aria-label="14"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb4-15"><a aria-label="15"></a>    <span class="at">data =</span> nc_places <span class="sc">|&gt;</span> <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Greene"</span>),</span>
+<span id="cb4-16"><a aria-label="16"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Without Greene"</span>, <span class="at">linetype =</span> <span class="st">"Without Greene"</span>),</span>
+<span id="cb4-17"><a aria-label="17"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb4-18"><a aria-label="18"></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-19"><a aria-label="19"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-20"><a aria-label="20"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb4-21"><a aria-label="21"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb4-22"><a aria-label="22"></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"#325b74"</span>,</span>
+<span id="cb4-23"><a aria-label="23"></a>      <span class="st">"Without Greene"</span> <span class="ot">=</span> <span class="st">"#9E2C6A"</span></span>
+<span id="cb4-24"><a aria-label="24"></a>    )</span>
+<span id="cb4-25"><a aria-label="25"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-26"><a aria-label="26"></a>  <span class="fu">scale_linetype_manual</span>(</span>
+<span id="cb4-27"><a aria-label="27"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb4-28"><a aria-label="28"></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
+<span id="cb4-29"><a aria-label="29"></a>      <span class="st">"Without Greene"</span> <span class="ot">=</span> <span class="st">"dashed"</span></span>
+<span id="cb4-30"><a aria-label="30"></a>    )</span>
+<span id="cb4-31"><a aria-label="31"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-32"><a aria-label="32"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb4-33"><a aria-label="33"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb4-34"><a aria-label="34"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-35"><a aria-label="35"></a>    <span class="at">x =</span> <span class="st">"Adults with a hearing disability (%)"</span>,</span>
+<span id="cb4-36"><a aria-label="36"></a>    <span class="at">y =</span> <span class="st">"Adults with depression (%)"</span>,</span>
+<span id="cb4-37"><a aria-label="37"></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-38"><a aria-label="38"></a>    <span class="at">linetype =</span> <span class="cn">NULL</span></span>
+<span id="cb4-39"><a aria-label="39"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-40"><a aria-label="40"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb4-41"><a aria-label="41"></a>    <span class="at">data =</span> greene,</span>
+<span id="cb4-42"><a aria-label="42"></a>    <span class="fu">aes</span>(</span>
+<span id="cb4-43"><a aria-label="43"></a>      <span class="at">x =</span> hearing_disability,</span>
+<span id="cb4-44"><a aria-label="44"></a>      <span class="at">xend =</span> hearing_disability,</span>
+<span id="cb4-45"><a aria-label="45"></a>      <span class="at">y =</span> .pred,</span>
+<span id="cb4-46"><a aria-label="46"></a>      <span class="at">yend =</span> depression</span>
+<span id="cb4-47"><a aria-label="47"></a>    ),</span>
+<span id="cb4-48"><a aria-label="48"></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
+<span id="cb4-49"><a aria-label="49"></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
+<span id="cb4-50"><a aria-label="50"></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
+<span id="cb4-51"><a aria-label="51"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-52"><a aria-label="52"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> greene, <span class="at">color =</span> <span class="st">"#9E2C6A"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb4-53"><a aria-label="53"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb4-54"><a aria-label="54"></a>    <span class="at">data =</span> greene,</span>
+<span id="cb4-55"><a aria-label="55"></a>    <span class="fu">aes</span>(<span class="at">label =</span> county),</span>
+<span id="cb4-56"><a aria-label="56"></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
+<span id="cb4-57"><a aria-label="57"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb4-58"><a aria-label="58"></a>    <span class="at">nudge_y =</span> <span class="fl">0.35</span></span>
+<span id="cb4-59"><a aria-label="59"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-60"><a aria-label="60"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -486,66 +492,66 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>swain <span class="ot">&lt;-</span> hearing_depression_aug <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Swain"</span>)</span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb5-5"><a></a>  nc_places,</span>
-<span id="cb5-6"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> hearing_disability, <span class="at">y =</span> depression)</span>
-<span id="cb5-7"><a></a>) <span class="sc">+</span></span>
-<span id="cb5-8"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb5-9"><a></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb5-10"><a></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"All counties"</span>, <span class="at">linetype =</span> <span class="st">"All counties"</span>),</span>
-<span id="cb5-11"><a></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb5-12"><a></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
-<span id="cb5-13"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-14"><a></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb5-15"><a></a>    <span class="at">data =</span> nc_places <span class="sc">|&gt;</span> <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Swain"</span>),</span>
-<span id="cb5-16"><a></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Without Swain"</span>, <span class="at">linetype =</span> <span class="st">"Without Swain"</span>),</span>
-<span id="cb5-17"><a></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb5-18"><a></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
-<span id="cb5-19"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-20"><a></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb5-21"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb5-22"><a></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"#325b74"</span>,</span>
-<span id="cb5-23"><a></a>      <span class="st">"Without Swain"</span> <span class="ot">=</span> <span class="st">"#9E2C6A"</span></span>
-<span id="cb5-24"><a></a>    )</span>
-<span id="cb5-25"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-26"><a></a>  <span class="fu">scale_linetype_manual</span>(</span>
-<span id="cb5-27"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb5-28"><a></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
-<span id="cb5-29"><a></a>      <span class="st">"Without Swain"</span> <span class="ot">=</span> <span class="st">"dashed"</span></span>
-<span id="cb5-30"><a></a>    )</span>
-<span id="cb5-31"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-32"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb5-33"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb5-34"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-35"><a></a>    <span class="at">x =</span> <span class="st">"Adults with a hearing disability (%)"</span>,</span>
-<span id="cb5-36"><a></a>    <span class="at">y =</span> <span class="st">"Adults with depression (%)"</span>,</span>
-<span id="cb5-37"><a></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-38"><a></a>    <span class="at">linetype =</span> <span class="cn">NULL</span></span>
-<span id="cb5-39"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-40"><a></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb5-41"><a></a>    <span class="at">data =</span> swain,</span>
-<span id="cb5-42"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb5-43"><a></a>      <span class="at">x =</span> hearing_disability,</span>
-<span id="cb5-44"><a></a>      <span class="at">xend =</span> hearing_disability,</span>
-<span id="cb5-45"><a></a>      <span class="at">y =</span> .pred,</span>
-<span id="cb5-46"><a></a>      <span class="at">yend =</span> depression</span>
-<span id="cb5-47"><a></a>    ),</span>
-<span id="cb5-48"><a></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
-<span id="cb5-49"><a></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
-<span id="cb5-50"><a></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
-<span id="cb5-51"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-52"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> swain, <span class="at">color =</span> <span class="st">"#9E2C6A"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb5-53"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb5-54"><a></a>    <span class="at">data =</span> swain,</span>
-<span id="cb5-55"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> county),</span>
-<span id="cb5-56"><a></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
-<span id="cb5-57"><a></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb5-58"><a></a>    <span class="at">nudge_y =</span> <span class="fl">0.35</span></span>
-<span id="cb5-59"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-60"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a>swain <span class="ot">&lt;-</span> hearing_depression_aug <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a aria-label="2"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Swain"</span>)</span>
+<span id="cb5-3"><a aria-label="3"></a></span>
+<span id="cb5-4"><a aria-label="4"></a><span class="fu">ggplot</span>(</span>
+<span id="cb5-5"><a aria-label="5"></a>  nc_places,</span>
+<span id="cb5-6"><a aria-label="6"></a>  <span class="fu">aes</span>(<span class="at">x =</span> hearing_disability, <span class="at">y =</span> depression)</span>
+<span id="cb5-7"><a aria-label="7"></a>) <span class="sc">+</span></span>
+<span id="cb5-8"><a aria-label="8"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a aria-label="9"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb5-10"><a aria-label="10"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"All counties"</span>, <span class="at">linetype =</span> <span class="st">"All counties"</span>),</span>
+<span id="cb5-11"><a aria-label="11"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb5-12"><a aria-label="12"></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-13"><a aria-label="13"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-14"><a aria-label="14"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb5-15"><a aria-label="15"></a>    <span class="at">data =</span> nc_places <span class="sc">|&gt;</span> <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Swain"</span>),</span>
+<span id="cb5-16"><a aria-label="16"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Without Swain"</span>, <span class="at">linetype =</span> <span class="st">"Without Swain"</span>),</span>
+<span id="cb5-17"><a aria-label="17"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb5-18"><a aria-label="18"></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb5-19"><a aria-label="19"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-20"><a aria-label="20"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb5-21"><a aria-label="21"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb5-22"><a aria-label="22"></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"#325b74"</span>,</span>
+<span id="cb5-23"><a aria-label="23"></a>      <span class="st">"Without Swain"</span> <span class="ot">=</span> <span class="st">"#9E2C6A"</span></span>
+<span id="cb5-24"><a aria-label="24"></a>    )</span>
+<span id="cb5-25"><a aria-label="25"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-26"><a aria-label="26"></a>  <span class="fu">scale_linetype_manual</span>(</span>
+<span id="cb5-27"><a aria-label="27"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb5-28"><a aria-label="28"></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
+<span id="cb5-29"><a aria-label="29"></a>      <span class="st">"Without Swain"</span> <span class="ot">=</span> <span class="st">"dashed"</span></span>
+<span id="cb5-30"><a aria-label="30"></a>    )</span>
+<span id="cb5-31"><a aria-label="31"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-32"><a aria-label="32"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-33"><a aria-label="33"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-34"><a aria-label="34"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-35"><a aria-label="35"></a>    <span class="at">x =</span> <span class="st">"Adults with a hearing disability (%)"</span>,</span>
+<span id="cb5-36"><a aria-label="36"></a>    <span class="at">y =</span> <span class="st">"Adults with depression (%)"</span>,</span>
+<span id="cb5-37"><a aria-label="37"></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-38"><a aria-label="38"></a>    <span class="at">linetype =</span> <span class="cn">NULL</span></span>
+<span id="cb5-39"><a aria-label="39"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-40"><a aria-label="40"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb5-41"><a aria-label="41"></a>    <span class="at">data =</span> swain,</span>
+<span id="cb5-42"><a aria-label="42"></a>    <span class="fu">aes</span>(</span>
+<span id="cb5-43"><a aria-label="43"></a>      <span class="at">x =</span> hearing_disability,</span>
+<span id="cb5-44"><a aria-label="44"></a>      <span class="at">xend =</span> hearing_disability,</span>
+<span id="cb5-45"><a aria-label="45"></a>      <span class="at">y =</span> .pred,</span>
+<span id="cb5-46"><a aria-label="46"></a>      <span class="at">yend =</span> depression</span>
+<span id="cb5-47"><a aria-label="47"></a>    ),</span>
+<span id="cb5-48"><a aria-label="48"></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
+<span id="cb5-49"><a aria-label="49"></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
+<span id="cb5-50"><a aria-label="50"></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
+<span id="cb5-51"><a aria-label="51"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-52"><a aria-label="52"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> swain, <span class="at">color =</span> <span class="st">"#9E2C6A"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb5-53"><a aria-label="53"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb5-54"><a aria-label="54"></a>    <span class="at">data =</span> swain,</span>
+<span id="cb5-55"><a aria-label="55"></a>    <span class="fu">aes</span>(<span class="at">label =</span> county),</span>
+<span id="cb5-56"><a aria-label="56"></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
+<span id="cb5-57"><a aria-label="57"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb5-58"><a aria-label="58"></a>    <span class="at">nudge_y =</span> <span class="fl">0.35</span></span>
+<span id="cb5-59"><a aria-label="59"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-60"><a aria-label="60"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -573,67 +579,67 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>robeson <span class="ot">&lt;-</span> hearing_depression_aug <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Robeson"</span>)</span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb6-5"><a></a>  nc_places,</span>
-<span id="cb6-6"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> hearing_disability, <span class="at">y =</span> depression)</span>
-<span id="cb6-7"><a></a>) <span class="sc">+</span></span>
-<span id="cb6-8"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb6-9"><a></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb6-10"><a></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"All counties"</span>, <span class="at">linetype =</span> <span class="st">"All counties"</span>),</span>
-<span id="cb6-11"><a></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb6-12"><a></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
-<span id="cb6-13"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-14"><a></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb6-15"><a></a>    <span class="at">data =</span> nc_places <span class="sc">|&gt;</span> <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Robeson"</span>),</span>
-<span id="cb6-16"><a></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Without Robeson"</span>, <span class="at">linetype =</span> <span class="st">"Without Robeson"</span>),</span>
-<span id="cb6-17"><a></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb6-18"><a></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
-<span id="cb6-19"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-20"><a></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb6-21"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb6-22"><a></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"#325b74"</span>,</span>
-<span id="cb6-23"><a></a>      <span class="st">"Without Robeson"</span> <span class="ot">=</span> <span class="st">"#9E2C6A"</span></span>
-<span id="cb6-24"><a></a>    )</span>
-<span id="cb6-25"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-26"><a></a>  <span class="fu">scale_linetype_manual</span>(</span>
-<span id="cb6-27"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb6-28"><a></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
-<span id="cb6-29"><a></a>      <span class="st">"Without Robeson"</span> <span class="ot">=</span> <span class="st">"dashed"</span></span>
-<span id="cb6-30"><a></a>    )</span>
-<span id="cb6-31"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-32"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb6-33"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb6-34"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-35"><a></a>    <span class="at">x =</span> <span class="st">"Adults with a hearing disability (%)"</span>,</span>
-<span id="cb6-36"><a></a>    <span class="at">y =</span> <span class="st">"Adults with depression (%)"</span>,</span>
-<span id="cb6-37"><a></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-38"><a></a>    <span class="at">linetype =</span> <span class="cn">NULL</span></span>
-<span id="cb6-39"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-40"><a></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb6-41"><a></a>    <span class="at">data =</span> robeson,</span>
-<span id="cb6-42"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb6-43"><a></a>      <span class="at">x =</span> hearing_disability,</span>
-<span id="cb6-44"><a></a>      <span class="at">xend =</span> hearing_disability,</span>
-<span id="cb6-45"><a></a>      <span class="at">y =</span> .pred,</span>
-<span id="cb6-46"><a></a>      <span class="at">yend =</span> depression</span>
-<span id="cb6-47"><a></a>    ),</span>
-<span id="cb6-48"><a></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
-<span id="cb6-49"><a></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
-<span id="cb6-50"><a></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
-<span id="cb6-51"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-52"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> robeson, <span class="at">color =</span> <span class="st">"#9E2C6A"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb6-53"><a></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb6-54"><a></a>    <span class="at">data =</span> robeson,</span>
-<span id="cb6-55"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> county),</span>
-<span id="cb6-56"><a></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
-<span id="cb6-57"><a></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb6-58"><a></a>    <span class="at">nudge_y =</span> <span class="fl">0.35</span>,</span>
-<span id="cb6-59"><a></a>    <span class="at">hjust =</span> <span class="fl">1.05</span></span>
-<span id="cb6-60"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb6-61"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>robeson <span class="ot">&lt;-</span> hearing_depression_aug <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a aria-label="2"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Robeson"</span>)</span>
+<span id="cb6-3"><a aria-label="3"></a></span>
+<span id="cb6-4"><a aria-label="4"></a><span class="fu">ggplot</span>(</span>
+<span id="cb6-5"><a aria-label="5"></a>  nc_places,</span>
+<span id="cb6-6"><a aria-label="6"></a>  <span class="fu">aes</span>(<span class="at">x =</span> hearing_disability, <span class="at">y =</span> depression)</span>
+<span id="cb6-7"><a aria-label="7"></a>) <span class="sc">+</span></span>
+<span id="cb6-8"><a aria-label="8"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a aria-label="9"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb6-10"><a aria-label="10"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"All counties"</span>, <span class="at">linetype =</span> <span class="st">"All counties"</span>),</span>
+<span id="cb6-11"><a aria-label="11"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb6-12"><a aria-label="12"></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb6-13"><a aria-label="13"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-14"><a aria-label="14"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb6-15"><a aria-label="15"></a>    <span class="at">data =</span> nc_places <span class="sc">|&gt;</span> <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Robeson"</span>),</span>
+<span id="cb6-16"><a aria-label="16"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Without Robeson"</span>, <span class="at">linetype =</span> <span class="st">"Without Robeson"</span>),</span>
+<span id="cb6-17"><a aria-label="17"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb6-18"><a aria-label="18"></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb6-19"><a aria-label="19"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-20"><a aria-label="20"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb6-21"><a aria-label="21"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb6-22"><a aria-label="22"></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"#325b74"</span>,</span>
+<span id="cb6-23"><a aria-label="23"></a>      <span class="st">"Without Robeson"</span> <span class="ot">=</span> <span class="st">"#9E2C6A"</span></span>
+<span id="cb6-24"><a aria-label="24"></a>    )</span>
+<span id="cb6-25"><a aria-label="25"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-26"><a aria-label="26"></a>  <span class="fu">scale_linetype_manual</span>(</span>
+<span id="cb6-27"><a aria-label="27"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb6-28"><a aria-label="28"></a>      <span class="st">"All counties"</span> <span class="ot">=</span> <span class="st">"solid"</span>,</span>
+<span id="cb6-29"><a aria-label="29"></a>      <span class="st">"Without Robeson"</span> <span class="ot">=</span> <span class="st">"dashed"</span></span>
+<span id="cb6-30"><a aria-label="30"></a>    )</span>
+<span id="cb6-31"><a aria-label="31"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-32"><a aria-label="32"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-33"><a aria-label="33"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-34"><a aria-label="34"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-35"><a aria-label="35"></a>    <span class="at">x =</span> <span class="st">"Adults with a hearing disability (%)"</span>,</span>
+<span id="cb6-36"><a aria-label="36"></a>    <span class="at">y =</span> <span class="st">"Adults with depression (%)"</span>,</span>
+<span id="cb6-37"><a aria-label="37"></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-38"><a aria-label="38"></a>    <span class="at">linetype =</span> <span class="cn">NULL</span></span>
+<span id="cb6-39"><a aria-label="39"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-40"><a aria-label="40"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb6-41"><a aria-label="41"></a>    <span class="at">data =</span> robeson,</span>
+<span id="cb6-42"><a aria-label="42"></a>    <span class="fu">aes</span>(</span>
+<span id="cb6-43"><a aria-label="43"></a>      <span class="at">x =</span> hearing_disability,</span>
+<span id="cb6-44"><a aria-label="44"></a>      <span class="at">xend =</span> hearing_disability,</span>
+<span id="cb6-45"><a aria-label="45"></a>      <span class="at">y =</span> .pred,</span>
+<span id="cb6-46"><a aria-label="46"></a>      <span class="at">yend =</span> depression</span>
+<span id="cb6-47"><a aria-label="47"></a>    ),</span>
+<span id="cb6-48"><a aria-label="48"></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
+<span id="cb6-49"><a aria-label="49"></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
+<span id="cb6-50"><a aria-label="50"></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
+<span id="cb6-51"><a aria-label="51"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-52"><a aria-label="52"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> robeson, <span class="at">color =</span> <span class="st">"#9E2C6A"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-53"><a aria-label="53"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb6-54"><a aria-label="54"></a>    <span class="at">data =</span> robeson,</span>
+<span id="cb6-55"><a aria-label="55"></a>    <span class="fu">aes</span>(<span class="at">label =</span> county),</span>
+<span id="cb6-56"><a aria-label="56"></a>    <span class="at">color =</span> <span class="st">"#9E2C6A"</span>,</span>
+<span id="cb6-57"><a aria-label="57"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb6-58"><a aria-label="58"></a>    <span class="at">nudge_y =</span> <span class="fl">0.35</span>,</span>
+<span id="cb6-59"><a aria-label="59"></a>    <span class="at">hjust =</span> <span class="fl">1.05</span></span>
+<span id="cb6-60"><a aria-label="60"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-61"><a aria-label="61"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -725,17 +731,17 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb7-2"><a></a>  nc_places,</span>
-<span id="cb7-3"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> development_tier, <span class="at">y =</span> mental_distress)</span>
-<span id="cb7-4"><a></a>) <span class="sc">+</span></span>
-<span id="cb7-5"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb7-6"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb7-7"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-8"><a></a>    <span class="at">x =</span> <span class="st">"Development tier"</span>,</span>
-<span id="cb7-9"><a></a>    <span class="at">y =</span> <span class="st">"Adults experiencing</span><span class="sc">\n</span><span class="st">frequent mental distress (%)"</span>,</span>
-<span id="cb7-10"><a></a>    <span class="at">title =</span> <span class="st">"Mental distress by county development tier"</span></span>
-<span id="cb7-11"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb7-2"><a aria-label="2"></a>  nc_places,</span>
+<span id="cb7-3"><a aria-label="3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> development_tier, <span class="at">y =</span> mental_distress)</span>
+<span id="cb7-4"><a aria-label="4"></a>) <span class="sc">+</span></span>
+<span id="cb7-5"><a aria-label="5"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-6"><a aria-label="6"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-7"><a aria-label="7"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-8"><a aria-label="8"></a>    <span class="at">x =</span> <span class="st">"Development tier"</span>,</span>
+<span id="cb7-9"><a aria-label="9"></a>    <span class="at">y =</span> <span class="st">"Adults experiencing</span><span class="sc">\n</span><span class="st">frequent mental distress (%)"</span>,</span>
+<span id="cb7-10"><a aria-label="10"></a>    <span class="at">title =</span> <span class="st">"Mental distress by county development tier"</span></span>
+<span id="cb7-11"><a aria-label="11"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -745,17 +751,17 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb8-2"><a></a>  nc_places,</span>
-<span id="cb8-3"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> development_tier, <span class="at">y =</span> mental_distress)</span>
-<span id="cb8-4"><a></a>) <span class="sc">+</span></span>
-<span id="cb8-5"><a></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb8-6"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb8-7"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb8-8"><a></a>    <span class="at">x =</span> <span class="st">"Development tier"</span>,</span>
-<span id="cb8-9"><a></a>    <span class="at">y =</span> <span class="st">"Adults experiencing</span><span class="sc">\n</span><span class="st">frequent mental distress (%)"</span>,</span>
-<span id="cb8-10"><a></a>    <span class="at">title =</span> <span class="st">"Mental distress by county development tier"</span></span>
-<span id="cb8-11"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb8-2"><a aria-label="2"></a>  nc_places,</span>
+<span id="cb8-3"><a aria-label="3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> development_tier, <span class="at">y =</span> mental_distress)</span>
+<span id="cb8-4"><a aria-label="4"></a>) <span class="sc">+</span></span>
+<span id="cb8-5"><a aria-label="5"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb8-6"><a aria-label="6"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb8-7"><a aria-label="7"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-8"><a aria-label="8"></a>    <span class="at">x =</span> <span class="st">"Development tier"</span>,</span>
+<span id="cb8-9"><a aria-label="9"></a>    <span class="at">y =</span> <span class="st">"Adults experiencing</span><span class="sc">\n</span><span class="st">frequent mental distress (%)"</span>,</span>
+<span id="cb8-10"><a aria-label="10"></a>    <span class="at">title =</span> <span class="st">"Mental distress by county development tier"</span></span>
+<span id="cb8-11"><a aria-label="11"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -765,25 +771,25 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb9-2"><a></a>  nc_places,</span>
-<span id="cb9-3"><a></a>  <span class="fu">aes</span>(</span>
-<span id="cb9-4"><a></a>    <span class="at">x =</span> mental_distress,</span>
-<span id="cb9-5"><a></a>    <span class="at">color =</span> development_tier,</span>
-<span id="cb9-6"><a></a>    <span class="at">fill =</span> development_tier</span>
-<span id="cb9-7"><a></a>  )</span>
-<span id="cb9-8"><a></a>) <span class="sc">+</span></span>
-<span id="cb9-9"><a></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb9-10"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb9-11"><a></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
-<span id="cb9-12"><a></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
-<span id="cb9-13"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-14"><a></a>    <span class="at">x =</span> <span class="st">"Adults experiencing frequent mental distress (%)"</span>,</span>
-<span id="cb9-15"><a></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
-<span id="cb9-16"><a></a>    <span class="at">color =</span> <span class="st">"Development</span><span class="sc">\n</span><span class="st">tier"</span>,</span>
-<span id="cb9-17"><a></a>    <span class="at">fill =</span> <span class="st">"Development</span><span class="sc">\n</span><span class="st">tier"</span>,</span>
-<span id="cb9-18"><a></a>    <span class="at">title =</span> <span class="st">"Mental distress by county development tier"</span></span>
-<span id="cb9-19"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb9-2"><a aria-label="2"></a>  nc_places,</span>
+<span id="cb9-3"><a aria-label="3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb9-4"><a aria-label="4"></a>    <span class="at">x =</span> mental_distress,</span>
+<span id="cb9-5"><a aria-label="5"></a>    <span class="at">color =</span> development_tier,</span>
+<span id="cb9-6"><a aria-label="6"></a>    <span class="at">fill =</span> development_tier</span>
+<span id="cb9-7"><a aria-label="7"></a>  )</span>
+<span id="cb9-8"><a aria-label="8"></a>) <span class="sc">+</span></span>
+<span id="cb9-9"><a aria-label="9"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a aria-label="10"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb9-11"><a aria-label="11"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a aria-label="12"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a aria-label="13"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-14"><a aria-label="14"></a>    <span class="at">x =</span> <span class="st">"Adults experiencing frequent mental distress (%)"</span>,</span>
+<span id="cb9-15"><a aria-label="15"></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb9-16"><a aria-label="16"></a>    <span class="at">color =</span> <span class="st">"Development</span><span class="sc">\n</span><span class="st">tier"</span>,</span>
+<span id="cb9-17"><a aria-label="17"></a>    <span class="at">fill =</span> <span class="st">"Development</span><span class="sc">\n</span><span class="st">tier"</span>,</span>
+<span id="cb9-18"><a aria-label="18"></a>    <span class="at">title =</span> <span class="st">"Mental distress by county development tier"</span></span>
+<span id="cb9-19"><a aria-label="19"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -793,18 +799,18 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb10-2"><a></a>  nc_places,</span>
-<span id="cb10-3"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> development_tier, <span class="at">y =</span> mental_distress)</span>
-<span id="cb10-4"><a></a>) <span class="sc">+</span></span>
-<span id="cb10-5"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.12</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb10-8"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb10-9"><a></a>    <span class="at">x =</span> <span class="st">"Development tier"</span>,</span>
-<span id="cb10-10"><a></a>    <span class="at">y =</span> <span class="st">"Adults experiencing</span><span class="sc">\n</span><span class="st">frequent mental distress (%)"</span>,</span>
-<span id="cb10-11"><a></a>    <span class="at">title =</span> <span class="st">"Mental distress by county development tier"</span></span>
-<span id="cb10-12"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb10-2"><a aria-label="2"></a>  nc_places,</span>
+<span id="cb10-3"><a aria-label="3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> development_tier, <span class="at">y =</span> mental_distress)</span>
+<span id="cb10-4"><a aria-label="4"></a>) <span class="sc">+</span></span>
+<span id="cb10-5"><a aria-label="5"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a aria-label="6"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.12</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a aria-label="7"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb10-8"><a aria-label="8"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-9"><a aria-label="9"></a>    <span class="at">x =</span> <span class="st">"Development tier"</span>,</span>
+<span id="cb10-10"><a aria-label="10"></a>    <span class="at">y =</span> <span class="st">"Adults experiencing</span><span class="sc">\n</span><span class="st">frequent mental distress (%)"</span>,</span>
+<span id="cb10-11"><a aria-label="11"></a>    <span class="at">title =</span> <span class="st">"Mental distress by county development tier"</span></span>
+<span id="cb10-12"><a aria-label="12"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -816,9 +822,9 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>nc_places <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">group_by</span>(development_tier) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">summarize</span>(<span class="at">mean_mental_distress =</span> <span class="fu">mean</span>(mental_distress))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-label="1"></a>nc_places <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a aria-label="2"></a>  <span class="fu">group_by</span>(development_tier) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a aria-label="3"></a>  <span class="fu">summarize</span>(<span class="at">mean_mental_distress =</span> <span class="fu">mean</span>(mental_distress))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   development_tier mean_mental_distress
@@ -837,10 +843,10 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <p>Why is Tier 1 not in the output?</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>mental_distress_tier_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">fit</span>(mental_distress <span class="sc">~</span> development_tier, <span class="at">data =</span> nc_places)</span>
-<span id="cb13-3"><a></a></span>
-<span id="cb13-4"><a></a><span class="fu">tidy</span>(mental_distress_tier_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-label="1"></a>mental_distress_tier_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a aria-label="2"></a>  <span class="fu">fit</span>(mental_distress <span class="sc">~</span> development_tier, <span class="at">data =</span> nc_places)</span>
+<span id="cb13-3"><a aria-label="3"></a></span>
+<span id="cb13-4"><a aria-label="4"></a><span class="fu">tidy</span>(mental_distress_tier_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term                   estimate std.error statistic   p.value
@@ -890,12 +896,12 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>new_counties <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb15-2"><a></a>  <span class="at">county =</span> <span class="fu">c</span>(<span class="st">"County A"</span>, <span class="st">"County B"</span>, <span class="st">"County C"</span>),</span>
-<span id="cb15-3"><a></a>  <span class="at">development_tier =</span> <span class="fu">c</span>(<span class="st">"Tier 1"</span>, <span class="st">"Tier 2"</span>, <span class="st">"Tier 3"</span>)</span>
-<span id="cb15-4"><a></a>)</span>
-<span id="cb15-5"><a></a></span>
-<span id="cb15-6"><a></a><span class="fu">augment</span>(mental_distress_tier_fit, <span class="at">new_data =</span> new_counties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-label="1"></a>new_counties <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-2"><a aria-label="2"></a>  <span class="at">county =</span> <span class="fu">c</span>(<span class="st">"County A"</span>, <span class="st">"County B"</span>, <span class="st">"County C"</span>),</span>
+<span id="cb15-3"><a aria-label="3"></a>  <span class="at">development_tier =</span> <span class="fu">c</span>(<span class="st">"Tier 1"</span>, <span class="st">"Tier 2"</span>, <span class="st">"Tier 3"</span>)</span>
+<span id="cb15-4"><a aria-label="4"></a>)</span>
+<span id="cb15-5"><a aria-label="5"></a></span>
+<span id="cb15-6"><a aria-label="6"></a><span class="fu">augment</span>(mental_distress_tier_fit, <span class="at">new_data =</span> new_counties)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   .pred county   development_tier
@@ -953,10 +959,10 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>What function goes in the blank to make Tier 3 the baseline level in the <code>development_tier</code> variable?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>nc_places <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb17-3"><a></a>    <span class="at">development_tier =</span> <span class="fu">___</span>(development_tier, <span class="st">"Tier 3"</span>)</span>
-<span id="cb17-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-label="1"></a>nc_places <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a aria-label="3"></a>    <span class="at">development_tier =</span> <span class="fu">___</span>(development_tier, <span class="st">"Tier 3"</span>)</span>
+<span id="cb17-4"><a aria-label="4"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="wooclap-choices">
 <ul>
@@ -983,12 +989,12 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>What is the baseline level of <code>development_tier</code> in the following model?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a></a>  <span class="fu">fit</span>(</span>
-<span id="cb18-3"><a></a>    mental_distress <span class="sc">~</span> development_tier,</span>
-<span id="cb18-4"><a></a>    <span class="at">data =</span> nc_places_tier_2</span>
-<span id="cb18-5"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb18-6"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a aria-label="2"></a>  <span class="fu">fit</span>(</span>
+<span id="cb18-3"><a aria-label="3"></a>    mental_distress <span class="sc">~</span> development_tier,</span>
+<span id="cb18-4"><a aria-label="4"></a>    <span class="at">data =</span> nc_places_tier_2</span>
+<span id="cb18-5"><a aria-label="5"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a aria-label="6"></a>  <span class="fu">tidy</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term                   estimate std.error statistic   p.value
@@ -1020,7 +1026,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/logo.png" class="slide-logo"></p>
+<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
 </div>
@@ -1208,7 +1214,7 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1320,13 +1326,14 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

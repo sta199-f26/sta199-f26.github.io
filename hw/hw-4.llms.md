@@ -1,0 +1,300 @@
+# HW 4
+
+Slam dunks, shaken trusts, and stuck landings
+
+HW
+
+Due: Wed, Sep 30, 11:59 pm
+
+# Introduction
+
+In this homework, you will explore two very different topics: basketball prospects and public perceptions of government corruption. First, you will combine NBA Draft Combine measurements with draft picks to explore player characteristics and highlight players from Duke. Then, you will examine Gallup survey results on perceived government corruption across political groups and over time.
+
+Along the way, you will practice importing and cleaning data, identifying mismatches between datasets, joining and summarizing data, and creating and customizing visualizations with ggplot2.
+
+## Learning objectives
+
+By the end of this homework, you will:
+
+- import data from Excel sheets and clean variable names and missing values;
+- identify unmatched observations and join related datasets;
+- summarize and visualize relationships between variables while accounting for missing values; and
+- recreate and customize visualizations with ggplot2, including colors, labels, and annotations.
+
+## Guidelines
+
+By now you should be familiar with guidelines for homework assignments. If not, please refer to an earlier homework assignment for details.
+
+## AI support and feedback
+
+You can get immediate support as well as feedback on all of the questions with AI, based on rubrics designed by the course instructor, via the Codex extension in Positron, and using AI access provided by Duke University.
+
+When working on your assignment, feel free to ask Codex for help, but don’t ask it to do your work for you. After completing a question, ask Codex to provide feedback on your answer, e.g., “Review my answer for Question 1.”
+
+# Packages
+
+In addition to the [**tidyverse**](https://www.tidyverse.org/packages) package, you will also need the [**readxl**](https://readxl.tidyverse.org/) and the [**janitor**](https://sfirke.github.io/janitor/) packages. Your analysis must use these packages.
+
+``` downlit
+library(tidyverse)
+library(readxl)
+library(janitor)
+```
+
+# Part 1 - Slam dunks
+
+The [NBA Draft Combine](https://en.wikipedia.org/wiki/NBA_draft_combine) is a multi-day event held every May before the NBA draft in June. At the combine, college basketball players take medical tests, are interviewed, perform various athletic tests and shooting drills, and play in five-on-five drills for an audience of National Basketball Association (NBA) coaches, general managers, and scouts. How an athlete measures and performs during the combine can affect perception, draft status, salary, and the player’s future career. These stats are posted annually at <https://www.nba.com/stats/draft/combine-anthro>, which is where the data you’ll be using comes from.
+
+## Data
+
+The data are stored in two sheets in a single Excel file called `nba-draft-combine-2627.xlsx`, located in your `data` folder. The two sheets and their contents are as follows:
+
+**Sheet 1: `2026 Draft Player Stats`**
+
+Player names, positions, and anthropometric measurements (i.e., measurements of the player’s body dimensions and shape), and strength and agility statistics.
+
+- position: If you’re curious, you can read more about basketball positions [on Wikipedia](https://en.wikipedia.org/wiki/Basketball_positions). However, you don’t need to know anything about basketball to successfully complete the homework. Possible positions are:
+  - C: Center
+  - PF: Power Forward
+  - PG: Point Guard
+  - SF: Small Forward
+  - SG: Shooting Guard
+- hand length (in inches)
+- hand width (in inches)
+- height without shoes (in feet and inches, e.g., 6’ 10.50’’ = 6 feet 10.5 inches)
+- height with shoes (in feet and inches)
+- standing reach (in feet and inches)
+- weight (in pounds)
+- wingspan (in feet and inches)
+- lane agility time (in seconds, lower the better)
+- shuttle run (in seconds, lower the better)
+- three-quarter sprint (in seconds, lower the better)
+- standing vertical leap (in inches, higher the better)
+- max vertical leap (in inches, higher the better)
+- max bench press (number of repetitions of 185 pounds)
+
+**Sheet 2: `2026 Draft Picks`**
+
+Player names and draft information for the first 50 picks:
+
+- team drafted to
+- prior affiliation (e.g., undergraduate institution)
+- draft year (all 2026 in this case)
+- round number - which round they were drafted in; 1 for a first-round pick, 2 for a second-round pick.
+- round pick - within a round, the order in which a player was picked; 1 to 30
+- overall pick - overall order in which a player was drafted; 1 to 50 in the supplied data
+
+## Question 1
+
+**Import.** Using only the packages mentioned above, read each of the sheets in and save them as two separate data frames in R. Then, display the first ten rows and any columns that fit on the page.
+
+> **IMPORTANT:**
+>
+> - Extraneous rows on top of the sheet(s) should be excluded.
+> - All variable names should use `snake_case` (lowercase, with underscores instead of spaces).
+> - All missing values should be coded as `NA`.
+
+## Question 2
+
+**Inspect.** Find the mismatches between the two data frames:
+
+1.  Determine which, if any, players are in the stats data frame but not in the picks data frame. These are players present in the combine data but absent from the supplied draft-pick data. Their absence does not necessarily mean they went undrafted. Display your output.
+
+2.  Determine which, if any, players are in the picks data frame but not in the stats data frame. These are the players who were picked in the draft, but we do not have stats for. Display your output.
+
+3.  In a single sentence, briefly summarize the number of each type of mismatch.
+
+## Question 3
+
+**Explore.**
+
+1.  Using the stats data frame, create a single pipeline that summarizes the mean and median weight (in pounds) for players in each position.
+
+    > **IMPORTANT:**
+    > - Players with missing position information should be excluded.
+    > - Exclude missing weights when calculating the mean and median. Count all players with a recorded position in `n`, including those with missing weights.
+    > - The resulting data frame should have four columns: `pos` (position), `n` (number of players), `mean_weight` (average weight in pounds), and `median_weight` (median weight in pounds).
+    > - The resulting data frame should have five rows.
+    > - Results should be displayed in descending order of mean weight.
+
+2.  Using the stats data frame and excluding players with missing positions or weights, first determine which type of plot would be appropriate and useful for exploring the relationship between player weights and positions, and write a one-sentence justification for why you think this type of plot is appropriate and useful. Then create the visualization you selected, ensuring you follow best practices.
+
+3.  Briefly, in at most 3 sentences, describe your findings about the relationship between weights and positions of players in this combine dataset based on your results from parts (a) and (b).
+
+## Question 4
+
+**Recreate.** Recreate the following visualization of players in the supplied 2026 data, highlighting players whose prior affiliation was Duke University.
+
+[![Draft weight vs. three-quarter sprint time, with Duke players highlighted in blue and labeled with their names.](images/hw-4/draft-weight-sprint-1.png)](images/hw-4/draft-weight-sprint-1.png)
+
+> **IMPORTANT:**
+>
+> - The plot should only include players that are in both data frames and have non-missing values for both weight and three-quarter sprint time.
+> - Players from Duke should be colored in Duke blue (the HEX code for this color is `#00539B`) and players not from Duke should be light gray (the name for this color is `gray70`).
+> - Players from Duke should be labeled with their names, and the labels should not overlap with their points, though they can overlap with non-Duke players’ points, and they do not have to be in the exact same position as the labels shown in the plot below.
+> - Use [`theme_minimal()`](https://ggplot2.tidyverse.org/reference/ggtheme.html) for the plot theme.
+
+> **TIP:**
+>
+> - First, make the scatterplot without colors or text labels/annotations.
+> - Then, add the colors for the Duke players.
+> - Then, work on your improvements (title and axis labels).
+> - Finally, add the player names. Labels are required for full credit but are worth only a small portion of the points. If you are spending too much time on them, finish the rest of your homework first, then revisit this task.
+
+This would be a good time to get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed.
+
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+
+# Part 2 - Shaken trusts
+
+On September 2, 2026, [Gallup](https://www.gallup.com/) reported “Record-High 89% in U.S. Say Government Corruption Widespread”.
+
+## Question 5
+
+**Learn.** Read the article at <https://news.gallup.com/poll/713933/record-high-say-government-corruption-widespread.aspx> and, in 2–3 sentences, summarize the main finding and one comparison across political groups or over time. Explain whether the survey measures corruption itself or perceptions of corruption.
+
+## Question 6
+
+**Recreate.** The goal of this question is to recreate the following visualization from the article with ggplot2.
+
+[![Perceived Government Corruption Spans Political Spectrum](images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png)](images/hw-4/Perceived-Government-Corruption-Spans-Political-Spectrum.png)
+
+1.  In the linked Gallup article, find the interactive chart titled “Perceived Government Corruption Spans Political Spectrum” and download its data using the “Get the data” link. Save or upload the downloaded file to your `data` folder.
+
+2.  Read the data with the appropriate function and tidy and transform it as needed to recreate the plot.
+
+3.  Recreate the visualization with ggplot2. Match the data, group colors, lines and points, axis scales, and labels. Approximate fonts and spacing are acceptable.
+
+    - For non-default features you match, briefly explain what you changed and how, e.g., “I matched the background color by using `theme(panel.background = element_rect(fill = "#F2F8F1"))`.”
+    - For any required features you cannot match, briefly explain what you tried and what did not work.
+
+> **NOTE:**
+>
+> The original plot is interactive—if you hover over a point, it shows the exact percentage for that point. You do not need to make your plot interactive.
+
+You know what to do!
+
+# Part 3 - Stuck landings
+
+For Part 3 of this homework, you’ll work with two datasets — the first one you’ll recognize from lab, `gymnastics`, and the second one is `continents`.
+
+The `gymnastics` dataset contains information about the routines performed by gymnasts in the women’s artistic gymnastics competition at the 2024 Paris Olympics. Each row represents a single routine, so a gymnast who competed on all four apparatus in qualification appears in at least four rows.
+
+The variables in the `gymnastics` dataset are as follows.
+
+| Variable | Description |
+|:---|:---|
+| `name` | Gymnast’s name, in “Given Surname” order |
+| `country` | Country name |
+| `country_code` | 3-letter National Olympic Committee (NOC) code |
+| `event` | Apparatus: Vault, Uneven Bars, Balance Beam, Floor Exercise |
+| `competition` | Which round: Qualification, Team Final, All-Around Final, Event Final |
+| `d_score` | Difficulty score (a number greater than zero, in increments of 0.1) |
+| `e_score` | Execution score (a number between 0 and 10) |
+| `penalty` | Neutral deduction |
+| `score` | Routine total = `d_score` + `e_score` - `penalty` |
+| `rank` | Placement for that row’s competition |
+
+The `continents` dataset contains countries and the continent each one is in.
+
+The variables in the `continents` dataset are as follows.
+
+| Variable    | Description                                         |
+|:------------|:----------------------------------------------------|
+| `entity`    | Country name                                        |
+| `code`      | Country code (3-letter ISO code for most countries) |
+| `year`      | Year the continent assignment was recorded          |
+| `continent` | Continent the country is in                         |
+
+Both datasets can be found in the `data` folder, as `gymnastics.csv` and `continents.csv`, respectively.
+
+## Question 7
+
+To qualify for major competitions such as the Olympics, gymnasts must compete in their Continental Championship: the Pan American Games, European Championships, Asian Championships, African Championships, or Oceania Championships. One question of interest, then, is whether gymnasts from different continents score differently.
+
+> **NOTE:**
+>
+> The Pan American Games feature athletes from both North and South American countries. For this analysis, you don’t have to combine the two continents.
+
+1.  First, read in the two datasets, save them as `gymnastics` and `continents`, respectively, and display the first ten rows of each.
+
+2.  Join the two data frames based on `country` and `entity` variables in their respective datasets, and save the resulting data frame as a new data frame, giving it a short but evocative name. Display the first ten rows of the new data frame. Make sure that your joined data frame contains all countries in the `gymnastics` data frame.
+
+3.  In a single pipeline, produce a summary of the average vault score by continent.
+
+4.  How many rows does your summary have, and what does each row represent? Which continent has the highest average vault score, and which has the lowest?
+
+5.  Your summary has a row where `continent` is `NA`. Using [`anti_join()`](https://dplyr.tidyverse.org/reference/filter-joins.html), write code to identify which countries in `gymnastics` have no match in `continents`. For each one, explain why it failed to match, and describe what you would need to do to fix it.
+
+This would be a good time to get feedback from AI if you haven’t yet done so! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed.
+
+You know what to do!
+
+# AI use disclosure
+
+The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.
+
+- Did you use an LLM / generative AI tool when completing this assignment? (Yes or No)
+
+- If Yes, list all of the ways you used it from the list below.
+
+  - I used it to clarify the question(s).
+  - I used it to better understand concept(s).
+  - I asked it to help write code.
+  - I gave it my code and asked it to help fix it.
+  - I asked it about an error or unexpected code behavior.
+  - I used it to get feedback on my answer(s).
+  - I pasted the question prompt in and asked for help, but wrote my own answer.
+  - I pasted the question prompt in and copied at least part of its response into my Quarto document.
+  - Other (please specify)
+
+- If Yes, list all the AI tools you used.
+
+  - Include the model name and version (if known). For example, “ChatGPT GPT-5.5” or “Claude Sonnet 4”.
+  - Include the tool as well. For example, “Codex extension in Positron”, “ChatGPT in a web browser”, etc.
+
+Additionally, cite any other non-AI sources you used to help you complete the assignment, along with the question(s) for which you used each source.
+
+**Sample citations:**
+
+- Example 1: All questions: 5.6 Luna Light, in Codex in Positron.
+- Example 2: I used ChatGPT GPT-5.5 for Questions 5 and 7. Prompt: “Why did my code have an error?” (pasted code).
+
+# Wrap-up
+
+Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub, and your source control pane is empty. We will be checking these to make sure you have been practicing committing and pushing changes.
+
+## Submission
+
+Submit your PDF document to Gradescope by the deadline to be considered “on time”:
+
+- Go to <http://www.gradescope.com> and click *Log in* in the top right corner.
+- Click *School Credentials* \\\rightarrow\\ *Duke NetID* and log in using your NetID credentials.
+- Click on your *STA 199* course.
+- Click on the assignment, and you’ll be prompted to submit it.
+- Mark all the pages associated with question. All the pages of your homework should be associated with at least one question (i.e., should be “checked”).
+
+> **IMPORTANT:**
+>
+> Make sure you have:
+>
+> - attempted all questions
+> - included an AI use disclosure
+> - rendered your Quarto document
+> - committed and pushed everything to your GitHub repository such that the Git pane in Positron is empty
+> - uploaded your PDF to Gradescope
+> - selected your pages on Gradescope for each question
+
+## Grading and feedback
+
+You can get immediate feedback on all of the questions with AI.
+
+Submit your final version of `hw-4.pdf` to Gradescope. Be sure to select the pages associated with each question.
+
+A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.
+
+There are also workflow points for:
+
+- committing at least three times as you work through your homework,
+- having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
+- overall organization.

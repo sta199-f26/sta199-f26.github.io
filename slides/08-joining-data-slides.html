@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
   <meta name="dcterms.date" content="2026-09-21">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c920ede21890f3a947105a3b8b329d99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3b10b6ec34c7aba22fd5177590698153.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -203,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Mine Çetinkaya-Rundel 
+Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
         <p class="quarto-title-affiliation">
             Duke University <br> STA 199 - Fall 2026
@@ -288,7 +294,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="sales-taxes-in-us-states" class="slide level2 smaller">
 <h2>Sales taxes in US states</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>sales_taxes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>sales_taxes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 51 × 7
    state       state_tax_rate state_tax_rank avg_local_tax_rate max_local
@@ -338,19 +344,19 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>First, create a vector called <code>list_of_swing_states</code> that contains the names of the swing states.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>list_of_swing_states <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb3-2"><a></a>  <span class="st">"Arizona"</span>, <span class="st">"Georgia"</span>, <span class="st">"Michigan"</span>, <span class="st">"Nevada"</span>, <span class="st">"North Carolina"</span>,</span>
-<span id="cb3-3"><a></a>  <span class="st">"Pennsylvania"</span>, <span class="st">"Wisconsin"</span></span>
-<span id="cb3-4"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a>list_of_swing_states <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-2"><a aria-label="2"></a>  <span class="st">"Arizona"</span>, <span class="st">"Georgia"</span>, <span class="st">"Michigan"</span>, <span class="st">"Nevada"</span>, <span class="st">"North Carolina"</span>,</span>
+<span id="cb3-3"><a aria-label="3"></a>  <span class="st">"Pennsylvania"</span>, <span class="st">"Wisconsin"</span></span>
+<span id="cb3-4"><a aria-label="4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then, fill in the blanks to create a new variable called <code>swing_state</code> with levels <code>"Swing"</code> and <code>"Non-swing"</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>sales_taxes <span class="ot">&lt;-</span> sales_taxes <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">__BLANK_1__</span>(</span>
-<span id="cb4-3"><a></a>    <span class="at">swing_state =</span> <span class="fu">__BLANK_2__</span>(</span>
-<span id="cb4-4"><a></a>      state __BLANK_3__ list_of_swing_states, <span class="st">"Swing"</span>, <span class="st">"Non-swing"</span></span>
-<span id="cb4-5"><a></a>    )</span>
-<span id="cb4-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a>sales_taxes <span class="ot">&lt;-</span> sales_taxes <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a aria-label="2"></a>  <span class="fu">__BLANK_1__</span>(</span>
+<span id="cb4-3"><a aria-label="3"></a>    <span class="at">swing_state =</span> <span class="fu">__BLANK_2__</span>(</span>
+<span id="cb4-4"><a aria-label="4"></a>      state __BLANK_3__ list_of_swing_states, <span class="st">"Swing"</span>, <span class="st">"Non-swing"</span></span>
+<span id="cb4-5"><a aria-label="5"></a>    )</span>
+<span id="cb4-6"><a aria-label="6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div><div class="column" style="width:20%;">
@@ -365,11 +371,15 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="recap-if_else" class="slide level2">
 <h2>Recap: <code>if_else()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="fu">if_else</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a>  x <span class="sc">==</span> y,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3"></a>  <span class="st">"x is equal to y"</span>,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4"></a>  <span class="st">"x is not equal to y"</span></span>
-<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2" data-llms-code-original="if_else(
+  x == y, #<1>
+  &quot;x is equal to y&quot;, #<2>
+  &quot;x is not equal to y&quot; #<3>
+)"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-label="1"></a><span class="fu">if_else</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-label="2"></a>  x <span class="sc">==</span> y,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-label="3"></a>  <span class="st">"x is equal to y"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4" aria-label="4"></a>  <span class="st">"x is not equal to y"</span></span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-label="5"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
@@ -395,9 +405,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>Fill in the blank to compare the average state sales tax rates of swing states vs.&nbsp;non-swing states.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>sales_taxes <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a></a>  __BLANK__ <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">summarize</span>(<span class="at">mean_state_tax =</span> <span class="fu">mean</span>(state_tax_rate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a>sales_taxes <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a aria-label="2"></a>  __BLANK__ <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a aria-label="3"></a>  <span class="fu">summarize</span>(<span class="at">mean_state_tax =</span> <span class="fu">mean</span>(state_tax_rate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="wooclap-choices">
 <ul>
@@ -420,9 +430,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="sales-tax-in-swing-states" class="slide level2">
 <h2>Sales tax in swing states</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>sales_taxes <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">group_by</span>(swing_state) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">summarize</span>(<span class="at">mean_state_tax =</span> <span class="fu">mean</span>(state_tax_rate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>sales_taxes <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a aria-label="2"></a>  <span class="fu">group_by</span>(swing_state) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a aria-label="3"></a>  <span class="fu">summarize</span>(<span class="at">mean_state_tax =</span> <span class="fu">mean</span>(state_tax_rate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   swing_state mean_state_tax
@@ -456,24 +466,24 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>First, create two vectors called <code>pacific_coast</code> and <code>atlantic_coast</code> that contain the respective states.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>pacific_coast <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Washington"</span>, <span class="st">"Oregon"</span>, <span class="st">"California"</span>, <span class="st">"Hawaii"</span>)</span>
-<span id="cb8-2"><a></a></span>
-<span id="cb8-3"><a></a>atlantic_coast <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb8-4"><a></a>  <span class="st">"Connecticut"</span>, <span class="st">"Delaware"</span>, <span class="st">"Georgia"</span>, <span class="st">"Florida"</span>, <span class="st">"Maine"</span>, <span class="st">"Maryland"</span>, </span>
-<span id="cb8-5"><a></a>  <span class="st">"Massachusetts"</span>, <span class="st">"New Hampshire"</span>, <span class="st">"New Jersey"</span>, <span class="st">"New York"</span>, </span>
-<span id="cb8-6"><a></a>  <span class="st">"North Carolina"</span>, <span class="st">"Rhode Island"</span>, <span class="st">"South Carolina"</span>, <span class="st">"Virginia"</span></span>
-<span id="cb8-7"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>pacific_coast <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Washington"</span>, <span class="st">"Oregon"</span>, <span class="st">"California"</span>, <span class="st">"Hawaii"</span>)</span>
+<span id="cb8-2"><a aria-label="2"></a></span>
+<span id="cb8-3"><a aria-label="3"></a>atlantic_coast <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb8-4"><a aria-label="4"></a>  <span class="st">"Connecticut"</span>, <span class="st">"Delaware"</span>, <span class="st">"Georgia"</span>, <span class="st">"Florida"</span>, <span class="st">"Maine"</span>, <span class="st">"Maryland"</span>, </span>
+<span id="cb8-5"><a aria-label="5"></a>  <span class="st">"Massachusetts"</span>, <span class="st">"New Hampshire"</span>, <span class="st">"New Jersey"</span>, <span class="st">"New York"</span>, </span>
+<span id="cb8-6"><a aria-label="6"></a>  <span class="st">"North Carolina"</span>, <span class="st">"Rhode Island"</span>, <span class="st">"South Carolina"</span>, <span class="st">"Virginia"</span></span>
+<span id="cb8-7"><a aria-label="7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then, fill in the blank to create a new variable called <code>coast</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>sales_taxes <span class="ot">&lt;-</span> sales_taxes <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb9-3"><a></a>    <span class="at">coast =</span> <span class="fu">__BLANK__</span>(</span>
-<span id="cb9-4"><a></a>      state <span class="sc">%in%</span> atlantic_coast <span class="sc">~</span> <span class="st">"Atlantic"</span>,</span>
-<span id="cb9-5"><a></a>      state <span class="sc">%in%</span> pacific_coast <span class="sc">~</span> <span class="st">"Pacific"</span>,</span>
-<span id="cb9-6"><a></a>      <span class="at">.default =</span> <span class="st">"Neither"</span></span>
-<span id="cb9-7"><a></a>    )</span>
-<span id="cb9-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a>sales_taxes <span class="ot">&lt;-</span> sales_taxes <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-3"><a aria-label="3"></a>    <span class="at">coast =</span> <span class="fu">__BLANK__</span>(</span>
+<span id="cb9-4"><a aria-label="4"></a>      state <span class="sc">%in%</span> atlantic_coast <span class="sc">~</span> <span class="st">"Atlantic"</span>,</span>
+<span id="cb9-5"><a aria-label="5"></a>      state <span class="sc">%in%</span> pacific_coast <span class="sc">~</span> <span class="st">"Pacific"</span>,</span>
+<span id="cb9-6"><a aria-label="6"></a>      <span class="at">.default =</span> <span class="st">"Neither"</span></span>
+<span id="cb9-7"><a aria-label="7"></a>    )</span>
+<span id="cb9-8"><a aria-label="8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div><div class="column" style="width:20%;">
@@ -488,11 +498,15 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="recap-case_when" class="slide level2">
 <h2>Recap: <code>case_when()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1"></a><span class="fu">case_when</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2"></a>  x <span class="sc">&gt;</span> y <span class="sc">~</span> <span class="st">"x is greater than y"</span>,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3"></a>  x <span class="sc">&lt;</span> y <span class="sc">~</span> <span class="st">"x is less than y"</span>,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4"></a>  <span class="at">.default =</span> <span class="st">"x is equal to y"</span></span>
-<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4" data-llms-code-original="case_when(
+  x > y ~ &quot;x is greater than y&quot;, #<1>
+  x < y ~ &quot;x is less than y&quot;, #<2>
+  .default = &quot;x is equal to y&quot; #<3>
+)"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-label="1"></a><span class="fu">case_when</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-label="2"></a>  x <span class="sc">&gt;</span> y <span class="sc">~</span> <span class="st">"x is greater than y"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-label="3"></a>  x <span class="sc">&lt;</span> y <span class="sc">~</span> <span class="st">"x is less than y"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-label="4"></a>  <span class="at">.default =</span> <span class="st">"x is equal to y"</span></span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-label="5"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
@@ -517,9 +531,9 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Compare the average state sales tax rates of states on the Pacific Coast, states on the Atlantic Coast, and the rest of the states.</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>sales_taxes <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">group_by</span>(coast) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a></a>  <span class="fu">summarize</span>(<span class="at">mean_state_tax =</span> <span class="fu">mean</span>(state_tax_rate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a>sales_taxes <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a aria-label="2"></a>  <span class="fu">group_by</span>(coast) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a aria-label="3"></a>  <span class="fu">summarize</span>(<span class="at">mean_state_tax =</span> <span class="fu">mean</span>(state_tax_rate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   coast    mean_state_tax
@@ -553,20 +567,20 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <p>Who feels like filling in the blanks lists of states in each region? Who feels like it’s simply too tedious to write out names of all states?</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>list_of_midwest_states <span class="ot">&lt;-</span> <span class="fu">c</span>(___)</span>
-<span id="cb12-2"><a></a>list_of_northeast_states <span class="ot">&lt;-</span> <span class="fu">c</span>(___)</span>
-<span id="cb12-3"><a></a>list_of_south_states <span class="ot">&lt;-</span> <span class="fu">c</span>(___)</span>
-<span id="cb12-4"><a></a>list_of_west_states <span class="ot">&lt;-</span> <span class="fu">c</span>(___)</span>
-<span id="cb12-5"><a></a></span>
-<span id="cb12-6"><a></a>sales_taxes <span class="ot">&lt;-</span> sales_taxes <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-8"><a></a>    <span class="at">region =</span> <span class="fu">case_when</span>(</span>
-<span id="cb12-9"><a></a>      state <span class="sc">%in%</span> list_of_midwest_states <span class="sc">~</span> <span class="st">"Midwest"</span>,</span>
-<span id="cb12-10"><a></a>      state <span class="sc">%in%</span> list_of_northeast_states <span class="sc">~</span> <span class="st">"Northeast"</span>,</span>
-<span id="cb12-11"><a></a>      state <span class="sc">%in%</span> list_of_south_states <span class="sc">~</span> <span class="st">"South"</span>,</span>
-<span id="cb12-12"><a></a>      state <span class="sc">%in%</span> list_of_west_states <span class="sc">~</span> <span class="st">"West"</span></span>
-<span id="cb12-13"><a></a>    )</span>
-<span id="cb12-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a>list_of_midwest_states <span class="ot">&lt;-</span> <span class="fu">c</span>(___)</span>
+<span id="cb12-2"><a aria-label="2"></a>list_of_northeast_states <span class="ot">&lt;-</span> <span class="fu">c</span>(___)</span>
+<span id="cb12-3"><a aria-label="3"></a>list_of_south_states <span class="ot">&lt;-</span> <span class="fu">c</span>(___)</span>
+<span id="cb12-4"><a aria-label="4"></a>list_of_west_states <span class="ot">&lt;-</span> <span class="fu">c</span>(___)</span>
+<span id="cb12-5"><a aria-label="5"></a></span>
+<span id="cb12-6"><a aria-label="6"></a>sales_taxes <span class="ot">&lt;-</span> sales_taxes <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a aria-label="7"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-8"><a aria-label="8"></a>    <span class="at">region =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-9"><a aria-label="9"></a>      state <span class="sc">%in%</span> list_of_midwest_states <span class="sc">~</span> <span class="st">"Midwest"</span>,</span>
+<span id="cb12-10"><a aria-label="10"></a>      state <span class="sc">%in%</span> list_of_northeast_states <span class="sc">~</span> <span class="st">"Northeast"</span>,</span>
+<span id="cb12-11"><a aria-label="11"></a>      state <span class="sc">%in%</span> list_of_south_states <span class="sc">~</span> <span class="st">"South"</span>,</span>
+<span id="cb12-12"><a aria-label="12"></a>      state <span class="sc">%in%</span> list_of_west_states <span class="sc">~</span> <span class="st">"West"</span></span>
+<span id="cb12-13"><a aria-label="13"></a>    )</span>
+<span id="cb12-14"><a aria-label="14"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section>
 <section>
@@ -605,12 +619,12 @@ and performance in this course?</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb13-2"><a></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb13-3"><a></a>  <span class="at">value_x =</span> <span class="fu">c</span>(<span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>)</span>
-<span id="cb13-4"><a></a>)</span>
-<span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-label="1"></a>x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb13-2"><a aria-label="2"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb13-3"><a aria-label="3"></a>  <span class="at">value_x =</span> <span class="fu">c</span>(<span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>)</span>
+<span id="cb13-4"><a aria-label="4"></a>)</span>
+<span id="cb13-5"><a aria-label="5"></a></span>
+<span id="cb13-6"><a aria-label="6"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
      id value_x
@@ -622,12 +636,12 @@ and performance in this course?</p>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>y <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb15-2"><a></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>),</span>
-<span id="cb15-3"><a></a>  <span class="at">value_y =</span> <span class="fu">c</span>(<span class="st">"y1"</span>, <span class="st">"y2"</span>, <span class="st">"y4"</span>)</span>
-<span id="cb15-4"><a></a>)</span>
-<span id="cb15-5"><a></a></span>
-<span id="cb15-6"><a></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-label="1"></a>y <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-2"><a aria-label="2"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>),</span>
+<span id="cb15-3"><a aria-label="3"></a>  <span class="at">value_y =</span> <span class="fu">c</span>(<span class="st">"y1"</span>, <span class="st">"y2"</span>, <span class="st">"y4"</span>)</span>
+<span id="cb15-4"><a aria-label="4"></a>)</span>
+<span id="cb15-5"><a aria-label="5"></a></span>
+<span id="cb15-6"><a aria-label="6"></a>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
      id value_y
@@ -646,7 +660,7 @@ and performance in this course?</p>
 <p><img data-src="images/08/left-join.gif"></p>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">left_join</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-label="1"></a><span class="fu">left_join</span>(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(id)`</code></pre>
 </div>
@@ -668,7 +682,7 @@ and performance in this course?</p>
 <p><img data-src="images/08/right-join.gif"></p>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">right_join</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a><span class="fu">right_join</span>(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(id)`</code></pre>
 </div>
@@ -690,7 +704,7 @@ and performance in this course?</p>
 <p><img data-src="images/08/full-join.gif"></p>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">full_join</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-label="1"></a><span class="fu">full_join</span>(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(id)`</code></pre>
 </div>
@@ -713,7 +727,7 @@ and performance in this course?</p>
 <p><img data-src="images/08/inner-join.gif"></p>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">inner_join</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-label="1"></a><span class="fu">inner_join</span>(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(id)`</code></pre>
 </div>
@@ -734,7 +748,7 @@ and performance in this course?</p>
 <p><img data-src="images/08/anti-join.gif"></p>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">anti_join</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-label="1"></a><span class="fu">anti_join</span>(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(id)`</code></pre>
 </div>
@@ -779,7 +793,7 @@ and performance in this course?</p>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/logo.png" class="slide-logo"></p>
+<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
 </div>
@@ -967,7 +981,7 @@ and performance in this course?</p>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1079,13 +1093,14 @@ and performance in this course?</p>
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

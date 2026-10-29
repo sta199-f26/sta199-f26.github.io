@@ -1,0 +1,188 @@
+# AE 01: GSS + data visualization
+
+Application exercise
+
+In this mini-analysis, we use data from the 2024 General Social Survey (GSS) to get practice with creating and interpreting data visualizations.
+
+## Getting started
+
+### Packages
+
+We’ll use the **tidyverse** package for this analysis.
+
+``` downlit
+library(tidyverse)
+```
+
+### Data
+
+The data are stored as a CSV (comma-separated values) file in your repository’s `data` folder. Let’s read the file and save it as an object called `gss`.
+
+``` downlit
+gss <- read_csv("data/gss-2024.csv")
+```
+
+### Get to know the data
+
+We can use the [`glimpse()`](https://pillar.r-lib.org/reference/glimpse.html) function to get an overview (or “glimpse”) of the data.
+
+``` downlit
+glimpse(gss)
+```
+
+    Rows: 3,294
+    Columns: 9
+    $ year              <dbl> 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024…
+    $ marital_status    <chr> "Never married", "Never married", "Married", "Never …
+    $ age               <dbl> 33, 64, 69, 19, 70, 53, 48, 30, 60, 25, 23, 68, 43, …
+    $ education_years   <dbl> 16, 16, 14, 12, 13, 14, 13, 14, 14, 12, 18, 5, 14, 1…
+    $ children          <dbl> 2, 0, 0, 0, 3, 2, 6, 1, 2, 0, 0, 1, 2, 1, 3, 1, 2, N…
+    $ happiness         <chr> "Not too happy", "Pretty happy", "Pretty happy", "Pr…
+    $ health            <chr> "Good", "Good", "Good", "Good", "Good", "Good", "Goo…
+    $ employment_status <chr> "Working full time", "Retired", "Retired", "Working …
+    $ party_id          <chr> "Not very strong democrat", "Strong democrat", "Stro…
+
+- What does each observation (row) in the data set represent?
+
+Add your response here.
+
+- How many observations (rows) are in the data set?
+
+Add your response here.
+
+- How many variables (columns) are in the data set?
+
+Add your response here.
+
+### Variables of interest
+
+The variables we’ll focus on are the following:
+
+- `marital_status`: Respondent’s current marital status.
+- `happiness`: Respondent’s self-reported general happiness.
+- `health`: Respondent’s self-reported general health.
+
+## Demo: One categorical variable
+
+We begin with the question:
+
+> What self-rated health levels are most common among respondents in the 2024 GSS?
+
+- What type of plot is a good starting point for this question?
+
+Both the question and the variable type should guide our choice of visualization. Since `health` is a categorical variable, a bar chart is a useful place to start.
+
+- [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html) creates the initial base coordinate system. The first argument is the data you’re plotting, `gss`.
+
+``` downlit
+# add code here
+```
+
+- [`aes()`](https://ggplot2.tidyverse.org/reference/aes.html) tells how variables in the data map to visual properties of the graph.
+
+``` downlit
+# add code here
+```
+
+- A `geom_` function specifies how observations will be represented. [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html) creates a bar chart and counts the rows in each category for us.
+
+``` downlit
+# add code here
+```
+
+- Which recorded health response is most common? Which is least common?
+
+Add your response here.
+
+- The [`labs()`](https://ggplot2.tidyverse.org/reference/labs.html) function allows us to give the plot a meaningful title, axis labels, and a source.
+
+``` downlit
+# add code here
+```
+
+> **IMPORTANT:**
+>
+> Now that we’re done with our first task, it’s time to take a snapshot.
+>
+> 1.  Preview your Quarto document and review the output. If all looks good…
+> 2.  Go to the Source Control pane and stage your changes to each file listed. Then commit your staged changes with a simple, informative message.
+> 3.  Click Sync to push your changes to your application exercise repo on GitHub.
+> 4.  Go to your repo on GitHub and confirm that you can see the updated files – you may need to refresh your browser window. Once your updated files are in your GitHub repo, you’re good to go!
+
+## Two categorical variables
+
+Now we ask:
+
+> How does self-reported happiness vary across marital-status groups?
+
+Both `marital_status` and `happiness` are categorical variables.
+
+### Option 1 - Demo: Stacked bars
+
+Map `happiness` to the fill color. By default, [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html) stacks the happiness categories within each marital-status bar.
+
+``` downlit
+# add code here
+```
+
+This graph displays counts. It also shows that the marital-status groups have different numbers of respondents, which makes the colored segments difficult to compare directly.
+
+### Option 2 - Your turn: Dodged bars
+
+Modify the stacked bar chart by setting `position = "dodge"` inside [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html). This places the happiness categories side by side.
+
+``` downlit
+# add code here
+```
+
+Dodging makes it easier to compare the counts in each combination, but larger marital-status groups still tend to have taller bars.
+
+### Option 3 - Demo: Filled bars
+
+Suppose our question is specifically about the distribution of happiness *within each marital-status group*. Setting `position = "fill"` gives every marital-status bar the same total height and displays proportions instead of counts.
+
+``` downlit
+# add code here
+```
+
+- What is the denominator used to calculate the proportions in each bar?
+
+Add your response here.
+
+- What patterns do you see?
+
+Add your response here.
+
+- How do these plots answer the question about how happiness varies across marital-status groups? Which plot is the best?
+
+Add your response here.
+
+> **IMPORTANT:**
+>
+> Now that we’re done with our second task, it’s time to take another snapshot.
+>
+> 1.  Preview your Quarto document.
+> 2.  Stage and commit your changes with a simple and informative commit message.
+> 3.  Push your changes to GitHub and confirm that the updated files appear in your repository.
+
+## On your own
+
+Do the following at the end of class or, if you run out of time, some before the next class.
+
+Use `gss` to answer one of the following questions with an appropriate plot:
+
+- Is self-reported happiness distributed differently across self-rated health groups?
+- How does employment status vary across marital-status groups?
+- What is the relationship between education years and age? Does it differ by marital status?
+
+State your question, identify the variable type or types, and explain why your plot answers the question. Give the chart a meaningful title and labels, then describe the patterns using non-causal language.
+
+Add response here. Insert code cells as needed.
+
+> **IMPORTANT:**
+>
+> Once you’re done, take one last snapshot:
+>
+> 1.  Preview your Quarto document.
+> 2.  Stage and commit your changes with a simple and informative commit message.
+> 3.  Push your changes to GitHub and confirm that the updated files appear in your repository.

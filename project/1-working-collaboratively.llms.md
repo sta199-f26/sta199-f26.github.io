@@ -1,0 +1,183 @@
+# Working collaboratively
+
+Milestone 1
+
+Project
+
+> **WARNING:**
+>
+> You should have completed the [pre-read](../project/1-working-collaboratively-preread.llms.md) before starting this milestone.
+
+> **IMPORTANT:**
+>
+> You must attend this lab in person and participate in the merge conflict activity to be eligible for the points for this milestone. Team members who are not in lab in person for this activity will not be eligible for these points, regardless of their contribution throughout the rest of the project.
+
+Data science is a collaborative discipline. Pretty much no data scientist works alone, so neither should you! In this course you’ll collaborate with teammates on the project.
+
+The first milestone of the project, today’s activity, will introduce you to the technical aspects of collaborating on a reproducible data science project that is version controlled by Git and hosted on GitHub in a repository shared by all teammates.
+
+Yes, this means you and all of your teammates will be pushing to the same repository! Sometimes things will go swimmingly, and sometimes you’ll run into **merge conflicts**.
+
+> **NOTE:**
+>
+> The word “conflict” has a negative connotation. And, indeed, merge conflicts can be frustrating. But they serve to make sure no team member inadvertently overwrites another team member’s work. All changes that are in “conflict” with each other need to get resolved explicitly, with a commit message, which helps avoid haphazard overwriting.
+
+# Goals
+
+The goals of this milestone are as follows:
+
+- Pick a team name
+- Collaborate on GitHub with your teammates and resolve merge conflicts when they inevitably occur
+- Discuss and write up your team contract
+
+# Team name
+
+Pick a team name. It can be straightforward, or it can be cheeky, but it must be [SFW](https://www.merriam-webster.com/dictionary/SFW). Let your TA know your team name as soon as possible. Once everyone’s team names are in, your project repos will be created (give your TA a couple of minutes), and then you can continue with the rest of your task.
+
+# Activity
+
+## Setup
+
+- Copy the HTTPS URL of your team’s project repo from GitHub. In Positron, select *New* ➛ *New Folder From Git…*, paste the URL, and open the cloned repo as your workspace.
+- Open `about.qmd` from the *Explorer* pane.
+- Assign the numbers 1, 2, 3, 4, and 5 to each of the team members. If your team has fewer than 5 people, some people will need to have multiple numbers. Make sure that no team member is assigned consecutive numbers, so the same person never acts twice in a row.
+
+### Workflow in Positron
+
+Use these steps whenever the activity asks you to render, stage, commit, push, or pull:
+
+- **Render and preview:** Save your edits and click *Preview* at the top of the `.qmd` editor to inspect the rendered page in the *Viewer*. To render the entire project website, open the Command Palette (*View* ➛ *Command Palette…*), search for `Quarto: Render Project`, and select it.
+- **Stage:** Open the *Source Control* pane from the Activity bar. Review the changed files, then click the `+` next to each file to stage it. Include the rendered website files as well as the source files. Staged files appear under *Staged Changes*.
+- **Commit:** Enter an informative message in the *Message* box and click *Commit*.
+- **Push:** In the *Source Control* pane, click the `...` (*Views and More Actions*) icon at the top of the pane and select *Pull, Push* ➛ *Push*.
+- **Pull:** In the *Source Control* pane, click the `...` (*Views and More Actions*) icon at the top of the pane and select *Pull, Push* ➛ *Pull*.
+
+Note where each action lives: Git actions (stage, commit, push, pull) are in the *Source Control* pane, while Quarto actions (preview, render project) are launched from the editor toolbar or the Command Palette.
+
+> **IMPORTANT:**
+>
+> For this exercise, use *Commit*, *Push*, and *Pull* as separate actions, in the order specified below. Do not use *Sync Changes* or *Commit & Sync*: syncing pulls and pushes together, which would change the sequence of the exercise.
+
+## Let’s cause a merge conflict!
+
+Our goal is to see two different types of merges: first, a merge that Git cannot resolve automatically (a **merge conflict**) and that requires human intervention; then, a merge that Git can resolve automatically.
+
+Doing this will require some tight choreography, so pay attention!
+
+Take turns completing the exercise, with only one member working at a time. **Others should just watch and not do anything in their own projects (this includes not even pulling changes!)** until they are instructed to. If you feel like you won’t be able to resist the urge to touch your computer when it’s not your turn, we recommend putting your hands in your pockets or sitting on them!
+
+### Before starting
+
+Everyone should have the repo cloned and know which role number(s) they are.
+
+### Role 1
+
+- Go to `about.qmd` in your project repo. Change the `[team name]` to your actual team name.
+- Click *Preview* to view the page.
+- In *Source Control*, stage all changed files, write a commit message, and click *Commit*. Then click *Sync Changes*.
+
+> **IMPORTANT:**
+>
+> Make sure the previous role has finished before moving on to the next step.
+
+### Role 2
+
+- Change the team name to some other word. Click *Preview*. In *Source Control*, stage all changed files, write a commit message, and click *Commit*.
+
+- In *Source Control*, click *Sync Changes*. You should see something new because Role 1 has already pushed changes you don’t have locally.
+
+  - In the *Source Control* pane, in the commit message box, you will see a message starting with “Merge branch ‘main’…”
+  - In the *Editor* pane, you will see your change and the change from Role 1, and a button *Resolve in Merge Editor*. Click this button.
+
+  ``` text
+  <<<<<<< HEAD
+  This project was developed by Team Royal Blue.
+  =======
+  This project was developed by Team Dialectic Blue.
+  >>>>>>> 97e290f39f197467b5563ea8f81187b760c95aa2
+  ```
+
+  The top section contains your local changes; the bottom section contains the changes you pulled from GitHub. The string after `>>>>>>>` identifies the incoming commit.
+
+- Decide which one you want to accept – your changes or Role 1’s changes. Click on *Accept Incoming* or *Accept Current* accordingly. This will move the change you accepted to the bottom of the Editor pane. If you’re happy with the state of affairs, click on *Complete Merge*.
+
+- Then, in *Source Control*, click *Continue*. Finally, click *Sync Changes*.
+
+> **TIP:**
+>
+> Ask your TA for help if you see a different error or are unsure how to resolve a conflict.
+
+> **IMPORTANT:**
+>
+> Make sure the previous role has finished before moving on to the next step.
+
+### Role 3
+
+- In `about.qmd`, put your name as the first team member. Do not touch the team name, only update your name. Click *Preview*.
+
+- In *Source Control*, stage all changed files, write a commit message, and click *Commit*. Then click *Sync Changes*. Since you edited a different part of `about.qmd` than Role 2 (who changed the team name), Git should merge that file automatically.
+
+> **IMPORTANT:**
+>
+> Make sure the previous role has finished before moving on to the next step.
+
+### Role 4
+
+> **NOTE:**
+>
+> For three-person teams, the person who assumed Role 1 will also assume Role 4.
+
+- In `about.qmd`, put your name as the first team member. Yes, just put your name in, even though Role 3 already did that. This is to create a merge conflict. Do not touch anything else. Click *Preview*.
+
+- In *Source Control*, stage all changed files, write a commit message, and click *Commit*. Then click *Sync Changes*. You should see something similar to what Role 2 encountered because you and Role 3 edited the same part of the file.
+
+- Decide which one you want to accept – your changes or Role 3’s changes. Click on *Accept Incoming* or *Accept Current* accordingly. This will move the change you accepted to the bottom of the Editor pane. If you’re happy with the state of affairs, click on *Complete Merge*.
+
+- Then, in *Source Control*, click *Continue*. Finally, click *Sync Changes*.
+
+> **IMPORTANT:**
+>
+> Make sure the previous role has finished before moving on to the next step.
+
+### Role 5
+
+> **NOTE:**
+>
+> For three-person teams, the person who assumed Role 2 will also assume Role 5. For four-person teams, the person who assumed Role 1 will also assume Role 5.
+
+- Before touching anything in the *Editor*, go to *Source Control* and click *Sync Changes*. This should update your local project with all the changes made by your teammates so far that have been pushed to GitHub.
+
+- Update all requested pieces of information about all team members, then click *Preview*.
+
+- In *Source Control*, stage all changed files, write a commit message, and click *Commit*. Then click *Sync Changes*. You should not get an error because you pulled first. This models “good” collaborative behavior – start by pulling before doing any work.
+
+### Everyone
+
+Go to the *Source Control* pane and click *Sync Changes* to make sure you have the latest version of the project. Open `about.qmd` and click *Preview* to observe the changes in your project.
+
+# Tips for collaborating via GitHub
+
+- **Always Sync Changes first before you start working.**
+- Resolve a merge conflict (edit, save, preview, stage, sync changes) **before** continuing your work. Never do new work while resolving a merge conflict.
+- Preview, stage, commit, and sync changes often to minimize merge conflicts and/or to make merge conflicts easier to resolve.
+- If you find yourself in a situation that is difficult to resolve, ask questions ASAP. Don’t let it linger and get bigger.
+
+# Team contract
+
+Select one team member to be the scribe, i.e., the note taker.
+
+Open `contract.qmd` from the *Explorer* pane. Discuss the prompts and write up your answers. Once done, click *Preview*. Stage all changed files in *Source Control*, commit, and *Sync Changes*.
+
+# Team interests
+
+Select another team member to be the scribe.
+
+In *Source Control*, click *Sync Changes* to make sure you have the latest version of the project. Then open `proposal.qmd` from the *Explorer* pane. Discuss common topics that interest your team that you might want to explore in your project. In 1-4 sentences, summarize your discussion in the appropriate portion of the `proposal.qmd` document. Once done, click *Preview*. Stage all changed files in *Source Control*, commit, and *Sync Changes*.
+
+# Grading
+
+We will evaluate the first milestone of your project based on your participation in this activity. Each team member who participates in the activity in person during the lab session will earn 5 points towards their project.
+
+> **NOTE:**
+>
+> To verify that all team members have successfully committed and pushed their changes, view the commit history of your project repository on GitHub: <https://github.com/sta199-f26/project-REPLACE-WITH-YOUR-TEAM-NAME/commits/main/>.

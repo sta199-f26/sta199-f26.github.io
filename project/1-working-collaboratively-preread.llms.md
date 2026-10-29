@@ -1,0 +1,39 @@
+# Pre-read: Merge conflicts
+
+Milestone 1
+
+Project
+
+When you and your teammates work on the same lines of code within a document and try to push your changes, you may run into issues. Merge conflicts happen when you merge branches that have competing changes, and Git needs your help to decide which changes to incorporate in the final merge.
+
+Our first task today is to walk you through a merge conflict! First, a bit of Git review:
+
+- Pushing to a repo uploads your local commits to GitHub.
+- If a collaborator has made a change to your repo and pushed it to your collaborative GitHub repository, GitHub will stop you from pushing your changes to the repo because this could overwrite your collaborator’s work!
+- So you need to explicitly “merge” your collaborator’s work before you can **push**.
+- If your changes and your collaborator’s changes are in different files or in different parts of the same file, Git usually merges the work for you automatically when you **pull**.
+- If you both changed the same part of a file, Git may produce a **merge conflict** because it doesn’t know which change you want to keep and which change you want to overwrite.
+
+Git will put conflict markers in your code that look like:
+
+``` text
+<<<<<<< HEAD
+
+See also: [dplyr documentation](https://dplyr.tidyverse.org/)
+
+=======
+
+See also [ggplot2 documentation](https://ggplot2.tidyverse.org/)
+
+>>>>>>> some1alpha2numeric3string4
+```
+
+The `=======` line separates *your* changes (top) from *their* changes (bottom).
+
+Note that on top you see the word `HEAD`, which indicates that these are your changes.
+
+And at the bottom you see `some1alpha2numeric3string4` (well, it probably looks more like `28e7b2ceb39972085a0860892062810fb812a08f`).
+
+This is the **hash** (a unique identifier) of the commit your collaborator made with the conflicting change.
+
+Your job is to *reconcile* the changes: edit the file so that it incorporates the best of both versions and delete the lines beginning with `<<<<<<<`, `=======`, and `>>>>>>>`. In Positron, a three-way merge editor may open to help you choose or edit the result; either way, check the final text before completing the merge. Then you can render the project with *Quarto: Render Project* from the Command Palette, stage the changed files in the *Source Control* pane, commit the result, and push.

@@ -1,0 +1,88 @@
+# Write-up
+
+Milestone 7
+
+Project
+
+# Write-up
+
+## Expectations
+
+Your written report must be completed in the `index.qmd` file and must be reproducible. All team members should contribute to the GitHub repository, with regular meaningful commits.
+
+Before you finalize your write-up, hide the code, warnings, and messages by setting `echo: false`, `warning: false`, and `message: false` under `execute` in the YAML.
+
+The mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long (if it were to be printed). There is no minimum page requirement; however, you should comprehensively address all of the analysis in your report.
+
+To check how many pages your report is, open it in your browser and go to File \> Print \> Save as PDF and review the number of pages.
+
+Be selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis.
+
+You are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will ***not*** see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the 10-page limit.
+
+## Components
+
+### Abstract
+
+Provide a brief summary of the project, including the research question, data, approach, and main findings.
+
+**Grading criteria:** The abstract concisely summarizes the project and its main conclusions and can be understood on its own.
+
+### Introduction
+
+This section includes an introduction to the project motivation and research question.
+
+**Grading criteria:** The research question and motivation are clearly stated in the introduction, including citations for the data source and any external research.
+
+### Data
+
+This section includes a description of the data. Describe the data and definitions of key variables. Also include a description of any data cleaning steps you took to prepare the data for analysis.
+
+**Grading criteria:** The data are clearly described, including a description of how the data were originally collected and concise definitions of the variables relevant to understanding the report. The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.). The exploratory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables.
+
+### Results
+
+This is where you will discuss your findings and describe the key results from your analysis. The goal is not to interpret every single element of a visualization or output shown, but instead to address the research questions, using the interpretations to support your conclusions. Focus on the variables that help you answer the research question and that provide relevant context for the reader.
+
+**Grading criteria:** The analysis steps are appropriate for the data and research question. A thorough and careful approach is used to choose analysis methods, and any concerns about the appropriateness of the chosen methods are addressed. The analysis results are clearly assessed, and interesting findings from the analysis are described. Interpretations support the key findings and conclusions, rather than merely explaining every summary statistic.
+
+### Discussion
+
+In this section you’ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should also be discussed here. Lastly, you might choose to include ideas for future work, but do this only if you have realistic ideas that are relevant to your project.
+
+**Grading criteria:** Overall conclusions from the analysis are clearly described, and the analysis results are put into the larger context of the subject matter and original research question. There is thoughtful consideration of potential limitations of the data and/or analysis. If ideas for future work are described, these are realistic and relevant to the project.
+
+### Reflection
+
+Reflect on what your team learned from carrying out the project, including delivering your presentation and listening to others’ presentations. Discuss what worked well in your collaboration and workflow, challenges you encountered and how you addressed them, and what you would do differently in a future project.
+
+**Grading criteria:** The reflection uses specific examples from the project to explain what the team learned, assesses the team’s process thoughtfully, and identifies concrete improvements for future work.
+
+## Organization, formatting, and code expectations
+
+These expectations apply throughout the report and its source documents; they are not additional report sections.
+
+### Organization + formatting
+
+The report is neatly written and organized with clear section headers and appropriately sized figures with informative labels. Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted. All citations and links are properly formatted. If there is an appendix, it is reasonably organized and easy for the reader to find relevant information. All code, warnings, and messages are suppressed. The main body of the written report (not including the appendix) is no longer than 10 pages.
+
+### Code style, smell, and complexity
+
+These code expectations contribute to the separate 10-point [computational quality assessment](../project/description.llms.md#computational-quality), which also includes reproducibility and organization.
+
+Code follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation. Lines of code are kept to a reasonable length, and long pipelines and `ggplot` calls are broken across multiple lines. Code is not repetitive, and there is no unused or dead code left in the document. Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout. Code uses clear, appropriately simple solutions, avoids unnecessary steps or complicated logic, and follows the tidyverse approach used in the course.
+
+## Grading
+
+The write-up is due on Friday, November 13 at 11:59 pm.
+
+It is worth 20 points, broken down as follows:
+
+| Total        | 20 pts |
+|--------------|--------|
+| Abstract     | 1      |
+| Introduction | 3      |
+| Data         | 5      |
+| Results      | 5      |
+| Discussion   | 3      |
+| Reflection   | 3      |

@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.19">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Prof.&nbsp;Mine Çetinkaya-Rundel">
 <meta name="dcterms.date" content="2026-09-28">
 <title>Importing and recoding data – STA 199CCL</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -68,14 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8aa723cf165abd5dca27c58d64131771.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-0468bd313de546c462d4cba742c45798.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8aa723cf165abd5dca27c58d64131771.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6afe6185afd896eb7a99e7e462244394.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cc800964ddffb3f1934fd1a06b901fd8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6afe6185afd896eb7a99e7e462244394.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -295,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
@@ -668,7 +674,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></section><section id="close-look-at-read_csv" class="level2"><h2 class="anchored" data-anchor-id="close-look-at-read_csv">Close look at <code>read_csv()</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">read_csv</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">read_csv</span><span class="op">(</span></span>
 <span>  <span class="va">file</span>,</span>
 <span>  na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"NA"</span><span class="op">)</span>,</span>
 <span>  quote <span class="op">=</span> <span class="st">"\""</span>,</span>
@@ -676,22 +682,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  n_max <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  guess_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="va">n_max</span><span class="op">)</span>,</span>
 <span>  name_repair <span class="op">=</span> <span class="st">"unique"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="close-look-at-read_csv---file" class="level2"><h2 class="anchored" data-anchor-id="close-look-at-read_csv---file">Close look at <code>read_csv()</code> - <code>file</code>
 </h2>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  file,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>  file,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="column medium">
@@ -708,15 +714,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  file,</span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb3-8"><a href="#cb3-8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>  file,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="column medium">
@@ -732,15 +738,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  file,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>  file,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="column medium">
@@ -756,15 +762,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  file,</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>  file,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="column medium">
@@ -784,7 +790,7 @@ date,temperature
 2026-09-22,22</code></pre>
 </section><section id="to-skip-or-not-to-skip-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="to-skip-or-not-to-skip-1">To <code>skip</code> or not to <code>skip</code>?</h2>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/durham-temps.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/durham-temps.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
 e.g.:
@@ -812,7 +818,7 @@ chr (2): Weather station: Durham, NC
 </div>
 </section><section id="to-skip-or-not-to-skip-2" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="to-skip-or-not-to-skip-2">To <code>skip</code> or not to <code>skip</code>?</h2>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/durham-temps.csv"</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/durham-temps.csv"</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 2 Columns: 2
 ── Column specification ────────────────────────────────────────────────────────
@@ -836,15 +842,15 @@ date (1): date
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  file,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
-<span id="cb14-6"><a href="#cb14-6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb14-7"><a href="#cb14-7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb14-8"><a href="#cb14-8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-label="2"></a>  file,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-label="3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-label="4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-label="5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-label="6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-label="7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-label="8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-label="9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="column medium">
@@ -860,15 +866,15 @@ date (1): date
 <div class="columns">
 <div class="column" style="width:55%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb15-2"><a href="#cb15-2"></a>  file,</span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb15-7"><a href="#cb15-7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-label="1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-label="2"></a>  file,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-label="3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-label="4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-label="5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-label="6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-label="7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-label="8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-label="9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="column medium" style="width:45%;">
@@ -884,15 +890,15 @@ date (1): date
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb16-2"><a href="#cb16-2"></a>  file,</span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb16-8"><a href="#cb16-8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a>  file,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-label="3"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-label="4"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-label="5"></a>  <span class="at">skip =</span> <span class="dv">0</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-label="6"></a>  <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-label="7"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-label="8"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-label="9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="column medium">
@@ -1034,13 +1040,14 @@ date (1): date
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

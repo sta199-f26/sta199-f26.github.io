@@ -1,0 +1,109 @@
+# FAQ
+
+## How do I view grading feedback on Gradescope?
+
+Reveal answer
+
+Go to [Gradescope](https://www.gradescope.com/courses/1350518) and select the assignment. In the right panel, you’ll see your score for each question.
+
+To see more information about your score, select a question. The boxed or selected rubric items are the criteria for which you earned points. Unselected rubric items indicate where you lost points.
+
+Below the rubric items, you may also see comments from the grader providing additional clarification or feedback.
+
+## I added the class late, how do I catch up?
+
+Reveal answer
+
+First, read the [syllabus](course-syllabus.llms.md).
+
+Then, request access to the lecture recordings for the lectures you’ve missed, indicating adding late as your reason for the request. The lecture recording request form is linked from the syllabus. Watch the recording of the first lecture to get acquainted with the course.
+
+After that, review the [schedule](.). Complete all the items that are in the reading, videos, and due columns. Importantly, fill out the Getting to know you survey, and [email Dr. Mary Knox](mailto:mary.knox@duke.edu), our course coordinator, soon as you do, so that she can add you to the course GitHub organization.
+
+If you missed the first lab, make sure to complete it as well. You will need your compuational setup ready to go before the second week’s lectures.
+
+Run into issues? Post a question on Ed! Not sure where that is? See the [useful links](course-links.llms.md) page.
+
+## My Positron container isn’t working. What do I do?
+
+Reveal answer
+
+See the [Computing troubleshooting](computing-troubleshooting.llms.md) page for instructions, including how to check for a known outage and restart your container. If none of those steps fix it, post on Ed Discussion with details on what you’ve tried and any errors you see (including screenshots and your container URL).
+
+## What if I miss lecture or lab?
+
+Reveal answer
+
+**Lecture:** Lecture recordings are available on Panopto upon request for students with an excused absence. See the [Lecture recording request](course-syllabus.llms.md#lecture-recording-request) section of the syllabus for the request form. Attendance/participation is tracked via Wooclap. As long as you participate in at least 17 of the 25 lectures, you will receive full credit for lecture participation.
+
+**Lab:** There is no way to make up a missed lab. Your two lowest lab grades (out of 8) are dropped at the end of the semester, so you can miss up to two labs without penalty.
+
+## Where do I find the code along starter files?
+
+Reveal answer
+
+The starter files come from the [code alongs template repository](https://github.com/sta199/code-alongs). See the [Code alongs](computing-code-alongs.llms.md) page for instructions on setting up your own copy.
+
+## Can I turn things in late?
+
+Reveal answer
+
+- **Homework:** Yes, up to 3 days late, with a 5% deduction for each 24-hour period it is late. Your lowest homework grade is dropped at the end of the semester. You also get a one-time waiver of the late penalty (up to 15%) if you email the course coordinator, [Dr. Mary Knox](mailto:mary.knox@duke.edu), *before the deadline* — see the [One-time late penalty waiver](course-syllabus.llms.md#one-time-late-penalty-waiver) section of the syllabus.
+- **Lab:** No. Labs are designed to be completed in class, so no late work is accepted. Your lowest two lab grades are dropped at the end of the semester.
+- **Project:** No. Late work is not accepted for the project.
+- **Exams:** No. Late work or make-ups are not accepted. See the [Exams](course-syllabus.llms.md#exams) section of the syllabus for information about what happens if you miss an exam.
+
+See the [Late work & extensions](course-syllabus.llms.md#late-work-extensions) section of the syllabus for the full policy.
+
+## Where can I get help?
+
+Reveal answer
+
+See the [Support](course-support.llms.md) page for a complete overview of where to get help. In short: talk to a staff member during office hours (see the [Team](course-team.llms.md) page for the office hours schedule) or post a question on [Ed Discussion](https://edstem.org/). Before posting, check whether your question has already been asked and answered.
+
+Please do not email questions about course content. If you have a personal matter you’d like to discuss, please email the instructor.
+
+## Can I use AI tools on my assignments?
+
+Reveal answer
+
+See [What is allowed and what is not?](course-syllabus.llms.md#what-is-allowed-and-what-is-not) in the syllabus for the full policy.
+
+In summary, it depends on what you’re working on:
+
+- **Homework:** Yes, with conditions. You should first attempt the problem yourself. Your submission can’t be a copy-paste of AI-generated content. You must edit any AI-generated content so that it reflects your own understanding and voice and conforms to the course’s syntax and style. You may use AI to help with your code, but you may not use AI to generate written responses to questions that you then copy and paste (verbatim or lightly edited) into your assignment. You also cannot copy the assignment prompt directly into an AI tool; you must write your own prompt. Finally, you must cite any AI use, including the tool, model, date, and a link to the full transcript.
+- **Lab:** Unless instructed otherwise, you may not use AI tools during lab. Instead, ask your TA, work with your teammates, and review course resources.
+
+## How do I export my PDF from Positron?
+
+Reveal answer
+
+Go to the *Explorer* panel (the page icon at the very top of the left-hand sidebar). Right click on the file you want to download, then select *Download…* The downloaded file will go wherever files from the internet are saved on your computer (usually your Downloads folder).
+
+## How can I submit my assignment to Gradescope?
+
+Reveal answer
+
+The instructions for submitting your assignment to Gradescope can be found [here](https://help.gradescope.com/article/ccbpppziu9-student-submit-work#submitting_a_pdf). In a nutshell, you’ll upload your PDF and then mark the page(s) where each question can be found. It’s OK if a question spans multiple pages, just mark them all. It’s also OK if a page includes multiple questions, just mark that page for each relevant question.
+
+# An error occurred.
+
+Unable to execute JavaScript.
+
+## Can I use a local install of R and Positron instead of using the Positron containers?
+
+Reveal answer
+
+The short answer is, I’d rather you didn’t, to save yourself some potential headaches. But, the long answer is, sure! You will need to install specific versions of R and Positron for everything to work as expected. You will also need to install the R packages we’re using as well as have Git installed on your computer. These are not extremely challenging things to do, but they are not trivial either, particularly on certain operating systems.
+
+Myself and the TAs are always happy to provide help with any computational questions when you’re working in the containers we have provided for you. If you’re working on your local setup, however, we can’t guarantee being able to resolve your issues, although we’re happy to try.
+
+If you want to take this path, here is what you need to do:
+
+- Download and install R 4.6.1: <https://cran.r-project.org/>
+- Download and install Positron: <https://positron.posit.co/download.html>
+- Install Quarto 1.10.18 or higher: <https://quarto.org/docs/get-started/>
+- Install Git: <https://happygitwithr.com/install-git.html>
+- Install any necessary packages with `install.packages("___")`
+
+And I’d like to reiterate that successfully installing this software is **not** a learning goal of this course. If any of this seems tedious or intimidating, I strongly recommend using the computing environment we have set up for you. More on that [here](computing-access.llms.md).

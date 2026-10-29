@@ -1,0 +1,75 @@
+# Project tips + resources
+
+The project is very open ended. For instance, when creating compelling visualizations of your data in R, there is no limit on what tools or packages you may use. You do not need to visualize all of the data at once. A single high-quality visualization will receive a much higher grade than a large number of poor-quality visualizations.
+
+Before you finalize your write-up, hide the code with the option `echo: false`. Suppress warnings and messages with the options `warning: false` and `message: false`.
+
+Finally, pay attention to details in your write-up and presentation. Neatness, coherence, and clarity will count.
+
+# Tips
+
+- Ask questions if any of the expectations are unclear.
+
+- *Code*: In your write-up, your code should be hidden (`echo: false`) so that your document is neat and easy to read. However, your source document should include all your code so that I can reproduce the results you presented by rendering your `.qmd` file.
+
+  - **Exception:** If you want to highlight something specific about a piece of code, you’re welcome to show that portion.
+
+- Merge conflicts will happen, issues will arise, and that’s fine! Commit and push often, and ask questions when stuck.
+
+- Make sure each team member is contributing, both in terms of quality and quantity of contribution (we will be reviewing commits from different team members).
+
+  - All team members are expected to contribute equally to the completion of this assignment, and group assessments will be given at its completion. Anyone judged not to have contributed sufficiently to the final product will have their grade penalized. While team members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in the assignment work.
+
+# Formatting + communication
+
+## Suppress code and warnings
+
+- Include the following in the YAML of your `index.qmd` to suppress all code, warnings, and other messages.
+
+``` yaml
+execute:
+  echo: false
+  warning: false
+  message: false
+```
+
+## Headers
+
+Use headers to clearly label each section. Make sure there is a blank line before each header. Use appropriate header levels.
+
+## References
+
+Include all references in a section called “References” at the end of the report. This course does not have specific requirements for formatting citations and references. Optional: Use Quarto’s citation support for generating your references. See [Citations & Footnotes](https://quarto.org/docs/authoring/footnotes-and-citations.html) on the Quarto documentation for more on that.
+
+## Appendix
+
+If you have additional work that does not fit or does not belong in the body of the report, you may put it at the end of the document in a section called “Appendix”. The items in the appendix should be properly labeled. The appendix should only be for additional material. The reader should be able to fully understand your report without viewing content in the appendix. We will not grade your appendix.
+
+## Resize figures
+
+Resize plots and figures, so you have more space for the narrative. Resize individual figures: Set `fig-width` and `fig-asp` in chunk options, e.g.,
+
+``` r
+#| echo: fenced
+#| label: code-cell-label
+#| fig-width: 5
+#| fig-asp: 0.628
+```
+
+Replace `code-cell-label` with a meaningful label and the width and aspect ratio with values appropriate for your write-up.
+
+Resize all figures: Include the `fig-width` and `fig-asp` options in the YAML header as shown below:
+
+``` yaml
+execute:
+  fig-width: 5
+  fig-asp: 0.628
+```
+
+Replace the width and aspect ratio values with values appropriate for your write-up.
+
+## Arranging plots
+
+Arrange plots in a grid, instead of one after the other. This is especially useful when displaying plots for exploratory data analysis and to check assumptions.
+
+The [patchwork package](https://patchwork.data-imaginist.com/) makes it easy to arrange plots in a grid.

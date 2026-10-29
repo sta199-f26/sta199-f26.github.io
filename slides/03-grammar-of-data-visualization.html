@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.19">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
 <meta name="dcterms.date" content="2026-08-31">
+
 <title>Grammar of data visualization – STA 199CCL</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -56,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,19 +78,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8aa723cf165abd5dca27c58d64131771.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-0468bd313de546c462d4cba742c45798.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8aa723cf165abd5dca27c58d64131771.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6afe6185afd896eb7a99e7e462244394.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cc800964ddffb3f1934fd1a06b901fd8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6afe6185afd896eb7a99e7e462244394.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -107,6 +118,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+
+
 <meta property="og:title" content="Grammar of data visualization – STA 199CCL">
 <meta property="og:description" content="Lecture 3">
 <meta property="og:image" content="https://sta199-f26.github.io/slides/images/03/un-data-viz.png">
@@ -114,6 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta property="og:image:height" content="960">
 <meta property="og:image:width" content="1920">
 </head>
+
 <body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -279,7 +293,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -290,18 +306,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
     <div class="dropdown">
       <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-<li>
+          <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
               <i class="bi bi-person-raised-hand pe-1"></i>
             Office hours
@@ -314,11 +336,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             </a>
           </li>
       </ul>
-</div>
+    </div>
     <div class="dropdown">
       <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
-<li>
+          <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
               <i class="bi bi-megaphone-fill pe-1"></i>
             Announcements
@@ -337,7 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             </a>
           </li>
       </ul>
-</div>
+    </div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div>
@@ -348,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item sidebar-item-section">
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
@@ -356,8 +378,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
@@ -400,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -409,8 +431,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Access</span></a>
@@ -435,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -444,8 +466,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../project/description.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Description</span></a>
@@ -500,7 +522,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lab.html" class="sidebar-item-text sidebar-link">
@@ -526,24 +548,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a>
+  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a>
   <ul class="collapse">
-<li><a href="#while-you-wait" id="toc-while-you-wait" class="nav-link" data-scroll-target="#while-you-wait">While you wait…</a></li>
+  <li><a href="#while-you-wait" id="toc-while-you-wait" class="nav-link" data-scroll-target="#while-you-wait">While you wait…</a></li>
   <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a>
   <ul class="collapse">
-<li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load packages</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load packages</a></li>
   <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
   <li><a href="#general-social-survey-gss" id="toc-general-social-survey-gss" class="nav-link" data-scroll-target="#general-social-survey-gss">2024 General Social Survey (GSS)</a></li>
   <li><a href="#view-the-data" id="toc-view-the-data" class="nav-link" data-scroll-target="#view-the-data">View the data</a></li>
@@ -556,18 +577,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mapping-and-aesthetics" id="toc-mapping-and-aesthetics" class="nav-link" data-scroll-target="#mapping-and-aesthetics">Mapping and aesthetics</a></li>
   <li><a href="#map-a-variable-set-a-value" id="toc-map-a-variable-set-a-value" class="nav-link" data-scroll-target="#map-a-variable-set-a-value">Map a variable; set a value</a></li>
   <li><a href="#grammar-of-graphics" id="toc-grammar-of-graphics" class="nav-link" data-scroll-target="#grammar-of-graphics">Grammar of graphics</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#application-exercise" id="toc-application-exercise" class="nav-link" data-scroll-target="#application-exercise">Application exercise</a>
+  </ul></li>
+  <li><a href="#application-exercise" id="toc-application-exercise" class="nav-link" data-scroll-target="#application-exercise">Application exercise</a>
   <ul class="collapse">
-<li><a href="#lets-get-laptops-out" id="toc-lets-get-laptops-out" class="nav-link" data-scroll-target="#lets-get-laptops-out">Let’s get laptops out!</a></li>
+  <li><a href="#lets-get-laptops-out" id="toc-lets-get-laptops-out" class="nav-link" data-scroll-target="#lets-get-laptops-out">Let’s get laptops out!</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/03-grammar-of-data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03-grammar-of-data-visualization-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/03-grammar-of-data-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03-grammar-of-data-visualization-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Grammar of data visualization</h1>
 <p class="subtitle lead">Lecture 3</p>
 </div>
@@ -602,14 +625,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="warm-up" class="level1"><h1>Warm up</h1>
-<section id="while-you-wait" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="while-you-wait">While you wait…</h2>
+</header>
+
+
+<section id="warm-up" class="level1">
+<h1>Warm up</h1>
+<section id="while-you-wait" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="while-you-wait">While you wait…</h2>
 <div class="columns">
 <div class="column egret-background" style="width:25%;">
 <p><strong>1. Clone your <code>ae</code> repository</strong></p>
 <p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p>
-</div>
-<div class="column gray-background" style="width:75%;">
+</div><div class="column gray-background" style="width:75%;">
 <p><strong>2. Participate</strong> 📱💻</p>
 <div class="wooclap">
 <p>Remember this visualization from the code along video – what was it about?</p>
@@ -617,10 +644,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="columns">
 <div class="column" style="width:80%;">
 <p><a href="images/03/un-data-viz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/03/un-data-viz.png" class="img-fluid"></a></p>
-</div>
-<div class="column xsmall" style="width:15%;">
+</div><div class="column xsmall" style="width:15%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/03/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/03/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+<figure class="figure">
+<p><a href="images/03/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/03/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
 <p>Go to <a href="https://app.wooclap.com/IOAADOR">wooclap.com</a> and use the code IOAADOR.</p>
@@ -628,31 +655,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="outline" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="outline">Outline</h2>
+</section>
+<section id="outline" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="outline">Outline</h2>
 <ul>
-<li>
-<p>Last week:</p>
+<li><p>Last week:</p>
 <ul>
 <li><p>We introduced you to the course toolkit.</p></li>
 <li><p>You <strong>cloned</strong> your <code>lab</code> repository and started making some updates in your Quarto documents.</p></li>
 <li><p>You <strong>committed and pushed</strong> your changes back – at least most of you did!</p></li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>. . .</p>
 <ul>
-<li>
-<p>Today:</p>
+<li><p>Today:</p>
 <ul>
 <li><p>You will <strong>clone</strong> your <code>ae</code> (application exercise) repository.</p></li>
 <li><p>We will introduce data visualization.</p></li>
 <li><p>You will work on the application exercise on data visualization, <strong>commit</strong> your changes, and <strong>push</strong> them.</p></li>
+</ul></li>
 </ul>
-</li>
-</ul></section></section><section id="data-visualization" class="level1 page-columns page-full"><h1>Data visualization</h1>
-<section id="load-packages" class="level2"><h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
+</section>
+</section>
+<section id="data-visualization" class="level1 page-columns page-full">
+<h1>Data visualization</h1>
+<section id="load-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -661,16 +691,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Reminder
+<span class="screen-reader-only">Note</span>Reminder
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>tidyverse</strong> is the collection of R packages designed for data science.</p>
 </div>
 </div>
-</section><section id="load-the-data" class="level2"><h2 class="anchored" data-anchor-id="load-the-data">Load the data</h2>
+</section>
+<section id="load-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-data">Load the data</h2>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gss-2024.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gss <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gss-2024.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -679,14 +711,16 @@ Reminder
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Reminder
+<span class="screen-reader-only">Note</span>Reminder
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>We can read this as “read the CSV file called <code>gss-2024.csv</code> in the data folder” and save the result as <code>gss</code>.</p>
 </div>
 </div>
-</section><section id="general-social-survey-gss" class="level2 smaller page-columns page-full"><h2 class="smaller anchored" data-anchor-id="general-social-survey-gss">2024 General Social Survey (GSS)</h2>
+</section>
+<section id="general-social-survey-gss" class="level2 smaller page-columns page-full">
+<h2 class="smaller anchored" data-anchor-id="general-social-survey-gss">2024 General Social Survey (GSS)</h2>
 <p>GSS is a widely respected, nationally representative sociological survey that tracks how American opinions, attitudes, and behaviors change over time.</p>
 <p>We’re working with GSS data from the most recent wave:</p>
 <ul>
@@ -709,9 +743,11 @@ Note
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Source: <a href="https://gss.norc.org/about-the-gss.html">gss.norc.org/about-the-gss.html</a>.</p>
-</div></div></section><section id="view-the-data" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="view-the-data">View the data</h2>
+</div></div></section>
+<section id="view-the-data" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="view-the-data">View the data</h2>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gss</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gss</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,294 × 9
     year marital_status   age education_years children happiness     health
@@ -730,13 +766,17 @@ Note
 # ℹ 2 more variables: employment_status &lt;chr&gt;, party_id &lt;chr&gt;</code></pre>
 </div>
 </div>
-</section><section id="variables-in-our-extract" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="variables-in-our-extract">Variables in our extract</h2>
+</section>
+<section id="variables-in-our-extract" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="variables-in-our-extract">Variables in our extract</h2>
 <table class="caption-top table">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>Variable</th>
 <th>Description</th>
 <th>Type</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td><code>marital_status</code></td>
@@ -779,7 +819,10 @@ Note
 <td>Categorical</td>
 </tr>
 </tbody>
-</table></section><section id="start-with-a-question" class="level2"><h2 class="anchored" data-anchor-id="start-with-a-question">Start with a question</h2>
+</table>
+</section>
+<section id="start-with-a-question" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-a-question">Start with a question</h2>
 <div class="question hand large">
 <p>How does age vary across marital-status groups?</p>
 </div>
@@ -788,29 +831,35 @@ Note
 <li>Which variables do we need?</li>
 <li>What type is each variable?</li>
 <li>What kind of plot might answer the question?</li>
-</ul></section><section id="age-by-marital-status" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="age-by-marital-status">Age by marital status</h2>
+</ul>
+</section>
+<section id="age-by-marital-status" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="age-by-marital-status">Age by marital status</h2>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gss</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">marital_status</span>, y <span class="op">=</span> <span class="va">age</span>, fill <span class="op">=</span> <span class="va">marital_status</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Age varies substantially across marital-status groups"</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"Marital status"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Age (years)"</span>,</span>
-<span>    caption <span class="op">=</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gss, <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age, <span class="at">fill =</span> marital_status)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Age varies substantially across marital-status groups"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Age (years)"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 94 rows containing non-finite outside the scale range
 (`stat_boxplot()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="img-fluid figure-img" width="864"></a></p>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" class="img-fluid figure-img" width="864"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="participate" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="participate">Participate 📱💻</h2>
+</section>
+<section id="participate" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="participate">Participate 📱💻</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="wooclap">
@@ -820,13 +869,16 @@ Note
 outside the scale range (`stat_boxplot()`).</code></pre>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/03/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/03/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+<figure class="figure">
+<p><a href="images/03/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/03/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
 <p>Go to <a href="https://app.wooclap.com/IOAADOR">wooclap.com</a> and use the code IOAADOR.</p>
 </div>
 </div>
-</section><section id="interpret-the-plot" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="interpret-the-plot">Interpret the plot</h2>
+</section>
+<section id="interpret-the-plot" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="interpret-the-plot">Interpret the plot</h2>
 <div class="question">
 <p>With a partner:</p>
 <ul>
@@ -839,22 +891,31 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></a></p>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="plot-autopsy" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="plot-autopsy">Plot autopsy</h2>
+</section>
+<section id="plot-autopsy" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="plot-autopsy">Plot autopsy</h2>
 <div class="cell" data-code-annotations="below">
-<div class="sourceCode" id="annotated-cell-5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">gss</span>,</span>
-<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">marital_status</span>, y <span class="op">=</span> <span class="va">age</span>, fill <span class="op">=</span> <span class="va">marital_status</span><span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-5" data-llms-code-original="ggplot(
+  data = gss, # <1>
+  mapping = aes(x = marital_status, y = age, fill = marital_status) # <2>
+) +
+  geom_boxplot() + # <3>
+  labs(...) + # <4>
+  scale_fill_viridis_d() # <5>"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gss,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age, <span class="at">fill =</span> marital_status)</span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-7" class="code-annotation-target"><a href="#annotated-cell-5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
-<dl>
+<dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
 <dd>
 <span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="1">The <strong>data</strong> to visualize</span>
@@ -882,22 +943,26 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="question">
 <p>Which component would you change to plot different variables? Which component controls the variable represented by the fill color?</p>
 </div>
-</section><section id="mapping-and-aesthetics" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="mapping-and-aesthetics">Mapping and aesthetics</h2>
+</section>
+<section id="mapping-and-aesthetics" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="mapping-and-aesthetics">Mapping and aesthetics</h2>
 <p><strong>Aesthetics</strong> are visual properties such as position, color, fill, shape, size, and transparency.</p>
 <p>. . .</p>
 <div class="columns">
 <div class="column" style="width:42%;">
 <p>For the GSS boxplot:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">marital_status</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">age</span>,</span>
-<span>  fill <span class="op">=</span> <span class="va">marital_status</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> marital_status,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> age,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> marital_status</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>Variable</th>
 <th>Aesthetic</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td><code>marital_status</code></td>
@@ -917,38 +982,42 @@ outside the scale range (`stat_boxplot()`).</code></pre>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section id="map-a-variable-set-a-value" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="map-a-variable-set-a-value">Map a variable; set a value</h2>
+</section>
+<section id="map-a-variable-set-a-value" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="map-a-variable-set-a-value">Map a variable; set a value</h2>
 <div class="columns">
 <div class="column">
 <p><strong>Map:</strong> fill varies with a variable, so ggplot2 creates a legend</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">marital_status</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<div class="column fragment">
+</div><div class="column fragment">
 <p><strong>Set:</strong> every box has the same fill, so no legend is needed</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"pink"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"pink"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure">
+<p><a href="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -965,10 +1034,12 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Variables belong inside <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>; fixed visual choices belong outside it.</p>
+<p>Variables belong inside <code>aes()</code>; fixed visual choices belong outside it.</p>
 </div>
 </div>
-</section><section id="grammar-of-graphics" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="grammar-of-graphics">Grammar of graphics</h2>
+</section>
+<section id="grammar-of-graphics" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="grammar-of-graphics">Grammar of graphics</h2>
 <div class="columns">
 <div class="column">
 <ul>
@@ -979,8 +1050,12 @@ Tip
 <p><a href="images/03/gg-layers.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/03/gg-layers.png" class="img-fluid"></a></p>
 </div>
 </div>
-</section></section><section id="application-exercise" class="level1"><h1>Application exercise</h1>
-<section id="lets-get-laptops-out" class="level2"><h2 class="anchored" data-anchor-id="lets-get-laptops-out">Let’s get laptops out!</h2>
+</section>
+</section>
+<section id="application-exercise" class="level1">
+<h1>Application exercise</h1>
+<section id="lets-get-laptops-out" class="level2">
+<h2 class="anchored" data-anchor-id="lets-get-laptops-out">Let’s get laptops out!</h2>
 <div class="appex">
 <ul>
 <li><p>Go to the <a href="https://github.com/sta199-f26">course GitHub organization</a> and clone <code>ae-YOUR-GITHUB-NAME</code> repo to <a href="https://cmgr.oit.duke.edu/containers">your Positron session</a> in your container.</p></li>
@@ -989,7 +1064,12 @@ Tip
 </div>
 
 
-</section></section></main><!-- /main --><script>
+</section>
+</section>
+
+</main> <!-- /main -->
+
+<script>
   // htmlwidgets need to know to resize themselves when slides are shown/hidden.
   // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
   // slide changes (different for each slide format).
@@ -1024,7 +1104,9 @@ Tip
     }
 
   })();
-</script><script id="quarto-html-after-body" type="application/javascript">
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1088,13 +1170,14 @@ Tip
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1437,7 +1520,8 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
 </div>   
@@ -1448,7 +1532,8 @@ Tip
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -1480,6 +1565,8 @@ Tip
   
 })();
           </script>
+
+
 
 
 </body></html>

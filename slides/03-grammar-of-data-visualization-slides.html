@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
   <meta name="dcterms.date" content="2026-08-31">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c920ede21890f3a947105a3b8b329d99.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-3b10b6ec34c7aba22fd5177590698153.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -203,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Mine Çetinkaya-Rundel 
+Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
         <p class="quarto-title-affiliation">
             Duke University <br> STA 199 - Fall 2026
@@ -271,7 +277,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="load-packages" class="slide level2">
 <h2>Load packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="callout callout-note callout-titled callout-style-default">
@@ -291,7 +297,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="load-the-data" class="slide level2">
 <h2>Load the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>gss <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gss-2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a>gss <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gss-2024.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="callout callout-note callout-titled callout-style-default">
@@ -336,7 +342,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="view-the-data" class="slide level2 smaller">
 <h2>View the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>gss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a>gss</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,294 × 9
     year marital_status   age education_years children happiness     health
@@ -425,15 +431,15 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="age-by-marital-status" class="slide level2 smaller">
 <h2>Age by marital status</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(gss, <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age, <span class="at">fill =</span> marital_status)) <span class="sc">+</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-4"><a></a>    <span class="at">title =</span> <span class="st">"Age varies substantially across marital-status groups"</span>,</span>
-<span id="cb5-5"><a></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
-<span id="cb5-6"><a></a>    <span class="at">y =</span> <span class="st">"Age (years)"</span>,</span>
-<span id="cb5-7"><a></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
-<span id="cb5-8"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-9"><a></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a><span class="fu">ggplot</span>(gss, <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age, <span class="at">fill =</span> marital_status)) <span class="sc">+</span></span>
+<span id="cb5-2"><a aria-label="2"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a aria-label="3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-4"><a aria-label="4"></a>    <span class="at">title =</span> <span class="st">"Age varies substantially across marital-status groups"</span>,</span>
+<span id="cb5-5"><a aria-label="5"></a>    <span class="at">x =</span> <span class="st">"Marital status"</span>,</span>
+<span id="cb5-6"><a aria-label="6"></a>    <span class="at">y =</span> <span class="st">"Age (years)"</span>,</span>
+<span id="cb5-7"><a aria-label="7"></a>    <span class="at">caption =</span> <span class="st">"Source: 2024 General Social Survey (GSS), NORC"</span></span>
+<span id="cb5-8"><a aria-label="8"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-9"><a aria-label="9"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 94 rows containing non-finite outside the scale range
 (`stat_boxplot()`).</code></pre>
@@ -448,8 +454,8 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="wooclap">
 <p>The plot was created, but R displayed the warning below. What happened to the 94 observations?</p>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>Warning: Removed 94 rows containing non-finite values</span>
-<span id="cb7-2"><a></a>outside the scale range (`stat_boxplot()`).</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a aria-label="1"></a>Warning: Removed 94 rows containing non-finite values</span>
+<span id="cb7-2"><a aria-label="2"></a>outside the scale range (`stat_boxplot()`).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -475,13 +481,19 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <section id="plot-autopsy" class="slide level2 smaller">
 <h2>Plot autopsy</h2>
 <div class="cell" data-code-annotations="below">
-<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a><span class="fu">ggplot</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2"></a>  <span class="at">data =</span> gss,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age, <span class="at">fill =</span> marital_status)</span>
-<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4"></a>) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-7" class="code-annotation-target"><a href="#annotated-cell-5-7"></a>  <span class="fu">scale_fill_viridis_d</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-5" data-llms-code-original="ggplot(
+  data = gss, # <1>
+  mapping = aes(x = marital_status, y = age, fill = marital_status) # <2>
+) +
+  geom_boxplot() + # <3>
+  labs(...) + # <4>
+  scale_fill_viridis_d() # <5>"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-label="1"></a><span class="fu">ggplot</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-label="2"></a>  <span class="at">data =</span> gss,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-label="3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital_status, <span class="at">y =</span> age, <span class="at">fill =</span> marital_status)</span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-label="4"></a>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-label="5"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6" aria-label="6"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-7" class="code-annotation-target"><a href="#annotated-cell-5-7" aria-label="7"></a>  <span class="fu">scale_fill_viridis_d</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
@@ -520,11 +532,11 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="columns">
 <div class="column" style="width:42%;">
 <p>For the GSS boxplot:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">aes</span>(</span>
-<span id="cb8-2"><a></a>  <span class="at">x =</span> marital_status,</span>
-<span id="cb8-3"><a></a>  <span class="at">y =</span> age,</span>
-<span id="cb8-4"><a></a>  <span class="at">fill =</span> marital_status</span>
-<span id="cb8-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a><span class="fu">aes</span>(</span>
+<span id="cb8-2"><a aria-label="2"></a>  <span class="at">x =</span> marital_status,</span>
+<span id="cb8-3"><a aria-label="3"></a>  <span class="at">y =</span> age,</span>
+<span id="cb8-4"><a aria-label="4"></a>  <span class="at">fill =</span> marital_status</span>
+<span id="cb8-5"><a aria-label="5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -566,7 +578,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="column">
 <p><strong>Map:</strong> fill varies with a variable, so ggplot2 creates a legend</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a><span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> marital_status))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -580,7 +592,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div><div class="column fragment">
 <p><strong>Set:</strong> every box has the same fill, so no legend is needed</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"pink"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"pink"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -638,7 +650,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/logo.png" class="slide-logo"></p>
+<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="https://sta199-f26.github.io/">🔗 sta199-f26.github.io</a></p>
 </div>
@@ -826,7 +838,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -938,13 +950,14 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

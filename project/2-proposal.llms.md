@@ -1,0 +1,215 @@
+# Proposal
+
+Milestone 2
+
+Project
+
+> **NOTE:**
+>
+> You will start working on this milestone in lab, but you will need to finish it outside of lab. Before the end of lab, make sure you have at least one team meeting scheduled to continue working on this milestone.
+
+> **IMPORTANT:**
+>
+> For project milestones, there is nothing to submit to Gradescope. Instead, your work will be evaluated based on the files in your project GitHub repository. As a result, you may temporarily lose access to your project repository while it is being graded.
+
+# Goals
+
+The goals of this milestone are as follows:
+
+- Discuss topics you’re interested in investigating and find datasets on those topics.
+
+- Identify two datasets you’re interested in potentially using for the project.
+
+- Get these datasets into R.
+
+- Write up reasons and justifications for why you want to work with these datasets.
+
+- Review your team contract.
+
+> **IMPORTANT:**
+>
+> You must use one of the datasets in the proposal for the final project, unless instructed otherwise when given feedback.
+
+# Finding a dataset
+
+## Criteria for datasets
+
+The datasets should meet the following criteria:
+
+- At least 200 observations.
+
+- At least 8 columns.
+
+- At least 6 of the columns must be useful and unique explanatory variables.
+
+  - Identifier variables such as “name”, “social security number”, etc. are not useful explanatory variables.
+  - If you have multiple columns with the same information (e.g., “state abbreviation” and “state name”), then they are not unique explanatory variables.
+
+- You may not use data that has previously been used in any course materials, or any derivation of data that has been used in course materials.
+
+- You can curate one of your datasets via web scraping.
+
+**Please ask a member of the teaching team if you’re unsure whether your dataset meets the criteria.**
+
+If you have your hearts set on a dataset that has fewer observations or variables than what’s suggested here, that might still be okay; **but you must check with a member of the teaching team first**.
+
+## Resources for datasets
+
+You can find data wherever you like, but here are some recommendations to get you started. You shouldn’t feel constrained to datasets that are already in a tidy format: you can start with data that needs cleaning and tidying, scrape data off the web, or collect your own data.
+
+- [UNICEF Data](https://data.unicef.org/)
+- [Youth Risk Behavior Surveillance System (YRBSS)](https://chronicdata.cdc.gov/Youth-Risk-Behaviors/DASH-Youth-Risk-Behavior-Surveillance-System-YRBSS/q6p7-56au)
+- [Google Dataset Search](https://datasetsearch.research.google.com/)
+- [Data is Plural](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0)
+- [Election Studies](https://electionstudies.org/)
+- [US Census Data](https://www.census.gov/data.html)
+- [World Bank Data](https://datacatalog.worldbank.org/home)
+- [CDC](https://www.cdc.gov/datastatistics/)
+- [European Statistics](https://ec.europa.eu/eurostat/)
+- [CORGIS: The Collection of Really Great, Interesting, Situated Datasets](https://corgis-edu.github.io/corgis/csv/)
+- [General Social Survey](https://gss.norc.org/)
+- [Harvard Dataverse](https://dataverse.harvard.edu/)
+- [International Monetary Fund](https://data.imf.org/?sk=388DFA60-1D26-4ADE-B505-A05A558D9A42&sId=1479329328660)
+- [IPUMS survey data from around the world](https://ipums.org/)
+- [Los Angeles Open Data](https://data.lacity.org/browse)
+- [NHS Scotland Open Data](https://www.opendata.nhs.scot/)
+- [NYC OpenData](https://opendata.cityofnewyork.us/)
+- [Open data about Scotland](https://data.gov.scot/)
+- [Pew Research](https://www.pewresearch.org/download-datasets/)
+- [PRISM Climate Data](https://nanda.isr.umich.edu/project/prism-climate/)
+- [Responsible Datasets in Context](https://www.responsible-datasets-in-context.com/datasets.html)
+- [Statistics Canada](https://www.statcan.gc.ca/en/start)
+- [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
+- [The National Bureau of Economic Research](https://www.nber.org/research/data?page=1&perPage=50)
+- [UCI Machine Learning Repository](https://archive.ics.uci.edu)
+- [UK Government Data](https://data.gov.uk/)
+- [United Nations Data](http://data.un.org/)
+- [United Nations Statistics Division](https://unstats.un.org/UNSDWebsite/)
+- [US Government Data](https://sctyner.github.io/static/presentations/Misc/GraphicsGroupISU/2018-11-16-us-govt-data.html)
+- [FRED Economic Data](https://fred.stlouisfed.org/)
+- [Data.gov](https://www.data.gov/)
+- [Awesome public datasets](https://github.com/awesomedata/awesome-public-datasets)
+- [Durham Open Data Portal](https://live-durhamnc.opendata.arcgis.com/)
+- [FiveThirtyEight](https://data.fivethirtyeight.com/)
+
+# Components
+
+For each dataset, include the following:
+
+## Introduction of data
+
+For each dataset:
+
+- Identify the source of the data.
+
+- State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
+
+- Address ethical concerns about the data, if any.
+
+## Research question
+
+Your research question should involve at least three variables, including a mix of categorical and numerical variables. When writing a research question, please think about the following:
+
+- What is your target population?
+
+- Is the question original?
+
+- Can the question be answered?
+
+For each dataset, include the following:
+
+- A well-formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per dataset is required.)
+
+- A statement on why this question is important.
+
+- A description of the research topic along with a concise statement of your hypotheses on this topic.
+
+- Identify the types of variables in your research question. Categorical? Numerical?
+
+## Data
+
+For each dataset:
+
+- Place the file containing your data in the `data` folder of the project repo.
+- Use the `glimpse()` function to provide a glimpse of the dataset.
+- Write a brief description of the observations.
+- State the number of observations and variables in the dataset.
+- Describe the variables that are most relevant to your proposed analysis.
+
+## `_quarto.yml` file
+
+Update your `_quarto.yml` file, specifically:
+
+``` yaml
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - presentation.pdf
+
+author: # Replace with team member names
+  - name: Name of team member 1 
+  - name: Name of team member 2
+  - name: Name of team member 3
+  - name: Name of team member 4
+  - name: ...
+
+website:
+  # Replace with team name
+  title: Team name 
+  navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Presentation
+        href: presentation.pdf  
+      - text: Proposal
+        href: proposal.qmd
+      - text: About
+        href: about.qmd
+      - text: Contract
+        href: contract.qmd
+    right:
+      - icon: github
+        # Replace with link to GitHub repo
+        href: "https://github.com/sta199-f26/" 
+
+format:
+  html:
+    theme: 
+      light: flatly
+      dark: darkly
+```
+
+# Grading
+
+| Total                   | 10 pts                    |
+|-------------------------|---------------------------|
+| Introduction            | 2 (1 pt for each dataset) |
+| Research question       | 2 (1 pt for each dataset) |
+| Data                    | 2 (1 pt for each dataset) |
+| Workflow and formatting | 4                         |
+
+Each component will be graded as follows:
+
+- **Meets expectations (full credit)**: All required elements are completed and are accurate. The narrative is written clearly, all tables and visualizations are nicely formatted, and the work would be presentable in a professional setting.
+
+- **Close to expectations (half credit)**: There are some elements missing and/or inaccurate. There are some issues with formatting.
+
+- **Does not meet expectations (no credit)**: Major elements are missing. Work is not neatly formatted and would not be presentable in a professional setting.
+
+Additionally, the workflow component will be graded based on:
+
+- update `_quarto.yml`
+- organization
+- code style
+- informative commit messages
+- commits from each team member
+- project website builds successfully
+- no extraneous files in project repo
+
+> **IMPORTANT:**
+>
+> Each team member must contribute, with commits, to the project proposal in order to be eligible for full credit for workflow and formatting.
+
+It is critical to check feedback on your project proposal. Even if you earn full credit, it may not mean that your proposal is perfect.

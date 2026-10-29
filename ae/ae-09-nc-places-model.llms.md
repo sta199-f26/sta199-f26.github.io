@@ -1,0 +1,151 @@
+# AE 09: Dental visits and health in North Carolina
+
+Application exercise
+
+The data for this application exercise come from the [CDC PLACES 2025 county release](https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb). PLACES provides model-based local health estimates for every U.S. county.
+
+We will model the relationship between the estimated percentage of adults who visited a dentist during the previous year and the estimated percentage reporting fair or poor health across the 100 North Carolina counties.
+
+## Getting started
+
+### Packages
+
+We will use the **tidyverse** package for data visualization and wrangling and the **tidymodels** package for modeling.
+
+``` downlit
+library(tidyverse)
+library(tidymodels)
+library(scales)
+```
+
+### Data
+
+The data can be found in the `data` folder; the file is called `nc-places.csv`.
+
+``` downlit
+nc_places <- read_csv("data/nc-places.csv")
+```
+
+The variables used in this exercise are:
+
+| Variable name | Description |
+|:---|:---|
+| `county` | North Carolina county name |
+| `dental_visit` | Percentage of adults who visited a dentist or dental clinic during the previous year |
+| `fair_or_poor_health` | Percentage of adults reporting fair or poor general health |
+
+The percentage variables are age-adjusted, model-based estimates.
+
+## Visualizing the relationship
+
+- Create an appropriate plot to investigate the relationship between `dental_visit` and `fair_or_poor_health`. Put the predictor on the (x)-axis and the outcome on the (y)-axis. Add appropriate labels.
+
+``` downlit
+# add code here
+```
+
+- Describe the **form, direction, and strength** of the relationship. Note any unusual observations.
+
+*Add your response here.*
+
+- If you were to draw a straight line that best represents this relationship, where would it go? Why?
+
+*Add your response here.*
+
+- Now let R draw the line. Use [`geom_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html) with `method = "lm"` and set `se = FALSE`.
+
+``` downlit
+# add code here
+```
+
+- What types of questions can this plot help answer?
+
+*Add your response here.*
+
+## Model fit and summary
+
+- Fit a linear regression model that predicts fair-or-poor-health prevalence from dental-visit prevalence.
+
+``` downlit
+# add code here
+```
+
+- Display the model summary and extract the slope and intercept estimates.
+
+``` downlit
+# add code here
+```
+
+- Write the fitted model using mathematical notation.
+
+*Add your response here.*
+
+- Interpret the slope in context.
+
+*Add your response here.*
+
+- Interpret the intercept in context. Is this interpretation meaningful for these data?
+
+*Add your response here.*
+
+## Correlation
+
+- Calculate the correlation between dental-visit prevalence and fair-or-poor-health prevalence. Interpret its sign and magnitude.
+
+``` downlit
+# add code here
+```
+
+*Add your response here.*
+
+## Predictions and residuals
+
+- Use the model to predict fair-or-poor-health prevalence for a county where 60% of adults visited a dentist during the previous year.
+
+``` downlit
+# add code here
+```
+
+*Add your response here.*
+
+- Use `augment()` to add predictions and residuals to the county data.
+
+``` downlit
+# add code here
+```
+
+### Durham County
+
+- Durham County has a dental-visit prevalence of 68.2% and an observed fair-or-poor-health prevalence of 16.5%. Use the augmented data frame to identify the predicted value and residual for Durham County.
+
+``` downlit
+# add code here
+```
+
+*Add your response here.*
+
+- Verify this residual by calculating the predicted value using the model and comparing it to the observed value. If your calculation doesn’t exactly match the residual returned by `augment()`, explain why.
+
+*Add your response here.*
+
+### Identifying potential outliers
+
+- Identify the counties with the five highest absolute residuals. Report their observed values, predicted values, and residuals.
+
+``` downlit
+# add code here
+```
+
+- Mark these counties on the scatterplot. Do they appear to be outliers?
+
+``` downlit
+# add code here
+```
+
+*Add your response here.*
+
+## Interpreting responsibly
+
+- Does this analysis establish that increasing dental visits causes better general health? Explain.
+
+*Add your response here.*

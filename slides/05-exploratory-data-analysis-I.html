@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.19">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Dr.&nbsp;Mine Çetinkaya-Rundel">
 <meta name="dcterms.date" content="2026-09-09">
 <title>Exploratory data analysis I – STA 199CCL</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -68,14 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8aa723cf165abd5dca27c58d64131771.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-0468bd313de546c462d4cba742c45798.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-8aa723cf165abd5dca27c58d64131771.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6afe6185afd896eb7a99e7e462244394.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cc800964ddffb3f1934fd1a06b901fd8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6afe6185afd896eb7a99e7e462244394.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -295,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
@@ -658,9 +664,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="wooclap">
 <p>Suppose you have a dataset <code>df</code> with 100 rows and 5 columns: <code>x1</code>, <code>x2</code>, <code>x3</code>, <code>x4</code>, and <code>x5</code>. <code>x1</code> is a categorical variable with levels <code>a</code> and <code>b</code>. You run the following code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">x1</span> <span class="op">==</span> <span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span>, <span class="va">x5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span>, <span class="va">x5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The resulting data frame will have:</p>
 <div class="wooclap-choices">
@@ -732,13 +738,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="data-gerrymander" class="level2"><h2 class="anchored" data-anchor-id="data-gerrymander">Data: <code>gerrymander</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gerrymander.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/gerrymander.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="what-is-gerrymandering" class="level2"><h2 class="anchored" data-anchor-id="what-is-gerrymandering">What is gerrymandering?</h2>
 <p><a href="https://www.washingtonpost.com/business/wonkblog/gerrymandering-explained/2016/04/21/e447f5c2-07fe-11e6-bfed-ef65dff5970d_video.html" class="uri">https://www.washingtonpost.com/business/wonkblog/gerrymandering-explained/2016/04/21/e447f5c2-07fe-11e6-bfed-ef65dff5970d_video.html</a></p>
@@ -759,7 +765,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="data-gerrymander-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-gerrymander-1">Data: <code>gerrymander</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gerrymander</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gerrymander</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 443
 Columns: 14
@@ -867,8 +873,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 <div class="column small">
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 443 × 1
    district
@@ -959,8 +965,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 <div class="column small">
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">state_abb</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">state_abb</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 443 × 2
    district state_abb
@@ -1051,8 +1057,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 <div class="column small">
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">state</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">state</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 443 × 2
    district state   
@@ -1146,8 +1152,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 <div class="column small" style="width:70%;">
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"house_rep"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"house_rep"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 443 × 4
    district house_rep_20                   house_rep_22             house_rep_24
@@ -1241,8 +1247,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 <div class="column small">
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"house_party"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"house_party"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 443 × 4
    district house_party_20 house_party_22 house_party_24
@@ -1337,8 +1343,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 <div class="column small">
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">harris_24</span>, <span class="va">trump_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">harris_24</span>, <span class="va">trump_24</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 443 × 3
    district harris_24 trump_24
@@ -1432,8 +1438,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 <div class="column small">
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"gerry"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"gerry"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 443 × 4
    district gerry_22 gerry_24 gerry_26
@@ -1465,17 +1471,17 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="focus-2024-elections" class="level2"><h2 class="anchored" data-anchor-id="focus-2024-elections">Focus: 2024 Elections</h2>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">&lt;-</span> <span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">&lt;-</span> <span class="va">gerrymander</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">house_rep_24</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 435  14</code></pre>
 </div>
 </div>
 </section><section id="histogram---step-1" class="level2"><h2 class="anchored" data-anchor-id="histogram---step-1">Histogram - Step 1</h2>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1485,7 +1491,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="histogram---step-2" class="level2"><h2 class="anchored" data-anchor-id="histogram---step-2">Histogram - Step 2</h2>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1495,8 +1501,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="histogram---step-3" class="level2"><h2 class="anchored" data-anchor-id="histogram---step-3">Histogram - Step 3</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-label="2"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -1541,9 +1547,9 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="histogram---step-4" class="level2"><h2 class="anchored" data-anchor-id="histogram---step-4">Histogram - Step 4</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-label="3"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1553,15 +1559,15 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="histogram---step-5" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="histogram---step-5">Histogram - Step 5</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">labs</span>(</span>
-<span id="cb27-5"><a href="#cb27-5"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
-<span id="cb27-6"><a href="#cb27-6"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
-<span id="cb27-7"><a href="#cb27-7"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8"></a>    <span class="at">y =</span> <span class="st">"Count"</span></span>
-<span id="cb27-9"><a href="#cb27-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-label="3"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-label="4"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-5"><a href="#cb27-5" aria-label="5"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-label="6"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-label="7"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-label="8"></a>    <span class="at">y =</span> <span class="st">"Count"</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-label="9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1571,7 +1577,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="box-plot---step-1" class="level2"><h2 class="anchored" data-anchor-id="box-plot---step-1">Box plot - Step 1</h2>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1581,7 +1587,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="box-plot---step-2" class="level2"><h2 class="anchored" data-anchor-id="box-plot---step-2">Box plot - Step 2</h2>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1591,8 +1597,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="box-plot---step-3" class="level2"><h2 class="anchored" data-anchor-id="box-plot---step-3">Box plot - Step 3</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-label="2"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1602,8 +1608,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="box-plot---alternative-step-2-3" class="level2"><h2 class="anchored" data-anchor-id="box-plot---alternative-step-2-3">Box plot - Alternative Step 2 + 3</h2>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1613,14 +1619,14 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="box-plot---step-4" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="box-plot---step-4">Box plot - Step 4</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">labs</span>(</span>
-<span id="cb32-4"><a href="#cb32-4"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
-<span id="cb32-5"><a href="#cb32-5"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
-<span id="cb32-6"><a href="#cb32-6"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
-<span id="cb32-7"><a href="#cb32-7"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
-<span id="cb32-8"><a href="#cb32-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-label="2"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-label="3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-4"><a href="#cb32-4" aria-label="4"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-label="5"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-label="6"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-label="7"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-label="8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-24-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1630,7 +1636,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plot---step-1" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-1">Density plot - Step 1</h2>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-25-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1640,7 +1646,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plot---step-2" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-2">Density plot - Step 2</h2>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1650,8 +1656,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plot---step-3" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-3">Density plot - Step 3</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-label="2"></a>  <span class="fu">geom_density</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1661,8 +1667,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plot---step-4" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-4">Density plot - Step 4</h2>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-28-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1672,8 +1678,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plot---step-5" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-5">Density plot - Step 5</h2>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span>, fill <span class="op">=</span> <span class="st">"firebrick1"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span>, fill <span class="op">=</span> <span class="st">"firebrick1"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-29-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1683,8 +1689,8 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plot---step-6" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-6">Density plot - Step 6</h2>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span>, fill <span class="op">=</span> <span class="st">"firebrick1"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"firebrick"</span>, fill <span class="op">=</span> <span class="st">"firebrick1"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-30-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1694,13 +1700,13 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plot---step-7" class="level2"><h2 class="anchored" data-anchor-id="density-plot---step-7">Density plot - Step 7</h2>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gerrymander_24</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span></span>
 <span>    color <span class="op">=</span> <span class="st">"firebrick"</span>,</span>
 <span>    fill <span class="op">=</span> <span class="st">"firebrick1"</span>,</span>
 <span>    alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>    linewidth <span class="op">=</span> <span class="fl">1</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-31-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1710,19 +1716,19 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plot---step-8" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="density-plot---step-8">Density plot - Step 8</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">geom_density</span>(</span>
-<span id="cb40-3"><a href="#cb40-3"></a>    <span class="at">color =</span> <span class="st">"firebrick"</span>,</span>
-<span id="cb40-4"><a href="#cb40-4"></a>    <span class="at">fill =</span> <span class="st">"firebrick1"</span>,</span>
-<span id="cb40-5"><a href="#cb40-5"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb40-6"><a href="#cb40-6"></a>    <span class="at">linewidth =</span> <span class="dv">2</span></span>
-<span id="cb40-7"><a href="#cb40-7"></a>  ) <span class="sc">+</span></span>
-<span id="cb40-8"><a href="#cb40-8"></a>  <span class="fu">labs</span>(</span>
-<span id="cb40-9"><a href="#cb40-9"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
-<span id="cb40-10"><a href="#cb40-10"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
-<span id="cb40-11"><a href="#cb40-11"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
-<span id="cb40-12"><a href="#cb40-12"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
-<span id="cb40-13"><a href="#cb40-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-label="1"></a><span class="fu">ggplot</span>(gerrymander_24, <span class="fu">aes</span>(<span class="at">x =</span> trump_24)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-label="2"></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb40-3"><a href="#cb40-3" aria-label="3"></a>    <span class="at">color =</span> <span class="st">"firebrick"</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-label="4"></a>    <span class="at">fill =</span> <span class="st">"firebrick1"</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-label="5"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-label="6"></a>    <span class="at">linewidth =</span> <span class="dv">2</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-label="7"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-label="8"></a>  <span class="fu">labs</span>(</span>
+<span id="cb40-9"><a href="#cb40-9" aria-label="9"></a>    <span class="at">title =</span> <span class="st">"Percent of vote received by Trump in 2024 Presidential Election"</span>,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-label="10"></a>    <span class="at">subtitle =</span> <span class="st">"From each Congressional District"</span>,</span>
+<span id="cb40-11"><a href="#cb40-11" aria-label="11"></a>    <span class="at">x =</span> <span class="st">"Percent of vote"</span>,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-label="12"></a>    <span class="at">y =</span> <span class="st">"Density"</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-label="13"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-32-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1732,7 +1738,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="summary-statistics" class="level2"><h2 class="anchored" data-anchor-id="summary-statistics">Summary statistics</h2>
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
 <span>    mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
 <span>    sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
@@ -1741,7 +1747,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 <span>    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
 <span>    q75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
 <span>    max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 7
    mean    sd   min   q25 median   q75   max
@@ -1771,14 +1777,14 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="side-by-side-box-plots" class="level2"><h2 class="anchored" data-anchor-id="side-by-side-box-plots">Side-by-side box plots</h2>
 <div class="cell" data-output-location="column">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb43-2"><a href="#cb43-2"></a>  gerrymander_24,</span>
-<span id="cb43-3"><a href="#cb43-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb43-4"><a href="#cb43-4"></a>    <span class="at">x =</span> trump_24,</span>
-<span id="cb43-5"><a href="#cb43-5"></a>    <span class="at">y =</span> gerry_24</span>
-<span id="cb43-6"><a href="#cb43-6"></a>  )</span>
-<span id="cb43-7"><a href="#cb43-7"></a>) <span class="sc">+</span></span>
-<span id="cb43-8"><a href="#cb43-8"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-label="1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-label="2"></a>  gerrymander_24,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-label="3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb43-4"><a href="#cb43-4" aria-label="4"></a>    <span class="at">x =</span> trump_24,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-label="5"></a>    <span class="at">y =</span> gerry_24</span>
+<span id="cb43-6"><a href="#cb43-6" aria-label="6"></a>  )</span>
+<span id="cb43-7"><a href="#cb43-7" aria-label="7"></a>) <span class="sc">+</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-label="8"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-34-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="480"></a></p>
@@ -1794,7 +1800,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># [blank]</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
 <span>    min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
@@ -1802,7 +1808,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 <span>    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
 <span>    q75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
 <span>    max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="wooclap-choices">
@@ -1826,7 +1832,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="grouped-summary-statistics" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="grouped-summary-statistics">Grouped summary statistics</h2>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gerrymander_24</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">gerry_24</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
 <span>    min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
@@ -1834,7 +1840,7 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 <span>    median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
 <span>    q75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">trump_24</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
 <span>    max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">trump_24</span><span class="op">)</span>,</span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   gerry_24   min   q25 median   q75   max
@@ -1850,9 +1856,9 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </section><section id="na-for-gerrymandering" class="level2"><h2 class="anchored" data-anchor-id="na-for-gerrymandering">
 <code>NA</code> for gerrymandering?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb47-2"><a href="#cb47-2"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb47-3"><a href="#cb47-3"></a>  <span class="fu">select</span>(district, <span class="fu">starts_with</span>(<span class="st">"state"</span>), <span class="fu">starts_with</span>(<span class="st">"gerry"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-label="3"></a>  <span class="fu">select</span>(district, <span class="fu">starts_with</span>(<span class="st">"state"</span>), <span class="fu">starts_with</span>(<span class="st">"gerry"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 6
    district state_abb state        gerry_22 gerry_24 gerry_26
@@ -1871,10 +1877,10 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="density-plots" class="level2"><h2 class="anchored" data-anchor-id="density-plots">Density plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb49-2"><a href="#cb49-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb49-3"><a href="#cb49-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
-<span id="cb49-4"><a href="#cb49-4"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-label="4"></a>  <span class="fu">geom_density</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-38-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1884,10 +1890,10 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="filled-density-plots" class="level2"><h2 class="anchored" data-anchor-id="filled-density-plots">Filled density plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb50-3"><a href="#cb50-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
-<span id="cb50-4"><a href="#cb50-4"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-label="4"></a>  <span class="fu">geom_density</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-39-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1897,10 +1903,10 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="better-filled-density-plots" class="level2"><h2 class="anchored" data-anchor-id="better-filled-density-plots">Better filled density plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb51-3"><a href="#cb51-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
-<span id="cb51-4"><a href="#cb51-4"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-label="4"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-40-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1910,12 +1916,12 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="better-colors" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="better-colors">Better colors</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
-<span id="cb52-4"><a href="#cb52-4"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb52-5"><a href="#cb52-5"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
-<span id="cb52-6"><a href="#cb52-6"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">color =</span> gerry_24, <span class="at">fill =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-label="4"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-label="5"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-label="6"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-41-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1925,11 +1931,11 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="violin-plots" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="violin-plots">Violin plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb53-2"><a href="#cb53-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb53-3"><a href="#cb53-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
-<span id="cb53-4"><a href="#cb53-4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb53-5"><a href="#cb53-5"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-label="4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-label="5"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-42-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1939,12 +1945,12 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="multiple-geoms" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="multiple-geoms">Multiple geoms</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb54-3"><a href="#cb54-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
-<span id="cb54-4"><a href="#cb54-4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb54-5"><a href="#cb54-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb54-6"><a href="#cb54-6"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-label="4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-label="5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-label="6"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-43-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1954,12 +1960,12 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="multiple-geoms-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="multiple-geoms-1">Multiple geoms</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb55-2"><a href="#cb55-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb55-3"><a href="#cb55-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
-<span id="cb55-4"><a href="#cb55-4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb55-5"><a href="#cb55-5"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb55-6"><a href="#cb55-6"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-label="4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-label="5"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-label="6"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-44-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -1969,13 +1975,13 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
 </div>
 </section><section id="remove-legend" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="remove-legend">Remove legend</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
-<span id="cb56-3"><a href="#cb56-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
-<span id="cb56-4"><a href="#cb56-4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb56-5"><a href="#cb56-5"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb56-6"><a href="#cb56-6"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
-<span id="cb56-7"><a href="#cb56-7"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-label="1"></a>gerrymander_24 <span class="sc">|&gt;</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-label="2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gerry_24)) <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> gerry_24, <span class="at">color =</span> gerry_24)) <span class="sc">+</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-label="4"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-label="5"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-label="6"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-label="7"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><a href="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-45-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="05-exploratory-data-analysis-I_files/figure-revealjs/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="960"></a></p>
@@ -2084,13 +2090,14 @@ $ gerry_26       &lt;chr&gt; NA, "B", "B", "B", "B", "B", "B", "B", "C", "C", "C
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

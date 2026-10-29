@@ -1,0 +1,168 @@
+# Lab 1
+
+What’s streaming around the world?
+
+Lab
+
+Due: End of lab on Thurs, Sep 3
+
+> **IMPORTANT:**
+>
+> … and sit with them!
+
+# Introduction
+
+This lab reinforces the computing workflow we will use throughout the course: R, Positron, Quarto, Git, and GitHub. You will also work with a small dataset, make visualizations, and write a short reproducible report with your teammates.
+
+As the semester progresses, you are encouraged to experiment beyond the instructions in each lab. For now, focus on the basic building blocks: reading data, writing and running R code, making plots, rendering a Quarto document, and saving your work with Git and GitHub.
+
+> **WARNING:**
+>
+> This lab assumes you completed [Lab 0](../lab/lab-0.llms.md), including setting up Positron, GitHub, and Git. If you have not, complete it first.
+
+## Learning objectives
+
+By the end of this lab, you will:
+
+- gain experience using R, Positron, Git, and GitHub as part of a reproducible data-science workflow;
+- create a reproducible report using Quarto;
+- create data visualizations with the `tidyverse`, specifically using `ggplot2`; and
+- use a simple `dplyr` pipeline to transform and examine data.
+
+# Getting started
+
+## Clone your repository
+
+Clone your **lab-1** repository using the same process used in Lab 0.
+
+1.  Go to the course GitHub organization at [github.com/sta199-f26](https://github.com/sta199-f26) and click on the repository with prefix `lab-1`.
+2.  Select the green **Code** button and choose **HTTPS** under **Clone**. Click on the clipboard icon to copy the repo URL.
+3.  In Positron’s Welcome window, click on *New Folder From Git…*.
+4.  Paste the repository URL into the dialog box labeled *Git repository URL* and select **OK**.
+5.  Open `lab-1.qmd` in the Explorer pane.
+
+## Update the YAML
+
+The material between the first pair of `---` lines in a Quarto document is its *YAML* (“YAML Ain’t Markup Language”). It stores information about the document.
+
+Update the `authors` field in your team’s `lab-1.qmd` file to list your names. Then render the document. Check that the rendered document displays your names.
+
+## Commit and push
+
+Use the **Source Control** pane in Positron to review the changes you made. Stage the changed files, use a meaningful commit message such as `Updated authors`, and commit. Then select **Sync Changes** to push your commit to GitHub.
+
+> **TIP:**
+>
+> You do not need to commit after every small edit. Commit meaningful states of your work: for example, after completing a question or after making a plot you are happy with. You should have at least three meaningful commits by the end of this lab.
+
+# Guidelines
+
+## Code
+
+Follow the [tidyverse style guide](https://style.tidyverse.org/). In particular:
+
+- use spaces around `=` and after commas;
+- put a line break after `|>` in a pipeline;
+- indent code consistently; and
+- keep code lines short enough to be visible in the rendered document.
+
+## Plots
+
+- Give every plot an informative title.
+- Label axes and legends with meaningful names and units when appropriate.
+- Make deliberate aesthetic choices so the plot is easy to read.
+
+# Packages
+
+For this lab, you will use the **tidyverse**, a collection of packages for data science.
+
+``` downlit
+library(tidyverse)
+```
+
+Run this code cell, then render your document. Loading `tidyverse` gives you access to tools for importing data (`readr`), transforming data (`dplyr`), and visualizing data (`ggplot2`), among others.
+
+# Data
+
+You will analyze a fixed snapshot of the first 200 songs on Spotify’s Global Weekly chart for the week dated August 27, 2026. Each row represents a song.
+
+Spotify releases a new chart every week, and a website called [Kworb.net](https://kworb.net/) releases a snapshot of these data weekly. This week’s data was retrieved from [Kworb’s republished Spotify Global Weekly chart](https://kworb.net/spotify/country/global_weekly.html) on August 29, 2026.
+
+Spotify states that its chart stream counts are generated using a formula that filters for chart eligibility, so `streams` should not be interpreted as every raw Spotify play.[^1]
+
+Read the data into R with:
+
+``` downlit
+spotify <- read_csv(
+  "data/spotify-global-weekly-2026-08-27.csv"
+)
+```
+
+The variables are:
+
+- `rank`: Position on the chart, where 1 is the highest position.
+- `previous_rank_change`: Change in position from the previous weekly chart. A `+` indicates that a song moved up the chart; a `-` indicates that it moved down, aand `=` indicates no change. `NEW` or `RE` can appear in a full chart extract
+- `artist`: Credited artist or artists.
+- `song`: Song title.
+- `weeks_on_chart`: Number of consecutive weeks the song has appeared on the chart.
+- `peak_rank`: Best position the song has reached during its current chart run.
+- `streams`: Number of global streams during the chart week.
+- `genre`: Genre.[^2]
+
+# Questions
+
+## Question 1
+
+How many songs are in the dataset? How many variables are there? Use inline code to answer both questions.
+
+Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q1”.
+
+## Question 2
+
+Make a histogram and a boxplot of `streams`. Then, answer the following questions:
+
+- Is the distribution of weekly streams right-skewed, left-skewed, or approximately symmetric? Which plot or plots helped you decide?
+
+- Is the distribution unimodal, bimodal, multimodal, or uniform? Which plot or plots helped you decide?
+
+Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q2”.
+
+## Question 3
+
+In a single pipeline, identify the songs with unusually high weekly stream counts according to the boxplot. Display the song title, artist, and stream count in descending order of streams.
+
+Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q3”.
+
+## Question 4
+
+Find one song that has been on the chart for more than 100 weeks and one that has been on the chart for fewer than five weeks. What might explain the difference? This is an opportunity to explore the data; there is no single correct answer.
+
+Preview, commit, and push your changes to GitHub with the commit message “Added answer for Q4”.
+
+## Question 5
+
+Did you select your pages on Gradescope? You don’t need to write an answer for this question.
+
+# Wrap-up
+
+Before you leave lab, make sure you have:
+
+- attempted every question;
+- previewed your Quarto document;
+- committed and pushed all final changes to GitHub, ending with no pending or staged changes in the Source Control pane; and
+- submitted your rendered PDF to Gradescope.
+
+## Grading and feedback
+
+This lab is worth 30 points:
+
+- 10 points for attending lab and submitting work by the end of lab; and
+- 20 points for correct and complete answers, clear presentation, and following the required workflow.
+
+The workflow portion includes making at least three meaningful commits, pushing the final `.qmd` and rendered PDF to GitHub, and keeping your work organized.
+
+## Footnotes
+
+[^1]: See Spotify’s chart documentation: <https://support.spotify.com/ee-en/artists/article/understanding-spotify-charts/>.
+
+[^2]: Genre classified by ChatGPT at the artist level based on a prompt ran on 2026-08-31 on 5.6 Terra Medium. These labels describe the credited artist’s general musical style, not necessarily the genre of every individual song; artists and songs can belong to more than one genre.

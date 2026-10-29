@@ -1,0 +1,75 @@
+# Course support
+
+Most of you will need help at some point, and we want to make sure you can identify where that is so that you don’t get too frustrated and feel comfortable seeking help.
+
+## Lectures and labs
+
+If you have a question during the lecture or lab, feel free to ask it! There are likely other students with the same question, so asking will create a learning opportunity for everyone.
+
+## Help from humans
+
+### Office hours
+
+The teaching team is here to help you be successful in the course. You are encouraged to attend office hours during the times posted on the home page to ask questions about the course content and assignments. Many questions are most effectively answered in person, so office hours are a valuable resource. I encourage each and every one of you to take advantage of this resource! Make a pledge to stop by during office hours at least once during the first three weeks of class. If you have no questions, stop by and say hi and introduce yourself. You can find a list of everyone’s office hours [here](course-team.llms.md).
+
+Dr. Mine Çetinkaya-Rundel’s office hours will start in Week 1, TA office hours will start in Week 2.
+
+### Ed Discussion
+
+Have a question that can’t wait for office hours? Prefer to write out your question in detail rather than asking in person? The course discussion forum, Ed Discussion, is the best venue for these! There is a chance another student has already asked a similar question, so please check the other posts before asking a new question. If you know the answer to a question that is posted, I encourage you to respond!
+
+You can access this tool on the course website toolbar – just click on the lifesaver icon.
+
+### Peer Tutors
+
+The Academic Resource Center’s Peer Education Team is supporting STA 199 students this semester!
+
+ARC Peer Tutoring Groups are small groups of 2-5 students in the same course who meet weekly with a Peer Educator. This free resource is focused on allowing students to receive additional support for questions they have on the course content while being part of a community of fellow learners. Peer Educators will communicate with students in advance of the meetings so that they can be responsive to student needs during the group meetings. Some groups meet in person and some meet virtually.
+
+Peer Tutoring Groups are a great option if you have specific questions/problems you want to work on. For signup instructions, more details, and to see what other courses we offer services for, please visit the ARC’s website: https://arc.duke.edu/peer-education/
+
+Signups for Peer Tutoring Groups open the morning of Thursday, September 3rd and groups start meeting on Tuesday, September 8th.
+
+## Email
+
+Please refrain from emailing any course content questions (those should go to Ed Discussion), and only use email for questions about personal matters that may not be appropriate for the public course forum. For questions about extensions, accommodations, missed work, or registration, please email the course coordinator, Dr. Mary Knox, at <mary.knox@duke.edu>. For other personal matters, you may email Dr. Mine Çetinkaya-Rundel at <mc301@duke.edu>.
+
+If there is a question that’s not appropriate for the public forum, you are welcome to email me directly. **If you email me, please include “STA 199” in the subject line.** Barring extenuating circumstances, I will respond to STA 199 emails within 48 hours Monday - Friday. Response time may be slower for emails sent Friday evening - Sunday.
+
+## Academic support
+
+The [Academic Resource Center](https://arc.duke.edu/) (the ARC) offers services to support students academically during their undergraduate careers at Duke. The ARC can provide support with time management, academic skills and strategies, course-specific tutoring, presentation skills, public speaking, and more. ARC services are available free to all Duke undergraduate students studying any discipline. Learn more:
+
+- [Learning Consultations](https://arc.duke.edu/learning-consultations/) – time management, study strategies, learning preferences, and more
+- [VOICE Lab](https://arc.duke.edu/voice-lab/) – strengthen public speaking, practice presentations, and more
+
+You can contact the Academic Resource Center by phone at (919) 684-5917, by email at <theARC@duke.edu>, or by visiting <http://arc.duke.edu>.
+
+The [Writing and Communication Center](https://wrp.duke.edu/wcc) provides all writers in all disciplines with collaborative, writer-directed conversations at any stage in their processes. Writing consultants offer attentive, non-evaluative feedback to help you see whether you’re expressing ideas in ways that are clear to someone outside our class, whether you’re working on a writing assignment, oral presentation, poster, or other text-based project.  Writing and Communication consultations can be productive at any stage in your process, including before you have started drafting. Visit <https://wrp.duke.edu/wcc> to learn more and to schedule an in-person or online appointment.
+
+## Mental health and well-being
+
+Duke is committed to holistic student well-being, which includes one’s mental, emotional, and physical health. The university offers resources to help students manage daily stress, to encourage intentional self-care, and to access just-in-time support. If you find you need support, your mental and/or emotional health concerns are impacting your day-to-day activities, your academic performance, or you need someone to talk to, please see the following resources: <https://students.duke.edu/get-assistance/resources/>.
+
+## Course costs
+
+- **Textbooks:** The textbooks for this course are freely available on the web.
+- **Laptops:** Each student is expected to have a laptop they can bring to each lecture and lab.
+
+If you are having difficulty with the costs associated with this course, here are some resources:
+
+- [**Karsh Office of Undergraduate Support**](https://financialaid.duke.edu/)**:** Regardless of your aid package, Karsh offers loans and resources for connecting students with campus programs that might help alleviate course costs.
+
+- [**DukeLIFE**](https://dukelife.duke.edu/programs/course-materials-assistance/)**:** The Course Materials Assistance Program assists eligible students with access to required course materials. Eligible students are notified before the semester begins. To ensure access, instructors must adopt their course materials in eCampus.
+
+- [**Duke Libraries**](https://library.duke.edu/course-support/course-reserves/textbooks)**:** The library’s [Top Textbooks Program](https://library.duke.edu/course-support/course-reserves/textbooks) allows you to check out some textbooks for 3 hours at a time. The library also has a selection of texts to borrow for an entire semester. Browse the offerings on the Semester Loans shelf near the entrance to Perkins Library (near the coffee shop) or [Chat with a Librarian](https://library.duke.edu/research/ask) to ask about the availability of a title.
+
+- [**Duke Link**](https://link.duke.edu/)**:** You can reserve rental equipment from the Link for course-specific technology needs, such as a Digital Voice Recorder, HD Video Camera, TI-84 Plus CE, DSLR camera kit, Tripod, Shotgun Mic, iPad Mini 4, Handheld Projector, or GoPro.
+
+## Assistance with Zoom or Canvas
+
+For technical help with Canvas visit [go.canvas.duke.edu/get-help/](https://go.canvas.duke.edu/get-help/). For technical help with Zoom contact the Duke OIT Service Desk at [oit.duke.edu/help](https://oit.duke.edu/help). You can also access the self-service help documentation for [Zoom](https://oit.duke.edu/help/articles/kb0029318/) and [Canvas](https://community.canvaslms.com/t5/Student-Guide/tkb-p/student).
+
+Note that we will be using Canvas minimally in this course (primarily for announcements and the grade book). All assignment submissions will take place on Gradescope and GitHub, and conversations will take place on Ed Discussion.
+
+Zoom will be used for online office hours and as a backup option should we need to hold the course online instead of in person.
