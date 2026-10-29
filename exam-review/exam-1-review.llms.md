@@ -347,6 +347,8 @@ ggplot(penguins, aes(x = island, fill = species)) +
 
 [![](exam-1-review_files/figure-html/penguins-species-island-bar-plots-5.png)](exam-1-review_files/figure-html/penguins-species-island-bar-plots-5.png)
 
+ 
+
 ## NYC Flights
 
 The `flights` dataset includes characteristics of all flights departing from New York City airports (JFK, LGA, EWR) in 2013. Below is a peek at the first ten rows of the `flights` data.
@@ -648,7 +650,7 @@ The data for the next few questions come from the Internet Movie Database (IMDB)
 The name of the data frame used for this analysis is `movies`, and it contains the variables shown in [Table 1](#tbl-data-dictionary).
 
 | Variable | Description |
-|----|----|
+|:---|:---|
 | `name` | name of the movie |
 | `rating` | rating of the movie (R, PG, etc.) |
 | `genre` | main genre of the movie. |
@@ -673,71 +675,38 @@ The first thirty rows of the `movies` data frame are shown in [Table 2](#tbl-da
 First 30 rows of `movies`, with variable types suppressed.
 
     # A tibble: 500 × 16
-       name           score runtime genre     rating    release_country release_date
-     1 Blue City        4.4 83 mins Action    R         United States   1986-05-02  
-     2 Winter Sleep     8.1 196     Drama     Not Rated Turkey          2014-06-12  
-     3 Rang De Basan…   8.1 167     Comedy    Not Rated United States   2006-01-26  
-     4 Pokémon Detec…   6.6 104     Action    PG        United States   2019-05-10  
-     5 A Bad Moms Ch…   5.6 104     Comedy    R         United States   2017-11-01  
-     6 Replicas         5.5 107     Drama     PG-13     United States   2019-01-11  
-     7 Windy City       5.8 103     Drama     R         Uruguay         1986-01-01  
-     8 War for the P…   7.4 140     Action    PG-13     United States   2017-07-14  
-     9 Tales from th…   6.4 98      Crime     R         United States   1995-05-24  
-    10 Fire with Fire   6.5 103     Drama     PG-13     United States   1986-05-09  
-    11 Raising Helen    6   119     Comedy    PG-13     United States   2004-05-28  
-    12 Feeling Minne…   5.4 99      Comedy    R         United States   1996-09-13  
-    13 The Babe         5.9 115     Biography PG        United States   1992-04-17  
-    14 The Real Blon…   6   105     Comedy    R         United States   1998-02-27  
-    15 To vlemma tou…   7.6 176     Drama     Not Rated United States   1997-11-01  
-    16 Going the Dis…   6.3 102     Comedy    R         United States   2010-09-03  
-    17 Jung on zo       6.8 103     Action    R         Hong Kong       1993-06-24  
-    18 Rita, Sue and…   6.5 93      Comedy    R         United Kingdom  1987-05-29  
-    19 Phone Booth      7   81      Crime     R         United States   2003-04-04  
-    20 Happy Death D…   6.6 96      Comedy    PG-13     United States   2017-10-13  
-    21 Barely Legal     4.7 90      Comedy    R         Thailand        2006-05-25  
-    22 Three Kings      7.1 114     Action    R         United States   1999-10-01  
-    23 Menace II Soc…   7.5 97      Crime     R         United States   1993-05-26  
-    24 Four Rooms       6.8 98      Comedy    R         United States   1995-12-25  
-    25 Quartet          6.8 98      Comedy    PG-13     United States   2013-03-01  
-    26 Tape             7.2 86      Drama     R         Denmark         2002-07-12  
-    27 Marked for De…   6   93      Action    R         United States   1990-10-05  
-    28 Congo            5.2 109     Action    PG-13     United States   1995-06-09  
-    29 Stop-Loss        6.4 112     Drama     R         United States   2008-03-28  
-    30 Con Air          6.9 115     Action    R         United States   1997-06-06  
-          budget     gross  votes  year director         writer        star         
-                                          
-     1  10000000   6947787   1100  1986 Michelle Manning Ross Macdona… Judd Nelson  
-     2        NA   4018705  48000  2014 Nuri Bilge Ceyl… Ebru Ceylan   Haluk Bilgin…
-     3        NA  10800778 115000  2006 Rakeysh Ompraka… Renzil D'Sil… Aamir Khan   
-     4 150000000 433921300 146000  2019 Rob Letterman    Dan Hernandez Ryan Reynolds
-     5  28000000 130560428  46000  2017 Jon Lucas        Jon Lucas     Mila Kunis   
-     6  30000000   9330075  34000  2018 Jeffrey Nachman… Chad St. John Keanu Reeves 
-     7        NA    343890    262  1984 Armyan Bernstein Armyan Berns… John Shea    
-     8 150000000 490719763 235000  2017 Matt Reeves      Mark Bomback  Andy Serkis  
-     9   6000000  11837928   7400  1995 Rusty Cundieff   Rusty Cundie… Clarence Wil…
-    10        NA   4636169   1500  1986 Duncan Gibbins   Bill Phillips Craig Sheffer
-    11  50000000  49718611  36000  2004 Garry Marshall   Patrick J. C… Kate Hudson  
-    12        NA   3124440  11000  1996 Steven Baigelman Steven Baige… Keanu Reeves 
-    13        NA  19930973   9300  1992 Arthur Hiller    John Fusco    John Goodman 
-    14        NA     83488   3900  1997 Tom DiCillo      Tom DiCillo   Matthew Modi…
-    15        NA        NA   6400  1995 Theodoros Angel… Theodoros An… Harvey Keitel
-    16  32000000  42059111  57000  2010 Nanette Burstein Geoff LaTuli… Drew Barrymo…
-    17        NA   3741869   6100  1993 Kirk Wong        Tin Nam Chun  Jackie Chan  
-    18        NA    124167   3600  1987 Alan Clarke      Andrea Dunbar Siobhan Finn…
-    19  13000000  97837138 255000  2002 Joel Schumacher  Larry Cohen   Colin Farrell
-    20   4800000 125479266 124000  2017 Christopher Lan… Scott Lobdell Jessica Rothe
-    21        NA     83439   5900  2003 David Mickey Ev… David H. Ste… Erik von Det…
-    22  75000000 107752036 163000  1999 David O. Russell John Ridley   George Cloon…
-    23   3500000  27912072  54000  1993 Albert Hughes    Allen Hughes  Tyrin Turner 
-    24   4000000   4257354 100000  1995 Directors        Allison Ande… Tim Roth     
-    25  11000000  59520298  19000  2012 Dustin Hoffman   Ronald Harwo… Maggie Smith 
-    26    100000    515900  19000  2001 Richard Linklat… Stephen Belb… Ethan Hawke  
-    27  12000000  57968936  21000  1990 Dwight H. Little Michael Grais Steven Seagal
-    28  50000000 152022101  43000  1995 Frank Marshall   Michael Cric… Laura Linney 
-    29  25000000  11212953  20000  2008 Kimberly Peirce  Mark Richard  Ryan Phillip…
-    30  75000000 224012234 282000  1997 Simon West       Scott Rosenb… Nicolas Cage 
+       name             score runtime genre     rating    release_country release_date    budget     gross  votes  year director      writer        star          company       country      
+     1 Blue City          4.4 83 mins Action    R         United States   1986-05-02    10000000   6947787   1100  1986 Michelle Man… Ross Macdona… Judd Nelson   Paramount Pi… United States
+     2 Winter Sleep       8.1 196     Drama     Not Rated Turkey          2014-06-12          NA   4018705  48000  2014 Nuri Bilge C… Ebru Ceylan   Haluk Bilgin… NBC Film      Turkey       
+     3 Rang De Basanti    8.1 167     Comedy    Not Rated United States   2006-01-26          NA  10800778 115000  2006 Rakeysh Ompr… Renzil D'Sil… Aamir Khan    ROMP          India        
+     4 Pokémon Detecti…   6.6 104     Action    PG        United States   2019-05-10   150000000 433921300 146000  2019 Rob Letterman Dan Hernandez Ryan Reynolds Warner Bros.  United States
+     5 A Bad Moms Chri…   5.6 104     Comedy    R         United States   2017-11-01    28000000 130560428  46000  2017 Jon Lucas     Jon Lucas     Mila Kunis    Huayi Brothe… United States
+     6 Replicas           5.5 107     Drama     PG-13     United States   2019-01-11    30000000   9330075  34000  2018 Jeffrey Nach… Chad St. John Keanu Reeves  Company Films United Kingd…
+     7 Windy City         5.8 103     Drama     R         Uruguay         1986-01-01          NA    343890    262  1984 Armyan Berns… Armyan Berns… John Shea     CBS Theatric… United States
+     8 War for the Pla…   7.4 140     Action    PG-13     United States   2017-07-14   150000000 490719763 235000  2017 Matt Reeves   Mark Bomback  Andy Serkis   Twentieth Ce… United States
+     9 Tales from the …   6.4 98      Crime     R         United States   1995-05-24     6000000  11837928   7400  1995 Rusty Cundie… Rusty Cundie… Clarence Wil… 40 Acres & A… United States
+    10 Fire with Fire     6.5 103     Drama     PG-13     United States   1986-05-09          NA   4636169   1500  1986 Duncan Gibbi… Bill Phillips Craig Sheffer Paramount Pi… United States
+    11 Raising Helen      6   119     Comedy    PG-13     United States   2004-05-28    50000000  49718611  36000  2004 Garry Marsha… Patrick J. C… Kate Hudson   Touchstone P… United States
+    12 Feeling Minneso…   5.4 99      Comedy    R         United States   1996-09-13          NA   3124440  11000  1996 Steven Baige… Steven Baige… Keanu Reeves  Fine Line Fe… United States
+    13 The Babe           5.9 115     Biography PG        United States   1992-04-17          NA  19930973   9300  1992 Arthur Hiller John Fusco    John Goodman  Universal Pi… United States
+    14 The Real Blonde    6   105     Comedy    R         United States   1998-02-27          NA     83488   3900  1997 Tom DiCillo   Tom DiCillo   Matthew Modi… Lakeshore En… United States
+    15 To vlemma tou O…   7.6 176     Drama     Not Rated United States   1997-11-01          NA        NA   6400  1995 Theodoros An… Theodoros An… Harvey Keitel Greek Film C… Greece       
+    16 Going the Dista…   6.3 102     Comedy    R         United States   2010-09-03    32000000  42059111  57000  2010 Nanette Burs… Geoff LaTuli… Drew Barrymo… New Line Cin… United States
+    17 Jung on zo         6.8 103     Action    R         Hong Kong       1993-06-24          NA   3741869   6100  1993 Kirk Wong     Tin Nam Chun  Jackie Chan   Golden Harve… Hong Kong    
+    18 Rita, Sue and B…   6.5 93      Comedy    R         United Kingdom  1987-05-29          NA    124167   3600  1987 Alan Clarke   Andrea Dunbar Siobhan Finn… British Scre… United Kingd…
+    19 Phone Booth        7   81      Crime     R         United States   2003-04-04    13000000  97837138 255000  2002 Joel Schumac… Larry Cohen   Colin Farrell Fox 2000 Pic… United States
+    20 Happy Death Day    6.6 96      Comedy    PG-13     United States   2017-10-13     4800000 125479266 124000  2017 Christopher … Scott Lobdell Jessica Rothe Universal Pi… United States
+    21 Barely Legal       4.7 90      Comedy    R         Thailand        2006-05-25          NA     83439   5900  2003 David Mickey… David H. Ste… Erik von Det… Internationa… Germany      
+    22 Three Kings        7.1 114     Action    R         United States   1999-10-01    75000000 107752036 163000  1999 David O. Rus… John Ridley   George Cloon… Warner Bros.  United States
+    23 Menace II Socie…   7.5 97      Crime     R         United States   1993-05-26     3500000  27912072  54000  1993 Albert Hughes Allen Hughes  Tyrin Turner  New Line Cin… United States
+    24 Four Rooms         6.8 98      Comedy    R         United States   1995-12-25     4000000   4257354 100000  1995 Directors     Allison Ande… Tim Roth      Miramax       United States
+    25 Quartet            6.8 98      Comedy    PG-13     United States   2013-03-01    11000000  59520298  19000  2012 Dustin Hoffm… Ronald Harwo… Maggie Smith  Headline Pic… United Kingd…
+    26 Tape               7.2 86      Drama     R         Denmark         2002-07-12      100000    515900  19000  2001 Richard Link… Stephen Belb… Ethan Hawke   Detour Filmp… United States
+    27 Marked for Death   6   93      Action    R         United States   1990-10-05    12000000  57968936  21000  1990 Dwight H. Li… Michael Grais Steven Seagal Victor & Gra… United States
+    28 Congo              5.2 109     Action    PG-13     United States   1995-06-09    50000000 152022101  43000  1995 Frank Marsha… Michael Cric… Laura Linney  Paramount Pi… United States
+    29 Stop-Loss          6.4 112     Drama     R         United States   2008-03-28    25000000  11212953  20000  2008 Kimberly Pei… Mark Richard  Ryan Phillip… Paramount Pi… United States
+    30 Con Air            6.9 115     Action    R         United States   1997-06-06    75000000 224012234 282000  1997 Simon West    Scott Rosenb… Nicolas Cage  Touchstone P… United States
     # ℹ 470 more rows
-    # ℹ 2 more variables: company, country
 
 Table 2
 
