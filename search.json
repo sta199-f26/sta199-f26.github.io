@@ -3677,6 +3677,146 @@
     ]
   },
   {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html",
+    "title": "HW 4 Rubric",
+    "section": "",
+    "text": "This is the rubric for AI feedback, not necessarily the rubric for grading."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html#question-1",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html#question-1",
+    "title": "HW 4 Rubric",
+    "section": "Question 1",
+    "text": "Question 1\n\nCode reads the 2026 Draft Player Stats sheet from nba-draft-combine-2627.xlsx with read_excel() or an equivalent readxl function.\nCode reads the 2026 Draft Picks sheet from the same workbook.\nCode excludes the three extraneous rows above the stats header and uses the correct column headings for both sheets.\n\nNote: skip = 3 is appropriate for the stats sheet. The picks sheet does not need rows skipped. Equivalent approaches are acceptable if they preserve the headers and player records.\n\nMissing values are represented as NA, including blank cells and the - and -% placeholders.\n\nNote: The na argument in read_excel() is the simplest approach. Correct recoding after import is also acceptable.\n\nAll variable names in both data frames use snake_case, for example through clean_names().\n\nNote: Cleaning names in a separate pipeline is acceptable.\n\nCode saves the two complete datasets as separate data frames without overwriting one with the other.\n\nNote: Names do not have to match the key.\n\nThe imported stats data frame has 78 rows and 16 columns, and the picks data frame has 50 rows and 7 columns.\n\nNote: These are checks on the saved data, not a requirement to write code reporting dimensions. Do not repeat feedback if an earlier import error explains a mismatch.\n\nOutput displays the first ten rows of the stats data frame.\nOutput displays the first ten rows of the picks data frame.\n\nNote for items 8–9: Direct tibble display or slice_head(n = 10), or an equivalent approach is acceptable. Only columns that fit on the page need to be shown. Displaying a preview should not truncate the saved data frame.\n\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html#question-2",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html#question-2",
+    "title": "HW 4 Rubric",
+    "section": "Question 2",
+    "text": "Question 2\n\nPart a. Code identifies players in the stats data but absent from the supplied picks data.\n\nNote: Use anti_join() with stats on the left and picks on the right, or an equivalent approach.\n\nPart b. Code identifies players in the supplied picks data but absent from the stats data.\n\nNote: Use anti_join() with picks on the left and stats on the right, or an equivalent approach.\n\nBoth comparisons match records by player.\n\nNote: by = join_by(player), by = \"player\", or an equivalent comparison is acceptable.\n\nPart a. Output is displayed and contains 33 unmatched stats records.\n\nNote: A tibble preview showing the total row count is acceptable; displaying all 33 rows is not required.\n\nPart b. Output is displayed and contains the five unmatched picks: AJ Dybantsa, Mikel Brown Jr., Nate Ament, Sergio de Larrea, and Chris Cenac Jr.\nPart c. Narrative reports both counts correctly: 33 stats-only records and 5 picks-only records.\n\nNote: If an earlier import or comparison error changes the counts, identify the underlying error and check whether the narrative matches the student’s output. Avoid repeating feedback for the same error.\n\nPart c. The summary is a single, concise sentence that makes clear which count refers to each type of mismatch.\nThe response describes mismatches in the supplied data without concluding that all unmatched stats players went undrafted.\n\nNote: The picks data contain only the first 50 picks. Name differences can also cause mismatches, such as “AJ Dybantsa” versus “Anicet Dybantsa”. Identifying or fixing these name differences is not required for this question.\n\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html#question-3",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html#question-3",
+    "title": "HW 4 Rubric",
+    "section": "Question 3",
+    "text": "Question 3\n\nPart a. Code uses a single pipeline starting with the stats data, excludes players with missing positions, and groups by pos.\nPart a. Code calculates n as the number of players in each position, including players with missing weights.\n\nNote: Do not filter out missing weights before counting. PG should have 19 players and SF should have 8; each includes one player with a missing weight.\n\nPart a. Code calculates mean_weight as the mean weight in pounds, excluding missing weights.\n\nNote: mean(weight_lbs, na.rm = TRUE) is appropriate. Without missing-value handling, PG and SF have NA means.\n\nPart a. Code calculates median_weight as the median weight in pounds, excluding missing weights.\n\nNote: median(weight_lbs, na.rm = TRUE) is appropriate. The median is required.\n\nPart a. Output is displayed with five rows and exactly four columns: pos, n, mean_weight, and median_weight.\nPart a. Results are ordered by descending mean weight: C, PF, SF, SG, PG.\nPart b. A one-sentence justification explains why the selected plot type is useful for comparing weight distributions across positions.\n\nNote: Boxplots, violin plots, jittered or dodged dot plots, and appropriately grouped density plots or histograms are acceptable.\n\nPart b. Code creates the selected plot using only players with nonmissing positions and weights.\n\nNote: Filtering missing weights here is appropriate; filtering them before counting in Part a is not.\n\nPart b. The plot has an informative title and readable axis labels, including weight units.\nPart c. In at most three sentences, the narrative interprets the relationship between position and weight using both the summary statistics and visualization.\n\nNote: Centers tend to be heaviest and point guards lightest, with PF, SF, and SG in between. Accept other accurate comparisons supported by the results. If an earlier error affects the results, distinguish that error from the student’s interpretation rather than repeating the same feedback.\n\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable. An explicit .groups = \"drop\" in summarize() is also acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html#question-4",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html#question-4",
+    "title": "HW 4 Rubric",
+    "section": "Question 4",
+    "text": "Question 4\n\nCode joins the two datasets by player and retains only players present in both.\n\nNote: inner_join() with by = join_by(player), by = \"player\", or an equivalent approach is acceptable.\n\nThe plot excludes players with missing weight_lbs.\nThe plot excludes players with missing three_quarter_sprint_sec.\n\nNote for items 2–3: Filtering before or after the join is acceptable. Deliberately handling missing values in the plotting code is also acceptable; unexplained warnings should receive feedback. With correct imports and matching, the plot contains 41 players.\n\nCode produces a scatterplot with weight_lbs on the x-axis and three_quarter_sprint_sec on the y-axis.\nThe plot has an informative, readable title.\nAxis labels are human-readable and identify weight in pounds and sprint time in seconds.\nPlayers whose affiliation is \"Duke\" are colored Duke blue (#00539B).\nPlayers not from Duke are colored light gray (gray70).\nAll three Duke players are labeled with their names: Cameron Boozer, Isaiah Evans, and Maliq Brown.\n\nNote: geom_label(), geom_text(), or an equivalent labeling approach is acceptable.\n\nDuke player labels do not overlap their own points.\n\nNote: Overlap with non-Duke points is allowed, and label positions need not exactly match the reference. Repelled labels are also acceptable.\n\nThe plot uses theme_minimal().\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable. If an earlier error affects multiple checks, identify the underlying error rather than repeating the same feedback."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html#question-5",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html#question-5",
+    "title": "HW 4 Rubric",
+    "section": "Question 5",
+    "text": "Question 5\n\nIn a 2–3 sentence response, the narrative identifies the main finding: 89% of U.S. adults in 2026 perceive government corruption as widespread, the highest percentage in Gallup’s 20-year series.\nThe narrative includes one accurate comparison across political groups or over time.\n\nNote: For example, 91% of Democrats versus 83% of Republicans, or an increase from 79% in 2025 to 89% in 2026. Other comparisons supported by the article are acceptable.\n\nThe narrative explains that the survey measures perceptions of corruption, not the actual extent of corruption."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html#question-6",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html#question-6",
+    "title": "HW 4 Rubric",
+    "section": "Question 6",
+    "text": "Question 6\n\nPart a. The downloaded data are from the chart “Perceived Government Corruption Spans Political Spectrum” and are saved in the data folder.\n\nNote: The filename need not match the key. If the repository is unavailable, file location cannot be verified from the rendered answer alone.\n\nPart b. Code reads the downloaded file with a function appropriate for its delimiter and correctly identifies the columns.\n\nNote: The source file used in the key is tab-delimited despite its .csv extension, so read_tsv() is appropriate. Other download formats may require a different reader.\n\nPart b. Code tidies the data into one observation per political group and year.\n\nNote: The resulting data should contain nine observations: three groups for each of 2024, 2025, and 2026. Equivalent tidy structures and variable names are acceptable.\n\nPart b. Code converts the percentage values to numeric without losing observations or changing their meaning.\n\nNote: Removing % with str_remove() and then using as.numeric(), or using parse_number(), are acceptable. Either a 0–100 or 0–1 scale is fine if the plot labels are consistent.\n\nPart c. Each group’s line connects its correct values in chronological order.\n\nNote: For 2024, 2025, and 2026, respectively: Republicans 87%, 81%, 83%; Democrats 57%, 76%, 91%; independents 78%, 85%, 90%.\n\nPart c. Group colors match the reference: red for Republicans, dark blue for Democrats, and muted teal for independents.\n\nNote: The reference colors are #F32735, #002169, and #6A8C89, respectively. Visually close colors are acceptable.\n\nPart c. Republican and Democratic lines are solid, and the independent line uses a dotted or short-dashed pattern matching the reference.\nPart c. Points appear at the 2024 and 2026 endpoints for each group, with no point markers at 2025.\nPart c. The x-axis displays 2024, 2025, and 2026 at equally spaced positions.\nPart c. The y-axis spans 40% to 100%, with ticks every 10 percentage points.\n\nNote: Percent signs may appear on every tick or only the top tick, as in the reference. Watch for accidental labels such as 8,700% when the data already use a 0–100 scale.\n\nPart c. The plot includes the title, survey question, % Yes label, and note that party identification data are available only from 2024 onward.\n\nNote: Equivalent wording, line breaks, fonts, and spacing are acceptable. Reproducing the Gallup logo is not required.\n\nPart c. A readable legend above the plot identifies Republicans, Democrats, and independents in that order.\nPart c. The 2026 endpoints are labeled 83, 91, and 90 for Republicans, Democrats, and independents, respectively.\n\nNote: Labels should be readable and associated with the correct lines; the 91 and 90 labels should not overlap.\n\nPart c. The narrative explains which non-default features were matched and how the code produced them.\n\nNote: Examples include manual colors and line types, endpoint labels, axis scales, legend placement, a pale green background, and horizontal gridlines. Explanations should agree with the submitted code.\n\nPart c. For any required feature that was not matched, the narrative describes what was tried and what did not work.\n\nNote: No such explanation is needed if all required features are matched. The plot does not need to be interactive.\n\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable. If one import or transformation error affects several plot features, identify that underlying error rather than repeating the same feedback."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html#question-7",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html#question-7",
+    "title": "HW 4 Rubric",
+    "section": "Question 7",
+    "text": "Question 7\n\nPart a. Code reads the two datasets and saves them as gymnastics and continents.\nPart a. Output displays the first ten rows of each data frame.\n\nNote for parts a–b: Direct tibble display or slice_head(n = 10), or an equivalent approach is acceptable.\n\nPart b. Code uses left_join() with gymnastics as the left data frame and continents as the right, with by = join_by(country == entity), or an equivalent join that preserves all gymnastics records.\nPart b. Code saves the result as a new, reasonably named data frame.\n\nNote: Any short but informative name is acceptable, such as gymnastics_continents or gym_cont.\n\nPart b. Output displays the first ten rows of the joined data frame.\nPart c. Code filters for vault routines (filter(event == \"Vault\")).\nPart c. Code groups by continent and summarizes the mean score in a single pipeline.\n\nNote: Performing the join within the same summary pipeline is also acceptable.\n\nPart d. Narrative states the summary has 7 rows: six continents and an NA group for unmatched countries, each summarizing vault routines.\nPart d. Narrative identifies South America as highest and Africa as lowest.\nPart e. Code uses anti_join() correctly to identify unmatched countries (Great Britain, AUT, Chinese Taipei).\nPart e. Narrative explains why each country failed to match and describes a reasonable fix for each.\n\nNote: Any reasonable fix, such as recoding names with mutate() and case_when() / if_else(), or explicitly assigning the correct continents to unmatched records, is acceptable. Implementing the fix is not required.\n\nCode style and readability: Line breaks after each |&gt;, line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-4-rubric.html#rubric",
+    "href": "hw/rubric-for-codex/hw-4-rubric.html#rubric",
+    "title": "HW 4 Rubric",
+    "section": "Rubric",
+    "text": "Rubric\n\nFinal .qmd and rendered PDF files exist in the remote GitHub repository.\nAt least three commits were made and pushed to the GitHub repository, and the submission is reasonably organized.\nAn AI-use disclosure states whether an LLM or generative AI tool was used (Yes or No).\nIf AI was used, the disclosure describes all the ways it was used.\nIf AI was used, the disclosure lists all tools used, including model names and versions if known.\nAny non-AI sources used are cited, with the question(s) for which each source was used."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html",
+    "title": "HW 2 Rubric",
+    "section": "",
+    "text": "This is the rubric for AI feedback, not necessarily the rubric for grading."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-1",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-1",
+    "title": "HW 2 Rubric",
+    "section": "Question 1",
+    "text": "Question 1\n\nPart a - Code calculates the number of rows with nrow() and columns with ncol() or uses dim() to calculate both at once.\nPart a - Output shows 100 rows and 22 columns.\nPart b - Code counts the counties in each county_type with count().\nPart b - Code displays the county type counts in descending order of the number of counties with the sort argument in count() or in a subsequent step with arrange().\nPart b - Output shows 50 Rural - Non-Metro counties, 28 Rural - Metro counties, 16 Suburban counties, and 6 Urban counties.\nPart c - Introductory narrative accurately explains that each row represents a North Carolina county and describes the dataset in a reasonable way.\nCode style and readability: appropriate indentation, spaces around equals signs if they are present, spaces after commas, and readable code organization.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-2",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-2",
+    "title": "HW 2 Rubric",
+    "section": "Question 2",
+    "text": "Question 2\n\nCode makes either a histogram or density plot, or a boxplot as well as histogram or density plot of pop_dens_2020.\nCode uses a single pipeline to calculate the median, first quartile, and third quartile of pop_dens_2020.\nOutput reports the median, first quartile, and third quartile of pop_dens_2020 as approximately 112.0, 60.7, and 214.0 people per square mile, respectively.\nNarrative identifies the distribution as unimodal.\nNarrative identifies the distribution as right-skewed, extremely right-skewed, or strongly right-skewed.\nNarrative correctly identifies the median as the typical value and the quartiles as the bounds of the middle 50%.\nThe reported median is approximately 112.0 people per square mile.\nThe reported first quartile is approximately 60.7 people per square mile.\nThe reported third quartile is approximately 214.0 people per square mile.\nCode style and readability: appropriate pipeline formatting, indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-3",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-3",
+    "title": "HW 2 Rubric",
+    "section": "Question 3",
+    "text": "Question 3\n\nPart a - Code filter()s for Durham County and selects the requested columns.\n\nNote: No narrative needed for this part.\n\nPart b - Code filter()s for counties with pop_dens_2020 &gt; 500, selects the requested columns, and arranges the output in descending order of pop_dens_2020.\nPart b - Narrative identifies all nine counties with population density greater than 500 people per square mile and provides a reasonable geographic description of their locations and links to a map online.\nPart c - Code filter()s for the county with the highest population density using max() and selects the requested columns.\n\nNote: No narrative needed for this part.\n\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-4",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-4",
+    "title": "HW 2 Rubric",
+    "section": "Question 4",
+    "text": "Question 4\n\nCode uses a single data-wrangling pipeline.\nCode filter()s counties with p_family_sustaining_wage &lt; 0.50.\nCode count()s the qualifying counties within each county_type.\nCode filter()s for only county types with at least 10 qualifying counties.\nCode outputs only the county type and the number of qualifying counties.\nOutput reports 45 Rural - Non-Metro and 17 Rural - Metro counties that meet the requirement.\nNarrative identifies the two qualifying county types (Rural Metro and Non-Metro) and correctly notes the other two that do not qualify (Urban and Suburban).\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-5",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-5",
+    "title": "HW 2 Rubric",
+    "section": "Question 5",
+    "text": "Question 5\n\nPart a - Code creates broadband_level with mutate() and if_else().\nPart a - Code assigns \"At least 75%\" when p_broadband &gt;= 0.75 and \"Below 75%\" otherwise.\nPart a - The new variable is stored in the nc_county data frame.\nPart b - Code produces one segmented bar for each county_type with bars filled according to broadband_level.\nPart b - Plot has an informative title and/or subtitle and human-readable axis labels, especially y-axis label that reflects “proportion” or similar.\nPart c - Code calculates conditional probabilities for below and at least 75% broadband access for each county type in a single pipeline.\nPart d - Narrative compares the percentages across county types and correctly identifies Urban as highest, Suburban as next, and the two rural types as much lower, with values from Part c.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-6",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-6",
+    "title": "HW 2 Rubric",
+    "section": "Question 6",
+    "text": "Question 6\n\nCode creates p_edu_he with mutate().\nCode defines p_edu_he as p_edu_assoc + p_edu_ba + p_edu_mapl.\nCode stores p_edu_he in the nc_county data frame.\nPart a - Code uses a single pipeline to calculate the six requested overall statistics.\nPart a - Output includes the minimum, first quartile, median, mean, third quartile, and maximum.\nPart b - Code uses a single pipeline grouped by county_type to calculate the same six statistics as in Part a.\nPart b - Code arranges in ascending order of median.\nPart b - Narrative states that Urban counties have the highest typical attainment and Rural - Non-Metro counties have the lowest typical attainment.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, spaces after commas, and an explicit .groups choice where appropriate.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-7",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-7",
+    "title": "HW 2 Rubric",
+    "section": "Question 7",
+    "text": "Question 7\n\nCode maps p_edu_he to the x-axis and county_type to the y-axis.\nCode produces boxplots with geom_boxplot().\nCode overlays the observations with geom_beeswarm().\nBoxplot outliers are displayed as open circles.\nBoxplots use partially transparent fills or an equivalent transparency adjustment.\nThe x-axis is formatted as percentages.\nPlot displays blue-ish colors for Rural counties, red-ish for Suburban, and brown-ish for Urban.\nPlot has correct titles and labels.\nPlot uses the correct theme and doesn’t have a legend.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-8",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-8",
+    "title": "HW 2 Rubric",
+    "section": "Question 8",
+    "text": "Question 8\n\nCode groups the data by county_type before identifying outliers.\nCode uses a single pipeline to produce the outlier output.\nCode calculates the IQR within each county type.\nCode calculates lower and upper fences using 1.5 times the IQR subtracted from 25th percentile and added to 75th percentile.\nCode filters observations below the lower fence or above the upper fence.\nOutput displays the columns county, county_type, and p_edu_he, in that order.\nOutput is arranged in descending order of p_edu_he. Note: This requires that data is ungrouped before arrange().\nOutput correctly identifies Chatham, Anson, Watauga, Moore, and Orange as the outliers, with no Urban outliers.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-9",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-9",
+    "title": "HW 2 Rubric",
+    "section": "Question 9",
+    "text": "Question 9\n\nNarrative gives a reasonable answer for why p_edu_he should be on the x-axis and p_family_sustaining_wage on the y-axis.\nCode produces a scatterplot with p_edu_he on the x-axis and p_family_sustaining_wage on the y-axis.\nThe x and y-axes are formatted as percentages.\nNarrative describes the association as positive in direction.\nNarrative describes the form as approximately linear.\nNarrative gives a reasonable description of strength.\nNarrative gives defensible criteria for unusual observations.\nCode used to filter for the outliers matches the described criteria.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-2-rubric.html#question-10",
+    "href": "hw/rubric-for-codex/hw-2-rubric.html#question-10",
+    "title": "HW 2 Rubric",
+    "section": "Question 10",
+    "text": "Question 10\n\nPart a - A third variable other than county_type is selected, correctly classified as numerical or categorical, and reason for selection is sufficiently articulated.\nPart b - A reasonable statement about how the third variable will be incorporated into the plot is provided.\nPart b - The plot is modified with the third variable in the way described.\nPart c - An appropriate description of the relationship is given.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Two or four spaces / tabs are ok for indentation."
+  },
+  {
     "objectID": "hw/hw-5.html",
     "href": "hw/hw-5.html",
     "title": "HW 5",
@@ -5470,6 +5610,209 @@
     "title": "HW 4",
     "section": "Grading and feedback",
     "text": "Grading and feedback\nYou can get immediate feedback on all of the questions with AI.\nSubmit your final version of hw-4.pdf to Gradescope. Be sure to select the pages associated with each question.\nA subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team. You will receive that feedback in about a week.\nThere are also workflow points for:\n\ncommitting at least three times as you work through your homework,\nhaving your final version of .qmd and .pdf files in your GitHub repository, and\noverall organization."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-1-rubric.html",
+    "href": "hw/rubric-for-codex/hw-1-rubric.html",
+    "title": "HW 1 Rubric",
+    "section": "",
+    "text": "This is the rubric for AI feedback, not necessarily the rubric for grading."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-1",
+    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-1",
+    "title": "HW 1 Rubric",
+    "section": "Question 1",
+    "text": "Question 1\n\nAll code uses appropriate tidyverse functions and syntax.\nCode produces a histogram with binwidth 5.\nCode produces a histogram with binwidth 50.\nCode produces a histogram with binwidth 500.\nAll plots have informative and human-readable titles and/or subtitles and axis labels.\nCode style and readability: Line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present.\nNarrative mentions the most appropriate binwidth among the choices.\n\nNote: Most appropriate binwidth among the choices: 50.\n\nNarrative states a well-articulated and accurate reason for the chosen binwidth.\n\nSample well-articulated and accurate reason: A much smaller binwidth results in too much detail in the histogram and a much larger binwidth hides important details binning too much of the data together."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-2",
+    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-2",
+    "title": "HW 1 Rubric",
+    "section": "Question 2",
+    "text": "Question 2\n\nCode produces a boxplot with weeks_on_chart on either the x-axis or y-axis.\nPlot has an informative title and/or subtitle and a human-readable axis label on the axis where weeks_on_chart is plotted.\n\nNote: A label on the other axis is optional since it is not meaningful in a boxplot.\n\nNarrative mentions shape: the distribution is right-skewed and unimodal.\nNarrative mentions center: a roughly estimated value or range of values for the median, approximately 45 weeks.\nNarrative mentions spread: a roughly estimated value or range of values for the IQR or for the bounds of the middle 50% of the distribution, approximately 15 to 124 weeks.\nCode uses filter() to identify all outliers.\n\nNote: The cutoff should be around 285 but doesn’t have to be exactly that value.\n\nCode uses select() to keep only artist, song, weeks_on_chart, and rank in the outlier output.\nCode arranges the data frame in descending order of weeks_on_chart.\nNarrative mentions something about expectedness/unexpectedness of outliers.\n\nNote: Any reasonable answer is acceptable, including “having had no expectations”.\n\nCode style and readability: Line breaks after each |&gt;, line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-3",
+    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-3",
+    "title": "HW 1 Rubric",
+    "section": "Question 3",
+    "text": "Question 3\n\nCode creates positions_below_peak with mutate() using rank - peak_rank.\nCode uses a single data wrangling pipeline to produce the requested output.\nCode identifies the 10 songs farthest below their peak rank.\nCode orders the songs so that the largest values of positions_below_peak appear first.\nCode uses select() to keep song, artist, rank, peak_rank, positions_below_peak, and weeks_on_chart in the output.\nThe output contains exactly 10 songs.\nNarrative identifies a pattern supported by the output.\nNarrative selects one song from the results and gives a plausible explanation for why it may be charting below its earlier peak.\nThe explanation is clearly presented as a hypothesis rather than a conclusion supported by these data alone.\nCode style and readability: Line breaks after each |&gt;, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-4",
+    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-4",
+    "title": "HW 1 Rubric",
+    "section": "Question 4",
+    "text": "Question 4\n\nCode produces a scatterplot with geom_point().\nCode maps weeks_on_chart to the x-axis and positions_below_peak to the y-axis.\nPlot has an informative title and/or subtitle and human-readable axis labels that include appropriate units.\nNarrative accurately describes the relationship between weeks_on_chart and positions_below_peak, such as a very weak positive relationship with substantial variability.\nCode uses a single pipeline to identify a song or songs that have been on the chart for a long time while remaining close to its peak rank.\nCode uses select() to display song, artist, rank, peak_rank, positions_below_peak, and weeks_on_chart.\nNarrative correctly identifies where the selected song appears on the scatterplot, such as far to the right and close to the bottom.\nCode style and readability: Line breaks after each |&gt; and +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-5",
+    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-5",
+    "title": "HW 1 Rubric",
+    "section": "Question 5",
+    "text": "Question 5\n\nCode uses appropriate tidyverse functions and syntax.\nCode identifies the genres with at least 10 songs on the chart and excludes genres with fewer than 10 songs from the plot.\nCode produces side-by-side boxplots with streams plotted by genre.\nPlot has an informative title and/or subtitle and human-readable axis labels for genre and weekly streams.\nNarrative accurately compares typical weekly stream counts across the included genres, such as by comparing their medians.\nNarrative accurately compares the variability of weekly stream counts across the included genres, such as by comparing their IQRs or overall spreads.\nNarrative answers the initial question by explaining whether songs from some genres tend to have higher weekly stream counts than others.\nCode uses a single pipeline to identify the single most-streamed song among the included genres.\n\nNote: There are multiple ways of identifying this song. A hard-coded list of eligible genres is also acceptable if it includes only genres with at least 10 songs.\n\nCode identifies the correct song, artist, genre, and weekly stream count: “Earrings” by Malcolm Todd, a Pop song, with 25,092,481 streams.\nCode style and readability: Line breaks after each |&gt;, line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-1-rubric.html#question-6",
+    "href": "hw/rubric-for-codex/hw-1-rubric.html#question-6",
+    "title": "HW 1 Rubric",
+    "section": "Question 6",
+    "text": "Question 6\n\nCode creates stream_level with mutate() and if_else(), classifying songs according to whether streams is above the overall median.\nCode produces a segmented bar plot with one bar for each genre and fills the bars according to stream_level.\nCode includes only genres with at least 10 songs on the chart.\nThe y-axis represents proportions from 0 to 1.\nPlot has an informative title and/or subtitle and human-readable axis labels.\nNarrative compares the proportions of above-median songs across the included genres using reasonable approximate values.\nNarrative correctly identifies Pop as having the highest proportion and Electronic as having the lowest proportion of songs above the overall median.\nCode style and readability: Line breaks after each |&gt;, line breaks after each +, proper indentation, spaces around = signs if they are present, and spaces after commas if they are present."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html",
+    "title": "HW 3 Rubric",
+    "section": "",
+    "text": "This is the rubric for AI feedback, not necessarily the rubric for grading."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-1",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-1",
+    "title": "HW 3 Rubric",
+    "section": "Question 1",
+    "text": "Question 1\n\nPart a - Code uses glimpse() to inspect country_inflation.\nPart a - Narrative reports 38 rows and 34 columns.\nPart a - Narrative states that each row represents a country.\nPart a - Narrative explains that country contains country names and the remaining columns contain annual inflation rates for 1993 through 2025.\nPart b - Code identifies distinct countries with distinct() or an equivalent approach.\nPart b - Output displays all 38 country names without truncation.\nPart b - Narrative reports 38 distinct countries.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-2",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-2",
+    "title": "HW 3 Rubric",
+    "section": "Question 2",
+    "text": "Question 2\n\nPart a - Code selects the country and 2024 columns.\nPart a - Code arranges inflation rates in descending order and retains the top three countries.\nPart a - Output has three rows and two columns, showing Türkiye, Colombia, and Iceland with their correct 2024 inflation rates.\nPart b - Response correctly identifies the US inflation rate as approximately 2.95%.\nPart b - Narrative compares the inflation rates of all three countries to the US rate, correctly describing Türkiye’s rate as about 20 times, Colombia’s as over twice, and Iceland’s as almost twice the US rate. Equivalent accurate comparisons are acceptable.\nNarrative consistently refers to 2024 and correctly names the countries.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-3",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-3",
+    "title": "HW 3 Rubric",
+    "section": "Question 3",
+    "text": "Question 3\n\nPart a - Code uses a single pipeline starting with country_inflation.\nPart a - Code retains only countries with nonmissing inflation data for both 1993 and 2025.\nPart a - Code creates inf_ratio as 2025 divided by 1993.\nPart a - Code selects only country and inf_ratio, in that order.\nPart a - Code saves the result as country_inflation_ratios.\nPart b - A separate pipeline displays the data in ascending order of inf_ratio.\nPart b - A separate pipeline displays the data in descending order of inf_ratio.\nPart c - Narrative identifies New Zealand and correctly describes its ratio of approximately 2.20 or increase of about 120%.\nPart d - Narrative identifies Lithuania and correctly describes its ratio of approximately 0.00924 or decrease of about 99.1%.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-4",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-4",
+    "title": "HW 3 Rubric",
+    "section": "Question 4",
+    "text": "Question 4\n\nCode uses pivot_longer() to reshape the year columns while retaining country as an identifier.\nThe resulting data frame has one row per country/year combination, with separate columns for country, year, and annual inflation.\nThe pivoting function converts the year variable to numeric.\nCode saves the result with a new, short, informative name without overwriting country_inflation.\nCode displays the resulting data frame.\nNarrative correctly reports 1,254 rows and 3 columns and names the resulting columns.\nNarrative states that each row represents a country/year combination.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-5",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-5",
+    "title": "HW 3 Rubric",
+    "section": "Question 5",
+    "text": "Question 5\n\nEach part uses a separate, single pipeline starting with the pivoted dataset.\nPart a - Code uses filter() with max() to identify the highest inflation rate.\nPart a - Output has one row and three columns, and the narrative identifies Lithuania in 1993 with an inflation rate of approximately 410%.\nPart b - Code uses filter() with min() to identify the lowest inflation rate.\nPart b - Output has one row and three columns, and the narrative identifies Ireland in 2009 with an inflation rate of approximately -4.45%.\nCode handles missing inflation values appropriately when calculating the minimum and maximum.\nPart c - Code uses filter() to retain both extremes, producing two rows and three columns.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-6",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-6",
+    "title": "HW 3 Rubric",
+    "section": "Question 6",
+    "text": "Question 6\n\nPart a - Code creates countries_of_interest with one to five country names that match the dataset.\nPart a - Narrative explains why these countries were selected.\nPart b - A single pipeline correctly filters the pivoted data for the selected countries and saves the result with a new, short, informative name.\nPart b - A separate pipeline uses distinct() to display the selected countries, matching the vector from Part a.\nPart c - Plot uses the filtered data, with year on the x-axis and annual inflation on the y-axis.\nPart c - Plot displays points and lines connecting observations for each country.\nPart c - Countries have distinct colors for both lines and points and distinct point shapes.\nPart c - Plot has an informative title and human-readable axis and legend labels, including inflation units.\nPart c - Plot includes at least one customization, and the narrative explains how it was customized.\nPart d - Narrative accurately compares patterns across countries and discusses what is surprising or unsurprising in light of the student’s knowledge.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-7",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-7",
+    "title": "HW 3 Rubric",
+    "section": "Question 7",
+    "text": "Question 7\n\nPart a - Narrative reports 168 rows and 4 columns.\nPart a - Narrative names country, cpi_expenditure_id, year, and annual_inflation.\nPart a - Narrative states that the data span 2011–2024.\nPart b - Narrative reports 12 rows and 2 columns and names id and description.\nPart c - Code uses an appropriate join to attach expenditure descriptions to the inflation observations.\nPart c - Code specifies the matching keys using join_by(cpi_expenditure_id == id) or the equivalent with reversed table order.\nPart c - Code saves the joined dataset with a new, short, informative name without overwriting either input.\nPart c - Narrative reports 168 rows and 5 columns.\nPart c - Narrative correctly names the joined dataset’s five columns.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-8",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-8",
+    "title": "HW 3 Rubric",
+    "section": "Question 8",
+    "text": "Question 8\n\nPart a - Code creates expenditures_of_interest containing one to five valid expenditure IDs or descriptions.\nPart a - Narrative explains why these expenditures were selected.\nPart b - Code uses a single pipeline starting with the joined dataset.\nPart b - Code correctly filters for all selected expenditures using %in% or an equivalent approach.\nPart b - Code saves the filtered dataset with a new, short, informative name without overwriting the joined dataset.\nPart b - A separate pipeline uses distinct() to display the expenditures in the filtered dataset.\nPart b - The displayed expenditures match those selected in Part a.\nCode style and readability: line breaks after each |&gt;, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-3-rubric.html#question-9",
+    "href": "hw/rubric-for-codex/hw-3-rubric.html#question-9",
+    "title": "HW 3 Rubric",
+    "section": "Question 9",
+    "text": "Question 9\n\nPlot uses the filtered dataset from Question 8.\nCode maps year to the x-axis and annual_inflation to the y-axis.\nPlot displays points and lines connecting observations for each expenditure.\nExpenditures have distinct colors for both lines and points.\nExpenditures have distinct point shapes.\nPlot has human-readable axis and legend labels, including inflation units.\nPlot has an informative title and/or subtitle.\nPlot includes at least one customization, such as a nondefault theme, color scale, or legend placement.\nNarrative accurately compares patterns across expenditures and discusses what is surprising or unsurprising in light of the student’s knowledge.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around equals signs if they are present, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html",
+    "title": "HW 5 Rubric",
+    "section": "",
+    "text": "This is the rubric for AI feedback, not necessarily the rubric for grading."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-1",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-1",
+    "title": "HW 5 Rubric",
+    "section": "Question 1",
+    "text": "Question 1\n\nPart (a) - Code creates a scatterplot using geom_point().\nPart (a) - Code maps temperature to the x-axis and average crawling age to the y-axis.\nPart (a) - The plot has informative and human-readable axis labels.\nPart (a) - Plot has an informative and human-readable title.\nPart (b) - Narrative correctly describes the direction, strength, and form of the relationship in context.\nPart (b) - Narrative correctly identifies the unusual observation in context.\nPart (c) - Code correctly calculates and displays the correlation between temperature and avg_crawling_age.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable.\n\nCode smell: All code uses appropriate tidyverse functions and syntax."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-2",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-2",
+    "title": "HW 5 Rubric",
+    "section": "Question 2",
+    "text": "Question 2\n\nPart (a) - Code correctly creates temperature_C using (temperature - 32) * 5/9 and saves it in the data frame.\nPart (b) - Code correctly creates avg_crawling_age_months using avg_crawling_age / 4.345 and saves it in the data frame.\nPart (c) - Narrative correctly describes how the scatterplot would change after converting units.\nPart (c) - Narrative correctly describes how the correlation would change after converting units and provides an appropriate explanation.\nPart (d) - Code creates a scatterplot using geom_point().\nPart (d) - Code maps temperature_C to the x-axis and avg_crawling_age_months to the y-axis.\nPart (d) - Plot has informative and human-readable axis labels.\nPart (d) - Plot has an informative and human-readable title.\nPart (d) - Narrative compares the new scatterplot with the expectation in part (c) and provides a correct explanation.\nPart (e) - Code correctly calculates and displays the correlation between the converted variables.\nPart (e) - Narrative correctly compares the calculated correlation with the expectation in part (c).\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable.\n\nCode smell: All code uses appropriate tidyverse functions and syntax."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-3",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-3",
+    "title": "HW 5 Rubric",
+    "section": "Question 3",
+    "text": "Question 3\n\nPart (a) - Code creates a scatterplot using geom_point().\nPart (a) - Code maps meat consumption to the x-axis and life expectancy to the y-axis.\nPart (a) - The plot has informative and human-readable axis labels.\nPart (a) - Plot has an informative and human-readable title.\nPart (a) - Narrative correctly describes the direction, strength, and form of the relationship in context.\nPart (b) - Code creates a scatterplot using geom_point().\nPart (b) - Code maps carbohydrate consumption to the x-axis and life expectancy to the y-axis.\nPart (b) - The plot has informative and human-readable axis labels.\nPart (b) - Plot has an informative and human-readable title.\nPart (b) - Narrative correctly describes the relationship in context.\nPart (c) - Narrative correctly identifies which plot appears to show the stronger correlation and provides an appropriate explanation.\nPart (d) - Code correctly calculates and displays both correlations, handling missing observations appropriately.\nPart (d) - Narrative compares the correlations’ magnitudes and correctly explains whether they support the expectation from part (c).\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable.\n\nCode smell: All code uses appropriate tidyverse functions and syntax."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-4",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-4",
+    "title": "HW 5 Rubric",
+    "section": "Question 4",
+    "text": "Question 4\n\nPart (a) - Code fits a linear regression with life_0 as the response and meat as the predictor using the you data.\nPart (a) - Linear regression uses tidymodels functions, e.g., linear_reg() and fit().\nPart (a) - Code displays the model coefficients using tidy().\nPart (b) - Narrative provides correct interpretation of the slope in the context of the data.\n\nIncludes “each additional kg per capita per year” of meat consumption or an equivalent, consistently rescaled increment.\nIncludes “on average” or similar language.\nIncludes the correct value with units.\nAll else correct.\n\nPart (c) - Narrative provides correct interpretation of the intercept in context of the data.\n\nIncludes 0 for the predictor value.\nIncludes “on average” or similar language.\nIncludes the correct value with units.\nAll else is correct.\n\nPart (c) - Narrative states that the intercept is meaningful and provides correct justification.\nPart (d) - Response identifies a country in the data and its meat consumption and observed life expectancy.\nPart (d) - Code uses augment() to obtain the prediction for the chosen country.\nPart (d) - Predicted life expectancy is correct for the chosen country and fitted model.\nPart (d) - Residual is correctly calculated as observed minus predicted life expectancy, in years.\nPart (d) - Narrative correctly states whether the model over- or under-predicts for the chosen country.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable.\n\nCode smell: All code uses appropriate tidyverse functions and syntax."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-5",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-5",
+    "title": "HW 5 Rubric",
+    "section": "Question 5",
+    "text": "Question 5\n\nPart (a) - Code fits a linear regression with life_0 as the response and cho_crops as the predictor using the you data.\nPart (a) - Linear regression uses tidymodels functions, e.g., linear_reg() and fit().\nPart (a) - Code displays the model coefficients using tidy().\nPart (b) - Narrative provides correct interpretation of the slope in context of the data.\n\nIncludes “each additional kg per capita per year” of carbohydrate consumption or an equivalent, consistently rescaled increment.\nIncludes “on average” or similar language.\nIncludes the correct value with units.\nAll else is correct.\n\nPart (c) - Narrative provides correct interpretation of the intercept in context of the data.\n\nIncludes 0 for the predictor value.\nIncludes “on average” or similar language.\nIncludes the correct value with units.\nAll else is correct.\n\nPart (c) - Narrative states that the intercept is not meaningful and provides correct justification.\nPart (d) - Code correctly calculates and displays R-squared.\nPart (d) - Narrative provides a correct interpretation of R-squared in the context of the data.\nPart (e) - Code uses augment() to obtain predicted values and residuals.\nPart (e) - Predicted values and residuals are correct for the fitted model.\nPart (e) - Code creates a scatterplot using geom_point(). A horizontal line at zero is optional.\nPart (e) - Code maps predicted life expectancy to the x-axis and residuals to the y-axis.\nPart (e) - Plot has informative and human-readable axis labels.\nPart (e) - Plot has an informative and human-readable title.\nPart (e) - Narrative correctly describes the residual plot and assesses whether a linear model is a good fit for the data.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable.\n\nCode smell: All code uses appropriate tidyverse functions and syntax."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-6",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-6",
+    "title": "HW 5 Rubric",
+    "section": "Question 6",
+    "text": "Question 6\n\nNarrative correctly assesses whether the models support causal conclusions in the context of the data."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-7",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-7",
+    "title": "HW 5 Rubric",
+    "section": "Question 7",
+    "text": "Question 7\n\nCode reads nc-places.csv into nc_places and nc-county.csv into nc_counties.\nCode correctly joins the data frames by county name and saves the result as nc_counties_places. An inferred join on the sole shared column, county, is acceptable, as are other join types producing the same correct result for these data.\nResponse correctly reports the number of rows and columns in the joined data frame: 100 rows and 67 columns.\n\nNote: nc_counties has 22 columns and nc_places has 46, sharing only county. A different count likely indicates joining on the wrong column(s); don’t penalize the same error again.\n\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable.\n\nCode smell: All code uses appropriate tidyverse functions and syntax."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-8",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-8",
+    "title": "HW 5 Rubric",
+    "section": "Question 8",
+    "text": "Question 8\n\nResponse clearly identifies a numeric outcome variable and correctly states its original data frame.\nNarrative explains why the outcome is interesting to predict and why prediction is sensible in this context.\nResponse clearly identifies a numeric predictor and correctly states its original data frame.\nNarrative gives a plausible explanation of how the numeric predictor might relate to the outcome and why it could be useful for prediction.\nResponse clearly identifies a categorical predictor and correctly states its original data frame.\nNarrative gives a plausible explanation of how the categorical predictor might relate to the outcome and why it could be useful for prediction.\nResponse correctly states the categorical predictor’s reference level. If the level order is changed, the code implements that change consistently with the stated reference.\nTwo selected variables originate in one data frame and the third originates in the other. A variable shared by both original data frames cannot by itself demonstrate use of information from the other source."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-9",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-9",
+    "title": "HW 5 Rubric",
+    "section": "Question 9",
+    "text": "Question 9\n\nPart (a) - Code fits a linear regression with the Question 8 outcome as the response and the chosen numeric variable as the sole predictor, using nc_counties_places.\nPart (a) - Linear regression uses tidymodels functions, e.g., linear_reg() and fit().\nPart (b) - Code displays the model coefficients using tidy().\nPart (c) - Narrative provides correct interpretation of the slope in context of the data.\n\nIncludes “each additional unit” of the chosen numeric predictor, with the predictor and its units identified. A consistently rescaled increment is acceptable.\nIncludes “on average” or similar language.\nIncludes the correct value with units.\nAll else correct.\n\nPart (d) - Narrative provides correct interpretation of the intercept in context of the data.\n\nIncludes 0 for the predictor value.\nIncludes “on average” or similar language.\nIncludes the correct value with units.\nAll else correct.\n\nPart (d) - Narrative correctly states whether the intercept is meaningful and provides correct justification.\nPart (e) - Code correctly calculates and displays the model’s R-squared.\nPart (e) - Narrative provides a correct interpretation of R-squared in context of the data.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable.\n\nCode smell: All code uses appropriate tidyverse functions and syntax."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#question-10",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#question-10",
+    "title": "HW 5 Rubric",
+    "section": "Question 10",
+    "text": "Question 10\n\nPart (a) - Code fits a linear regression with the Question 8 outcome as the response and the chosen categorical variable as the sole predictor, using nc_counties_places. The predictor is treated as categorical.\nPart (a) - Linear regression uses tidymodels functions, e.g., linear_reg() and fit().\nPart (b) - Code displays the model coefficients using tidy(), with the appropriate reference level and a coefficient for each non-reference level.\nPart (c) - Narrative provides correct interpretation of the category coefficients in context of the data.\n\nIncludes the correct comparison between each non-reference category and the reference category.\nIncludes “on average” or similar language.\nIncludes the correct value with units.\nAll else correct.\nNote: Apply each sub-item across all non-reference coefficients; award partial credit when only some are correct.\n\nPart (d) - Narrative provides correct interpretation of the intercept in context of the data.\n\nIncludes the correct reference category (all indicator variables equal 0).\nIncludes “on average” or similar language.\nIncludes the correct value with units.\nAll else correct.\n\nPart (d) - Narrative correctly states whether the intercept is meaningful and provides correct justification.\nPart (e) - Code correctly calculates and displays the model’s R-squared.\nPart (e) - Narrative provides a correct interpretation of R-squared in context of the data.\nCode style and readability: line breaks after each |&gt; and +, appropriate indentation, spaces around = signs, and spaces after commas.\n\nNote: Indentation with two spaces, four spaces, or tabs is acceptable.\n\nCode smell: All code uses appropriate tidyverse functions and syntax."
+  },
+  {
+    "objectID": "hw/rubric-for-codex/hw-5-rubric.html#rubric",
+    "href": "hw/rubric-for-codex/hw-5-rubric.html#rubric",
+    "title": "HW 5 Rubric",
+    "section": "Rubric",
+    "text": "Rubric\n\nFinal .qmd and rendered PDF files exist in the remote GitHub repository.\nAt least three commits were made and pushed to the GitHub repository, and the submission is reasonably organized.\nAn AI-use disclosure states whether an LLM or generative AI tool was used (Yes or No).\nIf AI was used, the disclosure describes all the ways it was used.\nIf AI was used, the disclosure lists all tools used, including model names and versions if known.\nAny non-AI sources used are cited, with the question(s) for which each source was used."
   },
   {
     "objectID": "lab.html",
