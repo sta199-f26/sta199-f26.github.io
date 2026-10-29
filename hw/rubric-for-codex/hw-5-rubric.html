@@ -568,7 +568,7 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><p>Part (a) - Code creates a scatterplot using <code>geom_point()</code>.</p></li>
 <li><p>Part (a) - Code maps temperature to the x-axis and average crawling age to the y-axis.</p></li>
-<li><p>Part (a) - Plot has informative and human-readable axis labels.</p></li>
+<li><p>Part (a) - The plot has informative and human-readable axis labels.</p></li>
 <li><p>Part (a) - Plot has an informative and human-readable title.</p></li>
 <li><p>Part (b) - Narrative correctly describes the direction, strength, and form of the relationship in context.</p></li>
 <li><p>Part (b) - Narrative correctly identifies the unusual observation in context.</p></li>
@@ -609,12 +609,12 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><p>Part (a) - Code creates a scatterplot using <code>geom_point()</code>.</p></li>
 <li><p>Part (a) - Code maps meat consumption to the x-axis and life expectancy to the y-axis.</p></li>
-<li><p>Part (a) - Plot has informative and human-readable axis labels.</p></li>
+<li><p>Part (a) - The plot has informative and human-readable axis labels.</p></li>
 <li><p>Part (a) - Plot has an informative and human-readable title.</p></li>
 <li><p>Part (a) - Narrative correctly describes the direction, strength, and form of the relationship in context.</p></li>
 <li><p>Part (b) - Code creates a scatterplot using <code>geom_point()</code>.</p></li>
 <li><p>Part (b) - Code maps carbohydrate consumption to the x-axis and life expectancy to the y-axis.</p></li>
-<li><p>Part (b) - Plot has informative and human-readable axis labels.</p></li>
+<li><p>Part (b) - The plot has informative and human-readable axis labels.</p></li>
 <li><p>Part (b) - Plot has an informative and human-readable title.</p></li>
 <li><p>Part (b) - Narrative correctly describes the relationship in context.</p></li>
 <li><p>Part (c) - Narrative correctly identifies which plot appears to show the stronger correlation and provides an appropriate explanation.</p></li>
@@ -626,7 +626,6 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
 </ol>
-<p>Grading note: Four countries are missing meat or carbohydrate consumption, so ggplot2 warns that 4 rows were removed. Do not penalize this warning.</p>
 </section>
 <section id="question-4" class="level2">
 <h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
@@ -634,7 +633,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Part (a) - Code fits a linear regression with <code>life_0</code> as the response and <code>meat</code> as the predictor using the <code>you</code> data.</p></li>
 <li><p>Part (a) - Linear regression uses tidymodels functions, e.g., <code>linear_reg()</code> and <code>fit()</code>.</p></li>
 <li><p>Part (a) - Code displays the model coefficients using <code>tidy()</code>.</p></li>
-<li><p>Part (b) - Narrative provides correct interpretation of the slope in context of the data.</p>
+<li><p>Part (b) - Narrative provides correct interpretation of the slope in the context of the data.</p>
 <ul>
 <li>Includes “each additional kg per capita per year” of meat consumption or an equivalent, consistently rescaled increment.</li>
 <li>Includes “on average” or similar language.</li>
@@ -646,7 +645,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Includes 0 for the predictor value.</li>
 <li>Includes “on average” or similar language.</li>
 <li>Includes the correct value with units.</li>
-<li>All else correct.</li>
+<li>All else is correct.</li>
 </ul></li>
 <li><p>Part (c) - Narrative states that the intercept is meaningful and provides correct justification.</p></li>
 <li><p>Part (d) - Response identifies a country in the data and its meat consumption and observed life expectancy.</p></li>
@@ -660,7 +659,6 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
 </ol>
-<p>Grading notes: Accept a rescaled predictor increment if the stated change is scaled consistently. Do not penalize an incorrect model estimate again when a subsequent interpretation or calculation is otherwise correct for the student’s displayed model.</p>
 </section>
 <section id="question-5" class="level2">
 <h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
@@ -673,18 +671,18 @@ ul.task-list li input[type="checkbox"] {
 <li>Includes “each additional kg per capita per year” of carbohydrate consumption or an equivalent, consistently rescaled increment.</li>
 <li>Includes “on average” or similar language.</li>
 <li>Includes the correct value with units.</li>
-<li>All else correct.</li>
+<li>All else is correct.</li>
 </ul></li>
 <li><p>Part (c) - Narrative provides correct interpretation of the intercept in context of the data.</p>
 <ul>
 <li>Includes 0 for the predictor value.</li>
 <li>Includes “on average” or similar language.</li>
 <li>Includes the correct value with units.</li>
-<li>All else correct.</li>
+<li>All else is correct.</li>
 </ul></li>
 <li><p>Part (c) - Narrative states that the intercept is not meaningful and provides correct justification.</p></li>
 <li><p>Part (d) - Code correctly calculates and displays R-squared.</p></li>
-<li><p>Part (d) - Narrative provides a correct interpretation of R-squared in context of the data.</p></li>
+<li><p>Part (d) - Narrative provides a correct interpretation of R-squared in the context of the data.</p></li>
 <li><p>Part (e) - Code uses <code>augment()</code> to obtain predicted values and residuals.</p></li>
 <li><p>Part (e) - Predicted values and residuals are correct for the fitted model.</p></li>
 <li><p>Part (e) - Code creates a scatterplot using <code>geom_point()</code>. A horizontal line at zero is optional.</p></li>
@@ -698,12 +696,11 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
 </ol>
-<p>Grading notes: Slope and intercept interpretations must convey an average or predicted response, rather than a guaranteed outcome for each country. Accept consistently rescaled slope interpretations, and do not penalize a model error again in otherwise correct follow-up interpretations.</p>
 </section>
 <section id="question-6" class="level2">
 <h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
 <ol type="1">
-<li>Narrative correctly assesses whether the models support causal conclusions in context of the data.</li>
+<li>Narrative correctly assesses whether the models support causal conclusions in the context of the data.</li>
 </ol>
 </section>
 </section>
@@ -737,7 +734,6 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Response correctly states the categorical predictor’s reference level. If the level order is changed, the code implements that change consistently with the stated reference.</p></li>
 <li><p>Two selected variables originate in one data frame and the third originates in the other. A variable shared by both original data frames cannot by itself demonstrate use of information from the other source.</p></li>
 </ol>
-<p>Grading note: Choices need not match the key. Grade the suitability of the variables and the reasoning, rather than requiring a strong observed relationship. Reordering factor levels is optional.</p>
 </section>
 <section id="question-9" class="level2">
 <h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
@@ -768,7 +764,6 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
 </ol>
-<p>Grading notes: Grade against the student’s chosen variables and fitted model, rather than requiring the key’s variables or estimates. Accept a meaningful rescaled predictor increment when the slope is scaled consistently. For an outcome measured as a percentage, distinguish percentage-point changes from percent changes. Avoid penalizing the same model error again in subsequent interpretations.</p>
 </section>
 <section id="question-10" class="level2">
 <h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
@@ -800,7 +795,6 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li><p>Code smell: All code uses appropriate tidyverse functions and syntax.</p></li>
 </ol>
-<p>Grading notes: Choices and reference levels need not match the key. Grade interpretations against the student’s displayed model and reference level. For an outcome measured as a percentage, coefficient differences are in percentage points. Avoid penalizing the same model error again in subsequent interpretations.</p>
 </section>
 </section>
 <section id="overall" class="level1">
