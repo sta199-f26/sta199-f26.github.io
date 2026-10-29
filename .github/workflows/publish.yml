@@ -17,6 +17,7 @@ jobs:
 
       - name: Install missing packages
         run: |
+          pak::pak_install("rundel/checklist")
           checklist::install_missing_pkgs()
         shell: Rscript {0}
 
