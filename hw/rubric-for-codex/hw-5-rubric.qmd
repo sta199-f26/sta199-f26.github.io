@@ -14,7 +14,7 @@ This is the rubric for AI feedback, not necessarily the rubric for grading.
 
 2.  Part (a) - Code maps temperature to the x-axis and average crawling age to the y-axis.
 
-3.  Part (a) - Plot has informative and human-readable axis labels.
+3.  Part (a) - The plot has informative and human-readable axis labels.
 
 4.  Part (a) - Plot has an informative and human-readable title.
 
@@ -68,7 +68,7 @@ This is the rubric for AI feedback, not necessarily the rubric for grading.
 
 2.  Part (a) - Code maps meat consumption to the x-axis and life expectancy to the y-axis.
 
-3.  Part (a) - Plot has informative and human-readable axis labels.
+3.  Part (a) - The plot has informative and human-readable axis labels.
 
 4.  Part (a) - Plot has an informative and human-readable title.
 
@@ -78,7 +78,7 @@ This is the rubric for AI feedback, not necessarily the rubric for grading.
 
 7.  Part (b) - Code maps carbohydrate consumption to the x-axis and life expectancy to the y-axis.
 
-8.  Part (b) - Plot has informative and human-readable axis labels.
+8.  Part (b) - The plot has informative and human-readable axis labels.
 
 9.  Part (b) - Plot has an informative and human-readable title.
 
@@ -96,8 +96,6 @@ This is the rubric for AI feedback, not necessarily the rubric for grading.
 
 15. Code smell: All code uses appropriate tidyverse functions and syntax.
 
-Grading note: Four countries are missing meat or carbohydrate consumption, so ggplot2 warns that 4 rows were removed. Do not penalize this warning.
-
 ## Question 4
 
 1.  Part (a) - Code fits a linear regression with `life_0` as the response and `meat` as the predictor using the `you` data.
@@ -106,7 +104,7 @@ Grading note: Four countries are missing meat or carbohydrate consumption, so gg
 
 3.  Part (a) - Code displays the model coefficients using `tidy()`.
 
-4.  Part (b) - Narrative provides correct interpretation of the slope in context of the data.
+4.  Part (b) - Narrative provides correct interpretation of the slope in the context of the data.
 
     -   Includes "each additional kg per capita per year" of meat consumption or an equivalent, consistently rescaled increment.
     -   Includes "on average" or similar language.
@@ -118,7 +116,7 @@ Grading note: Four countries are missing meat or carbohydrate consumption, so gg
     -   Includes 0 for the predictor value.
     -   Includes "on average" or similar language.
     -   Includes the correct value with units.
-    -   All else correct.
+    -   All else is correct.
 
 6.  Part (c) - Narrative states that the intercept is meaningful and provides correct justification.
 
@@ -138,8 +136,6 @@ Grading note: Four countries are missing meat or carbohydrate consumption, so gg
 
 13. Code smell: All code uses appropriate tidyverse functions and syntax.
 
-Grading notes: Accept a rescaled predictor increment if the stated change is scaled consistently. Do not penalize an incorrect model estimate again when a subsequent interpretation or calculation is otherwise correct for the student's displayed model.
-
 ## Question 5
 
 1.  Part (a) - Code fits a linear regression with `life_0` as the response and `cho_crops` as the predictor using the `you` data.
@@ -153,20 +149,20 @@ Grading notes: Accept a rescaled predictor increment if the stated change is sca
     -   Includes "each additional kg per capita per year" of carbohydrate consumption or an equivalent, consistently rescaled increment.
     -   Includes "on average" or similar language.
     -   Includes the correct value with units.
-    -   All else correct.
+    -   All else is correct.
 
 5.  Part (c) - Narrative provides correct interpretation of the intercept in context of the data.
 
     -   Includes 0 for the predictor value.
     -   Includes "on average" or similar language.
     -   Includes the correct value with units.
-    -   All else correct.
+    -   All else is correct.
 
 6.  Part (c) - Narrative states that the intercept is not meaningful and provides correct justification.
 
 7.  Part (d) - Code correctly calculates and displays R-squared.
 
-8.  Part (d) - Narrative provides a correct interpretation of R-squared in context of the data.
+8.  Part (d) - Narrative provides a correct interpretation of R-squared in the context of the data.
 
 9.  Part (e) - Code uses `augment()` to obtain predicted values and residuals.
 
@@ -188,11 +184,9 @@ Grading notes: Accept a rescaled predictor increment if the stated change is sca
 
 17. Code smell: All code uses appropriate tidyverse functions and syntax.
 
-Grading notes: Slope and intercept interpretations must convey an average or predicted response, rather than a guaranteed outcome for each country. Accept consistently rescaled slope interpretations, and do not penalize a model error again in otherwise correct follow-up interpretations.
-
 ## Question 6
 
-1.  Narrative correctly assesses whether the models support causal conclusions in context of the data.
+1.  Narrative correctly assesses whether the models support causal conclusions in the context of the data.
 
 # Part 3 - Modeling the Old North State
 
@@ -230,8 +224,6 @@ Grading notes: Slope and intercept interpretations must convey an average or pre
 
 8.  Two selected variables originate in one data frame and the third originates in the other. A variable shared by both original data frames cannot by itself demonstrate use of information from the other source.
 
-Grading note: Choices need not match the key. Grade the suitability of the variables and the reasoning, rather than requiring a strong observed relationship. Reordering factor levels is optional.
-
 ## Question 9
 
 1.  Part (a) - Code fits a linear regression with the Question 8 outcome as the response and the chosen numeric variable as the sole predictor, using `nc_counties_places`.
@@ -265,8 +257,6 @@ Grading note: Choices need not match the key. Grade the suitability of the varia
     - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
 
 10. Code smell: All code uses appropriate tidyverse functions and syntax.
-
-Grading notes: Grade against the student's chosen variables and fitted model, rather than requiring the key's variables or estimates. Accept a meaningful rescaled predictor increment when the slope is scaled consistently. For an outcome measured as a percentage, distinguish percentage-point changes from percent changes. Avoid penalizing the same model error again in subsequent interpretations.
 
 ## Question 10
 
@@ -303,8 +293,6 @@ Grading notes: Grade against the student's chosen variables and fitted model, ra
     - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
 
 10. Code smell: All code uses appropriate tidyverse functions and syntax.
-
-Grading notes: Choices and reference levels need not match the key. Grade interpretations against the student's displayed model and reference level. For an outcome measured as a percentage, coefficient differences are in percentage points. Avoid penalizing the same model error again in subsequent interpretations.
 
 # Overall
 These rubric items are not tied to a specific question but apply to the entire homework.
