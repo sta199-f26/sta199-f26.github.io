@@ -440,7 +440,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </div>
 
 </div>
-<img data-src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-1.png" width="864" class="r-stretch"></section>
+<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-1.png" width="864" class="r-stretch"></section>
 <section id="participate" class="slide level2 smaller">
 <h2>Participate 📱💻</h2>
 <div class="columns">
@@ -471,7 +471,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </ul>
 </div>
 
-<img data-src="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-1-1.png" width="864" class="r-stretch"></section>
+<img data-src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-1-1.png" width="864" class="r-stretch"></section>
 <section id="plot-autopsy" class="slide level2 smaller">
 <h2>Plot autopsy</h2>
 <div class="cell" data-code-annotations="below">
@@ -552,7 +552,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-simplified-1.png" width="672"></p>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-simplified-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -572,7 +572,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/unnamed-chunk-2-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -586,7 +586,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="03-grammar-of-data-visualization_files/figure-html/age-marital-boxplot-setting-1.png" width="672"></p>
+<p><img data-src="03-grammar-of-data-visualization_files/figure-revealjs/age-marital-boxplot-setting-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -852,6 +852,44 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

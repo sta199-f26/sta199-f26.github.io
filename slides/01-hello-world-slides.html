@@ -281,7 +281,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <li>What you hope to get out of this course</li>
 </ul>
 </div>
-<div id="timer_b23133e2739c503d1d0c2e58c80bc591635e69fc" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
+<div id="timer_d9a33a7a4b97daf35edd8ad588233b652b393a22" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="right: 0;bottom: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
@@ -416,7 +416,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </details>
 
 </div>
-<img data-src="01-hello-world_files/figure-html/cl-year-1.png" width="960" class="r-stretch"></section>
+<img data-src="01-hello-world_files/figure-revealjs/cl-year-1.png" width="960" class="r-stretch"></section>
 <section id="who-is-on-country-radio" class="slide level2 smaller">
 <h2>Who is on country radio?</h2>
 <p>There are 484 songs in the data, but only 121 different artists. Let’s look at the 15 with the most Top 30 hits.</p>
@@ -438,7 +438,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </details>
 
 </div>
-<img data-src="01-hello-world_files/figure-html/cl-artist-1.png" width="960" class="r-stretch"></section>
+<img data-src="01-hello-world_files/figure-revealjs/cl-artist-1.png" width="960" class="r-stretch"></section>
 <section id="who-writes-country-songs" class="slide level2 smaller">
 <h2>Who <em>writes</em> country songs?</h2>
 <p>Songs are usually written by more than one person, so the <code>writers</code> variable holds a whole list in a single cell:</p>
@@ -521,7 +521,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 </details>
 
 </div>
-<img data-src="01-hello-world_files/figure-html/cl-writers-plot-1.png" width="960" class="r-stretch"></section>
+<img data-src="01-hello-world_files/figure-revealjs/cl-writers-plot-1.png" width="960" class="r-stretch"></section>
 <section id="what-do-country-songs-sing-about" class="slide level2">
 <h2>What do country songs sing about?</h2>
 <p>The <code>lyrics</code> variable contains the entire text of each song:</p>
@@ -1232,6 +1232,44 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

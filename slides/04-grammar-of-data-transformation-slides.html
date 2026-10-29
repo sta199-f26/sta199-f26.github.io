@@ -331,7 +331,7 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
 <h2>Interesting Qs &lt;-&gt; many variables</h2>
 <p>Bring the third, fourth, fifth, etc. variable to the plot using additional aesthetics such as <code>color</code>, <code>shape</code>, <code>size</code>, <code>linewidth</code>, etc. and/or with faceting (creating small multiple plots based on the levels of a variable):</p>
 
-<img data-src="04-grammar-of-data-transformation_files/figure-html/four-vars-1.png" width="864" class="r-stretch"></section></section>
+<img data-src="04-grammar-of-data-transformation_files/figure-revealjs/four-vars-1.png" width="864" class="r-stretch"></section></section>
 <section>
 <section id="a-short-list-for-now-of-r-essentials" class="title-slide slide level1 center">
 <h1>A short list<br>(for now)<br>of R essentials</h1>
@@ -1587,6 +1587,44 @@ Dr.&nbsp;Mine Çetinkaya-Rundel
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

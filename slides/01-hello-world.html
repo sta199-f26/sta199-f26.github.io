@@ -808,7 +808,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="01-hello-world_files/figure-html/cl-year-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="01-hello-world_files/figure-html/cl-year-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="01-hello-world_files/figure-revealjs/cl-year-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="01-hello-world_files/figure-revealjs/cl-year-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -830,7 +830,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="01-hello-world_files/figure-html/cl-artist-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="01-hello-world_files/figure-html/cl-artist-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="01-hello-world_files/figure-revealjs/cl-artist-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="01-hello-world_files/figure-revealjs/cl-artist-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -904,7 +904,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="01-hello-world_files/figure-html/cl-writers-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="01-hello-world_files/figure-html/cl-writers-plot-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="01-hello-world_files/figure-revealjs/cl-writers-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="01-hello-world_files/figure-revealjs/cl-writers-plot-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1332,7 +1332,42 @@ Caution
 <p><a href="https://sta199-f26.github.io/">sta199-fa26.github.io</a></p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
