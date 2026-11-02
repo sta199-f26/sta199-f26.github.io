@@ -236,7 +236,10 @@ Unable to execute JavaScript.
 
 - Cell options for what makes it in your final report: `message`, `echo`, etc. [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L6-L7)
 
-- Noting outside resources and formal citations. [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L119)
+- Noting outside resources and formal citations:
+
+  - AI Disclosure [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/ai-disclosure.qmd)
+  - Citations [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L119)
 
 - Finalizing your report with `echo: false`. [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L5)
 
@@ -248,7 +251,7 @@ Unable to execute JavaScript.
 
 - Customizing the look of your website.
 
-  - Quarto themes: Learn more at <https://quarto.org/docs/output-formats/html-themes.html> [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/3417f86ae9e42a2f793da3c935f009506a2a866d/_quarto.yml#L41-L43)
+  - Quarto themes: Learn more at <https://quarto.org/docs/output-formats/html-themes.html> [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/3417f86ae9e42a2f793da3c935f009506a2a866d/_quarto.yml#L41-L43).
   - For the adventurous: Customizing your website with `_brand.yml`, learn more at <https://quarto.org/docs/authoring/brand.html>.
 
 ## Slides
