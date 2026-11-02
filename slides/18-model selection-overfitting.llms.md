@@ -227,18 +227,18 @@ Unable to execute JavaScript.
 
 ## Your project write-up with Quarto
 
-- Figure sizing: `fig-width`, `fig-asp`, etc. in code cells.
+- Figure sizing: `fig-width`, `fig-asp`, etc. in code cells. [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L207-L208)
 
 - Figure layout:
 
-  - `layout-ncol` for placing multiple figures in a chunk.
+  - `layout-ncol` for placing multiple figures in a chunk. [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L163)
   - Further control over figure layout with the [**patchwork**](https://patchwork.data-imaginist.com/articles/patchwork.html) package.
 
-- Cell options for what makes it in your final report: `message`, `echo`, etc.
+- Cell options for what makes it in your final report: `message`, `echo`, etc. [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L6-L7)
 
-- Noting outside resources and formal citations.
+- Noting outside resources and formal citations. [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L119)
 
-- Finalizing your report with `echo: false`.
+- Finalizing your report with `echo: false`. [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/main/index.qmd#L5)
 
 ## Building your project website with Quarto
 
@@ -248,9 +248,16 @@ Unable to execute JavaScript.
 
 - Customizing the look of your website.
 
+  - Quarto themes: Learn more at <https://quarto.org/docs/output-formats/html-themes.html> [\[example\]](https://github.com/sta199-f26/project-teaching-team/blob/3417f86ae9e42a2f793da3c935f009506a2a866d/_quarto.yml#L41-L43)
+  - For the adventurous: Customizing your website with `_brand.yml`, learn more at <https://quarto.org/docs/authoring/brand.html>.
+
 ## Slides
 
 - **Option 1:** Make your slides not in Quarto but make sure they’re available in your Quarto project website.
+
+> **IMPORTANT:**
+>
+> Make sure the presentation is called `presentation.pdf`.
 
 - **Option 2:** Make your slides with Quarto.
 
