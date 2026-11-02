@@ -15,6 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Ensure compatible xfun version
+        run: |
+          # The container can include an older xfun that missing-package checks skip.
+          # Update before checklist or knitr can load its namespace.
+          if (length(find.package("xfun", quiet = TRUE)) == 0L ||
+              packageVersion("xfun") < "0.62") {
+            install.packages("xfun", repos = "https://cloud.r-project.org")
+          }
+          stopifnot(packageVersion("xfun") >= "0.62")
+        shell: Rscript {0}
+
       - name: Install missing packages
         run: |
           checklist::install_missing_pkgs()
