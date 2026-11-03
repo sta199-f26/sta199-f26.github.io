@@ -54,30 +54,6 @@ Are the slides well organized and readable, with concise text and figures that h
 
 ### Presentation order
 
-``` downlit
-library(tidyverse)
-library(gt)
-library(googlesheets4)
-gs4_deauth()
-
-make_presentation_table <- function(df) {
-  df |>
-    mutate(team_name = paste0("[", team_name, "](", repo_url, ")")) |>
-    mutate(presentation = paste0("[pdf](", presentation_url, ")")) |>
-    select(-repo_url, -presentation_url)  |>
-    relocate(team_name, presentation) |>
-    gt() |>
-    fmt_markdown(
-      columns = everything() 
-    ) |>
-    cols_label(
-      team_name = "Team",
-      presentation = "Presentation",
-      teams_for_feedback = "Teams to Give Feedback To"
-    )
-}
-```
-
 ## L1 - 8:30 am
 
 | Team | Presentation | Teams to Give Feedback To |
