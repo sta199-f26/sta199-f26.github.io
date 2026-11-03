@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.10.18">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Presentation – STA 199CCL</title>
 <style>
 /* Default styles provided by pandoc.
@@ -26,8 +23,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -52,8 +83,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-dark-21d1317575da5f145578159d678cfecf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-89f96cf5b3abb0011cbad211bee919d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -80,13 +110,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-
-
 <meta property="og:title" content="Presentation – STA 199CCL">
 <meta property="og:description" content="Milestone 6">
 <meta property="og:site_name" content="STA 199CCL">
 </head>
-
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -252,9 +279,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -265,24 +290,18 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
+      <img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../img/logo.png" alt="STA 199CCL course logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="Positron containers" class="quarto-navigation-tool px-1" aria-label="Positron containers"><i class="bi bi-code-square"></i></a>
     <div class="dropdown">
       <a href="" title="Support" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Support"><i class="bi bi-life-preserver"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://docs.google.com/spreadsheets/d/1ecv7aJCSpDThmbBXkY3AkkpNKSyu4ISAlDXSjZx-WQA/edit?usp=sharing">
               <i class="bi bi-person-raised-hand pe-1"></i>
             Office hours
@@ -295,11 +314,11 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
     <div class="dropdown">
       <a href="" title="Canvas" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Canvas"><i class="bi bi-file-check-fill"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
-          <li>
+<li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://canvas.duke.edu/courses/82840/announcements">
               <i class="bi bi-megaphone-fill pe-1"></i>
             Announcements
@@ -318,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
             </a>
           </li>
       </ul>
-    </div>
+</div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div>
@@ -329,7 +348,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
@@ -337,8 +356,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
@@ -381,7 +400,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -390,8 +409,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Access</span></a>
@@ -416,7 +435,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -425,8 +444,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../project/description.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Description</span></a>
@@ -481,7 +500,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lab.html" class="sidebar-item-text sidebar-link">
@@ -507,34 +526,32 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#presentation-slides" id="toc-presentation-slides" class="nav-link active" data-scroll-target="#presentation-slides">Presentation + slides</a>
+<li>
+<a href="#presentation-slides" id="toc-presentation-slides" class="nav-link active" data-scroll-target="#presentation-slides">Presentation + slides</a>
   <ul class="collapse">
-  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
+<li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
   <li><a href="#presentation" id="toc-presentation" class="nav-link" data-scroll-target="#presentation">Presentation</a></li>
-  <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a>
+  <li>
+<a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a>
   <ul class="collapse">
-  <li><a href="#slides-1" id="toc-slides-1" class="nav-link" data-scroll-target="#slides-1">Slides</a></li>
+<li><a href="#slides-1" id="toc-slides-1" class="nav-link" data-scroll-target="#slides-1">Slides</a></li>
   <li><a href="#presentation-1" id="toc-presentation-1" class="nav-link" data-scroll-target="#presentation-1">Presentation</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#presentation-order" id="toc-presentation-order" class="nav-link" data-scroll-target="#presentation-order">Presentation order</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/project/6-presentation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/project/6-presentation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../project/description.html">Project</a></li><li class="breadcrumb-item"><a href="../project/6-presentation.html">Milestone 6</a></li></ol></nav>
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../project/description.html">Project</a></li><li class="breadcrumb-item"><a href="../project/6-presentation.html">Milestone 6</a></li></ol></nav><div class="quarto-title">
 <h1 class="title">Presentation</h1>
 <p class="subtitle lead">Milestone 6</p>
   <div class="quarto-categories">
@@ -553,13 +570,8 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
-
-
-<section id="presentation-slides" class="level1">
-<h1>Presentation + slides</h1>
-<section id="slides" class="level2">
-<h2 class="anchored" data-anchor-id="slides">Slides</h2>
+</header><section id="presentation-slides" class="level1"><h1>Presentation + slides</h1>
+<section id="slides" class="level2"><h2 class="anchored" data-anchor-id="slides">Slides</h2>
 <p>In addition to the written report, your team will also create presentation slides and deliver a presentation that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.</p>
 <p>You can create your slides with any software you like (Keynote, PowerPoint, Google Slides, etc.). We recommend choosing an option that’s easy to collaborate with, e.g., Google Slides. If you choose this option, save the slides as a PDF and upload it to your repo as <code>presentation.pdf</code>.</p>
 <p>You can also use Quarto to make your slides! While we won’t be covering making slides with Quarto in the class, we would be happy to help you with it in office hours. It’s no different than writing other documents with Quarto, so the learning curve will not be steep!</p>
@@ -570,22 +582,15 @@ ul.task-list li input[type="checkbox"] {
 <li>Slide 2: Introduce the data</li>
 <li>Slides 3-5: Highlights from EDA</li>
 <li>Slide 6: Conclusions + discussion + critique</li>
-</ul>
-</section>
-<section id="presentation" class="level2">
-<h2 class="anchored" data-anchor-id="presentation">Presentation</h2>
+</ul></section><section id="presentation" class="level2"><h2 class="anchored" data-anchor-id="presentation">Presentation</h2>
 <p>Presentations will be in person in lab. All team members must participate in the presentation. <strong>The presentation must be no longer than 5 minutes.</strong></p>
-</section>
-<section id="grading" class="level2">
-<h2 class="anchored" data-anchor-id="grading">Grading</h2>
+</section><section id="grading" class="level2"><h2 class="anchored" data-anchor-id="grading">Grading</h2>
 <p>The presentation is worth 20 points, broken down as follows:</p>
 <table class="caption-top table">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Total</th>
 <th>20 pts</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td><strong>Slides</strong></td>
@@ -597,12 +602,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="slides-1" class="level3">
-<h3 class="anchored" data-anchor-id="slides-1">Slides</h3>
+<section id="slides-1" class="level3"><h3 class="anchored" data-anchor-id="slides-1">Slides</h3>
 <p>Are the slides well organized and readable, with concise text and figures that have legible labels, legends, etc.?</p>
-</section>
-<section id="presentation-1" class="level3">
-<h3 class="anchored" data-anchor-id="presentation-1">Presentation</h3>
+</section><section id="presentation-1" class="level3"><h3 class="anchored" data-anchor-id="presentation-1">Presentation</h3>
 <ul>
 <li>Time management: Did the team divide the time well among themselves and finish within the time limit?</li>
 <li>Professionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?</li>
@@ -615,16 +617,5061 @@ ul.task-list li input[type="checkbox"] {
 <li>Does the analysis answer the question?</li>
 <li>Are the conclusion(s) made based on the analysis justifiable?</li>
 <li>Are the limitations carefully considered and articulated?</li>
-</ul></li>
 </ul>
+</li>
+</ul></section><section id="presentation-order" class="level3"><h3 class="anchored" data-anchor-id="presentation-order">Presentation order</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com">gt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://googlesheets4.tidyverse.org">googlesheets4</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/gs4_deauth.html">gs4_deauth</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">make_presentation_table</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>team_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"["</span>, <span class="va">team_name</span>, <span class="st">"]("</span>, <span class="va">repo_url</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>presentation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"[pdf]("</span>, <span class="va">presentation_url</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">repo_url</span>, <span class="op">-</span><span class="va">presentation_url</span><span class="op">)</span>  <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">team_name</span>, <span class="va">presentation</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://gt.rstudio.com/reference/fmt_markdown.html">fmt_markdown</a></span><span class="op">(</span></span>
+<span>      columns <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://gt.rstudio.com/reference/cols_label.html">cols_label</a></span><span class="op">(</span></span>
+<span>      team_name <span class="op">=</span> <span class="st">"Team"</span>,</span>
+<span>      presentation <span class="op">=</span> <span class="st">"Presentation"</span>,</span>
+<span>      teams_for_feedback <span class="op">=</span> <span class="st">"Teams to Give Feedback To"</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">L1 - 8:30 am</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">L2 - 10:05 am</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">L3 - 10:05 am</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">L4 - 11:45 am</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">L5 - 11:45 am</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false" href="">L6 - 1:25 pm</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false" href="">L7 - 1:25 pm</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false" href="">L8 - 3:05 pm</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false" href="">L9 - 3:05 pm</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-10" role="tab" aria-controls="tabset-1-10" aria-selected="false" href="">L10 - 4:40 pm</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="wdmeshwjvy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wdmeshwjvy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wdmeshwjvy thead, #wdmeshwjvy tbody, #wdmeshwjvy tfoot, #wdmeshwjvy tr, #wdmeshwjvy td, #wdmeshwjvy th {
+  border-style: none;
+}
+
+#wdmeshwjvy p {
+  margin: 0;
+  padding: 0;
+}
+
+#wdmeshwjvy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wdmeshwjvy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wdmeshwjvy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wdmeshwjvy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wdmeshwjvy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wdmeshwjvy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wdmeshwjvy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wdmeshwjvy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wdmeshwjvy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wdmeshwjvy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wdmeshwjvy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wdmeshwjvy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wdmeshwjvy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wdmeshwjvy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wdmeshwjvy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wdmeshwjvy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wdmeshwjvy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wdmeshwjvy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wdmeshwjvy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wdmeshwjvy .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wdmeshwjvy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wdmeshwjvy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wdmeshwjvy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wdmeshwjvy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wdmeshwjvy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wdmeshwjvy .gt_left {
+  text-align: left;
+}
+
+#wdmeshwjvy .gt_center {
+  text-align: center;
+}
+
+#wdmeshwjvy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wdmeshwjvy .gt_font_normal {
+  font-weight: normal;
+}
+
+#wdmeshwjvy .gt_font_bold {
+  font-weight: bold;
+}
+
+#wdmeshwjvy .gt_font_italic {
+  font-style: italic;
+}
+
+#wdmeshwjvy .gt_super {
+  font-size: 65%;
+}
+
+#wdmeshwjvy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wdmeshwjvy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wdmeshwjvy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wdmeshwjvy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wdmeshwjvy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wdmeshwjvy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wdmeshwjvy .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#wdmeshwjvy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wdmeshwjvy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-magic">magic</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-magic/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">fantastic4, garden, team</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-fantastic4">fantastic4</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-fantastic4/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">garden, team, geec</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-garden">garden</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-garden/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">team, geec, boom-shakalaka</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-team">team</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-team/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">geec, boom-shakalaka, brogrammers</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-geec">geec</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-geec/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">boom-shakalaka, brogrammers, magic</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-boom-shakalaka">boom-shakalaka</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-boom-shakalaka/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">brogrammers, magic, fantastic4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-brogrammers">brogrammers</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-brogrammers/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">magic, fantastic4, garden</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="pemovrkphf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pemovrkphf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pemovrkphf thead, #pemovrkphf tbody, #pemovrkphf tfoot, #pemovrkphf tr, #pemovrkphf td, #pemovrkphf th {
+  border-style: none;
+}
+
+#pemovrkphf p {
+  margin: 0;
+  padding: 0;
+}
+
+#pemovrkphf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pemovrkphf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pemovrkphf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pemovrkphf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pemovrkphf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pemovrkphf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pemovrkphf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pemovrkphf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pemovrkphf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pemovrkphf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pemovrkphf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pemovrkphf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pemovrkphf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pemovrkphf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pemovrkphf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pemovrkphf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pemovrkphf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pemovrkphf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pemovrkphf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pemovrkphf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pemovrkphf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pemovrkphf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pemovrkphf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pemovrkphf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pemovrkphf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pemovrkphf .gt_left {
+  text-align: left;
+}
+
+#pemovrkphf .gt_center {
+  text-align: center;
+}
+
+#pemovrkphf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pemovrkphf .gt_font_normal {
+  font-weight: normal;
+}
+
+#pemovrkphf .gt_font_bold {
+  font-weight: bold;
+}
+
+#pemovrkphf .gt_font_italic {
+  font-style: italic;
+}
+
+#pemovrkphf .gt_super {
+  font-size: 65%;
+}
+
+#pemovrkphf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pemovrkphf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pemovrkphf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pemovrkphf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pemovrkphf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pemovrkphf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pemovrkphf .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#pemovrkphf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pemovrkphf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-dysfunctional">dysfunctional</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-dysfunctional/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">minion, git-good, mines-mean-as</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-minion">minion</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-minion/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">git-good, mines-mean-as, team-199</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-git-good">git-good</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-git-good/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">mines-mean-as, team-199, awesome</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-mines-mean-as">mines-mean-as</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-mines-mean-as/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">team-199, awesome, statinators</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-team-199">team-199</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-team-199/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">awesome, statinators, dysfunctional</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-awesome">awesome</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-awesome/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">statinators, dysfunctional, minion</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-statinators">statinators</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-statinators/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">dysfunctional, minion, git-good</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="dsrolzlyge" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dsrolzlyge table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dsrolzlyge thead, #dsrolzlyge tbody, #dsrolzlyge tfoot, #dsrolzlyge tr, #dsrolzlyge td, #dsrolzlyge th {
+  border-style: none;
+}
+
+#dsrolzlyge p {
+  margin: 0;
+  padding: 0;
+}
+
+#dsrolzlyge .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dsrolzlyge .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dsrolzlyge .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dsrolzlyge .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dsrolzlyge .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dsrolzlyge .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dsrolzlyge .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dsrolzlyge .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dsrolzlyge .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dsrolzlyge .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dsrolzlyge .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dsrolzlyge .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dsrolzlyge .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dsrolzlyge .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dsrolzlyge .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dsrolzlyge .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dsrolzlyge .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dsrolzlyge .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dsrolzlyge .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dsrolzlyge .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dsrolzlyge .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dsrolzlyge .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dsrolzlyge .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dsrolzlyge .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dsrolzlyge .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dsrolzlyge .gt_left {
+  text-align: left;
+}
+
+#dsrolzlyge .gt_center {
+  text-align: center;
+}
+
+#dsrolzlyge .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dsrolzlyge .gt_font_normal {
+  font-weight: normal;
+}
+
+#dsrolzlyge .gt_font_bold {
+  font-weight: bold;
+}
+
+#dsrolzlyge .gt_font_italic {
+  font-style: italic;
+}
+
+#dsrolzlyge .gt_super {
+  font-size: 65%;
+}
+
+#dsrolzlyge .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dsrolzlyge .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dsrolzlyge .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dsrolzlyge .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dsrolzlyge .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dsrolzlyge .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dsrolzlyge .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#dsrolzlyge .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#dsrolzlyge div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-stats-stars">stats-stars</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-stats-stars/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">rdvarks, rainbow-unicorns, mines-children</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-rdvarks">rdvarks</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-rdvarks/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">rainbow-unicorns, mines-children, p-devils</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-rainbow-unicorns">rainbow-unicorns</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-rainbow-unicorns/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">mines-children, p-devils, stat-warriors</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-mines-children">mines-children</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-mines-children/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">p-devils, stat-warriors, stats-stars</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-p-devils">p-devils</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-p-devils/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">stat-warriors, stats-stars, rdvarks</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-stat-warriors">stat-warriors</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-stat-warriors/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">stats-stars, rdvarks, rainbow-unicorns</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="hikvmhzpcl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hikvmhzpcl table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hikvmhzpcl thead, #hikvmhzpcl tbody, #hikvmhzpcl tfoot, #hikvmhzpcl tr, #hikvmhzpcl td, #hikvmhzpcl th {
+  border-style: none;
+}
+
+#hikvmhzpcl p {
+  margin: 0;
+  padding: 0;
+}
+
+#hikvmhzpcl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hikvmhzpcl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hikvmhzpcl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hikvmhzpcl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hikvmhzpcl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hikvmhzpcl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hikvmhzpcl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hikvmhzpcl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hikvmhzpcl .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hikvmhzpcl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hikvmhzpcl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hikvmhzpcl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hikvmhzpcl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hikvmhzpcl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hikvmhzpcl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hikvmhzpcl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hikvmhzpcl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hikvmhzpcl .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hikvmhzpcl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hikvmhzpcl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hikvmhzpcl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hikvmhzpcl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hikvmhzpcl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hikvmhzpcl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hikvmhzpcl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hikvmhzpcl .gt_left {
+  text-align: left;
+}
+
+#hikvmhzpcl .gt_center {
+  text-align: center;
+}
+
+#hikvmhzpcl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hikvmhzpcl .gt_font_normal {
+  font-weight: normal;
+}
+
+#hikvmhzpcl .gt_font_bold {
+  font-weight: bold;
+}
+
+#hikvmhzpcl .gt_font_italic {
+  font-style: italic;
+}
+
+#hikvmhzpcl .gt_super {
+  font-size: 65%;
+}
+
+#hikvmhzpcl .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hikvmhzpcl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hikvmhzpcl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hikvmhzpcl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hikvmhzpcl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hikvmhzpcl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hikvmhzpcl .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hikvmhzpcl .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hikvmhzpcl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-green-apple">green-apple</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-green-apple/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">mean-girls, confident-stats-victors, the-standard-deviants</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-mean-girls">mean-girls</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-mean-girls/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">confident-stats-victors, the-standard-deviants, the-outliers</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-confident-stats-victors">confident-stats-victors</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-confident-stats-victors/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">the-standard-deviants, the-outliers, freshman-core</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-the-standard-deviants">the-standard-deviants</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-the-standard-deviants/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">the-outliers, freshman-core, green-apple</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-the-outliers">the-outliers</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-the-outliers/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">freshman-core, green-apple, mean-girls</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-freshman-core">freshman-core</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-freshman-core/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">green-apple, mean-girls, confident-stats-victors</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="pdgouhrour" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pdgouhrour table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pdgouhrour thead, #pdgouhrour tbody, #pdgouhrour tfoot, #pdgouhrour tr, #pdgouhrour td, #pdgouhrour th {
+  border-style: none;
+}
+
+#pdgouhrour p {
+  margin: 0;
+  padding: 0;
+}
+
+#pdgouhrour .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pdgouhrour .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pdgouhrour .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pdgouhrour .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pdgouhrour .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pdgouhrour .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pdgouhrour .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pdgouhrour .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pdgouhrour .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pdgouhrour .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pdgouhrour .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pdgouhrour .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pdgouhrour .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pdgouhrour .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pdgouhrour .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pdgouhrour .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pdgouhrour .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pdgouhrour .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pdgouhrour .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pdgouhrour .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pdgouhrour .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pdgouhrour .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pdgouhrour .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pdgouhrour .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pdgouhrour .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pdgouhrour .gt_left {
+  text-align: left;
+}
+
+#pdgouhrour .gt_center {
+  text-align: center;
+}
+
+#pdgouhrour .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pdgouhrour .gt_font_normal {
+  font-weight: normal;
+}
+
+#pdgouhrour .gt_font_bold {
+  font-weight: bold;
+}
+
+#pdgouhrour .gt_font_italic {
+  font-style: italic;
+}
+
+#pdgouhrour .gt_super {
+  font-size: 65%;
+}
+
+#pdgouhrour .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pdgouhrour .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pdgouhrour .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pdgouhrour .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pdgouhrour .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pdgouhrour .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pdgouhrour .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#pdgouhrour .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pdgouhrour div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-commit-and-push">commit-and-push</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-commit-and-push/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">the-best-team, standard-deviants, github-goblins</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-the-best-team">the-best-team</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-the-best-team/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">standard-deviants, github-goblins, limsanity</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-standard-deviants">standard-deviants</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-standard-deviants/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">github-goblins, limsanity, penguins-of-madagascar</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-github-goblins">github-goblins</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-github-goblins/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">limsanity, penguins-of-madagascar, commit-and-push</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-limsanity">limsanity</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-limsanity/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">penguins-of-madagascar, commit-and-push, the-best-team</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-penguins-of-madagascar">penguins-of-madagascar</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-penguins-of-madagascar/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">commit-and-push, the-best-team, standard-deviants</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="mwgypswcky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwgypswcky table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mwgypswcky thead, #mwgypswcky tbody, #mwgypswcky tfoot, #mwgypswcky tr, #mwgypswcky td, #mwgypswcky th {
+  border-style: none;
+}
+
+#mwgypswcky p {
+  margin: 0;
+  padding: 0;
+}
+
+#mwgypswcky .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mwgypswcky .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mwgypswcky .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mwgypswcky .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mwgypswcky .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mwgypswcky .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mwgypswcky .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mwgypswcky .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mwgypswcky .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mwgypswcky .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mwgypswcky .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mwgypswcky .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mwgypswcky .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mwgypswcky .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mwgypswcky .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwgypswcky .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mwgypswcky .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mwgypswcky .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mwgypswcky .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwgypswcky .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mwgypswcky .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwgypswcky .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mwgypswcky .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwgypswcky .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwgypswcky .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwgypswcky .gt_left {
+  text-align: left;
+}
+
+#mwgypswcky .gt_center {
+  text-align: center;
+}
+
+#mwgypswcky .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mwgypswcky .gt_font_normal {
+  font-weight: normal;
+}
+
+#mwgypswcky .gt_font_bold {
+  font-weight: bold;
+}
+
+#mwgypswcky .gt_font_italic {
+  font-style: italic;
+}
+
+#mwgypswcky .gt_super {
+  font-size: 65%;
+}
+
+#mwgypswcky .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mwgypswcky .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mwgypswcky .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mwgypswcky .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mwgypswcky .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mwgypswcky .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mwgypswcky .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mwgypswcky .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mwgypswcky div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-statistically-significant">statistically-significant</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-statistically-significant/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">the-confidence-intervals, the-dinosaurs, j-o-k-e</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-the-confidence-intervals">the-confidence-intervals</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-the-confidence-intervals/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">the-dinosaurs, j-o-k-e, super-seniors</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-the-dinosaurs">the-dinosaurs</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-the-dinosaurs/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">j-o-k-e, super-seniors, not-your-standard-deviation</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-j-o-k-e">j-o-k-e</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-j-o-k-e/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">super-seniors, not-your-standard-deviation, group-by-szn</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-super-seniors">super-seniors</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-super-seniors/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">not-your-standard-deviation, group-by-szn, statistically-significant</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-not-your-standard-deviation">not-your-standard-deviation</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-not-your-standard-deviation/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">group-by-szn, statistically-significant, the-confidence-intervals</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-group-by-szn">group-by-szn</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-group-by-szn/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">statistically-significant, the-confidence-intervals, the-dinosaurs</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="goesqmbkop" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#goesqmbkop table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#goesqmbkop thead, #goesqmbkop tbody, #goesqmbkop tfoot, #goesqmbkop tr, #goesqmbkop td, #goesqmbkop th {
+  border-style: none;
+}
+
+#goesqmbkop p {
+  margin: 0;
+  padding: 0;
+}
+
+#goesqmbkop .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#goesqmbkop .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#goesqmbkop .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#goesqmbkop .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#goesqmbkop .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#goesqmbkop .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#goesqmbkop .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#goesqmbkop .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#goesqmbkop .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#goesqmbkop .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#goesqmbkop .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#goesqmbkop .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#goesqmbkop .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#goesqmbkop .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#goesqmbkop .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#goesqmbkop .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#goesqmbkop .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#goesqmbkop .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#goesqmbkop .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#goesqmbkop .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#goesqmbkop .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#goesqmbkop .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#goesqmbkop .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#goesqmbkop .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#goesqmbkop .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#goesqmbkop .gt_left {
+  text-align: left;
+}
+
+#goesqmbkop .gt_center {
+  text-align: center;
+}
+
+#goesqmbkop .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#goesqmbkop .gt_font_normal {
+  font-weight: normal;
+}
+
+#goesqmbkop .gt_font_bold {
+  font-weight: bold;
+}
+
+#goesqmbkop .gt_font_italic {
+  font-style: italic;
+}
+
+#goesqmbkop .gt_super {
+  font-size: 65%;
+}
+
+#goesqmbkop .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#goesqmbkop .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#goesqmbkop .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#goesqmbkop .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#goesqmbkop .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#goesqmbkop .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#goesqmbkop .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#goesqmbkop .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#goesqmbkop div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-newbees">newbees</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-newbees/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">freshies, lick, joshs-favorites</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-freshies">freshies</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-freshies/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">lick, joshs-favorites, join-by-slay-factor</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-lick">lick</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-lick/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">joshs-favorites, join-by-slay-factor, stat-slayers</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-joshs-favorites">joshs-favorites</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-joshs-favorites/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">join-by-slay-factor, stat-slayers, group-by</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-join-by-slay-factor">join-by-slay-factor</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-join-by-slay-factor/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">stat-slayers, group-by, newbees</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-stat-slayers">stat-slayers</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-stat-slayers/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">group-by, newbees, freshies</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-group-by">group-by</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-group-by/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">newbees, freshies, lick</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="jfaqjyjwjm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jfaqjyjwjm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jfaqjyjwjm thead, #jfaqjyjwjm tbody, #jfaqjyjwjm tfoot, #jfaqjyjwjm tr, #jfaqjyjwjm td, #jfaqjyjwjm th {
+  border-style: none;
+}
+
+#jfaqjyjwjm p {
+  margin: 0;
+  padding: 0;
+}
+
+#jfaqjyjwjm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jfaqjyjwjm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jfaqjyjwjm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jfaqjyjwjm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jfaqjyjwjm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jfaqjyjwjm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jfaqjyjwjm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jfaqjyjwjm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jfaqjyjwjm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jfaqjyjwjm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jfaqjyjwjm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jfaqjyjwjm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jfaqjyjwjm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jfaqjyjwjm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jfaqjyjwjm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfaqjyjwjm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jfaqjyjwjm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jfaqjyjwjm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jfaqjyjwjm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfaqjyjwjm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jfaqjyjwjm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfaqjyjwjm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jfaqjyjwjm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfaqjyjwjm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jfaqjyjwjm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfaqjyjwjm .gt_left {
+  text-align: left;
+}
+
+#jfaqjyjwjm .gt_center {
+  text-align: center;
+}
+
+#jfaqjyjwjm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jfaqjyjwjm .gt_font_normal {
+  font-weight: normal;
+}
+
+#jfaqjyjwjm .gt_font_bold {
+  font-weight: bold;
+}
+
+#jfaqjyjwjm .gt_font_italic {
+  font-style: italic;
+}
+
+#jfaqjyjwjm .gt_super {
+  font-size: 65%;
+}
+
+#jfaqjyjwjm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jfaqjyjwjm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jfaqjyjwjm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jfaqjyjwjm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jfaqjyjwjm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jfaqjyjwjm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jfaqjyjwjm .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jfaqjyjwjm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jfaqjyjwjm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-error">error</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-error/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">fab-five, git-gods, just-kidding</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-fab-five">fab-five</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-fab-five/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">git-gods, just-kidding, java</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-git-gods">git-gods</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-git-gods/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">just-kidding, java, select-sampiyonlar</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-just-kidding">just-kidding</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-just-kidding/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">java, select-sampiyonlar, wakandata</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-java">java</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-java/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">select-sampiyonlar, wakandata, error</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-select-sampiyonlar">select-sampiyonlar</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-select-sampiyonlar/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">wakandata, error, fab-five</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-wakandata">wakandata</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-wakandata/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">error, fab-five, git-gods</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="owaspcfsfj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#owaspcfsfj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#owaspcfsfj thead, #owaspcfsfj tbody, #owaspcfsfj tfoot, #owaspcfsfj tr, #owaspcfsfj td, #owaspcfsfj th {
+  border-style: none;
+}
+
+#owaspcfsfj p {
+  margin: 0;
+  padding: 0;
+}
+
+#owaspcfsfj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#owaspcfsfj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#owaspcfsfj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#owaspcfsfj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#owaspcfsfj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#owaspcfsfj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#owaspcfsfj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#owaspcfsfj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#owaspcfsfj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#owaspcfsfj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#owaspcfsfj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#owaspcfsfj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#owaspcfsfj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#owaspcfsfj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#owaspcfsfj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owaspcfsfj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#owaspcfsfj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#owaspcfsfj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#owaspcfsfj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owaspcfsfj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#owaspcfsfj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owaspcfsfj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#owaspcfsfj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owaspcfsfj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#owaspcfsfj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owaspcfsfj .gt_left {
+  text-align: left;
+}
+
+#owaspcfsfj .gt_center {
+  text-align: center;
+}
+
+#owaspcfsfj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#owaspcfsfj .gt_font_normal {
+  font-weight: normal;
+}
+
+#owaspcfsfj .gt_font_bold {
+  font-weight: bold;
+}
+
+#owaspcfsfj .gt_font_italic {
+  font-style: italic;
+}
+
+#owaspcfsfj .gt_super {
+  font-size: 65%;
+}
+
+#owaspcfsfj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#owaspcfsfj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#owaspcfsfj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#owaspcfsfj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#owaspcfsfj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#owaspcfsfj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#owaspcfsfj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#owaspcfsfj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#owaspcfsfj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-team-tidyverse">team-tidyverse</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-team-tidyverse/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">we-r-good-at-stats, r-data-better-than-yours, goodies</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-we-r-good-at-stats">we-r-good-at-stats</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-we-r-good-at-stats/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">r-data-better-than-yours, goodies, team-ggplot</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-r-data-better-than-yours">r-data-better-than-yours</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-r-data-better-than-yours/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">goodies, team-ggplot, team-longer</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-goodies">goodies</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-goodies/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">team-ggplot, team-longer, robbies-rockets</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-team-ggplot">team-ggplot</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-team-ggplot/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">team-longer, robbies-rockets, team-tidyverse</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-team-longer">team-longer</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-team-longer/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">robbies-rockets, team-tidyverse, we-r-good-at-stats</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-robbies-rockets">robbies-rockets</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-robbies-rockets/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">team-tidyverse, we-r-good-at-stats, r-data-better-than-yours</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-10-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://googlesheets4.tidyverse.org/reference/range_read.html">read_sheet</a></span><span class="op">(</span><span class="st">"https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966"</span>, </span>
+<span>                    sheet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lab_"</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">make_presentation_table</span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="ocxfeahbjm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ocxfeahbjm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ocxfeahbjm thead, #ocxfeahbjm tbody, #ocxfeahbjm tfoot, #ocxfeahbjm tr, #ocxfeahbjm td, #ocxfeahbjm th {
+  border-style: none;
+}
+
+#ocxfeahbjm p {
+  margin: 0;
+  padding: 0;
+}
+
+#ocxfeahbjm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ocxfeahbjm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ocxfeahbjm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ocxfeahbjm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ocxfeahbjm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ocxfeahbjm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ocxfeahbjm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ocxfeahbjm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ocxfeahbjm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ocxfeahbjm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ocxfeahbjm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ocxfeahbjm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ocxfeahbjm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ocxfeahbjm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ocxfeahbjm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ocxfeahbjm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ocxfeahbjm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ocxfeahbjm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ocxfeahbjm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ocxfeahbjm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ocxfeahbjm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ocxfeahbjm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ocxfeahbjm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ocxfeahbjm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ocxfeahbjm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ocxfeahbjm .gt_left {
+  text-align: left;
+}
+
+#ocxfeahbjm .gt_center {
+  text-align: center;
+}
+
+#ocxfeahbjm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ocxfeahbjm .gt_font_normal {
+  font-weight: normal;
+}
+
+#ocxfeahbjm .gt_font_bold {
+  font-weight: bold;
+}
+
+#ocxfeahbjm .gt_font_italic {
+  font-style: italic;
+}
+
+#ocxfeahbjm .gt_super {
+  font-size: 65%;
+}
+
+#ocxfeahbjm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ocxfeahbjm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ocxfeahbjm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ocxfeahbjm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ocxfeahbjm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ocxfeahbjm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ocxfeahbjm .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ocxfeahbjm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ocxfeahbjm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="team_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Team</th>
+<th id="presentation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Presentation</th>
+<th id="teams_for_feedback" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Teams to Give Feedback To</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-the-positron-pumpkins">the-positron-pumpkins</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-the-positron-pumpkins/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">stats991, the-box-plot-bandits, data_mineRs</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-stats991">stats991</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-stats991/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">the-box-plot-bandits, data_mineRs, team-grizzly</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-the-box-plot-bandits">the-box-plot-bandits</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-the-box-plot-bandits/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">data_mineRs, team-grizzly, data-divas</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-data_mineRs">data_mineRs</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-data_mineRs/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">team-grizzly, data-divas, the-positron-pumpkins</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-team-grizzly">team-grizzly</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-team-grizzly/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">data-divas, the-positron-pumpkins, stats991</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="team_name"><a href="https://github.com/sta199-f26/project-data-divas">data-divas</a></td>
+<td class="gt_row gt_left" headers="presentation"><a href="https://sta199-f26.github.io/project-data-divas/presentation.pdf">pdf</a></td>
+<td class="gt_row gt_left" headers="teams_for_feedback">the-positron-pumpkins, stats991, the-box-plot-bandits</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1036,9 +6083,7 @@ ul.task-list li input[type="checkbox"] {
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../project/5-improvement-progress-II.html" class="pagination-link" aria-label="Milestone 5">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Milestone 5</span>
       </a>          
@@ -1050,8 +6095,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© Copyright 2026, Mine Çetinkaya-Rundel, Mary Knox</p>
 </div>   
@@ -1063,8 +6107,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>
