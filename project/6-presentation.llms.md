@@ -80,12 +80,6 @@ make_presentation_table <- function(df) {
 
 ## L1 - 8:30 am
 
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 1))
-make_presentation_table(teams)
-```
-
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
 | [magic](https://github.com/sta199-f26/project-magic) | [pdf](https://sta199-f26.github.io/project-magic/presentation.pdf) | fantastic4, garden, team |
@@ -97,12 +91,6 @@ make_presentation_table(teams)
 | [brogrammers](https://github.com/sta199-f26/project-brogrammers) | [pdf](https://sta199-f26.github.io/project-brogrammers/presentation.pdf) | magic, fantastic4, garden |
 
 ## L2 - 10:05 am
-
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 2))
-make_presentation_table(teams)
-```
 
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
@@ -116,12 +104,6 @@ make_presentation_table(teams)
 
 ## L3 - 10:05 am
 
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 3))
-make_presentation_table(teams)
-```
-
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
 | [stats-stars](https://github.com/sta199-f26/project-stats-stars) | [pdf](https://sta199-f26.github.io/project-stats-stars/presentation.pdf) | rdvarks, rainbow-unicorns, mines-children |
@@ -132,12 +114,6 @@ make_presentation_table(teams)
 | [stat-warriors](https://github.com/sta199-f26/project-stat-warriors) | [pdf](https://sta199-f26.github.io/project-stat-warriors/presentation.pdf) | stats-stars, rdvarks, rainbow-unicorns |
 
 ## L4 - 11:45 am
-
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 4))
-make_presentation_table(teams)
-```
 
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
@@ -150,12 +126,6 @@ make_presentation_table(teams)
 
 ## L5 - 11:45 am
 
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 5))
-make_presentation_table(teams)
-```
-
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
 | [commit-and-push](https://github.com/sta199-f26/project-commit-and-push) | [pdf](https://sta199-f26.github.io/project-commit-and-push/presentation.pdf) | the-best-team, standard-deviants, github-goblins |
@@ -166,12 +136,6 @@ make_presentation_table(teams)
 | [penguins-of-madagascar](https://github.com/sta199-f26/project-penguins-of-madagascar) | [pdf](https://sta199-f26.github.io/project-penguins-of-madagascar/presentation.pdf) | commit-and-push, the-best-team, standard-deviants |
 
 ## L6 - 1:25 pm
-
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 6))
-make_presentation_table(teams)
-```
 
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
@@ -185,12 +149,6 @@ make_presentation_table(teams)
 
 ## L7 - 1:25 pm
 
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 7))
-make_presentation_table(teams)
-```
-
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
 | [newbees](https://github.com/sta199-f26/project-newbees) | [pdf](https://sta199-f26.github.io/project-newbees/presentation.pdf) | freshies, lick, joshs-favorites |
@@ -202,12 +160,6 @@ make_presentation_table(teams)
 | [group-by](https://github.com/sta199-f26/project-group-by) | [pdf](https://sta199-f26.github.io/project-group-by/presentation.pdf) | newbees, freshies, lick |
 
 ## L8 - 3:05 pm
-
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 8))
-make_presentation_table(teams)
-```
 
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
@@ -221,12 +173,6 @@ make_presentation_table(teams)
 
 ## L9 - 3:05 pm
 
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 9))
-make_presentation_table(teams)
-```
-
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
 | [team-tidyverse](https://github.com/sta199-f26/project-team-tidyverse) | [pdf](https://sta199-f26.github.io/project-team-tidyverse/presentation.pdf) | we-r-good-at-stats, r-data-better-than-yours, goodies |
@@ -238,12 +184,6 @@ make_presentation_table(teams)
 | [robbies-rockets](https://github.com/sta199-f26/project-robbies-rockets) | [pdf](https://sta199-f26.github.io/project-robbies-rockets/presentation.pdf) | team-tidyverse, we-r-good-at-stats, r-data-better-than-yours |
 
 ## L10 - 4:40 pm
-
-``` downlit
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
-                    sheet = paste0("lab_", 10))
-make_presentation_table(teams)
-```
 
 | Team | Presentation | Teams to Give Feedback To |
 |----|----|----|
