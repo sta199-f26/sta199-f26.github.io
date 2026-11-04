@@ -1,24 +1,290 @@
 [
   {
-    "objectID": "slides/images/14/midsemester-feedback/summaries/ta-feedback.html",
-    "href": "slides/images/14/midsemester-feedback/summaries/ta-feedback.html",
-    "title": "Comments about the teaching assistants",
-    "section": "",
-    "text": "Comments about the teaching assistants\n35 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nOverall tone: Feedback was overwhelmingly positive. Students repeatedly described the TAs as helpful, kind, encouraging, knowledgeable, and responsive in labs and office hours.\nWhat students value: Students repeatedly appreciated patient explanations, individual attention, and ready access to help during labs and office hours.\nImprovement opportunity: Multiple comments asked for more active guidance in lab and explanations that better account for students’ limited prior experience.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
+    "objectID": "slides/18-model-selection-overfitting-slides.html#while-you-wait-participate",
+    "href": "slides/18-model-selection-overfitting-slides.html#while-you-wait-participate",
+    "title": "Model selection and overfitting",
+    "section": "While you wait: Participate 📱💻",
+    "text": "While you wait: Participate 📱💻\n\n\n\nAt the end of last class, I asked you to write a description for what this code from AE 10 does. Copy and paste your response here.\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
   },
   {
-    "objectID": "slides/images/14/midsemester-feedback/summaries/course-suggestions.html",
-    "href": "slides/images/14/midsemester-feedback/summaries/course-suggestions.html",
-    "title": "Additional course comments and suggestions",
-    "section": "",
-    "text": "Additional course comments and suggestions\n19 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nMost repeated request: Students want assessment preparation to align more closely with the exam. They asked for more exam-like questions, additional practice exams or study guides, clearer exam outlines, and targeted review of commonly missed ideas.\nExam format: Several students objected to the difficulty or wording of the first exam, especially open-ended questions and writing code on paper.\nWorkload and pacing: A few responses described homework as lengthy relative to its weight, preparation materials as too numerous, or the combined lab and homework load as limiting time to consolidate learning.\nInstructional suggestions: Two students suggested strengthening the connection between lecture explanations and hands-on coding.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
+    "objectID": "slides/18-model-selection-overfitting-slides.html#what-is-the-difference-between-r2-and-adjusted-r2",
+    "href": "slides/18-model-selection-overfitting-slides.html#what-is-the-difference-between-r2-and-adjusted-r2",
+    "title": "Model selection and overfitting",
+    "section": "What is the difference between \\(R^2\\) and adjusted \\(R^2\\)?",
+    "text": "What is the difference between \\(R^2\\) and adjusted \\(R^2\\)?\n\n\\(R^2\\):\n\nProportion of variability in the outcome explained by the model.\nUseful for quantifying the fit of a given model.\n\nAdjusted \\(R^2\\):\n\nProportion of variability in the outcome explained by the model, with a penalty added for the number of predictors in the model.\nUseful for comparing models."
   },
   {
-    "objectID": "slides/images/14/midsemester-feedback/summaries/confusing-topics.html",
-    "href": "slides/images/14/midsemester-feedback/summaries/confusing-topics.html",
-    "title": "Topics students find confusing",
+    "objectID": "slides/18-model-selection-overfitting-slides.html#using-adjusted-r2-to-compare-models",
+    "href": "slides/18-model-selection-overfitting-slides.html#using-adjusted-r2-to-compare-models",
+    "title": "Model selection and overfitting",
+    "section": "Using adjusted \\(R^2\\) to compare models",
+    "text": "Using adjusted \\(R^2\\) to compare models\n\nFit two (or more) models to the same data set with different sets of predictors, selected based on subject-matter knowledge and/or exploratory data analysis results, compared their adjusted \\(R^2\\) values, and selected the model with the highest adjusted \\(R^2\\) value.\nPerform stepwise selection (forward or backward) to select a model that maximizes adjusted \\(R^2\\):\n\nBackward elimination: Start with a model that includes all candidate predictors, and iteratively remove the predictor that results in the largest increase in adjusted \\(R^2\\) until no further improvement is observed.\nForward selection: Start with a model that includes no predictors, and iteratively add the predictor that results in the largest increase in adjusted \\(R^2\\) until no further improvement is observed."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#demo-backward-elimination",
+    "href": "slides/18-model-selection-overfitting-slides.html#demo-backward-elimination",
+    "title": "Model selection and overfitting",
+    "section": "Demo: Backward elimination",
+    "text": "Demo: Backward elimination\n\nGoal: Predict mental_distress. Candidate variables: development_tier, loneliness, and short_sleep. Method for model selection: Backward elimination using adjusted \\(R^2\\) as decision criterion.\n\n\nStart with all three predictors; use the same 100 counties for every model since there are no missing values in these four variables.\nAt each step, try removing each remaining predictor and keep the removal only if it increases adjusted \\(R^2\\) the most.\nTreat development tier as one predictor even though when fitting the model it is represented by two dummy variables."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-0",
+    "href": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-0",
+    "title": "Model selection and overfitting",
+    "section": "Backward elimination: Step 0",
+    "text": "Backward elimination: Step 0\n\nmd_full_fit &lt;- linear_reg() |&gt;\n  fit(\n    mental_distress ~ development_tier + loneliness + short_sleep,\n    data = nc_places\n  )\n\nglance(md_full_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.678"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-1",
+    "href": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-1",
+    "title": "Model selection and overfitting",
+    "section": "Backward elimination: Step 1",
+    "text": "Backward elimination: Step 1\nFit each model obtained by removing one predictor from the full model.\n\n\nmd_no_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ loneliness + short_sleep, data = nc_places)\nglance(md_no_tier_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.587\n\n\n\n\n\nmd_no_lone_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier + short_sleep, data = nc_places)\nglance(md_no_lone_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.612\n\n\n\n\n\nmd_tier_sleep_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier + loneliness, data = nc_places)\nglance(md_tier_sleep_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.681"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#participate",
+    "href": "slides/18-model-selection-overfitting-slides.html#participate",
+    "title": "Model selection and overfitting",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhich variable should we drop in Step 1 of backward elimination using adjusted \\(R^2\\)?\n\n\n\n\n\n\n\n\nPredictor removed\nAdjusted R²\n\n\n\n\nNone (full model)\n0.6780\n\n\nDevelopment tier\n0.5868\n\n\nLoneliness\n0.6121\n\n\nShort sleep\n0.6810\n\n\n\n\n\n\n\n\n\nDevelopment tier\nLoneliness\nShort sleep\nNone; keep all three predictors\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-2",
+    "href": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-2",
+    "title": "Model selection and overfitting",
+    "section": "Backward elimination: Step 2",
+    "text": "Backward elimination: Step 2\nStart from mental_distress ~ development_tier + loneliness (i.e., md_tier_sleep_fit) and try removing each remaining predictor.\n\n\nmd_lone_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ loneliness, data = nc_places)\nglance(md_lone_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.588\n\n\n\n\n\nmd_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier, data = nc_places)\nglance(md_tier_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.545"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#participate-1",
+    "href": "slides/18-model-selection-overfitting-slides.html#participate-1",
+    "title": "Model selection and overfitting",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhich variable should we drop in Step 2 of backward elimination using adjusted \\(R^2\\)?\n\n\n\n\n\n\n\n\nPredictor removed\nAdjusted R²\n\n\n\n\nNone (current model)\n0.6810\n\n\nDevelopment tier\n0.5881\n\n\nLoneliness\n0.5452\n\n\n\n\n\n\n\n\n\nDevelopment tier\nLoneliness\nNone; keep both predictors and stop\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT.\n\n\nStop: Neither removal improves adjusted \\(R^2\\). The selected model is mental_distress ~ development_tier + loneliness, with adjusted \\(R^2\\) = 0.681."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#using-other-criteria-to-compare-models",
+    "href": "slides/18-model-selection-overfitting-slides.html#using-other-criteria-to-compare-models",
+    "title": "Model selection and overfitting",
+    "section": "Using other criteria to compare models",
+    "text": "Using other criteria to compare models\nSame model selection approaches (subject-matter knowledge, stepwise selection) can be used with various model comparison criteria, such as:\n\nMaximize adjusted \\(R^2\\)\nMinimize Akaike Information Criterion (AIC)\nMinimize Bayesian Information Criterion (BIC)\n…\n\n\n\n\n\n\n\n\nNote\n\n\nOnly mentioning criteria other than adjusted \\(R^2\\) here to build awareness that other criteria exist. We will not cover all of them in detail in this course (and this is not even a complete list), but you will encounter them in higher-level modeling courses and in practice."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#balancing-fit-and-complexity",
+    "href": "slides/18-model-selection-overfitting-slides.html#balancing-fit-and-complexity",
+    "title": "Model selection and overfitting",
+    "section": "Balancing fit and complexity",
+    "text": "Balancing fit and complexity\n\nMore complex models (i.e., models with more predictors) tend to fit the data at hand better, but may not generalize well to new data.\nModel selection criteria, like adjusted \\(R^2\\), help balance model fit and complexity to avoid overfitting by penalizing models with more predictors."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#overfitting",
+    "href": "slides/18-model-selection-overfitting-slides.html#overfitting",
+    "title": "Model selection and overfitting",
+    "section": "Overfitting",
+    "text": "Overfitting\n\nOverfitting occurs when a model captures not only the underlying relationship between predictors and outcome but also the random noise in the data.\nOverfitted models that perform well on the observed data can perform poorly on new, unseen data.\n\nGood news: We have techniques to detect and prevent overfitting.\nBad news: We won’t get into those until next week.\n\n\n\nWhat are some features of datasets (that we have discussed so far) that could lead to overfitting?"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#structure-presentation-write-up",
+    "href": "slides/18-model-selection-overfitting-slides.html#structure-presentation-write-up",
+    "title": "Model selection and overfitting",
+    "section": "Structure: presentation + write-up",
+    "text": "Structure: presentation + write-up\n\nStart with your goal / high-level question\nDon’t chronicle your steps, but instead tell us a compelling story of what you set out to find and what you found\n“No significant results” or “no concrete relationships” are still results – what did you learn? how deep did you dig and with what tools and techniques?"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#but-therefore",
+    "href": "slides/18-model-selection-overfitting-slides.html#but-therefore",
+    "title": "Model selection and overfitting",
+    "section": "“But… Therefore…”",
+    "text": "“But… Therefore…”\nAdvice from those much more successful than me at telling stories:"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#your-project-write-up-with-quarto",
+    "href": "slides/18-model-selection-overfitting-slides.html#your-project-write-up-with-quarto",
+    "title": "Model selection and overfitting",
+    "section": "Your project write-up with Quarto",
+    "text": "Your project write-up with Quarto\n\nFigure sizing: fig-width, fig-asp, etc. in code cells. [example]\nFigure layout:\n\nlayout-ncol for placing multiple figures in a chunk. [example]\nFurther control over figure layout with the patchwork package.\n\nCell options for what makes it in your final report: message, echo, etc. [example]\nNoting outside resources and formal citations:\n\nAI Disclosure [example]\nCitations [example]\n\nFinalizing your report with echo: false. [example]"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#building-your-project-website-with-quarto",
+    "href": "slides/18-model-selection-overfitting-slides.html#building-your-project-website-with-quarto",
+    "title": "Model selection and overfitting",
+    "section": "Building your project website with Quarto",
+    "text": "Building your project website with Quarto\n\nThe docs folder.\nMaking sure your website reflects your latest changes.\nCustomizing the look of your website.\n\nQuarto themes: Learn more at https://quarto.org/docs/output-formats/html-themes.html. [example]\nFor the adventurous: Customizing your website with _brand.yml, learn more at https://quarto.org/docs/authoring/brand.html."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#slides",
+    "href": "slides/18-model-selection-overfitting-slides.html#slides",
+    "title": "Model selection and overfitting",
+    "section": "Slides",
+    "text": "Slides\n\nOption 1: Make your slides not in Quarto but make sure they’re available in your Quarto project website.\n\n\n\n\n\n\n\nImportant\n\n\nMake sure the presentation is called presentation.pdf.\n\n\n\n\nOption 2: Make your slides with Quarto."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#code-smell",
+    "href": "slides/18-model-selection-overfitting-slides.html#code-smell",
+    "title": "Model selection and overfitting",
+    "section": "Code smell",
+    "text": "Code smell\n\nOne way to look at smells is with respect to principles and quality: “Smells are certain structures in the code that indicate violation of fundamental design principles and negatively impact design quality”. Code smells are usually not bugs; they are not technically incorrect and do not prevent the program from functioning. Instead, they indicate weaknesses in design that may slow down development or increase the risk of bugs or failures in the future.\n\n\n\nSource: Code smell on Wikipedia"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting-slides.html#code-style",
+    "href": "slides/18-model-selection-overfitting-slides.html#code-style",
+    "title": "Model selection and overfitting",
+    "section": "Code style",
+    "text": "Code style\nFollow the Tidyverse style guide:\n\nSpaces before and line breaks after each + when building a ggplot\nSpaces before and line breaks after each |&gt; in a data transformation pipeline,\nProper indentation\nSpaces around = signs and spaces after commas\nLines should not span more than 80 characters, long lines should be broken up with each argument on its own line"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html",
+    "href": "slides/18-model-selection-overfitting.html",
+    "title": "Model selection and overfitting",
     "section": "",
-    "text": "Topics students find confusing\n36 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nDominant theme: Web scraping and its supporting tools (HTML, rvest, and SelectorGadget) were explicitly mentioned in 15 responses.\nNext most visible theme: Pivoting or data tidying appeared in 7 responses. Students also described difficulty deciding which function to use or applying familiar ideas to a new problem.\nLess frequent recurring topics: Conditional logic and database keys were each mentioned by two students.\nNo single issue: Several students said they were not confused about a particular topic.\n\nThe counts above use transparent keyword coding and may overlap. See the accompanying chart."
+    "text": "At the end of last class, I asked you to write a description for what this code from AE 10 does. Copy and paste your response here.\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#while-you-wait-participate",
+    "href": "slides/18-model-selection-overfitting.html#while-you-wait-participate",
+    "title": "Model selection and overfitting",
+    "section": "",
+    "text": "At the end of last class, I asked you to write a description for what this code from AE 10 does. Copy and paste your response here.\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#what-is-the-difference-between-r2-and-adjusted-r2",
+    "href": "slides/18-model-selection-overfitting.html#what-is-the-difference-between-r2-and-adjusted-r2",
+    "title": "Model selection and overfitting",
+    "section": "What is the difference between \\(R^2\\) and adjusted \\(R^2\\)?",
+    "text": "What is the difference between \\(R^2\\) and adjusted \\(R^2\\)?\n\n\n\n\\(R^2\\):\n\nProportion of variability in the outcome explained by the model.\nUseful for quantifying the fit of a given model.\n\n\nAdjusted \\(R^2\\):\n\nProportion of variability in the outcome explained by the model, with a penalty added for the number of predictors in the model.\nUseful for comparing models."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#using-adjusted-r2-to-compare-models",
+    "href": "slides/18-model-selection-overfitting.html#using-adjusted-r2-to-compare-models",
+    "title": "Model selection and overfitting",
+    "section": "Using adjusted \\(R^2\\) to compare models",
+    "text": "Using adjusted \\(R^2\\) to compare models\n\n\nFit two (or more) models to the same data set with different sets of predictors, selected based on subject-matter knowledge and/or exploratory data analysis results, compared their adjusted \\(R^2\\) values, and selected the model with the highest adjusted \\(R^2\\) value.\n\nPerform stepwise selection (forward or backward) to select a model that maximizes adjusted \\(R^2\\):\n\nBackward elimination: Start with a model that includes all candidate predictors, and iteratively remove the predictor that results in the largest increase in adjusted \\(R^2\\) until no further improvement is observed.\nForward selection: Start with a model that includes no predictors, and iteratively add the predictor that results in the largest increase in adjusted \\(R^2\\) until no further improvement is observed."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#demo-backward-elimination",
+    "href": "slides/18-model-selection-overfitting.html#demo-backward-elimination",
+    "title": "Model selection and overfitting",
+    "section": "Demo: Backward elimination",
+    "text": "Demo: Backward elimination\n\nGoal: Predict mental_distress. Candidate variables: development_tier, loneliness, and short_sleep. Method for model selection: Backward elimination using adjusted \\(R^2\\) as decision criterion.\n\n\n\nStart with all three predictors; use the same 100 counties for every model since there are no missing values in these four variables.\nAt each step, try removing each remaining predictor and keep the removal only if it increases adjusted \\(R^2\\) the most.\nTreat development tier as one predictor even though when fitting the model it is represented by two dummy variables."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#backward-elimination-step-0",
+    "href": "slides/18-model-selection-overfitting.html#backward-elimination-step-0",
+    "title": "Model selection and overfitting",
+    "section": "Backward elimination: Step 0",
+    "text": "Backward elimination: Step 0\n\nmd_full_fit &lt;- linear_reg() |&gt;\n  fit(\n    mental_distress ~ development_tier + loneliness + short_sleep,\n    data = nc_places\n  )\n\nglance(md_full_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.678"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#backward-elimination-step-1",
+    "href": "slides/18-model-selection-overfitting.html#backward-elimination-step-1",
+    "title": "Model selection and overfitting",
+    "section": "Backward elimination: Step 1",
+    "text": "Backward elimination: Step 1\nFit each model obtained by removing one predictor from the full model.\n\n\nmd_no_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ loneliness + short_sleep, data = nc_places)\nglance(md_no_tier_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.587\n\n\n\n\n\nmd_no_lone_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier + short_sleep, data = nc_places)\nglance(md_no_lone_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.612\n\n\n\n\n\nmd_tier_sleep_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier + loneliness, data = nc_places)\nglance(md_tier_sleep_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.681"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#participate",
+    "href": "slides/18-model-selection-overfitting.html#participate",
+    "title": "Model selection and overfitting",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhich variable should we drop in Step 1 of backward elimination using adjusted \\(R^2\\)?\n\n\n\n\n\n\nPredictor removed\nAdjusted R²\n\n\n\nNone (full model)\n0.6780\n\n\nDevelopment tier\n0.5868\n\n\nLoneliness\n0.6121\n\n\nShort sleep\n0.6810\n\n\n\n\n\n\n\n\nDevelopment tier\nLoneliness\nShort sleep\nNone; keep all three predictors\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#backward-elimination-step-2",
+    "href": "slides/18-model-selection-overfitting.html#backward-elimination-step-2",
+    "title": "Model selection and overfitting",
+    "section": "Backward elimination: Step 2",
+    "text": "Backward elimination: Step 2\nStart from mental_distress ~ development_tier + loneliness (i.e., md_tier_sleep_fit) and try removing each remaining predictor.\n\n\nmd_lone_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ loneliness, data = nc_places)\nglance(md_lone_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.588\n\n\n\n\n\nmd_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier, data = nc_places)\nglance(md_tier_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.545"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#participate-1",
+    "href": "slides/18-model-selection-overfitting.html#participate-1",
+    "title": "Model selection and overfitting",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nWhich variable should we drop in Step 2 of backward elimination using adjusted \\(R^2\\)?\n\n\n\n\n\n\nPredictor removed\nAdjusted R²\n\n\n\nNone (current model)\n0.6810\n\n\nDevelopment tier\n0.5881\n\n\nLoneliness\n0.5452\n\n\n\n\n\n\n\n\nDevelopment tier\nLoneliness\nNone; keep both predictors and stop\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT.\n\n\n\nStop: Neither removal improves adjusted \\(R^2\\). The selected model is mental_distress ~ development_tier + loneliness, with adjusted \\(R^2\\) = 0.681."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#using-other-criteria-to-compare-models",
+    "href": "slides/18-model-selection-overfitting.html#using-other-criteria-to-compare-models",
+    "title": "Model selection and overfitting",
+    "section": "Using other criteria to compare models",
+    "text": "Using other criteria to compare models\nSame model selection approaches (subject-matter knowledge, stepwise selection) can be used with various model comparison criteria, such as:\n\nMaximize adjusted \\(R^2\\)\n\nMinimize Akaike Information Criterion (AIC)\nMinimize Bayesian Information Criterion (BIC)\n…\n\n\n\n\n\n\n\nNote\n\n\n\nOnly mentioning criteria other than adjusted \\(R^2\\) here to build awareness that other criteria exist. We will not cover all of them in detail in this course (and this is not even a complete list), but you will encounter them in higher-level modeling courses and in practice."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#balancing-fit-and-complexity",
+    "href": "slides/18-model-selection-overfitting.html#balancing-fit-and-complexity",
+    "title": "Model selection and overfitting",
+    "section": "Balancing fit and complexity",
+    "text": "Balancing fit and complexity\n\n\nMore complex models (i.e., models with more predictors) tend to fit the data at hand better, but may not generalize well to new data.\nModel selection criteria, like adjusted \\(R^2\\), help balance model fit and complexity to avoid overfitting by penalizing models with more predictors."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#overfitting",
+    "href": "slides/18-model-selection-overfitting.html#overfitting",
+    "title": "Model selection and overfitting",
+    "section": "Overfitting",
+    "text": "Overfitting\n\n\nOverfitting occurs when a model captures not only the underlying relationship between predictors and outcome but also the random noise in the data.\n\nOverfitted models that perform well on the observed data can perform poorly on new, unseen data.\n\nGood news: We have techniques to detect and prevent overfitting.\nBad news: We won’t get into those until next week.\n\n\n\n\n\nWhat are some features of datasets (that we have discussed so far) that could lead to overfitting?"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#structure-presentation-write-up",
+    "href": "slides/18-model-selection-overfitting.html#structure-presentation-write-up",
+    "title": "Model selection and overfitting",
+    "section": "Structure: presentation + write-up",
+    "text": "Structure: presentation + write-up\n\nStart with your goal / high-level question\nDon’t chronicle your steps, but instead tell us a compelling story of what you set out to find and what you found\n“No significant results” or “no concrete relationships” are still results – what did you learn? how deep did you dig and with what tools and techniques?"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#but-therefore",
+    "href": "slides/18-model-selection-overfitting.html#but-therefore",
+    "title": "Model selection and overfitting",
+    "section": "“But… Therefore…”",
+    "text": "“But… Therefore…”\nAdvice from those much more successful than me at telling stories:"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#your-project-write-up-with-quarto",
+    "href": "slides/18-model-selection-overfitting.html#your-project-write-up-with-quarto",
+    "title": "Model selection and overfitting",
+    "section": "Your project write-up with Quarto",
+    "text": "Your project write-up with Quarto\n\n\nFigure sizing: fig-width, fig-asp, etc. in code cells. [example]\n\nFigure layout:\n\n\nlayout-ncol for placing multiple figures in a chunk. [example]\n\nFurther control over figure layout with the patchwork package.\n\n\nCell options for what makes it in your final report: message, echo, etc. [example]\n\nNoting outside resources and formal citations:\n\nAI Disclosure [example]\n\nCitations [example]\n\n\n\nFinalizing your report with echo: false. [example]"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#building-your-project-website-with-quarto",
+    "href": "slides/18-model-selection-overfitting.html#building-your-project-website-with-quarto",
+    "title": "Model selection and overfitting",
+    "section": "Building your project website with Quarto",
+    "text": "Building your project website with Quarto\n\nThe docs folder.\nMaking sure your website reflects your latest changes.\n\nCustomizing the look of your website.\n\nQuarto themes: Learn more at https://quarto.org/docs/output-formats/html-themes.html. [example]\n\nFor the adventurous: Customizing your website with _brand.yml, learn more at https://quarto.org/docs/authoring/brand.html."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#slides",
+    "href": "slides/18-model-selection-overfitting.html#slides",
+    "title": "Model selection and overfitting",
+    "section": "Slides",
+    "text": "Slides\n\n\nOption 1: Make your slides not in Quarto but make sure they’re available in your Quarto project website.\n\n\n\n\n\n\n\nImportant\n\n\n\nMake sure the presentation is called presentation.pdf.\n\n\n\n\nOption 2: Make your slides with Quarto."
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#code-smell",
+    "href": "slides/18-model-selection-overfitting.html#code-smell",
+    "title": "Model selection and overfitting",
+    "section": "Code smell",
+    "text": "Code smell\n\nOne way to look at smells is with respect to principles and quality: “Smells are certain structures in the code that indicate violation of fundamental design principles and negatively impact design quality”. Code smells are usually not bugs; they are not technically incorrect and do not prevent the program from functioning. Instead, they indicate weaknesses in design that may slow down development or increase the risk of bugs or failures in the future.\n\n\n\nSource: Code smell on Wikipedia"
+  },
+  {
+    "objectID": "slides/18-model-selection-overfitting.html#code-style",
+    "href": "slides/18-model-selection-overfitting.html#code-style",
+    "title": "Model selection and overfitting",
+    "section": "Code style",
+    "text": "Code style\nFollow the Tidyverse style guide:\n\nSpaces before and line breaks after each + when building a ggplot\nSpaces before and line breaks after each |&gt; in a data transformation pipeline,\nProper indentation\nSpaces around = signs and spaces after commas\nLines should not span more than 80 characters, long lines should be broken up with each argument on its own line"
+  },
+  {
+    "objectID": "slides/images/14/midsemester-feedback/summaries/instructor-feedback.html",
+    "href": "slides/images/14/midsemester-feedback/summaries/instructor-feedback.html",
+    "title": "Comments about Dr. Çetinkaya-Rundel",
+    "section": "",
+    "text": "Comments about Dr. Çetinkaya-Rundel\n32 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nStrongest theme: Students frequently described the instructor as knowledgeable, clear, organized, warm, humorous, and approachable. Lecture notes, preparation videos, application exercises, and office hours were singled out as helpful.\nMost common improvement request: Slow down during live coding and spend more time explaining why particular functions, variables, and arguments are used. Several students want more time to reason through code rather than copy it.\nSmaller recurring themes: Multiple comments asked for clearer lecture structure or discussed how well class practice prepares students for exams.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
+  },
+  {
+    "objectID": "slides/images/14/midsemester-feedback/summaries/course-stimulation.html",
+    "href": "slides/images/14/midsemester-feedback/summaries/course-stimulation.html",
+    "title": "What makes the course stimulating",
+    "section": "",
+    "text": "What makes the course stimulating\n49 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nHands-on work is the main source of engagement: Application exercises, labs, live coding, homework, and the project were the most consistent positive themes.\nContext matters: Students valued real-world data, varied examples, collaboration, and the freedom to work with personally interesting project data.\nWays to increase engagement: Suggestions included more active coding and interaction during lecture, clearer bridges from concepts to complete examples, and more in-class questions that resemble assessment tasks.\nSources of friction: A smaller group described lectures as hard to follow or less efficient than independent review, and some found readings and videos repetitive.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
   },
   {
     "objectID": "slides/17-linear-regression-multiple-predictors-slides.html#while-you-wait-participate",
@@ -4662,157 +4928,135 @@
     "text": "Tasks due Wednesday\n\nComplete the getting to know you survey, then accept your GitHub organization invitation\nRead the syllabus\nComplete readings and videos for Wednesday\n\nAll linked from the course website at\nsta199-fa26.github.io"
   },
   {
-    "objectID": "project/description.html",
-    "href": "project/description.html",
-    "title": "Project description",
+    "objectID": "project/tips-resources.html",
+    "href": "project/tips-resources.html",
+    "title": "Project tips + resources",
     "section": "",
-    "text": "TL;DR: Ask a question you’re curious about and answer it with a dataset of your choice. This is your project in a nutshell.\nMay be too long, but please do read\nThe project for this course will consist of an exploratory data analysis on a dataset of your own choosing. The dataset may already exist, or you may collect your own data using a survey or by conducting an experiment. You can choose the data based on your team’s interests or based on work in other courses or research projects. The goal of this project is for you to demonstrate proficiency in the exploratory data analysis techniques we have covered in this course and apply them to a novel dataset in a meaningful way.\nThe goal is not to do an exhaustive data analysis: you do not need to calculate every statistic or apply every procedure you have learned to every variable. Instead, demonstrate that you can ask meaningful questions, answer them through exploratory data analysis in R, and interpret and present the results. Focus on methods that help you begin to answer your research questions. You do not have to apply every data science method we learned. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should be discussed here.\nThe project is very open ended. You should create compelling visualization(s) and summary table(s) of the data in R. Your analysis should be exploratory, building on the methods we learned in the first half of the course, up to and including Week 8, and excluding modeling and inference. Your overall approach to data cleaning, transformation, and visualization should follow the tidyverse approach used in the course. You may use additional R packages beyond those taught in the course to support your exploratory analysis. You do not need to visualize or summarize all of the data at once. A single high-quality visualization will receive a much higher grade than a large number of poor-quality visualizations. Also pay attention to your presentation. Neatness, coherence, and clarity will count. All analyses must be done in Positron, using R, and all components of the project must be reproducible (with the exception of the slide deck).\nYou will work on the project with your lab teams.",
+    "text": "The project is very open ended. For instance, when creating compelling visualizations of your data in R, there is no limit on what tools or packages you may use. You do not need to visualize all of the data at once. A single high-quality visualization will receive a much higher grade than a large number of poor-quality visualizations.\nBefore you finalize your write-up, hide the code with the option echo: false. Suppress warnings and messages with the options warning: false and message: false.\nFinally, pay attention to details in your write-up and presentation. Neatness, coherence, and clarity will count.",
     "crumbs": [
       "Project",
-      "Description"
+      "Tips + resources"
     ]
   },
   {
-    "objectID": "project/description.html#milestone-1---working-collaboratively",
-    "href": "project/description.html#milestone-1---working-collaboratively",
-    "title": "Project description",
-    "section": "Milestone 1 - Working collaboratively",
-    "text": "Milestone 1 - Working collaboratively\nFor the first milestone of your project, you’ll practice a collaborative Git workflow with your team members. Choose a team name, update the team information in about.qmd, complete your team contract in contract.qmd, and summarize your team’s project interests in proposal.qmd. Render, commit, and push your work to the shared repository.\nInstructions are outlined in Milestone 1: Working collaboratively. Each team member taking part in the collaborative working activity will get 5 points towards their project. In-person attendance and participation in the lab activity are required for full credit.",
+    "objectID": "project/tips-resources.html#suppress-code-and-warnings",
+    "href": "project/tips-resources.html#suppress-code-and-warnings",
+    "title": "Project tips + resources",
+    "section": "Suppress code and warnings",
+    "text": "Suppress code and warnings\n\nInclude the following in the YAML of your index.qmd to suppress all code, warnings, and other messages.\n\nexecute:\n  echo: false\n  warning: false\n  message: false",
     "crumbs": [
       "Project",
-      "Description"
+      "Tips + resources"
     ]
   },
   {
-    "objectID": "project/description.html#project-proposal",
-    "href": "project/description.html#project-proposal",
-    "title": "Project description",
-    "section": "Milestone 2 - Proposal",
-    "text": "Milestone 2 - Proposal\nThere are two main purposes of the project proposal:\n\nTo help you think about the project early, so you can get a head start on finding data, reading relevant literature, thinking about the questions you wish to answer, etc.\nTo ensure that the data you wish to analyze, methods you plan to use, and the scope of your analysis are feasible and will allow you to be successful for this project.\n\nWrite your proposal in proposal.qmd, introducing two candidate datasets and a motivated research question for each. Describe each dataset’s source, collection process, relevant variables, and any ethical concerns; store the data files in data/ and import and inspect them in R using glimpse(). Update _quarto.yml with your team’s information and review your team contract. Each team member must contribute commits, and the project website must build successfully. You must use one of the proposed datasets for the final project unless instructed otherwise in feedback.\nInstructions and grading criteria for this milestone are outlined in Milestone 2: Proposal.",
+    "objectID": "project/tips-resources.html#headers",
+    "href": "project/tips-resources.html#headers",
+    "title": "Project tips + resources",
+    "section": "Headers",
+    "text": "Headers\nUse headers to clearly label each section. Make sure there is a blank line before each header. Use appropriate header levels.",
     "crumbs": [
       "Project",
-      "Description"
+      "Tips + resources"
     ]
   },
   {
-    "objectID": "project/description.html#improvement-progress-I",
-    "href": "project/description.html#improvement-progress-I",
-    "title": "Project description",
-    "section": "Milestone 3 - Improvement and progress I",
-    "text": "Milestone 3 - Improvement and progress I\nCreate a data dictionary in data/README.md, address and close proposal feedback issues, and make further progress through commits to your repo since Milestone 2. Focus your work on index.qmd and other project files; do not make further edits to the graded proposal.qmd. For feedback about datasets you are no longer considering, close the issues with an explanatory comment.\nThis milestone is worth 10 points: 3 for the data dictionary, 2 for closing all feedback issues, and 5 for attending lab and participating in the teamwork in person. Team members who do not attend and participate in person are not eligible for the 5 attendance points, regardless of their contributions throughout the rest of the project.\nInstructions and grading criteria for this milestone are outlined in Milestone 3: Improvement and progress I.",
+    "objectID": "project/tips-resources.html#references",
+    "href": "project/tips-resources.html#references",
+    "title": "Project tips + resources",
+    "section": "References",
+    "text": "References\nInclude all references in a section called “References” at the end of the report. This course does not have specific requirements for formatting citations and references. Optional: Use Quarto’s citation support for generating your references. See Citations & Footnotes on the Quarto documentation for more on that.",
     "crumbs": [
       "Project",
-      "Description"
+      "Tips + resources"
     ]
   },
   {
-    "objectID": "project/description.html#peer-review",
-    "href": "project/description.html#peer-review",
-    "title": "Project description",
-    "section": "Milestone 4 - Peer review",
-    "text": "Milestone 4 - Peer review\nCritically reviewing others’ work is a crucial part of the scientific process, and STA 199 is no exception. You will be assigned one team to review. This feedback is intended to help you create a high-quality final project, as well as give you experience reading and constructively critiquing the work of others.\nRead the assigned team’s project draft and have one or two team members clone and render it to check reproducibility. Discuss the review prompts together, then have one team member submit your team’s constructive, actionable feedback as a GitHub issue in the reviewed team’s repository using the peer review template. Include the names of all participating team members and address statistical reasoning, reproducibility, and file and code organization. In-person attendance and participation in the peer review during lab are required for full credit.\nInstructions and grading criteria for this milestone are outlined in Milestone 4: Peer review.",
+    "objectID": "project/tips-resources.html#appendix",
+    "href": "project/tips-resources.html#appendix",
+    "title": "Project tips + resources",
+    "section": "Appendix",
+    "text": "Appendix\nIf you have additional work that does not fit or does not belong in the body of the report, you may put it at the end of the document in a section called “Appendix”. The items in the appendix should be properly labeled. The appendix should only be for additional material. The reader should be able to fully understand your report without viewing content in the appendix. We will not grade your appendix.",
     "crumbs": [
       "Project",
-      "Description"
+      "Tips + resources"
     ]
   },
   {
-    "objectID": "project/description.html#improvement-progress-II",
-    "href": "project/description.html#improvement-progress-II",
-    "title": "Project description",
-    "section": "Milestone 5 - Improvement and progress II",
-    "text": "Milestone 5 - Improvement and progress II\nIncorporate peer feedback, close the peer feedback issues, and make further progress on your project through commits to your repo since Milestone 4.\nThis milestone is worth 10 points: 2 for one or more commits since Milestone 4, 3 for closing all feedback issues, and 5 for attending lab and participating in the teamwork in person. Team members who do not attend and participate in person are not eligible for the 5 attendance points, regardless of their contributions throughout the rest of the project.\nInstructions and grading criteria for this milestone are outlined in Milestone 5: Improvement and progress II.",
+    "objectID": "project/tips-resources.html#resize-figures",
+    "href": "project/tips-resources.html#resize-figures",
+    "title": "Project tips + resources",
+    "section": "Resize figures",
+    "text": "Resize figures\nResize plots and figures, so you have more space for the narrative. Resize individual figures: Set fig-width and fig-asp in chunk options, e.g.,\n#| echo: fenced\n#| label: code-cell-label\n#| fig-width: 5\n#| fig-asp: 0.628\nReplace code-cell-label with a meaningful label and the width and aspect ratio with values appropriate for your write-up.\nResize all figures: Include the fig-width and fig-asp options in the YAML header as shown below:\nexecute:\n  fig-width: 5\n  fig-asp: 0.628\nReplace the width and aspect ratio values with values appropriate for your write-up.",
     "crumbs": [
       "Project",
-      "Description"
+      "Tips + resources"
     ]
   },
   {
-    "objectID": "project/description.html#milestone-6---presentation",
-    "href": "project/description.html#milestone-6---presentation",
-    "title": "Project description",
-    "section": "Milestone 6 - Presentation",
-    "text": "Milestone 6 - Presentation\nCreate a slide deck of roughly six content slides plus a title slide, introducing your research question and data, highlighting your exploratory analysis, and discussing conclusions and limitations. You may use presentation software such as Google Slides and upload the slides to your repo as presentation.pdf, or create your slides with Quarto. Deliver a presentation of no more than five minutes in person in lab, with every team member participating.\nInstructions and grading criteria for this milestone are outlined in Milestone 6: Presentation.",
+    "objectID": "project/tips-resources.html#arranging-plots",
+    "href": "project/tips-resources.html#arranging-plots",
+    "title": "Project tips + resources",
+    "section": "Arranging plots",
+    "text": "Arranging plots\nArrange plots in a grid, instead of one after the other. This is especially useful when displaying plots for exploratory data analysis and to check assumptions.\nThe patchwork package makes it easy to arrange plots in a grid.",
     "crumbs": [
       "Project",
-      "Description"
+      "Tips + resources"
     ]
   },
   {
-    "objectID": "project/description.html#milestone-7---write-up",
-    "href": "project/description.html#milestone-7---write-up",
-    "title": "Project description",
-    "section": "Milestone 7 - Write-up",
-    "text": "Milestone 7 - Write-up\nComplete your reproducible report in index.qmd, with Abstract, Introduction, Data, Results, Discussion, and Reflection sections. The report, including visualizations, must be no longer than ten printed pages, excluding an optional appendix. Hide code, warnings, and messages in the rendered report, and ensure all team members contribute regular, meaningful commits to the repository.\nInstructions and grading criteria for this milestone are outlined in Milestone 7: Write-up.",
-    "crumbs": [
-      "Project",
-      "Description"
-    ]
-  },
-  {
-    "objectID": "project/description.html#grading-summary",
-    "href": "project/description.html#grading-summary",
-    "title": "Project description",
-    "section": "Grading summary",
-    "text": "Grading summary\nGrading of the project will take into account the following:\n\nContent - What is the quality of the research and/or policy questions, and how relevant are the data to those questions?\nCorrectness - Are data science procedures carried out and explained correctly?\nWriting and Presentation - What is the quality of the data science presentation, writing, and explanations?\nCreativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?\n\nA general breakdown of scoring is as follows:\n\n90%-100%: Outstanding effort. Student understands how to apply all data science and statistics concepts, can put the results into a cogent argument, can identify weaknesses in the argument, and can clearly communicate the results to others.\n80%-89%: Good effort. Student understands most of the concepts, puts together an adequate argument, identifies some weaknesses of their argument, and communicates most results clearly to others.\n70%-79%: Passing effort. Student misunderstands concepts in several areas, has some trouble putting results together in a cogent argument, and sometimes communicates results unclearly.\n60%-69%: Struggling effort. Student is making some effort, but misunderstands many concepts and is unable to put together a cogent argument. Communication of results is unclear.\nBelow 60%: Student is not making a sufficient effort.",
-    "crumbs": [
-      "Project",
-      "Description"
-    ]
-  },
-  {
-    "objectID": "project/description.html#late-work-policy",
-    "href": "project/description.html#late-work-policy",
-    "title": "Project description",
-    "section": "Late work policy",
-    "text": "Late work policy\nNo late work will be accepted for this project. Be sure to turn in your work early to avoid any technological mishaps.",
-    "crumbs": [
-      "Project",
-      "Description"
-    ]
-  },
-  {
-    "objectID": "project/6-presentation.html",
-    "href": "project/6-presentation.html",
-    "title": "Presentation",
+    "objectID": "project/7-writeup.html",
+    "href": "project/7-writeup.html",
+    "title": "Write-up",
     "section": "",
-    "text": "In addition to the written report, your team will also create presentation slides and deliver a presentation that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.\nYou can create your slides with any software you like (Keynote, PowerPoint, Google Slides, etc.). We recommend choosing an option that’s easy to collaborate with, e.g., Google Slides. If you choose this option, save the slides as a PDF and upload it to your repo as presentation.pdf.\nYou can also use Quarto to make your slides! While we won’t be covering making slides with Quarto in the class, we would be happy to help you with it in office hours. It’s no different than writing other documents with Quarto, so the learning curve will not be steep!\nThe slide deck should be roughly 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the 6 slides.\n\nTitle Slide\nSlide 1: Introduce the topic and motivation\nSlide 2: Introduce the data\nSlides 3-5: Highlights from EDA\nSlide 6: Conclusions + discussion + critique\n\nPresentations will be in person in lab. All team members must participate in the presentation. The presentation must be no longer than 5 minutes.\n\nThe presentation is worth 20 points, broken down as follows:\n\n\nTotal\n20 pts\n\n\n\nSlides\n10 pts\n\n\nPresentation\n10 pts\n\n\n\n\nAre the slides well organized and readable, with concise text and figures that have legible labels, legends, etc.?\n\n\nTime management: Did the team divide the time well among themselves and finish within the time limit?\nProfessionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?\nTeamwork: Did the team present a unified story, or did it seem like independent pieces of work patched together?\nCreativity and critical thought: Is the project carefully thought out? Does it appear that time and effort went into the planning and implementation of the project?\nContent: Including, but not limited to the following:\n\nIs the question well articulated in the presentation?\nCan the question be answered with the data?\nDoes the analysis answer the question?\nAre the conclusion(s) made based on the analysis justifiable?\nAre the limitations carefully considered and articulated?\n\n\n\n\n\nL1 - 8:30 am\nL2 - 10:05 am\nL3 - 10:05 am\nL4 - 11:45 am\nL5 - 11:45 am\nL6 - 1:25 pm\nL7 - 1:25 pm\nL8 - 3:05 pm\nL9 - 3:05 pm\nL10 - 4:40 pm\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nmagic\npdf\nfantastic4, garden, team\n\n\nfantastic4\npdf\ngarden, team, geec\n\n\ngarden\npdf\nteam, geec, boom-shakalaka\n\n\nteam\npdf\ngeec, boom-shakalaka, brogrammers\n\n\ngeec\npdf\nboom-shakalaka, brogrammers, magic\n\n\nboom-shakalaka\npdf\nbrogrammers, magic, fantastic4\n\n\nbrogrammers\npdf\nmagic, fantastic4, garden\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\ndysfunctional\npdf\nminion, git-good, mines-mean-as\n\n\nminion\npdf\ngit-good, mines-mean-as, team-199\n\n\ngit-good\npdf\nmines-mean-as, team-199, awesome\n\n\nmines-mean-as\npdf\nteam-199, awesome, statinators\n\n\nteam-199\npdf\nawesome, statinators, dysfunctional\n\n\nawesome\npdf\nstatinators, dysfunctional, minion\n\n\nstatinators\npdf\ndysfunctional, minion, git-good\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nstats-stars\npdf\nrdvarks, rainbow-unicorns, mines-children\n\n\nrdvarks\npdf\nrainbow-unicorns, mines-children, p-devils\n\n\nrainbow-unicorns\npdf\nmines-children, p-devils, stat-warriors\n\n\nmines-children\npdf\np-devils, stat-warriors, stats-stars\n\n\np-devils\npdf\nstat-warriors, stats-stars, rdvarks\n\n\nstat-warriors\npdf\nstats-stars, rdvarks, rainbow-unicorns\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\ngreen-apple\npdf\nmean-girls, confident-stats-victors, the-standard-deviants\n\n\nmean-girls\npdf\nconfident-stats-victors, the-standard-deviants, the-outliers\n\n\nconfident-stats-victors\npdf\nthe-standard-deviants, the-outliers, freshman-core\n\n\nthe-standard-deviants\npdf\nthe-outliers, freshman-core, green-apple\n\n\nthe-outliers\npdf\nfreshman-core, green-apple, mean-girls\n\n\nfreshman-core\npdf\ngreen-apple, mean-girls, confident-stats-victors\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\ncommit-and-push\npdf\nthe-best-team, standard-deviants, github-goblins\n\n\nthe-best-team\npdf\nstandard-deviants, github-goblins, limsanity\n\n\nstandard-deviants\npdf\ngithub-goblins, limsanity, penguins-of-madagascar\n\n\ngithub-goblins\npdf\nlimsanity, penguins-of-madagascar, commit-and-push\n\n\nlimsanity\npdf\npenguins-of-madagascar, commit-and-push, the-best-team\n\n\npenguins-of-madagascar\npdf\ncommit-and-push, the-best-team, standard-deviants\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nstatistically-significant\npdf\nthe-confidence-intervals, the-dinosaurs, j-o-k-e\n\n\nthe-confidence-intervals\npdf\nthe-dinosaurs, j-o-k-e, super-seniors\n\n\nthe-dinosaurs\npdf\nj-o-k-e, super-seniors, not-your-standard-deviation\n\n\nj-o-k-e\npdf\nsuper-seniors, not-your-standard-deviation, group-by-szn\n\n\nsuper-seniors\npdf\nnot-your-standard-deviation, group-by-szn, statistically-significant\n\n\nnot-your-standard-deviation\npdf\ngroup-by-szn, statistically-significant, the-confidence-intervals\n\n\ngroup-by-szn\npdf\nstatistically-significant, the-confidence-intervals, the-dinosaurs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nnewbees\npdf\nfreshies, lick, joshs-favorites\n\n\nfreshies\npdf\nlick, joshs-favorites, join-by-slay-factor\n\n\nlick\npdf\njoshs-favorites, join-by-slay-factor, stat-slayers\n\n\njoshs-favorites\npdf\njoin-by-slay-factor, stat-slayers, group-by\n\n\njoin-by-slay-factor\npdf\nstat-slayers, group-by, newbees\n\n\nstat-slayers\npdf\ngroup-by, newbees, freshies\n\n\ngroup-by\npdf\nnewbees, freshies, lick\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nerror\npdf\nfab-five, git-gods, just-kidding\n\n\nfab-five\npdf\ngit-gods, just-kidding, java\n\n\ngit-gods\npdf\njust-kidding, java, select-sampiyonlar\n\n\njust-kidding\npdf\njava, select-sampiyonlar, wakandata\n\n\njava\npdf\nselect-sampiyonlar, wakandata, error\n\n\nselect-sampiyonlar\npdf\nwakandata, error, fab-five\n\n\nwakandata\npdf\nerror, fab-five, git-gods\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nteam-tidyverse\npdf\nwe-r-good-at-stats, r-data-better-than-yours, goodies\n\n\nwe-r-good-at-stats\npdf\nr-data-better-than-yours, goodies, team-ggplot\n\n\nr-data-better-than-yours\npdf\ngoodies, team-ggplot, team-longer\n\n\ngoodies\npdf\nteam-ggplot, team-longer, robbies-rockets\n\n\nteam-ggplot\npdf\nteam-longer, robbies-rockets, team-tidyverse\n\n\nteam-longer\npdf\nrobbies-rockets, team-tidyverse, we-r-good-at-stats\n\n\nrobbies-rockets\npdf\nteam-tidyverse, we-r-good-at-stats, r-data-better-than-yours\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nthe-positron-pumpkins\npdf\nstats991, the-box-plot-bandits, data_mineRs\n\n\nstats991\npdf\nthe-box-plot-bandits, data_mineRs, team-grizzly\n\n\nthe-box-plot-bandits\npdf\ndata_mineRs, team-grizzly, data-divas\n\n\ndata_mineRs\npdf\nteam-grizzly, data-divas, the-positron-pumpkins\n\n\nteam-grizzly\npdf\ndata-divas, the-positron-pumpkins, stats991\n\n\ndata-divas\npdf\nthe-positron-pumpkins, stats991, the-box-plot-bandits",
+    "text": "Your written report must be completed in the index.qmd file and must be reproducible. All team members should contribute to the GitHub repository, with regular meaningful commits.\nBefore you finalize your write-up, hide the code, warnings, and messages by setting echo: false, warning: false, and message: false under execute in the YAML.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long (if it were to be printed). There is no minimum page requirement; however, you should comprehensively address all of the analysis in your report.\nTo check how many pages your report is, open it in your browser and go to File &gt; Print &gt; Save as PDF and review the number of pages.\nBe selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis.\nYou are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will not see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the 10-page limit.\n\n\n\n\n\nProvide a brief summary of the project, including the research question, data, approach, and main findings.\nGrading criteria: The abstract concisely summarizes the project and its main conclusions and can be understood on its own.\n\n\n\nThis section includes an introduction to the project motivation and research question.\nGrading criteria: The research question and motivation are clearly stated in the introduction, including citations for the data source and any external research.\n\n\n\nThis section includes a description of the data. Describe the data and definitions of key variables. Also include a description of any data cleaning steps you took to prepare the data for analysis.\nGrading criteria: The data are clearly described, including a description of how the data were originally collected and concise definitions of the variables relevant to understanding the report. The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.). The exploratory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables.\n\n\n\nThis is where you will discuss your findings and describe the key results from your analysis. The goal is not to interpret every single element of a visualization or output shown, but instead to address the research questions, using the interpretations to support your conclusions. Focus on the variables that help you answer the research question and that provide relevant context for the reader.\nGrading criteria: The analysis steps are appropriate for the data and research question. A thorough and careful approach is used to choose analysis methods, and any concerns about the appropriateness of the chosen methods are addressed. The analysis results are clearly assessed, and interesting findings from the analysis are described. Interpretations support the key findings and conclusions, rather than merely explaining every summary statistic.\n\n\n\nIn this section you’ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should also be discussed here. Lastly, you might choose to include ideas for future work, but do this only if you have realistic ideas that are relevant to your project.\nGrading criteria: Overall conclusions from the analysis are clearly described, and the analysis results are put into the larger context of the subject matter and original research question. There is thoughtful consideration of potential limitations of the data and/or analysis. If ideas for future work are described, these are realistic and relevant to the project.\n\n\n\nReflect on what your team learned from carrying out the project, including delivering your presentation and listening to others’ presentations. Discuss what worked well in your collaboration and workflow, challenges you encountered and how you addressed them, and what you would do differently in a future project.\nGrading criteria: The reflection uses specific examples from the project to explain what the team learned, assesses the team’s process thoughtfully, and identifies concrete improvements for future work.\n\n\n\n\nThese expectations apply throughout the report and its source documents; they are not additional report sections.\n\n\nThe report is neatly written and organized with clear section headers and appropriately sized figures with informative labels. Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted. All citations and links are properly formatted. If there is an appendix, it is reasonably organized and easy for the reader to find relevant information. All code, warnings, and messages are suppressed. The main body of the written report (not including the appendix) is no longer than 10 pages.\n\n\n\nThese code expectations contribute to the separate 10-point computational quality assessment, which also includes reproducibility and organization.\nCode follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation. Lines of code are kept to a reasonable length, and long pipelines and ggplot calls are broken across multiple lines. Code is not repetitive, and there is no unused or dead code left in the document. Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout. Code uses clear, appropriately simple solutions, avoids unnecessary steps or complicated logic, and follows the tidyverse approach used in the course.\n\n\n\n\nThe write-up is due on Friday, November 13 at 11:59 pm.\nIt is worth 20 points, broken down as follows:\n\n\n\nTotal\n20 pts\n\n\n\n\nAbstract\n1\n\n\nIntroduction\n3\n\n\nData\n5\n\n\nResults\n5\n\n\nDiscussion\n3\n\n\nReflection\n3",
     "crumbs": [
       "Project",
-      "Milestone 6"
+      "Milestone 7"
     ]
   },
   {
-    "objectID": "project/6-presentation.html#slides",
-    "href": "project/6-presentation.html#slides",
-    "title": "Presentation",
+    "objectID": "project/7-writeup.html#expectations",
+    "href": "project/7-writeup.html#expectations",
+    "title": "Write-up",
     "section": "",
-    "text": "In addition to the written report, your team will also create presentation slides and deliver a presentation that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.\nYou can create your slides with any software you like (Keynote, PowerPoint, Google Slides, etc.). We recommend choosing an option that’s easy to collaborate with, e.g., Google Slides. If you choose this option, save the slides as a PDF and upload it to your repo as presentation.pdf.\nYou can also use Quarto to make your slides! While we won’t be covering making slides with Quarto in the class, we would be happy to help you with it in office hours. It’s no different than writing other documents with Quarto, so the learning curve will not be steep!\nThe slide deck should be roughly 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the 6 slides.\n\nTitle Slide\nSlide 1: Introduce the topic and motivation\nSlide 2: Introduce the data\nSlides 3-5: Highlights from EDA\nSlide 6: Conclusions + discussion + critique",
+    "text": "Your written report must be completed in the index.qmd file and must be reproducible. All team members should contribute to the GitHub repository, with regular meaningful commits.\nBefore you finalize your write-up, hide the code, warnings, and messages by setting echo: false, warning: false, and message: false under execute in the YAML.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long (if it were to be printed). There is no minimum page requirement; however, you should comprehensively address all of the analysis in your report.\nTo check how many pages your report is, open it in your browser and go to File &gt; Print &gt; Save as PDF and review the number of pages.\nBe selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis.\nYou are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will not see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the 10-page limit.",
     "crumbs": [
       "Project",
-      "Milestone 6"
+      "Milestone 7"
     ]
   },
   {
-    "objectID": "project/6-presentation.html#presentation",
-    "href": "project/6-presentation.html#presentation",
-    "title": "Presentation",
+    "objectID": "project/7-writeup.html#components",
+    "href": "project/7-writeup.html#components",
+    "title": "Write-up",
     "section": "",
-    "text": "Presentations will be in person in lab. All team members must participate in the presentation. The presentation must be no longer than 5 minutes.",
+    "text": "Provide a brief summary of the project, including the research question, data, approach, and main findings.\nGrading criteria: The abstract concisely summarizes the project and its main conclusions and can be understood on its own.\n\n\n\nThis section includes an introduction to the project motivation and research question.\nGrading criteria: The research question and motivation are clearly stated in the introduction, including citations for the data source and any external research.\n\n\n\nThis section includes a description of the data. Describe the data and definitions of key variables. Also include a description of any data cleaning steps you took to prepare the data for analysis.\nGrading criteria: The data are clearly described, including a description of how the data were originally collected and concise definitions of the variables relevant to understanding the report. The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.). The exploratory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables.\n\n\n\nThis is where you will discuss your findings and describe the key results from your analysis. The goal is not to interpret every single element of a visualization or output shown, but instead to address the research questions, using the interpretations to support your conclusions. Focus on the variables that help you answer the research question and that provide relevant context for the reader.\nGrading criteria: The analysis steps are appropriate for the data and research question. A thorough and careful approach is used to choose analysis methods, and any concerns about the appropriateness of the chosen methods are addressed. The analysis results are clearly assessed, and interesting findings from the analysis are described. Interpretations support the key findings and conclusions, rather than merely explaining every summary statistic.\n\n\n\nIn this section you’ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should also be discussed here. Lastly, you might choose to include ideas for future work, but do this only if you have realistic ideas that are relevant to your project.\nGrading criteria: Overall conclusions from the analysis are clearly described, and the analysis results are put into the larger context of the subject matter and original research question. There is thoughtful consideration of potential limitations of the data and/or analysis. If ideas for future work are described, these are realistic and relevant to the project.\n\n\n\nReflect on what your team learned from carrying out the project, including delivering your presentation and listening to others’ presentations. Discuss what worked well in your collaboration and workflow, challenges you encountered and how you addressed them, and what you would do differently in a future project.\nGrading criteria: The reflection uses specific examples from the project to explain what the team learned, assesses the team’s process thoughtfully, and identifies concrete improvements for future work.",
     "crumbs": [
       "Project",
-      "Milestone 6"
+      "Milestone 7"
     ]
   },
   {
-    "objectID": "project/6-presentation.html#grading",
-    "href": "project/6-presentation.html#grading",
-    "title": "Presentation",
+    "objectID": "project/7-writeup.html#organization-formatting-and-code-expectations",
+    "href": "project/7-writeup.html#organization-formatting-and-code-expectations",
+    "title": "Write-up",
     "section": "",
-    "text": "The presentation is worth 20 points, broken down as follows:\n\n\nTotal\n20 pts\n\n\n\nSlides\n10 pts\n\n\nPresentation\n10 pts\n\n\n\n\nAre the slides well organized and readable, with concise text and figures that have legible labels, legends, etc.?\n\n\nTime management: Did the team divide the time well among themselves and finish within the time limit?\nProfessionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?\nTeamwork: Did the team present a unified story, or did it seem like independent pieces of work patched together?\nCreativity and critical thought: Is the project carefully thought out? Does it appear that time and effort went into the planning and implementation of the project?\nContent: Including, but not limited to the following:\n\nIs the question well articulated in the presentation?\nCan the question be answered with the data?\nDoes the analysis answer the question?\nAre the conclusion(s) made based on the analysis justifiable?\nAre the limitations carefully considered and articulated?\n\n\n\n\n\nL1 - 8:30 am\nL2 - 10:05 am\nL3 - 10:05 am\nL4 - 11:45 am\nL5 - 11:45 am\nL6 - 1:25 pm\nL7 - 1:25 pm\nL8 - 3:05 pm\nL9 - 3:05 pm\nL10 - 4:40 pm\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nmagic\npdf\nfantastic4, garden, team\n\n\nfantastic4\npdf\ngarden, team, geec\n\n\ngarden\npdf\nteam, geec, boom-shakalaka\n\n\nteam\npdf\ngeec, boom-shakalaka, brogrammers\n\n\ngeec\npdf\nboom-shakalaka, brogrammers, magic\n\n\nboom-shakalaka\npdf\nbrogrammers, magic, fantastic4\n\n\nbrogrammers\npdf\nmagic, fantastic4, garden\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\ndysfunctional\npdf\nminion, git-good, mines-mean-as\n\n\nminion\npdf\ngit-good, mines-mean-as, team-199\n\n\ngit-good\npdf\nmines-mean-as, team-199, awesome\n\n\nmines-mean-as\npdf\nteam-199, awesome, statinators\n\n\nteam-199\npdf\nawesome, statinators, dysfunctional\n\n\nawesome\npdf\nstatinators, dysfunctional, minion\n\n\nstatinators\npdf\ndysfunctional, minion, git-good\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nstats-stars\npdf\nrdvarks, rainbow-unicorns, mines-children\n\n\nrdvarks\npdf\nrainbow-unicorns, mines-children, p-devils\n\n\nrainbow-unicorns\npdf\nmines-children, p-devils, stat-warriors\n\n\nmines-children\npdf\np-devils, stat-warriors, stats-stars\n\n\np-devils\npdf\nstat-warriors, stats-stars, rdvarks\n\n\nstat-warriors\npdf\nstats-stars, rdvarks, rainbow-unicorns\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\ngreen-apple\npdf\nmean-girls, confident-stats-victors, the-standard-deviants\n\n\nmean-girls\npdf\nconfident-stats-victors, the-standard-deviants, the-outliers\n\n\nconfident-stats-victors\npdf\nthe-standard-deviants, the-outliers, freshman-core\n\n\nthe-standard-deviants\npdf\nthe-outliers, freshman-core, green-apple\n\n\nthe-outliers\npdf\nfreshman-core, green-apple, mean-girls\n\n\nfreshman-core\npdf\ngreen-apple, mean-girls, confident-stats-victors\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\ncommit-and-push\npdf\nthe-best-team, standard-deviants, github-goblins\n\n\nthe-best-team\npdf\nstandard-deviants, github-goblins, limsanity\n\n\nstandard-deviants\npdf\ngithub-goblins, limsanity, penguins-of-madagascar\n\n\ngithub-goblins\npdf\nlimsanity, penguins-of-madagascar, commit-and-push\n\n\nlimsanity\npdf\npenguins-of-madagascar, commit-and-push, the-best-team\n\n\npenguins-of-madagascar\npdf\ncommit-and-push, the-best-team, standard-deviants\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nstatistically-significant\npdf\nthe-confidence-intervals, the-dinosaurs, j-o-k-e\n\n\nthe-confidence-intervals\npdf\nthe-dinosaurs, j-o-k-e, super-seniors\n\n\nthe-dinosaurs\npdf\nj-o-k-e, super-seniors, not-your-standard-deviation\n\n\nj-o-k-e\npdf\nsuper-seniors, not-your-standard-deviation, group-by-szn\n\n\nsuper-seniors\npdf\nnot-your-standard-deviation, group-by-szn, statistically-significant\n\n\nnot-your-standard-deviation\npdf\ngroup-by-szn, statistically-significant, the-confidence-intervals\n\n\ngroup-by-szn\npdf\nstatistically-significant, the-confidence-intervals, the-dinosaurs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nnewbees\npdf\nfreshies, lick, joshs-favorites\n\n\nfreshies\npdf\nlick, joshs-favorites, join-by-slay-factor\n\n\nlick\npdf\njoshs-favorites, join-by-slay-factor, stat-slayers\n\n\njoshs-favorites\npdf\njoin-by-slay-factor, stat-slayers, group-by\n\n\njoin-by-slay-factor\npdf\nstat-slayers, group-by, newbees\n\n\nstat-slayers\npdf\ngroup-by, newbees, freshies\n\n\ngroup-by\npdf\nnewbees, freshies, lick\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nerror\npdf\nfab-five, git-gods, just-kidding\n\n\nfab-five\npdf\ngit-gods, just-kidding, java\n\n\ngit-gods\npdf\njust-kidding, java, select-sampiyonlar\n\n\njust-kidding\npdf\njava, select-sampiyonlar, wakandata\n\n\njava\npdf\nselect-sampiyonlar, wakandata, error\n\n\nselect-sampiyonlar\npdf\nwakandata, error, fab-five\n\n\nwakandata\npdf\nerror, fab-five, git-gods\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nteam-tidyverse\npdf\nwe-r-good-at-stats, r-data-better-than-yours, goodies\n\n\nwe-r-good-at-stats\npdf\nr-data-better-than-yours, goodies, team-ggplot\n\n\nr-data-better-than-yours\npdf\ngoodies, team-ggplot, team-longer\n\n\ngoodies\npdf\nteam-ggplot, team-longer, robbies-rockets\n\n\nteam-ggplot\npdf\nteam-longer, robbies-rockets, team-tidyverse\n\n\nteam-longer\npdf\nrobbies-rockets, team-tidyverse, we-r-good-at-stats\n\n\nrobbies-rockets\npdf\nteam-tidyverse, we-r-good-at-stats, r-data-better-than-yours\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nPresentation\nTeams to Give Feedback To\n\n\n\nthe-positron-pumpkins\npdf\nstats991, the-box-plot-bandits, data_mineRs\n\n\nstats991\npdf\nthe-box-plot-bandits, data_mineRs, team-grizzly\n\n\nthe-box-plot-bandits\npdf\ndata_mineRs, team-grizzly, data-divas\n\n\ndata_mineRs\npdf\nteam-grizzly, data-divas, the-positron-pumpkins\n\n\nteam-grizzly\npdf\ndata-divas, the-positron-pumpkins, stats991\n\n\ndata-divas\npdf\nthe-positron-pumpkins, stats991, the-box-plot-bandits",
+    "text": "These expectations apply throughout the report and its source documents; they are not additional report sections.\n\n\nThe report is neatly written and organized with clear section headers and appropriately sized figures with informative labels. Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted. All citations and links are properly formatted. If there is an appendix, it is reasonably organized and easy for the reader to find relevant information. All code, warnings, and messages are suppressed. The main body of the written report (not including the appendix) is no longer than 10 pages.\n\n\n\nThese code expectations contribute to the separate 10-point computational quality assessment, which also includes reproducibility and organization.\nCode follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation. Lines of code are kept to a reasonable length, and long pipelines and ggplot calls are broken across multiple lines. Code is not repetitive, and there is no unused or dead code left in the document. Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout. Code uses clear, appropriately simple solutions, avoids unnecessary steps or complicated logic, and follows the tidyverse approach used in the course.",
     "crumbs": [
       "Project",
-      "Milestone 6"
+      "Milestone 7"
+    ]
+  },
+  {
+    "objectID": "project/7-writeup.html#grading",
+    "href": "project/7-writeup.html#grading",
+    "title": "Write-up",
+    "section": "",
+    "text": "The write-up is due on Friday, November 13 at 11:59 pm.\nIt is worth 20 points, broken down as follows:\n\n\n\nTotal\n20 pts\n\n\n\n\nAbstract\n1\n\n\nIntroduction\n3\n\n\nData\n5\n\n\nResults\n5\n\n\nDiscussion\n3\n\n\nReflection\n3",
+    "crumbs": [
+      "Project",
+      "Milestone 7"
     ]
   },
   {
@@ -7188,135 +7432,157 @@
     ]
   },
   {
-    "objectID": "project/7-writeup.html",
-    "href": "project/7-writeup.html",
-    "title": "Write-up",
+    "objectID": "project/description.html",
+    "href": "project/description.html",
+    "title": "Project description",
     "section": "",
-    "text": "Your written report must be completed in the index.qmd file and must be reproducible. All team members should contribute to the GitHub repository, with regular meaningful commits.\nBefore you finalize your write-up, hide the code, warnings, and messages by setting echo: false, warning: false, and message: false under execute in the YAML.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long (if it were to be printed). There is no minimum page requirement; however, you should comprehensively address all of the analysis in your report.\nTo check how many pages your report is, open it in your browser and go to File &gt; Print &gt; Save as PDF and review the number of pages.\nBe selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis.\nYou are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will not see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the 10-page limit.\n\n\n\n\n\nProvide a brief summary of the project, including the research question, data, approach, and main findings.\nGrading criteria: The abstract concisely summarizes the project and its main conclusions and can be understood on its own.\n\n\n\nThis section includes an introduction to the project motivation and research question.\nGrading criteria: The research question and motivation are clearly stated in the introduction, including citations for the data source and any external research.\n\n\n\nThis section includes a description of the data. Describe the data and definitions of key variables. Also include a description of any data cleaning steps you took to prepare the data for analysis.\nGrading criteria: The data are clearly described, including a description of how the data were originally collected and concise definitions of the variables relevant to understanding the report. The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.). The exploratory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables.\n\n\n\nThis is where you will discuss your findings and describe the key results from your analysis. The goal is not to interpret every single element of a visualization or output shown, but instead to address the research questions, using the interpretations to support your conclusions. Focus on the variables that help you answer the research question and that provide relevant context for the reader.\nGrading criteria: The analysis steps are appropriate for the data and research question. A thorough and careful approach is used to choose analysis methods, and any concerns about the appropriateness of the chosen methods are addressed. The analysis results are clearly assessed, and interesting findings from the analysis are described. Interpretations support the key findings and conclusions, rather than merely explaining every summary statistic.\n\n\n\nIn this section you’ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should also be discussed here. Lastly, you might choose to include ideas for future work, but do this only if you have realistic ideas that are relevant to your project.\nGrading criteria: Overall conclusions from the analysis are clearly described, and the analysis results are put into the larger context of the subject matter and original research question. There is thoughtful consideration of potential limitations of the data and/or analysis. If ideas for future work are described, these are realistic and relevant to the project.\n\n\n\nReflect on what your team learned from carrying out the project, including delivering your presentation and listening to others’ presentations. Discuss what worked well in your collaboration and workflow, challenges you encountered and how you addressed them, and what you would do differently in a future project.\nGrading criteria: The reflection uses specific examples from the project to explain what the team learned, assesses the team’s process thoughtfully, and identifies concrete improvements for future work.\n\n\n\n\nThese expectations apply throughout the report and its source documents; they are not additional report sections.\n\n\nThe report is neatly written and organized with clear section headers and appropriately sized figures with informative labels. Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted. All citations and links are properly formatted. If there is an appendix, it is reasonably organized and easy for the reader to find relevant information. All code, warnings, and messages are suppressed. The main body of the written report (not including the appendix) is no longer than 10 pages.\n\n\n\nThese code expectations contribute to the separate 10-point computational quality assessment, which also includes reproducibility and organization.\nCode follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation. Lines of code are kept to a reasonable length, and long pipelines and ggplot calls are broken across multiple lines. Code is not repetitive, and there is no unused or dead code left in the document. Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout. Code uses clear, appropriately simple solutions, avoids unnecessary steps or complicated logic, and follows the tidyverse approach used in the course.\n\n\n\n\nThe write-up is due on Friday, November 13 at 11:59 pm.\nIt is worth 20 points, broken down as follows:\n\n\n\nTotal\n20 pts\n\n\n\n\nAbstract\n1\n\n\nIntroduction\n3\n\n\nData\n5\n\n\nResults\n5\n\n\nDiscussion\n3\n\n\nReflection\n3",
+    "text": "TL;DR: Ask a question you’re curious about and answer it with a dataset of your choice. This is your project in a nutshell.\nMay be too long, but please do read\nThe project for this course will consist of an exploratory data analysis on a dataset of your own choosing. The dataset may already exist, or you may collect your own data using a survey or by conducting an experiment. You can choose the data based on your team’s interests or based on work in other courses or research projects. The goal of this project is for you to demonstrate proficiency in the exploratory data analysis techniques we have covered in this course and apply them to a novel dataset in a meaningful way.\nThe goal is not to do an exhaustive data analysis: you do not need to calculate every statistic or apply every procedure you have learned to every variable. Instead, demonstrate that you can ask meaningful questions, answer them through exploratory data analysis in R, and interpret and present the results. Focus on methods that help you begin to answer your research questions. You do not have to apply every data science method we learned. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should be discussed here.\nThe project is very open ended. You should create compelling visualization(s) and summary table(s) of the data in R. Your analysis should be exploratory, building on the methods we learned in the first half of the course, up to and including Week 8, and excluding modeling and inference. Your overall approach to data cleaning, transformation, and visualization should follow the tidyverse approach used in the course. You may use additional R packages beyond those taught in the course to support your exploratory analysis. You do not need to visualize or summarize all of the data at once. A single high-quality visualization will receive a much higher grade than a large number of poor-quality visualizations. Also pay attention to your presentation. Neatness, coherence, and clarity will count. All analyses must be done in Positron, using R, and all components of the project must be reproducible (with the exception of the slide deck).\nYou will work on the project with your lab teams.",
     "crumbs": [
       "Project",
-      "Milestone 7"
+      "Description"
     ]
   },
   {
-    "objectID": "project/7-writeup.html#expectations",
-    "href": "project/7-writeup.html#expectations",
-    "title": "Write-up",
+    "objectID": "project/description.html#milestone-1---working-collaboratively",
+    "href": "project/description.html#milestone-1---working-collaboratively",
+    "title": "Project description",
+    "section": "Milestone 1 - Working collaboratively",
+    "text": "Milestone 1 - Working collaboratively\nFor the first milestone of your project, you’ll practice a collaborative Git workflow with your team members. Choose a team name, update the team information in about.qmd, complete your team contract in contract.qmd, and summarize your team’s project interests in proposal.qmd. Render, commit, and push your work to the shared repository.\nInstructions are outlined in Milestone 1: Working collaboratively. Each team member taking part in the collaborative working activity will get 5 points towards their project. In-person attendance and participation in the lab activity are required for full credit.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/description.html#project-proposal",
+    "href": "project/description.html#project-proposal",
+    "title": "Project description",
+    "section": "Milestone 2 - Proposal",
+    "text": "Milestone 2 - Proposal\nThere are two main purposes of the project proposal:\n\nTo help you think about the project early, so you can get a head start on finding data, reading relevant literature, thinking about the questions you wish to answer, etc.\nTo ensure that the data you wish to analyze, methods you plan to use, and the scope of your analysis are feasible and will allow you to be successful for this project.\n\nWrite your proposal in proposal.qmd, introducing two candidate datasets and a motivated research question for each. Describe each dataset’s source, collection process, relevant variables, and any ethical concerns; store the data files in data/ and import and inspect them in R using glimpse(). Update _quarto.yml with your team’s information and review your team contract. Each team member must contribute commits, and the project website must build successfully. You must use one of the proposed datasets for the final project unless instructed otherwise in feedback.\nInstructions and grading criteria for this milestone are outlined in Milestone 2: Proposal.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/description.html#improvement-progress-I",
+    "href": "project/description.html#improvement-progress-I",
+    "title": "Project description",
+    "section": "Milestone 3 - Improvement and progress I",
+    "text": "Milestone 3 - Improvement and progress I\nCreate a data dictionary in data/README.md, address and close proposal feedback issues, and make further progress through commits to your repo since Milestone 2. Focus your work on index.qmd and other project files; do not make further edits to the graded proposal.qmd. For feedback about datasets you are no longer considering, close the issues with an explanatory comment.\nThis milestone is worth 10 points: 3 for the data dictionary, 2 for closing all feedback issues, and 5 for attending lab and participating in the teamwork in person. Team members who do not attend and participate in person are not eligible for the 5 attendance points, regardless of their contributions throughout the rest of the project.\nInstructions and grading criteria for this milestone are outlined in Milestone 3: Improvement and progress I.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/description.html#peer-review",
+    "href": "project/description.html#peer-review",
+    "title": "Project description",
+    "section": "Milestone 4 - Peer review",
+    "text": "Milestone 4 - Peer review\nCritically reviewing others’ work is a crucial part of the scientific process, and STA 199 is no exception. You will be assigned one team to review. This feedback is intended to help you create a high-quality final project, as well as give you experience reading and constructively critiquing the work of others.\nRead the assigned team’s project draft and have one or two team members clone and render it to check reproducibility. Discuss the review prompts together, then have one team member submit your team’s constructive, actionable feedback as a GitHub issue in the reviewed team’s repository using the peer review template. Include the names of all participating team members and address statistical reasoning, reproducibility, and file and code organization. In-person attendance and participation in the peer review during lab are required for full credit.\nInstructions and grading criteria for this milestone are outlined in Milestone 4: Peer review.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/description.html#improvement-progress-II",
+    "href": "project/description.html#improvement-progress-II",
+    "title": "Project description",
+    "section": "Milestone 5 - Improvement and progress II",
+    "text": "Milestone 5 - Improvement and progress II\nIncorporate peer feedback, close the peer feedback issues, and make further progress on your project through commits to your repo since Milestone 4.\nThis milestone is worth 10 points: 2 for one or more commits since Milestone 4, 3 for closing all feedback issues, and 5 for attending lab and participating in the teamwork in person. Team members who do not attend and participate in person are not eligible for the 5 attendance points, regardless of their contributions throughout the rest of the project.\nInstructions and grading criteria for this milestone are outlined in Milestone 5: Improvement and progress II.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/description.html#milestone-6---presentation",
+    "href": "project/description.html#milestone-6---presentation",
+    "title": "Project description",
+    "section": "Milestone 6 - Presentation",
+    "text": "Milestone 6 - Presentation\nCreate a slide deck of roughly six content slides plus a title slide, introducing your research question and data, highlighting your exploratory analysis, and discussing conclusions and limitations. You may use presentation software such as Google Slides and upload the slides to your repo as presentation.pdf, or create your slides with Quarto. Deliver a presentation of no more than five minutes in person in lab, with every team member participating.\nInstructions and grading criteria for this milestone are outlined in Milestone 6: Presentation.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/description.html#milestone-7---write-up",
+    "href": "project/description.html#milestone-7---write-up",
+    "title": "Project description",
+    "section": "Milestone 7 - Write-up",
+    "text": "Milestone 7 - Write-up\nComplete your reproducible report in index.qmd, with Abstract, Introduction, Data, Results, Discussion, and Reflection sections. The report, including visualizations, must be no longer than ten printed pages, excluding an optional appendix. Hide code, warnings, and messages in the rendered report, and ensure all team members contribute regular, meaningful commits to the repository.\nInstructions and grading criteria for this milestone are outlined in Milestone 7: Write-up.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/description.html#grading-summary",
+    "href": "project/description.html#grading-summary",
+    "title": "Project description",
+    "section": "Grading summary",
+    "text": "Grading summary\nGrading of the project will take into account the following:\n\nContent - What is the quality of the research and/or policy questions, and how relevant are the data to those questions?\nCorrectness - Are data science procedures carried out and explained correctly?\nWriting and Presentation - What is the quality of the data science presentation, writing, and explanations?\nCreativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?\n\nA general breakdown of scoring is as follows:\n\n90%-100%: Outstanding effort. Student understands how to apply all data science and statistics concepts, can put the results into a cogent argument, can identify weaknesses in the argument, and can clearly communicate the results to others.\n80%-89%: Good effort. Student understands most of the concepts, puts together an adequate argument, identifies some weaknesses of their argument, and communicates most results clearly to others.\n70%-79%: Passing effort. Student misunderstands concepts in several areas, has some trouble putting results together in a cogent argument, and sometimes communicates results unclearly.\n60%-69%: Struggling effort. Student is making some effort, but misunderstands many concepts and is unable to put together a cogent argument. Communication of results is unclear.\nBelow 60%: Student is not making a sufficient effort.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/description.html#late-work-policy",
+    "href": "project/description.html#late-work-policy",
+    "title": "Project description",
+    "section": "Late work policy",
+    "text": "Late work policy\nNo late work will be accepted for this project. Be sure to turn in your work early to avoid any technological mishaps.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project/6-presentation.html",
+    "href": "project/6-presentation.html",
+    "title": "Presentation",
     "section": "",
-    "text": "Your written report must be completed in the index.qmd file and must be reproducible. All team members should contribute to the GitHub repository, with regular meaningful commits.\nBefore you finalize your write-up, hide the code, warnings, and messages by setting echo: false, warning: false, and message: false under execute in the YAML.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long (if it were to be printed). There is no minimum page requirement; however, you should comprehensively address all of the analysis in your report.\nTo check how many pages your report is, open it in your browser and go to File &gt; Print &gt; Save as PDF and review the number of pages.\nBe selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis.\nYou are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will not see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the 10-page limit.",
+    "text": "In addition to the written report, your team will also create presentation slides and deliver a presentation that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.\nYou can create your slides with any software you like (Keynote, PowerPoint, Google Slides, etc.). We recommend choosing an option that’s easy to collaborate with, e.g., Google Slides. If you choose this option, save the slides as a PDF and upload it to your repo as presentation.pdf.\nYou can also use Quarto to make your slides! While we won’t be covering making slides with Quarto in the class, we would be happy to help you with it in office hours. It’s no different than writing other documents with Quarto, so the learning curve will not be steep!\nThe slide deck should be roughly 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the 6 slides.\n\nTitle Slide\nSlide 1: Introduce the topic and motivation\nSlide 2: Introduce the data\nSlides 3-5: Highlights from EDA\nSlide 6: Conclusions + discussion + critique\n\n\n\n\nPresentations will be in person in lab. All team members must participate in the presentation. The presentation must be no longer than 5 minutes.\n\n\n\nThe presentation is worth 20 points, broken down as follows:\n\n\n\nTotal\n20 pts\n\n\n\n\nSlides\n10 pts\n\n\nPresentation\n10 pts\n\n\n\n\n\n\nOrganization and flow (3 pts): Slides follow a logical sequence, with clear titles and an easy-to-follow structure.\nText and readability (3 pts): Text is concise, font sizes are readable, and slides avoid overcrowding.\nFigures and tables (3 pts): Figures and tables are easy to read, with legible labels, legends, and annotations.\nConsistency and polish (1 pt): Formatting is consistent throughout, with no distracting errors or layout issues.\n\n\n\n\n\nTime management (1 pt): The presentation is well paced and finishes within the time limit.\nProfessionalism (1 pt): Delivery is clear and well-practiced.\nTeamwork (2 pts): The presentation tells a unified story, with smooth transitions between speakers and sections. Time is distributed among team members, and every team member contributes meaningfully.\nCreativity and critical thought (1 pt): The project demonstrates thoughtful planning, careful implementation, and intentional analytical choices.\nResearch question and data suitability (1 pt): The research question is clearly articulated and can be answered with the data.\nData (1 pt): The data and the key variables are clearly described.\nAnalysis (1 pt): The analysis addresses the research question.\nConclusions (1 pt): Conclusions are justified by the analysis.\nLimitations and/or future directions (1 pt): Relevant limitations and/or future directions are carefully considered and clearly articulated.",
     "crumbs": [
       "Project",
-      "Milestone 7"
+      "Milestone 6"
     ]
   },
   {
-    "objectID": "project/7-writeup.html#components",
-    "href": "project/7-writeup.html#components",
-    "title": "Write-up",
+    "objectID": "project/6-presentation.html#slides",
+    "href": "project/6-presentation.html#slides",
+    "title": "Presentation",
     "section": "",
-    "text": "Provide a brief summary of the project, including the research question, data, approach, and main findings.\nGrading criteria: The abstract concisely summarizes the project and its main conclusions and can be understood on its own.\n\n\n\nThis section includes an introduction to the project motivation and research question.\nGrading criteria: The research question and motivation are clearly stated in the introduction, including citations for the data source and any external research.\n\n\n\nThis section includes a description of the data. Describe the data and definitions of key variables. Also include a description of any data cleaning steps you took to prepare the data for analysis.\nGrading criteria: The data are clearly described, including a description of how the data were originally collected and concise definitions of the variables relevant to understanding the report. The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.). The exploratory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables.\n\n\n\nThis is where you will discuss your findings and describe the key results from your analysis. The goal is not to interpret every single element of a visualization or output shown, but instead to address the research questions, using the interpretations to support your conclusions. Focus on the variables that help you answer the research question and that provide relevant context for the reader.\nGrading criteria: The analysis steps are appropriate for the data and research question. A thorough and careful approach is used to choose analysis methods, and any concerns about the appropriateness of the chosen methods are addressed. The analysis results are clearly assessed, and interesting findings from the analysis are described. Interpretations support the key findings and conclusions, rather than merely explaining every summary statistic.\n\n\n\nIn this section you’ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analysis should also be discussed here. Lastly, you might choose to include ideas for future work, but do this only if you have realistic ideas that are relevant to your project.\nGrading criteria: Overall conclusions from the analysis are clearly described, and the analysis results are put into the larger context of the subject matter and original research question. There is thoughtful consideration of potential limitations of the data and/or analysis. If ideas for future work are described, these are realistic and relevant to the project.\n\n\n\nReflect on what your team learned from carrying out the project, including delivering your presentation and listening to others’ presentations. Discuss what worked well in your collaboration and workflow, challenges you encountered and how you addressed them, and what you would do differently in a future project.\nGrading criteria: The reflection uses specific examples from the project to explain what the team learned, assesses the team’s process thoughtfully, and identifies concrete improvements for future work.",
+    "text": "In addition to the written report, your team will also create presentation slides and deliver a presentation that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.\nYou can create your slides with any software you like (Keynote, PowerPoint, Google Slides, etc.). We recommend choosing an option that’s easy to collaborate with, e.g., Google Slides. If you choose this option, save the slides as a PDF and upload it to your repo as presentation.pdf.\nYou can also use Quarto to make your slides! While we won’t be covering making slides with Quarto in the class, we would be happy to help you with it in office hours. It’s no different than writing other documents with Quarto, so the learning curve will not be steep!\nThe slide deck should be roughly 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the 6 slides.\n\nTitle Slide\nSlide 1: Introduce the topic and motivation\nSlide 2: Introduce the data\nSlides 3-5: Highlights from EDA\nSlide 6: Conclusions + discussion + critique",
     "crumbs": [
       "Project",
-      "Milestone 7"
+      "Milestone 6"
     ]
   },
   {
-    "objectID": "project/7-writeup.html#organization-formatting-and-code-expectations",
-    "href": "project/7-writeup.html#organization-formatting-and-code-expectations",
-    "title": "Write-up",
+    "objectID": "project/6-presentation.html#presentation",
+    "href": "project/6-presentation.html#presentation",
+    "title": "Presentation",
     "section": "",
-    "text": "These expectations apply throughout the report and its source documents; they are not additional report sections.\n\n\nThe report is neatly written and organized with clear section headers and appropriately sized figures with informative labels. Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted. All citations and links are properly formatted. If there is an appendix, it is reasonably organized and easy for the reader to find relevant information. All code, warnings, and messages are suppressed. The main body of the written report (not including the appendix) is no longer than 10 pages.\n\n\n\nThese code expectations contribute to the separate 10-point computational quality assessment, which also includes reproducibility and organization.\nCode follows a consistent style (e.g., the tidyverse style guide), with informative and consistently formatted object names, spacing, and indentation. Lines of code are kept to a reasonable length, and long pipelines and ggplot calls are broken across multiple lines. Code is not repetitive, and there is no unused or dead code left in the document. Code is organized into clearly labeled code cells, and appropriate code cell options are used throughout. Code uses clear, appropriately simple solutions, avoids unnecessary steps or complicated logic, and follows the tidyverse approach used in the course.",
+    "text": "Presentations will be in person in lab. All team members must participate in the presentation. The presentation must be no longer than 5 minutes.",
     "crumbs": [
       "Project",
-      "Milestone 7"
+      "Milestone 6"
     ]
   },
   {
-    "objectID": "project/7-writeup.html#grading",
-    "href": "project/7-writeup.html#grading",
-    "title": "Write-up",
+    "objectID": "project/6-presentation.html#grading",
+    "href": "project/6-presentation.html#grading",
+    "title": "Presentation",
     "section": "",
-    "text": "The write-up is due on Friday, November 13 at 11:59 pm.\nIt is worth 20 points, broken down as follows:\n\n\n\nTotal\n20 pts\n\n\n\n\nAbstract\n1\n\n\nIntroduction\n3\n\n\nData\n5\n\n\nResults\n5\n\n\nDiscussion\n3\n\n\nReflection\n3",
+    "text": "The presentation is worth 20 points, broken down as follows:\n\n\n\nTotal\n20 pts\n\n\n\n\nSlides\n10 pts\n\n\nPresentation\n10 pts\n\n\n\n\n\n\nOrganization and flow (3 pts): Slides follow a logical sequence, with clear titles and an easy-to-follow structure.\nText and readability (3 pts): Text is concise, font sizes are readable, and slides avoid overcrowding.\nFigures and tables (3 pts): Figures and tables are easy to read, with legible labels, legends, and annotations.\nConsistency and polish (1 pt): Formatting is consistent throughout, with no distracting errors or layout issues.\n\n\n\n\n\nTime management (1 pt): The presentation is well paced and finishes within the time limit.\nProfessionalism (1 pt): Delivery is clear and well-practiced.\nTeamwork (2 pts): The presentation tells a unified story, with smooth transitions between speakers and sections. Time is distributed among team members, and every team member contributes meaningfully.\nCreativity and critical thought (1 pt): The project demonstrates thoughtful planning, careful implementation, and intentional analytical choices.\nResearch question and data suitability (1 pt): The research question is clearly articulated and can be answered with the data.\nData (1 pt): The data and the key variables are clearly described.\nAnalysis (1 pt): The analysis addresses the research question.\nConclusions (1 pt): Conclusions are justified by the analysis.\nLimitations and/or future directions (1 pt): Relevant limitations and/or future directions are carefully considered and clearly articulated.",
     "crumbs": [
       "Project",
-      "Milestone 7"
-    ]
-  },
-  {
-    "objectID": "project/tips-resources.html",
-    "href": "project/tips-resources.html",
-    "title": "Project tips + resources",
-    "section": "",
-    "text": "The project is very open ended. For instance, when creating compelling visualizations of your data in R, there is no limit on what tools or packages you may use. You do not need to visualize all of the data at once. A single high-quality visualization will receive a much higher grade than a large number of poor-quality visualizations.\nBefore you finalize your write-up, hide the code with the option echo: false. Suppress warnings and messages with the options warning: false and message: false.\nFinally, pay attention to details in your write-up and presentation. Neatness, coherence, and clarity will count.",
-    "crumbs": [
-      "Project",
-      "Tips + resources"
-    ]
-  },
-  {
-    "objectID": "project/tips-resources.html#suppress-code-and-warnings",
-    "href": "project/tips-resources.html#suppress-code-and-warnings",
-    "title": "Project tips + resources",
-    "section": "Suppress code and warnings",
-    "text": "Suppress code and warnings\n\nInclude the following in the YAML of your index.qmd to suppress all code, warnings, and other messages.\n\nexecute:\n  echo: false\n  warning: false\n  message: false",
-    "crumbs": [
-      "Project",
-      "Tips + resources"
-    ]
-  },
-  {
-    "objectID": "project/tips-resources.html#headers",
-    "href": "project/tips-resources.html#headers",
-    "title": "Project tips + resources",
-    "section": "Headers",
-    "text": "Headers\nUse headers to clearly label each section. Make sure there is a blank line before each header. Use appropriate header levels.",
-    "crumbs": [
-      "Project",
-      "Tips + resources"
-    ]
-  },
-  {
-    "objectID": "project/tips-resources.html#references",
-    "href": "project/tips-resources.html#references",
-    "title": "Project tips + resources",
-    "section": "References",
-    "text": "References\nInclude all references in a section called “References” at the end of the report. This course does not have specific requirements for formatting citations and references. Optional: Use Quarto’s citation support for generating your references. See Citations & Footnotes on the Quarto documentation for more on that.",
-    "crumbs": [
-      "Project",
-      "Tips + resources"
-    ]
-  },
-  {
-    "objectID": "project/tips-resources.html#appendix",
-    "href": "project/tips-resources.html#appendix",
-    "title": "Project tips + resources",
-    "section": "Appendix",
-    "text": "Appendix\nIf you have additional work that does not fit or does not belong in the body of the report, you may put it at the end of the document in a section called “Appendix”. The items in the appendix should be properly labeled. The appendix should only be for additional material. The reader should be able to fully understand your report without viewing content in the appendix. We will not grade your appendix.",
-    "crumbs": [
-      "Project",
-      "Tips + resources"
-    ]
-  },
-  {
-    "objectID": "project/tips-resources.html#resize-figures",
-    "href": "project/tips-resources.html#resize-figures",
-    "title": "Project tips + resources",
-    "section": "Resize figures",
-    "text": "Resize figures\nResize plots and figures, so you have more space for the narrative. Resize individual figures: Set fig-width and fig-asp in chunk options, e.g.,\n#| echo: fenced\n#| label: code-cell-label\n#| fig-width: 5\n#| fig-asp: 0.628\nReplace code-cell-label with a meaningful label and the width and aspect ratio with values appropriate for your write-up.\nResize all figures: Include the fig-width and fig-asp options in the YAML header as shown below:\nexecute:\n  fig-width: 5\n  fig-asp: 0.628\nReplace the width and aspect ratio values with values appropriate for your write-up.",
-    "crumbs": [
-      "Project",
-      "Tips + resources"
-    ]
-  },
-  {
-    "objectID": "project/tips-resources.html#arranging-plots",
-    "href": "project/tips-resources.html#arranging-plots",
-    "title": "Project tips + resources",
-    "section": "Arranging plots",
-    "text": "Arranging plots\nArrange plots in a grid, instead of one after the other. This is especially useful when displaying plots for exploratory data analysis and to check assumptions.\nThe patchwork package makes it easy to arrange plots in a grid.",
-    "crumbs": [
-      "Project",
-      "Tips + resources"
+      "Milestone 6"
     ]
   },
   {
@@ -10610,290 +10876,24 @@
     "text": "Participate 📱💻\n\n\n\nWhat is the baseline level of development_tier in the following model?\n\nlinear_reg() |&gt;\n  fit(\n    mental_distress ~ development_tier,\n    data = nc_places_tier_2\n  ) |&gt;\n  tidy()\n\n# A tibble: 3 × 5\n  term                   estimate std.error statistic   p.value\n  &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)               18.4      0.136    136.   1.75e-112\n2 development_tierTier 1     1.00     0.192      5.22 1.04e-  6\n3 development_tierTier 3    -1.57     0.235     -6.70 1.40e-  9\n\n\n\n\nTier 1\nTier 2\nTier 3\nCannot tell from the output\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code QYNCEFD."
   },
   {
-    "objectID": "slides/18-model-selection-overfitting.html",
-    "href": "slides/18-model-selection-overfitting.html",
-    "title": "Model selection and overfitting",
+    "objectID": "slides/images/14/midsemester-feedback/summaries/confusing-topics.html",
+    "href": "slides/images/14/midsemester-feedback/summaries/confusing-topics.html",
+    "title": "Topics students find confusing",
     "section": "",
-    "text": "At the end of last class, I asked you to write a description for what this code from AE 10 does. Copy and paste your response here.\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
+    "text": "Topics students find confusing\n36 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nDominant theme: Web scraping and its supporting tools (HTML, rvest, and SelectorGadget) were explicitly mentioned in 15 responses.\nNext most visible theme: Pivoting or data tidying appeared in 7 responses. Students also described difficulty deciding which function to use or applying familiar ideas to a new problem.\nLess frequent recurring topics: Conditional logic and database keys were each mentioned by two students.\nNo single issue: Several students said they were not confused about a particular topic.\n\nThe counts above use transparent keyword coding and may overlap. See the accompanying chart."
   },
   {
-    "objectID": "slides/18-model-selection-overfitting.html#while-you-wait-participate",
-    "href": "slides/18-model-selection-overfitting.html#while-you-wait-participate",
-    "title": "Model selection and overfitting",
+    "objectID": "slides/images/14/midsemester-feedback/summaries/course-suggestions.html",
+    "href": "slides/images/14/midsemester-feedback/summaries/course-suggestions.html",
+    "title": "Additional course comments and suggestions",
     "section": "",
-    "text": "At the end of last class, I asked you to write a description for what this code from AE 10 does. Copy and paste your response here.\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
+    "text": "Additional course comments and suggestions\n19 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nMost repeated request: Students want assessment preparation to align more closely with the exam. They asked for more exam-like questions, additional practice exams or study guides, clearer exam outlines, and targeted review of commonly missed ideas.\nExam format: Several students objected to the difficulty or wording of the first exam, especially open-ended questions and writing code on paper.\nWorkload and pacing: A few responses described homework as lengthy relative to its weight, preparation materials as too numerous, or the combined lab and homework load as limiting time to consolidate learning.\nInstructional suggestions: Two students suggested strengthening the connection between lecture explanations and hands-on coding.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
   },
   {
-    "objectID": "slides/18-model-selection-overfitting.html#what-is-the-difference-between-r2-and-adjusted-r2",
-    "href": "slides/18-model-selection-overfitting.html#what-is-the-difference-between-r2-and-adjusted-r2",
-    "title": "Model selection and overfitting",
-    "section": "What is the difference between \\(R^2\\) and adjusted \\(R^2\\)?",
-    "text": "What is the difference between \\(R^2\\) and adjusted \\(R^2\\)?\n\n\n\n\\(R^2\\):\n\nProportion of variability in the outcome explained by the model.\nUseful for quantifying the fit of a given model.\n\n\nAdjusted \\(R^2\\):\n\nProportion of variability in the outcome explained by the model, with a penalty added for the number of predictors in the model.\nUseful for comparing models."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#using-adjusted-r2-to-compare-models",
-    "href": "slides/18-model-selection-overfitting.html#using-adjusted-r2-to-compare-models",
-    "title": "Model selection and overfitting",
-    "section": "Using adjusted \\(R^2\\) to compare models",
-    "text": "Using adjusted \\(R^2\\) to compare models\n\n\nFit two (or more) models to the same data set with different sets of predictors, selected based on subject-matter knowledge and/or exploratory data analysis results, compared their adjusted \\(R^2\\) values, and selected the model with the highest adjusted \\(R^2\\) value.\n\nPerform stepwise selection (forward or backward) to select a model that maximizes adjusted \\(R^2\\):\n\nBackward elimination: Start with a model that includes all candidate predictors, and iteratively remove the predictor that results in the largest increase in adjusted \\(R^2\\) until no further improvement is observed.\nForward selection: Start with a model that includes no predictors, and iteratively add the predictor that results in the largest increase in adjusted \\(R^2\\) until no further improvement is observed."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#demo-backward-elimination",
-    "href": "slides/18-model-selection-overfitting.html#demo-backward-elimination",
-    "title": "Model selection and overfitting",
-    "section": "Demo: Backward elimination",
-    "text": "Demo: Backward elimination\n\nGoal: Predict mental_distress. Candidate variables: development_tier, loneliness, and short_sleep. Method for model selection: Backward elimination using adjusted \\(R^2\\) as decision criterion.\n\n\n\nStart with all three predictors; use the same 100 counties for every model since there are no missing values in these four variables.\nAt each step, try removing each remaining predictor and keep the removal only if it increases adjusted \\(R^2\\) the most.\nTreat development tier as one predictor even though when fitting the model it is represented by two dummy variables."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#backward-elimination-step-0",
-    "href": "slides/18-model-selection-overfitting.html#backward-elimination-step-0",
-    "title": "Model selection and overfitting",
-    "section": "Backward elimination: Step 0",
-    "text": "Backward elimination: Step 0\n\nmd_full_fit &lt;- linear_reg() |&gt;\n  fit(\n    mental_distress ~ development_tier + loneliness + short_sleep,\n    data = nc_places\n  )\n\nglance(md_full_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.678"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#backward-elimination-step-1",
-    "href": "slides/18-model-selection-overfitting.html#backward-elimination-step-1",
-    "title": "Model selection and overfitting",
-    "section": "Backward elimination: Step 1",
-    "text": "Backward elimination: Step 1\nFit each model obtained by removing one predictor from the full model.\n\n\nmd_no_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ loneliness + short_sleep, data = nc_places)\nglance(md_no_tier_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.587\n\n\n\n\n\nmd_no_lone_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier + short_sleep, data = nc_places)\nglance(md_no_lone_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.612\n\n\n\n\n\nmd_tier_sleep_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier + loneliness, data = nc_places)\nglance(md_tier_sleep_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.681"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#participate",
-    "href": "slides/18-model-selection-overfitting.html#participate",
-    "title": "Model selection and overfitting",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nWhich variable should we drop in Step 1 of backward elimination using adjusted \\(R^2\\)?\n\n\n\n\n\n\nPredictor removed\nAdjusted R²\n\n\n\nNone (full model)\n0.6780\n\n\nDevelopment tier\n0.5868\n\n\nLoneliness\n0.6121\n\n\nShort sleep\n0.6810\n\n\n\n\n\n\n\n\nDevelopment tier\nLoneliness\nShort sleep\nNone; keep all three predictors\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#backward-elimination-step-2",
-    "href": "slides/18-model-selection-overfitting.html#backward-elimination-step-2",
-    "title": "Model selection and overfitting",
-    "section": "Backward elimination: Step 2",
-    "text": "Backward elimination: Step 2\nStart from mental_distress ~ development_tier + loneliness (i.e., md_tier_sleep_fit) and try removing each remaining predictor.\n\n\nmd_lone_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ loneliness, data = nc_places)\nglance(md_lone_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.588\n\n\n\n\n\nmd_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier, data = nc_places)\nglance(md_tier_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.545"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#participate-1",
-    "href": "slides/18-model-selection-overfitting.html#participate-1",
-    "title": "Model selection and overfitting",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nWhich variable should we drop in Step 2 of backward elimination using adjusted \\(R^2\\)?\n\n\n\n\n\n\nPredictor removed\nAdjusted R²\n\n\n\nNone (current model)\n0.6810\n\n\nDevelopment tier\n0.5881\n\n\nLoneliness\n0.5452\n\n\n\n\n\n\n\n\nDevelopment tier\nLoneliness\nNone; keep both predictors and stop\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT.\n\n\n\nStop: Neither removal improves adjusted \\(R^2\\). The selected model is mental_distress ~ development_tier + loneliness, with adjusted \\(R^2\\) = 0.681."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#using-other-criteria-to-compare-models",
-    "href": "slides/18-model-selection-overfitting.html#using-other-criteria-to-compare-models",
-    "title": "Model selection and overfitting",
-    "section": "Using other criteria to compare models",
-    "text": "Using other criteria to compare models\nSame model selection approaches (subject-matter knowledge, stepwise selection) can be used with various model comparison criteria, such as:\n\nMaximize adjusted \\(R^2\\)\n\nMinimize Akaike Information Criterion (AIC)\nMinimize Bayesian Information Criterion (BIC)\n…\n\n\n\n\n\n\n\nNote\n\n\n\nOnly mentioning criteria other than adjusted \\(R^2\\) here to build awareness that other criteria exist. We will not cover all of them in detail in this course (and this is not even a complete list), but you will encounter them in higher-level modeling courses and in practice."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#balancing-fit-and-complexity",
-    "href": "slides/18-model-selection-overfitting.html#balancing-fit-and-complexity",
-    "title": "Model selection and overfitting",
-    "section": "Balancing fit and complexity",
-    "text": "Balancing fit and complexity\n\n\nMore complex models (i.e., models with more predictors) tend to fit the data at hand better, but may not generalize well to new data.\nModel selection criteria, like adjusted \\(R^2\\), help balance model fit and complexity to avoid overfitting by penalizing models with more predictors."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#overfitting",
-    "href": "slides/18-model-selection-overfitting.html#overfitting",
-    "title": "Model selection and overfitting",
-    "section": "Overfitting",
-    "text": "Overfitting\n\n\nOverfitting occurs when a model captures not only the underlying relationship between predictors and outcome but also the random noise in the data.\n\nOverfitted models that perform well on the observed data can perform poorly on new, unseen data.\n\nGood news: We have techniques to detect and prevent overfitting.\nBad news: We won’t get into those until next week.\n\n\n\n\n\nWhat are some features of datasets (that we have discussed so far) that could lead to overfitting?"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#structure-presentation-write-up",
-    "href": "slides/18-model-selection-overfitting.html#structure-presentation-write-up",
-    "title": "Model selection and overfitting",
-    "section": "Structure: presentation + write-up",
-    "text": "Structure: presentation + write-up\n\nStart with your goal / high-level question\nDon’t chronicle your steps, but instead tell us a compelling story of what you set out to find and what you found\n“No significant results” or “no concrete relationships” are still results – what did you learn? how deep did you dig and with what tools and techniques?"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#but-therefore",
-    "href": "slides/18-model-selection-overfitting.html#but-therefore",
-    "title": "Model selection and overfitting",
-    "section": "“But… Therefore…”",
-    "text": "“But… Therefore…”\nAdvice from those much more successful than me at telling stories:"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#your-project-write-up-with-quarto",
-    "href": "slides/18-model-selection-overfitting.html#your-project-write-up-with-quarto",
-    "title": "Model selection and overfitting",
-    "section": "Your project write-up with Quarto",
-    "text": "Your project write-up with Quarto\n\n\nFigure sizing: fig-width, fig-asp, etc. in code cells. [example]\n\nFigure layout:\n\n\nlayout-ncol for placing multiple figures in a chunk. [example]\n\nFurther control over figure layout with the patchwork package.\n\n\nCell options for what makes it in your final report: message, echo, etc. [example]\n\nNoting outside resources and formal citations:\n\nAI Disclosure [example]\n\nCitations [example]\n\n\n\nFinalizing your report with echo: false. [example]"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#building-your-project-website-with-quarto",
-    "href": "slides/18-model-selection-overfitting.html#building-your-project-website-with-quarto",
-    "title": "Model selection and overfitting",
-    "section": "Building your project website with Quarto",
-    "text": "Building your project website with Quarto\n\nThe docs folder.\nMaking sure your website reflects your latest changes.\n\nCustomizing the look of your website.\n\nQuarto themes: Learn more at https://quarto.org/docs/output-formats/html-themes.html. [example]\n\nFor the adventurous: Customizing your website with _brand.yml, learn more at https://quarto.org/docs/authoring/brand.html."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#slides",
-    "href": "slides/18-model-selection-overfitting.html#slides",
-    "title": "Model selection and overfitting",
-    "section": "Slides",
-    "text": "Slides\n\n\nOption 1: Make your slides not in Quarto but make sure they’re available in your Quarto project website.\n\n\n\n\n\n\n\nImportant\n\n\n\nMake sure the presentation is called presentation.pdf.\n\n\n\n\nOption 2: Make your slides with Quarto."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#code-smell",
-    "href": "slides/18-model-selection-overfitting.html#code-smell",
-    "title": "Model selection and overfitting",
-    "section": "Code smell",
-    "text": "Code smell\n\nOne way to look at smells is with respect to principles and quality: “Smells are certain structures in the code that indicate violation of fundamental design principles and negatively impact design quality”. Code smells are usually not bugs; they are not technically incorrect and do not prevent the program from functioning. Instead, they indicate weaknesses in design that may slow down development or increase the risk of bugs or failures in the future.\n\n\n\nSource: Code smell on Wikipedia"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting.html#code-style",
-    "href": "slides/18-model-selection-overfitting.html#code-style",
-    "title": "Model selection and overfitting",
-    "section": "Code style",
-    "text": "Code style\nFollow the Tidyverse style guide:\n\nSpaces before and line breaks after each + when building a ggplot\nSpaces before and line breaks after each |&gt; in a data transformation pipeline,\nProper indentation\nSpaces around = signs and spaces after commas\nLines should not span more than 80 characters, long lines should be broken up with each argument on its own line"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#while-you-wait-participate",
-    "href": "slides/18-model-selection-overfitting-slides.html#while-you-wait-participate",
-    "title": "Model selection and overfitting",
-    "section": "While you wait: Participate 📱💻",
-    "text": "While you wait: Participate 📱💻\n\n\n\nAt the end of last class, I asked you to write a description for what this code from AE 10 does. Copy and paste your response here.\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#what-is-the-difference-between-r2-and-adjusted-r2",
-    "href": "slides/18-model-selection-overfitting-slides.html#what-is-the-difference-between-r2-and-adjusted-r2",
-    "title": "Model selection and overfitting",
-    "section": "What is the difference between \\(R^2\\) and adjusted \\(R^2\\)?",
-    "text": "What is the difference between \\(R^2\\) and adjusted \\(R^2\\)?\n\n\\(R^2\\):\n\nProportion of variability in the outcome explained by the model.\nUseful for quantifying the fit of a given model.\n\nAdjusted \\(R^2\\):\n\nProportion of variability in the outcome explained by the model, with a penalty added for the number of predictors in the model.\nUseful for comparing models."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#using-adjusted-r2-to-compare-models",
-    "href": "slides/18-model-selection-overfitting-slides.html#using-adjusted-r2-to-compare-models",
-    "title": "Model selection and overfitting",
-    "section": "Using adjusted \\(R^2\\) to compare models",
-    "text": "Using adjusted \\(R^2\\) to compare models\n\nFit two (or more) models to the same data set with different sets of predictors, selected based on subject-matter knowledge and/or exploratory data analysis results, compared their adjusted \\(R^2\\) values, and selected the model with the highest adjusted \\(R^2\\) value.\nPerform stepwise selection (forward or backward) to select a model that maximizes adjusted \\(R^2\\):\n\nBackward elimination: Start with a model that includes all candidate predictors, and iteratively remove the predictor that results in the largest increase in adjusted \\(R^2\\) until no further improvement is observed.\nForward selection: Start with a model that includes no predictors, and iteratively add the predictor that results in the largest increase in adjusted \\(R^2\\) until no further improvement is observed."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#demo-backward-elimination",
-    "href": "slides/18-model-selection-overfitting-slides.html#demo-backward-elimination",
-    "title": "Model selection and overfitting",
-    "section": "Demo: Backward elimination",
-    "text": "Demo: Backward elimination\n\nGoal: Predict mental_distress. Candidate variables: development_tier, loneliness, and short_sleep. Method for model selection: Backward elimination using adjusted \\(R^2\\) as decision criterion.\n\n\nStart with all three predictors; use the same 100 counties for every model since there are no missing values in these four variables.\nAt each step, try removing each remaining predictor and keep the removal only if it increases adjusted \\(R^2\\) the most.\nTreat development tier as one predictor even though when fitting the model it is represented by two dummy variables."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-0",
-    "href": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-0",
-    "title": "Model selection and overfitting",
-    "section": "Backward elimination: Step 0",
-    "text": "Backward elimination: Step 0\n\nmd_full_fit &lt;- linear_reg() |&gt;\n  fit(\n    mental_distress ~ development_tier + loneliness + short_sleep,\n    data = nc_places\n  )\n\nglance(md_full_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.678"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-1",
-    "href": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-1",
-    "title": "Model selection and overfitting",
-    "section": "Backward elimination: Step 1",
-    "text": "Backward elimination: Step 1\nFit each model obtained by removing one predictor from the full model.\n\n\nmd_no_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ loneliness + short_sleep, data = nc_places)\nglance(md_no_tier_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.587\n\n\n\n\n\nmd_no_lone_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier + short_sleep, data = nc_places)\nglance(md_no_lone_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.612\n\n\n\n\n\nmd_tier_sleep_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier + loneliness, data = nc_places)\nglance(md_tier_sleep_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.681"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#participate",
-    "href": "slides/18-model-selection-overfitting-slides.html#participate",
-    "title": "Model selection and overfitting",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nWhich variable should we drop in Step 1 of backward elimination using adjusted \\(R^2\\)?\n\n\n\n\n\n\n\n\nPredictor removed\nAdjusted R²\n\n\n\n\nNone (full model)\n0.6780\n\n\nDevelopment tier\n0.5868\n\n\nLoneliness\n0.6121\n\n\nShort sleep\n0.6810\n\n\n\n\n\n\n\n\n\nDevelopment tier\nLoneliness\nShort sleep\nNone; keep all three predictors\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-2",
-    "href": "slides/18-model-selection-overfitting-slides.html#backward-elimination-step-2",
-    "title": "Model selection and overfitting",
-    "section": "Backward elimination: Step 2",
-    "text": "Backward elimination: Step 2\nStart from mental_distress ~ development_tier + loneliness (i.e., md_tier_sleep_fit) and try removing each remaining predictor.\n\n\nmd_lone_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ loneliness, data = nc_places)\nglance(md_lone_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.588\n\n\n\n\n\nmd_tier_fit &lt;- linear_reg() |&gt;\n  fit(mental_distress ~ development_tier, data = nc_places)\nglance(md_tier_fit) |&gt; select(adj.r.squared)\n\n# A tibble: 1 × 1\n  adj.r.squared\n          &lt;dbl&gt;\n1         0.545"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#participate-1",
-    "href": "slides/18-model-selection-overfitting-slides.html#participate-1",
-    "title": "Model selection and overfitting",
-    "section": "Participate 📱💻",
-    "text": "Participate 📱💻\n\n\n\nWhich variable should we drop in Step 2 of backward elimination using adjusted \\(R^2\\)?\n\n\n\n\n\n\n\n\nPredictor removed\nAdjusted R²\n\n\n\n\nNone (current model)\n0.6810\n\n\nDevelopment tier\n0.5881\n\n\nLoneliness\n0.5452\n\n\n\n\n\n\n\n\n\nDevelopment tier\nLoneliness\nNone; keep both predictors and stop\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SLCBQZT.\n\n\nStop: Neither removal improves adjusted \\(R^2\\). The selected model is mental_distress ~ development_tier + loneliness, with adjusted \\(R^2\\) = 0.681."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#using-other-criteria-to-compare-models",
-    "href": "slides/18-model-selection-overfitting-slides.html#using-other-criteria-to-compare-models",
-    "title": "Model selection and overfitting",
-    "section": "Using other criteria to compare models",
-    "text": "Using other criteria to compare models\nSame model selection approaches (subject-matter knowledge, stepwise selection) can be used with various model comparison criteria, such as:\n\nMaximize adjusted \\(R^2\\)\nMinimize Akaike Information Criterion (AIC)\nMinimize Bayesian Information Criterion (BIC)\n…\n\n\n\n\n\n\n\n\nNote\n\n\nOnly mentioning criteria other than adjusted \\(R^2\\) here to build awareness that other criteria exist. We will not cover all of them in detail in this course (and this is not even a complete list), but you will encounter them in higher-level modeling courses and in practice."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#balancing-fit-and-complexity",
-    "href": "slides/18-model-selection-overfitting-slides.html#balancing-fit-and-complexity",
-    "title": "Model selection and overfitting",
-    "section": "Balancing fit and complexity",
-    "text": "Balancing fit and complexity\n\nMore complex models (i.e., models with more predictors) tend to fit the data at hand better, but may not generalize well to new data.\nModel selection criteria, like adjusted \\(R^2\\), help balance model fit and complexity to avoid overfitting by penalizing models with more predictors."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#overfitting",
-    "href": "slides/18-model-selection-overfitting-slides.html#overfitting",
-    "title": "Model selection and overfitting",
-    "section": "Overfitting",
-    "text": "Overfitting\n\nOverfitting occurs when a model captures not only the underlying relationship between predictors and outcome but also the random noise in the data.\nOverfitted models that perform well on the observed data can perform poorly on new, unseen data.\n\nGood news: We have techniques to detect and prevent overfitting.\nBad news: We won’t get into those until next week.\n\n\n\nWhat are some features of datasets (that we have discussed so far) that could lead to overfitting?"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#structure-presentation-write-up",
-    "href": "slides/18-model-selection-overfitting-slides.html#structure-presentation-write-up",
-    "title": "Model selection and overfitting",
-    "section": "Structure: presentation + write-up",
-    "text": "Structure: presentation + write-up\n\nStart with your goal / high-level question\nDon’t chronicle your steps, but instead tell us a compelling story of what you set out to find and what you found\n“No significant results” or “no concrete relationships” are still results – what did you learn? how deep did you dig and with what tools and techniques?"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#but-therefore",
-    "href": "slides/18-model-selection-overfitting-slides.html#but-therefore",
-    "title": "Model selection and overfitting",
-    "section": "“But… Therefore…”",
-    "text": "“But… Therefore…”\nAdvice from those much more successful than me at telling stories:"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#your-project-write-up-with-quarto",
-    "href": "slides/18-model-selection-overfitting-slides.html#your-project-write-up-with-quarto",
-    "title": "Model selection and overfitting",
-    "section": "Your project write-up with Quarto",
-    "text": "Your project write-up with Quarto\n\nFigure sizing: fig-width, fig-asp, etc. in code cells. [example]\nFigure layout:\n\nlayout-ncol for placing multiple figures in a chunk. [example]\nFurther control over figure layout with the patchwork package.\n\nCell options for what makes it in your final report: message, echo, etc. [example]\nNoting outside resources and formal citations:\n\nAI Disclosure [example]\nCitations [example]\n\nFinalizing your report with echo: false. [example]"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#building-your-project-website-with-quarto",
-    "href": "slides/18-model-selection-overfitting-slides.html#building-your-project-website-with-quarto",
-    "title": "Model selection and overfitting",
-    "section": "Building your project website with Quarto",
-    "text": "Building your project website with Quarto\n\nThe docs folder.\nMaking sure your website reflects your latest changes.\nCustomizing the look of your website.\n\nQuarto themes: Learn more at https://quarto.org/docs/output-formats/html-themes.html. [example]\nFor the adventurous: Customizing your website with _brand.yml, learn more at https://quarto.org/docs/authoring/brand.html."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#slides",
-    "href": "slides/18-model-selection-overfitting-slides.html#slides",
-    "title": "Model selection and overfitting",
-    "section": "Slides",
-    "text": "Slides\n\nOption 1: Make your slides not in Quarto but make sure they’re available in your Quarto project website.\n\n\n\n\n\n\n\nImportant\n\n\nMake sure the presentation is called presentation.pdf.\n\n\n\n\nOption 2: Make your slides with Quarto."
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#code-smell",
-    "href": "slides/18-model-selection-overfitting-slides.html#code-smell",
-    "title": "Model selection and overfitting",
-    "section": "Code smell",
-    "text": "Code smell\n\nOne way to look at smells is with respect to principles and quality: “Smells are certain structures in the code that indicate violation of fundamental design principles and negatively impact design quality”. Code smells are usually not bugs; they are not technically incorrect and do not prevent the program from functioning. Instead, they indicate weaknesses in design that may slow down development or increase the risk of bugs or failures in the future.\n\n\n\nSource: Code smell on Wikipedia"
-  },
-  {
-    "objectID": "slides/18-model-selection-overfitting-slides.html#code-style",
-    "href": "slides/18-model-selection-overfitting-slides.html#code-style",
-    "title": "Model selection and overfitting",
-    "section": "Code style",
-    "text": "Code style\nFollow the Tidyverse style guide:\n\nSpaces before and line breaks after each + when building a ggplot\nSpaces before and line breaks after each |&gt; in a data transformation pipeline,\nProper indentation\nSpaces around = signs and spaces after commas\nLines should not span more than 80 characters, long lines should be broken up with each argument on its own line"
-  },
-  {
-    "objectID": "slides/images/14/midsemester-feedback/summaries/course-stimulation.html",
-    "href": "slides/images/14/midsemester-feedback/summaries/course-stimulation.html",
-    "title": "What makes the course stimulating",
+    "objectID": "slides/images/14/midsemester-feedback/summaries/ta-feedback.html",
+    "href": "slides/images/14/midsemester-feedback/summaries/ta-feedback.html",
+    "title": "Comments about the teaching assistants",
     "section": "",
-    "text": "What makes the course stimulating\n49 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nHands-on work is the main source of engagement: Application exercises, labs, live coding, homework, and the project were the most consistent positive themes.\nContext matters: Students valued real-world data, varied examples, collaboration, and the freedom to work with personally interesting project data.\nWays to increase engagement: Suggestions included more active coding and interaction during lecture, clearer bridges from concepts to complete examples, and more in-class questions that resemble assessment tasks.\nSources of friction: A smaller group described lectures as hard to follow or less efficient than independent review, and some found readings and videos repetitive.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
-  },
-  {
-    "objectID": "slides/images/14/midsemester-feedback/summaries/instructor-feedback.html",
-    "href": "slides/images/14/midsemester-feedback/summaries/instructor-feedback.html",
-    "title": "Comments about Dr. Çetinkaya-Rundel",
-    "section": "",
-    "text": "Comments about Dr. Çetinkaya-Rundel\n32 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nStrongest theme: Students frequently described the instructor as knowledgeable, clear, organized, warm, humorous, and approachable. Lecture notes, preparation videos, application exercises, and office hours were singled out as helpful.\nMost common improvement request: Slow down during live coding and spend more time explaining why particular functions, variables, and arguments are used. Several students want more time to reason through code rather than copy it.\nSmaller recurring themes: Multiple comments asked for clearer lecture structure or discussed how well class practice prepares students for exams.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
+    "text": "Comments about the teaching assistants\n35 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nOverall tone: Feedback was overwhelmingly positive. Students repeatedly described the TAs as helpful, kind, encouraging, knowledgeable, and responsive in labs and office hours.\nWhat students value: Students repeatedly appreciated patient explanations, individual attention, and ready access to help during labs and office hours.\nImprovement opportunity: Multiple comments asked for more active guidance in lab and explanations that better account for students’ limited prior experience.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
   }
 ]
