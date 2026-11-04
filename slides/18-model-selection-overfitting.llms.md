@@ -205,7 +205,7 @@ Same model selection approaches (subject-matter knowledge, stepwise selection) c
 
 What are some features of datasets (that we have discussed so far) that could lead to overfitting?
 
-# Story development
+# Project: Story development
 
 ## Structure: presentation + write-up
 
