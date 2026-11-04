@@ -1,0 +1,218 @@
+---
+title: "AE 11: Predicting Dem flips"
+categories: Application exercise
+---
+
+In this application exercise, we will
+
+-   Fit a logistic regression model for a binary response variable in R
+-   Use a logistic regression model to predict probabilities and classify new observations
+-   Compare logistic regression models using AIC
+
+We will predict whether a U.S. House seat flipped to Democrat in the 2026 midterm elections, using data from Decision Desk HQ as of 2026-11-04 at 11:14 am.
+At that time, some races had been called and others had not.
+We'll learn from the called races and make predictions for the uncalled ones.
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse)
+library(tidymodels)
+```
+
+```{r}
+#| label: load-data
+midterm_26 <- read_csv("data/midterm-26.csv")
+
+glimpse(midterm_26)
+```
+
+The variables we'll use in this analysis are
+
+-   `district`: Congressional district
+-   `called_26`: Whether the 2026 race had been called (`called`) or not (`uncalled`)
+-   `flip_dem_24_26`: 1 if the seat was held by a Republican after 2024 and a Democrat leads in 2026, 0 otherwise (`NA` for uncalled races)
+-   `trump_24`: Trump's 2024 vote share (%) in the district
+-   `gerry_26`: Grade (A-F) of the state's 2026 congressional map from the Redistricting Report Card, where A is the fairest and F is the most gerrymandered
+
+**Goal:** Use Trump's 2024 vote share and the state's gerrymandering grade to predict whether a seat flips to Democrat.
+
+# Data prep
+
+Make `flip_dem_24_26` a factor (so we can use it as the outcome of a logistic regression model), and split the data into called and uncalled races.
+
+```{r}
+#| label: data-prep
+midterm_26 <- midterm_26 |>
+  mutate(flip_dem_24_26 = as.factor(flip_dem_24_26))
+
+midterm_called <- midterm_26 |>
+  filter(called_26 == "called")
+
+midterm_uncalled <- midterm_26 |>
+  filter(called_26 == "uncalled")
+```
+
+How many called and uncalled races are there?
+
+```{r}
+#| label: count-called
+# add code here
+```
+
+*Add your response here.*
+
+# Exercises
+
+## Exercise 1
+
+a.  Among the called races, how many seats flipped to Democrat?
+
+```{r}
+#| label: count-flips
+# add code here
+```
+
+*Add your response here.*
+
+b.  Calculate the proportion of called seats that flipped to Democrat for each gerrymandering grade.
+    What do you notice?
+
+```{r}
+#| label: flips-by-grade
+# add code here
+```
+
+*Add your response here.*
+
+c.  Visualize the relationship between `trump_24`, `gerry_26`, and `flip_dem_24_26` for the called races.
+
+```{r}
+#| label: flips-plot
+# add code here
+```
+
+## Exercise 2
+
+a.  Fit a logistic regression model predicting `flip_dem_24_26` from `trump_24` and `gerry_26` using the called races.
+
+```{r}
+#| label: fit-gerry
+# add code here
+```
+
+b.  Write out the fitted model for the log-odds.
+
+*Add your response here.*
+
+c.  Interpret the coefficient for `gerry_26B` in terms of odds.
+
+*Add your response here.*
+
+d.  The coefficients for `gerry_26C` and `gerry_26D` are very large and negative, with huge standard errors.
+    Why? Hint: Look back at your answer to Exercise 1b.
+
+*Add your response here.*
+
+## Exercise 3
+
+NY-17 is one of the uncalled races.
+
+a.  What are Trump's 2024 vote share and the gerrymandering grade for NY-17?
+
+```{r}
+#| label: ny-17
+# add code here
+```
+
+*Add your response here.*
+
+b.  What is the predicted probability that NY-17 flips to Democrat?
+    Answer the question using the `predict()` function with the appropriate `type` argument.
+
+```{r}
+#| label: ny-17-prob
+# add code here
+```
+
+*Add your response here.*
+
+c.  A probability is nice, but we want an actual decision.
+    Classify NY-17.
+    What threshold does `predict()` use by default?
+
+```{r}
+#| label: ny-17-class
+# add code here
+```
+
+*Add your response here.*
+
+d.  Now try AK-00, another uncalled race.
+    What happens, and why?
+
+```{r}
+#| label: ak-00
+# add code here
+```
+
+*Add your response here.*
+
+## Exercise 4
+
+a.  Predict the probability of flipping to Democrat and classify all uncalled races.
+    How many are predicted to flip to Democrat?
+
+```{r}
+#| label: uncalled-aug
+# add code here
+```
+
+*Add your response here.*
+
+b.  Which uncalled races have the highest predicted probability of flipping to Democrat?
+
+```{r}
+#| label: uncalled-top
+# add code here
+```
+
+*Add your response here.*
+
+c.  The overall proportion of called seats that flipped is about 0.1.
+    Classify the uncalled races again, this time using 0.1 as the threshold.
+    How many are predicted to flip now?
+
+```{r}
+#| label: uncalled-class-10
+# add code here
+```
+
+*Add your response here.*
+
+## Exercise 5
+
+In the slides, we fit a model predicting `flip_dem_24_26` from `trump_24` only.
+Is the model with `gerry_26` better?
+
+a.  Fit the model from the slides, then compare the AIC values of the two models using `glance()`.
+
+```{r}
+#| label: fit-trump
+# add code here
+```
+
+b.  Take a look at the `nobs` column in the output.
+    Why can't we compare these AIC values directly?
+
+*Add your response here.*
+
+c.  Refit both models on the called seats that have a gerrymandering grade, and compare the AIC values.
+    Which model is better?
+
+```{r}
+#| label: aic-compare
+# add code here
+```
+
+*Add your response here.*

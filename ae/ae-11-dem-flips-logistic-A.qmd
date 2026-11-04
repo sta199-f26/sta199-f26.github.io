@@ -1,0 +1,275 @@
+---
+title: "AE 11: Predicting Dem flips"
+subtitle: "Suggested answers"
+categories:
+  - Application exercise
+  - Answers
+---
+
+::: callout-important
+These are suggested answers.
+This document should be used as reference only, it's not designed to be an exhaustive key.
+:::
+
+In this application exercise, we will
+
+-   Fit a logistic regression model for a binary response variable in R
+-   Use a logistic regression model to predict probabilities and classify new observations
+-   Compare logistic regression models using AIC
+
+We will predict whether a U.S. House seat flipped to Democrat in the 2026 midterm elections, using data from Decision Desk HQ as of 2026-11-04 at 11:14 am.
+At that time, some races had been called and others had not.
+We'll learn from the called races and make predictions for the uncalled ones.
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse)
+library(tidymodels)
+```
+
+```{r}
+#| label: load-data
+midterm_26 <- read_csv("data/midterm-26.csv")
+
+glimpse(midterm_26)
+```
+
+The variables we'll use in this analysis are
+
+-   `district`: Congressional district
+-   `called_26`: Whether the 2026 race had been called (`called`) or not (`uncalled`)
+-   `flip_dem_24_26`: 1 if the seat was held by a Republican after 2024 and a Democrat leads in 2026, 0 otherwise (`NA` for uncalled races)
+-   `trump_24`: Trump's 2024 vote share (%) in the district
+-   `gerry_26`: Grade (A-F) of the state's 2026 congressional map from the Redistricting Report Card, where A is the fairest and F is the most gerrymandered
+
+**Goal:** Use Trump's 2024 vote share and the state's gerrymandering grade to predict whether a seat flips to Democrat.
+
+# Data prep
+
+Make `flip_dem_24_26` a factor (so we can use it as the outcome of a logistic regression model), and split the data into called and uncalled races.
+
+```{r}
+#| label: data-prep
+midterm_26 <- midterm_26 |>
+  mutate(flip_dem_24_26 = as.factor(flip_dem_24_26))
+
+midterm_called <- midterm_26 |>
+  filter(called_26 == "called")
+
+midterm_uncalled <- midterm_26 |>
+  filter(called_26 == "uncalled")
+```
+
+How many called and uncalled races are there?
+
+```{r}
+#| label: count-called
+midterm_26 |>
+  count(called_26)
+```
+
+*391 called and 44 uncalled.*
+
+# Exercises
+
+## Exercise 1
+
+a.  Among the called races, how many seats flipped to Democrat?
+
+```{r}
+#| label: count-flips
+midterm_called |>
+  count(flip_dem_24_26)
+```
+
+*38 of the 391 called seats flipped to Democrat.*
+
+b.  Calculate the proportion of called seats that flipped to Democrat for each gerrymandering grade.
+    What do you notice?
+
+```{r}
+#| label: flips-by-grade
+midterm_called |>
+  count(gerry_26, flip_dem_24_26) |>
+  group_by(gerry_26) |>
+  mutate(p = n / sum(n))
+```
+
+*None of the seats in states with C or D grades flipped. The proportion of flips is highest in states with a B grade.*
+
+c.  Visualize the relationship between `trump_24`, `gerry_26`, and `flip_dem_24_26` for the called races.
+
+```{r}
+#| label: flips-plot
+ggplot(
+  midterm_called,
+  aes(x = trump_24, y = flip_dem_24_26, color = flip_dem_24_26)
+) +
+  geom_jitter(height = 0.2, alpha = 0.7, show.legend = FALSE) +
+  facet_wrap(~gerry_26) +
+  scale_color_manual(values = c("0" = "darkgray", "1" = "#0015BC")) +
+  labs(
+    x = "Trump's 2024 vote share (%)",
+    y = "Flipped to Democrat"
+  )
+```
+
+## Exercise 2
+
+a.  Fit a logistic regression model predicting `flip_dem_24_26` from `trump_24` and `gerry_26` using the called races.
+
+```{r}
+#| label: fit-gerry
+flip_gerry_fit <- logistic_reg() |>
+  fit(flip_dem_24_26 ~ trump_24 + gerry_26, data = midterm_called)
+
+tidy(flip_gerry_fit)
+```
+
+b.  Write out the fitted model for the log-odds.
+
+$$
+\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = -3.93 + 0.0310 \times trump\_24 + 0.823 \times gerry\_26B - 15.6 \times gerry\_26C - 15.0 \times gerry\_26D + 0.00685 \times gerry\_26F
+$$
+
+c.  Interpret the coefficient for `gerry_26B` in terms of odds.
+
+*Holding Trump's 2024 vote share constant, seats in states with a B-graded map are predicted to have odds of flipping to Democrat that are higher by a factor of* $e^{0.823} \approx 2.28$ *compared to seats in states with an A-graded map, on average.*
+
+d.  The coefficients for `gerry_26C` and `gerry_26D` are very large and negative, with huge standard errors.
+    Why? Hint: Look back at your answer to Exercise 1b.
+
+*None of the called seats in states with C or D grades flipped, so the model pushes the predicted probability of a flip for these seats as close to 0 as it can.*
+
+## Exercise 3
+
+NY-17 is one of the uncalled races.
+
+a.  What are Trump's 2024 vote share and the gerrymandering grade for NY-17?
+
+```{r}
+#| label: ny-17
+ny_17 <- midterm_uncalled |>
+  filter(district == "NY-17")
+
+ny_17 |>
+  select(district, trump_24, gerry_26)
+```
+
+b.  What is the predicted probability that NY-17 flips to Democrat?
+    Answer the question using the `predict()` function with the appropriate `type` argument.
+
+```{r}
+#| label: ny-17-prob
+predict(flip_gerry_fit, new_data = ny_17, type = "prob")
+```
+
+*About 0.08.*
+
+c.  A probability is nice, but we want an actual decision.
+    Classify NY-17.
+    What threshold does `predict()` use by default?
+
+```{r}
+#| label: ny-17-class
+predict(flip_gerry_fit, new_data = ny_17, type = "class")
+```
+
+*The model predicts NY-17 doesn't flip (0). The default threshold is 0.5.*
+
+d.  Now try AK-00, another uncalled race.
+    What happens, and why?
+
+```{r}
+#| label: ak-00
+ak_00 <- midterm_uncalled |>
+  filter(district == "AK-00")
+
+ak_00 |>
+  select(district, trump_24, gerry_26)
+
+predict(flip_gerry_fit, new_data = ak_00, type = "prob")
+```
+
+*The prediction is `NA` because Alaska has a single at-large district, so it doesn't have a gerrymandering grade. The model can't make a prediction without a value for every predictor.*
+
+## Exercise 4
+
+a.  Predict the probability of flipping to Democrat and classify all uncalled races.
+    How many are predicted to flip to Democrat?
+
+```{r}
+#| label: uncalled-aug
+flip_uncalled_aug <- augment(flip_gerry_fit, new_data = midterm_uncalled)
+
+flip_uncalled_aug |>
+  count(.pred_class)
+```
+
+*None! All predicted probabilities are below 0.5.*
+
+b.  Which uncalled races have the highest predicted probability of flipping to Democrat?
+
+```{r}
+#| label: uncalled-top
+flip_uncalled_aug |>
+  select(district, trump_24, gerry_26, house_party_24, .pred_1) |>
+  arrange(desc(.pred_1))
+```
+
+*CA-05, CA-23, and ME-02 have the highest predicted probabilities, around 0.2. Note that ME-02 was held by a Democrat after 2024, so it can't flip to Democrat. Our model doesn't know that!*
+
+c.  The overall proportion of called seats that flipped is about 0.1.
+    Classify the uncalled races again, this time using 0.1 as the threshold.
+    How many are predicted to flip now?
+
+```{r}
+#| label: uncalled-class-10
+flip_uncalled_aug |>
+  mutate(.pred_class_10 = if_else(.pred_1 > 0.1, 1, 0)) |>
+  count(.pred_class_10)
+```
+
+*27 uncalled races are predicted to flip to Democrat with a threshold of 0.1.*
+
+## Exercise 5
+
+In the slides, we fit a model predicting `flip_dem_24_26` from `trump_24` only.
+Is the model with `gerry_26` better?
+
+a.  Fit the model from the slides, then compare the AIC values of the two models using `glance()`.
+
+```{r}
+#| label: fit-trump
+flip_trump_fit <- logistic_reg() |>
+  fit(flip_dem_24_26 ~ trump_24, data = midterm_called)
+
+glance(flip_trump_fit)
+glance(flip_gerry_fit)
+```
+
+b.  Take a look at the `nobs` column in the output.
+    Why can't we compare these AIC values directly?
+
+*The `trump_24` model was fit to all 391 called seats, but the `gerry_26` model was fit to only 382, because the 9 called seats with no gerrymandering grade were dropped. AIC can only be compared between models fit to the same data.*
+
+c.  Refit both models on the called seats that have a gerrymandering grade, and compare the AIC values.
+    Which model is better?
+
+```{r}
+#| label: aic-compare
+midterm_called_graded <- midterm_called |>
+  filter(!is.na(gerry_26))
+
+flip_trump_fit_graded <- logistic_reg() |>
+  fit(flip_dem_24_26 ~ trump_24, data = midterm_called_graded)
+
+flip_gerry_fit_graded <- logistic_reg() |>
+  fit(flip_dem_24_26 ~ trump_24 + gerry_26, data = midterm_called_graded)
+
+glance(flip_trump_fit_graded)$AIC
+glance(flip_gerry_fit_graded)$AIC
+```
+
+*The model with `gerry_26` has a lower AIC (244.0 vs. 246.9), so it is the better model, though not by much.*
