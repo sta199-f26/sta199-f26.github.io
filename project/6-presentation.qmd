@@ -76,3 +76,134 @@ The presentation is worth 20 points, broken down as follows:
 - Conclusions (1 pt): Conclusions are justified by the analysis.
 
 - Limitations and/or future directions (1 pt): Relevant limitations and/or future directions are carefully considered and clearly articulated.
+
+### Presentation order
+
+```{r}
+#| message: false
+library(tidyverse)
+library(gt)
+library(googlesheets4)
+gs4_deauth()
+
+make_presentation_table <- function(df) {
+  df |>
+    mutate(team_name = paste0("[", team_name, "](", repo_url, ")")) |>
+    mutate(presentation = paste0("[pdf](", presentation_url, ")")) |>
+    select(-repo_url, -presentation_url)  |>
+    relocate(team_name, presentation) |>
+    gt() |>
+    fmt_markdown(
+      columns = everything() 
+    ) |>
+    cols_label(
+      team_name = "Team",
+      presentation = "Presentation",
+      teams_for_feedback = "Teams to Give Feedback To"
+    )
+}
+```
+
+::: panel-tabset
+## L1 - 8:30 am
+
+```{r}
+#| message: false
+
+# check yaml at top to confirm echo: false (otherwise the code prints before the table)
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 1))
+make_presentation_table(teams)
+```
+
+## L2 - 10:05 am
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 2))
+make_presentation_table(teams)
+```
+
+## L3 - 10:05 am
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 3))
+make_presentation_table(teams)
+```
+
+## L4 - 11:45 am
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 4))
+make_presentation_table(teams)
+```
+
+## L5 - 11:45 am
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 5))
+make_presentation_table(teams)
+```
+
+## L6 - 1:25 pm
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 6))
+make_presentation_table(teams)
+```
+
+## L7 - 1:25 pm
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 7))
+make_presentation_table(teams)
+```
+
+## L8 - 3:05 pm
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 8))
+make_presentation_table(teams)
+```
+
+## L9 - 3:05 pm
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 9))
+make_presentation_table(teams)
+```
+
+## L10 - 4:40 pm
+
+```{r}
+#| message: false
+
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1t7nVXZsP-6MUosTptxQNsExmEREPN4eJYg7D3uPtN24/edit?gid=14783966#gid=14783966", 
+                    sheet = paste0("lab_", 10))
+make_presentation_table(teams)
+```
+:::
