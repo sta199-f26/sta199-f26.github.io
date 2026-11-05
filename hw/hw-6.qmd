@@ -1,6 +1,6 @@
 ---
 title: HW 6
-subtitle: To be posted 
+subtitle: Lifts, Views, and Spam
 description: "Due: Wed, Nov 11, 11:59 pm"
 categories: HW
 filters:
@@ -8,13 +8,48 @@ filters:
 draft: true
 ---
 
-## Do you even lift?
+# Introduction
+
+In this homework, you will use regression models to explore powerlifting records, attitudes toward scientific research, and spam emails.
+You will begin by comparing linear models that predict squat weight from age and age squared.
+Next, you will prepare data from the General Social Survey and use logistic regression to predict support for scientific research from education and political views.
+Finally, you will build and compare spam classification models, using false positive and false negative rates to assess their performance.
+
+## Learning objectives
+
+By the end of this homework, you will:
+
+- prepare data for modeling by filtering observations, transforming numeric variables, and combining and reordering categorical levels;
+- fit and interpret linear regression models and compare their fit using $R^2$;
+- fit logistic regression models with quantitative and categorical predictors and write estimated model equations;
+- use logistic regression models to predict probabilities and classify observations; and
+- calculate and interpret false positive and false negative rates to compare classification models.
+
+## Guidelines
+
+By now you should be familiar with guidelines for homework assignments.
+If not, please refer to an earlier homework assignment for details.
+
+## AI support and feedback
+
+{{< include _ai-support-feedback.qmd >}}
+
+# Packages
+
+You will use the [**tidyverse**](https://www.tidyverse.org/packages), [**tidymodels**](https://www.tidymodels.org/), and [**openintro**](https://openintro.org/) packages for this homework, at a minimum.
+
+```{r}
+#| message: false
+library(tidyverse)
+library(tidymodels)
+library(openintro)
+```
+
+# Part 1 - Do you even lift?
 
 In this part, you will be working with data from www.openpowerlifting.org. This data was sourced from Tidy Tuesday and contains international powerlifting records at various meets. At each meet, each lifter gets three attempts at lifting max weight on three lifts: the bench press, squat and deadlift. For all of the following exercises, you should include units on axes labels, e.g. “Bench press (lbs)” or “Bench press (kg)”. “Age (years)” etc. This is good practice.
 
-
-
-### Question 1
+## Question 1
 
 a.  Let's begin by taking a look at the **squat lifting** records.
 
@@ -42,17 +77,27 @@ c.
     -   Re-write your previous equation replacing the population parameters with the numeric estimates. This is called the "fitted" linear model.
     -   Interpret each estimate of $\beta$, and comment on whether the interpretations are sensible
 
-### Question 2
+## Question 2
 
 a. Building on your `ipf_squat` data frame, create a new column called `age2` that takes the age of each lifter and squares it. Save it to your data frame `ipf_squat`. Next, plot squat in lbs vs `age2` and add a linear best fit line. How does the fit of the model compare to the one from earlier?
 
 b. One metric to assess the fit of a model is the correlation squared, also known as $R^2$. Fit the age$^2$ model and save the object as `age2_fit`. Compare $R^2$ of the new model (squat vs. age$^2$) to the $R^2$ of the earlier model (squat vs. age). Which has a higher $R^2$?
 
-## General Social Survey
+::: openai
+This would be a good time to get feedback from AI if you haven't already!
+Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
+Revise your answers based on the feedback before moving on.
+:::
+
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+:::
+
+# Part 2 - General Social Survey
 
 The General Social Survey (GSS) gathers data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviours, and attributes. Hundreds of trends have been tracked since 1972. In addition, since the GSS adopted questions from earlier surveys, trends can be followed for up to 70 years. The GSS contains a standard core of demographic, behavioural, and attitudinal questions, plus topics of special interest. Among the topics covered are civil liberties, crime and violence, intergroup tolerance, morality, national spending priorities, psychological well-being, social mobility, and stress and traumatic events. In this part you will work with variables from the 2022 General Social Survey.
 
-### Question 3
+## Question 3
 
 a. Read in the `gss22.csv` file that is in your data folder and save it as `gss22`. Report its number of rows and columns.
 
@@ -66,7 +111,7 @@ You can do this in various ways. One option is to use the `str_detect()` functio
 
 d. Combine the levels of the `polviews` variable such that levels that have the word “liberal” in them are lumped into a level called "Liberal" and those that have the word conservative in them are lumped into a level called "Conservative". Then, re-order the levels in the following order: "Conservative" , "Moderate", and "Liberal". Finally, `count()` how many times each new level appears in the `polviews` variable.
 
-### Question 4
+## Question 4
 
 a\. Fit a logistic regression model that predicts `advfront` from `educ`. Report the tidy output of the model.
 
@@ -74,19 +119,29 @@ b\. Write out the estimated model in proper notation.
 
 c\. Using your estimated model, predict the probability of agreeing with the statement *"Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government."* (`Agree` in `advfront`) for someone with 7 years of education.
 
-### Question 5
+## Question 5
 
-a\. Fit a model that adds the additional explanatory variable of `polviews` to your model from Question 9. Report the tidy output of the model.
+a\. Fit a model that adds the additional explanatory variable of `polviews` to your model from Question 4. Report the tidy output of the model.
 
 b\. Now, predict the probability of agreeing with the following statement *"Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government."* (`Agree` in `advfront`) for a Conservative person with 7 years of education.
 
-## Spam
+::: openai
+This would be a good time to get feedback from AI if you haven't already!
+Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
+Revise your answers based on the feedback before moving on.
+:::
+
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+:::
+
+# Part 3 - Spam
 
 The data come from incoming emails in David Diez’s (one of the authors of OpenIntro textbooks) Gmail account for the first three months of 2012. All personally identifiable information has been removed. The dataset is called `email` and it’s in the `openintro` package.
 
 The outcome variable is spam, which takes the value 1 if the email is spam, 0 otherwise.
 
-### Question 8
+## Question 6
 
 a. What type of variable is spam? What percent of the emails are spam?
 
@@ -100,7 +155,7 @@ d. Using this model and the `predict()` function, predict the probability the em
 To obtain the predicted probability, you can set the type argument in `predict()` to "prob".
 :::
 
-### Question 9
+## Question 7
 
 a. Fit a logistic regression model predicting `spam` from `dollar`, `winner` (indicating whether “winner” appeared in the email), and `urgent_subj` (whether the word "urgent" is in the subject of the email). Then, display the tidy output of the model. Include the two predictors using an *additive* model, not an interaction model.
 
@@ -119,9 +174,9 @@ d. In a single pipeline, and using `mutate()`, calculate the false positive and 
 
 In addition to these numbers showing in your R output, you must write a sentence that explicitly states and identifies the two rates.
 
-### Question 10
+## Question 8
 
-a.  Fit a logistic regression model predicting `spam` from `dollar` and another variable you think would be a good predictor. Again, inclue the multiple predictors with an *additive* model. No interactions. Provide a 1-sentence justification for why you chose this variable. Display the tidy output of the model.
+a.  Fit a logistic regression model predicting `spam` from `dollar` and another variable you think would be a good predictor. Again, include the multiple predictors with an *additive* model. No interactions. Provide a 1-sentence justification for why you chose this variable. Display the tidy output of the model.
 
 b.  Using this model, predict spam / not spam for all emails in the `email` dataset with `augment()`. Store the resulting data frame with an appropriate name.
 
@@ -136,4 +191,41 @@ c.  Using your data frame from the previous part, determine, in a single pipelin
 
 d.  In a single pipeline, and using `mutate()`, calculate the false positive and false negative rates. In addition to these numbers showing in your R output, you must write a sentence that explicitly states and identifies the two rates.
 
-e.  Based on the false positive and false negatives rates of this model, comment, in 1-2 sentences, on which model (one from Question 9 or Question 10) is preferable and why.
+e.  Based on the false positive and false negatives rates of this model, comment, in 1-2 sentences, on which model (one from Question 7 or Question 8) is preferable and why.
+
+::: openai
+This would be a good time to get feedback from AI if you haven't already!
+Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
+Revise your answers based on the feedback before moving on.
+:::
+
+# AI use disclosure
+
+{{< include _ai-disclosure.qmd >}}
+
+# Wrap-up
+
+::: source-control
+Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub, and your source control pane is empty.
+We will be checking these to make sure you have been practicing committing and pushing changes.
+:::
+
+## Submission
+
+{{< include _submission.qmd >}}
+
+## Grading and feedback
+
+You can get immediate feedback on all of the questions with AI.
+
+Submit your final version of `hw-6.pdf` to Gradescope.
+Be sure to select the pages associated with each question.
+
+A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team.
+You will receive that feedback in about a week.
+
+There are also workflow points for:
+
+- committing at least three times as you work through your homework,
+- having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
+- overall organization.
