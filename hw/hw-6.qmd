@@ -93,17 +93,20 @@ Revise your answers based on the feedback before moving on.
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
 :::
 
-# Part 2 - General Social Survey
+# Part 2 - Supporting scientific research
 
 The General Social Survey (GSS) gathers data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviours, and attributes. Hundreds of trends have been tracked since 1972. In addition, since the GSS adopted questions from earlier surveys, trends can be followed for up to 70 years. The GSS contains a standard core of demographic, behavioural, and attitudinal questions, plus topics of special interest. Among the topics covered are civil liberties, crime and violence, intergroup tolerance, morality, national spending priorities, psychological well-being, social mobility, and stress and traumatic events. In this part you will work with variables from the 2024 General Social Survey.
-The dataset retains respondents with a substantive response to marital status, following the same filtering as the course's earlier GSS extract.
-For this analysis, you will use:
 
-- `natsci`: whether the government spends "Too little", "About right", or "Too much" on supporting scientific research;
-- `education_years`: completed years of formal education; and
-- `polviews`: political views, ranging from "Extremely liberal" to "Extremely conservative".
+One of the variables we'll be working with is `natsci`, which measures whether respondents think the government spends "Too little", "About right", or "Too much" on supporting scientific research. 
 
-Non-substantive responses, such as "don't know" and "no answer", are recorded as `NA`.
+Specifically, this question is phrased as:
+
+> We are faced with many problems in this country, none of which can be solved easily or inexpensively. I'm going to name some of these problems, and for each one I'd like you to name some of these problems, and for each one I'd like you to tell me whether you think we're spending too much money on it, too little money, or about the right amount. First, are we spending too much, too little, or about the right amount on supporting scientific research.
+
+Additionally, we will work with the following variables:
+
+- `education_years`: completed years of formal education
+- `polviews`: political views, ranging from "Extremely liberal" to "Extremely conservative"
 
 ## Question 3
 
