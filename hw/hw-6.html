@@ -108,8 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><meta name="quarto:status" content="draft">
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -304,7 +303,7 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -575,7 +574,7 @@ window.Quarto = {
   </ul>
 </li>
   <li>
-<a href="#part-2---general-social-survey" id="toc-part-2---general-social-survey" class="nav-link" data-scroll-target="#part-2---general-social-survey">Part 2 - General Social Survey</a>
+<a href="#part-2---supporting-scientific-research" id="toc-part-2---supporting-scientific-research" class="nav-link" data-scroll-target="#part-2---supporting-scientific-research">Part 2 - Supporting scientific research</a>
   <ul class="collapse">
 <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
   <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
@@ -695,17 +694,20 @@ Note
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
-</section></section><section id="part-2---general-social-survey" class="level1"><h1>Part 2 - General Social Survey</h1>
-<p>The General Social Survey (GSS) gathers data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviours, and attributes. Hundreds of trends have been tracked since 1972. In addition, since the GSS adopted questions from earlier surveys, trends can be followed for up to 70 years. The GSS contains a standard core of demographic, behavioural, and attitudinal questions, plus topics of special interest. Among the topics covered are civil liberties, crime and violence, intergroup tolerance, morality, national spending priorities, psychological well-being, social mobility, and stress and traumatic events. In this part you will work with variables from the 2024 General Social Survey. The dataset retains respondents with a substantive response to marital status, following the same filtering as the course’s earlier GSS extract. For this analysis, you will use:</p>
+</section></section><section id="part-2---supporting-scientific-research" class="level1"><h1>Part 2 - Supporting scientific research</h1>
+<p>The General Social Survey (GSS) gathers data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviours, and attributes. Hundreds of trends have been tracked since 1972. In addition, since the GSS adopted questions from earlier surveys, trends can be followed for up to 70 years. The GSS contains a standard core of demographic, behavioural, and attitudinal questions, plus topics of special interest. Among the topics covered are civil liberties, crime and violence, intergroup tolerance, morality, national spending priorities, psychological well-being, social mobility, and stress and traumatic events. In this part you will work with variables from the 2024 General Social Survey.</p>
+<p>One of the variables we’ll be working with is <code>natsci</code>, which measures whether respondents think the government spends “Too little”, “About right”, or “Too much” on supporting scientific research.</p>
+<p>Specifically, this question is phrased as:</p>
+<blockquote class="blockquote">
+<p>We are faced with many problems in this country, none of which can be solved easily or inexpensively. I’m going to name some of these problems, and for each one I’d like you to name some of these problems, and for each one I’d like you to tell me whether you think we’re spending too much money on it, too little money, or about the right amount. First, are we spending too much, too little, or about the right amount on supporting scientific research.</p>
+</blockquote>
+<p>Additionally, we will work with the following variables:</p>
 <ul>
 <li>
-<code>natsci</code>: whether the government spends “Too little”, “About right”, or “Too much” on supporting scientific research;</li>
+<code>education_years</code>: completed years of formal education</li>
 <li>
-<code>education_years</code>: completed years of formal education; and</li>
-<li>
-<code>polviews</code>: political views, ranging from “Extremely liberal” to “Extremely conservative”.</li>
+<code>polviews</code>: political views, ranging from “Extremely liberal” to “Extremely conservative”</li>
 </ul>
-<p>Non-substantive responses, such as “don’t know” and “no answer”, are recorded as <code>NA</code>.</p>
 <section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <ol type="a">
 <li><p>Read in the <code>gss-2024-more-cols.csv</code> file that is in your data folder and save it as <code>gss24</code>. Report its number of rows and columns.</p></li>

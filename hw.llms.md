@@ -9,3 +9,4 @@ More homeworks to be added as the semester progresses.
 | [HW 3](hw/hw-3.llms.md) | Inflation everywhere | Due: Wed, Sep 23, 11:59 pm |
 | [HW 4](hw/hw-4.llms.md) | Slam dunks, shaken trusts, and stuck landings | Due: Wed, Sep 30, 11:59 pm |
 | [HW 5](hw/hw-5.llms.md) | Eat, Crawl, Regress | Due: Wed, Oct 28, 11:59 pm |
+| [HW 6](hw/hw-6.llms.md) | Weighing the odds | Due: Wed, Nov 11, 11:59 pm |

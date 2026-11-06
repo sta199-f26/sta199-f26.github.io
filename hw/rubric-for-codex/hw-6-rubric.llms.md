@@ -1,0 +1,249 @@
+# HW 6 Rubric
+
+Rubric
+
+HW
+
+This is the rubric for AI feedback, not necessarily the rubric for grading.
+
+# Part 1 - Do you even lift?
+
+## Question 1
+
+1.  Part a. Code removes observations with negative squat values.
+
+2.  Part a. Code converts `best3squat_kg` to pounds and saves the resulting variable as `best3_squat_lbs`.
+
+3.  Part a. Narrative reports the number of rows and columns of `ipf_squat` using inline code.
+
+    - Note: Check inline code when source is available. If only the rendered answer is available, check that the narrative reports the correct dimensions.
+
+4.  Part b. Code produces a scatterplot with age on the x-axis and squat weight in pounds on the y-axis.
+
+5.  Part b. Code adjusts the points’ transparency with `alpha`.
+
+6.  Part b. Plot has an informative and human-readable title and/or subtitle and axis labels, including squat weight units.
+
+    - Note: Age units are optional. Labels should use readable words rather than raw variable names with underscores. Provide specific feedback on any missing or unclear title or axis labels.
+
+7.  Part b. Plot includes a line of best fit using `method = "lm"`.
+
+8.  Part b. Narrative accurately describes trends in the plot.
+
+    - Note: The response should include at least one correct trend and no incorrect trends.
+
+9.  Part c. Code fits a linear regression model with `best3_squat_lbs` as the response and `age` as the predictor.
+
+10. Part c. Code uses tidymodels functions to fit the model and displays the regression summary with `tidy()`.
+
+11. Part c. The estimated least squares regression equation agrees with the model output.
+
+    - Note: The outcome should be identified as a predicted value, either in words or with a hat in mathematical notation.
+
+12. Part c. Narrative correctly interprets the intercept in context.
+
+    - Note: The interpretation should describe the average or expected best squat weight at age zero, using wording such as “on average” or “in expectation”.
+
+13. Part c. Narrative states that the intercept is not meaningful in this context.
+
+14. Part c. Narrative correctly interprets the slope in context.
+
+    - Note: The interpretation should describe the average or expected change in best squat weight for each additional year of age, using wording such as “on average” or “in expectation”.
+
+15. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+16. Code smell: All code uses appropriate tidyverse and tidymodels functions and syntax.
+
+## Question 2
+
+1.  Part a. Code creates `age2` as the square of `age`.
+
+2.  Part a. Code updates `ipf_squat` with the new variable.
+
+3.  Part a. Code produces a scatterplot with age squared on the x-axis and squat weight in pounds on the y-axis.
+
+4.  Part a. Plot has an informative and human-readable title and/or subtitle and axis labels, including squat weight units.
+
+    - Note: Age units are optional. Labels should use readable words rather than raw variable names with underscores. Provide specific feedback on any missing or unclear title or axis labels.
+
+5.  Part a. Plot includes a line of best fit using `method = "lm"`.
+
+6.  Part a. Narrative states that the relationship appears more linear after squaring age.
+
+    - Note: Equivalent descriptions, such as a less pronounced curve or hump, are acceptable.
+
+7.  Part b. Code fits a linear regression model with `best3_squat_lbs` as the response and `age2` as the predictor.
+
+8.  Part b. Code uses tidymodels functions to fit the model.
+
+9.  Part b. Output displays the \\R^2\\ values for both models.
+
+10. Part b. Narrative states that the model using `age2` has a higher \\R^2\\ value.
+
+11. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+12. Code smell: All code uses appropriate tidyverse and tidymodels functions and syntax.
+
+# Part 2 - Supporting scientific research
+
+## Question 3
+
+1.  Part a. Code reads `gss-2024-more-cols.csv` and saves it as `gss24`.
+
+2.  Part a. Narrative reports 3,294 rows and 15 columns.
+
+3.  Part b. Code creates `gss24_natsci` containing only `natsci`, `education_years`, and `polviews`.
+
+4.  Part b. Code uses `drop_na()` to remove observations missing any of these three variables.
+
+    - Note: Missing values in variables outside these three should not cause observations to be removed.
+
+5.  Part b. Narrative reports 3,000 rows and 3 columns.
+
+6.  Part b. Code calculates and narrative reports approximately 8.93% discarded, using the original 3,294 observations as the denominator.
+
+    - Note: The calculation removes 294 observations. Equivalent calculations and reasonable rounding are acceptable. Inline code is acceptable but is not required for reporting dimensions or the discarded percentage.
+
+7.  Part c. Code retains “Too little” and combines “About right” and “Too much” into “Not too little”.
+
+8.  Part c. Code updates `gss24_natsci` and makes `natsci` a factor with levels ordered “Not too little”, “Too little”.
+
+9.  Part c. Code uses `count()` and displays 1,803 “Not too little” and 1,197 “Too little” responses.
+
+10. Part d. Code combines all three liberal categories into “Liberal”, all three conservative categories into “Conservative”, and renames the moderate category “Moderate”.
+
+    - Note: Explicit recoding, case-insensitive pattern matching, or an equivalent approach is acceptable. Both capitalized and lowercase occurrences must be handled.
+
+11. Part d. Code updates `gss24_natsci` and makes `polviews` a factor with levels ordered “Conservative”, “Moderate”, “Liberal”.
+
+12. Part d. Code uses `count()` and displays 1,024 Conservative, 1,082 Moderate, and 894 Liberal respondents.
+
+13. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+14. Code smell: All code uses appropriate tidyverse functions and syntax.
+
+## Question 4
+
+1.  Part a. Code fits a logistic regression model with `natsci` as the response and `education_years` as the predictor, using the 3,000 complete observations from Question 3 and tidymodels functions.
+
+2.  Part a. Code saves the fitted model and displays its coefficient output with `tidy()`.
+
+3.  Part a. Coefficient output corresponds to the probability of “Too little”, with an intercept of approximately -1.69 and an education slope of 0.0887.
+
+    - Note: The second factor level, “Too little”, is the modeled event with the default `glm` engine. If an earlier factor-order error reverses the coefficient signs, check whether the interpretations match the fitted event and the requested predictions still refer to “Too little”. Avoid repeating feedback for the same underlying error.
+
+4.  Part b. Narrative correctly interprets the fitted intercept as log odds of approximately -1.69 for responding “Too little” at zero years of education, or gives the equivalent odds of approximately 0.185.
+
+    - Note: An equivalent probability interpretation (approximately 15.6%) is acceptable.
+
+5.  Part b. Narrative states that, for each additional year of education, the odds of responding “Too little” are predicted to multiply by approximately 1.093, on average (about a 9.3% increase).
+
+    - Note: Accept an equivalent increase of approximately 0.0887 in log odds per additional year. The odds multiplier is `exp(0.0887)`.
+
+    - Note: A percent change in odds is not a percentage-point change in probability. Causal claims are not supported by this observational model.
+
+6.  Part c. Code creates new observations with 7 and 8 years of education and predicts their probabilities of “Too little”, approximately 0.256 and 0.273.
+
+    - Note: `augment()` or `predict(..., type = "prob")` is acceptable. Predictions must use the probability column for “Too little”.
+
+7.  Part c. Code converts both probabilities to odds using `p / (1 - p)`, approximately 0.344 and 0.376.
+
+8.  Part c. Code calculates odds for 8 years divided by odds for 7 years, approximately 1.093.
+
+9.  Part c. Narrative states that the odds ratio for 8 versus 7 years equals the exponential of the education slope, `exp(0.0887)`, approximately 1.093.
+
+    - Note: The requested odds ratio equals `exp(slope)` (approximately 1.093) for the fitted “Too little” model. If a student models “Not too little” instead, the requested ratio equals `exp(-slope)`. Allow reasonable rounding throughout.
+
+10. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+11. Code smell: All code uses appropriate tidyverse and modeling functions and syntax.
+
+## Question 5
+
+1.  Part a. Code fits and saves a logistic regression model predicting `natsci` from the main effects of `education_years` and `polviews`, with no interaction.
+
+2.  Part a. Model uses the same 3,000 complete observations and treats `polviews` as categorical with Conservative as the reference group.
+
+3.  Part b. Narrative correctly interprets the intercept for a Conservative respondent with zero years of education.
+
+4.  Part b. Narrative states that, holding political views constant, each additional year of education multiplies the predicted odds of responding “Too little”, on average, by approximately 1.075 (about a 7.5% increase).
+
+    - Note: The odds multiplier is `exp(0.0723)`. An equivalent increase of approximately 0.0723 in log odds per additional year is acceptable. A percent increase in odds is not a percentage-point increase in probability.
+
+5.  Part b. Narrative states that, holding education constant, Moderate respondents have approximately 1.248 times the predicted odds of responding “Too little” compared with Conservative respondents.
+
+    - Note: The odds ratio is `exp(0.221)`. Answers reported as log-odds are not acceptable.
+
+6.  Part b. Narrative states that, holding education constant, Liberal respondents have approximately 2.388 times the predicted odds of responding “Too little” compared with Conservative respondents.
+
+    - Note: The odds ratio is `exp(0.871)`. Answers reported as log-odds are not acceptable.
+
+7.  Part c. Code predicts probabilities for Conservative respondents with 7 and 8 years of education, approximately 0.215 and 0.227.
+
+8.  Part c. Code converts these probabilities to odds, approximately 0.274 and 0.294, and calculates the odds ratio in the requested direction, approximately 1.075.
+
+9.  Part c. Narrative relates the odds ratio to the exponential of the education coefficient.
+
+10. Part d. Code predicts probabilities for Liberal respondents with 7 and 8 years of education, approximately 0.395 and 0.413.
+
+11. Part d. Code converts these probabilities to odds, approximately 0.654 and 0.703, and calculates the odds ratio in the requested direction, approximately 1.075.
+
+12. Part d. Narrative explains that the education odds ratio is the same as for Conservative respondents because the model has no interaction.
+
+    - Note for parts b–d: An equivalent model for “Not too little” is acceptable if interpretations match that event and predictions and odds ratios are converted to “Too little”. Allow reasonable rounding and avoid repeating feedback for a single underlying event-coding error.
+
+13. Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+14. Code smell: All code uses appropriate tidyverse and modeling functions and syntax.
+
+## Question 6
+
+1.  Part a. Code fits and saves a logistic regression model with `natsci` as the response and both `education_years` and categorical `polviews` as predictors.
+
+2.  Part a. Model includes both main effects and the interactions of education with the Moderate and Liberal indicators.
+
+    - Note: `education_years * polviews` or the equivalent expanded formula is acceptable. An interaction-only formula does not satisfy the question.
+
+3.  Part a. Model uses the same 3,000 complete observations as the previous two models.
+
+4.  Part b. Code obtains appropriate model statistics for all three models and compares them on the same observations.
+
+    - Note: AIC values are approximately 3,995 (education only), 3,909 (main effects), and 3,899 (interaction). BIC values are approximately 4,007, 3,933, and 3,935, respectively. Equivalent parameterizations of the response give the same fit statistics.
+
+5.  Part b. Narrative selects a model and justifies the choice with accurate model statistics in 1–2 sentences.
+
+    - Note: The interaction model is preferred by AIC.
+
+6.  Code style and readability: line breaks after each `|>` and `+`, appropriate indentation, spaces around `=` signs, and spaces after commas.
+
+    - Note: Indentation with two spaces, four spaces, or tabs is acceptable.
+
+7.  Code smell: All code uses appropriate tidyverse and modeling functions and syntax.
+
+# Overall
+
+These rubric items are not tied to a specific question but apply to the entire homework. Check for these if explicitly asked to provide overall feedback or if you notice them while reviewing the homework or as the student is finishing up working on the last question.
+
+## Rubric
+
+- Final .qmd and rendered PDF files exist in the remote GitHub repository.
+
+- At least three commits were made and pushed to the GitHub repository, and the submission is reasonably organized.
+
+- An AI-use disclosure states whether an LLM or generative AI tool was used (Yes or No).
+
+- If AI was used, the disclosure describes all the ways it was used.
+
+- If AI was used, the disclosure lists all tools used, including model names and versions if known.
+
+- Any non-AI sources used are cited, with the question(s) for which each source was used.
