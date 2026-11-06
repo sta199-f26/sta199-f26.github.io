@@ -710,7 +710,7 @@ Note
 <ol type="a">
 <li><p>Read in the <code>gss-2024-more-cols.csv</code> file that is in your data folder and save it as <code>gss24</code>. Report its number of rows and columns.</p></li>
 <li><p>Create a new data frame called <code>gss24_natsci</code> that only contains the variables <code>natsci</code>, <code>education_years</code>, and <code>polviews</code>. Then, use the <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> function to remove rows that contain NAs from this new data frame. Report the number of rows and columns of <code>gss24_natsci</code>. Additionally, report what percent of the observations were discarded at this step.</p></li>
-<li><p>Recode <code>natsci</code> such that “Too little” remains its own level and “About right” and “Too much” are combined into a new level called “Not too little”. Then, make <code>natsci</code> a factor with levels in the following order: “Too little” and “Not too little”. Finally, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> how many times each new level appears in <code>natsci</code>.</p></li>
+<li><p>Recode <code>natsci</code> such that “Too little” remains its own level and “About right” and “Too much” are combined into a new level called “Not too little”. Then, make <code>natsci</code> a factor with levels in the following order: “Not too little” and “Too little”. Finally, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> how many times each new level appears in <code>natsci</code>.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -722,16 +722,16 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>With the tidymodels logistic regression workflow used in class, the first outcome level is the event of interest, so keep “Too little” first.</p>
+<p>With the tidymodels logistic regression workflow used in class, logistic regression coefficients model the second outcome level, so order the levels as “Not too little” and then “Too little”.</p>
 </div>
 </div>
 <ol start="4" type="a">
 <li>Combine the levels of the <code>polviews</code> variable such that levels that have the word “liberal” in them are lumped into a level called “Liberal” and those that have the word conservative in them are lumped into a level called “Conservative”. Rename “Moderate, middle of the road” to “Moderate”. Then, make <code>polviews</code> a factor with levels in the following order: “Conservative”, “Moderate”, and “Liberal”. Finally, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> how many times each new level appears in the <code>polviews</code> variable.</li>
 </ol></section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
 <ol type="a">
-<li><p>Fit a logistic regression model that predicts <code>natsci</code> from <code>education_years</code> using <code>gss24_natsci</code>. Report the tidy output of the model.</p></li>
+<li><p>Fit a logistic regression model that predicting the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) from <code>education_years</code> using <code>gss24_natsci</code>. Report the tidy output of the model.</p></li>
 <li><p>Interpret the slope and the intercept of the model in the context of the data.</p></li>
-<li><p>Predict the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) for someone with 7 years of education and someone with 8 years of education. Convert each predicted probability to odds using <span class="math inline">\(p / (1 - p)\)</span>. Then, calculate the odds ratio (odds for 8 years / odds for 7 years) and describe how it relates to the slope of the model you interpreted in part (b).</p></li>
+<li><p>Predict the predicting the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) for someone with 7 years of education and someone with 8 years of education. Convert each predicted probability to odds using <span class="math inline">\(p / (1 - p)\)</span>. Then, calculate the odds ratio (odds for 7 years / odds for 8 years) and describe how it relates to the slope of the model you interpreted in part (b).</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -758,7 +758,7 @@ Tip
 </div>
 </section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
 <ol type="a">
-<li><p>Fit one more model predicting the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) from both <code>education_years</code> and <code>polviews</code>. Consider only the main effects of <code>education_years</code> and <code>polviews</code> as well as their interaction for this question.</p></li>
+<li><p>Fit one more model predicting the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) from both <code>education_years</code> and <code>polviews</code>. Consider only the main effects of <code>education_years</code> and <code>polviews</code> as well as their interaction for this question. Display the tidy output of the model.</p></li>
 <li><p>Which of the three models (education only, education + polviews, and education + polviews + interaction) do you think is the best model? Justify your answer in 1-2 sentences with appropriate model statistics.</p></li>
 </ol>
 <div class="openai">
