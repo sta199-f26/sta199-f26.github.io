@@ -580,14 +580,7 @@ window.Quarto = {
 <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
   <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
   <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#part-3---spam" id="toc-part-3---spam" class="nav-link" data-scroll-target="#part-3---spam">Part 3 - Spam</a>
-  <ul class="collapse">
-<li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
-  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   </ul>
 </li>
   <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI use disclosure</a></li>
@@ -603,7 +596,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">HW 6</h1>
-<p class="subtitle lead">Lifts, Views, and Spam</p>
+<p class="subtitle lead">Weighing the odds</p>
   <div class="quarto-categories">
     <div class="quarto-category">HW</div>
   </div>
@@ -626,15 +619,15 @@ window.Quarto = {
 
 
 </header><section id="introduction" class="level1"><h1>Introduction</h1>
-<p>In this homework, you will use regression models to explore powerlifting records, attitudes toward scientific research, and spam emails. You will begin by comparing linear models that predict squat weight from age and age squared. Next, you will prepare data from the General Social Survey and use logistic regression to predict support for scientific research from education and political views. Finally, you will build and compare spam classification models, using false positive and false negative rates to assess their performance.</p>
+<p>In this homework, you will use regression models to explore powerlifting records and attitudes toward government spending on scientific research. You will begin by comparing linear models that predict squat weight from age and age squared. Next, you will prepare data from the General Social Survey and use logistic regression to predict views on government spending on scientific research from education and political views. You will interpret predicted probabilities and odds ratios, then compare models with main effects and interactions.</p>
 <section id="learning-objectives" class="level2"><h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <p>By the end of this homework, you will:</p>
 <ul>
 <li>prepare data for modeling by filtering observations, transforming numeric variables, and combining and reordering categorical levels;</li>
 <li>fit and interpret linear regression models and compare their fit using <span class="math inline">\(R^2\)</span>;</li>
-<li>fit logistic regression models with quantitative and categorical predictors and write estimated model equations;</li>
-<li>use logistic regression models to predict probabilities and classify observations; and</li>
-<li>calculate and interpret false positive and false negative rates to compare classification models.</li>
+<li>fit and interpret logistic regression models with quantitative and categorical predictors;</li>
+<li>use predicted probabilities to calculate odds and odds ratios and connect them to model coefficients; and</li>
+<li>fit models with interactions and use model statistics to compare logistic regression models.</li>
 </ul></section><section id="guidelines" class="level2"><h2 class="anchored" data-anchor-id="guidelines">Guidelines</h2>
 <p>By now you should be familiar with guidelines for homework assignments. If not, please refer to an earlier homework assignment for details.</p>
 </section><section id="ai-support-and-feedback" class="level2"><h2 class="anchored" data-anchor-id="ai-support-and-feedback">AI support and feedback</h2>
@@ -672,7 +665,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You may need to google the conversion formula.</p>
+<p>You may need to use an outside resource to find the conversion formula. Make sure you cite it.</p>
 </div>
 </div>
 <ol start="2" type="a">
@@ -689,7 +682,7 @@ Note
 <li>Write down the linear population model to predict lift squat lbs from age.</li>
 <li>Fit the linear model, and save it as <code>age_fit</code>.</li>
 <li>Re-write your previous equation replacing the population parameters with the numeric estimates. This is called the “fitted” linear model.</li>
-<li>Interpret each estimate of <span class="math inline">\(\beta\)</span>, and comment on whether the interpretations are sensible</li>
+<li>Interpret each estimate of <span class="math inline">\(\beta\)</span>, and comment on whether the interpretations are meaningful in the context of the data.</li>
 </ul></li>
 </ol></section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
 <ol type="a">
@@ -703,12 +696,21 @@ Note
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
 </section></section><section id="part-2---general-social-survey" class="level1"><h1>Part 2 - General Social Survey</h1>
-<p>The General Social Survey (GSS) gathers data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviours, and attributes. Hundreds of trends have been tracked since 1972. In addition, since the GSS adopted questions from earlier surveys, trends can be followed for up to 70 years. The GSS contains a standard core of demographic, behavioural, and attitudinal questions, plus topics of special interest. Among the topics covered are civil liberties, crime and violence, intergroup tolerance, morality, national spending priorities, psychological well-being, social mobility, and stress and traumatic events. In this part you will work with variables from the 2022 General Social Survey.</p>
+<p>The General Social Survey (GSS) gathers data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviours, and attributes. Hundreds of trends have been tracked since 1972. In addition, since the GSS adopted questions from earlier surveys, trends can be followed for up to 70 years. The GSS contains a standard core of demographic, behavioural, and attitudinal questions, plus topics of special interest. Among the topics covered are civil liberties, crime and violence, intergroup tolerance, morality, national spending priorities, psychological well-being, social mobility, and stress and traumatic events. In this part you will work with variables from the 2024 General Social Survey. The dataset retains respondents with a substantive response to marital status, following the same filtering as the course’s earlier GSS extract. For this analysis, you will use:</p>
+<ul>
+<li>
+<code>natsci</code>: whether the government spends “Too little”, “About right”, or “Too much” on supporting scientific research;</li>
+<li>
+<code>education_years</code>: completed years of formal education; and</li>
+<li>
+<code>polviews</code>: political views, ranging from “Extremely liberal” to “Extremely conservative”.</li>
+</ul>
+<p>Non-substantive responses, such as “don’t know” and “no answer”, are recorded as <code>NA</code>.</p>
 <section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <ol type="a">
-<li><p>Read in the <code>gss22.csv</code> file that is in your data folder and save it as <code>gss22</code>. Report its number of rows and columns.</p></li>
-<li><p>Create a new data frame called <code>gss22_advfront</code> that only contains the variables <code>advfront</code>, <code>educ</code>, and <code>polviews</code>. Then, use the <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> function to remove rows that contain NAs from this new data frame. Report the number of rows and columns of <code>gss22_advfront</code>. Additionally, report what percent of the observations were discarded at this step.</p></li>
-<li><p>Re-level the advfront variable such that it has two levels: “Strongly agree” and “Agree” combined into a new level called Agree and the remaining levels combined into ”Not agree”. Then, re-order the levels in the following order: “Agree” and “Not agree”. Finally, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> how many times each new level appears in the advfront variable.</p></li>
+<li><p>Read in the <code>gss-2024-more-cols.csv</code> file that is in your data folder and save it as <code>gss24</code>. Report its number of rows and columns.</p></li>
+<li><p>Create a new data frame called <code>gss24_natsci</code> that only contains the variables <code>natsci</code>, <code>education_years</code>, and <code>polviews</code>. Then, use the <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> function to remove rows that contain NAs from this new data frame. Report the number of rows and columns of <code>gss24_natsci</code>. Additionally, report what percent of the observations were discarded at this step.</p></li>
+<li><p>Recode <code>natsci</code> such that “Too little” remains its own level and “About right” and “Too much” are combined into a new level called “Not too little”. Then, make <code>natsci</code> a factor with levels in the following order: “Too little” and “Not too little”. Finally, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> how many times each new level appears in <code>natsci</code>.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -720,85 +722,47 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can do this in various ways. One option is to use the <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> function to detect the existence of words. Note that these sometimes show up with lowercase first letters and sometimes with upper case first letters. To detect either in the <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> function, you can use “[Aa]gree”. However, solve the problem however you like, this is just one option.</p>
+<p>With the tidymodels logistic regression workflow used in class, the first outcome level is the event of interest, so keep “Too little” first.</p>
 </div>
 </div>
 <ol start="4" type="a">
-<li>Combine the levels of the <code>polviews</code> variable such that levels that have the word “liberal” in them are lumped into a level called “Liberal” and those that have the word conservative in them are lumped into a level called “Conservative”. Then, re-order the levels in the following order: “Conservative” , “Moderate”, and “Liberal”. Finally, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> how many times each new level appears in the <code>polviews</code> variable.</li>
+<li>Combine the levels of the <code>polviews</code> variable such that levels that have the word “liberal” in them are lumped into a level called “Liberal” and those that have the word conservative in them are lumped into a level called “Conservative”. Rename “Moderate, middle of the road” to “Moderate”. Then, make <code>polviews</code> a factor with levels in the following order: “Conservative”, “Moderate”, and “Liberal”. Finally, <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> how many times each new level appears in the <code>polviews</code> variable.</li>
 </ol></section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p>a. Fit a logistic regression model that predicts <code>advfront</code> from <code>educ</code>. Report the tidy output of the model.</p>
-<p>b. Write out the estimated model in proper notation.</p>
-<p>c. Using your estimated model, predict the probability of agreeing with the statement <em>“Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government.”</em> (<code>Agree</code> in <code>advfront</code>) for someone with 7 years of education.</p>
-</section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
-<p>a. Fit a model that adds the additional explanatory variable of <code>polviews</code> to your model from Question 4. Report the tidy output of the model.</p>
-<p>b. Now, predict the probability of agreeing with the following statement <em>“Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government.”</em> (<code>Agree</code> in <code>advfront</code>) for a Conservative person with 7 years of education.</p>
-<div class="openai">
-<p>This would be a good time to get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.</p>
-</div>
-<div class="source-control">
-<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
-</div>
-</section></section><section id="part-3---spam" class="level1"><h1>Part 3 - Spam</h1>
-<p>The data come from incoming emails in David Diez’s (one of the authors of OpenIntro textbooks) Gmail account for the first three months of 2012. All personally identifiable information has been removed. The dataset is called <code>email</code> and it’s in the <code>openintro</code> package.</p>
-<p>The outcome variable is spam, which takes the value 1 if the email is spam, 0 otherwise.</p>
-<section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
 <ol type="a">
-<li><p>What type of variable is spam? What percent of the emails are spam?</p></li>
-<li><p>What type of variable is dollar - number of times a dollar sign or the word “dollar” appeared in the email? Visualize and describe its distribution, supporting your description with the appropriate summary statistics.</p></li>
-<li><p>Fit a logistic regression model predicting spam from dollar. Then, display the tidy output of the model.</p></li>
-<li><p>Using this model and the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function, predict the probability the email is spam if it contains 5 dollar signs. Based on this probability, how does the model classify this email?</p></li>
+<li><p>Fit a logistic regression model that predicts <code>natsci</code> from <code>education_years</code> using <code>gss24_natsci</code>. Report the tidy output of the model.</p></li>
+<li><p>Interpret the slope and the intercept of the model in the context of the data.</p></li>
+<li><p>Predict the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) for someone with 7 years of education and someone with 8 years of education. Convert each predicted probability to odds using <span class="math inline">\(p / (1 - p)\)</span>. Then, calculate the odds ratio (odds for 8 years / odds for 7 years) and describe how it relates to the slope of the model you interpreted in part (b).</p></li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To obtain the predicted probability, you can set the type argument in <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> to “prob”.</p>
+<p>The odds is defined as <span class="math inline">\(p / (1 - p)\)</span>, where p is the probability of the event of interest. The odds ratio is the ratio of two odds.</p>
 </div>
 </div>
-</section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+</section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
 <ol type="a">
-<li><p>Fit a logistic regression model predicting <code>spam</code> from <code>dollar</code>, <code>winner</code> (indicating whether “winner” appeared in the email), and <code>urgent_subj</code> (whether the word “urgent” is in the subject of the email). Then, display the tidy output of the model. Include the two predictors using an <em>additive</em> model, not an interaction model.</p></li>
-<li><p>Using this model, predict spam / not spam for all emails in the <code>email</code> dataset with <code>augment()</code>. Store the resulting data frame with an appropriate name and display the data frame as well.</p></li>
-<li>
-<p>Using your data frame from the previous part, determine, in a single pipeline, and using <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>, the numbers of emails:</p>
-<ul>
-<li>that are labelled as spam that are actually spam</li>
-<li>that are not labelled as spam that are actually spam</li>
-<li>that are labelled as spam that are actually not spam</li>
-<li>that are not labelled as spam that are actually not spam</li>
-</ul>
-</li>
+<li><p>Fit another model predicting the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) from both <code>education_years</code> and <code>polviews</code>. Consider only the main effects of <code>education_years</code> and <code>polviews</code> for this question.</p></li>
+<li><p>Interpret the slopes and the intercept of the model in the context of the data.</p></li>
+<li><p>Predict the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) for a Conservative person with 7 years of education and a Conservative person with 8 years of education. Convert each predicted probability to odds using <span class="math inline">\(p / (1 - p)\)</span>. Then, calculate the odds ratio (odds for 8 years / odds for 7 years) and describe how it relates to the slope(s) of the model you interpreted in part (b).</p></li>
+<li><p>Predict the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) for a Liberal person with 7 years of education and a Liberal person with 8 years of education. Convert each predicted probability to odds using <span class="math inline">\(p / (1 - p)\)</span>. Then, calculate the odds ratio (odds for 8 years / odds for 7 years) and describe how it relates to the slope(s) of the model you interpreted in part (b).</p></li>
 </ol>
-<p>Store the resulting data frame with an appropriate name.</p>
-<ol start="4" type="a">
-<li>In a single pipeline, and using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, calculate the false positive and false negative rates.</li>
-</ol>
-<p>In addition to these numbers showing in your R output, you must write a sentence that explicitly states and identifies the two rates.</p>
-</section><section id="question-8" class="level2"><h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+</div>
+</section><section id="question-6" class="level2"><h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
 <ol type="a">
-<li><p>Fit a logistic regression model predicting <code>spam</code> from <code>dollar</code> and another variable you think would be a good predictor. Again, include the multiple predictors with an <em>additive</em> model. No interactions. Provide a 1-sentence justification for why you chose this variable. Display the tidy output of the model.</p></li>
-<li><p>Using this model, predict spam / not spam for all emails in the <code>email</code> dataset with <code>augment()</code>. Store the resulting data frame with an appropriate name.</p></li>
-<li>
-<p>Using your data frame from the previous part, determine, in a single pipeline, and using <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>, the numbers of emails:</p>
-<ul>
-<li>that are labelled as spam that are actually spam</li>
-<li>that are not labelled as spam that are actually spam</li>
-<li>that are labelled as spam that are actually not spam</li>
-<li>that are not labelled as spam that are actually not spam</li>
-</ul>
-<p>Store the resulting data frame with an appropriate name.</p>
-</li>
-<li><p>In a single pipeline, and using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, calculate the false positive and false negative rates. In addition to these numbers showing in your R output, you must write a sentence that explicitly states and identifies the two rates.</p></li>
-<li><p>Based on the false positive and false negatives rates of this model, comment, in 1-2 sentences, on which model (one from Question 7 or Question 8) is preferable and why.</p></li>
+<li><p>Fit one more model predicting the probability of responding that the government spends too little on supporting scientific research (<code>Too little</code> in <code>natsci</code>) from both <code>education_years</code> and <code>polviews</code>. Consider only the main effects of <code>education_years</code> and <code>polviews</code> as well as their interaction for this question.</p></li>
+<li><p>Which of the three models (education only, education + polviews, and education + polviews + interaction) do you think is the best model? Justify your answer in 1-2 sentences with appropriate model statistics.</p></li>
 </ol>
 <div class="openai">
-<p>This would be a good time to get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.</p>
+<p>Get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.</p>
 </div>
 </section></section><section id="ai-use-disclosure" class="level1"><h1>AI use disclosure</h1>
 <p>The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.</p>
