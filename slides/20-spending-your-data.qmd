@@ -1,0 +1,667 @@
+---
+title: "Spending your data"
+subtitle: Lecture 20
+author: Prof. Mine Çetinkaya-Rundel
+date: 2026-11-04
+format:
+  revealjs:
+    output-file: 20-spending-your-data-slides.html
+    footer: "[🔗 sta199-f26.github.io](https://sta199-f26.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    logo: "images/logo.png"
+    toc: false
+  html:
+    code-link: true
+filters:
+  - ../remove-fmt-skip.lua
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(tidymodels)
+library(patchwork)
+library(scales)
+library(janitor)
+
+conflicted::conflict_prefer("select", "dplyr")
+conflicted::conflict_prefer("filter", "dplyr")
+
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+
+nc_places <- read_csv(
+  here::here("slides", "data/nc-places.csv"),
+  show_col_types = FALSE
+)
+```
+
+# Warm-up
+
+## Announcements {.smaller}
+
+- My office hours moved to Tuesday, Josh's office hours are also updated:
+  - Josh: Tuesday 2-3 pm + Wednesday 4-5 pm
+  - Mine: Tuesday 3-4:30 pm
+
+# From last time: Dem flips
+
+## Packages
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse) # data wrangling and visualization
+library(tidymodels) # modeling
+```
+
+## Today's data {.smaller}
+
+2026 House results and projections from Decision Desk HQ (as of 2026-11-04, 11:14 am), merged with 2024 results (from the `gerrymander` dataset we worked with earlier in the semester):
+
+```{r}
+#| label: load-midterm-show
+#| eval: false
+midterm_26_raw <- read_csv("data/midterm-2026-11-04-11-14.csv")
+```
+
+```{r}
+#| label: load-midterm-hide
+#| include: false
+midterm_26_raw <- read_csv(
+  here::here("slides", "data/midterm-2026-11-04-11-14.csv")
+)
+```
+
+```{r}
+#| label: glimpse-midterm
+glimpse(midterm_26_raw)
+```
+
+## Dem flips {.smaller}
+
+A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:
+
+```{r}
+#| label: dem-flip
+# fmt: skip
+midterm_26 <- midterm_26_raw |>
+  mutate(
+    flip_dem_24_26 = case_when(
+      called_26 == "uncalled" ~ NA,
+      called_26 == "called" & house_party_24 == "Republican" & leader_26 == "Democrat" ~ "1",
+      called_26 == "called" & house_party_24 == "Republican" & leader_26 == "Republican" ~ "0",
+      called_26 == "called" & house_party_24 == "Democrat" ~ "0",
+    ),
+    flip_dem_24_26 = as.factor(flip_dem_24_26)
+  ) |>
+  filter(!is.na(called_26))
+```
+
+## Goal {.smaller}
+
+Predict whether a seat flips to Democrat based on Trump's 2024 vote share for uncalled seats, using data from called seats.
+
+```{r}
+#| label: flip-plot
+#| code-fold: true
+ggplot(
+  midterm_26,
+  aes(x = trump_24, y = flip_dem_24_26, fill = flip_dem_24_26)
+) +
+  geom_jitter(
+    shape = "circle filled",
+    height = 0.2,
+    alpha = 0.7,
+    size = 3,
+    show.legend = FALSE,
+    color = "white"
+  ) +
+  scale_fill_manual(
+    values = c("0" = "darkgray", "1" = "#0015BC"),
+    na.value = "#A3B18A"
+  ) +
+  scale_x_continuous(
+    limits = c(10, 90),
+    breaks = seq(0, 100, 10),
+    labels = label_percent(scale = 1)
+  ) +
+  labs(
+    x = "Trump's 2024 vote share (%)",
+    y = "Flipped to Democrat",
+    title = "2026 House elections",
+    caption = "Data from Decision Desk HQ, as of 2026-11-04 at 11:14 am"
+  ) +
+  facet_wrap(~called_26, nrow = 2, scales = "free_y")
+```
+
+## The data {.smaller}
+
+```{r}
+midterm_26_called <- midterm_26 |> filter(called_26 == "called")
+midterm_26_uncalled <- midterm_26 |> filter(called_26 == "uncalled")
+```
+
+```{r}
+# fmt: skip
+midterm_26_called |>
+  select(district, house_party_24, called_26, leader_26, flip_dem_24_26, trump_24)
+```
+
+## Fitting a logistic model
+
+```{r}
+#| label: flip-fit
+flip_fit <- logistic_reg() |>
+  fit(flip_dem_24_26 ~ trump_24, data = midterm_26_called)
+
+tidy(flip_fit)
+```
+
+::: {.callout-note .fragment}
+## Remember
+
+In logistic regression, we predict the log odds of the probability of success, $\log\left(\frac{\hat{p}}{1-\hat{p}}\right)$.
+
+:::
+
+## Output $\rightarrow$ model
+
+- Output
+
+```{r}
+tidy(flip_fit)
+```
+
+. . .
+
+- Fitted model:
+
+$$
+\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
+=
+-3.48
++
+0.0244\times trump\_24
+$$
+
+## The intercept {.smaller}
+
+- If `trump_24 = 0`, then
+
+$$
+\begin{aligned}
+\log\left(\frac{\hat{p}}{1-\hat{p}}\right) &= b_0 + b_1 \times 0 \\
+&= b_0 \\
+\end{aligned}
+$$
+
+. . .
+
+- Exponentiating both sides:
+
+$$
+\begin{aligned}
+e^{\log\left(\frac{\hat{p}}{1-\hat{p}}\right)} &= e^{b_0} \\
+\frac{\hat{p}}{1-\hat{p}} &= e^{b_0}
+\end{aligned}
+$$
+
+## Interpreting the intercept {.smaller}
+
+$$
+\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
+=
+-3.48
++
+0.0244\times trump\_24
+$$
+
+<hr>
+
+. . .
+
+$$
+e^{-3.48} = 0.03
+$$
+
+. . .
+
+- Seats where Trump got 0% of the vote in 2024 are predicted, on average, to have a 3% odds of flipping to Democrat.
+
+- Since Trump's vote share in called seats ranges from `r round(min(midterm_26_called$trump_24), 1)`% to `r round(max(midterm_26_called$trump_24), 1)`%, so this is an extrapolation and not meaningful.
+
+## The slope I
+
+1. Find log odds when the predictor is equal to $x$: 
+
+$$
+log(odds_1) = {b_0} + {b_1x}
+$$
+
+. . .
+
+2. Increase $x$ by one unit and find log odds when the predictor is equal to $x + 1$:
+
+$$
+log(odds_2) = {b_0} + {b_1(x + 1)}
+$$
+
+## The slope II {.smaller}
+
+Difference between the two log odds:
+
+
+$$
+\begin{aligned}
+log(odds_2) - log(odds_1) &= ({b_0} + {b_1 (x + 1)}) - ({b_0} + {b_1x}) \\
+log\Big(\frac{odds_2}{odds_1}\Big) &= b_0 + b_1x + b_1 - b_0 - b_1x \\
+log\Big(\frac{odds_2}{odds_1}\Big) &= b_1
+\end{aligned}
+$$
+
+## The slope III {.smaller}
+
+Difference between the odds, by exponentiating both sides:
+
+$$
+\begin{aligned}
+log\Big(\frac{odds_2}{odds_1}\Big) &= b_1 \\
+\frac{odds_2}{odds_1} &= e^{b_1}
+\end{aligned}
+$$
+
+## Interpreting the slope {.smaller}
+
+$$
+\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
+=
+-3.48
++
+0.0244\times trump\_24
+$$
+
+<hr>
+
+. . .
+
+$$
+e^{0.0244} \approx 1.02
+$$
+
+. . .
+
+Seats where Trump's 2024 vote share was one percentage point higher are predicted to have **odds** of flipping to Democrat that are **higher** by a factor of $e^{0.0244}\approx 1.02$, on average.
+
+# Classification <br> (prediction by another name...)
+
+## Predict {.smaller}
+
+::: question
+
+How well did our model do for predicting already called house seats?
+
+:::
+
+::: fragment
+
+```{r}
+midterm_26_called_aug <- augment(flip_fit, new_data = midterm_26_called)
+
+midterm_26_called_aug |>
+  count(flip_dem_24_26, .pred_class)
+```
+
+Terrible!
+
+:::
+
+::: {.question .fragment}
+
+Is that surprising?
+
+:::
+
+## Predict for uncalled seats {.smaller .scrollable}
+
+```{r}
+midterm_26_uncalled_aug <- augment(flip_fit, new_data = midterm_26_uncalled)
+```
+
+```{r}
+# fmt: skip
+midterm_26_uncalled_aug |>
+  select(district, trump_24, house_party_24, starts_with(".pred_"), leader_26) |>
+  print(n = 44)
+```
+
+## Application exercise {.smaller}
+
+::: appex
+-   Go to your ae project in Positron.
+
+-   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your source control pane.
+
+-   If you haven't yet done so, pull to get today's application exercise file: `ae-11-dem-flips-logistic.qmd`.
+
+-   Work through the application exercise in class, and render, commit, and push your edits by the end of class.
+:::
+
+# Spending your data
+
+## Data
+
+-   Taxi trips in Chicago, IL in 2022
+
+-   Data from [Chicago Data Portal](https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew)
+
+## Data: `chicago_taxi` {.smaller}
+
+```{r}
+#| include: false
+chicago_taxi <- read_csv(here::here("slides", "data/chicago-taxi.csv"))
+```
+
+```{r}
+#| eval: false
+chicago_taxi <- read_csv("data/chicago-taxi.csv")
+```
+
+```{r}
+chicago_taxi
+```
+
+## Data: `chicago_taxi` {.smaller}
+
+```{r}
+glimpse(chicago_taxi)
+```
+
+## Data prep
+
+```{r}
+chicago_taxi <- chicago_taxi |>
+  mutate(
+    tip = fct_relevel(tip, "no", "yes"),
+    local = fct_relevel(local, "no", "yes"),
+    dow = fct_relevel(dow, "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"),
+    month = fct_relevel(month, "Jan", "Feb", "Mar", "Apr")
+  )
+```
+
+## Outcome and predictors {.smaller}
+
+- Outcome - `tip`: Whether rider left a tip -- a factor w/ levels "yes" and "no"
+- (Potential) predictors:
+  - Numerical:
+    - `distance`: The trip distance, in odometer miles.
+    - `hour`: The hour of the day in which the trip began.
+  - Categorical:
+    - `company`: The taxi company -- companies that occurred few times were binned as "other".
+    - `local`: Whether the trip started in the same community area as it began.
+    - `dow`: The day of the week in which the trip began.
+    - `month`: The month in which the trip began.
+
+## Should we include a predictor?
+
+To determine whether we should include a predictor in a model, we should start by asking:
+
+::: incremental
+-   Is it ethical to use this variable?
+    (Or even legal?)
+
+-   Will this variable be available at prediction time?
+
+-   Does this variable contribute to explainability?
+:::
+
+# Data splitting and spending
+
+## We've been cheating!
+
+::: incremental
+-   So far, we've been using all the data we have for building models.
+    In predictive contexts, this would be considered *cheating*.
+
+-   Evaluating model performance for predicting outcomes that were used when building the models is like evaluating your learning with questions whose answers you've already seen.
+:::
+
+## Spending your data {.smaller}
+
+For predictive models (used primarily in machine learning), we typically split data into training and test sets:
+
+![](images/20/test-train-split-1.svg){fig-align="center"}
+
+-   The **training set** is used to estimate model parameters.
+
+-   The **test set** is used to find an independent assessment of model performance.
+
+. . .
+
+::: callout-warning
+Do not use, or even peek at, the test set during training.
+:::
+
+## How much to spend?
+
+::: incremental
+
+-   The more data we spend (use in training), the better estimates we’ll get.
+
+-   Spending too much data in training prevents us from computing a good assessment of predictive performance.
+
+-   Spending too much data in testing prevents us from computing a good estimate of model parameters.
+
+:::
+
+## The initial split
+
+```{r}
+#| label: initial-split
+set.seed(20261108)
+chicago_taxi_split <- initial_split(chicago_taxi)
+chicago_taxi_split
+```
+
+## Setting a seed {.smaller}
+
+::: task
+What does `set.seed()` do?
+:::
+
+::: incremental
+-   To create that split of the data, R generates “pseudo-random” numbers: while they are made to behave like random numbers, their generation is deterministic given a “seed”.
+
+-   This allows us to reproduce results by setting that seed.
+
+-   Which seed you pick doesn’t matter, as long as you don’t try a bunch of seeds and pick the one that gives you the best performance.
+:::
+
+## Accessing the data
+
+```{r}
+#| label: access-data
+chicago_taxi_train <- training(chicago_taxi_split)
+chicago_taxi_test <- testing(chicago_taxi_split)
+```
+
+## The training set {.smaller}
+
+```{r}
+chicago_taxi_train
+```
+
+## The testing data
+
+. . .
+
+::: huge
+🙈
+:::
+
+# Exploratory data analysis
+
+## Initial questions {.smaller}
+
+-   What’s the distribution of the outcome, `tip`?
+
+-   What’s the distribution of numeric variables like `distance` or `hour`?
+
+-   How does the distribution of `tip` differ across the categorical and numerical variables?
+
+## While you wait: Participate 📱💻 {.xsmall}
+
+::: columns
+
+::: {.column width="70%"}
+
+::: wooclap
+
+Which dataset should we use for the exploration?
+
+::: wooclap-choices
+- The entire data `chicago_taxi`
+- The training data `chicago_taxi_train`
+- The testing data `chicago_taxi_test`
+:::
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/20/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
+
+:::
+
+:::
+
+## `tip`
+
+What’s the distribution of the outcome, `tip`?
+
+```{r}
+chicago_taxi_train |>
+  count(tip) |>
+  mutate(prop = n / sum(n))
+```
+
+## `distance`
+
+What’s the distribution of `distance`?
+
+```{r}
+ggplot(chicago_taxi_train, aes(x = distance)) +
+  geom_histogram(binwidth = 3)
+```
+
+## `tip` and `distance` {.smaller}
+
+```{r}
+#| code-line-numbers: "|7"
+ggplot(chicago_taxi_train, aes(x = distance, fill = tip, group = tip)) +
+  geom_histogram(binwidth = 3, show.legend = FALSE) +
+  scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
+  facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
+```
+
+## `tip` and `hour` {.smaller}
+
+```{r}
+ggplot(chicago_taxi_train, aes(x = hour, fill = tip, group = tip)) +
+  geom_histogram(binwidth = 1, show.legend = FALSE) +
+  scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
+  scale_x_continuous(breaks = seq(0, 18, by = 6)) +
+  facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
+```
+
+## `tip` and `local` {.smaller}
+
+```{r}
+#| code-line-numbers: "|2"
+ggplot(chicago_taxi_train, aes(x = local, fill = tip)) +
+  geom_bar(position = "fill", color = "white") +
+  scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
+  labs(y = "Proportion") +
+  theme(legend.position = "top")
+```
+
+## `tip` and `dow` {.smaller}
+
+```{r}
+ggplot(chicago_taxi_train, aes(x = dow, fill = tip)) +
+  geom_bar(position = "fill", color = "white") +
+  scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
+  labs(y = "Proportion", x = "Day of week") +
+  theme(legend.position = "top")
+```
+
+# Terminology
+
+## False negative and positive
+
+-   **False negative rate** is the proportion of actual positives that were classified as negatives.
+
+-   **False positive rate** is the proportion of actual negatives that were classified as positives.
+
+## Sensitivity
+
+**Sensitivity** is the proportion of actual positives that were correctly classified as positive.
+
+-   Also known as **true positive rate** and **recall**
+
+-   Sensitivity = 1 − False negative rate
+
+-   Useful when false negatives are more "expensive" than false positives
+
+## Specificity
+
+**Specificity** is the proportion of actual negatives that were correctly classified as negative
+
+-   Also known as **true negative rate**
+
+-   Specificity = 1 − False positive rate
+
+## ROC curve
+
+The **receiver operating characteristic (ROC) curve** allows to assess the model performance across a range of thresholds.
+
+![](images/20/roc-curve.png)
+
+## Participate 📱💻 {.xsmall}
+
+::: columns
+
+::: {.column width="70%"}
+
+::: wooclap
+
+Which of the following best describes the area annotated on the ROC curve?
+
+![](images/20/roc-curve-annotated-question.png){width="500" fig-align="center"}
+
+::: wooclap-choices
+- Where all positives classified as positive, all negatives classified as negative
+- Where true positive rate = false positive rate
+- Where all positives classified as negative, all negatives classified as positive
+:::
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/20/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
+
+:::
+
+:::
+
