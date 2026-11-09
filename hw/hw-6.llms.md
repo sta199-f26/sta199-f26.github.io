@@ -115,7 +115,7 @@ Additionally, we will work with the following variables:
 
 2.  Interpret the slope and the intercept of the model in the context of the data.
 
-3.  Predict the predicting the probability of responding that the government spends too little on supporting scientific research (`Too little` in `natsci`) for someone with 7 years of education and someone with 8 years of education. Convert each predicted probability to odds using \\p / (1 - p)\\. Then, calculate the odds ratio (odds for 7 years / odds for 8 years) and describe how it relates to the slope of the model you interpreted in part (b).
+3.  Predict the predicting the probability of responding that the government spends too little on supporting scientific research (`Too little` in `natsci`) for someone with 7 years of education and someone with 8 years of education. Convert each predicted probability to odds using \\p / (1 - p)\\. Then, calculate the odds ratio (odds for 8 years / odds for 7 years) and describe how it relates to the slope of the model you interpreted in part (b).
 
 > **TIP:**
 >
