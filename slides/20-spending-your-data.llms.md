@@ -17,6 +17,14 @@ November 4, 2026
 
 # Warm-up
 
+## While you wait: Participate 📱💻
+
+Describe logistic regression and identify one aspect of it you are confused about / would like more clarity on.
+
+[![QR code for Wooclap](images/20/wooclap-qr.png)](images/20/wooclap-qr.png)
+
+Go to [wooclap.com](https://app.wooclap.com/OMEXALN) and use the code OMEXALN.
+
 ## Announcements
 
 - My office hours moved to Tuesday, Josh’s office hours are also updated:
@@ -65,9 +73,9 @@ glimpse(midterm_26_raw)
     $ margin_26      <dbl> 9.00, 18.00, 8.00, 28.00, 50.00, 7.00, 15.00, 39.00, 35…
     $ called_26      <chr> "uncalled", "called", "called", "called", "called", "ca…
 
-## Dem flips
+## Data prep
 
-A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:
+- A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:
 
 ``` downlit
 midterm_26 <- midterm_26_raw |>
@@ -81,6 +89,13 @@ midterm_26 <- midterm_26_raw |>
     flip_dem_24_26 = as.factor(flip_dem_24_26)
   ) |>
   filter(!is.na(called_26))
+```
+
+- Data split:
+
+``` downlit
+midterm_26_called <- midterm_26 |> filter(called_26 == "called")
+midterm_26_uncalled <- midterm_26 |> filter(called_26 == "uncalled")
 ```
 
 ## Goal
@@ -121,33 +136,6 @@ ggplot(
 ```
 
 [![](20-spending-your-data_files/figure-revealjs/flip-plot-1.png)](20-spending-your-data_files/figure-revealjs/flip-plot-1.png)
-
-## The data
-
-``` downlit
-midterm_26_called <- midterm_26 |> filter(called_26 == "called")
-midterm_26_uncalled <- midterm_26 |> filter(called_26 == "uncalled")
-```
-
-``` downlit
-midterm_26_called |>
-  select(district, house_party_24, called_26, leader_26, flip_dem_24_26, trump_24)
-```
-
-    # A tibble: 391 × 6
-       district house_party_24 called_26 leader_26  flip_dem_24_26 trump_24
-       <chr>    <chr>          <chr>     <chr>      <fct>             <dbl>
-     1 AL-01    Republican     called    Republican 0                  76.9
-     2 AL-02    Democrat       called    Democrat   0                  45.3
-     3 AL-03    Republican     called    Republican 0                  72.7
-     4 AL-04    Republican     called    Republican 0                  83.0
-     5 AL-05    Republican     called    Republican 0                  64.0
-     6 AL-06    Republican     called    Republican 0                  68.5
-     7 AL-07    Democrat       called    Democrat   0                  37.5
-     8 AR-01    Republican     called    Republican 0                  71.7
-     9 AR-02    Republican     called    Republican 0                  56.6
-    10 AR-03    Republican     called    Republican 0                  61.1
-    # ℹ 381 more rows
 
 ## Fitting a logistic model
 
@@ -530,7 +518,7 @@ chicago_taxi_train
 
 - How does the distribution of `tip` differ across the categorical and numerical variables?
 
-## While you wait: Participate 📱💻
+## Participate 📱💻
 
 Which dataset should we use for the exploration?
 
@@ -540,11 +528,13 @@ Which dataset should we use for the exploration?
 
 [![QR code for Wooclap](images/20/wooclap-qr.png)](images/20/wooclap-qr.png)
 
-Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
+Go to [wooclap.com](https://app.wooclap.com/OMEXALN) and use the code OMEXALN.
 
 ## `tip`
 
 What’s the distribution of the outcome, `tip`?
+
+Code
 
 ``` downlit
 chicago_taxi_train |>
@@ -562,25 +552,31 @@ chicago_taxi_train |>
 
 What’s the distribution of `distance`?
 
+Code
+
 ``` downlit
 ggplot(chicago_taxi_train, aes(x = distance)) +
   geom_histogram(binwidth = 3)
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png)
 
 ## `tip` and `distance`
 
-``` numberSource
+Code
+
+``` downlit
 ggplot(chicago_taxi_train, aes(x = distance, fill = tip, group = tip)) +
   geom_histogram(binwidth = 3, show.legend = FALSE) +
   scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
   facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png)
 
 ## `tip` and `hour`
+
+Code
 
 ``` downlit
 ggplot(chicago_taxi_train, aes(x = hour, fill = tip, group = tip)) +
@@ -590,7 +586,7 @@ ggplot(chicago_taxi_train, aes(x = hour, fill = tip, group = tip)) +
   facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png)
 
 ## `tip` and `local`
 
@@ -598,23 +594,23 @@ ggplot(chicago_taxi_train, aes(x = hour, fill = tip, group = tip)) +
 ggplot(chicago_taxi_train, aes(x = local, fill = tip)) +
   geom_bar(position = "fill", color = "white") +
   scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
-  labs(y = "Proportion") +
-  theme(legend.position = "top")
+  labs(y = "Proportion")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png)
 
 ## `tip` and `dow`
+
+Code
 
 ``` downlit
 ggplot(chicago_taxi_train, aes(x = dow, fill = tip)) +
   geom_bar(position = "fill", color = "white") +
   scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
-  labs(y = "Proportion", x = "Day of week") +
-  theme(legend.position = "top")
+  labs(y = "Proportion", x = "Day of week")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-18-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-18-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png)
 
 # Terminology
 
@@ -660,4 +656,4 @@ Which of the following best describes the area annotated on the ROC curve?
 
 [![QR code for Wooclap](images/20/wooclap-qr.png)](images/20/wooclap-qr.png)
 
-Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
+Go to [wooclap.com](https://app.wooclap.com/OMEXALN) and use the code OMEXALN.

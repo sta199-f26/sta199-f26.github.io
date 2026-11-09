@@ -224,6 +224,22 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <h1>Warm-up</h1>
 
 </section>
+<section id="while-you-wait-participate" class="slide level2 xsmall">
+<h2>While you wait: Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Describe logistic regression and identify one aspect of it you are confused about / would like more clarity on.</p>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/20/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/OMEXALN">wooclap.com</a> and use the code OMEXALN.</p>
+</div></div>
+</section>
 <section id="announcements" class="slide level2 smaller">
 <h2>Announcements</h2>
 <ul>
@@ -278,9 +294,11 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 </div>
 </div>
 </section>
-<section id="dem-flips" class="slide level2 smaller">
-<h2>Dem flips</h2>
-<p>A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:</p>
+<section id="data-prep" class="slide level2 smaller">
+<h2>Data prep</h2>
+<ul>
+<li>A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:</li>
+</ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a>midterm_26 <span class="ot">&lt;-</span> midterm_26_raw <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(</span>
@@ -294,6 +312,13 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 <span id="cb5-10"><a aria-label="10"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb5-11"><a aria-label="11"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(called_26))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<ul>
+<li>Data split:</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>midterm_26_called <span class="ot">&lt;-</span> midterm_26 <span class="sc">|&gt;</span> <span class="fu">filter</span>(called_26 <span class="sc">==</span> <span class="st">"called"</span>)</span>
+<span id="cb6-2"><a aria-label="2"></a>midterm_26_uncalled <span class="ot">&lt;-</span> midterm_26 <span class="sc">|&gt;</span> <span class="fu">filter</span>(called_26 <span class="sc">==</span> <span class="st">"uncalled"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="goal" class="slide level2 smaller">
 <h2>Goal</h2>
@@ -301,72 +326,45 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb6-2"><a aria-label="2"></a>  midterm_26,</span>
-<span id="cb6-3"><a aria-label="3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> flip_dem_24_26, <span class="at">fill =</span> flip_dem_24_26)</span>
-<span id="cb6-4"><a aria-label="4"></a>) <span class="sc">+</span></span>
-<span id="cb6-5"><a aria-label="5"></a>  <span class="fu">geom_jitter</span>(</span>
-<span id="cb6-6"><a aria-label="6"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span>,</span>
-<span id="cb6-7"><a aria-label="7"></a>    <span class="at">height =</span> <span class="fl">0.2</span>,</span>
-<span id="cb6-8"><a aria-label="8"></a>    <span class="at">alpha =</span> <span class="fl">0.7</span>,</span>
-<span id="cb6-9"><a aria-label="9"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb6-10"><a aria-label="10"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-11"><a aria-label="11"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
-<span id="cb6-12"><a aria-label="12"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-13"><a aria-label="13"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb6-14"><a aria-label="14"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"#0015BC"</span>),</span>
-<span id="cb6-15"><a aria-label="15"></a>    <span class="at">na.value =</span> <span class="st">"#A3B18A"</span></span>
-<span id="cb6-16"><a aria-label="16"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-17"><a aria-label="17"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb6-18"><a aria-label="18"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">90</span>),</span>
-<span id="cb6-19"><a aria-label="19"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>),</span>
-<span id="cb6-20"><a aria-label="20"></a>    <span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)</span>
-<span id="cb6-21"><a aria-label="21"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-22"><a aria-label="22"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-23"><a aria-label="23"></a>    <span class="at">x =</span> <span class="st">"Trump's 2024 vote share (%)"</span>,</span>
-<span id="cb6-24"><a aria-label="24"></a>    <span class="at">y =</span> <span class="st">"Flipped to Democrat"</span>,</span>
-<span id="cb6-25"><a aria-label="25"></a>    <span class="at">title =</span> <span class="st">"2026 House elections"</span>,</span>
-<span id="cb6-26"><a aria-label="26"></a>    <span class="at">caption =</span> <span class="st">"Data from Decision Desk HQ, as of 2026-11-04 at 11:14 am"</span></span>
-<span id="cb6-27"><a aria-label="27"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-28"><a aria-label="28"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>called_26, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb7-2"><a aria-label="2"></a>  midterm_26,</span>
+<span id="cb7-3"><a aria-label="3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> trump_24, <span class="at">y =</span> flip_dem_24_26, <span class="at">fill =</span> flip_dem_24_26)</span>
+<span id="cb7-4"><a aria-label="4"></a>) <span class="sc">+</span></span>
+<span id="cb7-5"><a aria-label="5"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb7-6"><a aria-label="6"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span>,</span>
+<span id="cb7-7"><a aria-label="7"></a>    <span class="at">height =</span> <span class="fl">0.2</span>,</span>
+<span id="cb7-8"><a aria-label="8"></a>    <span class="at">alpha =</span> <span class="fl">0.7</span>,</span>
+<span id="cb7-9"><a aria-label="9"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb7-10"><a aria-label="10"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-11"><a aria-label="11"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
+<span id="cb7-12"><a aria-label="12"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-13"><a aria-label="13"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb7-14"><a aria-label="14"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"0"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"#0015BC"</span>),</span>
+<span id="cb7-15"><a aria-label="15"></a>    <span class="at">na.value =</span> <span class="st">"#A3B18A"</span></span>
+<span id="cb7-16"><a aria-label="16"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-17"><a aria-label="17"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb7-18"><a aria-label="18"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">90</span>),</span>
+<span id="cb7-19"><a aria-label="19"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>),</span>
+<span id="cb7-20"><a aria-label="20"></a>    <span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)</span>
+<span id="cb7-21"><a aria-label="21"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-22"><a aria-label="22"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-23"><a aria-label="23"></a>    <span class="at">x =</span> <span class="st">"Trump's 2024 vote share (%)"</span>,</span>
+<span id="cb7-24"><a aria-label="24"></a>    <span class="at">y =</span> <span class="st">"Flipped to Democrat"</span>,</span>
+<span id="cb7-25"><a aria-label="25"></a>    <span class="at">title =</span> <span class="st">"2026 House elections"</span>,</span>
+<span id="cb7-26"><a aria-label="26"></a>    <span class="at">caption =</span> <span class="st">"Data from Decision Desk HQ, as of 2026-11-04 at 11:14 am"</span></span>
+<span id="cb7-27"><a aria-label="27"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-28"><a aria-label="28"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>called_26, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="20-spending-your-data_files/figure-revealjs/flip-plot-1.png" width="960" class="r-stretch"></section>
-<section id="the-data" class="slide level2 smaller">
-<h2>The data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a>midterm_26_called <span class="ot">&lt;-</span> midterm_26 <span class="sc">|&gt;</span> <span class="fu">filter</span>(called_26 <span class="sc">==</span> <span class="st">"called"</span>)</span>
-<span id="cb7-2"><a aria-label="2"></a>midterm_26_uncalled <span class="ot">&lt;-</span> midterm_26 <span class="sc">|&gt;</span> <span class="fu">filter</span>(called_26 <span class="sc">==</span> <span class="st">"uncalled"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>midterm_26_called <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a aria-label="2"></a>  <span class="fu">select</span>(district, house_party_24, called_26, leader_26, flip_dem_24_26, trump_24)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 391 × 6
-   district house_party_24 called_26 leader_26  flip_dem_24_26 trump_24
-   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;      &lt;fct&gt;             &lt;dbl&gt;
- 1 AL-01    Republican     called    Republican 0                  76.9
- 2 AL-02    Democrat       called    Democrat   0                  45.3
- 3 AL-03    Republican     called    Republican 0                  72.7
- 4 AL-04    Republican     called    Republican 0                  83.0
- 5 AL-05    Republican     called    Republican 0                  64.0
- 6 AL-06    Republican     called    Republican 0                  68.5
- 7 AL-07    Democrat       called    Democrat   0                  37.5
- 8 AR-01    Republican     called    Republican 0                  71.7
- 9 AR-02    Republican     called    Republican 0                  56.6
-10 AR-03    Republican     called    Republican 0                  61.1
-# ℹ 381 more rows</code></pre>
-</div>
-</div>
-</section>
 <section id="fitting-a-logistic-model" class="slide level2">
 <h2>Fitting a logistic model</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a>flip_fit <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a aria-label="2"></a>  <span class="fu">fit</span>(flip_dem_24_26 <span class="sc">~</span> trump_24, <span class="at">data =</span> midterm_26_called)</span>
-<span id="cb10-3"><a aria-label="3"></a></span>
-<span id="cb10-4"><a aria-label="4"></a><span class="fu">tidy</span>(flip_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>flip_fit <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a aria-label="2"></a>  <span class="fu">fit</span>(flip_dem_24_26 <span class="sc">~</span> trump_24, <span class="at">data =</span> midterm_26_called)</span>
+<span id="cb8-3"><a aria-label="3"></a></span>
+<span id="cb8-4"><a aria-label="4"></a><span class="fu">tidy</span>(flip_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic      p.value
@@ -397,7 +395,7 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 <li>Output</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a><span class="fu">tidy</span>(flip_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a><span class="fu">tidy</span>(flip_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic      p.value
@@ -533,10 +531,10 @@ e^{0.0244} \approx 1.02
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a>midterm_26_called_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(flip_fit, <span class="at">new_data =</span> midterm_26_called)</span>
-<span id="cb14-2"><a aria-label="2"></a></span>
-<span id="cb14-3"><a aria-label="3"></a>midterm_26_called_aug <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a aria-label="4"></a>  <span class="fu">count</span>(flip_dem_24_26, .pred_class)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a>midterm_26_called_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(flip_fit, <span class="at">new_data =</span> midterm_26_called)</span>
+<span id="cb12-2"><a aria-label="2"></a></span>
+<span id="cb12-3"><a aria-label="3"></a>midterm_26_called_aug <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a aria-label="4"></a>  <span class="fu">count</span>(flip_dem_24_26, .pred_class)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   flip_dem_24_26 .pred_class     n
@@ -554,12 +552,12 @@ e^{0.0244} \approx 1.02
 <section id="predict-for-uncalled-seats" class="slide level2 smaller scrollable">
 <h2>Predict for uncalled seats</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a>midterm_26_uncalled_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(flip_fit, <span class="at">new_data =</span> midterm_26_uncalled)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a>midterm_26_uncalled_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(flip_fit, <span class="at">new_data =</span> midterm_26_uncalled)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-label="1"></a>midterm_26_uncalled_aug <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a aria-label="2"></a>  <span class="fu">select</span>(district, trump_24, house_party_24, <span class="fu">starts_with</span>(<span class="st">".pred_"</span>), leader_26) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a aria-label="3"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">44</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-label="1"></a>midterm_26_uncalled_aug <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a aria-label="2"></a>  <span class="fu">select</span>(district, trump_24, house_party_24, <span class="fu">starts_with</span>(<span class="st">".pred_"</span>), leader_26) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a aria-label="3"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">44</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 44 × 7
    district trump_24 house_party_24 .pred_class .pred_0 .pred_1 leader_26 
@@ -637,10 +635,10 @@ e^{0.0244} \approx 1.02
 <section id="data-chicago_taxi" class="slide level2 smaller">
 <h2>Data: <code>chicago_taxi</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-label="1"></a>chicago_taxi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/chicago-taxi.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-label="1"></a>chicago_taxi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/chicago-taxi.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a>chicago_taxi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a>chicago_taxi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,000 × 7
    tip   distance company                      local dow   month  hour
@@ -662,7 +660,7 @@ e^{0.0244} \approx 1.02
 <section id="data-chicago_taxi-1" class="slide level2 smaller">
 <h2>Data: <code>chicago_taxi</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-label="1"></a><span class="fu">glimpse</span>(chicago_taxi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a><span class="fu">glimpse</span>(chicago_taxi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 2,000
 Columns: 7
@@ -676,16 +674,16 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 </div>
 </div>
 </section>
-<section id="data-prep" class="slide level2">
+<section id="data-prep-1" class="slide level2">
 <h2>Data prep</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-label="1"></a>chicago_taxi <span class="ot">&lt;-</span> chicago_taxi <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb24-3"><a aria-label="3"></a>    <span class="at">tip =</span> <span class="fu">fct_relevel</span>(tip, <span class="st">"no"</span>, <span class="st">"yes"</span>),</span>
-<span id="cb24-4"><a aria-label="4"></a>    <span class="at">local =</span> <span class="fu">fct_relevel</span>(local, <span class="st">"no"</span>, <span class="st">"yes"</span>),</span>
-<span id="cb24-5"><a aria-label="5"></a>    <span class="at">dow =</span> <span class="fu">fct_relevel</span>(dow, <span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>),</span>
-<span id="cb24-6"><a aria-label="6"></a>    <span class="at">month =</span> <span class="fu">fct_relevel</span>(month, <span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>)</span>
-<span id="cb24-7"><a aria-label="7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-label="1"></a>chicago_taxi <span class="ot">&lt;-</span> chicago_taxi <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-3"><a aria-label="3"></a>    <span class="at">tip =</span> <span class="fu">fct_relevel</span>(tip, <span class="st">"no"</span>, <span class="st">"yes"</span>),</span>
+<span id="cb22-4"><a aria-label="4"></a>    <span class="at">local =</span> <span class="fu">fct_relevel</span>(local, <span class="st">"no"</span>, <span class="st">"yes"</span>),</span>
+<span id="cb22-5"><a aria-label="5"></a>    <span class="at">dow =</span> <span class="fu">fct_relevel</span>(dow, <span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>),</span>
+<span id="cb22-6"><a aria-label="6"></a>    <span class="at">month =</span> <span class="fu">fct_relevel</span>(month, <span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>)</span>
+<span id="cb22-7"><a aria-label="7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="outcome-and-predictors" class="slide level2 smaller">
@@ -765,9 +763,9 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 <section id="the-initial-split" class="slide level2">
 <h2>The initial split</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-label="1"></a><span class="fu">set.seed</span>(<span class="dv">20261108</span>)</span>
-<span id="cb25-2"><a aria-label="2"></a>chicago_taxi_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(chicago_taxi)</span>
-<span id="cb25-3"><a aria-label="3"></a>chicago_taxi_split</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-label="1"></a><span class="fu">set.seed</span>(<span class="dv">20261108</span>)</span>
+<span id="cb23-2"><a aria-label="2"></a>chicago_taxi_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(chicago_taxi)</span>
+<span id="cb23-3"><a aria-label="3"></a>chicago_taxi_split</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;Training/Testing/Total&gt;
 &lt;1500/500/2000&gt;</code></pre>
@@ -788,14 +786,14 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 <section id="accessing-the-data" class="slide level2">
 <h2>Accessing the data</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a aria-label="1"></a>chicago_taxi_train <span class="ot">&lt;-</span> <span class="fu">training</span>(chicago_taxi_split)</span>
-<span id="cb27-2"><a aria-label="2"></a>chicago_taxi_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(chicago_taxi_split)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-label="1"></a>chicago_taxi_train <span class="ot">&lt;-</span> <span class="fu">training</span>(chicago_taxi_split)</span>
+<span id="cb25-2"><a aria-label="2"></a>chicago_taxi_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(chicago_taxi_split)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="the-training-set" class="slide level2 smaller">
 <h2>The training set</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-label="1"></a>chicago_taxi_train</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-label="1"></a>chicago_taxi_train</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,500 × 7
    tip   distance company      local dow   month  hour
@@ -835,8 +833,8 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 <li><p>How does the distribution of <code>tip</code> differ across the categorical and numerical variables?</p></li>
 </ul>
 </section>
-<section id="while-you-wait-participate" class="slide level2 xsmall">
-<h2>While you wait: Participate 📱💻</h2>
+<section id="participate" class="slide level2 xsmall">
+<h2>Participate 📱💻</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="wooclap">
@@ -855,16 +853,19 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 <p><img data-src="images/20/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
 </figure>
 </div>
-<p>Go to <a href="https://app.wooclap.com/TCGEJHI">wooclap.com</a> and use the code TCGEJHI.</p>
+<p>Go to <a href="https://app.wooclap.com/OMEXALN">wooclap.com</a> and use the code OMEXALN.</p>
 </div></div>
 </section>
 <section id="tip" class="slide level2">
 <h2><code>tip</code></h2>
 <p>What’s the distribution of the outcome, <code>tip</code>?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-label="1"></a>chicago_taxi_train <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a aria-label="2"></a>  <span class="fu">count</span>(tip) <span class="sc">|&gt;</span></span>
-<span id="cb30-3"><a aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-label="1"></a>chicago_taxi_train <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a aria-label="2"></a>  <span class="fu">count</span>(tip) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   tip       n  prop
@@ -878,54 +879,64 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 <h2><code>distance</code></h2>
 <p>What’s the distribution of <code>distance</code>?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> distance)) <span class="sc">+</span></span>
-<span id="cb32-2"><a aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> distance)) <span class="sc">+</span></span>
+<span id="cb30-2"><a aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="tip-and-distance" class="slide level2 smaller">
 <h2><code>tip</code> and <code>distance</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">fill =</span> tip, <span class="at">group =</span> tip)) <span class="sc">+</span></span>
-<span id="cb33-2"><a aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb33-3"><a aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
-<span id="cb33-4"><a aria-label="4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>tip, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">labeller =</span> label_both, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">fill =</span> tip, <span class="at">group =</span> tip)) <span class="sc">+</span></span>
+<span id="cb31-2"><a aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb31-3"><a aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
+<span id="cb31-4"><a aria-label="4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>tip, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">labeller =</span> label_both, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<section id="tip-and-hour" class="slide level2">
+<h2><code>tip</code> and <code>hour</code></h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">fill =</span> tip, <span class="at">group =</span> tip)) <span class="sc">+</span></span>
+<span id="cb32-2"><a aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb32-3"><a aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
+<span id="cb32-4"><a aria-label="4"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="at">by =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb32-5"><a aria-label="5"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>tip, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">labeller =</span> label_both, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
-<section id="tip-and-hour" class="slide level2 smaller">
-<h2><code>tip</code> and <code>hour</code></h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">fill =</span> tip, <span class="at">group =</span> tip)) <span class="sc">+</span></span>
-<span id="cb34-2"><a aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb34-3"><a aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
-<span id="cb34-4"><a aria-label="4"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">18</span>, <span class="at">by =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb34-5"><a aria-label="5"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>tip, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">labeller =</span> label_both, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
-</div>
-<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="tip-and-local" class="slide level2 smaller">
 <h2><code>tip</code> and <code>local</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> local, <span class="at">fill =</span> tip)) <span class="sc">+</span></span>
-<span id="cb35-2"><a aria-label="2"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb35-3"><a aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
-<span id="cb35-4"><a aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span></span>
-<span id="cb35-5"><a aria-label="5"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> local, <span class="at">fill =</span> tip)) <span class="sc">+</span></span>
+<span id="cb33-2"><a aria-label="2"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb33-3"><a aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
+<span id="cb33-4"><a aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="tip-and-dow" class="slide level2 smaller">
 <h2><code>tip</code> and <code>dow</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> dow, <span class="at">fill =</span> tip)) <span class="sc">+</span></span>
-<span id="cb36-2"><a aria-label="2"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb36-3"><a aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
-<span id="cb36-4"><a aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">x =</span> <span class="st">"Day of week"</span>) <span class="sc">+</span></span>
-<span id="cb36-5"><a aria-label="5"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> dow, <span class="at">fill =</span> tip)) <span class="sc">+</span></span>
+<span id="cb34-2"><a aria-label="2"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb34-3"><a aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
+<span id="cb34-4"><a aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">x =</span> <span class="st">"Day of week"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="terminology" class="title-slide slide level1 center">
 <h1>Terminology</h1>
@@ -957,10 +968,14 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 </section>
 <section id="roc-curve" class="slide level2">
 <h2>ROC curve</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
 <p>The <strong>receiver operating characteristic (ROC) curve</strong> allows to assess the model performance across a range of thresholds.</p>
-
-<img data-src="images/20/roc-curve.png" class="r-stretch"></section>
-<section id="participate" class="slide level2 xsmall">
+</div><div class="column" style="width:60%;">
+<p><img data-src="images/20/roc-curve.png"></p>
+</div></div>
+</section>
+<section id="participate-1" class="slide level2 xsmall">
 <h2>Participate 📱💻</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
@@ -968,7 +983,7 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 <p>Which of the following best describes the area annotated on the ROC curve?</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/20/roc-curve-annotated-question.png" class="quarto-figure quarto-figure-center" width="500"></p>
+<p><img data-src="images/20/roc-curve-annotated-question.png" class="quarto-figure quarto-figure-center" width="350"></p>
 </figure>
 </div>
 <div class="wooclap-choices">
@@ -985,7 +1000,7 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 <p><img data-src="images/20/wooclap-qr.png" class="quarto-figure quarto-figure-center" alt="QR code for Wooclap" width="200"></p>
 </figure>
 </div>
-<p>Go to <a href="https://app.wooclap.com/TCGEJHI">wooclap.com</a> and use the code TCGEJHI.</p>
+<p>Go to <a href="https://app.wooclap.com/OMEXALN">wooclap.com</a> and use the code OMEXALN.</p>
 </div></div>
 
 

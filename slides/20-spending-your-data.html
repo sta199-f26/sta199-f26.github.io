@@ -140,10 +140,9 @@ window.Quarto = {
 </script>
 <meta property="og:title" content="Spending your data – STA 199CCL">
 <meta property="og:description" content="Lecture 20">
-<meta property="og:image" content="https://sta199-f26.github.io/slides/20-spending-your-data_files/figure-revealjs/flip-plot-1.png">
+<meta property="og:image" content="https://sta199-f26.github.io/slides/images/20/wooclap-qr.png">
 <meta property="og:site_name" content="STA 199CCL">
-<meta property="og:image:height" content="960">
-<meta property="og:image:width" content="1920">
+<meta property="og:image:alt" content="QR code for Wooclap">
 </head>
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -567,7 +566,8 @@ window.Quarto = {
 <li>
 <a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a>
   <ul class="collapse">
-<li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+<li><a href="#while-you-wait-participate" id="toc-while-you-wait-participate" class="nav-link" data-scroll-target="#while-you-wait-participate">While you wait: Participate 📱💻</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
   </ul>
 </li>
   <li>
@@ -575,9 +575,8 @@ window.Quarto = {
   <ul class="collapse">
 <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#todays-data" id="toc-todays-data" class="nav-link" data-scroll-target="#todays-data">Today’s data</a></li>
-  <li><a href="#dem-flips" id="toc-dem-flips" class="nav-link" data-scroll-target="#dem-flips">Dem flips</a></li>
+  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data prep</a></li>
   <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">Goal</a></li>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
   <li><a href="#fitting-a-logistic-model" id="toc-fitting-a-logistic-model" class="nav-link" data-scroll-target="#fitting-a-logistic-model">Fitting a logistic model</a></li>
   <li><a href="#output-rightarrow-model" id="toc-output-rightarrow-model" class="nav-link" data-scroll-target="#output-rightarrow-model">Output <span class="math inline">\(\rightarrow\)</span> model</a></li>
   <li><a href="#the-intercept" id="toc-the-intercept" class="nav-link" data-scroll-target="#the-intercept">The intercept</a></li>
@@ -602,7 +601,7 @@ window.Quarto = {
 <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#data-chicago_taxi" id="toc-data-chicago_taxi" class="nav-link" data-scroll-target="#data-chicago_taxi">Data: <code>chicago_taxi</code></a></li>
   <li><a href="#data-chicago_taxi-1" id="toc-data-chicago_taxi-1" class="nav-link" data-scroll-target="#data-chicago_taxi-1">Data: <code>chicago_taxi</code></a></li>
-  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data prep</a></li>
+  <li><a href="#data-prep-1" id="toc-data-prep-1" class="nav-link" data-scroll-target="#data-prep-1">Data prep</a></li>
   <li><a href="#outcome-and-predictors" id="toc-outcome-and-predictors" class="nav-link" data-scroll-target="#outcome-and-predictors">Outcome and predictors</a></li>
   <li><a href="#should-we-include-a-predictor" id="toc-should-we-include-a-predictor" class="nav-link" data-scroll-target="#should-we-include-a-predictor">Should we include a predictor?</a></li>
   </ul>
@@ -624,7 +623,7 @@ window.Quarto = {
 <a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory data analysis</a>
   <ul class="collapse">
 <li><a href="#initial-questions" id="toc-initial-questions" class="nav-link" data-scroll-target="#initial-questions">Initial questions</a></li>
-  <li><a href="#while-you-wait-participate" id="toc-while-you-wait-participate" class="nav-link" data-scroll-target="#while-you-wait-participate">While you wait: Participate 📱💻</a></li>
+  <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 📱💻</a></li>
   <li><a href="#tip" id="toc-tip" class="nav-link" data-scroll-target="#tip"><code>tip</code></a></li>
   <li><a href="#distance" id="toc-distance" class="nav-link" data-scroll-target="#distance"><code>distance</code></a></li>
   <li><a href="#tip-and-distance" id="toc-tip-and-distance" class="nav-link" data-scroll-target="#tip-and-distance"><code>tip</code> and <code>distance</code></a></li>
@@ -640,7 +639,7 @@ window.Quarto = {
   <li><a href="#sensitivity" id="toc-sensitivity" class="nav-link" data-scroll-target="#sensitivity">Sensitivity</a></li>
   <li><a href="#specificity" id="toc-specificity" class="nav-link" data-scroll-target="#specificity">Specificity</a></li>
   <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve">ROC curve</a></li>
-  <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate 📱💻</a></li>
+  <li><a href="#participate-1" id="toc-participate-1" class="nav-link" data-scroll-target="#participate-1">Participate 📱💻</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/edit/main/slides/20-spending-your-data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-f26/sta199-f26.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="20-spending-your-data-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -682,7 +681,21 @@ window.Quarto = {
 
 
 </header><section id="warm-up" class="level1"><h1>Warm-up</h1>
-<section id="announcements" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="announcements">Announcements</h2>
+<section id="while-you-wait-participate" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="while-you-wait-participate">While you wait: Participate 📱💻</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="wooclap">
+<p>Describe logistic regression and identify one aspect of it you are confused about / would like more clarity on.</p>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/20/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/20/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+</figure>
+</div>
+<p>Go to <a href="https://app.wooclap.com/OMEXALN">wooclap.com</a> and use the code OMEXALN.</p>
+</div>
+</div>
+</section><section id="announcements" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="announcements">Announcements</h2>
 <ul>
 <li>My office hours moved to Tuesday, Josh’s office hours are also updated:
 <ul>
@@ -726,8 +739,10 @@ $ margin_26      &lt;dbl&gt; 9.00, 18.00, 8.00, 28.00, 50.00, 7.00, 15.00, 39.00
 $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called", "ca…</code></pre>
 </div>
 </div>
-</section><section id="dem-flips" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="dem-flips">Dem flips</h2>
-<p>A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:</p>
+</section><section id="data-prep" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-prep">Data prep</h2>
+<ul>
+<li>A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:</li>
+</ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26</span> <span class="op">&lt;-</span> <span class="va">midterm_26_raw</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
@@ -741,10 +756,17 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">called_26</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<ul>
+<li>Data split:</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_called</span> <span class="op">&lt;-</span> <span class="va">midterm_26</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">called_26</span> <span class="op">==</span> <span class="st">"called"</span><span class="op">)</span></span>
+<span><span class="va">midterm_26_uncalled</span> <span class="op">&lt;-</span> <span class="va">midterm_26</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">called_26</span> <span class="op">==</span> <span class="st">"uncalled"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section><section id="goal" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="goal">Goal</h2>
 <p>Predict whether a seat flips to Democrat based on Trump’s 2024 vote share for uncalled seats, using data from called seats.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  <span class="va">midterm_26</span>,</span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trump_24</span>, y <span class="op">=</span> <span class="va">flip_dem_24_26</span>, fill <span class="op">=</span> <span class="va">flip_dem_24_26</span><span class="op">)</span></span>
 <span><span class="op">)</span> <span class="op">+</span></span>
@@ -774,39 +796,14 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">called_26</span>, nrow <span class="op">=</span> <span class="fl">2</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/flip-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="20-spending-your-data_files/figure-revealjs/flip-plot-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/flip-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="20-spending-your-data_files/figure-revealjs/flip-plot-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="the-data" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="the-data">The data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_called</span> <span class="op">&lt;-</span> <span class="va">midterm_26</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">called_26</span> <span class="op">==</span> <span class="st">"called"</span><span class="op">)</span></span>
-<span><span class="va">midterm_26_uncalled</span> <span class="op">&lt;-</span> <span class="va">midterm_26</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">called_26</span> <span class="op">==</span> <span class="st">"uncalled"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_called</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">house_party_24</span>, <span class="va">called_26</span>, <span class="va">leader_26</span>, <span class="va">flip_dem_24_26</span>, <span class="va">trump_24</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 391 × 6
-   district house_party_24 called_26 leader_26  flip_dem_24_26 trump_24
-   &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;      &lt;fct&gt;             &lt;dbl&gt;
- 1 AL-01    Republican     called    Republican 0                  76.9
- 2 AL-02    Democrat       called    Democrat   0                  45.3
- 3 AL-03    Republican     called    Republican 0                  72.7
- 4 AL-04    Republican     called    Republican 0                  83.0
- 5 AL-05    Republican     called    Republican 0                  64.0
- 6 AL-06    Republican     called    Republican 0                  68.5
- 7 AL-07    Democrat       called    Democrat   0                  37.5
- 8 AR-01    Republican     called    Republican 0                  71.7
- 9 AR-02    Republican     called    Republican 0                  56.6
-10 AR-03    Republican     called    Republican 0                  61.1
-# ℹ 381 more rows</code></pre>
-</div>
-</div>
 </section><section id="fitting-a-logistic-model" class="level2"><h2 class="anchored" data-anchor-id="fitting-a-logistic-model">Fitting a logistic model</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flip_fit</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flip_fit</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">flip_dem_24_26</span> <span class="op">~</span> <span class="va">trump_24</span>, data <span class="op">=</span> <span class="va">midterm_26_called</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tidy</span><span class="op">(</span><span class="va">flip_fit</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -836,7 +833,7 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 <li>Output</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">flip_fit</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">flip_fit</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic      p.value
@@ -946,7 +943,7 @@ e^{0.0244} \approx 1.02
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_called_aug</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">flip_fit</span>, new_data <span class="op">=</span> <span class="va">midterm_26_called</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_called_aug</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">flip_fit</span>, new_data <span class="op">=</span> <span class="va">midterm_26_called</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">midterm_26_called_aug</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">flip_dem_24_26</span>, <span class="va">.pred_class</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -965,10 +962,10 @@ e^{0.0244} \approx 1.02
 </div>
 </section><section id="predict-for-uncalled-seats" class="level2 smaller scrollable"><h2 class="smaller scrollable anchored" data-anchor-id="predict-for-uncalled-seats">Predict for uncalled seats</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_uncalled_aug</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">flip_fit</span>, new_data <span class="op">=</span> <span class="va">midterm_26_uncalled</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_uncalled_aug</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">flip_fit</span>, new_data <span class="op">=</span> <span class="va">midterm_26_uncalled</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_uncalled_aug</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">midterm_26_uncalled_aug</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">district</span>, <span class="va">trump_24</span>, <span class="va">house_party_24</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">".pred_"</span><span class="op">)</span>, <span class="va">leader_26</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">44</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1038,10 +1035,10 @@ e^{0.0244} \approx 1.02
 </ul></section><section id="data-chicago_taxi" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-chicago_taxi">Data: <code>chicago_taxi</code>
 </h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/chicago-taxi.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/chicago-taxi.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,000 × 7
    tip   distance company                      local dow   month  hour
@@ -1062,7 +1059,7 @@ e^{0.0244} \approx 1.02
 </section><section id="data-chicago_taxi-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-chicago_taxi-1">Data: <code>chicago_taxi</code>
 </h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">chicago_taxi</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">chicago_taxi</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 2,000
 Columns: 7
@@ -1075,9 +1072,9 @@ $ month    &lt;chr&gt; "Mar", "Apr", "Feb", "Feb", "Apr", "Mar", "Mar", "Mar", "
 $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 0, 1…</code></pre>
 </div>
 </div>
-</section><section id="data-prep" class="level2"><h2 class="anchored" data-anchor-id="data-prep">Data prep</h2>
+</section><section id="data-prep-1" class="level2"><h2 class="anchored" data-anchor-id="data-prep-1">Data prep</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi</span> <span class="op">&lt;-</span> <span class="va">chicago_taxi</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi</span> <span class="op">&lt;-</span> <span class="va">chicago_taxi</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    tip <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">tip</span>, <span class="st">"no"</span>, <span class="st">"yes"</span><span class="op">)</span>,</span>
 <span>    local <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">local</span>, <span class="st">"no"</span>, <span class="st">"yes"</span><span class="op">)</span>,</span>
@@ -1132,7 +1129,7 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 </section><section id="spending-your-data-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="spending-your-data-1">Spending your data</h2>
 <p>For predictive models (used primarily in machine learning), we typically split data into training and test sets:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/20/test-train-split-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/20/test-train-split-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+<figure class="figure"><p><a href="images/20/test-train-split-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/20/test-train-split-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <ul>
@@ -1163,7 +1160,7 @@ Warning
 </div>
 </section><section id="the-initial-split" class="level2"><h2 class="anchored" data-anchor-id="the-initial-split">The initial split</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20261108</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20261108</span><span class="op">)</span></span>
 <span><span class="va">chicago_taxi_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">chicago_taxi</span><span class="op">)</span></span>
 <span><span class="va">chicago_taxi_split</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1184,12 +1181,12 @@ Warning
 </div>
 </section><section id="accessing-the-data" class="level2"><h2 class="anchored" data-anchor-id="accessing-the-data">Accessing the data</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">chicago_taxi_split</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">chicago_taxi_split</span><span class="op">)</span></span>
 <span><span class="va">chicago_taxi_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">chicago_taxi_split</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="the-training-set" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="the-training-set">The training set</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi_train</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi_train</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,500 × 7
    tip   distance company      local dow   month  hour
@@ -1218,7 +1215,7 @@ Warning
 <li><p>What’s the distribution of the outcome, <code>tip</code>?</p></li>
 <li><p>What’s the distribution of numeric variables like <code>distance</code> or <code>hour</code>?</p></li>
 <li><p>How does the distribution of <code>tip</code> differ across the categorical and numerical variables?</p></li>
-</ul></section><section id="while-you-wait-participate" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="while-you-wait-participate">While you wait: Participate 📱💻</h2>
+</ul></section><section id="participate" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="participate">Participate 📱💻</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="wooclap">
@@ -1236,19 +1233,19 @@ Warning
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/20/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/20/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+<figure class="figure"><p><a href="images/20/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/20/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
-<p>Go to <a href="https://app.wooclap.com/TCGEJHI">wooclap.com</a> and use the code TCGEJHI.</p>
+<p>Go to <a href="https://app.wooclap.com/OMEXALN">wooclap.com</a> and use the code OMEXALN.</p>
 </div>
 </div>
 </section><section id="tip" class="level2"><h2 class="anchored" data-anchor-id="tip"><code>tip</code></h2>
 <p>What’s the distribution of the outcome, <code>tip</code>?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi_train</span> <span class="op">|&gt;</span></span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicago_taxi_train</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">tip</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   tip       n  prop
   &lt;fct&gt; &lt;int&gt; &lt;dbl&gt;
@@ -1259,11 +1256,11 @@ Warning
 </section><section id="distance" class="level2"><h2 class="anchored" data-anchor-id="distance"><code>distance</code></h2>
 <p>What’s the distribution of <code>distance</code>?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">chicago_taxi_train</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">chicago_taxi_train</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1272,29 +1269,29 @@ Warning
 <code>tip</code> and <code>distance</code>
 </h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">fill =</span> tip, <span class="at">group =</span> tip)) <span class="sc">+</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-label="2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-label="4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>tip, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">labeller =</span> label_both, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">chicago_taxi_train</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span>, fill <span class="op">=</span> <span class="va">tip</span>, group <span class="op">=</span> <span class="va">tip</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">3</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yes"</span> <span class="op">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="op">=</span> <span class="st">"darkgray"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">tip</span>, ncol <span class="op">=</span> <span class="fl">1</span>, labeller <span class="op">=</span> <span class="va">label_both</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="tip-and-hour" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="tip-and-hour">
+</section><section id="tip-and-hour" class="level2"><h2 class="anchored" data-anchor-id="tip-and-hour">
 <code>tip</code> and <code>hour</code>
 </h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">chicago_taxi_train</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hour</span>, fill <span class="op">=</span> <span class="va">tip</span>, group <span class="op">=</span> <span class="va">tip</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">chicago_taxi_train</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hour</span>, fill <span class="op">=</span> <span class="va">tip</span>, group <span class="op">=</span> <span class="va">tip</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yes"</span> <span class="op">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="op">=</span> <span class="st">"darkgray"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">18</span>, by <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">tip</span>, ncol <span class="op">=</span> <span class="fl">1</span>, labeller <span class="op">=</span> <span class="va">label_both</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1303,14 +1300,13 @@ Warning
 <code>tip</code> and <code>local</code>
 </h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> local, <span class="at">fill =</span> tip)) <span class="sc">+</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-label="2"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-label="5"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-label="1"></a><span class="fu">ggplot</span>(chicago_taxi_train, <span class="fu">aes</span>(<span class="at">x =</span> local, <span class="at">fill =</span> tip)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-label="2"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-label="3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"yes"</span> <span class="ot">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="ot">=</span> <span class="st">"darkgray"</span>)) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1319,14 +1315,13 @@ Warning
 <code>tip</code> and <code>dow</code>
 </h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">chicago_taxi_train</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dow</span>, fill <span class="op">=</span> <span class="va">tip</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">chicago_taxi_train</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dow</span>, fill <span class="op">=</span> <span class="va">tip</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yes"</span> <span class="op">=</span> <span class="st">"darkolivegreen4"</span>, <span class="st">"no"</span> <span class="op">=</span> <span class="st">"darkgray"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Proportion"</span>, x <span class="op">=</span> <span class="st">"Day of week"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Proportion"</span>, x <span class="op">=</span> <span class="st">"Day of week"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></a></p>
+<figure class="figure"><p><a href="20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1348,15 +1343,20 @@ Warning
 <li><p>Also known as <strong>true negative rate</strong></p></li>
 <li><p>Specificity = 1 − False positive rate</p></li>
 </ul></section><section id="roc-curve" class="level2"><h2 class="anchored" data-anchor-id="roc-curve">ROC curve</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
 <p>The <strong>receiver operating characteristic (ROC) curve</strong> allows to assess the model performance across a range of thresholds.</p>
-<p><a href="images/20/roc-curve.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/20/roc-curve.png" class="img-fluid"></a></p>
-</section><section id="participate" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="participate">Participate 📱💻</h2>
+</div><div class="column" style="width:60%;">
+<p><a href="images/20/roc-curve.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/20/roc-curve.png" class="img-fluid"></a></p>
+</div>
+</div>
+</section><section id="participate-1" class="level2 xsmall"><h2 class="xsmall anchored" data-anchor-id="participate-1">Participate 📱💻</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="wooclap">
 <p>Which of the following best describes the area annotated on the ROC curve?</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/20/roc-curve-annotated-question.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/20/roc-curve-annotated-question.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></a></p>
+<figure class="figure"><p><a href="images/20/roc-curve-annotated-question.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/20/roc-curve-annotated-question.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></a></p>
 </figure>
 </div>
 <div class="wooclap-choices">
@@ -1369,10 +1369,10 @@ Warning
 </div>
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/20/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/20/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
+<figure class="figure"><p><a href="images/20/wooclap-qr.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/20/wooclap-qr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="QR code for Wooclap" width="200"></a></p>
 </figure>
 </div>
-<p>Go to <a href="https://app.wooclap.com/TCGEJHI">wooclap.com</a> and use the code TCGEJHI.</p>
+<p>Go to <a href="https://app.wooclap.com/OMEXALN">wooclap.com</a> and use the code OMEXALN.</p>
 </div>
 </div>
 
