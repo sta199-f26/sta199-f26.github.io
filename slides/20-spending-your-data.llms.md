@@ -135,7 +135,7 @@ ggplot(
   facet_wrap(~called_26, nrow = 2, scales = "free_y")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/flip-plot-1.png)](20-spending-your-data_files/figure-revealjs/flip-plot-1.png)
+[![](20-spending-your-data_files/figure-html/flip-plot-1.png)](20-spending-your-data_files/figure-html/flip-plot-1.png)
 
 ## Fitting a logistic model
 
@@ -559,7 +559,7 @@ ggplot(chicago_taxi_train, aes(x = distance)) +
   geom_histogram(binwidth = 3)
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png)
+[![](20-spending-your-data_files/figure-html/unnamed-chunk-13-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-13-1.png)
 
 ## `tip` and `distance`
 
@@ -572,7 +572,7 @@ ggplot(chicago_taxi_train, aes(x = distance, fill = tip, group = tip)) +
   facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png)
+[![](20-spending-your-data_files/figure-html/unnamed-chunk-14-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-14-1.png)
 
 ## `tip` and `hour`
 
@@ -586,7 +586,7 @@ ggplot(chicago_taxi_train, aes(x = hour, fill = tip, group = tip)) +
   facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png)
+[![](20-spending-your-data_files/figure-html/unnamed-chunk-15-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-15-1.png)
 
 ## `tip` and `local`
 
@@ -597,7 +597,7 @@ ggplot(chicago_taxi_train, aes(x = local, fill = tip)) +
   labs(y = "Proportion")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png)
+[![](20-spending-your-data_files/figure-html/unnamed-chunk-16-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-16-1.png)
 
 ## `tip` and `dow`
 
@@ -610,7 +610,7 @@ ggplot(chicago_taxi_train, aes(x = dow, fill = tip)) +
   labs(y = "Proportion", x = "Day of week")
 ```
 
-[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png)
+[![](20-spending-your-data_files/figure-html/unnamed-chunk-17-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-17-1.png)
 
 # Terminology
 
