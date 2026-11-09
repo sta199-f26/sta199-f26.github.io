@@ -30,7 +30,7 @@ library(janitor)
 conflicted::conflict_prefer("select", "dplyr")
 conflicted::conflict_prefer("filter", "dplyr")
 
-ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 18))
 
 nc_places <- read_csv(
   here::here("slides", "data/nc-places.csv"),
@@ -39,6 +39,30 @@ nc_places <- read_csv(
 ```
 
 # Warm-up
+
+## While you wait: Participate 📱💻 {.xsmall}
+
+::: columns
+
+::: {.column width="70%"}
+
+::: wooclap
+
+Describe logistic regression and identify one aspect of it you are confused about / would like more clarity on.
+
+:::
+
+:::
+
+::: {.column width="30%"}
+
+![](images/20/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
+
+Go to [wooclap.com](https://app.wooclap.com/OMEXALN) and use the code OMEXALN.
+
+:::
+
+:::
 
 ## Announcements {.smaller}
 
@@ -80,9 +104,9 @@ midterm_26_raw <- read_csv(
 glimpse(midterm_26_raw)
 ```
 
-## Dem flips {.smaller}
+## Data prep {.smaller}
 
-A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:
+- A seat flips to Democrat if it was held by a Republican after 2024 and a Democrat leads in 2026:
 
 ```{r}
 #| label: dem-flip
@@ -98,6 +122,13 @@ midterm_26 <- midterm_26_raw |>
     flip_dem_24_26 = as.factor(flip_dem_24_26)
   ) |>
   filter(!is.na(called_26))
+```
+
+- Data split:
+
+```{r}
+midterm_26_called <- midterm_26 |> filter(called_26 == "called")
+midterm_26_uncalled <- midterm_26 |> filter(called_26 == "uncalled")
 ```
 
 ## Goal {.smaller}
@@ -135,19 +166,6 @@ ggplot(
     caption = "Data from Decision Desk HQ, as of 2026-11-04 at 11:14 am"
   ) +
   facet_wrap(~called_26, nrow = 2, scales = "free_y")
-```
-
-## The data {.smaller}
-
-```{r}
-midterm_26_called <- midterm_26 |> filter(called_26 == "called")
-midterm_26_uncalled <- midterm_26 |> filter(called_26 == "uncalled")
-```
-
-```{r}
-# fmt: skip
-midterm_26_called |>
-  select(district, house_party_24, called_26, leader_26, flip_dem_24_26, trump_24)
 ```
 
 ## Fitting a logistic model
@@ -505,13 +523,13 @@ chicago_taxi_train
 
 ## Initial questions {.smaller}
 
--   What’s the distribution of the outcome, `tip`?
+-   What's the distribution of the outcome, `tip`?
 
--   What’s the distribution of numeric variables like `distance` or `hour`?
+-   What's the distribution of numeric variables like `distance` or `hour`?
 
 -   How does the distribution of `tip` differ across the categorical and numerical variables?
 
-## While you wait: Participate 📱💻 {.xsmall}
+## Participate 📱💻 {.xsmall}
 
 ::: columns
 
@@ -535,7 +553,7 @@ Which dataset should we use for the exploration?
 
 ![](images/20/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
 
-Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
+Go to [wooclap.com](https://app.wooclap.com/OMEXALN) and use the code OMEXALN.
 
 :::
 
@@ -546,6 +564,7 @@ Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
 What’s the distribution of the outcome, `tip`?
 
 ```{r}
+#| code-fold: true
 chicago_taxi_train |>
   count(tip) |>
   mutate(prop = n / sum(n))
@@ -556,6 +575,7 @@ chicago_taxi_train |>
 What’s the distribution of `distance`?
 
 ```{r}
+#| code-fold: true
 ggplot(chicago_taxi_train, aes(x = distance)) +
   geom_histogram(binwidth = 3)
 ```
@@ -563,16 +583,17 @@ ggplot(chicago_taxi_train, aes(x = distance)) +
 ## `tip` and `distance` {.smaller}
 
 ```{r}
-#| code-line-numbers: "|7"
+#| code-fold: true
 ggplot(chicago_taxi_train, aes(x = distance, fill = tip, group = tip)) +
   geom_histogram(binwidth = 3, show.legend = FALSE) +
   scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
   facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
 ```
 
-## `tip` and `hour` {.smaller}
+## `tip` and `hour`
 
 ```{r}
+#| code-fold: true
 ggplot(chicago_taxi_train, aes(x = hour, fill = tip, group = tip)) +
   geom_histogram(binwidth = 1, show.legend = FALSE) +
   scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
@@ -587,18 +608,17 @@ ggplot(chicago_taxi_train, aes(x = hour, fill = tip, group = tip)) +
 ggplot(chicago_taxi_train, aes(x = local, fill = tip)) +
   geom_bar(position = "fill", color = "white") +
   scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
-  labs(y = "Proportion") +
-  theme(legend.position = "top")
+  labs(y = "Proportion")
 ```
 
 ## `tip` and `dow` {.smaller}
 
 ```{r}
+#| code-fold: true
 ggplot(chicago_taxi_train, aes(x = dow, fill = tip)) +
   geom_bar(position = "fill", color = "white") +
   scale_fill_manual(values = c("yes" = "darkolivegreen4", "no" = "darkgray")) +
-  labs(y = "Proportion", x = "Day of week") +
-  theme(legend.position = "top")
+  labs(y = "Proportion", x = "Day of week")
 ```
 
 # Terminology
@@ -629,9 +649,22 @@ ggplot(chicago_taxi_train, aes(x = dow, fill = tip)) +
 
 ## ROC curve
 
+::: {.columns}
+
+::: {.column width="40%"}
+
 The **receiver operating characteristic (ROC) curve** allows to assess the model performance across a range of thresholds.
 
+:::
+
+::: {.column width="60%"}
+
 ![](images/20/roc-curve.png)
+
+:::
+
+:::
+
 
 ## Participate 📱💻 {.xsmall}
 
@@ -643,7 +676,7 @@ The **receiver operating characteristic (ROC) curve** allows to assess the model
 
 Which of the following best describes the area annotated on the ROC curve?
 
-![](images/20/roc-curve-annotated-question.png){width="500" fig-align="center"}
+![](images/20/roc-curve-annotated-question.png){width="350" fig-align="center"}
 
 ::: wooclap-choices
 - Where all positives classified as positive, all negatives classified as negative
@@ -659,7 +692,7 @@ Which of the following best describes the area annotated on the ROC curve?
 
 ![](images/20/wooclap-qr.png){width="200" fig-align="center" fig-alt="QR code for Wooclap"}
 
-Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
+Go to [wooclap.com](https://app.wooclap.com/OMEXALN) and use the code OMEXALN.
 
 :::
 
