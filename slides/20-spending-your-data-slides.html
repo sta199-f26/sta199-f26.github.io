@@ -243,11 +243,14 @@ Prof.&nbsp;Mine Çetinkaya-Rundel
 <section id="announcements" class="slide level2 smaller">
 <h2>Announcements</h2>
 <ul>
-<li>My office hours moved to Tuesday, Josh’s office hours are also updated:
+<li><p>My office hours moved to Tuesday, Josh’s office hours are also updated:</p>
 <ul>
 <li>Josh: Tuesday 2-3 pm + Wednesday 4-5 pm</li>
-<li>Mine: Tuesday 3-4:30 pm</li>
+<li>Mine: Tuesday 3-4:30 pm (I’m giving a talk at the <a href="https://rconsortium.github.io/RplusAI_website/">R+AI conference</a> on Wednesday, check it out if you’re interested!)</li>
 </ul></li>
+<li><p>HW 6 due Wednesday 11:59 pm</p></li>
+<li><p>Project write-up due Friday 11:59 pm</p></li>
+<li><p>Week 12 nudges will be coming throughout the week, please make sure to read and don’t hesitate to reach out with any questions!</p></li>
 </ul>
 </section></section>
 <section>
@@ -357,7 +360,7 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 </details>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-html/flip-plot-1.png" width="672" class="r-stretch"></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/flip-plot-1.png" width="960" class="r-stretch"></section>
 <section id="fitting-a-logistic-model" class="slide level2">
 <h2>Fitting a logistic model</h2>
 <div class="cell">
@@ -886,7 +889,7 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 </details>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-html/unnamed-chunk-13-1.png" width="672" class="r-stretch"></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="tip-and-distance" class="slide level2 smaller">
 <h2><code>tip</code> and <code>distance</code></h2>
 <div class="cell">
@@ -899,7 +902,7 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 </details>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-html/unnamed-chunk-14-1.png" width="672" class="r-stretch"></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="tip-and-hour" class="slide level2">
 <h2><code>tip</code> and <code>hour</code></h2>
 <div class="cell">
@@ -913,7 +916,7 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 </details>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-html/unnamed-chunk-15-1.png" width="672" class="r-stretch"></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="tip-and-local" class="slide level2 smaller">
 <h2><code>tip</code> and <code>local</code></h2>
 <div class="cell">
@@ -923,7 +926,7 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 <span id="cb33-4"><a aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-html/unnamed-chunk-16-1.png" width="672" class="r-stretch"></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="tip-and-dow" class="slide level2 smaller">
 <h2><code>tip</code> and <code>dow</code></h2>
 <div class="cell">
@@ -936,7 +939,7 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
 </details>
 
 </div>
-<img data-src="20-spending-your-data_files/figure-html/unnamed-chunk-17-1.png" width="672" class="r-stretch"></section></section>
+<img data-src="20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="terminology" class="title-slide slide level1 center">
 <h1>Terminology</h1>
@@ -1221,6 +1224,44 @@ $ hour     &lt;dbl&gt; 17, 8, 15, 14, 14, 12, 13, 8, 20, 16, 20, 8, 15, 15, 12, 
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

@@ -28,8 +28,15 @@ Go to [wooclap.com](https://app.wooclap.com/OMEXALN) and use the code OMEXALN.
 ## Announcements
 
 - My office hours moved to Tuesday, Josh’s office hours are also updated:
+
   - Josh: Tuesday 2-3 pm + Wednesday 4-5 pm
-  - Mine: Tuesday 3-4:30 pm
+  - Mine: Tuesday 3-4:30 pm (I’m giving a talk at the [R+AI conference](https://rconsortium.github.io/RplusAI_website/) on Wednesday, check it out if you’re interested!)
+
+- HW 6 due Wednesday 11:59 pm
+
+- Project write-up due Friday 11:59 pm
+
+- Week 12 nudges will be coming throughout the week, please make sure to read and don’t hesitate to reach out with any questions!
 
 # From last time: Dem flips
 
@@ -135,7 +142,7 @@ ggplot(
   facet_wrap(~called_26, nrow = 2, scales = "free_y")
 ```
 
-[![](20-spending-your-data_files/figure-html/flip-plot-1.png)](20-spending-your-data_files/figure-html/flip-plot-1.png)
+[![](20-spending-your-data_files/figure-revealjs/flip-plot-1.png)](20-spending-your-data_files/figure-revealjs/flip-plot-1.png)
 
 ## Fitting a logistic model
 
@@ -559,7 +566,7 @@ ggplot(chicago_taxi_train, aes(x = distance)) +
   geom_histogram(binwidth = 3)
 ```
 
-[![](20-spending-your-data_files/figure-html/unnamed-chunk-13-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-13-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-13-1.png)
 
 ## `tip` and `distance`
 
@@ -572,7 +579,7 @@ ggplot(chicago_taxi_train, aes(x = distance, fill = tip, group = tip)) +
   facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
 ```
 
-[![](20-spending-your-data_files/figure-html/unnamed-chunk-14-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-14-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-14-1.png)
 
 ## `tip` and `hour`
 
@@ -586,7 +593,7 @@ ggplot(chicago_taxi_train, aes(x = hour, fill = tip, group = tip)) +
   facet_wrap(~tip, ncol = 1, labeller = label_both, scales = "free_y")
 ```
 
-[![](20-spending-your-data_files/figure-html/unnamed-chunk-15-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-15-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-15-1.png)
 
 ## `tip` and `local`
 
@@ -597,7 +604,7 @@ ggplot(chicago_taxi_train, aes(x = local, fill = tip)) +
   labs(y = "Proportion")
 ```
 
-[![](20-spending-your-data_files/figure-html/unnamed-chunk-16-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-16-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-16-1.png)
 
 ## `tip` and `dow`
 
@@ -610,7 +617,7 @@ ggplot(chicago_taxi_train, aes(x = dow, fill = tip)) +
   labs(y = "Proportion", x = "Day of week")
 ```
 
-[![](20-spending-your-data_files/figure-html/unnamed-chunk-17-1.png)](20-spending-your-data_files/figure-html/unnamed-chunk-17-1.png)
+[![](20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png)](20-spending-your-data_files/figure-revealjs/unnamed-chunk-17-1.png)
 
 # Terminology
 
