@@ -32,7 +32,13 @@ Go to [wooclap.com](https://app.wooclap.com/ZUDFZMY) and use the code ZUDFZMY.
 
 ## Announcements
 
-- …
+- HW 6 due tonight 11:59 pm
+
+- Project write-up due Friday 11:59 pm – any questions?
+
+- Exam 2 review will be posted tomorrow and over the weekend I’ll ask you to submit questions for Monday’s review
+
+- Exam 2 is on Wednesday – get here on time please!
 
 # Spending your data
 
