@@ -269,7 +269,28 @@ due_rows <- which(d_prepared$session == "Due")
 review_rows <- which(d_prepared$session == "Review")
 
 
-d_prepared |>
+# Build the schedule table twice (light/dark theme variants) since gt colors
+# are inline styles that can't react to theme changes. Dark values match
+# style/dark.scss (body-bg #181818, white text).
+make_schedule_table <- function(mode = c("light", "dark")) {
+  mode <- match.arg(mode)
+  pal <- if (mode == "light") {
+    list(
+      bg = "#FFFFFF", fg = "#212529",
+      to_be_posted = "#B4B4B4", border_right = "#D3D3D3", week_line = "#000000",
+      lec = "#FFFFFF", lab = "#13395520", holiday = "#83807B20",
+      exam = "#B9839140", review = "#B9839110"
+    )
+  } else {
+    list(
+      bg = "#181818", fg = "#FFFFFF",
+      to_be_posted = "#6E6E6E", border_right = "#555555", week_line = "#CCCCCC",
+      lec = "#181818", lab = "#5C97CB40", holiday = "#83807B50",
+      exam = "#B9839160", review = "#B9839130"
+    )
+  }
+
+  d_prepared |>
   select(week, date, materials, topic, readings, videos, due) |> #moved this down so i can use session value in above mutate readings line
   # changed this to columns want to keep (instead of which to remove)
   relocate(due, .after = videos) |>
@@ -293,7 +314,7 @@ d_prepared |>
   ) |>
   tab_style(
     style = cell_text(
-      color = "#b4b4b4"
+      color = pal$to_be_posted
     ),
     locations = cells_body(
       columns = readings,
@@ -302,7 +323,7 @@ d_prepared |>
   ) |>
   tab_style(
     style = cell_text(
-      color = "#b4b4b4"
+      color = pal$to_be_posted
     ),
     locations = cells_body(
       columns = videos,
@@ -312,7 +333,7 @@ d_prepared |>
   tab_style(
     style = cell_borders(
       sides = "right",
-      color = "#D3D3D3",
+      color = pal$border_right,
       style = "solid"
     ),
     locations = cells_body(
@@ -323,7 +344,7 @@ d_prepared |>
     # add lines between weeks of the semester
     style = cell_borders(
       sides = "top",
-      color = "black",
+      color = pal$week_line,
       weight = px(2),
       style = "solid"
     ),
@@ -336,7 +357,13 @@ d_prepared |>
   fmt_markdown(
     columns = c(week, topic, readings, videos, materials, due)
   ) |>
-  tab_options(table.width = pct(98), table.align = 'left') |>
+  tab_options(
+    table.width = pct(98),
+    table.align = 'left',
+    table.background.color = pal$bg,
+    table.font.color = pal$fg,
+    column_labels.background.color = pal$bg
+  ) |>
   cols_width(
     week ~ pct(2),
     date ~ pct(9),
@@ -356,26 +383,47 @@ d_prepared |>
   tab_options(table.font.size = 13) |>
   # Color rows by session type instead of zebra striping.
   tab_style(
-    style = cell_fill(color = "#ffffff"), # white for lectures
+    style = cell_fill(color = pal$lec), # white for lectures
     locations = cells_body(rows = lec_rows)
   ) |>
   tab_style(
-    style = cell_fill(color = "#13395520"), # light blue for labs
+    style = cell_fill(color = pal$lab), # light blue for labs
     locations = cells_body(rows = lab_rows)
   ) |>
   tab_style(
-    style = cell_fill(color = "#83807B20"), # light gray for holidays
+    style = cell_fill(color = pal$holiday), # light gray for holidays
     locations = cells_body(rows = holiday_rows)
   ) |>
   tab_style(
-    style = cell_fill(color = "#B9839140"), # light pink for exams
+    style = cell_fill(color = pal$exam), # light pink for exams
     locations = cells_body(rows = exam_rows)
   ) |>
   tab_style(
-    style = cell_fill(color = "#B9839110"), # lighter pink for review
+    style = cell_fill(color = pal$review), # lighter pink for review
     locations = cells_body(rows = review_rows)
   )
+}
 ```
+
+::: {.light-content}
+
+```{r}
+#| echo: false
+#| column: screen-right
+make_schedule_table("light")
+```
+
+:::
+
+::: {.dark-content}
+
+```{r}
+#| echo: false
+#| column: screen-right
+make_schedule_table("dark")
+```
+
+:::
 
 ```{=html}
 <script>
