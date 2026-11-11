@@ -23,3 +23,5 @@ More AEs to be added as the semester progresses.
 | [AE 10: Mental distress with multiple predictors](ae/ae-10-nc-places-multi-model.llms.md) |   |
 | [AE 11: Predicting Dem flips](ae/ae-11-dem-flips-logistic-A.llms.md) | Suggested answers |
 | [AE 11: Predicting Dem flips](ae/ae-11-dem-flips-logistic.llms.md) |   |
+| [AE 12: Chicago taxi classification](ae/ae-12-chicago-taxi-classification-A.llms.md) | Suggested answers |
+| [AE 12: Chicago taxi classification](ae/ae-12-chicago-taxi-classification.llms.md) |   |
