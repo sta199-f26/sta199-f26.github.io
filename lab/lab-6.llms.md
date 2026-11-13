@@ -51,8 +51,6 @@ library(tidyverse)
 library(tidymodels)
 ```
 
-    Warning: package 'dials' was built under R version 4.6.2
-
 ## Data
 
 The dataset, called `hotels.csv`, can be found in the `data` folder.

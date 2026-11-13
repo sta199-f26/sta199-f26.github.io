@@ -2,23 +2,21 @@
 
 Questions
 
-    Warning: package 'dials' was built under R version 4.6.2
-
 > **NOTE:**
 >
 > Suggested answers can be found [here](../exam-review/exam-2-review-A.llms.md), but resist the urge to peek before you go through it yourself.
 
-## Blizzard salaries
+# Blizzard salaries
 
 In 2020, employees of Blizzard Entertainment circulated a spreadsheet to anonymously share salaries and recent pay increases amidst rising tension in the video game industry over wage disparities and executive compensation. (Source: [Blizzard Workers Share Salaries in Revolt Over Pay](https://www.bloomberg.com/news/articles/2020-08-03/blizzard-workers-share-salaries-in-revolt-over-wage-disparities))
 
 The name of the data frame used for this analysis is `blizzard_salary` and the variables are:
 
-- `percent_incr`: Raise given in July 2020, as percent increase with values ranging from 1 (1% increase) to 21.5 (21.5% increase)
+- `percent_incr`: Raise given in July 2020, as percent increase with values ranging from 0 (no increase) to 21.5 (21.5% increase)
 
 - `salary_type`: Type of salary, with levels `Hourly` and `Salaried`
 
-- `annual_salary`: Annual salary, in USD, with values ranging from \$50,939 to \$216,856.
+- `annual_salary`: Annual salary, in USD, with values ranging from \$1 to \$216,856.
 
 - `performance_rating`: Most recent review performance rating, with levels `Poor`, `Successful`, `High`, and `Top`. The `Poor` level is the lowest rating and the `Top` level is the highest rating.
 
@@ -39,7 +37,7 @@ The first ten rows of `blizzard_salary` are shown below:
     10          1.2 Hourly             42328  <NA>              
     # ℹ 399 more rows
 
-### Question 1
+## Question 1
 
 You fit a model for predicting raises (`percent_incr`) from salaries (`annual_salary`). We’ll call this model `raise_1_fit`. A tidy output of the model is shown below.
 
@@ -52,20 +50,26 @@ You fit a model for predicting raises (`percent_incr`) from salaries (`annual_sa
 Which of the following is the best interpretation of the slope coefficient?
 
 1.  For every additional \$1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.55%.
+
 2.  For every additional \$1,000 of annual salary, the raise goes up by 0.0155%.
+
 3.  For every additional \$1,000 of annual salary, the model predicts the raise to be higher, on average, by 0.0155%.
+
 4.  For every additional \$1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.87%.
 
-### Question 2
+## Question 2
 
 You then fit a model for predicting raises (`percent_incr`) from salaries (`annual_salary`) and performance ratings (`performance_rating`). We’ll call this model `raise_2_fit`. Which of the following is definitely true based on the information you have so far?
 
 1.  Intercept of `raise_2_fit` is higher than intercept of `raise_1_fit`.
-2.  Slope of `raise_2_fit` is higher than RMSE of `raise_1_fit`.
-3.  Adjusted \\R^2\\ of `raise_2_fit` is higher than adjusted \\R^2\\ of `raise_1_fit`.
-4.  \\R^2\\ of `raise_2_fit` is higher \\R^2\\ of `raise_1_fit`.
 
-### Question 3
+2.  Slope of `raise_2_fit` is higher than RMSE of `raise_1_fit`.
+
+3.  Adjusted \\R^2\\ of `raise_2_fit` is higher than adjusted \\R^2\\ of `raise_1_fit`.
+
+4.  \\R^2\\ of `raise_2_fit` is higher than \\R^2\\ of `raise_1_fit`.
+
+## Question 3
 
 The tidy model output for the `raise_2_fit` model you fit is shown below.
 
@@ -78,13 +82,13 @@ The tidy model output for the `raise_2_fit` model you fit is shown below.
     4 performance_ratingSuccessful -2.40       0.397          -6.05 4.68e- 9
     5 performance_ratingTop         2.99       0.715           4.18 3.92e- 5
 
-When your teammate sees this model output, they remark
+When your teammate sees this model output, they remark:
 
 > “The coefficient for `performance_ratingSuccessful` is negative. That’s weird. I guess it means that people who get successful performance ratings get lower raises.”
 
 How would you respond to your teammate?
 
-### Question 4
+## Question 4
 
 Ultimately, your teammate decides they don’t like the negative slope coefficients in the model output you created (not that there’s anything wrong with negative slope coefficients!), does something else, and comes up with the following model output.
 
@@ -97,21 +101,21 @@ Ultimately, your teammate decides they don’t like the negative slope coefficie
     4 performance_ratingHigh        4.06       1.42           2.86  0.00458   
     5 performance_ratingTop         7.05       1.53           4.60  0.00000644
 
-Unfortunately they didn’t write their code in a Quarto document, instead just wrote some code in the Console and then lost track of their work. They remember using the `fct_relevel()` function and doing something like the following:
+Unfortunately, they didn’t write their code in a Quarto document; instead, they just wrote some code in the Console and then lost track of their work. They remember using the `fct_relevel()` function and doing something like the following:
 
 ``` r
 blizzard_salary <- blizzard_salary |>
   mutate(performance_rating = fct_relevel(performance_rating, ___))
 ```
 
-What should they put in the blanks to get the same model output as above?
+What should they put in the blank to get the same model output as above?
 
 1.  “Poor”, “Successful”, “High”, “Top”
 2.  “Successful”, “High”, “Top”
 3.  “Top”, “High”, “Successful”, “Poor”
 4.  Poor, Successful, High, Top
 
-### Question 5
+## Question 5
 
 Suppose we fit a model to predict `percent_incr` from `annual_salary` and `salary_type`. A tidy output of the model is shown below.
 
@@ -122,7 +126,7 @@ Suppose we fit a model to predict `percent_incr` from `annual_salary` and `salar
     2 annual_salary       0.0000137 0.00000464      2.96 0.00329
     3 salary_typeSalaried 0.913     0.544           1.68 0.0938 
 
-Which of the following visualizations represent this model? Explain your reasoning.
+Which of the following visualizations represents this model? Explain your reasoning.
 
 [![](exam-2-review_files/figure-html/fig-raise-salary-type-1.png)](exam-2-review_files/figure-html/fig-raise-salary-type-1.png "Figure 1 (a): Option 1")
 
@@ -142,7 +146,7 @@ Which of the following visualizations represent this model? Explain your reasoni
 
 Figure 1: Visualizations of the relationship between percent increase, annual salary, and salary type
 
-### Question 6
+## Question 6
 
 Suppose you now fit a model to predict the natural log of percent increase, `log(percent_incr)`, from performance rating. The model is called `raise_4_fit`.
 
@@ -172,9 +176,13 @@ c\. The model predicts that the percentage increase employees with Successful pe
 
 d\. The model predicts that the percentage increase employees with Successful performance get, on average, is higher by a factor of 6.93 compared to the employees with Poor performance rating.
 
+## Question 7
+
+Go back to the model `raise_1_fit` from Question 1, which predicts raises (`percent_incr`) from salaries (`annual_salary`). Interpret the intercept in the context of the data.
+
 # Movies
 
-The data for this part comes from the Internet Movie Database (IMDB). Specifically, the data are a random sample of movies released between 1980 and 2020.
+The data for this part come from the Internet Movie Database (IMDB). Specifically, the data are a random sample of movies released between 1980 and 2020.
 
 The name of the data frame used for this analysis is `movies`, and it contains the variables shown in [Table 1](#tbl-data-dictionary).
 
@@ -182,7 +190,7 @@ The name of the data frame used for this analysis is `movies`, and it contains t
 |----|----|
 | `name` | name of the movie |
 | `rating` | rating of the movie (R, PG, etc.) |
-| `genre` | main genre of the movie. |
+| `genre` | main genre of the movie |
 | `runtime` | duration of the movie |
 | `year` | year of release |
 | `release_date` | release date (YYYY-MM-DD) |
@@ -199,7 +207,7 @@ The name of the data frame used for this analysis is `movies`, and it contains t
 
 Table 1: Data dictionary for `movies`
 
-The first thirty rows of the `movies` data frame are shown in [Table 2](#tbl-data), with variable types suppressed (since we’ll ask about them later).
+The first thirty rows of the `movies` data frame are shown in [Table 2](#tbl-data), with variable types suppressed.
 
 First 30 rows of `movies`, with variable types suppressed.
 
@@ -256,9 +264,9 @@ score_runtime_fit <- linear_reg() |>
 
 Figure 2: Scatterplot of `score` vs. `runtime` for `movies`.
 
-### Question 7
+### Question 8
 
-Partial code for producing [Figure 2](#fig-score-runtime) is given below. Which of the following goes in the blank on Line 2? **Select all that apply.**
+Partial code for producing [Figure 2](#fig-score-runtime) is given below. Which of the following goes in the blank on Line 2?
 
 ``` numberSource
 movies |>
@@ -266,7 +274,7 @@ movies |>
   ggplot(aes(x = runtime, y = score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", se = FALSE)
-# additional code for annotating Blue City on the plot
+# additional code for annotating the labeled movies on the plot
 ```
 
 1.  `grepl(" mins", runtime)`
@@ -279,7 +287,7 @@ movies |>
 
 5.  `na.rm(runtime)`
 
-### Question 8
+### Question 9
 
 Based on this model, order the three labeled movies in [Figure 2](#fig-score-runtime) in decreasing order of the magnitude (absolute value) of their residuals.
 
@@ -293,27 +301,27 @@ Based on this model, order the three labeled movies in [Figure 2](#fig-score-ru
 
 5.  Blue City \> Rang De Basanti \> Winter Sleep
 
-### Question 9
+### Question 10
 
-The R-squared for the model visualized in [Figure 2](#fig-score-runtime) is 31%. Which of the following is the ***best*** interpretation of this value?
+The R-squared for the model visualized in [Figure 2](#fig-score-runtime) is 19%. Which of the following is the ***best*** interpretation of this value?
 
-1.  31% of the variability in movie runtimes is explained by their scores.
+1.  19% of the variability in movie runtimes is explained by their scores.
 
-2.  31% of the variability in movie scores is explained by their runtime.
+2.  19% of the variability in movie scores is explained by their runtimes.
 
-3.  The model accurately predicts scores of 31% of the movies in this sample.
+3.  The model accurately predicts scores of 19% of the movies in this sample.
 
-4.  The model accurately predicts scores of 31% of all movies.
+4.  The model accurately predicts scores of 19% of all movies.
 
-5.  The correlation between scores and runtimes of movies is 0.31.
+5.  The correlation between scores and runtimes of movies is 0.19.
 
 ## Score vs. runtime or year
 
 The visualizations below show the relationship between `score` and `runtime` as well as `score` and `year`, respectively. Additionally, the lines of best fit are overlaid on the visualizations.
 
-[![](exam-2-review_files/figure-html/unnamed-chunk-11-1.png)](exam-2-review_files/figure-html/unnamed-chunk-11-1.png)
+[![](exam-2-review_files/figure-html/unnamed-chunk-12-1.png)](exam-2-review_files/figure-html/unnamed-chunk-12-1.png)
 
-[![](exam-2-review_files/figure-html/unnamed-chunk-11-2.png)](exam-2-review_files/figure-html/unnamed-chunk-11-2.png)
+[![](exam-2-review_files/figure-html/unnamed-chunk-12-2.png)](exam-2-review_files/figure-html/unnamed-chunk-12-2.png)
 
 The correlation coefficients of these relationships are calculated below, though some of the code and the output are missing. Answer all questions in this part based on the code and output shown below.
 
@@ -328,9 +336,9 @@ movies |>
     # A tibble: 1 × 2
       r_score_runtime r_score_year
                 <dbl>        <dbl>
-    1           0.434. __blank_2__       
+    1           0.434 __blank_2__       
 
-### Question 10
+### Question 11
 
 Which of the following goes in `__blank_1__`?
 
@@ -344,7 +352,7 @@ Which of the following goes in `__blank_1__`?
 
 5.  `filter`
 
-### Question 11
+### Question 12
 
 What can we say about the value that goes in `__blank_2__`?
 
@@ -376,7 +384,7 @@ The model output for `score_runtime_rating_fit` is shown in [Table 3](#tbl-scor
 
 Table 3: Regression output for `score_runtime_rating_fit`.
 
-### Question 12
+### Question 13
 
 Which of the following is ***TRUE*** about the intercept of `score_runtime_rating_fit`? **Select all that are true.**
 
@@ -390,7 +398,7 @@ Which of the following is ***TRUE*** about the intercept of `score_runtime_ratin
 
 5.  G-rated movies that are 0 minutes in length are predicted to score, on average, 4.525 points.
 
-### Question 13
+### Question 14
 
 Which of the following is the ***best*** interpretation of the slope of `runtime` in `score_runtime_rating_fit`?
 
@@ -404,11 +412,11 @@ Which of the following is the ***best*** interpretation of the slope of `runtime
 
 5.  For each higher level of rating, the movie scores go up by 0.021 points on average.
 
-### Question 14
+### Question 15
 
 Fill in the blank:
 
-> R-squared for `score_runtime_rating_fit` (the model predicting `score` from `runtime` and `rating`) \_\_\_\_\_\_\_\_\_ the R-squared the model `score_runtime_fit` (for predicting `score` from `runtime` alone).
+> R-squared for `score_runtime_rating_fit` (the model predicting `score` from `runtime` and `rating`) \_\_\_\_\_\_\_\_\_ the R-squared of the model `score_runtime_fit` (for predicting `score` from `runtime` alone).
 
 1.  is less than
 
@@ -420,7 +428,7 @@ Fill in the blank:
 
 5.  is both greater than and less than
 
-### Question 15
+### Question 16
 
 The model `score_runtime_rating_fit` (the model predicting `score` from `runtime` and `rating`) can be visualized as parallel lines for each level of `rating`. Which of the following is the equation of the line for R-rated movies?
 
@@ -434,85 +442,132 @@ The model `score_runtime_rating_fit` (the model predicting `score` from `runtime
 
 5.  \\\widehat{score} = (4.525 + 0.021) - 0.257 \times runtime\\
 
-# Miscellaneous
+### Question 17
 
-## Question 16
+Answer the following based on [Table 3](#tbl-score-runtime-rating-tidy).
 
-Which of the following is the definition of a regression model? Select all that apply.
+1.  Interpret the coefficient for `ratingR` in the context of the data.
 
-a\. \\\hat{y} = b_0 + b_1 X_1\\
-
-b\. \\y = \beta_0 + \beta_1 X_1\\
-
-c\. \\\hat{y} = \beta_0 + \beta_1 X_1 + \epsilon\\
-
-d\. \\y = \beta_0 + \beta_1 X_1 + \epsilon\\
-
-## Question 17
-
-Define the term “parsimonious model”.
+2.  The R-squared of `score_runtime_fit` (predicting `score` from `runtime` alone) is 0.188 and the R-squared of `score_runtime_rating_fit` (predicting `score` from `runtime` and `rating`) is 0.2. The adjusted R-squared values of these models are 0.187 and 0.191, respectively. Your friend says, “R-squared went up when we added `rating`, so `rating` must be a useful predictor of score.” Which statistic should be used to compare these two models? Based on that statistic, which model would you choose, and why?
 
 # Building a spam filter
 
-The data come from incoming emails in David Diez’s (one of the authors of OpenIntro textbooks) Gmail account for the first three months of 2012. All personally identifiable information has been removed. The dataset is called `email` and it’s in the **openintro** package.
+The data come from incoming emails in David Diez’s (one of the authors of the OpenIntro textbooks) Gmail account for the first three months of 2012. All personally identifiable information has been removed. The dataset is called `email` and it’s in the **openintro** package.
 
 The outcome variable is `spam`, which takes the value `1` if the email is spam, `0` otherwise.
 
+The data are split into training and testing sets.
+
+``` downlit
+set.seed(1234)
+email_split <- initial_split(email, prop = 0.7)
+email_training <- training(email_split)
+email_testing <- testing(email_split)
+```
+
 ## Question 18
 
-1.  What type of variable is `spam`? What percent of the emails are spam?
+What percent of the emails are in the training set and what percent are in the testing set?
 
-2.  What type of variable is `dollar` - number of times a dollar sign or the word “dollar” appeared in the email? Visualize and describe its distribution, supporting your description with the appropriate summary statistics.
+1.  Training: 50%, Testing: 50%
 
-3.  Fit a logistic regression model predicting `spam` from `dollar`. Then, display the tidy output of the model.
+2.  Training: 70%, Testing: 30%
 
-4.  Using this model and the [`predict()`](https://rdrr.io/r/stats/predict.html) function, predict the probability the email is spam if it contains 5 dollar signs. Based on this probability, how does the model classify this email?
+3.  Training: 75%, Testing: 25%
 
-> **NOTE:**
->
-> To obtain the predicted probability, you can set the `type` argument in [`predict()`](https://rdrr.io/r/stats/predict.html) to `"prob"`.
+4.  Training: 30%, Testing: 70%
+
+5.  Training: 80%, Testing: 20%
 
 ## Question 19
 
-1.  Fit another logistic regression model predicting `spam` from `dollar`, `winner` (indicating whether “winner” appeared in the email), and `urgent_subj` (whether the word “urgent” is in the subject of the email). Then, display the tidy output of the model.
+A model is fit predicting `spam` from `dollar`, `winner` (indicating whether “winner” appeared in the email: `"no"` or `"yes"`), and `urgent_subj` (whether the word “urgent” is in the subject of the email: `0` or `1`). We will call this model Model A (`email_fit_A`). The output of this model is shown below.
 
-2.  Using this model and the `augment()` function, classify each email in the `email` dataset as spam or not spam. Store the resulting data frame with an appropriate name and display the data frame as well.
+``` downlit
+email_fit_A <- logistic_reg() |>
+    fit(spam ~ dollar + winner + urgent_subj, data = email_training)
 
-3.  Using your data frame from the previous part, determine, in a single pipeline, and using `count()`, the numbers of emails:
+tidy(email_fit_A)
+```
 
-    - that are labelled as spam that are actually spam
-    - that are not labelled as spam that are actually spam
-    - that are labelled as spam that are actually not spam
-    - that are not labelled as spam that are actually not spam
+    # A tibble: 4 × 5
+      term         estimate std.error statistic   p.value
+      <chr>           <dbl>     <dbl>     <dbl>     <dbl>
+    1 (Intercept)   -2.24      0.0688    -32.5  2.87e-232
+    2 dollar        -0.0597    0.0223     -2.68 7.46e-  3
+    3 winneryes      1.63      0.348       4.68 2.80e-  6
+    4 urgent_subj1   2.99      0.869       3.44 5.76e-  4
 
-    Store the resulting data frame with an appropriate name and display the data frame as well.
-
-4.  In a single pipeline, and using `mutate()`, calculate the false positive and false negative rates. In addition to these numbers showing in your R output, you must write a sentence that explicitly states and identified the two rates.
+Interpret the coefficients of the model.
 
 ## Question 20
 
-1.  Fit another logistic regression model predicting `spam` from `dollar` and other variable(s) you think would be a good predictor. Provide a 1-sentence justification for why you chose this variable. Display the tidy output of the model.
+Emails in the testing set are used to evaluate the performance of the model.
 
-2.  Using this model and the `augment()` function, classify each email in the `email` dataset as spam or not spam. Store the resulting data frame with an appropriate name and display the data frame as well.
+``` downlit
+email_aug_A <- augment(email_fit_A, new_data = email_testing)
+```
 
-3.  Using your data frame from the previous part, determine, in a single pipeline, and using `count()`, the numbers of emails:
+Then, the following pipeline is run:
 
-    - that are labelled as spam that are actually spam
-    - that are not labelled as spam that are actually spam
-    - that are labelled as spam that are actually not spam
-    - that are not labelled as spam that are actually not spam
+``` downlit
+email_aug_A |>
+    group_by(spam) |>
+    count(.pred_class)
+```
 
-    Store the resulting data frame with an appropriate name and display the data frame as well.
+    # A tibble: 3 × 3
+    # Groups:   spam [2]
+      spam  .pred_class     n
+      <fct> <fct>       <int>
+    1 0     0            1072
+    2 0     1               1
+    3 1     0             104
 
-4.  In a single pipeline, and using `mutate()`, calculate the false positive and false negative rates. In addition to these numbers showing in your R output, you must write a sentence that explicitly states and identified the two rates.
+Describe what each line of the pipeline does and what the pipeline computes.
 
-5.  Based on the false positive and false negatives rates of this model, comment, in 1-2 sentences, on which model (one from Question 19 or Question 20) is preferable and why.
+## Question 21
+
+There are four possible combinations of actual (`spam`) and predicted (`.pred_class`) classes, but the output of the pipeline in the previous question has only three rows. Which combination is missing, and why?
+
+## Question 22
+
+Based on the output of the pipeline in Question 20, show how you would calculate the false positive and false negative rates. You do not actually have to calculate the final numeric values, but you should show the formulas for how to compute them.
+
+## Question 23
+
+Another model is fit predicting `spam` from all variables in the dataset except `time` (the date and time the email was sent). We will call this model Model B (`email_fit_B`).
+
+``` downlit
+# fmt: skip
+email_fit_B <- logistic_reg() |>
+    fit(
+        spam ~ to_multiple + from + cc + sent_email + image + attach + dollar + winner + inherit + viagra + password + num_char + line_breaks + format + re_subj + exclaim_subj + urgent_subj + exclaim_mess + number,
+        data = email_training
+    )
+```
+
+Once again, this model is used to make predictions for the testing dataset.
+
+``` downlit
+email_aug_B <- augment(email_fit_B, new_data = email_testing)
+```
+
+Shown below are the ROC curves for Model A and Model B.
+
+[![](exam-2-review_files/figure-html/unnamed-chunk-23-1.png)](exam-2-review_files/figure-html/unnamed-chunk-23-1.png)
+
+1.  Fill in the labels for the x and y axes in the ROC curve plot.
+
+2.  What does the diagonal dotted line in the ROC curve plot represent?
+
+3.  Based on the ROC curves, which model appears to have better classification ability? Justify your answer.
 
 # Web scraping
 
 In this part, we revisit the work we did scraping opinion articles from The Chronicle.
 
-## Question 21
+## Question 24
 
 Below is a simplified version of the HTML source code for one article listing on The Chronicle’s opinion page.
 
@@ -535,7 +590,7 @@ Suppose this HTML has been read into R with `read_html()` and saved as `page`. W
 
 5.  `page |> html_elements("href") |> html_text()`
 
-## Question 22
+## Question 25
 
 You have a data frame called `chronicle` with 500 rows, one for each opinion article, and a column called `url` containing the URL of each article. You also have the following function, which takes the URL of a single article and returns the text of that article as a single character string.
 
@@ -559,3 +614,21 @@ Which of the following adds a character column called `article_content` to `chro
 4.  `chronicle |> summarize(article_content = map_chr(url, scrape_article))`
 
 5.  `chronicle |> mutate(article_content = map(url, scrape_article))`
+
+# Miscellaneous
+
+## Question 26
+
+Which of the following is the definition of a regression model? Select all that apply.
+
+a\. \\\hat{y} = b_0 + b_1 X_1\\
+
+b\. \\y = \beta_0 + \beta_1 X_1\\
+
+c\. \\\hat{y} = \beta_0 + \beta_1 X_1 + \epsilon\\
+
+d\. \\y = \beta_0 + \beta_1 X_1 + \epsilon\\
+
+## Question 27
+
+Define the term “parsimonious model”.
