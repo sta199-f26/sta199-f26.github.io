@@ -55,18 +55,18 @@ blizzard_salary <- blizzard_salary |>
 Suggested answers can be found [here](/exam-review/exam-2-review-A.qmd), but resist the urge to peek before you go through it yourself.
 :::
 
-## Blizzard salaries
+# Blizzard salaries
 
 In 2020, employees of Blizzard Entertainment circulated a spreadsheet to anonymously share salaries and recent pay increases amidst rising tension in the video game industry over wage disparities and executive compensation.
 (Source: [Blizzard Workers Share Salaries in Revolt Over Pay](https://www.bloomberg.com/news/articles/2020-08-03/blizzard-workers-share-salaries-in-revolt-over-wage-disparities))
 
 The name of the data frame used for this analysis is `blizzard_salary` and the variables are:
 
--   `percent_incr`: Raise given in July 2020, as percent increase with values ranging from 1 (1% increase) to 21.5 (21.5% increase)
+-   `percent_incr`: Raise given in July 2020, as percent increase with values ranging from 0 (no increase) to 21.5 (21.5% increase)
 
 -   `salary_type`: Type of salary, with levels `Hourly` and `Salaried`
 
--   `annual_salary`: Annual salary, in USD, with values ranging from \$50,939 to \$216,856.
+-   `annual_salary`: Annual salary, in USD, with values ranging from \$1 to \$216,856.
 
 -   `performance_rating`: Most recent review performance rating, with levels `Poor`, `Successful`, `High`, and `Top`.
     The `Poor` level is the lowest rating and the `Top` level is the highest rating.
@@ -78,7 +78,9 @@ blizzard_salary |>
   select(percent_incr, salary_type, annual_salary, performance_rating)
 ```
 
-### Question 1
+{{< pagebreak >}}
+
+## Question 1
 
 You fit a model for predicting raises (`percent_incr`) from salaries (`annual_salary`). We'll call this model `raise_1_fit`. A tidy output of the model is shown below.
 
@@ -93,22 +95,34 @@ tidy(raise_1_fit)
 Which of the following is the best interpretation of the slope coefficient?
 
 a.  For every additional \$1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.55%.
+
 b.  For every additional \$1,000 of annual salary, the raise goes up by 0.0155%.
+
 c.  For every additional \$1,000 of annual salary, the model predicts the raise to be higher, on average, by 0.0155%.
+
 d.  For every additional \$1,000 of annual salary, the model predicts the raise to be higher, on average, by 1.87%.
 
-### Question 2
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(1cm)
+```
+:::
+
+## Question 2
 
 You then fit a model for predicting raises (`percent_incr`) from salaries (`annual_salary`) and performance ratings (`performance_rating`). We'll call this model `raise_2_fit`. Which of the following is definitely true based on the information you have so far?
 
 a.  Intercept of `raise_2_fit` is higher than intercept of `raise_1_fit`.
+
 b.  Slope of `raise_2_fit` is higher than RMSE of `raise_1_fit`.
+
 c.  Adjusted $R^2$ of `raise_2_fit` is higher than adjusted $R^2$ of `raise_1_fit`.
-d.  $R^2$ of `raise_2_fit` is higher $R^2$ of `raise_1_fit`.
+
+d.  $R^2$ of `raise_2_fit` is higher than $R^2$ of `raise_1_fit`.
 
 {{< pagebreak >}}
 
-### Question 3
+## Question 3
 
 The tidy model output for the `raise_2_fit` model you fit is shown below.
 
@@ -120,17 +134,19 @@ raise_2_fit <- linear_reg() |>
 tidy(raise_2_fit)
 ```
 
-When your teammate sees this model output, they remark 
+When your teammate sees this model output, they remark:
 
 > "The coefficient for `performance_ratingSuccessful` is negative. That's weird. I guess it means that people who get successful performance ratings get lower raises." 
 
 How would you respond to your teammate?
 
-::: {.content-visible when-format="pdf"}
-$\vspace{1.5cm}$
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(1.5cm)
+```
 :::
 
-### Question 4
+## Question 4
 
 Ultimately, your teammate decides they don't like the negative slope coefficients in the model output you created (not that there's anything wrong with negative slope coefficients!), does something else, and comes up with the following model output.
 
@@ -152,7 +168,7 @@ raise_2_fit <- linear_reg() |>
 tidy(raise_2_fit)
 ```
 
-Unfortunately they didn't write their code in a Quarto document, instead just wrote some code in the Console and then lost track of their work. They remember using the `fct_relevel()` function and doing something like the following:
+Unfortunately, they didn't write their code in a Quarto document; instead, they just wrote some code in the Console and then lost track of their work. They remember using the `fct_relevel()` function and doing something like the following:
 
 ```{r}
 #| eval: false
@@ -161,14 +177,14 @@ blizzard_salary <- blizzard_salary |>
   mutate(performance_rating = fct_relevel(performance_rating, ___))
 ```
 
-What should they put in the blanks to get the same model output as above?
+What should they put in the blank to get the same model output as above?
 
 a.  "Poor", "Successful", "High", "Top"
 b.  "Successful", "High", "Top"
 c.  "Top", "High", "Successful", "Poor"
 d.  Poor, Successful, High, Top
 
-### Question 5
+## Question 5
 
 Suppose we fit a model to predict `percent_incr` from `annual_salary` and `salary_type`. A tidy output of the model is shown below.
 
@@ -180,7 +196,7 @@ raise_3_fit <- linear_reg() |>
 tidy(raise_3_fit)
 ```
 
-Which of the following visualizations represent this model? Explain your reasoning.
+Which of the following visualizations represents this model? Explain your reasoning.
 
 ```{r}
 #| label: fig-raise-salary-type
@@ -215,6 +231,7 @@ ggplot(
   ) +
   scale_x_continuous(labels = label_dollar()) +
   scale_y_continuous(labels = label_percent(scale = 1)) +
+  scale_color_manual(values = c("cornflowerblue", "black")) +
   theme(legend.position = "top")
 
 ggplot(
@@ -230,76 +247,87 @@ ggplot(
   ) +
   labs(
     x = "Annual salary",
-    y = "Percent increase"
+    y = "Percent increase",
+    color = "Salary type",
+    linetype = "Salary type",
+    shape = "Salary type"
   ) +
   scale_x_continuous(labels = label_dollar()) +
   scale_y_continuous(labels = label_percent(scale = 1)) +
+  scale_color_manual(values = c("cornflowerblue", "black")) +
+  theme(legend.position = "top")
+
+raise_3_lines <- tibble(
+  salary_type = c("Hourly", "Salaried"),
+  slope = 0.0000137
+)
+
+ggplot(
+  blizzard_salary,
+  aes(x = annual_salary, y = percent_incr, color = salary_type)
+) +
+  geom_point(aes(shape = salary_type), alpha = 0.5, size = 2) +
+  geom_abline(
+    data = raise_3_lines |> mutate(intercept = c(1.24, 1.24 + 0.913)),
+    aes(
+      intercept = intercept,
+      slope = slope,
+      color = salary_type,
+      linetype = salary_type
+    ),
+    linewidth = 1.5
+  ) +
+  labs(
+    x = "Annual salary",
+    y = "Percent increase",
+    color = "Salary type",
+    linetype = "Salary type",
+    shape = "Salary type"
+  ) +
+  scale_x_continuous(labels = label_dollar()) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  scale_color_manual(values = c("cornflowerblue", "black")) +
   theme(legend.position = "top")
 
 ggplot(
   blizzard_salary,
   aes(x = annual_salary, y = percent_incr, color = salary_type)
 ) +
-  geom_point(
-    aes(shape = salary_type),
-    alpha = 0.5,
-    size = 2,
-    show.legend = FALSE
-  ) +
+  geom_point(aes(shape = salary_type), alpha = 0.5, size = 2) +
   geom_abline(
-    intercept = 1.24,
-    slope = 0.0000137,
-    color = "#E87d72",
-    linewidth = 1.5,
-    linetype = "solid"
-  ) +
-  geom_abline(
-    intercept = 1.24 + 0.913,
-    slope = 0.0000137,
-    color = "#56bcc2",
-    linewidth = 1.5,
-    linetype = "dashed"
-  ) +
-  labs(
-    x = "Annual salary",
-    y = "Percent increase",
-  ) +
-  scale_x_continuous(labels = label_dollar()) +
-  scale_y_continuous(labels = label_percent(scale = 1))
-
-ggplot(
-  blizzard_salary,
-  aes(x = annual_salary, y = percent_incr, color = salary_type)
-) +
-  geom_point(alpha = 0.5, size = 2, show.legend = FALSE) +
-  geom_abline(
-    intercept = 1.24,
-    slope = 0.0000137,
-    color = "#56bcc2",
-    linewidth = 1.5,
-    linetype = "dashed"
-  ) +
-  geom_abline(
-    intercept = 1.24 + 0.913,
-    slope = 0.0000137,
-    color = "#E87d72",
+    data = raise_3_lines |> mutate(intercept = c(1.24 + 0.913, 1.24)),
+    aes(
+      intercept = intercept,
+      slope = slope,
+      color = salary_type,
+      linetype = salary_type
+    ),
     linewidth = 1.5
   ) +
   labs(
     x = "Annual salary",
     y = "Percent increase",
+    color = "Salary type",
+    linetype = "Salary type",
+    shape = "Salary type"
   ) +
   scale_x_continuous(labels = label_dollar()) +
-  scale_y_continuous(labels = label_percent(scale = 1))
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  scale_color_manual(values = c("cornflowerblue", "black")) +
+  theme(legend.position = "top")
 ```
 
-::: {.content-visible when-format="pdf"}
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(2cm)
+```
+:::
+
+::: {.content-visible when-format="typst"}
 {{< pagebreak >}}
 :::
 
-{{< pagebreak >}}
-
-### Question 6
+## Question 6
 
 Suppose you now fit a model to predict the natural log of percent increase, `log(percent_incr)`, from performance rating. The model is called `raise_4_fit`.
 
@@ -327,27 +355,42 @@ c\. The model predicts that the percentage increase employees with Successful pe
 
 d\. The model predicts that the percentage increase employees with Successful performance get, on average, is higher by a factor of 6.93 compared to the employees with Poor performance rating.
 
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(1cm)
+```
+:::
+
+## Question 7
+
+Go back to the model `raise_1_fit` from Question 1, which predicts raises (`percent_incr`) from salaries (`annual_salary`).
+Interpret the intercept in the context of the data.
+
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(2cm)
+```
+:::
+
 {{< pagebreak >}}
 
 # Movies
 
-The data for this part comes from the Internet Movie Database (IMDB). Specifically, the data are a random sample of movies released between 1980 and 2020.
+The data for this part come from the Internet Movie Database (IMDB). Specifically, the data are a random sample of movies released between 1980 and 2020.
 
 ```{r}
 #| label: load-data
 #| message: false
-movies <- read_csv("data/movies.csv")
+movies <- read_csv(here::here("exam-review", "data/movies.csv"))
 ```
 
 The name of the data frame used for this analysis is `movies`, and it contains the variables shown in @tbl-data-dictionary.
-
-\setcounter{table}{0}
 
 | Variable          | Description                                                             |
 |----------------------|--------------------------------------------------|
 | `name`            | name of the movie                                                       |
 | `rating`          | rating of the movie (R, PG, etc.)                                       |
-| `genre`           | main genre of the movie.                                                |
+| `genre`           | main genre of the movie                                                 |
 | `runtime`         | duration of the movie                                                   |
 | `year`            | year of release                                                         |
 | `release_date`    | release date (YYYY-MM-DD)                                               |
@@ -364,7 +407,7 @@ The name of the data frame used for this analysis is `movies`, and it contains t
 
 : Data dictionary for `movies` {#tbl-data-dictionary tbl-colwidths="\[20,80\]"}
 
-The first thirty rows of the `movies` data frame are shown in @tbl-data, with variable types suppressed (since we'll ask about them later).
+The first thirty rows of the `movies` data frame are shown in @tbl-data, with variable types suppressed.
 
 {{< pagebreak >}}
 
@@ -451,6 +494,12 @@ options(
 In this part, we fit a model predicting `score` from `runtime` and name it `score_runtime_fit`.
 
 ```{r}
+#| include: false
+movies <- movies |>
+  mutate(runtime = parse_number(runtime))
+```
+
+```{r}
 #| echo: true
 score_runtime_fit <- linear_reg() |>
   fit(score ~ runtime, data = movies)
@@ -464,7 +513,6 @@ score_runtime_fit <- linear_reg() |>
 #| echo: false
 movies <- movies |>
   mutate(
-    runtime = parse_number(runtime),
     shape1 = case_when(
       name == movies_to_mark[1] ~ "circle",
       name == movies_to_mark[2] ~ "square",
@@ -512,9 +560,9 @@ ggplot(movies, aes(x = runtime, y = score)) +
 
 {{< pagebreak >}}
 
-### Question 7
+### Question 8
 
-Partial code for producing @fig-score-runtime is given below. Which of the following goes in the blank on Line 2? **Select all that apply.**
+Partial code for producing @fig-score-runtime is given below. Which of the following goes in the blank on Line 2?
 
 
 ```{r}
@@ -526,7 +574,7 @@ movies |>
   ggplot(aes(x = runtime, y = score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", se = FALSE)
-# additional code for annotating Blue City on the plot
+# additional code for annotating the labeled movies on the plot
 ```
 
 a.  `grepl(" mins", runtime)`
@@ -539,7 +587,13 @@ d.  `as.numeric(str_remove(runtime, " mins"))`
 
 e.  `na.rm(runtime)`
 
-### Question 8
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(1cm)
+```
+:::
+
+### Question 9
 
 Based on this model, order the three labeled movies in @fig-score-runtime in decreasing order of the magnitude (absolute value) of their residuals.
 
@@ -553,9 +607,13 @@ d.  Blue City \> Winter Sleep \> Rang De Basanti
 
 e.  Blue City \> Rang De Basanti \> Winter Sleep
 
-{{< pagebreak >}}
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(1cm)
+```
+:::
 
-### Question 9
+### Question 10
 
 ```{r}
 #| include: false
@@ -566,13 +624,15 @@ The R-squared for the model visualized in @fig-score-runtime is `{r} score_runti
 
 a.  `{r} score_runtime_rsq`% of the variability in movie runtimes is explained by their scores.
 
-b.  `{r} score_runtime_rsq`% of the variability in movie scores is explained by their runtime.
+b.  `{r} score_runtime_rsq`% of the variability in movie scores is explained by their runtimes.
 
 c.  The model accurately predicts scores of `{r} score_runtime_rsq`% of the movies in this sample.
 
 d.  The model accurately predicts scores of `{r} score_runtime_rsq`% of all movies.
 
 e.  The correlation between scores and runtimes of movies is `{r} score_runtime_rsq / 100`.
+
+{{< pagebreak >}}
 
 ## Score vs. runtime or year
 
@@ -582,6 +642,7 @@ The visualizations below show the relationship between `score` and `runtime` as 
 #| layout-ncol: 2
 #| echo: false
 #| message: false
+#| fig-asp: 0.5
 ggplot(movies, aes(x = runtime, y = score)) +
   geom_point(alpha = 0.5, color = "gray40") +
   geom_smooth(method = "lm", se = FALSE, color = "black", linewidth = 1.2)
@@ -616,10 +677,10 @@ movies |>
 # A tibble: 1 × 2
   r_score_runtime r_score_year
             <dbl>        <dbl>
-1           0.434. __blank_2__       
+1           0.434 __blank_2__       
 ```
 
-### Question 10
+### Question 11
 
 Which of the following goes in `__blank_1__`?
 
@@ -633,7 +694,13 @@ d.  `arrange`
 
 e.  `filter`
 
-### Question 11
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(0.5cm)
+```
+:::
+
+### Question 12
 
 What can we say about the value that goes in `__blank_2__`?
 
@@ -668,9 +735,13 @@ tidy(score_runtime_rating_fit) |>
   knitr::kable(digits = 3)
 ```
 
-\vspace{1cm}
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(1cm)
+```
+:::
 
-### Question 12
+### Question 13
 
 Which of the following is [**TRUE**]{.underline} about the intercept of `score_runtime_rating_fit`? **Select all that are true.**
 
@@ -684,9 +755,13 @@ d.  All else held constant, movies that are 0 minutes in length are predicted to
 
 e.  G-rated movies that are 0 minutes in length are predicted to score, on average, 4.525 points.
 
-{{< pagebreak >}}
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(0.5cm)
+```
+:::
 
-### Question 13
+### Question 14
 
 Which of the following is the [**best**]{.underline} interpretation of the slope of `runtime` in `score_runtime_rating_fit`?
 
@@ -700,11 +775,13 @@ d.  G-rated movies that are 0 minutes in length are predicted to score 0.021 poi
 
 e.  For each higher level of rating, the movie scores go up by 0.021 points on average.
 
-### Question 14
+{{< pagebreak >}}
+
+### Question 15
 
 Fill in the blank:
 
-> R-squared for `score_runtime_rating_fit` (the model predicting `score` from `runtime` and `rating`) \_\_\_\_\_\_\_\_\_ the R-squared the model `score_runtime_fit` (for predicting `score` from `runtime` alone).
+> R-squared for `score_runtime_rating_fit` (the model predicting `score` from `runtime` and `rating`) \_\_\_\_\_\_\_\_\_ the R-squared of the model `score_runtime_fit` (for predicting `score` from `runtime` alone).
 
 a.  is less than
 
@@ -716,9 +793,13 @@ d.  cannot be compared (based on the information provided) to
 
 e.  is both greater than and less than
 
-{{< pagebreak >}}
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(0.5cm)
+```
+:::
 
-### Question 15
+### Question 16
 
 The model `score_runtime_rating_fit` (the model predicting `score` from `runtime` and `rating`) can be visualized as parallel lines for each level of `rating`. Which of the following is the equation of the line for R-rated movies?
 
@@ -732,108 +813,238 @@ d.  $score = 4.525 + (0.021 - 0.257) \times runtime$
 
 e.  $\widehat{score} = (4.525 + 0.021) - 0.257 \times runtime$
 
-# Miscellaneous
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(0.5cm)
+```
+:::
 
-## Question 16
+### Question 17
 
-Which of the following is the definition of a regression model? Select all that apply.
+Answer the following based on @tbl-score-runtime-rating-tidy.
 
-a\. $\hat{y} = b_0 + b_1 X_1$
+```{r}
+#| include: false
+score_runtime_glance <- glance(score_runtime_fit)
+score_runtime_rating_glance <- glance(score_runtime_rating_fit)
+```
 
-b\. $y = \beta_0 + \beta_1 X_1$
+a.  Interpret the coefficient for `ratingR` in the context of the data.
 
-c\. $\hat{y} = \beta_0 + \beta_1 X_1 + \epsilon$
+b.  The R-squared of `score_runtime_fit` (predicting `score` from `runtime` alone) is `{r} round(score_runtime_glance$r.squared, 3)` and the R-squared of `score_runtime_rating_fit` (predicting `score` from `runtime` and `rating`) is `{r} round(score_runtime_rating_glance$r.squared, 3)`.
+    The adjusted R-squared values of these models are `{r} round(score_runtime_glance$adj.r.squared, 3)` and `{r} round(score_runtime_rating_glance$adj.r.squared, 3)`, respectively.
+    Your friend says, "R-squared went up when we added `rating`, so `rating` must be a useful predictor of score." Which statistic should be used to compare these two models?
+    Based on that statistic, which model would you choose, and why?
 
-d\. $y = \beta_0 + \beta_1 X_1 + \epsilon$
-
-## Question 17
-
-Define the term "parsimonious model".
-
-::: {.content-visible when-format="pdf"}
-$\vspace{2cm}$
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(2cm)
+```
 :::
 
 {{< pagebreak >}}
 
 # Building a spam filter
 
-The data come from incoming emails in David Diez's (one of the authors of OpenIntro textbooks) Gmail account for the first three months of 2012. All personally identifiable information has been removed. The dataset is called `email` and it's in the **openintro** package.
+The data come from incoming emails in David Diez's (one of the authors of the OpenIntro textbooks) Gmail account for the first three months of 2012. All personally identifiable information has been removed. The dataset is called `email` and it's in the **openintro** package.
 
 The outcome variable is `spam`, which takes the value `1` if the email is spam, `0` otherwise.
 
+The data are split into training and testing sets.
+
+```{r}
+#| echo: true
+set.seed(1234)
+email_split <- initial_split(email, prop = 0.7)
+email_training <- training(email_split)
+email_testing <- testing(email_split)
+```
+
 ## Question 18
 
-a.  What type of variable is `spam`?
-    What percent of the emails are spam?
+What percent of the emails are in the training set and what percent are in the testing set?
 
-b.  What type of variable is `dollar` - number of times a dollar sign or the word “dollar” appeared in the email?
-    Visualize and describe its distribution, supporting your description with the appropriate summary statistics.
+a. Training: 50%, Testing: 50%
 
-c.  Fit a logistic regression model predicting `spam` from `dollar`.
-    Then, display the tidy output of the model.
+b. Training: 70%, Testing: 30%
 
-d.  Using this model and the `predict()` function, predict the probability the email is spam if it contains 5 dollar signs.
-    Based on this probability, how does the model classify this email?
+c. Training: 75%, Testing: 25%
 
-::: callout-note
-To obtain the predicted probability, you can set the `type` argument in `predict()` to `"prob"`.
+d. Training: 30%, Testing: 70%
+
+e. Training: 80%, Testing: 20%
+
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(0.5cm)
+```
+:::
+
+## Question 19
+
+A model is fit predicting `spam` from `dollar`, `winner` (indicating whether "winner" appeared in the email: `"no"` or `"yes"`), and `urgent_subj` (whether the word "urgent" is in the subject of the email: `0` or `1`).
+We will call this model Model A (`email_fit_A`).
+The output of this model is shown below.
+
+```{r}
+#| echo: true
+email_fit_A <- logistic_reg() |>
+    fit(spam ~ dollar + winner + urgent_subj, data = email_training)
+
+tidy(email_fit_A)
+```
+
+Interpret the coefficients of the model.
+
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(2cm)
+```
+:::
+
+## Question 20
+
+Emails in the testing set are used to evaluate the performance of the model.
+
+```{r}
+#| echo: true
+email_aug_A <- augment(email_fit_A, new_data = email_testing)
+```
+
+Then, the following pipeline is run:
+
+```{r}
+#| echo: true
+email_aug_A |>
+    group_by(spam) |>
+    count(.pred_class)
+```
+
+Describe what each line of the pipeline does and what the pipeline computes.
+
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(3cm)
+```
+:::
+
+## Question 21
+
+There are four possible combinations of actual (`spam`) and predicted (`.pred_class`) classes, but the output of the pipeline in the previous question has only three rows.
+Which combination is missing, and why?
+
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(3cm)
+```
+:::
+
+## Question 22
+
+Based on the output of the pipeline in Question 20, show how you would calculate the false positive and false negative rates.
+You do not actually have to calculate the final numeric values, but you should show the formulas for how to compute them.
+
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(3cm)
+```
 :::
 
 {{< pagebreak >}}
 
-## Question 19
+## Question 23
 
-a.  Fit another logistic regression model predicting `spam` from `dollar`, `winner` (indicating whether “winner” appeared in the email), and `urgent_subj` (whether the word "urgent" is in the subject of the email).
-    Then, display the tidy output of the model.
+Another model is fit predicting `spam` from all variables in the dataset except `time` (the date and time the email was sent).
+We will call this model Model B (`email_fit_B`).
 
-b.  Using this model and the `augment()` function, classify each email in the `email` dataset as spam or not spam.
-    Store the resulting data frame with an appropriate name and display the data frame as well.
+```{r}
+#| echo: true
+#| warning: false
+# fmt: skip
+email_fit_B <- logistic_reg() |>
+    fit(
+        spam ~ to_multiple + from + cc + sent_email + image + attach + dollar + winner + inherit + viagra + password + num_char + line_breaks + format + re_subj + exclaim_subj + urgent_subj + exclaim_mess + number,
+        data = email_training
+    )
+```
 
-c.  Using your data frame from the previous part, determine, in a single pipeline, and using `count()`, the numbers of emails:
+Once again, this model is used to make predictions for the testing dataset.
 
-    -   that are labelled as spam that are actually spam
-    -   that are not labelled as spam that are actually spam
-    -   that are labelled as spam that are actually not spam
-    -   that are not labelled as spam that are actually not spam
+```{r}
+#| echo: true
+email_aug_B <- augment(email_fit_B, new_data = email_testing)
+```
 
-    Store the resulting data frame with an appropriate name and display the data frame as well.
+Shown below are the ROC curves for Model A and Model B.
 
-d.  In a single pipeline, and using `mutate()`, calculate the false positive and false negative rates.
-    In addition to these numbers showing in your R output, you must write a sentence that explicitly states and identified the two rates.
+```{r}
+#| echo: false
+email_roc_A <- roc_curve(
+    email_aug_A,
+    truth = spam,
+    .pred_1,
+    event_level = "second"
+)
+
+email_roc_B <- roc_curve(
+    email_aug_B,
+    truth = spam,
+    .pred_1,
+    event_level = "second"
+)
+
+email_roc_A <- email_roc_A |>
+    mutate(model = "Model A")
+email_roc_B <- email_roc_B |>
+    mutate(model = "Model B")
+
+bind_rows(
+    email_roc_A,
+    email_roc_B
+) |>
+    ggplot(aes(
+        x = 1 - specificity,
+        y = sensitivity,
+        color = model,
+        linetype = model
+    )) +
+    geom_path(linewidth = 1) +
+    geom_abline(lty = "dotted") +
+    scale_color_manual(
+        values = c("Model A" = "cornflowerblue", "Model B" = "black")
+    ) +
+    scale_linetype_manual(
+        values = c("Model A" = "solid", "Model B" = "dashed")
+    ) +
+    coord_equal() +
+    labs(
+        x = "________",
+        y = "________",
+        color = "Model",
+        linetype = "Model"
+    )
+```
+
+a.  Fill in the labels for the x and y axes in the ROC curve plot.
+
+b.  What does the diagonal dotted line in the ROC curve plot represent?
+
+c.  Based on the ROC curves, which model appears to have better classification ability? Justify your answer.
+
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(2cm)
+```
+:::
+
     
-{{< pagebreak >}}    
-
-## Question 20 
-
-a.  Fit another logistic regression model predicting `spam` from `dollar` and other variable(s) you think would be a good predictor.
-    Provide a 1-sentence justification for why you chose this variable.
-    Display the tidy output of the model.
-
-b.  Using this model and the `augment()` function, classify each email in the `email` dataset as spam or not spam.
-    Store the resulting data frame with an appropriate name and display the data frame as well.
-
-c.  Using your data frame from the previous part, determine, in a single pipeline, and using `count()`, the numbers of emails:
-
-    -   that are labelled as spam that are actually spam
-    -   that are not labelled as spam that are actually spam
-    -   that are labelled as spam that are actually not spam
-    -   that are not labelled as spam that are actually not spam
-
-    Store the resulting data frame with an appropriate name and display the data frame as well.
-
-d.  In a single pipeline, and using `mutate()`, calculate the false positive and false negative rates.
-    In addition to these numbers showing in your R output, you must write a sentence that explicitly states and identified the two rates.
-
-e.  Based on the false positive and false negatives rates of this model, comment, in 1-2 sentences, on which model (one from Question 19 or Question 20) is preferable and why.
-
-{{< pagebreak >}}
+{{< pagebreak >}} 
 
 # Web scraping
 
 In this part, we revisit the work we did scraping opinion articles from The Chronicle.
 
-## Question 21
+## Question 24
 
 Below is a simplified version of the HTML source code for one article listing on The Chronicle's opinion page.
 
@@ -856,7 +1067,7 @@ d.  `page |> html_elements(".title") |> html_attrs()`
 
 e.  `page |> html_elements("href") |> html_text()`
 
-## Question 22
+## Question 25
 
 You have a data frame called `chronicle` with 500 rows, one for each opinion article, and a column called `url` containing the URL of each article. You also have the following function, which takes the URL of a single article and returns the text of that article as a single character string.
 
@@ -882,3 +1093,29 @@ c.  `chronicle |> mutate(article_content = map_chr(scrape_article, url))`
 d.  `chronicle |> summarize(article_content = map_chr(url, scrape_article))`
 
 e.  `chronicle |> mutate(article_content = map(url, scrape_article))`
+
+{{< pagebreak >}}
+
+# Miscellaneous
+
+## Question 26
+
+Which of the following is the definition of a regression model? Select all that apply.
+
+a\. $\hat{y} = b_0 + b_1 X_1$
+
+b\. $y = \beta_0 + \beta_1 X_1$
+
+c\. $\hat{y} = \beta_0 + \beta_1 X_1 + \epsilon$
+
+d\. $y = \beta_0 + \beta_1 X_1 + \epsilon$
+
+## Question 27
+
+Define the term "parsimonious model".
+
+::: {.content-visible when-format="typst"}
+```{=typst}
+#v(2cm)
+```
+:::
