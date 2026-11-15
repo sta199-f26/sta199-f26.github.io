@@ -116,25 +116,25 @@ We have been studying regression:
 
 Numerical outcome and one numerical predictor:
 
-[![](19-logistic-regression-I_files/figure-html/dental-visits-1.png)](19-logistic-regression-I_files/figure-html/dental-visits-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/dental-visits-1.png)](19-logistic-regression-I_files/figure-revealjs/dental-visits-1.png)
 
 ## Recap: Simple linear regression
 
 Numerical outcome and one categorical predictor (two levels):
 
-[![](19-logistic-regression-I_files/figure-html/card-krueger-1.png)](19-logistic-regression-I_files/figure-html/card-krueger-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/card-krueger-1.png)](19-logistic-regression-I_files/figure-revealjs/card-krueger-1.png)
 
 ## Recap: Multiple linear regression
 
 Numerical outcome, numerical and categorical predictors:
 
-[![](19-logistic-regression-I_files/figure-html/md-tiers-loneliness-1.png)](19-logistic-regression-I_files/figure-html/md-tiers-loneliness-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/md-tiers-loneliness-1.png)](19-logistic-regression-I_files/figure-revealjs/md-tiers-loneliness-1.png)
 
 ## Today: a *binary* outcome
 
 \\ y = \begin{cases} 1 & &&\text{eg. Yes, Win, True, Heads, Success}\\ 0 & &&\text{eg. No, Lose, False, Tails, Failure}. \end{cases} \\
 
-[![](19-logistic-regression-I_files/figure-html/binary-outcome-scatter-1.png)](19-logistic-regression-I_files/figure-html/binary-outcome-scatter-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/binary-outcome-scatter-1.png)](19-logistic-regression-I_files/figure-revealjs/binary-outcome-scatter-1.png)
 
 ## Who cares?
 
@@ -174,17 +174,17 @@ If we can model the relationship between predictors (\\x\\) and a binary outcome
 
 ## How do we model this type of data?
 
-[![](19-logistic-regression-I_files/figure-html/unnamed-chunk-1-1.png)](19-logistic-regression-I_files/figure-html/unnamed-chunk-1-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-1-1.png)](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-1-1.png)
 
 ## Straight line of best fit is a little silly
 
-[![](19-logistic-regression-I_files/figure-html/unnamed-chunk-2-1.png)](19-logistic-regression-I_files/figure-html/unnamed-chunk-2-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-2-1.png)](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-2-1.png)
 
 ## Instead: S-curve of best fit
 
 Instead of modeling \\y\\ directly, we model the probability that \\y=1\\:
 
-[![](19-logistic-regression-I_files/figure-html/unnamed-chunk-3-1.png)](19-logistic-regression-I_files/figure-html/unnamed-chunk-3-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-3-1.png)](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-3-1.png)
 
 - “Given new email, what’s the probability that it’s spam?”
 - “Given new image, what’s the probability that it’s cancer?’’
@@ -221,11 +221,11 @@ This is called the *logistic regression* model.
 
 ## Probability to odds
 
-[![](19-logistic-regression-I_files/figure-html/unnamed-chunk-4-1.png)](19-logistic-regression-I_files/figure-html/unnamed-chunk-4-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-4-1.png)](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-4-1.png)
 
 ## Odds to log odds
 
-[![](19-logistic-regression-I_files/figure-html/unnamed-chunk-5-1.png)](19-logistic-regression-I_files/figure-html/unnamed-chunk-5-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-5-1.png)](19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-5-1.png)
 
 ## Participate 📱💻
 
@@ -244,7 +244,7 @@ Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
 
 ## Logistic regression
 
-\\ \log\left(\frac{p}{1-p}\right) = \beta_0+\beta_1x. \\
+\\ \log\left(\frac{p}{1-p}\right) = \beta_0+\beta_1x + \epsilon \\
 
 - The *logit* function \\\log(p / (1-p))\\ is an example of a *link function* that transforms the linear model to have an appropriate range
 
@@ -381,7 +381,7 @@ ggplot(
   facet_wrap(~called_26, nrow = 2, scales = "free_y")
 ```
 
-[![](19-logistic-regression-I_files/figure-html/flip-plot-1.png)](19-logistic-regression-I_files/figure-html/flip-plot-1.png)
+[![](19-logistic-regression-I_files/figure-revealjs/flip-plot-1.png)](19-logistic-regression-I_files/figure-revealjs/flip-plot-1.png)
 
 **Goal:** Predict whether a seat flips to Democrat based on Trump’s 2024 vote share for uncalled seats, using data from called seats.
 
