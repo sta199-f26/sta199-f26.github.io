@@ -201,11 +201,11 @@ Instead of modeling \\y\\ directly, we model the probability that \\y=1\\:
 
 It’s the *logistic function*:
 
-\\ \text{Prob}(y = 1) = \frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}. \\
+\\ \text{Prob}(y = 1) = \frac{e^{\beta_0+\beta_1x+\epsilon}}{1+e^{\beta_0+\beta_1x+\epsilon}} \\
 
 If you set \\p = \text{Prob}(y = 1)\\ and do some algebra, you get the simple linear model for the *log-odds*:
 
-\\ \log\left(\frac{p}{1-p}\right) = \beta_0+\beta_1x. \\
+\\ \log\left(\frac{p}{1-p}\right) = \beta_0+\beta_1x + \epsilon \\
 
 This is called the *logistic regression* model.
 

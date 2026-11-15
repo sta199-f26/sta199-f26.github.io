@@ -467,13 +467,13 @@ y
 <p><span class="math display">\[
 \text{Prob}(y = 1)
 =
-\frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}.
+\frac{e^{\beta_0+\beta_1x+\epsilon}}{1+e^{\beta_0+\beta_1x+\epsilon}}
 \]</span></p>
 <p>If you set <span class="math inline">\(p = \text{Prob}(y = 1)\)</span> and do some algebra, you get the simple linear model for the <em>log-odds</em>:</p>
 <p><span class="math display">\[
 \log\left(\frac{p}{1-p}\right)
 =
-\beta_0+\beta_1x.
+\beta_0+\beta_1x + \epsilon
 \]</span></p>
 <p>This is called the <em>logistic regression</em> model.</p>
 </section>

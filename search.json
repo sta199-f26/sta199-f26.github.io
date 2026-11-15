@@ -11776,7 +11776,7 @@
     "href": "slides/19-logistic-regression-I.html#so-what-is-this-s-curve-anyway",
     "title": "Logistic regression",
     "section": "So, what is this S-curve, anyway?",
-    "text": "So, what is this S-curve, anyway?\nIt’s the logistic function:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}.\n\\]\nIf you set \\(p = \\text{Prob}(y = 1)\\) and do some algebra, you get the simple linear model for the log-odds:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\\]\nThis is called the logistic regression model."
+    "text": "So, what is this S-curve, anyway?\nIt’s the logistic function:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x+\\epsilon}}{1+e^{\\beta_0+\\beta_1x+\\epsilon}}\n\\]\nIf you set \\(p = \\text{Prob}(y = 1)\\) and do some algebra, you get the simple linear model for the log-odds:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x + \\epsilon\n\\]\nThis is called the logistic regression model."
   },
   {
     "objectID": "slides/19-logistic-regression-I.html#log-odds",
@@ -12049,7 +12049,7 @@
     "href": "slides/19-logistic-regression-I-slides.html#so-what-is-this-s-curve-anyway",
     "title": "Logistic regression",
     "section": "So, what is this S-curve, anyway?",
-    "text": "So, what is this S-curve, anyway?\nIt’s the logistic function:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}.\n\\]\nIf you set \\(p = \\text{Prob}(y = 1)\\) and do some algebra, you get the simple linear model for the log-odds:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\\]\nThis is called the logistic regression model."
+    "text": "So, what is this S-curve, anyway?\nIt’s the logistic function:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x+\\epsilon}}{1+e^{\\beta_0+\\beta_1x+\\epsilon}}\n\\]\nIf you set \\(p = \\text{Prob}(y = 1)\\) and do some algebra, you get the simple linear model for the log-odds:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x + \\epsilon\n\\]\nThis is called the logistic regression model."
   },
   {
     "objectID": "slides/19-logistic-regression-I-slides.html#log-odds",
