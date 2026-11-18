@@ -8,9 +8,9 @@ Due: End of lab on Thurs, Nov 19
 
 # Introduction
 
-In this lab you’ll explore the relationship between distance and air time of flights out of RDU in 2024.
+In this lab, you’ll explore the relationship between distance and air time of flights out of RDU in 2024.
 
-And you’ll work in what’s considered a pretty unlikely situation: you have access to population data – all flights out of RDU in 2024! But we’ll ask you to pretend that you didn’t actually have access and you need to work with sample data. How? Hang in there, get the population data loaded first, then we’ll explain the next steps!
+And you’ll work in what’s considered a pretty unlikely situation: you have access to population data—all flights out of RDU in 2024! But we’ll ask you to pretend that you didn’t actually have access, and you need to work with sample data. How? Hang in there, get the population data loaded first, then we’ll explain the next steps!
 
 ## Getting started
 
@@ -46,12 +46,16 @@ Continuing to develop a sound workflow for reproducible data analysis is importa
 
 ## Packages
 
-In this lab we will work with the **tidyverse** and **tidymodels** packages.
+In this lab, we will work with the **tidyverse** and **tidymodels** packages.
 
 ``` downlit
 library(tidyverse)
 library(tidymodels)
 ```
+
+    Warning: package 'dials' was built under R version 4.6.2
+
+    Warning: package 'yardstick' was built under R version 4.6.2
 
 ## Population data
 
@@ -78,6 +82,16 @@ How does the slope estimate in your sample compare to that of others in your tea
 ## Question 4 - Quantify(ish) uncertainty
 
 Mark your slope estimate from Question 3 on the number line on the board. Then, based on the slope estimates from the entire class, determine a reasonable range of values for the estimate of the slope of the relationship between `distance` and `air_time`. How do you define “reasonable”?
+
+# One last thing…
+
+We’re working on a manuscript about experimenting with AI tools to support student learning, and we’d love to incorporate your feedback on your experience using Codex for homework feedback or other aspects of the course. We would be so appreciative if you would fill out the following anonymous survey:
+
+<https://forms.gle/pk88j5RXdFAs621k6Links>
+
+It should take no more than 5 minutes to complete.
+
+If you have any questions about the form or the project, we’re always happy to chat!
 
 # Wrap-up
 
