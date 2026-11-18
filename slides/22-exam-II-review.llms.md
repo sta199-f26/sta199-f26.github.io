@@ -97,16 +97,11 @@ library(tidymodels)
 
     ── Attaching packages ────────────────────────────────────── tidymodels 1.5.0 ──
     ✔ broom        1.0.13     ✔ rsample      1.3.2 
-    ✔ dials        1.4.5      ✔ tailor       0.1.0 
+    ✔ dials        1.4.4      ✔ tailor       0.1.0 
     ✔ infer        1.1.0      ✔ tune         2.1.0 
-    ✔ modeldata    1.6.0      ✔ workflows    1.3.0 
-    ✔ parsnip      1.6.1      ✔ workflowsets 1.1.1 
-    ✔ recipes      1.4.0      ✔ yardstick    1.5.0 
-
-    Warning: package 'dials' was built under R version 4.6.2
-
-    Warning: package 'yardstick' was built under R version 4.6.2
-
+    ✔ modeldata    1.5.1      ✔ workflows    1.3.0 
+    ✔ parsnip      1.6.0      ✔ workflowsets 1.1.1 
+    ✔ recipes      1.3.3      ✔ yardstick    1.4.0 
     ── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
     ✖ scales::discard() masks purrr::discard()
     ✖ dplyr::filter()   masks stats::filter()
