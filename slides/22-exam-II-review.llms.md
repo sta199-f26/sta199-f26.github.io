@@ -21,11 +21,11 @@ November 16, 2026
 
 We’re working on a manuscript about experimenting with AI tools to support student learning, and we’d love to incorporate your feedback on your experience using Codex for homework feedback or other aspects of the course. We would be so appreciative if you would fill out the following **anonymous** survey:
 
-<https://forms.gle/pk88j5RXdFAs621k6Links>
+`[LINK REMOVED AFTER CLASS]`
 
 It should take no more than 5 minutes to complete.
 
-[![](images/22/sta199-ai.svg)](images/22/sta199-ai.svg)
+`[QR CODE REMOVED AFTER CLASS]`
 
 If you have any questions about the form or the project, we’re always happy to chat!
 
@@ -97,11 +97,16 @@ library(tidymodels)
 
     ── Attaching packages ────────────────────────────────────── tidymodels 1.5.0 ──
     ✔ broom        1.0.13     ✔ rsample      1.3.2 
-    ✔ dials        1.4.4      ✔ tailor       0.1.0 
+    ✔ dials        1.4.5      ✔ tailor       0.1.0 
     ✔ infer        1.1.0      ✔ tune         2.1.0 
-    ✔ modeldata    1.5.1      ✔ workflows    1.3.0 
-    ✔ parsnip      1.6.0      ✔ workflowsets 1.1.1 
-    ✔ recipes      1.3.3      ✔ yardstick    1.4.0 
+    ✔ modeldata    1.6.0      ✔ workflows    1.3.0 
+    ✔ parsnip      1.6.1      ✔ workflowsets 1.1.1 
+    ✔ recipes      1.4.0      ✔ yardstick    1.5.0 
+
+    Warning: package 'dials' was built under R version 4.6.2
+
+    Warning: package 'yardstick' was built under R version 4.6.2
+
     ── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
     ✖ scales::discard() masks purrr::discard()
     ✖ dplyr::filter()   masks stats::filter()

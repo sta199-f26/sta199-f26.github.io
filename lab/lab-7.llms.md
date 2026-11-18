@@ -53,10 +53,6 @@ library(tidyverse)
 library(tidymodels)
 ```
 
-    Warning: package 'dials' was built under R version 4.6.2
-
-    Warning: package 'yardstick' was built under R version 4.6.2
-
 ## Population data
 
 The dataset, called `rdu-flights.csv`, can be found in the `data` folder.
@@ -82,16 +78,6 @@ How does the slope estimate in your sample compare to that of others in your tea
 ## Question 4 - Quantify(ish) uncertainty
 
 Mark your slope estimate from Question 3 on the number line on the board. Then, based on the slope estimates from the entire class, determine a reasonable range of values for the estimate of the slope of the relationship between `distance` and `air_time`. How do you define “reasonable”?
-
-# One last thing…
-
-We’re working on a manuscript about experimenting with AI tools to support student learning, and we’d love to incorporate your feedback on your experience using Codex for homework feedback or other aspects of the course. We would be so appreciative if you would fill out the following anonymous survey:
-
-<https://forms.gle/pk88j5RXdFAs621k6Links>
-
-It should take no more than 5 minutes to complete.
-
-If you have any questions about the form or the project, we’re always happy to chat!
 
 # Wrap-up
 

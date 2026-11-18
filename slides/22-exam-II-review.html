@@ -83,10 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-dark-757e8d9c1abd6803ea680dadaca4a347.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-89f96cf5b3abb0011cbad211bee919d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -140,7 +137,6 @@ window.Quarto = {
 </script>
 <meta property="og:title" content="Exam 2 Review – STA 199CCL">
 <meta property="og:description" content="Lecture 12">
-<meta property="og:image" content="https://sta199-f26.github.io/slides/images/22/sta199-ai.svg">
 <meta property="og:site_name" content="STA 199CCL">
 </head>
 <body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -641,10 +637,10 @@ window.Quarto = {
 <div class="columns">
 <div class="column" style="width:70%;">
 <p>We’re working on a manuscript about experimenting with AI tools to support student learning, and we’d love to incorporate your feedback on your experience using Codex for homework feedback or other aspects of the course. We would be so appreciative if you would fill out the following <strong>anonymous</strong> survey:</p>
-<p><a href="https://forms.gle/pk88j5RXdFAs621k6Links" class="uri">https://forms.gle/pk88j5RXdFAs621k6Links</a></p>
+<p><code>[LINK REMOVED AFTER CLASS]</code></p>
 <p>It should take no more than 5 minutes to complete.</p>
 </div><div class="column" style="width:30%;">
-<p><a href="images/22/sta199-ai.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/22/sta199-ai.svg" class="img-fluid"></a></p>
+<p><code>[QR CODE REMOVED AFTER CLASS]</code></p>
 </div>
 <p>If you have any questions about the form or the project, we’re always happy to chat!</p>
 <p>Prof.&nbsp;Çetinkaya-Rundel and <a href="https://mneubrander.github.io/">Marie Neubrander</a> (PhD student in Statistical Science)</p>
@@ -715,12 +711,20 @@ window.Quarto = {
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ────────────────────────────────────── tidymodels 1.5.0 ──
 ✔ broom        1.0.13     ✔ rsample      1.3.2 
-✔ dials        1.4.4      ✔ tailor       0.1.0 
+✔ dials        1.4.5      ✔ tailor       0.1.0 
 ✔ infer        1.1.0      ✔ tune         2.1.0 
-✔ modeldata    1.5.1      ✔ workflows    1.3.0 
-✔ parsnip      1.6.0      ✔ workflowsets 1.1.1 
-✔ recipes      1.3.3      ✔ yardstick    1.4.0 
-── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+✔ modeldata    1.6.0      ✔ workflows    1.3.0 
+✔ parsnip      1.6.1      ✔ workflowsets 1.1.1 
+✔ recipes      1.4.0      ✔ yardstick    1.5.0 </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dials' was built under R version 4.6.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'yardstick' was built under R version 4.6.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
 ✖ scales::discard() masks purrr::discard()
 ✖ dplyr::filter()   masks stats::filter()
 ✖ recipes::fixed()  masks stringr::fixed()
@@ -741,7 +745,7 @@ window.Quarto = {
 </ul>
 </div><div class="column" style="width:70%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cars_lin_fit</span> <span class="op">&lt;-</span> <span class="fu">linear_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cars_lin_fit</span> <span class="op">&lt;-</span> <span class="fu">linear_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tidy</span><span class="op">(</span><span class="va">cars_lin_fit</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -860,7 +864,7 @@ window.Quarto = {
 </div>
 <div class="column small" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    above_avg_mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
@@ -1154,7 +1158,7 @@ window.Quarto = {
 <p>Source: Practice exam Q19 and suggested answer (rounded coefficients).</p>
 </div>
 </section><section id="q21-the-missing-confusion-matrix-row" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="q21-the-missing-confusion-matrix-row">Q21: The missing confusion-matrix row</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">email_aug_A</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">email_aug_A</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">spam</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">.pred_class</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
@@ -1239,15 +1243,15 @@ window.Quarto = {
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Source: Lectures 11 and 13; AE 7–8 Chronicle scraping scripts; practice exam Q24–25.</p>
 </div></div></section><section id="q24-text-or-an-attribute" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="q24-text-or-an-attribute">Q24: Text or an attribute?</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"article-listing"</span><span class="dt">&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">"title"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/article/2026/09/duke-opinion-on-dining"</span><span class="dt">&gt;</span>On dining at Duke<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"byline"</span><span class="dt">&gt;</span>By Jane Doe<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"article-listing"</span><span class="dt">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">"title"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"/article/2026/09/duke-opinion-on-dining"</span><span class="dt">&gt;</span>On dining at Duke<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"byline"</span><span class="dt">&gt;</span>By Jane Doe<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="question">
 <p>How do we extract the article URL from <code>page</code>?</p>
 </div>
 <p><strong>Answer (b):</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu">html_elements</span><span class="op">(</span><span class="st">".title"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">html_attr</span><span class="op">(</span><span class="st">"href"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">page</span> <span class="op">|&gt;</span> <span class="fu">html_elements</span><span class="op">(</span><span class="st">".title"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">html_attr</span><span class="op">(</span><span class="st">"href"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>
 <code>.title</code> selects the element with <strong>class <code>title</code></strong>.</li>
@@ -1748,38 +1752,7 @@ window.Quarto = {
 <p>This page is built with <span style="color:#FFBE98;" aria-hidden="true"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
+</footer>
 
 
 </body></html>
