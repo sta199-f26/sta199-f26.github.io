@@ -85,7 +85,9 @@ Mark your slope estimate from Question 3 on the number line on the board. Then, 
 
 # One last thing…
 
-We’re working on a manuscript about experimenting with AI tools to support student learning, and we’d love to incorporate your feedback on your experience using Codex for homework feedback or other aspects of the course. We would be so appreciative if you would fill out the anonymous survey we shared with you as a Canvas announcement this morning.
+We’re working on a manuscript about experimenting with AI tools to support student learning, and we’d love to incorporate your feedback on your experience using Codex for homework feedback or other aspects of the course. We would be so appreciative if you would fill out the following anonymous survey:
+
+<https://forms.gle/pk88j5RXdFAs621k6Links>
 
 It should take no more than 5 minutes to complete.
 
