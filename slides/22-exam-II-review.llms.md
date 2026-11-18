@@ -1,6 +1,6 @@
 # Exam 2 Review
 
-Lecture 12
+Lecture 22
 
 Author
 
