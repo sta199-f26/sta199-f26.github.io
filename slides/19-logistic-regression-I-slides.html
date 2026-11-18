@@ -349,17 +349,17 @@ Course Code: HOUSECS 59 - 28<br>
 <h2>Recap: Simple linear regression</h2>
 <p>Numerical outcome and one numerical predictor:</p>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/dental-visits-1.png" width="960" class="r-stretch"></section>
+<img data-src="19-logistic-regression-I_files/figure-html/dental-visits-1.png" width="672" class="r-stretch"></section>
 <section id="recap-simple-linear-regression-1" class="slide level2">
 <h2>Recap: Simple linear regression</h2>
 <p>Numerical outcome and one categorical predictor (two levels):</p>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/card-krueger-1.png" width="960" class="r-stretch"></section>
+<img data-src="19-logistic-regression-I_files/figure-html/card-krueger-1.png" width="672" class="r-stretch"></section>
 <section id="recap-multiple-linear-regression" class="slide level2">
 <h2>Recap: Multiple linear regression</h2>
 <p>Numerical outcome, numerical and categorical predictors:</p>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/md-tiers-loneliness-1.png" width="1152" class="r-stretch"></section>
+<img data-src="19-logistic-regression-I_files/figure-html/md-tiers-loneliness-1.png" width="1152" class="r-stretch"></section>
 <section id="today-a-binary-outcome" class="slide level2 smaller">
 <h2>Today: a <em>binary</em> outcome</h2>
 <p><span class="math display">\[
@@ -370,7 +370,7 @@ y =
 \end{cases}
 \]</span></p>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/binary-outcome-scatter-1.png" width="960" class="r-stretch"></section>
+<img data-src="19-logistic-regression-I_files/figure-html/binary-outcome-scatter-1.png" width="960" class="r-stretch"></section>
 <section id="who-cares" class="slide level2">
 <h2>Who cares?</h2>
 <p>If we can model the relationship between predictors (<span class="math inline">\(x\)</span>) and a binary outcome (<span class="math inline">\(y\)</span>), we can use the model to do a special kind of prediction called <em>classification</em>.</p>
@@ -438,16 +438,16 @@ y
 <section id="how-do-we-model-this-type-of-data" class="slide level2">
 <h2>How do we model this type of data?</h2>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<img data-src="19-logistic-regression-I_files/figure-html/unnamed-chunk-1-1.png" width="672" class="r-stretch"></section>
 <section id="straight-line-of-best-fit-is-a-little-silly" class="slide level2">
 <h2>Straight line of best fit is a little silly</h2>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<img data-src="19-logistic-regression-I_files/figure-html/unnamed-chunk-2-1.png" width="672" class="r-stretch"></section>
 <section id="instead-s-curve-of-best-fit" class="slide level2 smaller">
 <h2>Instead: S-curve of best fit</h2>
 <p>Instead of modeling <span class="math inline">\(y\)</span> directly, we model the probability that <span class="math inline">\(y=1\)</span>:</p>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"><ul>
+<img data-src="19-logistic-regression-I_files/figure-html/unnamed-chunk-3-1.png" width="672" class="r-stretch"><ul>
 <li>“Given new email, what’s the probability that it’s spam?”</li>
 <li>“Given new image, what’s the probability that it’s cancer?’’</li>
 <li>“Given new loan application, what’s the probability that they default?’’</li>
@@ -493,11 +493,11 @@ y
 <section id="probability-to-odds" class="slide level2">
 <h2>Probability to odds</h2>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<img data-src="19-logistic-regression-I_files/figure-html/unnamed-chunk-4-1.png" width="672" class="r-stretch"></section>
 <section id="odds-to-log-odds" class="slide level2">
 <h2>Odds to log odds</h2>
 
-<img data-src="19-logistic-regression-I_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="19-logistic-regression-I_files/figure-html/unnamed-chunk-5-1.png" width="672" class="r-stretch"></section>
 <section id="participate" class="slide level2 xsmall">
 <h2>Participate 📱💻</h2>
 <div class="columns">
@@ -681,7 +681,7 @@ $ called_26      &lt;chr&gt; "uncalled", "called", "called", "called", "called",
 </details>
 
 </div>
-<img data-src="19-logistic-regression-I_files/figure-revealjs/flip-plot-1.png" width="960" class="r-stretch"><div class="task fragment">
+<img data-src="19-logistic-regression-I_files/figure-html/flip-plot-1.png" width="672" class="r-stretch"><div class="task fragment">
 <p><strong>Goal:</strong> Predict whether a seat flips to Democrat based on Trump’s 2024 vote share for uncalled seats, using data from called seats.</p>
 </div>
 </section>
@@ -1093,44 +1093,6 @@ e^{b_0}e^{b_1x}
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

@@ -11,3 +11,4 @@ More labs to be added as the semester progresses.
 | [Lab 4](lab/lab-4.llms.md) | JOINing the Olympic Gymnastics Committee | Due: End of lab on Thurs, Sep 24 |
 | [Lab 5](lab/lab-5.llms.md) | Make up your other half | Due: End of lab on Thurs, Oct 29 |
 | [Lab 6](lab/lab-6.llms.md) | \#canceled | Due: End of lab on Thurs, Nov 12 |
+| [Lab 7](lab/lab-7.llms.md) | Leavin’ on a jet plane, confidently | Due: End of lab on Thurs, Nov 19 |
