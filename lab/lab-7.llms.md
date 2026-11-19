@@ -53,10 +53,6 @@ library(tidyverse)
 library(tidymodels)
 ```
 
-    Warning: package 'dials' was built under R version 4.6.2
-
-    Warning: package 'yardstick' was built under R version 4.6.2
-
 ## Population data
 
 The dataset, called `rdu-flights.csv`, can be found in the `data` folder.
