@@ -443,7 +443,7 @@ It's the *logistic function*:
 $$
 \text{Prob}(y = 1)
 =
-\frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}.
+\frac{e^{\beta_0+\beta_1x+\epsilon}}{1+e^{\beta_0+\beta_1x+\epsilon}}
 $$
 
 If you set $p = \text{Prob}(y = 1)$ and do some algebra, you get the simple linear model for the *log-odds*:
@@ -451,7 +451,7 @@ If you set $p = \text{Prob}(y = 1)$ and do some algebra, you get the simple line
 $$
 \log\left(\frac{p}{1-p}\right)
 =
-\beta_0+\beta_1x.
+\beta_0+\beta_1x + \epsilon
 $$
 
 This is called the *logistic regression* model.
@@ -536,7 +536,7 @@ Go to [wooclap.com](https://app.wooclap.com/TCGEJHI) and use the code TCGEJHI.
 $$
 \log\left(\frac{p}{1-p}\right)
 =
-\beta_0+\beta_1x.
+\beta_0+\beta_1x + \epsilon
 $$
 
 -   The *logit* function $\log(p / (1-p))$ is an example of a *link function* that transforms the linear model to have an appropriate range

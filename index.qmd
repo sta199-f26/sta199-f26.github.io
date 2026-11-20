@@ -433,9 +433,13 @@ make_schedule_table("dark")
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.hash) return;
 
-  var anchors = Array.prototype.slice.call(
-    document.querySelectorAll(".week-anchor")
-  );
+  // The schedule is rendered twice (light and dark variants) and one copy is
+  // hidden, so only consider anchors in the table that is currently visible.
+  var anchors = Array.prototype.slice
+    .call(document.querySelectorAll(".week-anchor"))
+    .filter(function (a) {
+      return a.getClientRects().length > 0;
+    });
   if (!anchors.length) return;
 
   var now = new Date();
