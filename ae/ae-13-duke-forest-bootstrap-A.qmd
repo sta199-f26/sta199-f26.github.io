@@ -1,0 +1,260 @@
+---
+title: "AE 13: Houses in Duke Forest"
+subtitle: "Suggested answers"
+categories: 
+  - Application exercise
+  - Answers
+---
+
+::: callout-important
+These are suggested answers.
+This document should be used as reference only, it's not designed to be an exhaustive key.
+:::
+
+In this application exercise, we will use bootstrapping to construct confidence intervals.
+
+## Packages
+
+We will use **tidyverse** and **tidymodels** for data exploration and modeling, respectively, and the **openintro** package for the data, and the **knitr** package for formatting tables.
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse)
+library(tidymodels)
+library(openintro)
+library(knitr)
+```
+
+## Data
+
+The data are on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020.
+It was originally scraped from Zillow, and can be found in the `duke_forest` data set in the **openintro** R package.
+
+Take a `glimpse()` at the data to see what variables are available.
+
+```{r}
+#| label: glimpse-data
+glimpse(duke_forest)
+```
+
+## Model
+
+Fit a linear model predicting `price` from `area`, and display the model output in a neatly formatted table.
+
+```{r}
+#| label: fit-model
+df_fit <- linear_reg() |>
+  fit(price ~ area, data = duke_forest)
+
+tidy(df_fit) |>
+  kable(digits = 2)
+```
+
+## Bootstrap confidence interval
+
+### 1. Calculate the observed fit (slope)
+
+Using functions from the **infer** package, calculate the observed fit from the original sample.
+The slope from this fit is the point estimate we'll build our confidence intervals around.
+
+```{r}
+#| label: observed-fit
+observed_fit <- duke_forest |>
+  specify(price ~ area) |>
+  fit()
+
+observed_fit
+```
+
+### 2. Take *n* bootstrap samples and fit models to each one.
+
+Fill in the code, then set `eval: true` .
+
+```{r}
+#| label: bootstrap
+#| eval: true
+n <- 1000
+set.seed(20261123)
+
+boot_fits <- duke_forest |>
+  specify(price ~ area) |>
+  generate(reps = n, type = "bootstrap") |>
+  fit()
+
+boot_fits
+```
+
+-   Make a histogram of the bootstrap samples to visualize the bootstrap distribution.
+
+```{r}
+#| label: boot-hist
+#| fig-asp: 0.4
+boot_fits |>
+  filter(term == "area") |>
+  ggplot(aes(x = estimate)) +
+  geom_histogram(binwidth = 10)
+```
+
+-   A handy shortcut to visualize the bootstrap distribution is to use the `visualize()` function from the **infer** package.
+    Use it to visualize the bootstrap distribution.
+
+```{r}
+#| label: boot-visualize
+visualize(boot_fits)
+```
+
+### 3. Compute the 95% confidence interval
+
+#### 3a. Percentile method
+
+The percentile method constructs a confidence interval by taking the middle 95% of the bootstrap distribution of the slope.
+
+Fill in the code, then set `eval: true` .
+
+```{r}
+#| label: calc-ci
+#| eval: true
+ci_percentile <- get_confidence_interval(
+  boot_fits,
+  point_estimate = observed_fit,
+  level = 0.95,
+  type = "percentile"
+)
+
+ci_percentile
+```
+
+-   Visualize the bootstrap distribution with the confidence interval shaded, by adding `shade_confidence_interval()` to the output of `visualize()`.
+
+Fill in the code, then set `eval: true` .
+
+```{r}
+#| label: ci-percentile-viz
+#| eval: true
+visualize(boot_fits) +
+  shade_confidence_interval(endpoints = ci_percentile)
+```
+
+#### 3b. Standard error method
+
+Another way to construct a confidence interval is to go a certain number of standard errors away from the observed slope in each direction:
+
+$$
+\text{point estimate} \pm z^* \times SE
+$$
+
+where $SE$ is the **bootstrap standard error**, the standard deviation of the bootstrapped slopes, and $z^*$ depends on the confidence level (about 2, more precisely 1.96, for a 95% confidence interval).
+
+::: callout-note
+## Bootstrap standard error vs. `std.error` in the regression output
+
+The bootstrap standard error is the standard deviation of the bootstrap distribution of the slope.
+It estimates the same thing as the `std.error` column in the regression output from `tidy(df_fit)`: how much the slope would vary from one sample to another.
+The difference is in how it's calculated: the bootstrap standard error is calculated **computationally**, by resampling the data many times, while the `std.error` in the regression output is calculated with a **theoretical** (mathematical) formula.
+:::
+
+-   Calculate the bootstrap standard error as the standard deviation of the bootstrap distribution of the slope.
+
+Fill in the code, then set `eval: true` .
+
+```{r}
+#| label: boot-se
+#| eval: true
+boot_fits |>
+  ungroup() |> # boot_fits is grouped by replicate, ungroup to summarize across all
+  filter(term == "area") |>
+  summarize(se = sd(estimate))
+```
+
+But you don't need to directly calculate this, `get_confidence_interval()` can do it for you using the standard error method.
+
+Fill in the code, then set `eval: true` .
+
+```{r}
+#| label: calc-ci-se
+#| eval: true
+ci_se <- get_confidence_interval(
+  boot_fits,
+  point_estimate = observed_fit,
+  level = 0.95,
+  type = "se"
+)
+
+ci_se
+```
+
+-   Visualize the confidence interval calculated with the standard error method on the bootstrap distribution, as you did for the percentile method.
+
+```{r}
+#| label: ci-se-viz
+visualize(boot_fits) +
+  shade_confidence_interval(endpoints = ci_se)
+```
+
+-   Visualize both intervals on the same plot to compare them, with the standard error interval outlined in red and the percentile interval outlined in blue.
+    Setting `fill = NULL` draws only the endpoints, without shading, so the two intervals don't cover each other.
+
+Fill in the code, then set `eval: true` .
+
+```{r}
+#| label: ci-compare-viz
+#| eval: true
+visualize(boot_fits) +
+  shade_confidence_interval(
+    endpoints = ci_se,
+    color = "red",
+    fill = NULL
+  ) +
+  shade_confidence_interval(
+    endpoints = ci_percentile,
+    color = "blue",
+    fill = NULL
+  )
+```
+
+-   How does this interval compare to the one you calculated with the percentile method in Step 3a?
+
+The two intervals are similar, but not identical.
+The standard error method gives an interval that is symmetric around the observed slope, while the percentile method uses the middle 95% of the bootstrap distribution, so it doesn't have to be symmetric.
+
+## Changing confidence level
+
+- Modify the code from Step 3a to create a 90% confidence interval.
+
+```{r}
+#| label: 90-ci
+get_confidence_interval(
+  boot_fits,
+  point_estimate = observed_fit,
+  level = 0.90,
+  type = "percentile"
+)
+```
+
+- Modify the code from Step 3a to create a 99% confidence interval.
+
+```{r}
+#| label: 99-ci
+get_confidence_interval(
+  boot_fits,
+  point_estimate = observed_fit,
+  level = 0.99,
+  type = "percentile"
+)
+```
+
+-   Which confidence level produces the most accurate confidence interval (90%, 95%, 99%)?
+    Explain.
+
+99% -- highest confidence.
+
+-   Which confidence level produces the most precise confidence interval (90%, 95%, 99%)?
+    Explain.
+
+90% -- narrowest interval.
+
+-   If we want to be very certain that we capture the population parameter, should we use a wider or a narrower interval?
+    What drawbacks are associated with using a wider interval?
+
+A wider interval increases the likelihood of capturing the population parameter, but it is less precise and may be less informative.

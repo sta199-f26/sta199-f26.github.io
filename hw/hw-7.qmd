@@ -1,9 +1,281 @@
 ---
 title: HW 7
-subtitle: To be posted 
+subtitle: Weighing the evidence
 description: "Due: Wed, Dec 2, 11:59 pm"
 categories: HW
 filters:
   - ../remove-fmt-skip.lua
 draft: true
 ---
+
+# Introduction
+
+In this homework, you will use simulation-based inference to study lemur weights and birth outcomes.
+You will begin by using randomization tests and bootstrap confidence intervals to compare the mean and median weights of female and male lemurs.
+Next, you will prepare and explore birth records, evaluate a potentially misleading visualization, and use bootstrapping to quantify uncertainty in regression slopes.
+
+## Learning objectives
+
+By the end of this homework, you will:
+
+- conduct and interpret simulation-based hypothesis tests for differences in means and medians;
+- construct and interpret bootstrap confidence intervals and connect them to hypothesis tests;
+- prepare data by handling missing values and recoding categorical variables;
+- create and critically evaluate tables and visualizations of conditional distributions; and
+- use bootstrap confidence intervals to conduct inference for slopes in regression models with one or more predictors.
+
+## Guidelines
+
+By now you should be familiar with guidelines for homework assignments.
+If not, please refer to an earlier homework assignment for details.
+
+## AI support and feedback
+
+{{< include _ai-support-feedback.qmd >}}
+
+# Packages
+
+You will use the [**tidyverse**](https://www.tidyverse.org/packages), [**tidymodels**](https://www.tidymodels.org/), and [**knitr**](https://yihui.org/knitr/) packages for this homework, at a minimum.
+
+```{r}
+#| message: false
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+```
+
+# Part 1 - Lemurs
+
+Questions 1 and 2 use data from the Duke Lemur Center.
+Read `lemurs.csv` from your `data` folder and save it as `lemurs`.
+You will compare weights (`weight_g`, measured in grams) between female and male lemurs (`sex`).
+
+## Question 1
+
+The goal of this question is to answer the following research question:
+
+> Do female lemurs differ in weight from male lemurs, on average?
+
+More specifically, we want to answer whether the data provide convincing evidence of a discernible difference between the average weights of female and male lemurs.
+
+a.  Conduct a hypothesis test to answer this question at 5% discernability level.
+    Clearly state your hypotheses in the context of the data and the research question, simulate a randomization distribution, find the p-value, and make a decision on your hypotheses based on this p-value.
+    Provide a one-sentence conclusion for your hypothesis test in the context of the data and the research question.
+    Don’t forget to set a seed and use 1,000 resamples (`reps = 1000`) when simulating your randomization distribution.
+
+b.  Based on your answer to part (a), would you expect a 95% confidence interval for the difference in means of female and male lemurs to include 0?
+    Explain your reasoning.
+
+c.  Construct and interpret a 95% bootstrap confidence interval for the difference in means of female and male lemurs.
+    Does it include 0?
+    Does this align with your answer to part (b)?
+    Don’t forget to set a seed and use 1,000 resamples (`reps = 1000`) when simulating your bootstrap distribution.
+
+## Question 2
+
+The goal of this question is to answer the following research question:
+
+> Does the median weight of female lemurs differ from that of male lemurs?
+
+More specifically, we want to answer whether the data provide convincing evidence of a discernible difference between the median weights of female and male lemurs.
+
+a.  Conduct a hypothesis test to answer this question at 5% discernability level.
+    Clearly state your hypotheses in the context of the data and the research question, simulate a randomization distribution, find the p-value, and make a decision on your hypotheses based on this p-value.
+    Provide a one-sentence conclusion for your hypothesis test in the context of the data and the research question.
+    Don’t forget to set a seed and use 1,000 resamples (`reps = 1000`) when simulating your randomization distribution.
+
+b.  Based on your answer to part (a), would you expect a 95% confidence interval for the difference in medians of female and male lemurs to include 0?
+    Explain your reasoning.
+
+c.  Construct and interpret a 95% bootstrap confidence interval for the difference in medians of female and male lemurs.
+    Does it include 0?
+    Does this align with your answer to part (b)?
+    Don’t forget to set a seed and use 1,000 resamples (`reps = 1000`) when simulating your bootstrap distribution.
+
+::: openai
+This would be a good time to get feedback from AI if you haven't already!
+Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
+Revise your answers based on the feedback before moving on.
+:::
+
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+:::
+
+# Part 2 - Babies
+
+Every year, the US releases to the public a large dataset containing information on births recorded in the country.
+This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children.[^1]
+This is a random sample of 1,000 cases from the dataset released in 2014.
+
+[^1]: United States Department of Health and Human Services.
+    Centers for Disease Control and Prevention.
+    National Center for Health Statistics.
+    Natality Detail File, 2014 United States.
+    Inter-university Consortium for Political and Social Research, 2016-10-07.
+    doi:10.3886/ICPSR36461.v1.
+
+The data are available in your `data` folder in `births14.csv`.
+Questions 3-10 use these data.
+
+The variables in the data are as follows:
+
+-   `fage`: Father's age in years.
+-   `mage`: Mother's age in years.
+-   `mature`: Maturity status of mother.
+-   `weeks`: Length of pregnancy in weeks.
+-   `premie`: Whether the birth was classified as premature (premie) or full-term.
+-   `visits`: Number of hospital visits during pregnancy.
+-   `gained`: Weight gained by mother during pregnancy in pounds.
+-   `weight`: Weight of the baby at birth in pounds.
+-   `lowbirthweight`: Whether baby was classified as low birthweight (low) or not (⁠not low⁠).
+-   `sex`: Sex of the baby, female or male.
+-   `habit`: Status of the mother as a nonsmoker or a smoker.
+-   `marital`: Whether mother is married or ⁠not married⁠ at birth.
+-   `whitemom`: Whether mom is white or ⁠not white⁠.
+
+## Question 3
+
+In this question you start exploring the data to make decisions about how to prepare it for the analysis.
+
+First, read the data in and store it as `births14_raw`.
+
+Then, in a single pipeline, filter for any rows of the `births14_raw` data frame where one or more of the following variables has an `NA` value: `mage`, `weight`, `habit`, `mature`, `lowbirthweight`, then select only these five variables to display.
+
+## Question 4
+
+In this question you start your data prep.
+
+In a single pipeline, remove any rows of the `births14_raw` data frame with `NA` values among those you identified as having `NA` values in the previous question, and save the results as `births14`.
+
+Then, find and state the numbers of rows and columns of `births14`.
+
+::: callout-tip
+You should end up with 981 rows.
+If you do not, revisit your earlier work to make sure you have removed all rows with `NA` values in any of the specified columns.
+:::
+
+## Question 5
+
+This question walks you through an exploration of a threshold used when the data set was put together.
+
+One of the variables in the data is `mature`, indicating whether the mom is considered "mature" or "younger".
+This categorization is based on a medical threshold used for pregnancies.
+Using the data alone (not medical knowledge or external resources), determine the threshold age used to categorize moms as "mature" vs. "younger".
+Describe your process, include any evidence (summary statistics and/or visualization), and clearly state the threshold you determined.
+
+## Question 6
+
+This question walks you through an exploration of another threshold used when the data set was put together.
+
+Another variable in the data is `lowbirthweight`, indicating whether the baby's weight is considered "low" or "not low" at birth.
+This categorization is based on a medical threshold used for births.
+Using the data alone (not medical knowledge or external resources), determine the threshold weight used to categorize baby weights as "low" vs. "not low".
+Describe your process, include any evidence (summary statistics and/or visualization), and clearly state the threshold you determined.
+
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+:::
+
+## Question 7
+
+In this question you finish up your data prep for the remaining steps of the analysis.
+
+In a single pipeline, recode the variables `mature`, `habit`, and `lowbirthweight` in the `births14` data frame as follows:
+
+-   `mature` : "mature mom" → "35 and over", "younger mom" → "34 and under"
+-   `habit` : "smoker" → "Smoker", "nonsmoker" → "Non-smoker"
+-   `lowbirthweight` : "low" → "Low", "not low" → "Not low"
+
+In that same pipeline, relocate these three variables to be the first three columns of the data frame.
+
+Save the result back to `births14` and display the first 10 rows (and however many columns fit across the page) of `births14`.
+
+## Question 8
+
+This question explores low birth weight prevalence.
+
+Your fellow researchers are interested in exploring how the baby weight at birth varies by characteristics of the mother.
+
+a.  One researcher in your group made a summary table that shows the number of low birth weight babies for every possible combination of mother's `mature` and `habit` status. The table is shown below. Recreate this table in a single pipeline. Make sure to get the caption, table number, and column names exactly right.
+
+    ![](images/hw-7/table-to-recreate.png){width="80%"}
+
+b.  Another researcher in the group made the barplot below that shows the distribution of low birth weight babies conditional on mother's age and smoking status. Recreate this visualization, paying attention to all details, including figure width and aspect ratio (which you don't need to get exactly right, but you should strive to get close).
+
+    ![](images/hw-7/plot-to-recreate.png){width="80%"}
+
+c.  Refer back to the visualization you recreated in part (b), in light of the numbers in the table you recreated in part (a).
+    What is misleading about the visualization?
+    Explain in 1-2 sentences.
+
+d.  Update the visualization to correct the issue you identified in part (c).
+    Briefly explain what you did to fix the issue and what the new visualization shows.
+    Note that there are a few ways you can address the issue, but you should select the best option.
+
+## Question 9
+
+In this question you will conduct inference for a slope in a model with a single predictor.
+
+a.  Fit a model for predicting baby weight (`weight`) from mother's age category (`mature`).
+    Display the tidy model output.
+
+b.  Construct a 95% confidence interval for the slope of the model from part (a), using bootstrapping with 1,000 resamples and the percentile method.
+    Display the bounds of the interval and interpret it in the context of the data and the research question.
+
+c.  Visualize the bootstrap distribution you used to construct the confidence interval.
+    Comment on its shape and center.
+
+d.  Based on your interval from part (b), do these data provide convincing evidence of a discernible difference between the average weights of babies born to mothers who are 35 years and older vs. those born to mothers who are 34 years and younger?
+    Explain your reasoning.
+    Note: You do not need to conduct a hypothesis test to answer this question, justify your answer with your confidence interval only.
+
+## Question 10
+
+In this question you will conduct inference for slopes in a model with two predictors.
+
+a.  Fit a model for predicting baby weight (`weight`) from mother's age (`mage`) and smoking status (`habit`).
+    Display the tidy model output.
+
+b.  Construct 95% confidence intervals for the slopes of the model from part (a), using bootstrapping with 1,000 resamples and the percentile method.
+    Display the bounds of the intervals and interpret them in the context of the data and the research question.
+
+c.  Visualize the bootstrap distributions you used to construct the confidence intervals.
+    Comment on their shapes and centers.
+
+::: openai
+Get feedback from AI if you haven't already!
+Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
+Revise your answers based on the feedback before moving on.
+:::
+
+# AI use disclosure
+
+{{< include _ai-disclosure.qmd >}}
+
+# Wrap-up
+
+::: source-control
+Before you wrap up the assignment, make sure that you preview, commit, and push one final time so that the final versions of both your `.qmd` file and the rendered PDF are pushed to GitHub, and your source control pane is empty.
+We will be checking these to make sure you have been practicing committing and pushing changes.
+:::
+
+## Submission
+
+{{< include _submission.qmd >}}
+
+## Grading and feedback
+
+You can get immediate feedback on all of the questions with AI.
+
+Submit your final version of `hw-7.pdf` to Gradescope.
+Be sure to select the pages associated with each question.
+
+A subset of the questions will be carefully graded for correctness and quality of explanation by the course instructional team.
+You will receive that feedback in about a week.
+
+There are also workflow points for:
+
+- committing at least three times as you work through your homework,
+- having your final version of `.qmd` and `.pdf` files in your GitHub repository, and
+- overall organization.
