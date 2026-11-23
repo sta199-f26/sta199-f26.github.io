@@ -38,13 +38,6 @@ Find range of plausible values for the slope using bootstrap confidence interval
 # load packages
 library(tidyverse) # for data wrangling and visualization
 library(tidymodels) # for modeling
-```
-
-    Warning: package 'dials' was built under R version 4.6.2
-
-    Warning: package 'yardstick' was built under R version 4.6.2
-
-``` downlit
 library(scales) # for pretty axis labels
 library(knitr) # for neatly formatted tables
 ```
