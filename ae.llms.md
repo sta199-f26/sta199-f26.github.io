@@ -25,3 +25,5 @@ More AEs to be added as the semester progresses.
 | [AE 11: Predicting Dem flips](ae/ae-11-dem-flips-logistic.llms.md) |   |
 | [AE 12: Chicago taxi classification](ae/ae-12-chicago-taxi-classification-A.llms.md) | Suggested answers |
 | [AE 12: Chicago taxi classification](ae/ae-12-chicago-taxi-classification.llms.md) |   |
+| [AE 13: Houses in Duke Forest](ae/ae-13-duke-forest-bootstrap-A.llms.md) | Suggested answers |
+| [AE 13: Houses in Duke Forest](ae/ae-13-duke-forest-bootstrap.llms.md) |   |
