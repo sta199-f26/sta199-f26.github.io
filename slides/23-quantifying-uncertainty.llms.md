@@ -17,6 +17,14 @@ November 16, 2026
 
 # Warm-up
 
+## Participate 📱💻
+
+How many people do you think will be in class today?
+
+[![QR code for Wooclap](images/23/wooclap-qr.png)](images/23/wooclap-qr.png)
+
+Go to [wooclap.com](https://app.wooclap.com/SAXPGIL) and use the code SAXPGIL.
+
 ## Announcements
 
 - HW 7 will be posted tomorrow, due Wednesday Dec 2

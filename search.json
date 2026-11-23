@@ -14,6 +14,13 @@
     "text": "What makes the course stimulating\n49 of 66 students entered text; this excludes entries such as no comment or N/A.\n\nHands-on work is the main source of engagement: Application exercises, labs, live coding, homework, and the project were the most consistent positive themes.\nContext matters: Students valued real-world data, varied examples, collaboration, and the freedom to work with personally interesting project data.\nWays to increase engagement: Suggestions included more active coding and interaction during lecture, clearer bridges from concepts to complete examples, and more in-class questions that resemble assessment tasks.\nSources of friction: A smaller group described lectures as hard to follow or less efficient than independent review, and some found readings and videos repetitive.\n\nThese are aggregate, paraphrased themes; no individual response is quoted."
   },
   {
+    "objectID": "slides/23-quantifying-uncertainty-slides.html#participate",
+    "href": "slides/23-quantifying-uncertainty-slides.html#participate",
+    "title": "Quantifying uncertainty",
+    "section": "Participate 📱💻",
+    "text": "Participate 📱💻\n\n\n\nHow many people do you think will be in class today?\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SAXPGIL."
+  },
+  {
     "objectID": "slides/23-quantifying-uncertainty-slides.html#announcements",
     "href": "slides/23-quantifying-uncertainty-slides.html#announcements",
     "title": "Quantifying uncertainty",
@@ -63,8 +70,8 @@
     "text": "Quantify the variability of the slope\nfor estimation\n\nTwo approaches:\n\nVia simulation (what we’ll do in this course)\nVia mathematical models (what you can learn about in future courses)\n\nBootstrapping to quantify the variability of the slope for the purpose of estimation:\n\nBootstrap new samples from the original sample\nFit models to each of the samples and estimate the slope\nUse features of the distribution of the bootstrapped slopes to construct a confidence interval"
   },
   {
-    "objectID": "slides/23-quantifying-uncertainty-slides.html#participate",
-    "href": "slides/23-quantifying-uncertainty-slides.html#participate",
+    "objectID": "slides/23-quantifying-uncertainty-slides.html#participate-1",
+    "href": "slides/23-quantifying-uncertainty-slides.html#participate-1",
     "title": "Quantifying uncertainty",
     "section": "Participate 📱💻",
     "text": "Participate 📱💻\n\n\n\nDo you think there’s a relationship between screen time and sleep duration? If so, in which direction?\n\n\nYes, positive: more screen time, more sleep\nYes, negative: more screen time, less sleep\nNo, there’s no relationship\nNot sure\n\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SAXPGIL."
@@ -147,8 +154,8 @@
     "text": "95% confidence interval\n\nboot_fits |&gt;\n  get_confidence_interval(\n    point_estimate = obs_fit,\n    level = 0.95,\n    type = \"percentile\"\n  ) |&gt;\n  kable(digits = 2)\n\n\n\n\nterm\nlower_ci\nupper_ci\n\n\n\n\nintercept\n3.80\n7.86\n\n\nscreen\n-0.09\n0.53\n\n\n\n\n\n\n\nFill in the blanks: We are 95% confident that for each additional hour of daily screen time, the model predicts students’ nightly sleep to be ___ to ___ hours, on average."
   },
   {
-    "objectID": "slides/23-quantifying-uncertainty-slides.html#participate-1",
-    "href": "slides/23-quantifying-uncertainty-slides.html#participate-1",
+    "objectID": "slides/23-quantifying-uncertainty-slides.html#participate-2",
+    "href": "slides/23-quantifying-uncertainty-slides.html#participate-2",
     "title": "Quantifying uncertainty",
     "section": "Participate 📱💻",
     "text": "Participate 📱💻\n\n\n\nThe interval includes 0, what does that tell us?\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SAXPGIL."
@@ -165,7 +172,14 @@
     "href": "slides/23-quantifying-uncertainty.html",
     "title": "Quantifying uncertainty",
     "section": "",
-    "text": "HW 7 will be posted tomorrow, due Wednesday Dec 2\n\nFinal exam week:\n\nReview session (optional): Monday, Dec 7, 10 am - 11:15 am\nOffice hours schedule will look different (to provide more timely help + accommodate TAs’ final exam schedules), to be posted next week"
+    "text": "How many people do you think will be in class today?\n\n\n\n\n\n\nGo to wooclap.com and use the code SAXPGIL.\n\n\n\n\nHW 7 will be posted tomorrow, due Wednesday Dec 2\n\nFinal exam week:\n\nReview session (optional): Monday, Dec 7, 10 am - 11:15 am\nOffice hours schedule will look different (to provide more timely help + accommodate TAs’ final exam schedules), to be posted next week"
+  },
+  {
+    "objectID": "slides/23-quantifying-uncertainty.html#participate",
+    "href": "slides/23-quantifying-uncertainty.html#participate",
+    "title": "Quantifying uncertainty",
+    "section": "",
+    "text": "How many people do you think will be in class today?\n\n\n\n\n\n\nGo to wooclap.com and use the code SAXPGIL."
   },
   {
     "objectID": "slides/23-quantifying-uncertainty.html#announcements",
@@ -217,8 +231,8 @@
     "text": "Quantify the variability of the slope\nfor estimation\n\n\nTwo approaches:\n\nVia simulation (what we’ll do in this course)\nVia mathematical models (what you can learn about in future courses)\n\n\n\nBootstrapping to quantify the variability of the slope for the purpose of estimation:\n\nBootstrap new samples from the original sample\nFit models to each of the samples and estimate the slope\nUse features of the distribution of the bootstrapped slopes to construct a confidence interval"
   },
   {
-    "objectID": "slides/23-quantifying-uncertainty.html#participate",
-    "href": "slides/23-quantifying-uncertainty.html#participate",
+    "objectID": "slides/23-quantifying-uncertainty.html#participate-1",
+    "href": "slides/23-quantifying-uncertainty.html#participate-1",
     "title": "Quantifying uncertainty",
     "section": "Participate 📱💻",
     "text": "Participate 📱💻\n\n\n\nDo you think there’s a relationship between screen time and sleep duration? If so, in which direction?\n\n\nYes, positive: more screen time, more sleep\nYes, negative: more screen time, less sleep\nNo, there’s no relationship\nNot sure\n\n\n\n\n\n\n\n\nGo to wooclap.com and use the code SAXPGIL."
@@ -301,8 +315,8 @@
     "text": "95% confidence interval\n\nboot_fits |&gt;\n  get_confidence_interval(\n    point_estimate = obs_fit,\n    level = 0.95,\n    type = \"percentile\"\n  ) |&gt;\n  kable(digits = 2)\n\n\n\nterm\nlower_ci\nupper_ci\n\n\n\nintercept\n3.80\n7.86\n\n\nscreen\n-0.09\n0.53\n\n\n\n\n\n. . .\n\nFill in the blanks: We are 95% confident that for each additional hour of daily screen time, the model predicts students’ nightly sleep to be ___ to ___ hours, on average."
   },
   {
-    "objectID": "slides/23-quantifying-uncertainty.html#participate-1",
-    "href": "slides/23-quantifying-uncertainty.html#participate-1",
+    "objectID": "slides/23-quantifying-uncertainty.html#participate-2",
+    "href": "slides/23-quantifying-uncertainty.html#participate-2",
     "title": "Quantifying uncertainty",
     "section": "Participate 📱💻",
     "text": "Participate 📱💻\n\n\n\nThe interval includes 0, what does that tell us?\n\n\n\n\n\n\nGo to wooclap.com and use the code SAXPGIL."
