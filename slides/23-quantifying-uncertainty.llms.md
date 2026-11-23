@@ -17,32 +17,14 @@ November 16, 2026
 
 # Warm-up
 
-## While you wait: Participate 📱💻
-
-Given that HW 6 will be assigned on Monday, Dec 1, what day should HW 5 be due? It will be due at 11:59 pm on the deadline we decide on.
-
-- Sunday, Nov 30 - no change
-- Monday, Dec 1 - postponed by 1 day
-- Tuesday, Dec 2 - postponed by 2 days
-- Wednesday, Dec 3 - postponed by 3 days
-
-[![](images/wooclap-qr.png)](images/wooclap-qr.png)
-
-Scan the QR code or go to [wooclap.com](https://wooclap.com). Log in with your Duke NetID and enter the code **OQPLQEK**.
-
 ## Announcements
 
-- HW:
-  - HW 5 due \[whichever date we decided on in the previous slide\]
-  - HW 6 due at 11:59 pm on Fri, Dec 6, but will be accepted until Sun, Dec 7 at 11:59 pm without penalty
-- Final exam:
-  - In-class only, “cheat sheet” with same specs as usual allowed
-  - Cumulative – will definitely have material since Exam 2, but there’s so little of it that it won’t be a huge portion of the exam
-  - Final exam review during reading period – date/time/location TBA
-  - Office hours during reading period + final exam week – schedule TBA
-- Grades:
-  - Exam 2 in-class grades posted – can review questions in my office hours anytime before the final
-  - Exam 2 take-home + project grades to be posted after Thanksgiving break
+- HW 7 will be posted tomorrow, due Wednesday Dec 2
+
+- Final exam week:
+
+  - Review session (optional): Monday, Dec 7, 10 am - 11:15 am
+  - Office hours schedule will look different (to provide more timely help + accommodate TAs’ final exam schedules), to be posted next week
 
 # Quantifying uncertainty
 
@@ -56,6 +38,13 @@ Find range of plausible values for the slope using bootstrap confidence interval
 # load packages
 library(tidyverse) # for data wrangling and visualization
 library(tidymodels) # for modeling
+```
+
+    Warning: package 'dials' was built under R version 4.6.2
+
+    Warning: package 'yardstick' was built under R version 4.6.2
+
+``` downlit
 library(scales) # for pretty axis labels
 library(knitr) # for neatly formatted tables
 ```
@@ -106,9 +95,9 @@ Do you think there’s a relationship between screen time and sleep duration? If
 - No, there’s no relationship
 - Not sure
 
-[![](images/wooclap-qr.png)](images/wooclap-qr.png)
+[![QR code for Wooclap](images/23/wooclap-qr.png)](images/23/wooclap-qr.png)
 
-Scan the QR code or go to [wooclap.com](https://wooclap.com). Log in with your Duke NetID and enter the code **OQPLQEK**.
+Go to [wooclap.com](https://app.wooclap.com/SAXPGIL) and use the code SAXPGIL.
 
 ## Screen use at bedtime and sleep
 
@@ -612,9 +601,13 @@ boot_fits |>
 
 **Fill in the blanks:** We are 95% confident that for each additional hour of daily screen time, the model predicts students’ nightly sleep to be \_\_\_ to \_\_\_ hours, on average.
 
-. . .
+## Participate 📱💻
 
-Does the interval include 0? What does that tell us? Can we conclude that screen time *causes* a change in sleep?
+The interval includes 0, what does that tell us?
+
+[![QR code for Wooclap](images/23/wooclap-qr.png)](images/23/wooclap-qr.png)
+
+Go to [wooclap.com](https://app.wooclap.com/SAXPGIL) and use the code SAXPGIL.
 
 ## Application exercise
 
