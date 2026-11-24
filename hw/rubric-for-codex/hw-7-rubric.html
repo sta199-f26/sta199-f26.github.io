@@ -515,7 +515,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#feedback-guidance" id="toc-feedback-guidance" class="nav-link active" data-scroll-target="#feedback-guidance">Feedback guidance</a></li>
-  <li><a href="#part-1---babies" id="toc-part-1---babies" class="nav-link" data-scroll-target="#part-1---babies">Part 1 - Babies</a>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
@@ -525,12 +525,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
   <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
-  </ul></li>
-  <li><a href="#part-2---lemurs" id="toc-part-2---lemurs" class="nav-link" data-scroll-target="#part-2---lemurs">Part 2 - Lemurs</a>
-  <ul class="collapse">
-  <li><a href="#data-preparation-for-questions-9-and-10" id="toc-data-preparation-for-questions-9-and-10" class="nav-link" data-scroll-target="#data-preparation-for-questions-9-and-10">Data preparation for Questions 9 and 10</a></li>
-  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
-  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
   </ul></li>
   <li><a href="#overall" id="toc-overall" class="nav-link" data-scroll-target="#overall">Overall</a></li>
   </ul>
@@ -575,8 +569,8 @@ ul.task-list li input[type="checkbox"] {
 <li>If source code, rendered output, reference images, data, or GitHub history are unavailable, state which checks cannot be verified. Do not infer completion from a claim alone.</li>
 </ul>
 </section>
-<section id="part-1---babies" class="level1">
-<h1>Part 1 - Babies</h1>
+<section id="questions" class="level1">
+<h1>Questions</h1>
 <section id="question-1" class="level2">
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <ol type="1">
@@ -663,52 +657,6 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Part (b). Both interpretations agree with the coefficient signs, reference category, and displayed intervals, and avoid causal claims or claims about individual outcomes.</p></li>
 <li><p>Part (c). Plots display the bootstrap distributions used for both slope intervals, with labels that distinguish the coefficients and their units.</p></li>
 <li><p>Part (c). Descriptions of shapes and centers agree with the displayed distributions and relate the centers to the corresponding observed coefficients.</p></li>
-</ol>
-</section>
-</section>
-<section id="part-2---lemurs" class="level1">
-<h1>Part 2 - Lemurs</h1>
-<section id="data-preparation-for-questions-9-and-10" class="level2">
-<h2 class="anchored" data-anchor-id="data-preparation-for-questions-9-and-10">Data preparation for Questions 9 and 10</h2>
-<ol type="1">
-<li><p>Code reads the supplied lemur file and saves the unmodified data frame as <code>lemurs_raw</code>.</p></li>
-<li><p>Code applies both filtering conditions specified in the assignment and saves the result as <code>lemurs</code>.</p></li>
-<li><p>The analysis data agree with the assignment’s row-count check and contain one observation per distinct animal identifier.</p></li>
-<li><p>Both questions use this filtered data frame consistently. Age refers to age at weighing, and weight refers to the measurement taken on that date.</p></li>
-</ol>
-</section>
-<section id="question-9" class="level2">
-<h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
-<ol type="1">
-<li><p>Part (a). A scatterplot places age at weighing on the x-axis and weight on the y-axis and includes a fitted linear regression line.</p></li>
-<li><p>Part (a). Axis labels are readable and include the appropriate units.</p></li>
-<li><p>Part (a). The narrative accurately describes the relationship shown and supports its assessment of a linear model with visible features of the plot. It does not treat a fitted line alone as evidence of linearity.</p></li>
-<li><p>Part (b). Code fits the requested linear model to the filtered lemurs and displays tidy coefficient output using the course’s tidymodels workflow.</p></li>
-<li><p>Part (b). The slope interpretation agrees with the fitted estimate, uses grams per day, and describes an average or expected weight comparison for a one-day difference in age within the stated population and age range.</p></li>
-<li><p>Part (c). Hypotheses concern the population slope, identify the relevant variables and population, and match a two-sided test. Sample estimates are not presented as population hypotheses.</p></li>
-<li><p>Part (c). Code calculates the observed slope from the original filtered data, consistent with the model in part (b).</p></li>
-<li><p>Part (c). Code sets a seed and generates 1,000 permutations under the specified independence null, breaking the pairing between age and weight while retaining their observed marginal values.</p></li>
-<li><p>Part (c). Each permutation produces the same slope statistic as the observed analysis. Bootstrap resampling and a model summary’s theoretical p-value do not replace the requested permutation procedure.</p></li>
-<li><p>Part (c). The randomization distribution is visualized with readable labels identifying the slope statistic and units.</p></li>
-<li><p>Part (c). Code calculates and displays a two-sided p-value using the observed slope and the simulated null distribution.</p></li>
-<li><p>Part (c). If no simulated statistics are at least as extreme as the observed statistic, feedback distinguishes finite simulation resolution from a claim that the true p-value is exactly zero.</p></li>
-<li><p>Part (d). The hypothesis decision follows from the reported p-value and specified discernability level, and a one-sentence conclusion addresses the research question in context.</p></li>
-<li><p>Part (d). The conclusion distinguishes evidence about an association from proof of a hypothesis or a causal effect, and does not generalize to other taxa or ages without justification.</p></li>
-</ol>
-</section>
-<section id="question-10" class="level2">
-<h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
-<ol type="1">
-<li><p>Part (a). The predicted inclusion or exclusion of the null value is justified using the student’s hypothesis test in Question 9 and treats test–interval agreement as an expectation rather than a guarantee.</p></li>
-<li><p>Part (b). Code sets a seed and generates 1,000 bootstrap resamples of complete observations from the filtered lemurs, retaining the age–weight pair within each sampled row.</p></li>
-<li><p>Part (b). Code refits the same model and extracts its age slope for each resample, rather than permuting values or using the intercept.</p></li>
-<li><p>Part (b). Code constructs and displays the requested 95% percentile bootstrap interval using the bootstrap slope distribution.</p></li>
-<li><p>Part (c). The visualization displays the same bootstrap slope distribution used to construct the interval, with readable labels and units.</p></li>
-<li><p>Part (c). The description of shape and center agrees with the displayed distribution and the observed estimate.</p></li>
-<li><p>Part (c). The comparison of distribution centers correctly explains the different purposes and generation processes of the bootstrap and randomization procedures, rather than attributing the distinction merely to different seeds.</p></li>
-<li><p>Part (d). The interval interpretation includes the confidence level, reported bounds, slope units, average or expected comparison, and relevant taxon and age range.</p></li>
-<li><p>Part (d). The response correctly reports whether the displayed interval contains the null value and compares that finding with the hypothesis test, without requiring exact agreement between the two procedures.</p></li>
-<li><p>Part (e). The response evaluates the proposed individual-growth interpretation using the observational unit and measurement structure, and explains which kind of conclusion the fitted slope supports. Feedback should prompt the student to reason from the study design rather than supply the conclusion.</p></li>
 </ol>
 </section>
 </section>
