@@ -10,19 +10,19 @@ draft: true
 
 # Introduction
 
-In this homework, you will use simulation-based inference to study lemur weights and birth outcomes.
-You will begin by using randomization tests and bootstrap confidence intervals to compare the mean and median weights of female and male lemurs.
-Next, you will prepare and explore birth records, evaluate a potentially misleading visualization, and use bootstrapping to quantify uncertainty in regression slopes.
+In this homework, you will use simulation-based inference to study birth outcomes and lemur weights.
+You will begin by preparing and exploring birth records, evaluating a potentially misleading visualization, and using bootstrapping to quantify uncertainty in regression slopes.
+Next, you will use a randomization test and a bootstrap confidence interval to conduct inference for the slope of a model relating lemur weight to age.
 
 ## Learning objectives
 
 By the end of this homework, you will:
 
-- conduct and interpret simulation-based hypothesis tests for differences in means and medians;
-- construct and interpret bootstrap confidence intervals and connect them to hypothesis tests;
 - prepare data by handling missing values and recoding categorical variables;
-- create and critically evaluate tables and visualizations of conditional distributions; and
-- use bootstrap confidence intervals to conduct inference for slopes in regression models with one or more predictors.
+- create and critically evaluate tables and visualizations of conditional distributions;
+- use bootstrap confidence intervals to conduct inference for slopes in regression models with one or more predictors;
+- conduct and interpret a simulation-based hypothesis test for a regression slope; and
+- construct and interpret bootstrap confidence intervals and connect them to hypothesis tests.
 
 ## Guidelines
 
@@ -44,65 +44,7 @@ library(tidymodels)
 library(knitr)
 ```
 
-# Part 1 - Lemurs
-
-Questions 1 and 2 use data from the Duke Lemur Center.
-Read `lemurs.csv` from your `data` folder and save it as `lemurs`.
-You will compare weights (`weight_g`, measured in grams) between female and male lemurs (`sex`).
-
-## Question 1
-
-The goal of this question is to answer the following research question:
-
-> Do female lemurs differ in weight from male lemurs, on average?
-
-More specifically, we want to answer whether the data provide convincing evidence of a discernible difference between the average weights of female and male lemurs.
-
-a.  Conduct a hypothesis test to answer this question at 5% discernability level.
-    Clearly state your hypotheses in the context of the data and the research question, simulate a randomization distribution, find the p-value, and make a decision on your hypotheses based on this p-value.
-    Provide a one-sentence conclusion for your hypothesis test in the context of the data and the research question.
-    Don’t forget to set a seed and use 1,000 resamples (`reps = 1000`) when simulating your randomization distribution.
-
-b.  Based on your answer to part (a), would you expect a 95% confidence interval for the difference in means of female and male lemurs to include 0?
-    Explain your reasoning.
-
-c.  Construct and interpret a 95% bootstrap confidence interval for the difference in means of female and male lemurs.
-    Does it include 0?
-    Does this align with your answer to part (b)?
-    Don’t forget to set a seed and use 1,000 resamples (`reps = 1000`) when simulating your bootstrap distribution.
-
-## Question 2
-
-The goal of this question is to answer the following research question:
-
-> Does the median weight of female lemurs differ from that of male lemurs?
-
-More specifically, we want to answer whether the data provide convincing evidence of a discernible difference between the median weights of female and male lemurs.
-
-a.  Conduct a hypothesis test to answer this question at 5% discernability level.
-    Clearly state your hypotheses in the context of the data and the research question, simulate a randomization distribution, find the p-value, and make a decision on your hypotheses based on this p-value.
-    Provide a one-sentence conclusion for your hypothesis test in the context of the data and the research question.
-    Don’t forget to set a seed and use 1,000 resamples (`reps = 1000`) when simulating your randomization distribution.
-
-b.  Based on your answer to part (a), would you expect a 95% confidence interval for the difference in medians of female and male lemurs to include 0?
-    Explain your reasoning.
-
-c.  Construct and interpret a 95% bootstrap confidence interval for the difference in medians of female and male lemurs.
-    Does it include 0?
-    Does this align with your answer to part (b)?
-    Don’t forget to set a seed and use 1,000 resamples (`reps = 1000`) when simulating your bootstrap distribution.
-
-::: openai
-This would be a good time to get feedback from AI if you haven't already!
-Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
-Revise your answers based on the feedback before moving on.
-:::
-
-::: source-control
-Preview, commit, and push your changes to GitHub with an informative and concise commit message.
-:::
-
-# Part 2 - Babies
+# Part 1 - Babies
 
 Every year, the US releases to the public a large dataset containing information on births recorded in the country.
 This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children.[^1]
@@ -116,7 +58,7 @@ This is a random sample of 1,000 cases from the dataset released in 2014.
     doi:10.3886/ICPSR36461.v1.
 
 The data are available in your `data` folder in `births14.csv`.
-Questions 3-10 use these data.
+Questions 1-8 use these data.
 
 The variables in the data are as follows:
 
@@ -134,7 +76,7 @@ The variables in the data are as follows:
 -   `marital`: Whether mother is married or ⁠not married⁠ at birth.
 -   `whitemom`: Whether mom is white or ⁠not white⁠.
 
-## Question 3
+## Question 1
 
 In this question you start exploring the data to make decisions about how to prepare it for the analysis.
 
@@ -142,7 +84,7 @@ First, read the data in and store it as `births14_raw`.
 
 Then, in a single pipeline, filter for any rows of the `births14_raw` data frame where one or more of the following variables has an `NA` value: `mage`, `weight`, `habit`, `mature`, `lowbirthweight`, then select only these five variables to display.
 
-## Question 4
+## Question 2
 
 In this question you start your data prep.
 
@@ -155,7 +97,7 @@ You should end up with 981 rows.
 If you do not, revisit your earlier work to make sure you have removed all rows with `NA` values in any of the specified columns.
 :::
 
-## Question 5
+## Question 3
 
 This question walks you through an exploration of a threshold used when the data set was put together.
 
@@ -164,7 +106,7 @@ This categorization is based on a medical threshold used for pregnancies.
 Using the data alone (not medical knowledge or external resources), determine the threshold age used to categorize moms as "mature" vs. "younger".
 Describe your process, include any evidence (summary statistics and/or visualization), and clearly state the threshold you determined.
 
-## Question 6
+## Question 4
 
 This question walks you through an exploration of another threshold used when the data set was put together.
 
@@ -177,7 +119,7 @@ Describe your process, include any evidence (summary statistics and/or visualiza
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
 :::
 
-## Question 7
+## Question 5
 
 In this question you finish up your data prep for the remaining steps of the analysis.
 
@@ -191,7 +133,7 @@ In that same pipeline, relocate these three variables to be the first three colu
 
 Save the result back to `births14` and display the first 10 rows (and however many columns fit across the page) of `births14`.
 
-## Question 8
+## Question 6
 
 This question explores low birth weight prevalence.
 
@@ -213,7 +155,7 @@ d.  Update the visualization to correct the issue you identified in part (c).
     Briefly explain what you did to fix the issue and what the new visualization shows.
     Note that there are a few ways you can address the issue, but you should select the best option.
 
-## Question 9
+## Question 7
 
 In this question you will conduct inference for a slope in a model with a single predictor.
 
@@ -221,6 +163,7 @@ a.  Fit a model for predicting baby weight (`weight`) from mother's age category
     Display the tidy model output.
 
 b.  Construct a 95% confidence interval for the slope of the model from part (a), using bootstrapping with 1,000 resamples and the percentile method.
+    Set a seed before generating your bootstrap resamples.
     Display the bounds of the interval and interpret it in the context of the data and the research question.
 
 c.  Visualize the bootstrap distribution you used to construct the confidence interval.
@@ -230,7 +173,7 @@ d.  Based on your interval from part (b), do these data provide convincing evide
     Explain your reasoning.
     Note: You do not need to conduct a hypothesis test to answer this question, justify your answer with your confidence interval only.
 
-## Question 10
+## Question 8
 
 In this question you will conduct inference for slopes in a model with two predictors.
 
@@ -238,6 +181,7 @@ a.  Fit a model for predicting baby weight (`weight`) from mother's age (`mage`)
     Display the tidy model output.
 
 b.  Construct 95% confidence intervals for the slopes of the model from part (a), using bootstrapping with 1,000 resamples and the percentile method.
+    Set a seed before generating your bootstrap resamples.
     Display the bounds of the intervals and interpret them in the context of the data and the research question.
 
 c.  Visualize the bootstrap distributions you used to construct the confidence intervals.
@@ -245,6 +189,74 @@ c.  Visualize the bootstrap distributions you used to construct the confidence i
 
 ::: openai
 Get feedback from AI if you haven't already!
+Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
+Revise your answers based on the feedback before moving on.
+:::
+
+::: source-control
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+:::
+
+# Part 2 - Lemurs
+
+In Part 1, you used bootstrap confidence intervals to conduct inference for regression coefficients.
+Here, you will compare a randomization test with a bootstrap confidence interval for the slope of a model relating weight to age.
+
+Questions 9 and 10 use data from the Duke Lemur Center, made available through [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2021/2021-08-24/readme.md).
+The homework file contains one weight observation per lemur.
+The variables you will use are:
+
+-   `taxon`: Taxonomic code identifying the animal's taxon. The code `"LCAT"` represents ring-tailed lemurs (*Lemur catta*).
+-   `dlc_id`: Unique identifier assigned to an animal by the Duke Lemur Center.
+-   `weight_g`: The animal's weight, in grams, on the date it was weighed.
+-   `age_at_wt_d`: The animal's age, in days, on the date it was weighed, calculated as the weighing date minus its date of birth.
+
+Read `lemurs.csv` from your `data` folder and save it as `lemurs_raw`.
+Filter for ring-tailed lemurs (`taxon == "LCAT"`) whose age at weighing was at most 365 days, and save the result as `lemurs`.
+Use this filtered data frame for both questions below.
+You should have 171 rows, each representing a different lemur.
+
+## Question 9
+
+The goal of this question is to answer the following research question:
+
+> Do these data provide convincing evidence of a linear association between age and weight among ring-tailed lemurs aged at most 365 days?
+
+a.  Create a scatterplot of weight (`weight_g`) versus age at weighing (`age_at_wt_d`) and add a fitted regression line.
+    Describe the relationship and comment on whether a linear model appears reasonable.
+
+b.  Fit a model for predicting weight from age at weighing.
+    Display the tidy model output and interpret the estimated slope in context, including its units.
+
+c.  State hypotheses about the population slope in the context of the data and the research question.
+    Conduct a two-sided randomization test at the 5% discernability level, using the slope as your test statistic.
+    Set a seed and use 1,000 permutations (`reps = 1000`) to simulate the randomization distribution under the null hypothesis of independence between age and weight.
+    Visualize this distribution and calculate the p-value.
+
+d.  State your decision on the hypotheses and provide a one-sentence conclusion in the context of the data and the research question.
+
+## Question 10
+
+In this question you will construct a confidence interval for the slope of the model from Question 9 and compare the results with your hypothesis test.
+
+a.  Based on your hypothesis test in Question 9, would you expect a 95% confidence interval for the population slope to include 0?
+    Explain your reasoning.
+
+b.  Construct a 95% bootstrap confidence interval for the slope using 1,000 resamples (`reps = 1000`) and the percentile method.
+    Set a seed before generating your bootstrap resamples and display the bounds of the interval.
+
+c.  Visualize the bootstrap distribution and comment on its shape and center.
+    Explain why its center differs from that of the randomization distribution in Question 9.
+
+d.  Interpret the confidence interval in the context of the data and the research question.
+    Does it include 0, and does the result align with your hypothesis test?
+    Note that a randomization test and a percentile bootstrap confidence interval are not guaranteed to give matching conclusions.
+
+e.  Can you interpret this slope as the average daily weight gain of an individual lemur?
+    Explain what the data allow you to conclude, considering that each lemur appears only once in this data frame.
+
+::: openai
+This would be a good time to get feedback from AI if you haven't already!
 Just launch Codex in Positron and ask it to review your answer for any question(s) you haven't yet reviewed.
 Revise your answers based on the feedback before moving on.
 :::
