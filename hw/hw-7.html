@@ -572,8 +572,9 @@ window.Quarto = {
   </ul>
 </li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li>
-<a href="#part-1---babies" id="toc-part-1---babies" class="nav-link" data-scroll-target="#part-1---babies">Part 1 - Babies</a>
+<a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
 <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
@@ -583,13 +584,6 @@ window.Quarto = {
   <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
   <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#part-2---lemurs" id="toc-part-2---lemurs" class="nav-link" data-scroll-target="#part-2---lemurs">Part 2 - Lemurs</a>
-  <ul class="collapse">
-<li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
-  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
   </ul>
 </li>
   <li><a href="#ai-use-disclosure" id="toc-ai-use-disclosure" class="nav-link" data-scroll-target="#ai-use-disclosure">AI use disclosure</a></li>
@@ -649,7 +643,7 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="part-1---babies" class="level1"><h1>Part 1 - Babies</h1>
+</section><section id="data" class="level1"><h1>Data</h1>
 <p>Every year, the US releases to the public a large dataset containing information on births recorded in the country. This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> This is a random sample of 1,000 cases from the dataset released in 2014.</p>
 <p>The data are available in your <code>data</code> folder in <code>births14.csv</code>. Questions 1-8 use these data.</p>
 <p>The variables in the data are as follows:</p>
@@ -680,7 +674,7 @@ window.Quarto = {
 <code>marital</code>: Whether mother is married or ⁠not married⁠ at birth.</li>
 <li>
 <code>whitemom</code>: Whether mom is white or ⁠not white⁠.</li>
-</ul>
+</ul></section><section id="questions" class="level1"><h1>Questions</h1>
 <section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <p>In this question you start exploring the data to make decisions about how to prepare it for the analysis.</p>
 <p>First, read the data in and store it as <code>births14_raw</code>.</p>
@@ -705,12 +699,12 @@ Tip
 </section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <p>This question walks you through an exploration of a threshold used when the data set was put together.</p>
 <p>One of the variables in the data is <code>mature</code>, indicating whether the mom is considered “mature” or “younger”. This categorization is based on a medical threshold used for pregnancies. Using the data alone (not medical knowledge or external resources), determine the threshold age used to categorize moms as “mature” vs.&nbsp;“younger”. Describe your process, include any evidence (summary statistics and/or visualization), and clearly state the threshold you determined.</p>
-</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p>This question walks you through an exploration of another threshold used when the data set was put together.</p>
-<p>Another variable in the data is <code>lowbirthweight</code>, indicating whether the baby’s weight is considered “low” or “not low” at birth. This categorization is based on a medical threshold used for births. Using the data alone (not medical knowledge or external resources), determine the threshold weight used to categorize baby weights as “low” vs.&nbsp;“not low”. Describe your process, include any evidence (summary statistics and/or visualization), and clearly state the threshold you determined.</p>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
 </div>
+</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>This question walks you through an exploration of another threshold used when the data set was put together.</p>
+<p>Another variable in the data is <code>lowbirthweight</code>, indicating whether the baby’s weight is considered “low” or “not low” at birth. This categorization is based on a medical threshold used for births. Using the data alone (not medical knowledge or external resources), determine the threshold weight used to categorize baby weights as “low” vs.&nbsp;“not low”. Describe your process, include any evidence (summary statistics and/or visualization), and clearly state the threshold you determined.</p>
 </section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
 <p>In this question you finish up your data prep for the remaining steps of the analysis.</p>
 <p>In a single pipeline, recode the variables <code>mature</code>, <code>habit</code>, and <code>lowbirthweight</code> in the <code>births14</code> data frame as follows:</p>
@@ -738,7 +732,11 @@ Tip
 </li>
 <li><p>Refer back to the visualization you recreated in part (b), in light of the numbers in the table you recreated in part (a). What is misleading about the visualization? Explain in 1-2 sentences.</p></li>
 <li><p>Update the visualization to correct the issue you identified in part (c). Briefly explain what you did to fix the issue and what the new visualization shows. Note that there are a few ways you can address the issue, but you should select the best option.</p></li>
-</ol></section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+</ol>
+<div class="source-control">
+<p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
+</div>
+</section><section id="question-7" class="level2"><h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
 <p>In this question you will conduct inference for a slope in a model with a single predictor.</p>
 <ol type="a">
 <li><p>Fit a model for predicting baby weight (<code>weight</code>) from mother’s age category (<code>mature</code>). Display the tidy model output.</p></li>
@@ -753,46 +751,10 @@ Tip
 <li><p>Visualize the bootstrap distributions you used to construct the confidence intervals. Comment on their shapes and centers.</p></li>
 </ol>
 <div class="openai">
-<p>Get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.</p>
+<p>This would be a good time to get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.</p>
 </div>
 <div class="source-control">
 <p>Preview, commit, and push your changes to GitHub with an informative and concise commit message.</p>
-</div>
-</section></section><section id="part-2---lemurs" class="level1"><h1>Part 2 - Lemurs</h1>
-<p>In Part 1, you used bootstrap confidence intervals to conduct inference for regression coefficients. Here, you will compare a randomization test with a bootstrap confidence interval for the slope of a model relating weight to age.</p>
-<p>Questions 9 and 10 use data from the Duke Lemur Center, made available through <a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2021/2021-08-24/readme.md">TidyTuesday</a>. The homework file contains one weight observation per lemur. The variables you will use are:</p>
-<ul>
-<li>
-<code>taxon</code>: Taxonomic code identifying the animal’s taxon. The code <code>"LCAT"</code> represents ring-tailed lemurs (<em>Lemur catta</em>).</li>
-<li>
-<code>dlc_id</code>: Unique identifier assigned to an animal by the Duke Lemur Center.</li>
-<li>
-<code>weight_g</code>: The animal’s weight, in grams, on the date it was weighed.</li>
-<li>
-<code>age_at_wt_d</code>: The animal’s age, in days, on the date it was weighed, calculated as the weighing date minus its date of birth.</li>
-</ul>
-<p>Read <code>lemurs.csv</code> from your <code>data</code> folder and save it as <code>lemurs_raw</code>. Filter for ring-tailed lemurs (<code>taxon == "LCAT"</code>) whose age at weighing was at most 365 days, and save the result as <code>lemurs</code>. Use this filtered data frame for both questions below. You should have 171 rows, each representing a different lemur.</p>
-<section id="question-9" class="level2"><h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
-<p>The goal of this question is to answer the following research question:</p>
-<blockquote class="blockquote">
-<p>Do these data provide convincing evidence of a linear association between age and weight among ring-tailed lemurs aged at most 365 days?</p>
-</blockquote>
-<ol type="a">
-<li><p>Create a scatterplot of weight (<code>weight_g</code>) versus age at weighing (<code>age_at_wt_d</code>) and add a fitted regression line. Describe the relationship and comment on whether a linear model appears reasonable.</p></li>
-<li><p>Fit a model for predicting weight from age at weighing. Display the tidy model output and interpret the estimated slope in context, including its units.</p></li>
-<li><p>State hypotheses about the population slope in the context of the data and the research question. Conduct a two-sided randomization test at the 5% discernability level, using the slope as your test statistic. Set a seed and use 1,000 permutations (<code>reps = 1000</code>) to simulate the randomization distribution under the null hypothesis of independence between age and weight. Visualize this distribution and calculate the p-value.</p></li>
-<li><p>State your decision on the hypotheses and provide a one-sentence conclusion in the context of the data and the research question.</p></li>
-</ol></section><section id="question-10" class="level2"><h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
-<p>In this question you will construct a confidence interval for the slope of the model from Question 9 and compare the results with your hypothesis test.</p>
-<ol type="a">
-<li><p>Based on your hypothesis test in Question 9, would you expect a 95% confidence interval for the population slope to include 0? Explain your reasoning.</p></li>
-<li><p>Construct a 95% bootstrap confidence interval for the slope using 1,000 resamples (<code>reps = 1000</code>) and the percentile method. Set a seed before generating your bootstrap resamples and display the bounds of the interval.</p></li>
-<li><p>Visualize the bootstrap distribution and comment on its shape and center. Explain why its center differs from that of the randomization distribution in Question 9.</p></li>
-<li><p>Interpret the confidence interval in the context of the data and the research question. Does it include 0, and does the result align with your hypothesis test? Note that a randomization test and a percentile bootstrap confidence interval are not guaranteed to give matching conclusions.</p></li>
-<li><p>Can you interpret this slope as the average daily weight gain of an individual lemur? Explain what the data allow you to conclude, considering that each lemur appears only once in this data frame.</p></li>
-</ol>
-<div class="openai">
-<p>This would be a good time to get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.</p>
 </div>
 </section></section><section id="ai-use-disclosure" class="level1"><h1>AI use disclosure</h1>
 <p>The purpose of the disclosure is for you to reflect on how you’re using AI in this course. It also helps us learn how students are effectively using AI.</p>

@@ -40,7 +40,7 @@ library(tidymodels)
 library(knitr)
 ```
 
-# Part 1 - Babies
+# Data
 
 Every year, the US releases to the public a large dataset containing information on births recorded in the country. This dataset has been of interest to medical researchers who are studying the relation between habits and practices of expectant mothers and the birth of their children.[^1] This is a random sample of 1,000 cases from the dataset released in 2014.
 
@@ -61,6 +61,8 @@ The variables in the data are as follows:
 - `habit`: Status of the mother as a nonsmoker or a smoker.
 - `marital`: Whether mother is married or ⁠not married⁠ at birth.
 - `whitemom`: Whether mom is white or ⁠not white⁠.
+
+# Questions
 
 ## Question 1
 
@@ -88,13 +90,13 @@ This question walks you through an exploration of a threshold used when the data
 
 One of the variables in the data is `mature`, indicating whether the mom is considered “mature” or “younger”. This categorization is based on a medical threshold used for pregnancies. Using the data alone (not medical knowledge or external resources), determine the threshold age used to categorize moms as “mature” vs. “younger”. Describe your process, include any evidence (summary statistics and/or visualization), and clearly state the threshold you determined.
 
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+
 ## Question 4
 
 This question walks you through an exploration of another threshold used when the data set was put together.
 
 Another variable in the data is `lowbirthweight`, indicating whether the baby’s weight is considered “low” or “not low” at birth. This categorization is based on a medical threshold used for births. Using the data alone (not medical knowledge or external resources), determine the threshold weight used to categorize baby weights as “low” vs. “not low”. Describe your process, include any evidence (summary statistics and/or visualization), and clearly state the threshold you determined.
-
-Preview, commit, and push your changes to GitHub with an informative and concise commit message.
 
 ## Question 5
 
@@ -128,6 +130,8 @@ Your fellow researchers are interested in exploring how the baby weight at birth
 
 4.  Update the visualization to correct the issue you identified in part (c). Briefly explain what you did to fix the issue and what the new visualization shows. Note that there are a few ways you can address the issue, but you should select the best option.
 
+Preview, commit, and push your changes to GitHub with an informative and concise commit message.
+
 ## Question 7
 
 In this question you will conduct inference for a slope in a model with a single predictor.
@@ -150,52 +154,9 @@ In this question you will conduct inference for slopes in a model with two predi
 
 3.  Visualize the bootstrap distributions you used to construct the confidence intervals. Comment on their shapes and centers.
 
-Get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.
+This would be a good time to get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.
 
 Preview, commit, and push your changes to GitHub with an informative and concise commit message.
-
-# Part 2 - Lemurs
-
-In Part 1, you used bootstrap confidence intervals to conduct inference for regression coefficients. Here, you will compare a randomization test with a bootstrap confidence interval for the slope of a model relating weight to age.
-
-Questions 9 and 10 use data from the Duke Lemur Center, made available through [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2021/2021-08-24/readme.md). The homework file contains one weight observation per lemur. The variables you will use are:
-
-- `taxon`: Taxonomic code identifying the animal’s taxon. The code `"LCAT"` represents ring-tailed lemurs (*Lemur catta*).
-- `dlc_id`: Unique identifier assigned to an animal by the Duke Lemur Center.
-- `weight_g`: The animal’s weight, in grams, on the date it was weighed.
-- `age_at_wt_d`: The animal’s age, in days, on the date it was weighed, calculated as the weighing date minus its date of birth.
-
-Read `lemurs.csv` from your `data` folder and save it as `lemurs_raw`. Filter for ring-tailed lemurs (`taxon == "LCAT"`) whose age at weighing was at most 365 days, and save the result as `lemurs`. Use this filtered data frame for both questions below. You should have 171 rows, each representing a different lemur.
-
-## Question 9
-
-The goal of this question is to answer the following research question:
-
-> Do these data provide convincing evidence of a linear association between age and weight among ring-tailed lemurs aged at most 365 days?
-
-1.  Create a scatterplot of weight (`weight_g`) versus age at weighing (`age_at_wt_d`) and add a fitted regression line. Describe the relationship and comment on whether a linear model appears reasonable.
-
-2.  Fit a model for predicting weight from age at weighing. Display the tidy model output and interpret the estimated slope in context, including its units.
-
-3.  State hypotheses about the population slope in the context of the data and the research question. Conduct a two-sided randomization test at the 5% discernability level, using the slope as your test statistic. Set a seed and use 1,000 permutations (`reps = 1000`) to simulate the randomization distribution under the null hypothesis of independence between age and weight. Visualize this distribution and calculate the p-value.
-
-4.  State your decision on the hypotheses and provide a one-sentence conclusion in the context of the data and the research question.
-
-## Question 10
-
-In this question you will construct a confidence interval for the slope of the model from Question 9 and compare the results with your hypothesis test.
-
-1.  Based on your hypothesis test in Question 9, would you expect a 95% confidence interval for the population slope to include 0? Explain your reasoning.
-
-2.  Construct a 95% bootstrap confidence interval for the slope using 1,000 resamples (`reps = 1000`) and the percentile method. Set a seed before generating your bootstrap resamples and display the bounds of the interval.
-
-3.  Visualize the bootstrap distribution and comment on its shape and center. Explain why its center differs from that of the randomization distribution in Question 9.
-
-4.  Interpret the confidence interval in the context of the data and the research question. Does it include 0, and does the result align with your hypothesis test? Note that a randomization test and a percentile bootstrap confidence interval are not guaranteed to give matching conclusions.
-
-5.  Can you interpret this slope as the average daily weight gain of an individual lemur? Explain what the data allow you to conclude, considering that each lemur appears only once in this data frame.
-
-This would be a good time to get feedback from AI if you haven’t already! Just launch Codex in Positron and ask it to review your answer for any question(s) you haven’t yet reviewed. Revise your answers based on the feedback before moving on.
 
 # AI use disclosure
 
